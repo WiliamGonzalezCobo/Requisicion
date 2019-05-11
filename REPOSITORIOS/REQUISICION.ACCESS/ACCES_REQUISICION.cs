@@ -34,5 +34,18 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             }
             return lst;
         }
+
+        public List<TIPOViewModel> CONSULTAR_TIPOS_REQUISICION_ACCESS() {
+            List<TIPOViewModel> lst = null;
+            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            {
+                ObjectResult<CONSULTAR_TIPOS_REQUISICION_Result> consulta = db.CONSULTAR_TIPOS_REQUISICION();
+                lst = consulta.Select(x => new TIPOViewModel(){
+                    COD_TIPO_REQUISICION = x.COD_TIPO_REQUISICION,
+                    NOMBRE_REQUISICION = x.NOMBRE_REQUISICION
+                }).ToList();
+            }
+            return lst;
+        }
     }
 }

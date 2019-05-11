@@ -10,12 +10,12 @@ namespace MODELO_DATOS.MODELO_REQUISICION
 
 
         public int COD_TIPO_REQUISICION { get; set; }
-        public int NOMBRE_REQUISICION { get; set; }
-        public int DESCRIPCION { get; set; }
-        public int ESTADO { get; set; }
-        public int USUARIO_CREACION { get; set; }
-        public int FECHA_CREACION { get; set; }
-        public int USUARIO_MODIFICACION { get; set; }
-        public int FECHA_MODIFICACION { get; set; }
+        public string NOMBRE_REQUISICION { get; set; }
+        public string DESCRIPCION { get; set; }
+        public Boolean ESTADO { get; set; }
+        public string USUARIO_CREACION { get; set; }
+        public DateTime FECHA_CREACION { get; set; }
+        public string USUARIO_MODIFICACION { get; set; }
+        public DateTime FECHA_MODIFICACION { get; set; }
     }
 }
