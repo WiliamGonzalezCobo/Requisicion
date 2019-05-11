@@ -12,18 +12,13 @@ namespace G_H_WEB.Controllers
 {
     public class REQUISICIONController : Controller
     {
-        REQUISICION requisicionLogica;
-        // GET: REQUISICION
-        public ActionResult Index()
-        {
-           REQUISICION_REP logica = new REQUISICION_REP();
-            LlenarControles();
+        LOGICA_REQUISICION requisicionLogica;
+
+        public ActionResult Index(){
+           LOGICA_REQUISICION logica = new LOGICA_REQUISICION();
             List<REQUISICIONViewModel> modelo = new List<REQUISICIONViewModel>();
-            modelo = logica.ConsultarTodos();
-            for (int i = 0; i < 2; i++)
-            {
+            for (int i = 0; i < 2; i++){
                 REQUISICIONViewModel item = new REQUISICIONViewModel();
-                //item.NOMBRE_CARGO = item.NOMBRE_CARGO"prueba" +i;
                 item.COD_CARGO = 11111 + i;
                 item.EMAIL_USUARIO_CREACION = "asda@asd.asd";
                 item.USUARIO_CREACION = "usuario" + i;
@@ -32,7 +27,9 @@ namespace G_H_WEB.Controllers
                 item.FECHA_CREACION = DateTime.Now.AddDays(-i).ToShortDateString();
                 modelo.Add(item);
             }
-            LlenarControles();
+
+            ViewBag.Necesidad = lsNecesidad;
+
             return View(modelo);
         }
 		
@@ -57,7 +54,7 @@ namespace G_H_WEB.Controllers
 
         private void LlenarControles()
         {
-            REQUISICIONTIPO logica = new REQUISICIONTIPO();
+            LOGICA_REQUISICION logica = new LOGICA_REQUISICION();
             List<SelectListItem> lsNecesidad = new List<SelectListItem>();
 
             var consulta = logica.ConsultarTodos();
@@ -272,7 +269,7 @@ namespace G_H_WEB.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    requisicionLogica = new REQUISICION();
+                    requisicionLogica = new LOGICA_REQUISICION();
                     requisicionLogica.AgregarRequisicion(requisitionModel);
                     return View();
                 }

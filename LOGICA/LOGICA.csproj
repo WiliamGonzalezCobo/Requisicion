@@ -130,8 +130,8 @@
     <Compile Include="EMPLEADO.cs" />
     <Compile Include="INTERFAZREQUISICION\IREQUISICION.cs" />
     <Compile Include="INTERFAZREQUISICION\IREQUISICIONTIPO.cs" />
-    <Compile Include="LOGICA_REQUISICION\BASE_PROXY.cs" />
-    <Compile Include="LOGICA_REQUISICION\PROXY.cs" />
+    <Compile Include="BASE_REQUISICION\BASE_PROXY.cs" />
+    <Compile Include="BASE_REQUISICION\PROXY.cs" />
     <Compile Include="MODELO_LOGICA\AUTENTICA_DIRECTORIO_MODELO.cs" />
     <Compile Include="MODELO_LOGICA\AUTENTICAR_MODELO.cs" />
     <Compile Include="MODELO_LOGICA\AUTENTICAR_USUARIO_MODELO.cs" />
@@ -140,9 +140,7 @@
     <Compile Include="MODELO_LOGICA\ENCRIPTAR_MODELO.cs" />
     <Compile Include="MODELO_LOGICA\SOPORTE_MODELO.cs" />
     <Compile Include="NOTIFICACION.cs" />
-    <Compile Include="REQUISICION_LOGICA\REQUISICION.cs" />
-    <Compile Include="REQUISICION_LOGICA\REQUISICIONTIPO.cs" />
-    <Compile Include="REQUISICION_LOGICA\REQUISICION_REP.cs" />
+    <Compile Include="REQUISICION_LOGICA\LOGICA_REQUISICION.cs" />
     <Compile Include="TIPO_SOPORTE.cs" />
     <Compile Include="MODELO_LOGICA\EMPLEADO_MODELO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
