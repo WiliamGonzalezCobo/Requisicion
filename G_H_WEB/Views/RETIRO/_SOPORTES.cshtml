@@ -1,0 +1,169 @@
+﻿@using G_H_WEB.Models;
+@model IEnumerable<SOPORTES_RETIRO_ViewModel>
+
+@{
+    
+    string REQUERIDO = "";
+}
+
+
+
+@foreach (SOPORTES_RETIRO_ViewModel SOPORTE in Model)
+{
+
+    if (SOPORTE.NOMBRE_SOPORTE == "")
+    {
+        if (SOPORTE.REQUERIDO) { REQUERIDO = "*"; }
+        string ID = "subirarchivo" + SOPORTE.COD_SOPORTE.ToString();
+
+        string BARRACARGAR = "proceso" + SOPORTE.COD_SOPORTE.ToString();
+
+<div class="row item-documento">
+    <div class="col-md-3 tipo-documento">@SOPORTE.NOMBRE_TIPO_SOPORTE  @REQUERIDO </div>
+    <input type="hidden" id="REQUERIDO" class="validate" name="'@SOPORTE.REQUERIDO.ToString()'" value="'@SOPORTE.REQUERIDO.ToString()'" />
+    <div class="col-md-9 col-lg-9 col-xl-9">
+        <div id="CARGAR1">
+            <p class="texto-subir-archivo"><span class="fas fa-cloud-download-alt"><input type="hidden" id="cod_soporte_" value=@SOPORTE.COD_SOPORTE /><input type="hidden" id="cod_tipo_soporte_" value=@SOPORTE.COD_TIPO_SOPORTE /><label for="@ID" id="subirarchivo" class="subirarchivolabel">Seleccione un archivo</label><input type="file" id="@ID" onchange="CARGARARCHIVO('@ID','@SOPORTE.COD_TIPO_SOPORTE','@BARRACARGAR', '@SOPORTE.COD_SOPORTE', '@SOPORTE.COD_TIPO_SOPORTE')" class="SubirArchivo"></span><span class="fas fa-cloud-download-alt"></span></p>
+        </div>
+        <div class="progress" id="@BARRACARGAR" hidden></div>
+    </div>
+</div>
+    }
+    else
+    {
+        <div class="row item-documento">
+            <div class="col-md-3 tipo-documento">@SOPORTE.NOMBRE_TIPO_SOPORTE</div>
+            <div class="col-md-9">
+
+
+                @if (User.IsInRole("Jefe") && User.IsInRole("BP") && SOPORTE.ESTADO == "Registrado")
+                {
+                    <p class="texto-archivo-subido"><span>@Html.ActionLink(SOPORTE.NOMBRE_SOPORTE, "CONSULTAR_SOPORTE", new { COD_SOPORTE = SOPORTE.COD_SOPORTE }, new { @target = "_blank" })  </span><span class="peso-archivo">@SOPORTE.TAMANO</span> <a onclick="RETIRAR('@SOPORTE.COD_SOPORTE', '@SOPORTE.COD_RETIRO')">  <span class="fas fa-times" data-toggle="tooltip" data-placement="top" title="Cancelar"> </span></a> </p>
+                }
+                else if (User.IsInRole("Jefe")  && SOPORTE.ESTADO == "Registrado")
+                {
+                    <p class="texto-archivo-subido"><span>@Html.ActionLink(SOPORTE.NOMBRE_SOPORTE, "CONSULTAR_SOPORTE", new { COD_SOPORTE = SOPORTE.COD_SOPORTE }, new { @target = "_blank" })  </span><span class="peso-archivo">@SOPORTE.TAMANO</span> <a onclick="RETIRAR('@SOPORTE.COD_SOPORTE', '@SOPORTE.COD_RETIRO')">  <span class="fas fa-times" data-toggle="tooltip" data-placement="top" title="Cancelar"> </span></a> </p>
+
+                }
+
+                else
+                {
+                    <p class="texto-archivo-subido"><span>@Html.ActionLink(SOPORTE.NOMBRE_SOPORTE, "CONSULTAR_SOPORTE", new { COD_SOPORTE = SOPORTE.COD_SOPORTE }, new { @target = "_blank" })  </span><span class="peso-archivo">@SOPORTE.TAMANO</span> <a>  <span class="fas fa-times" data-toggle="tooltip" data-placement="top" title="No se puede cancelar"> </span></a> </p>
+                }
+
+            </div>
+        </div>
+    }
+
+}
+
+
+<script>
+
+    /*funcion para cancelar el soporte del retiro */
+    function RETIRAR(COD_SOPORTE, COD_RETIRO) {
+        debugger;
+        $.ajax({
+            type: "GET",
+            url: '/RETIRO/RETIRAR_SOPORTE?COD_SOPORTE=' + COD_SOPORTE + '&COD_RETIRO=' + COD_RETIRO + '&VISTA=' + '_SOPORTES',
+            contentType: false,
+            processData: false,
+            target: "#DETALLE_SOPORTES",
+            success: function (result) {
+                $('#DETALLE_SOPORTES').html(result);
+                //location.reload();
+            },
+            error: function (result, xhr, status) {
+                $('#DETALLE_ERROR').html(result.responseText);
+                var err = "Error " + " " + status;
+                console.log(err);
+            }
+        });
+    }
+
+
+    //Funcion que carga el archivo y ejecuta la barra de carga//
+    function CARGARARCHIVO(IDUPLOADFILE, COD_TIPO_SOPORTE, BARRACARGAR, COD_SOPORTE, COD_TIPO_SOPORTE) {
+        debugger;
+        if ($('#FECHA_RETIRO').val() != "" && $("#FECHA_RETIRO").val() != "Fecha") {
+            debugger;
+            if ((file = document.getElementById(IDUPLOADFILE).files[0])) {
+                var sizeByte = file.size;
+                var sizekiloBytes = parseInt(sizeByte / 1024);
+                var sizeMegabits = parseInt(sizekiloBytes / 1024);
+                if (sizeMegabits > 4) {
+                    $("#CuerpoModalError").hide('hide');
+                    $("#ErrorModal").text("El archivo excede el tamaño permitido, debe ser menor o igual a 4MB. " + " El tamaño de su archivo es de " + sizeMegabits + " MB ");
+                    $('.modal-body').load('content.html', function () {
+                        $('#modalValidaError').modal({ show: true });
+                    });
+                    return;
+                }
+                else {
+
+                    $("#CARGAR1").hide('hide');
+                    $("#campoArchivoCargado").attr("hidden", "hidden");
+                    var data = new FormData();
+                    Barra = document.getElementById(BARRACARGAR)
+                    Archivo = document.getElementById(IDUPLOADFILE).files[0]
+                    data.append("   ", Archivo);
+
+                    $.ajax({
+                        xhr: function () {
+                            var xhr = new window.XMLHttpRequest();
+                            xhr.upload.addEventListener("progress", function (evt) {
+                                if (evt.lengthComputable) {
+                                    var percentComplete = evt.loaded / evt.total;
+                                    console.log(percentComplete);
+                                    $("#" + BARRACARGAR).removeAttr('hidden');
+
+                                    $("#" + BARRACARGAR).css({
+                                        width: percentComplete * 100 + '%'
+                                    });
+                                    if (percentComplete === 1) {
+                                        $("#" + BARRACARGAR).addClass('hide');
+                                    }
+                                }
+                            }, false);
+                            xhr.addEventListener("progress", function (evt) {
+                                if (evt.lengthComputable) {
+                                    var percentComplete = evt.loaded / evt.total;
+                                    console.log(percentComplete);
+                                    $("#" + BARRACARGAR).css({
+                                        width: percentComplete * 100 + '%'
+                                    });
+                                }
+                            }, false);
+                            return xhr;
+                        },
+                        type: "POST",
+                        url: '/RETIRO/EDITAR_SOPORTE?COD_RETIRO=' + $("#COD_RETIRO").val() + '&COD_SOPORTE=' + COD_SOPORTE + '&COD_TIPO_SOPORTE=' + COD_TIPO_SOPORTE + '&VISTA=' + '_SOPORTES' + '&COD_CAUSA_RETIRO=' + parseInt($("#COD_CAUSA_RETIRO").val()),
+                        contentType: false,
+                        processData: false,
+                        data: data,
+                        target: "#DETALLE_SOPORTES",
+                        success: function (result) {
+                            var contador = parseInt($("#tieneArchivo").val()) + 1;
+                            $("#tieneArchivo").val(contador);
+                            $('#DETALLE_SOPORTES').html(result);
+                        },
+                        error: function (result, xhr, status) {
+                            $('#DETALLE_ERROR').html(result.responseText);
+                            var err = "Error " + " " + status;
+                            console.log(err);
+                        }
+                    });
+
+                }
+            }
+        }
+        else {
+            if ($('#FECHA_RETIRO').val() == "" || $("#FECHA_RETIRO").val() == "Fecha") { $("#campoFecha").removeAttr("hidden"); }
+            // capturacausaretiro($("#causaretiro").val());
+            return;
+
+
+        }
+    }
+
+</script>

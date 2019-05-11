@@ -1,0 +1,338 @@
+﻿@using G_H_WEB.Models;
+@model RETIRO_EDITA_ViewModel
+
+@{
+    ViewBag.Title = "retiros_buscar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+
+
+
+
+<div class="col-md-9 col-lg-9 col-xl-9 tablaRetiros">
+
+    <form id="form" name="form" method="post">
+        <h2 class="titulo-retiros">Editar Retiro</h2>
+        @if (Model != null)
+        {
+
+
+            @Html.HiddenFor(M => M.COD_RETIRO)
+            <div class="retiros-detalle">
+                <label>Nombre:</label>
+                <p>@Model.NOMBRE</p>
+                <label>Número documento:</label>
+                <p>@Model.DOCUMENTO</p>
+                <label>Cargo:</label>
+                <p>@Model.CARGO</p>
+            </div>
+            <div class="row">
+                <div class="col-6 ">
+                    <label id="campoListaDesplegable" class="text-danger" hidden="hidden">Campo requerido</label>
+                </div>
+                <div class="col-6 ">
+                    <label id="campoFecha" class="text-danger" hidden="hidden">Campo requerido</label>
+                </div>
+            </div>
+            <div class="option-dropdown causal-retiro">
+                @Html.HiddenFor(m => m.COD_CAUSA_RETIRO)
+                @Html.HiddenFor(m => m.ESTADO)
+                @Html.HiddenFor(m => m.NOMBRE_VISTA)
+                <div class="default-option">
+                    <span class="select-title noselect causal-retiro">@Model.NOMBRE_CAUSA_RETIRO</span><span class="fas fa-angle-down"></span>
+
+                    @if (User.IsInRole("Jefe") && Model.ESTADO != "Finalizado" && Model.ESTADO != "Registrado" && Model.ESTADO != "Documentos Aprobados" && Model.ESTADO != "Verificado BP")//verificar pregunta
+                    {
+                        <ul class="optiongroup-menu">
+                            @foreach (CAUSA_RETIRO_ViewModel CAUSA_RETIRO in Model.CAUSAS_RETIROS)
+                            {
+
+                                <li><a class="seleccionarOpcion" onclick="capturacausaretiro('@CAUSA_RETIRO.COD_CAUSA_RETIRO')">@CAUSA_RETIRO.NOMBRE</a></li>
+                            }
+                        </ul>
+                    }
+
+                </div>
+            </div>
+
+
+            if (User.IsInRole("Jefe") && User.IsInRole("BP") && Model.ESTADO == "Registrado" && Model.ESTADO != "Finalizado")
+            {
+                <div class="input-group date datepicker-retiro">
+                    @Html.TextBoxFor(M => M.FECHA_RETIRO, new { @class = "form-control" })
+
+                    <span class="input-group-addon">
+                        <span class="fas fa-calendar-alt" style="pointer-events:none">
+                        </span>
+                    </span>
+                </div>
+            }
+            else if (User.IsInRole("BP"))
+            {
+                <div class="input-group date datepicker-retiro">
+                    @Html.TextBoxFor(M => M.FECHA_RETIRO, new { @class = "form-control", @style = "pointer-events:none" })
+                    <span class="input-group-addon">
+
+                    </span>
+                </div>
+            }
+
+            else if (User.IsInRole("Jefe") && Model.ESTADO == "Registrado" && Model.ESTADO != "Finalizado")
+            {
+
+
+
+                <div class="input-group date datepicker-retiro">
+                    @Html.TextBoxFor(M => M.FECHA_RETIRO, new { @class = "form-control" })
+                    <span class="input-group-addon">
+                        <span class="fas fa-calendar-alt" style="pointer-events:none">
+                        </span>
+                    </span>
+                </div>
+
+            }
+            else
+            {
+                <div class="input-group date datepicker-retiro">
+                    @Html.TextBoxFor(M => M.FECHA_RETIRO, new { @class = "form-control", @style = "pointer-events:none" })
+                    <span class="input-group-addon">
+                        <span class="fas fa-calendar-alt" style="pointer-events:none"></span>
+                    </span>
+                </div>
+            }
+            <label id="campoArchivoCargado" class=" text-danger" hidden="hidden">Seleccione Archivo, es requerido</label>
+            <div class="retiros-detalle">
+                <row class="documentos-relacionados">
+                    <div class="col-md-12 documentos-header">
+                        <p>Documentos Relacionados   <span>- Archivos permitidos: Formato PDF, Máximo 4MB por archivo </span></p>
+                    </div>
+                    <div class="col-md-12 documentos-body">
+                        <div id="DETALLE_SOPORTES" name="DETALLE_SOPORTES">
+
+                            @Html.Partial("_SOPORTES", Model.SOPORTES)
+
+                        </div>
+                    </div>
+                </row>
+                <div class="generar-vacante">
+                    <div class="custom-checkbox-container generar-vacante">
+
+
+                        @if (User.IsInRole("BP") && User.IsInRole("Jefe"))
+                        {
+                            if (Model.ESTADO == "Documentos Aprobados" || Model.ESTADO == "Verificado BP")
+
+                            {
+
+                                @Html.CheckBoxFor(m => m.GENERA_VACANTE, new { @checked = "checked", @class = "custom-checkbox", @id = "generar-vacante" })
+
+                            }
+
+                        }
+
+                        else if (User.IsInRole("BP"))
+                        {
+                            if (Model.ESTADO == "Documentos Aprobados" || Model.ESTADO == "Verificado BP")
+
+                            {
+
+                                @Html.CheckBoxFor(m => m.GENERA_VACANTE, new { @checked = "checked", @class = "custom-checkbox", @id = "generar-vacante" })
+
+                            }
+                        }
+
+                        else if (Model.GENERA_VACANTE)
+                        {
+                            @Html.CheckBoxFor(m => m.GENERA_VACANTE, new { @checked = "checked", @class = "custom-checkbox", @id = "generar-vacante", @disabled = "disabled" })//@style = "pointer -events:none"
+                        }
+                        else
+                        {
+                            <input class="custom-checkbox" type="checkbox" id="generar-vacante" disabled="disabled">
+                        }
+
+                        <label class="custom-checkbox-label fas fa-check checkbox-generar-vacante" for="generar-vacante"></label><span class="checkbox-title">Generar vacante</span>
+                    </div>
+                </div>
+                <label id="campoDetalle" class="text-danger" hidden="hidden"><big>Campo requerido</big></label>
+                @{
+                    if (User.IsInRole("Jefe") && Model.ESTADO == "Registrado")
+
+                    {
+                        @Html.ValidationMessageFor(m => m.COMENTARIOS, "", new { @class = "text-danger", @id = "LBCOMENTARIO" })
+                        @Html.TextAreaFor(m => m.COMENTARIOS, new { @class = "generar-comentarios", @placeholder = "Comentarios", @name = "TXTCOMENTARIO", @Request })
+                    }
+                    else
+                    {
+                        if (Model.ESTADO == "Documentos Aprobados" || Model.ESTADO == "Verificado BP")
+                        //   if (User.IsInRole("BP") && Model.ESTADO != "Finalizado" && Model.ESTADO == "Verificado BP")
+                        {
+                            if (User.IsInRole("BP"))
+                            {
+
+                                @Html.ValidationMessageFor(m => m.COMENTARIOS, "", new { @class = "text-danger", @id = "LBCOMENTARIO" })
+                                @Html.TextAreaFor(m => m.COMENTARIOS, new { @class = "generar-comentarios", @placeholder = "Comentarios", @name = "TXTCOMENTARIO", @Request })
+                            }
+                            else
+                            {
+
+                                @Html.ValidationMessageFor(m => m.COMENTARIOS, "", new { @class = "text-danger", @id = "LBCOMENTARIO" })
+                                @Html.TextAreaFor(m => m.COMENTARIOS, new { @class = "generar-comentarios", @placeholder = "Comentarios", @name = "TXTCOMENTARIO", @style = "pointer-events:none" })
+                            }
+                        }
+                        else
+                        {
+                            @Html.ValidationMessageFor(m => m.COMENTARIOS, "", new { @class = "text-danger", @id = "LBCOMENTARIO" })
+                            @Html.TextAreaFor(m => m.COMENTARIOS, new { @class = "generar-comentarios", @placeholder = "Comentarios", @name = "TXTCOMENTARIO", @style = "pointer-events:none" })
+                        }
+                    }
+                }
+
+
+
+                <button id="RetornarFormulario" onclick="REGRESAR(); return false;" class="btn-cancelar-retriro">Regresar</button>
+                @if (User.IsInRole("Jefe") && Model.ESTADO == "Registrado")
+                {
+                    <button id="ValidaFormulario" class="btn-confirmar-retiro" type="button" data-toggle="modal">Guardar</button>
+                }
+                else if (User.IsInRole("BP") && Model.ESTADO != "Finalizado")
+                {
+                    if (Model.ESTADO == "Documentos Aprobados" || Model.ESTADO == "Verificado BP")
+                    {
+                        <button id="ValidaFormulario" class="btn-confirmar-retiro" type="button" data-toggle="modal">Guardar</button>
+                    }
+
+                }
+                <div class="modal fade" id="modalFinalizarRetiro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h5 class="modal-title" id="exampleModalLabel">@Model.NOMBRE</h5>
+                            </div>
+                            <div class="modal-body">Va a ser retirado de la compañía, ¿Desea continuar con el retiro?</div>
+                            <div class="modal-footer">
+                                <button class="cancelar-modal" type="button" data-dismiss="modal">Cancelar</button>
+                                <input type="submit" class="btn-confirmar-retiro" value="Continuar" />
+                                @*<button class="btn-principal" type="button">Guardar</button>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal a cancelar  -->
+            <div class="modal fade" id="modalError" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h6 class="modal-title" id="exampleModalLabel">Error:@ViewBag.MENSAJE_ERROR <label></label></h6>
+                        </div>
+                        <div class="modal-body">¿Está seguro de cancelar el retiro para?</div>
+                        <div class="modal-footer">
+
+                            <button onclick="CancelarRetiro()" class="btn-principal" type="button"> Si  </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- fin Modal para cancelar -->
+            <script src="../../assets/js/scripts.js"></script>
+        }
+    </form>
+</div>
+
+
+<!-- Modal a ERRORES  -->
+<div class="modal fade" id="modalValidaErrorEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h6 class="modal-title" id="exampleModalLabel">Error:@ViewBag.MENSAJE_ERROR <label id="ErrorModal"></label></h6>
+            </div>
+            <div class="modal-body" id="CuerpoModalError">Se presentó un error, contacte al administrador del sistema!.</div>
+            <div class="modal-footer">
+                <button class="btn-principal" type="button" data-dismiss="modal">  Cerrar </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- fin Modal ERRORES -->
+<div id="DETALLE_ERROR" name="DETALLE_ERROR">
+</div>
+
+@if (Model.ERROR != null)
+{
+    <div id="DETALLE_ERROR_RETORNO" name="DETALLE_ERROR_RETORNO">
+        @Html.Partial("_ERRORES", Model.ERROR);
+    </div>
+}
+
+@{
+
+
+    string CONTROLER_NOMBRE = ViewContext.RouteData.Values["controller"].ToString().ToUpper();
+    string VISTA_NOMBRE = ViewContext.RouteData.Values["action"].ToString().ToUpper();
+    string CONTROLER_NOMBRE1 = ViewContext.RouteData.Values["controller"].ToString().ToUpper();
+    @*Model.VISTA = VISTA_NOMBRE;
+        Model.CONTROLER= CONTROLER_NOMBRE;*@
+
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+    $(document).ready(function () {
+
+        if ('@ViewBag.MENSAJE_ERROR' != "") {
+            $('.modal-body').load('content.html', function () {
+                $('#modalValidaErrorEditar').modal({ show: true });
+            });
+        }
+
+            function buscar() {
+                window.location.href = "?CONSULTA=" + $("#BUSCAR_EDITAR").val();
+            }
+        });
+
+        function capturacausaretiro(cod_causal_retiro) {
+            $("#COD_CAUSA_RETIRO").val(cod_causal_retiro);
+        }
+
+        //regresar(); return false;
+       function REGRESAR() {
+           window.location.href = "/@Model.NOMBRE_VISTA/CONSULTAR";
+        }
+
+
+
+        /*valida llos campos si estan completos los deja pasar*/
+        $('#ValidaFormulario').on('click', function () {
+            debugger;
+            var valida = true;
+            if ($("#COMENTARIOS").val() == "") {    $("#campoDetalle").removeAttr("hidden", "hidden"); return false;}
+            if ($(".validate").each(function () {
+                if (this.name == "'True'") {
+                    $("#campoArchivoCargado").removeAttr("hidden"); $('#modalCrearRetiro').modal("hide");
+                    return valida = false;     }
+            }))
+                if ($('#FECHA_RETIRO').val() == "" || $("#FECHA_RETIRO").val() == "Fecha") {
+                    $("#campoFecha").removeAttr("hidden"); $('#modalFinalizarRetiro').hide("hide"); valida = false; return false;
+                }
+
+            if (valida) { $('.modal-body').load('content.html', function () { $('#modalFinalizarRetiro').modal({ show: true }); }); }
+        });
+
+        $("#COMENTARIOS").on("change", function () { $("#campoDetalle").attr("hidden", "hidden") });
+        $("#FECHA_RETIRO").on("change", function () { $("#campoFecha").attr("hidden", "hidden") });
+
+    </script>
+
+}
+
+

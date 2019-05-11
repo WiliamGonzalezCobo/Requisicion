@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODELO_DATOS", "MODELO_DATOS\MODELO_DATOS.csproj", "{A410B374-CA26-4C1C-B964-3374282BC812}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "REPOSITORIOS", "REPOSITORIOS\REPOSITORIOS.csproj", "{D75630F9-8BC8-4C79-BB27-8C68DE2BF991}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LOGICA", "LOGICA\LOGICA.csproj", "{AAEEEE04-447B-4416-AE3B-226F078464B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "G_H_WEB", "G_H_WEB\G_H_WEB.csproj", "{5768C7AD-563A-45B7-94B7-38C45C76441F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PRUEBA ACCESO A DATOS", "PRUEBA ACCESO A DATOS\PRUEBA ACCESO A DATOS.csproj", "{8CFA9E3D-DFFC-4135-BFD6-CF4FA3A00EF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MANUALES", "MANUALES\MANUALES.csproj", "{31CF729B-BD3E-4CDA-90C6-DFCD85C5AD56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PRUEBAS", "PRUEBAS\PRUEBAS.csproj", "{337F6CDA-730D-452B-ADF5-D2A7B53AD1D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A410B374-CA26-4C1C-B964-3374282BC812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A410B374-CA26-4C1C-B964-3374282BC812}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A410B374-CA26-4C1C-B964-3374282BC812}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A410B374-CA26-4C1C-B964-3374282BC812}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D75630F9-8BC8-4C79-BB27-8C68DE2BF991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D75630F9-8BC8-4C79-BB27-8C68DE2BF991}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D75630F9-8BC8-4C79-BB27-8C68DE2BF991}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D75630F9-8BC8-4C79-BB27-8C68DE2BF991}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAEEEE04-447B-4416-AE3B-226F078464B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAEEEE04-447B-4416-AE3B-226F078464B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAEEEE04-447B-4416-AE3B-226F078464B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAEEEE04-447B-4416-AE3B-226F078464B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5768C7AD-563A-45B7-94B7-38C45C76441F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5768C7AD-563A-45B7-94B7-38C45C76441F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5768C7AD-563A-45B7-94B7-38C45C76441F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5768C7AD-563A-45B7-94B7-38C45C76441F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CFA9E3D-DFFC-4135-BFD6-CF4FA3A00EF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CFA9E3D-DFFC-4135-BFD6-CF4FA3A00EF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CFA9E3D-DFFC-4135-BFD6-CF4FA3A00EF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CFA9E3D-DFFC-4135-BFD6-CF4FA3A00EF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31CF729B-BD3E-4CDA-90C6-DFCD85C5AD56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31CF729B-BD3E-4CDA-90C6-DFCD85C5AD56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31CF729B-BD3E-4CDA-90C6-DFCD85C5AD56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31CF729B-BD3E-4CDA-90C6-DFCD85C5AD56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{337F6CDA-730D-452B-ADF5-D2A7B53AD1D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{337F6CDA-730D-452B-ADF5-D2A7B53AD1D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{337F6CDA-730D-452B-ADF5-D2A7B53AD1D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{337F6CDA-730D-452B-ADF5-D2A7B53AD1D5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FD3BE7A7-6FB1-4E12-86B8-6FA7E12B901C}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://argestes:8080/tfs/tecadmin
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = MODELO_DATOS\\MODELO_DATOS.csproj
+		SccProjectName1 = MODELO_DATOS
+		SccLocalPath1 = MODELO_DATOS
+		SccProjectUniqueName2 = REPOSITORIOS\\REPOSITORIOS.csproj
+		SccProjectName2 = REPOSITORIOS
+		SccLocalPath2 = REPOSITORIOS
+		SccProjectUniqueName3 = LOGICA\\LOGICA.csproj
+		SccProjectName3 = LOGICA
+		SccLocalPath3 = LOGICA
+		SccProjectUniqueName4 = G_H_WEB\\G_H_WEB.csproj
+		SccProjectName4 = G_H_WEB
+		SccLocalPath4 = G_H_WEB
+		SccProjectUniqueName5 = PRUEBA\u0020ACCESO\u0020A\u0020DATOS\\PRUEBA\u0020ACCESO\u0020A\u0020DATOS.csproj
+		SccProjectName5 = PRUEBA\u0020ACCESO\u0020A\u0020DATOS
+		SccLocalPath5 = PRUEBA\u0020ACCESO\u0020A\u0020DATOS
+		SccProjectUniqueName6 = MANUALES\\MANUALES.csproj
+		SccProjectName6 = MANUALES
+		SccLocalPath6 = MANUALES
+		SccProjectUniqueName7 = PRUEBAS\\PRUEBAS.csproj
+		SccProjectName7 = PRUEBAS
+		SccLocalPath7 = PRUEBAS
+	EndGlobalSection
+EndGlobal

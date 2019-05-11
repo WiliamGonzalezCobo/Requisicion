@@ -1,0 +1,135 @@
+﻿<link href="../css/styles.css" rel="stylesheet" />
+<!doctype html>
+<title>Manual Retiros</title>
+<body>
+
+    <header><h3>Manual Gestión Humana</h3></header>
+
+    <div id="main">
+        <!-- Cuerpo-->
+        <article>
+            <h2><strong>Editar Retiro Jefe</strong></h2>
+
+            <p>
+                A esta ventana tienen acceso los usuarios con rol <strong>“Jefe”</strong> y <strong>“Business Partner”</strong>, A continuación la ventana del <strong>“Jefe”</strong>:<br /><br />
+
+                <img src="../img/editar retiro jefe.PNG" height="500" /><br /><br />
+
+                Se puede observar que esta ventana es similar a la ventana <strong>“Crear Retiro”</strong>, pero solo se puede interactuar con los dos campos señalados.<br /><br />
+
+                <strong>1. Fecha</strong>
+
+                Se puede modificar la fecha en la que se va a llevar al cabo el retiro del empleado<br /><br />
+
+                <strong>2. Comentario</strong>
+                Se puede modificar el comentario puesto anteriormente<br /><br />
+
+                <strong>3. Guardar</strong>
+                El botón al ser clickeado mostrará una modal o ventana emergente de confirmación<br /><br />
+
+                <img src="../img/modal confirmar retiro.PNG" height="300" /><br /><br />
+
+                Para guardar el proceso anteriormente hecho debe hacer click en el botón <strong>“Continuar”</strong>, de lo contrario al botón <strong>“Cancelar”</strong>.
+
+            </p>
+
+        </article>
+        <!-- Menú navegación -->
+        <nav>
+            <!-- Ventanas de la aplicacion-->
+            <button class="accordion"><strong>Ventanas de la aplicacíón</strong></button>
+            <div class="panel">
+
+                <!-- Inicio de sesión-->
+                <a href="INICIO_SESION.html">
+                    <button class="accordion">Inicio De Sesión</button>
+                </a>
+                <!--Fin Inicio de sesión-->
+                <!--Inicio consultar solicitudes-->
+                <a href="CONSULTAR_SOLICITUDES.html">
+                    <button class="accordion">Consultar Solicitudes</button>
+                </a>
+
+                <!--fin consultar solicitudes-->
+                <!-- Consultar retiros jefe-->
+                <a href="CONSULTAR_RETIROS_JEFE.html">
+                    <button class="accordion">Consultar Retiros Jefe</button>
+                </a>
+
+                <!-- Fin Consultar retiros jefe-->
+                <!--Consultar Retiros Business Partner-->
+                <a href="CONSULTAR_RETIROS_BP.html">
+                    <button class="accordion">Consultar Retiros Business Partner</button>
+                </a>
+                <!--Fin Consultar Retiros Business Partner-->
+                <!--Consultar Retiros Proveedor-->
+                <a href="CONSULTAR_RETIROS_PROVEEDOR.html">
+                    <button class="accordion">Consultar Retiros Proveedor</button>
+                </a>
+
+                <!--Fin Consultar Retiros Proveedor-->
+                <!--Crear Retiro-->
+                <a href="CREAR_RETIRO.html">
+                    <button class="accordion">Crear Retiro</button>
+                </a>
+
+                <!--Fin Crear Retiro-->
+                <!--Editar Retiro Business Partner-->
+                <a href="EDITAR_RETIRO_BP.html">
+                    <button class="accordion">Editar Retiro Business Partner</button>
+                </a>
+
+                <!--Fin Editar Retiro Business Partner-->
+                <!--Aprobar Retiro-->
+                <a href="APROBAR_RETIRO.html">
+                    <button class="accordion">Aprobar Retiro</button>
+                </a>
+                <!--Fin Aprobar Retiro-->
+            </div>
+            <!--Editar Retiro Jefe-->
+            <a href="EDITAR_RETIRO_JEFE.html">
+                <button class="accordion-static">Editar Retiro Jefe</button>
+            </a>
+            <!--Fin Editar Retiro Jefe-->
+            <!--Fin ventanas de la aplicacion-->
+            <!--inicio Procedimientos-->
+            <button class="accordion"><strong>Procedimientos</strong></button>
+            <div class="panel">
+                <!--Inicio  Crear Nuevo Retiro-->
+                <a href="CREAR_NUEVO_RETIRO.html">
+                    <button class="accordion"> Crear Nuevo Retiro</button>
+                </a>
+                <!--Fin Crear Nuevo Retiro-->
+                <!--Inicio Aprobar documentos-->
+                <a href="APROBAR_DOCUMENTOS.html">
+                    <button class="accordion">Aprobar Documento</button>
+                </a>
+                <!--Fin Aprobar documentos-->
+                <!--Inicio Verificar vacante-->
+                <a href="GENERA_VACANTE.html">
+                    <button class="accordion">Verificar vacante</button>
+                </a>
+                <!--Fin Verificar vacante-->
+            </div>
+            <!--Fin Procedimientos-->
+
+        </nav>
+    </div>
+
+</body>
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+</script>

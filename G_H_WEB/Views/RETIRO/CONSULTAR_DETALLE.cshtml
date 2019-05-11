@@ -1,0 +1,118 @@
+﻿@using G_H_WEB.Models;
+
+@model RETIRO_EDITA_ViewModel
+
+@{
+    ViewBag.Title = "retiros_buscar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string G_VACANTE = "NO";
+    if (@Model.GENERA_VACANTE)
+    {
+        G_VACANTE = "SI";
+    }
+}
+
+<div class="col-md-9 col-lg-9 col-xl-9 tablaRetiros">
+
+    @if (Model != null && Model.ERROR==null)
+    {
+
+    @Html.HiddenFor(M => M.COD_RETIRO)
+
+    <h2 class="titulo-retiros">Detalle Retiro</h2>
+    <div class="retiros-detalle">
+        <label>Nombre:</label>
+        <p>@Model.NOMBRE</p>
+
+        <label>Usuario:</label>
+        <p>@Model.USUARIO</p>
+
+        <label>Número documento:</label>
+        <p>@Model.DOCUMENTO</p>
+
+        <label>Cargo:</label>
+        <p>@Model.CARGO</p>
+
+        <label>Causal de retiro:</label>
+        <p>@Model.NOMBRE_CAUSA_RETIRO</p>
+
+        <label>Fecha de retiro:</label>
+        <p>@Model.FECHA_RETIRO</p>
+
+        <label>Estado:</label>
+        <p>@Model.ESTADO</p>
+        <label>Genera vacante:</label>
+        <p>@G_VACANTE</p>
+
+        <row class="detalle-comentarios">
+            <label> Comentarios:</label>
+            <div>
+                <p>@Model.COMENTARIOS</p>
+            </div>
+        </row>
+
+
+        <row class="documentos-relacionados">
+            <div class="col-md-12 documentos-header">
+                <p>Documentos Relacionados   <span>- Debe aprobar estos documentos para confirmar el retiro</span></p>
+            </div>
+            <div class="col-md-12 documentos-body">
+
+                @foreach (SOPORTES_RETIRO_ViewModel SOPORTE in Model.SOPORTES)
+                {
+                    if (SOPORTE.NOMBRE_SOPORTE == "")
+                    {
+                        SOPORTE.NOMBRE_SOPORTE = " ";
+
+                    }
+
+
+                    string NOMBRE_CHECK = "check-aprobado" + SOPORTE.COD_SOPORTE;
+
+                    <div class="row item-documento">
+                        <div class="col-md-3 tipo-documento">@SOPORTE.NOMBRE_TIPO_SOPORTE</div>
+                        <div class="col-md-5 nombre-archivo"><span class="fas fa-cloud-download-alt"></span> @Html.ActionLink(SOPORTE.NOMBRE_SOPORTE, "CONSULTAR_SOPORTE", new { COD_SOPORTE = SOPORTE.COD_SOPORTE }) </div>
+                        <div class="col-md-2 peso-archivo">@SOPORTE.TAMANO</div>
+                        <div class="col-md-2 aprobado">
+                            <div class="form-group form-check">
+                                <div class="custom-checkbox-container check-aprobado1">
+                                    @if (SOPORTE.APROBADO)
+                                    {
+                                        <input class="custom-checkbox" type="checkbox" id="@NOMBRE_CHECK" checked="checked" disabled>
+                                        <label class="custom-checkbox-label fas fa-check checkbox-check-aprobado1" for="@NOMBRE_CHECK" disabled></label><span class="checkbox-title">Aprobado</span>
+                                    }
+                                    else
+                                    {
+                                        <input class="custom-checkbox" type="checkbox" id="@NOMBRE_CHECK" disabled>
+                                        <label class="custom-checkbox-label fas fa-check checkbox-check-aprobado1" for="@NOMBRE_CHECK" disabled></label><span class="checkbox-title">Aprobado</span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </row>
+        <button class="btn-cancelar-retriro" onclick="REGRESAR()">Regresar </button>
+        @*<button class="btn-confirmar-retiro">Guardar</button>*@
+    </div>
+    }
+</div>
+
+@if (Model.ERROR != null)
+{
+    <div id="DETALLE_ERROR_RETORNO" name="DETALLE_ERROR_RETORNO">
+        @Html.Partial("_ERRORES", Model.ERROR);
+    </div>
+}
+
+
+
+<script>
+    function REGRESAR() {
+        window.location.href = "CONSULTAR";
+    }
+
+</script>
+

@@ -1,0 +1,150 @@
+﻿<link href="../css/styles.css" rel="stylesheet" />
+<!doctype html>
+<title>Manual Retiros</title>
+<body>
+
+    <header><h3>Manual Gestión Humana</h3></header>
+
+    <div id="main">
+        <!-- Cuerpo-->
+        <article>
+            <h2><strong>Verificar Vacante</strong></h2>
+
+            <p>
+                A continuación será mostrada la ventana <strong>“Editar Retiro”</strong> del usuario de rol <strong>“Business Partner”</strong>
+
+                Ingresamos el usuario.<br /><br />
+
+                <img src="../img Procedimientos/login usuario.PNG" height="500"/><br /><br />
+
+                Ingresamos la contraseña.<br /><br />
+
+                <img src="../img Procedimientos/login contrasena.PNG" height="500" /><br /><br />
+
+                Hacemos click en el botón <strong>“Iniciar Sesión”</strong>.<br /><br />
+
+                <img src="../img Procedimientos/login boton.PNG" height="500" /><br /><br />
+
+                Al ingresar nos dirigirá a la ventana <strong>“Consulta Solicitudes”</strong>, una vez acá deberemos hacer click en el símbolo a continuación señalado:<br /><br />
+
+                <img src="../img Procedimientos/genera vacante consultar solicitudes.PNG" width="900" height="500" /><br /><br />
+
+                Cuando hayamos dado el click nos enviará a la ventana de <strong>“Editar Retiro”</strong>, una vez en esta ventana debemos hacer click en el cuadro <strong>“Generar vacante”</strong> para verificar que el cargo de la persona que está en proceso va a generar vacante.<br /><br />
+
+                <img src="../img Procedimientos/genera vacante editar retiro.PNG" width="900" height="500" /><br /><br />
+
+                Después de hacer click en <strong>“Generar vacante”</strong> debemos escribir un comentario.<br /><br />
+
+                <img src="../img Procedimientos/genera vacante comentario.PNG" width="900" height="500"/><br /><br />
+
+                Ya hecho el comentario debemos guardar el proceso, para ello debemos hacer click en el botón <strong>“Guardar”</strong><br /><br />
+
+                <img src="../img Procedimientos/genera vacante boton.PNG" width="900" height="500" /><br /><br />
+
+                Cuando hacemos click en el botón <strong>“Guardar”</strong> nos aparecerá una ventana emergente solicitando la confirmación para poder guardar nuestro proceso, para esto debemos hacer click en el botón <strong>“Continuar”</strong><br /><br />
+
+                <img src="../img Procedimientos/genera vacante modal.PNG" width="900" height="500" /><br /><br />
+
+                Una vez ya confirmado el proceso de guardado nos dirigirá a la ventana de <strong>“Consultar Retiros”</strong> donde podemos ver que el estado de nuestro proceso cambió a <strong>“Verificado BP”</strong><br /><br />
+
+                <img src="../img Procedimientos/genera vacante consultar solicitudes vacante.PNG" width="900" height="500" /><br /><br />
+
+            </p>
+
+        </article>
+        <!-- Menú navegación -->
+        <nav>
+            <!-- Ventanas de la aplicacion-->
+            <button class="accordion"><strong>Ventanas de la aplicacíón</strong></button>
+            <div class="panel">
+                <!-- Inicio de sesión-->
+                <a href="INICIO_SESION.html">
+                    <button class="accordion">Inicio De Sesión</button>
+                </a>
+                <!--Fin Inicio de sesión-->
+                <!--Inicio consultar solicitudes-->
+                <a href="CONSULTAR_SOLICITUDES.html">
+                    <button class="accordion">Consultar Solicitudes</button>
+                </a>
+
+                <!--fin consultar solicitudes-->
+                <!-- Consultar retiros jefe-->
+                <a href="CONSULTAR_RETIROS_JEFE.html">
+                    <button class="accordion">Consultar Retiros Jefe</button>
+                </a>
+
+                <!-- Fin Consultar retiros jefe-->
+                <!--Consultar Retiros Business Partner-->
+                <a href="CONSULTAR_RETIROS_BP.html">
+                    <button class="accordion">Consultar Retiros Business Partner</button>
+                </a>
+                <!--Fin Consultar Retiros Business Partner-->
+                <!--Consultar Retiros Proveedor-->
+                <a href="CONSULTAR_RETIROS_PROVEEDOR.html">
+                    <button class="accordion">Consultar Retiros Proveedor</button>
+                </a>
+
+                <!--Fin Consultar Retiros Proveedor-->
+                <!--Crear Retiro-->
+                <a href="CREAR_RETIRO.html">
+                    <button class="accordion">Crear Retiro</button>
+                </a>
+
+                <!--Fin Crear Retiro-->
+                <!--Editar Retiro Jefe-->
+                <a href="EDITAR_RETIRO_JEFE.html">
+                    <button class="accordion">Editar Retiro Jefe</button>
+                </a>
+
+                <!--Fin Editar Retiro Jefe-->
+                <!--Editar Retiro Business Partner-->
+                <a href="EDITAR_RETIRO_BP.html">
+                    <button class="accordion">Editar Retiro Business Partner</button>
+                </a>
+
+                <!--Fin Editar Retiro Business Partner-->
+                <!--Aprobar Retiro-->
+                <a href="APROBAR_RETIRO.html">
+                    <button class="accordion">Aprobar Retiro</button>
+                </a>
+                <!--Fin Aprobar Retiro-->
+            </div>
+            <!--Fin ventanas de la aplicacion-->
+            <!--inicio Procedimientos-->
+            <button class="accordion"><strong>Procedimientos</strong></button>
+            <div class="panel">
+                <!--Inicio  Crear Nuevo Retiro-->
+                <a href="CREAR_NUEVO_RETIRO.html">
+                    <button class="accordion"> Crear Nuevo Retiro</button>
+                </a>
+                <!--Fin Crear Nuevo Retiro-->
+                <!--Inicio Aprobar documentos-->
+                <a href="APROBAR_DOCUMENTOS.html">
+                    <button class="accordion">Aprobar Documento</button>
+                </a>
+                <!--Fin Aprobar documentos-->
+            </div>
+            <!--Fin Procedimientos-->
+            <!--Inicio Verificar vacante-->
+            <a href="GENERA_VACANTE.html">
+                <button class="accordion-static">Verificar vacante</button>
+            </a>
+            <!--Fin Verificar vacante-->
+        </nav>                
+</body>
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            //this.classList.toggle("pepe");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+</script>

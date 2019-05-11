@@ -1,0 +1,95 @@
+﻿
+
+<h3>Cargar Archivo</h3>
+
+@using (Html.BeginForm("SubirArchivo", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table>
+        <tr>
+            <td>File:</td>
+            <td><input type="file" name="Files" id="Files" multiple /></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" name="submit" value="Upload" /></td>
+        </tr>
+    </table>
+
+
+}
+
+
+@if (ViewContext.RouteData.Values["controller"].ToString() == "Home")
+{
+    <div>hola home</div>
+}
+
+<br /><br /><br />
+<br />
+
+<h3>Traer Archivo</h3>
+
+@using (Html.BeginForm("TraerArchivo", "home", FormMethod.Get, new { enctype = "multipart/form-data" }))
+{
+    <table>
+        <tr>
+            <td>Codigo soporte:</td>
+            <td><input name="Codigo" id="Codigo" /></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" name="submit" value="Traer Archivo " /></td>
+        </tr>
+    </table>
+
+
+}
+
+<div>
+    @ViewBag.Mensaje
+</div>
+
+@*<button type="button" class="btn btn-success openBtn">Open Modal</button>*@
+
+
+
+
+
+
+<button class="btn-confirmar-retiro" type="button" data-toggle="modal" data-target="#modalFinalizarRetiro">Guardar</button>
+
+
+<div class="modal fade" id="modalFinalizarRetiro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h5 class="modal-title" id="exampleModalLabel">Miguel Mauricio Bermudez Manrrique</h5>
+            </div>
+            <div class="modal-body">Va a ser retirado de la compañía, ¿Desea continuar con el retiro?</div>
+            <div class="modal-footer">
+                <button class="cancelar-modal" type="button" data-dismiss="modal">Cancelar</button>             
+              
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    debugger;
+    $(document).ready(function () {
+
+    if (' @ViewBag.MENSAJE_ERROR' != "") {
+            $('.modal-body').load('content.html',function(){
+                $('#modalFinalizarRetiro').modal({show:true});
+        });
+        }
+
+     
+
+
+
+});
+</script>

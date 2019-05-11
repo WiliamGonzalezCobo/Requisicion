@@ -1,0 +1,394 @@
+﻿@using G_H_WEB.Models;
+@model RETIRO_CREA_ViewModel
+
+@{
+    ViewBag.Title = "retiros_buscar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int CONTADOR_EMPLEADO = 0;
+
+}
+<input type="hidden" id="vistaCrea" name="vistaCrea" value="true" />
+<input type="hidden" id="causaretiro" name="causaretiro" value="0" />
+<input type="hidden" id="file" name="file" value="" />
+<input type="hidden" id="tieneArchivo" name="tieneArchivo" value="0" />
+
+
+
+
+<div class="col-md-9 col-lg-9 col-xl-9 tablaRetiros">
+    <h2 class="titulo-retiros" id="prueba">Crear Retiro</h2>
+
+
+
+
+
+    @if (Model != null)
+    {
+        if (Model.EMPLEADOS != null)
+        {
+            Model.EMPLEADOS.ToArray().Count();///si es igual a 0 mensaje no hay registros
+
+            if (Model.EMPLEADOS.ToArray().Count() == 1)
+            {
+
+                <input type="hidden" id="NOMBRE_EMPLEADO" value="@Model.EMPLEADOS.AsQueryable().FirstOrDefault().NOMBRE" />
+                <input type="hidden" id="NUMERO_DOCUMENTO_EMPLEADO" value="@Model.EMPLEADOS.AsQueryable().FirstOrDefault().NUMERO_DOCUMENTO" />
+                <input type="hidden" id="NOMBRE_CARGO" value="@Model.EMPLEADOS.AsQueryable().FirstOrDefault().NOMBRE_CARGO" />
+                <input type="hidden" id="NOMBRE_AREA" value="@Model.EMPLEADOS.AsQueryable().FirstOrDefault().AREA" />
+            }
+            CONTADOR_EMPLEADO = Model.EMPLEADOS.ToArray().Count();
+        }
+    }
+    <br />
+    <label id="campoBusquedaEmpleado" class=" text-danger" hidden="hidden">Campo requerido</label>
+    <form class="buscador version2" method="GET">
+        @Html.TextBoxFor(m => m.BuscarConsulta, new { @class = "search-input", @placeholder = "Buscar por usuario, nombre o cédula" })
+        @*<a id="BuscaEmpleado" class="search-btn fas fa-search" onclick="javascript: buscar();"></a>*@
+        <button><a class="search-btn fas fa-search"></a>@*onclick="javascript: buscar();"*@</button>
+    </form>
+    <div id="retiros-detalle" class="retiros-detalle" hidden>
+        <label id="labelNombre">Nombres:</label>
+        <p><label id="NombeEmpleado"></label></p>
+        <label id="labelNumeroDocumento">Número documento:</label>
+        <p><label id="NumeroDocumento"></label></p>
+        <label id="labelCargo">Cargo:</label>
+        <p><label id="NombeCargo"></label></p>
+        <label id="labelArea">Area:</label>
+        <p><label id="NombreArea"></label></p>
+    </div>
+    @if (Model != null)
+    {
+        if (Model.EMPLEADOS != null)
+        {
+            <div class="modal fade " id="modalTablaEmpleado" role="dialog" block;" aria-hidden="false">
+                <div class="modal-dialog modal-lg newmodal">
+                    <div class="modal-content" style=" margin:49% 0 0 7%;">
+                        <div class="modal-body">
+                            <div class="modal-body" style=" max-height:45% !important;max-width: 100% !important; overflow-y: scroll !important;">
+                                <div class="row table-responsive">
+                                    <div class="col-sm-12">
+                                        <table class="table table-hover table-condensed">
+                                            <tr>
+
+
+
+                                                @foreach (EMPLEADO_CONSULTA_ViewModel EMPLEADO in Model.EMPLEADOS)
+                                                {
+
+
+                                                <tr>
+                                                    <td>
+                                                        <div onclick="SeleccionEmpleado('@(EMPLEADO.NOMBRE)', '@(EMPLEADO.NUMERO_DOCUMENTO)','@(EMPLEADO.NOMBRE_CARGO)','@(EMPLEADO.AREA)')" class="retiros-detalle">
+                                                            <label>Nombres:</label>
+                                                            <p>@(EMPLEADO.NOMBRE)</p>
+                                                            <label>Número documento:</label>
+                                                            <p> @(EMPLEADO.NUMERO_DOCUMENTO)</p>
+                                                            <label>Cargo:</label>
+                                                            <p>@(EMPLEADO.NOMBRE_CARGO)</p>
+                                                            <label>Area:</label>
+                                                            <p>@(EMPLEADO.AREA)</p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+    <div class="row">
+        <div class="col-6 ">
+            <label id="campoListaDesplegable" class="text-danger" hidden="hidden">Campo requerido</label>
+        </div>
+        <div class="col-6 ">
+            <label id="campoFecha" class="text-danger" hidden="hidden">Campo requerido</label>
+        </div>
+
+    </div>
+    <div class="option-dropdown causal-retiro">
+        <div class="default-option">
+            @{ if (Model != null)
+                {
+                    if (Model.CAUSAS_RETIROS != null)
+                    {
+                        <span id="ListaDesplegableCausaRetiro" class="select-title noselect causal-retiro">Tipo De Retiro </span><span class="fas fa-angle-down"></span>
+                        <ul class="optiongroup-menu">
+                            @foreach (CAUSA_RETIRO_ViewModel CAUSA_RETIRO in Model.CAUSAS_RETIROS)
+                            {
+                                <li><a class="seleccionarOpcion" onclick="capturacausaretiro('@CAUSA_RETIRO.COD_CAUSA_RETIRO')">@CAUSA_RETIRO.NOMBRE</a></li>
+                            }
+                        </ul>
+
+                    }
+
+                }
+                var VISTA_NOMBRE = ViewContext.RouteData.Values["action"].ToString().ToUpper();
+            }
+
+        </div>
+    </div>
+    <div class="input-group date datepicker-retiro">
+        <input id="FechaRetiro" class="form-control" type="text" value="Fecha"><span class="input-group-addon"><span class="fas fa-calendar-alt"></span></span>
+    </div>
+    <label id="campoArchivoCargado" class=" text-danger" hidden="hidden">Seleccione Archivo, es requerido</label>
+    <div class="retiros-detalle">
+        <row class="documentos-relacionados">
+            <div class="col-md-12 documentos-header">
+                <p>Documentos Relacionados   <span>- Archivos permitidos: Formato PDF, Máximo 4MB por archivo </span></p>
+            </div>
+            <div class="col-md-12 documentos-body">
+                <div id="DETALLE_SOPORTES" name="DETALLE_SOPORTES">
+
+                </div>
+            </div>
+        </row>
+        <label id="campoDetalle" class="text-danger" hidden="hidden">Campo requerido</label>
+        @Html.TextAreaFor(m => m.COMENTARIO_CREAR, new { @class = "generar-comentarios", @placeholder = "Comentarios" })
+        <button class="btn-cancelar-retriro" type="button" data-toggle="modal" data-target="#modalFinalizarRetiro">Cancelar</button>
+        <button class="btn-confirmar-retiro" type="button" data-toggle="modal" onclick="ValidaBotonRegistrar();">Registrar</button>
+
+        <!-- Modal para  aprobar -->
+        <div class="modal fade" id="modalCrearRetiro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h6 class="modal-title" id="exampleModalLabel"><br /><label id="NombreEmpl"></label><br /></h6>
+                    </div>
+                    <div class="modal-body">Esta seguro de crear el retiro para ?</div>
+                    <div class="modal-footer">
+                        <button class="cancelar-modal" type="button" data-dismiss="modal">  No  </button>
+                        <button class="btn-principal" onclick="registrar();" type="button">  Si  </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- fin Modal para  aprobar-->
+        <!-- Modal a cancelar  -->
+        <div class="modal fade" id="modalFinalizarRetiro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h6 class="modal-title" id="exampleModalLabel">Va a cancelar el retiro para:<br /><br /><label> </label></h6>
+                    </div>
+                    <div class="modal-body">Esta seguro de cancelar el retiro para ?</div>
+                    <div class="modal-footer">
+                        <button class="cancelar-modal" type="button" data-dismiss="modal">  No  </button>
+                        <button onclick="CancelarRetiro()" class="btn-principal" type="button"> Si </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- fin Modal para cancelar -->
+        <!-- Modal a ERRORES  -->
+        <div class="modal fade" id="modalSinEmpleados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h6 class="modal-title" id="exampleModalLabel"> <label></label></h6>
+                    </div>
+
+                    <div class="modal-body" id="CuerpoModalError">La consulta no tiene registros asociados </div>
+                    <div class="modal-footer">
+                        <button class="btn-principal" type="button" data-dismiss="modal">  Cerrar </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- fin Modal ERRORES -->
+        <!-- Modal a ERRORES TAMAÑO DEL ARCHIVO  -->
+        <div class="modal fade" id="modaLErrorArchivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h6 class="modal-title" id="exampleModalLabel"> </h6>
+                    </div>
+
+                    <div class="modal-body" id="CuerpoModalError"><label id="ErrorModalArchivo"></label> </div>
+                    <div class="modal-footer">
+                        <button class="btn-principal" type="button" data-dismiss="modal">  Cerrar </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- fin Modal ERRORES -->
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+<script src="../../assets/js/scripts.js"></script>
+<div id="DETALLE_ERROR" name="DETALLE_ERROR">
+</div>
+
+@if (Model != null)
+{
+    if (Model.ERROR != null)
+    {
+        <div id="DETALLE_ERROR_RETORNO" name="DETALLE_ERROR_RETORNO">
+            @Html.Partial("_ERRORES", Model.ERROR);
+        </div>
+
+    }
+
+}
+
+
+<script>
+    /*funcion para mostrar errores si los hay en la vistallama a un modal   modalTabla*/
+    $(document).ready(function () {
+
+        $("#labelNombre").hide();
+        $("#labelNumeroDocumento").hide();
+        $("#labelCargo").hide();
+       if ('@Model' != "") {
+           if ('@CONTADOR_EMPLEADO' == 1) {
+               SeleccionEmpleado($("#NOMBRE_EMPLEADO").val(), $("#NUMERO_DOCUMENTO_EMPLEADO").val(), $("#NOMBRE_CARGO").val(), $("#NOMBRE_AREA").val()  );
+           } else if ('@CONTADOR_EMPLEADO' > 1) {
+               $('#modalTablaEmpleado').modal("show");
+           }
+           else {
+               $('#modalSinEmpleados').modal("show"); }
+        }
+
+    });
+
+    /*funcion para cargar un solo empleado*/
+    function SeleccionEmpleado(NOMBRE, NUMERO_DOCUMENTO, NOMBRE_CARGO, AREA) {
+        $("#retiros-detalle").removeAttr("hidden");
+        $('#modalTablaEmpleado').modal('hide');
+        $("#labelNombre").show();
+        $("#labelNumeroDocumento").show();
+        $("#labelCargo").show();
+        $("#labelArea").show();
+        $("#NombeEmpleado").text(NOMBRE);
+        $("#NumeroDocumento").text(NUMERO_DOCUMENTO);//EMPLEADO.NUMERO_DOCUMENTO
+        $("#NombeCargo").text(NOMBRE_CARGO);
+        $("#NombreArea").text(AREA);
+        $("#EMPLEADO_NUMERO_DOCUMENTO").val(NUMERO_DOCUMENTO);
+    }
+
+    /*funcion para cargar la vista parcial _soporte_creado con lo que se lecciono de la lista desplegable */
+    function capturacausaretiro(cod_causal_retiro) {
+
+        if ($("#causaretiro").val() != cod_causal_retiro) {
+
+            $("#campoListaDesplegable").attr("hidden", "hidden");
+            $("#causaretiro").val(cod_causal_retiro);
+            $.ajax({
+                type: "GET",
+                url: "/RETIRO/CONSULTA_TIPO_SOPORTE?_COD_TIPO_SOPORTE=" + parseInt(cod_causal_retiro),
+                target: "#DETALLE_SOPORTES",
+                success: function (data) {
+                    //
+                    $("#DETALLE_SOPORTES").html(data);
+                },
+                error: function (result, xhr, status) {
+                    $('#DETALLE_ERROR').html(result.responseText);
+                    var err = "Error " + " " + status;
+                    console.log(err);
+                }
+            });
+        }
+    }
+
+    /*funcion para traer la informaion del empleado */
+    function buscar() {
+
+        window.location.href = "CREAR?CONSULTA=" + $("#BuscarConsulta").val();
+    }
+
+    /*funcion para rediriguir despues ue confirma el retiro */
+    function registrar() {
+
+            if ($("#tieneArchivo").val() == "0") {
+
+                $("#campoArchivoCargado").removeAttr("hidden");
+                $('#modalCrearRetiro').modal("hide");
+            }
+            else {
+                var Retiro = {};
+                Retiro = {
+                    "COD_RETIRO": parseInt($("#codRetiro").val()),
+                    "FECHA_RETIRO": $('#FechaRetiro').datepicker({ dateFormat: 'yy-mm-dd' }).val(),
+                    "COD_CAUSA_RETIRO": parseInt($("#causaretiro").val()) ,
+                    "COMENTARIOS": ($(".generar-comentarios").val() != "" ? $(".generar-comentarios").val() : "N/D")
+                }
+                $.ajax({
+                    url: "/RETIRO/EDITA_RETIRO",
+                    data: Retiro,
+
+                    type: "POST",
+                    success: function (result) {
+                        window.location.href = "/RETIRO/CONSULTAR";
+                    },
+                    error: function (result, xhr, status) {
+                        $('#DETALLE_ERROR').html(result.responseText);
+                        var err = "Error " + " " + status;
+                        console.log(err);
+                    }
+                });
+        }
+    }
+
+    /*funcion cunado ejecuta cancelar -si */
+    function CancelarRetiro() {
+
+        if ($("#codRetiro").val() != "" && typeof $("#codRetiro").val() !== 'undefined') {
+            $.ajax({
+                type: "GET",
+                url: "/RETIRO/CANCELAR?COD_RETIRO=" + parseInt($("#codRetiro").val()),
+                success: function (data) {
+                    //window.location.href = "/SOLICITUD/CONSULTAR";
+                    window.location.href = "/RETIRO/CONSULTAR";
+                },
+                error: function (result, xhr, status) {
+                    $('#DETALLE_ERROR').html(result.responseText);
+                    var err = "Error " + " " + status;
+                    console.log(err);
+                }
+            });
+        }
+        else {
+            $('#modalFinalizarRetiro').modal("hide");
+            window.location.href = "/RETIRO/CONSULTAR";
+        }
+    }
+
+    /*funcion para validar campos opcional  campoDetalle*/
+    function ValidaBotonRegistrar() {
+
+        var valida = true;
+        if ($("#BuscarConsulta").val() == "") { $("#campoBusquedaEmpleado").removeAttr("hidden"); $('#modalCrearRetiro').modal("hide"); return valida = false } else { $("#campoBusquedaEmpleado").attr("hidden", "hidden") }
+        if ($("#causaretiro").val() == "0") { $("#campoListaDesplegable").removeAttr("hidden"); $('#modalCrearRetiro').modal("hide");return valida = false } else { $("#campoListaDesplegable").attr("hidden", "hidden") }
+        if ($('#FechaRetiro').val() == "" || $("#FechaRetiro").val() == "Fecha") { $("#campoFecha").removeAttr("hidden"); $('#modalCrearRetiro').modal("hide"); return valida = false } else { $("#campoFecha").attr("hidden", "hidden") }
+        if ($(".generar-comentarios").val() == "" || $(".generar-comentarios").val() == null) { $("#campoDetalle").removeAttr("hidden"); $('#modalCrearRetiro').modal("hide"); return valida = false } else { $("#campoDetalle").attr("hidden", "hidden") }
+        if ($(".validate").each(function () {     if (this.name == "'True'") {$("#campoArchivoCargado").removeAttr("hidden"); $('#modalCrearRetiro').modal("hide");   return valida = false;       }
+        else { }
+        })) {
+        }
+        var NombreEmpleado = $("#NombeEmpleado").text();
+        $("#NombreEmpl").text(NombreEmpleado);
+        $('#NombreEmplCancelar').text(NombreEmpleado);
+      if (valida) {$('.modal-body').load('content.html', function () { $('#modalCrearRetiro').modal({ show: true }); });}
+    }
+    /*cuando cambie el foco oculte mensajes*/
+    $("#FechaRetiro").on("change", function () { $("#campoFecha").attr("hidden", "hidden") });
+    $("#causaretiro").on("change", function () {  $("#campoListaDesplegable").attr("hidden", "hidden") });
+    $("#COMENTARIO_CREAR").on("change", function () {  $("#campoDetalle").attr("hidden", "hidden") });
+</script>

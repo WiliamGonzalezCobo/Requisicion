@@ -1,0 +1,95 @@
+﻿@using G_H_WEB.Models;
+@model IEnumerable<SOPORTES_RETIRO_ViewModel>
+@{
+                /**/
+
+
+                string REQUERIDO = "";
+}
+
+
+
+@foreach (SOPORTES_RETIRO_ViewModel SOPORTE in Model)
+{
+    if (SOPORTE.NOMBRE_SOPORTE == "")
+    {
+        SOPORTE.NOMBRE_SOPORTE = " ";
+
+    }
+    if (SOPORTE.REQUERIDO) { REQUERIDO = "*"; }
+
+    string NOMBRE_CHECK = "check-aprobado" + SOPORTE.COD_SOPORTE;
+
+    <div class="row item-documento">
+        <div class="col-md-3 tipo-documento">@SOPORTE.NOMBRE_TIPO_SOPORTE @REQUERIDO </div>
+        <div class="col-md-5 nombre-archivo"><span class="fas fa-cloud-download-alt"></span> @Html.ActionLink(SOPORTE.NOMBRE_SOPORTE, "CONSULTAR_SOPORTE", new { COD_SOPORTE = SOPORTE.COD_SOPORTE }) </div>
+        <div class="col-md-2 peso-archivo">@SOPORTE.TAMANO</div>
+        <div class="col-md-2 aprobado">
+            <div class="form-group form-check">
+                <div class="custom-checkbox-container check-aprobado1">
+
+                    @if (SOPORTE.APROBADO)
+                    {
+
+                        if (SOPORTE.NOMBRE_SOPORTE == " ")
+                        {
+                            <input class="custom-checkbox" type="checkbox" id="@NOMBRE_CHECK" checked="checked" disabled>
+                        }
+                        else
+                        {
+                            <input class="custom-checkbox" type="checkbox" id="@NOMBRE_CHECK" checked="checked" onchange="CAMBIACHECK('@NOMBRE_CHECK', '@SOPORTE.COD_SOPORTE', '@SOPORTE.COD_RETIRO')">
+                        }
+
+
+
+                        <label class="custom-checkbox-label fas fa-check checkbox-check-aprobado1" for="@NOMBRE_CHECK"></label><span class="checkbox-title">Aprobado</span>
+                    }
+                    else
+                    {
+                        if (SOPORTE.NOMBRE_SOPORTE == " ")
+                        {
+                            <input class="custom-checkbox" type="checkbox" id="@NOMBRE_CHECK" disabled>
+                        }
+                        else
+                        {
+                            <input class="custom-checkbox" type="checkbox" id="@NOMBRE_CHECK" onchange="CAMBIACHECK('@NOMBRE_CHECK', '@SOPORTE.COD_SOPORTE', '@SOPORTE.COD_RETIRO')">
+                        }
+
+
+                        <label class="custom-checkbox-label fas fa-check checkbox-check-aprobado1" for="@NOMBRE_CHECK"></label><span class="checkbox-title">Aprobado</span>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+    <div id="DETALLE_ERROR" name="DETALLE_ERROR">
+    </div>
+
+<script>
+    function CAMBIACHECK(NOMBRECHECK, COD_SOPORTE, COD_RETIRO) {
+        debugger;
+
+        NOMBRECHECK = '#' + NOMBRECHECK;
+
+        //alert($(NOMBRECHECK).is(":checked"));
+
+        $.ajax({
+            type: "GET",
+            url: '/RETIRO/APROBAR_SOPORTE?COD_SOPORTE=' + COD_SOPORTE + '&APROBADO=' + $(NOMBRECHECK).is(":checked") + '&COD_RETIRO=' + COD_RETIRO,
+            contentType: false,
+            processData: false,
+            target: "#DETALLE_SOPORTES_APROBADOS",
+            success: function (result) {
+                $('#DETALLE_SOPORTES_APROBADOS').html(result);
+            },
+            error: function (result, xhr, status) {
+                $('#DETALLE_ERROR').html(result.responseText);
+                var err = "Error " + " " + status;
+                console.log(err);
+            }
+        });
+
+
+    }
+</script>

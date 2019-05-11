@@ -1,0 +1,84 @@
+﻿@using G_H_WEB.Models;
+
+@model SOLICITUD_CONSULTA_ViewModel
+@{
+    ViewBag.Title = "retiros_buscar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-9 col-lg-9 col-xl-9 tablaRetiros">
+    <h2 class="titulo-retiros">Solicitudes</h2>
+    <form class="buscador" method="GET">
+        @Html.TextBoxFor(m => m.BUSCARSOLICITUD, new { @class = "search-input", @placeholder = "Buscar por usuario, nombre o cédula" })
+        @*<a class="search-btn fas fa-search" onclick="javascript: buscar();"></a>*@
+        <button ><a class="search-btn fas fa-search"></a>@*onclick="javascript: buscar();"*@</button>
+    </form>
+    <div class="table-wrapper">
+        <table class="tabla-retiro table">
+            <thead>
+                <tr>
+                    <th>Nombre<span class="fas fa-sort-down"></span></th>
+                    <th>Tipo<span class="fas fa-sort-up"></span></th>
+                    <th>Fecha de solicitud<span class="fas fa-sort"></span></th>
+                    <th>Estado<span class="fas fa-sort"></span></th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.SOLICITUDES != null)
+                {
+
+                    foreach (SOLICITUD_ViewModel SOLICITUD in Model.SOLICITUDES)
+                    {
+                    <tr>
+                        <td class="td-nombre" onclick="CONSULTAR_DETALLE('@SOLICITUD.COD_RETIRO')">@SOLICITUD.NOMBRE<span class="td-email">@SOLICITUD.USUARIO</span></td>
+                        <td class="td-causal">@SOLICITUD.CAUSAL</td>
+                        <td class="td-fecha-solicitud">@SOLICITUD.FECHA_SOLICITUD</td>
+                        <td class="@G_H_WEB.LOGICA_IU.ESTADO.OBTENER_ESTILO(SOLICITUD.ESTADO)">@SOLICITUD.ESTADO</td>
+                        <td class="td-acciones">
+                            @if (User.IsInRole("Proveedor"))
+                            {
+                                <a href="../RETIRO/APROBAR/@SOLICITUD.COD_RETIRO"><span class="cancel-icon fas fa-check" data-toggle="tooltip" data-placement="top" title="Aprobar"></span></a>
+                            }
+                            else
+                            {
+                                <a href="../RETIRO/EDITAR?COD_RETIRO=@SOLICITUD.COD_RETIRO&&NOMBRE_VISTA=SOLICITUD"><span class="edit-icon fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></span></a>
+                            }
+
+                        </td>
+                    </tr>
+                }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@{
+
+    string CONTROLER_NOMBRE = ViewContext.RouteData.Values["controller"].ToString().ToUpper();
+    string VISTA_NOMBRE = ViewContext.RouteData.Values["action"].ToString().ToUpper();
+    Model.VISTA = VISTA_NOMBRE;
+    Model.CONTROLER = CONTROLER_NOMBRE;
+}
+
+@if (Model.ERROR != null)
+{
+    <div id="DETALLE_ERROR_RETORNO" name="DETALLE_ERROR_RETORNO">
+        @Html.Partial("../RETIRO/_ERRORES", Model.ERROR);
+    </div>
+}
+
+@*</div>
+      </body>
+    </html>*@
+<script>
+
+    function buscar() {
+        window.location.href = "?CONSULTA=" + $("#BUSCARSOLICITUD").val();
+    }
+
+
+    function CONSULTAR_DETALLE(COD_RETIRO) {
+        window.location.href = "../../RETIRO/CONSULTAR_DETALLE?COD_RETIRO=" + COD_RETIRO;// + '&VISTA=' + '@Model.VISTA' +'&CONTROLER='+'@Model.CONTROLER'
+    }
+
+</script>

@@ -1,0 +1,36 @@
+﻿
+<div class="row">
+    <div class="col-md-3 menuEmpleados">
+        <h3 class="titulo-menuEmpleados">Gestión<strong>Humana</strong></h3>
+        <ul class="nav flex-column">
+
+            @if (ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "SOLICITUD")
+            {
+                <li class="nav-item"><a class="nav-link-static" href="../../SOLICITUD/CONSULTAR">Mis solicitudes</a></li>
+            }
+            else
+            {
+                <li class="nav-item"><a class="nav-link" href="../../SOLICITUD/CONSULTAR">Mis solicitudes</a></li>
+            }
+
+            @if (ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "RETIRO")
+
+            {
+                <li class="nav-item" id="MenuRetiroLI"><a class="nav-link-static" id="MenuRetiroA" href="../../RETIRO/CONSULTAR">Retiros</a></li>
+            }
+            else
+            {
+                <li class="nav-item" id="MenuRetiroLI"><a class="nav-link" id="MenuRetiroA" href="../../RETIRO/CONSULTAR">Retiros</a></li>
+            }
+            @if (ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "REQUISICION")
+            {
+                <li class="nav-item"><a class="nav-link-static" href="../../REQUISICION/Index">Requisicion</a></li>
+            }
+            else
+
+            {
+                <li class="nav-item"><a class="nav-link" href="../../REQUISICION/Index">Requisicion</a></li>
+            }
+            <li class="nav-item"><a class="nav-link" href="../../CUENTA/SALIR">Salir</a></li>
+        </ul>
+    </div>  

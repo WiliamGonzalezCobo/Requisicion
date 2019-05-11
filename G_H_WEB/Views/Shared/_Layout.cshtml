@@ -1,0 +1,54 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <title>Gestión Humana</title>
+    <!--Otras metas-->
+    <meta name="author" content="Casa Editorial El Tiempo">
+    <meta name="geo.region" content="CO">
+    <meta name="geo.position" content="4.570868;-74.297333">
+    <meta name="ICBM" content="4.570868, -74.297333">
+    <meta name="geo.placename" content="Colombia">
+    <meta name="genere" content="News">
+    <meta name="language" content="spanish">
+    <meta name="news_keywords" content="{varKeywords}">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="copyright" content="Gestión Humana">
+    @Scripts.Render("~/bundles/scriptsGH")
+    @Styles.Render("~/Content/cssGH")
+    @Scripts.Render("~/scripts/dropzonescripts")
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+</head>
+@{
+    String CLASE;
+    if (Request.IsAuthenticated)
+    {
+        CLASE = "retiros";
+    }
+    else
+    {
+        CLASE = "login";
+    }
+
+}
+    <body class="@CLASE">
+        @{Html.RenderPartial("_Cabecera", RenderSection("topright", false)); }
+        @{
+            if (Request.IsAuthenticated)
+            {
+
+                Html.RenderPartial("_Lateral", RenderSection("topright", false));
+                @RenderBody()
+             
+            }
+            if (!Request.IsAuthenticated)
+            {
+                @RenderBody()
+            }
+        }
+        @{ Html.RenderPartial("_PieDePagina", RenderSection("topright", false)); }
+        @RenderSection("scripts", required: false)
+
+

@@ -1,0 +1,132 @@
+﻿<link href="../css/styles.css" rel="stylesheet" />
+<!doctype html>
+<title>Manual Retiros</title>
+<body>
+
+    <header><h3>Manual Gestión Humana</h3></header>
+
+    <div id="main">
+        <!-- Cuerpo-->
+        <article>
+            <h2><strong>Consultar Solicitudes</strong></h2>
+            <p>La ventana <strong>“Consultar Solicitudes”</strong> varía dependiendo el rol que tenga asignado, la ventana que se muestra a continuación es  con el rol de <strong>“Jefe”</strong>, esta vista no tiene ningún cambio con el rol de<strong>“Business Partner”.</strong></p>
+            <img src="../img/Solicitudes.PNG" height="400" height="400" />
+            <p>La siguiente ventana de <strong>“Consultar Solicitudes”</strong> es la que se muestra a la persona con el rol de <strong>“Proveedor”</strong></p>
+            <img src="../img/Solicitud proveedor.PNG" height="400" height="400" />
+            <p>
+                En esta pantalla tenemos seis campos u opciones con las cuales podemos interactuar, estas acciones son las siguientes:<br /><br />
+
+                <strong>1. Buscar:</strong> En este campo se pueden ingresar varios datos para la búsqueda, los datos son: Usuario, nombre y cédula. Después de ingresados estos datos deberá hacer click en el botón con una imagen de lupa que está al costado derecho:<br /><br />
+
+                <strong>2. Editar:</strong> esta opción abre la ventana editar, dependiendo el rol permite editar unos campos específicos. <br /><br />
+
+                <strong>3. Aprobar:</strong> Esta es una opción que cambia dependiendo del rol, al ingresar con el rol de <strong>“Proveedor”</strong> esta opción cambia a <strong>“Aprobar”</strong>, la cual nos dirige a la ventana de aprobar.<br /><br />
+
+                <h4>Menú de navegación</h4>
+
+                <strong>4. Mis solicitudes:</strong> Esta es una opción del menú de navegación que dirige hacia la ventana de <strong>“Consultar Solicitudes”</strong>.<br /><br />
+
+                <strong>5. Retiros:</strong> Esta es otra opción del menú que redirige a la ventana de <strong>“Consultar Retiros”</strong>.<br /><br />
+
+                <strong>6. Salir:</strong> La última opción de menú de navegación es la encargada de cerrar sesión, que dirige a la ventana  <strong>“Inicio de sesión”</strong>.
+            </p>
+        </article>
+        <!-- Menú navegación -->
+        <nav>
+            <!-- Ventanas de la aplicacion-->
+            <button class="accordion"><strong>Ventanas de la aplicacíón</strong></button>
+            <div class="panel">
+
+                <!-- Inicio de sesión-->
+                <a href="INICIO_SESION.html">
+                    <button class="accordion">Inicio De Sesión</button>
+                </a>
+                <!--Fin Inicio de sesión-->
+                <!-- Consultar retiros jefe-->
+                <a href="CONSULTAR_RETIROS_JEFE.html">
+                    <button class="accordion">Consultar Retiros Jefe</button>
+                </a>
+
+                <!-- Fin Consultar retiros jefe-->
+                <!--Consultar Retiros Business Partner-->
+                <a href="CONSULTAR_RETIROS_BP.html">
+                    <button class="accordion">Consultar Retiros Business Partner</button>
+                </a>
+                <!--Fin Consultar Retiros Business Partner-->
+                <!--Consultar Retiros Proveedor-->
+                <a href="CONSULTAR_RETIROS_PROVEEDOR.html">
+                    <button class="accordion">Consultar Retiros Proveedor</button>
+                </a>
+
+                <!--Fin Consultar Retiros Proveedor-->
+                <!--Crear Retiro-->
+                <a href="CREAR_RETIRO.html">
+                    <button class="accordion">Crear Retiro</button>
+                </a>
+
+                <!--Fin Crear Retiro-->
+                <!--Editar Retiro Jefe-->
+                <a href="EDITAR_RETIRO_JEFE.html">
+                    <button class="accordion">Editar Retiro Jefe</button>
+                </a>
+
+                <!--Fin Editar Retiro Jefe-->
+                <!--Editar Retiro Business Partner-->
+                <a href="EDITAR_RETIRO_BP.html">
+                    <button class="accordion">Editar Retiro Business Partner</button>
+                </a>
+
+                <!--Fin Editar Retiro Business Partner-->
+                <!--Aprobar Retiro-->
+                <a href="APROBAR_RETIRO.html">
+                    <button class="accordion">Aprobar Retiro</button>
+                </a>
+                <!--Fin Aprobar Retiro-->
+            </div>
+            <!--Inicio consultar solicitudes-->
+            <a href="CONSULTAR_SOLICITUDES.html">
+                <button class="accordion-static">Consultar Solicitudes</button>
+            </a>
+            <!--fin consultar solicitudes-->
+            <!--Fin ventanas de la aplicacion-->
+            <!--inicio Procedimientos-->
+            <button class="accordion"><strong>Procedimientos</strong></button>
+            <div class="panel">
+                <!--Inicio  Crear Nuevo Retiro-->
+                <a href="CREAR_NUEVO_RETIRO.html">
+                    <button class="accordion"> Crear Nuevo Retiro</button>
+                </a>
+                <!--Fin Crear Nuevo Retiro-->
+                <!--Inicio Aprobar documentos-->
+                <a href="APROBAR_DOCUMENTOS.html">
+                    <button class="accordion">Aprobar Documento</button>
+                </a>
+                <!--Fin Aprobar documentos-->
+                <!--Inicio Verificar vacante-->
+                <a href="GENERA_VACANTE.html">
+                    <button class="accordion">Verificar vacante</button>
+                </a>
+                <!--Fin Verificar vacante-->
+            </div>
+            <!--Fin Procedimientos-->
+
+        </nav>
+    </div>   
+
+</body>
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+</script>

@@ -1,0 +1,54 @@
+﻿<style>
+    a.presupuestada {
+        background: url(http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Bridge-Copyrighted-icon.png) no-repeat top left;
+        display: block;
+        width: 140px;
+        height: 150px;
+        text-indent: -9999px; /* hides the link text */
+    }
+    a.Nopresupuestada {
+        background: url(http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Dreamweaver-Copyrighted-icon.png) no-repeat top left;
+        display: block;
+        width: 140px;
+        height: 150px;
+        text-indent: -9999px; /* hides the link text */
+    }
+    a.Licencia {
+        background: url(http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Fireworks-Copyrighted-icon.png) no-repeat top left;
+        display: block;
+        width: 140px;
+        height: 150px;
+        text-indent: -9999px; /* hides the link text */
+    }
+    a.Incapacidad {
+        background: url(http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Flash-Copyrighted-icon.png) no-repeat top left;
+        display: block;
+        width: 140px;
+        height: 150px;
+        text-indent: -9999px; /* hides the link text */
+    }
+   
+</style>
+
+<table width="70%">
+    <tr>
+        <td>
+            @Html.ActionLink("Presupuestada", "Create",new { @idTipo = 1 }, new { @class = "presupuestada" })
+            @*<a href="#" title="">Presupuestada<img src="../img/my-image-1.png" class="img-responsive"></a>*@
+        </td>
+        <td>
+            @Html.ActionLink("NoPresupuestada", "Create", new { @idTipo = 2 }, new { @class = "Nopresupuestada" })
+            @*<a href="#" title="">No Presupuestada<img src="../img/my-image-1.png" class="img-responsive"></a>*@
+        </td>
+        <td>
+            @Html.ActionLink("Licencia", "CreateLicencia", null, new { @class = "Licencia" })
+            @*<a href="#" title="">Licencia<img src="../img/my-image-1.png" class="img-responsive"></a>*@
+        </td>
+        <td>
+            @Html.ActionLink("Incapacidad", "CreateIncapacidad", null, new { @class = "Incapacidad" })
+            @*<a href="#" title="">Incapacidad<img src="../img/my-image-1.png" class="img-responsive"></a>*@
+        </td>
+    </tr>
+</table>
+
+

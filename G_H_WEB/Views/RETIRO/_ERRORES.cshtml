@@ -1,0 +1,75 @@
+﻿
+@using G_H_WEB.Models;
+@model  ERROR_ViewModel
+
+@{
+
+     if (Model != null)
+    {
+        <input type="hidden" id="codRetiro" name="codRetiro" value=@Model.COD_RETIRO />
+
+        if (Model.COD_ERROR != "")
+        {
+            <div class="modal fade" id="modalValidaError" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h5 class="modal-title" id="exampleModalLabel">ERROR CODIGO : @Model.COD_ERROR</h5>
+                        </div>                    
+                        <div class="modal-body">Se presentó un error,contacte al administrador del sistema!.</div>
+                        <div class="modal-footer">
+                            @*<button class="cancelar-modal" type="button" data-dismiss="modal">Cancelar</button>*@
+                            <button class="btn-principal" type="button" data-dismiss="modal">  Cerrar </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        if (Model.CAMPOS_INVALIDOS != null)
+        {
+            <div class="modal fade" id="modalValidaError" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h5 class="modal-title" id="exampleModalLabel1">Verfique los campos</h5>
+                        </div>
+                        <div class="modal-body">
+                            @foreach (var CAMPO in Model.CAMPOS_INVALIDOS)
+                            {
+                            <div>
+                                @CAMPO.ErrorMessage
+                            </div>
+                            }
+                        </div>
+                        <div class="modal-footer">
+                            @*<button class="cancelar-modal" type="button" data-dismiss="modal">Cancelar</button>*@
+                            <button class="btn-principal" type="button" data-dismiss="modal">  Cerrar </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+}
+<!-- fin Modal para validar los errores si vienen de la controller -->
+<script>
+
+    /*funcion para mostrar errores si los hay en la vistallama a un modal   modalTabla*/
+    $(document).ready(function () {
+
+        if ('@Model.CAMPOS_INVALIDOS' != "") {
+            $('.modal-body').load('content.html', function () {
+                $('#modalValidaError').modal({ show: true });
+            });
+        }
+         if ('@Model.COD_ERROR' != "") {
+            $('.modal-body').load('content.html', function () {
+                $('#modalValidaError').modal({ show: true });
+            });
+        }
+    });
+</script>

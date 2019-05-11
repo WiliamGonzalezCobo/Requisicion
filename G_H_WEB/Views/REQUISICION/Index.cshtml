@@ -1,0 +1,305 @@
+﻿@model IEnumerable<MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel>
+
+
+@{
+    //ViewBag.Title = "retiros_buscar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    th {
+        cursor: pointer;
+    }
+
+
+    a.Buscar {
+        background: url(../../Content/btnBuscar.png);
+        width: 48px;
+        height: 48px;
+        display: block;
+    }
+</style>
+
+
+
+<div class="col-md-9 row" style="align-content:center">
+    <table class="table">
+        <tr>
+            <td>
+                <h2>Requisiciones</h2>
+            </td>
+            <td align="right">
+                @* <input id="txtSearch" type="text" style="background-image:url(http://oi42.tinypic.com/2e0r3oi.jpg);background-repeat:no-repeat;   background-position:right top;">*@
+
+            </td>
+        </tr>
+    </table>
+
+    <table class="table">
+        <tr>
+            <td style="border:none">
+                <a href="" data-toggle="modal" data-target="#Modal" style="font-size:small; font-weight:bold">+ CREAR NUEVA REQUISICIÓN</a>
+            </td>
+        </tr>
+        <tr>
+            <td style="border:none; padding:0;">
+                <input id="txtSearch" class="search-input" type="text" placeholder="Buscar por ID, usuario, nombre o cédula" style="width:100%; height:  48px">
+
+
+            </td>
+            <td align="left" style="border:none;padding:0;width:48px;height:48px;">
+                @Html.ActionLink(" ", "Create", null, new { @class = "Buscar" })
+                @*<img src="~/Content/btnBuscar.png" />*@
+               
+            </td>
+        </tr>
+    </table>
+
+
+
+    <table class="table ">
+        <tr>
+            <td>
+                <div class="form-group col-md-9">
+                    <label class="label">Filtre Por tipo</label>
+                    @Html.DropDownList("ddlTipo", new SelectList(ViewBag.Tipo, "Value", "Text"),  new { @class = "form-control" } )
+
+                </div>
+
+            </td>
+            <td>
+                <div class="form-group col-md-9">
+                    <label>Filtre Por Fecha</label>
+                    <input type="date" class="form-control" id="txtFiltroFecha" />
+
+                </div>
+
+            </td>
+            <td>
+                <div class="form-group col-md-9">
+                    <label class="label">Filtre Por Estado</label>
+                    @Html.DropDownList("ddlEstado", new SelectList(ViewBag.Estado, "Value", "Text"),  new { @class = "form-control" } )
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <table class="tabla-retiro table" id="tblRequisiciones">
+
+        <thead>
+            <tr>
+
+                <th onclick="sortTable(0)">
+                    @Html.DisplayNameFor(model => model.USUARIO_CREACION)&nbsp;<span class="fas fa-sort-down"></span>
+                </th>
+                <th onclick="sortTable(1)">
+                    @Html.DisplayNameFor(model => model.NOMBRE_CARGO)&nbsp;<span class="fas fa-sort-down"></span>
+                </th>
+                <th onclick="sortTable(2)">
+                    @Html.DisplayNameFor(model => model.NOMBRE_TIPO_REQUISICION)&nbsp;<span class="fas fa-sort-down"></span>
+                </th>
+
+                <th onclick="sortTable(3)">
+                    @Html.DisplayNameFor(model => model.FECHA_CREACION)&nbsp;<span class="fas fa-sort-down"></span>
+                </th>
+                <th onclick="sortTable(4)">
+                    @Html.DisplayNameFor(model => model.NOMBRE_ESTADO_REQUISICION)&nbsp;<span class="fas fa-sort-down"></span>
+                </th>
+                <th onclick="sortTable(5)" class="d-none">
+                    @Html.DisplayNameFor(model => model.COD_REQUISICION)&nbsp;<span class="fas fa-sort-down"></span>
+                </th>
+            </tr>
+        </thead>
+
+
+        @if (Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tbody id="tblBody">
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.USUARIO_CREACION) <br />@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NOMBRE_CARGO)<br />@Html.DisplayFor(mItem => item.COD_CARGO)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NOMBRE_TIPO_REQUISICION)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FECHA_CREACION)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NOMBRE_ESTADO_REQUISICION)
+                        </td>
+                        <td class="d-none">
+                            @Html.DisplayFor(modelItem => item.COD_REQUISICION)
+                        </td>
+                    </tr>
+                </tbody>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3">
+                    No existe información
+                </td>
+
+
+            </tr>
+        }
+
+
+
+
+    </table>
+</div>
+
+<div>
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel">Crear Requisición</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Seleccione una opción de Requisición
+                <br />
+                @Html.Partial("_SelectRequisicion")
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        $("#txtFiltroFecha").change("keyup", function () {
+
+            var value = getDefaultDate($(this).val()).toLowerCase();
+            if (value != "//") {
+                $("#tblBody tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            }
+            else {window.location.href = '@Url.Action("Index", "REQUISICION")'; }
+
+        });
+
+        $("#ddlEstado").change("keyup", function () {
+
+            var Estado = document.getElementById("ddlEstado");
+            var value = Estado.options[Estado.selectedIndex].text;
+            if (value != "-- Seleccione --") {
+                $("#tblBody tr").filter(function () {
+                    $(this).toggle($(this).text().toUpperCase().indexOf(value) > -1)
+                });
+            }
+            else {window.location.href = '@Url.Action("Index", "REQUISICION")'; }
+
+        });
+
+         $("#ddlTipo").change("keyup", function () {
+
+             var Tipo = document.getElementById("ddlTipo");
+             var value = Tipo.options[Tipo.selectedIndex].text;
+            if (value != "-- Seleccione --") {
+                $("#tblBody tr").filter(function () {
+                    $(this).toggle($(this).text().toUpperCase().indexOf(value) > -1)
+                });
+            }
+            else {window.location.href = '@Url.Action("Index", "REQUISICION")'; }
+
+        });
+    });
+
+    function getDefaultDate(date) {
+
+        var now = String(date);
+        var day = now.substring(9,10);
+        var month = now.substring(5, 7);
+        var year = now.substring(0, 4);
+        var today = (day) + "/" + (month) + "/" + (year) ;
+
+        return today;
+    }
+
+    function sortTable(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("tblRequisiciones");
+        switching = true;
+        dir = "asc";
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+
+            for (i = 1; i < (rows.length - 1); i++) {
+
+                shouldSwitch = false;
+
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+
+                if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+
+                switchcount++;
+            } else {
+
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+            }
+        }
+    }
+
+    function filtrarTabla() {
+        var input = document.getElementById("txtFiltroFecha");
+        var filter = input.value.toUpperCase();
+        var table = document.getElementById("tblRequisiciones");
+        var tr = table.getElementsByTagName("tr");
+        for (var i = 0; i < tr.length; i++) {
+            if (tr.textContent.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+
+
+
+</script>

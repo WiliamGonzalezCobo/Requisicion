@@ -1,0 +1,136 @@
+﻿@using G_H_WEB.Models;
+
+@model RETIRO_EDITA_ViewModel
+
+@{
+    ViewBag.Title = "retiros_buscar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string G_VACANTE = "NO";
+    if (@Model.GENERA_VACANTE)
+    {
+        G_VACANTE = "SI";
+    }
+}
+
+<div class="col-md-9 col-lg-9 col-xl-9 tablaRetiros">
+  
+
+
+    <form method="post">
+        <h2 class="titulo-retiros">Aprobar Retiro</h2>
+        @if (Model.ERROR == null)
+        {
+
+
+            @Html.HiddenFor(M => M.COD_RETIRO)
+            <div class="retiros-detalle">
+                <label>Nombre:</label>
+                <p>@Model.NOMBRE</p>
+
+                <label>Usuario:</label>
+                <p>@Model.USUARIO</p>
+
+                <label>Número documento:</label>
+                <p>@Model.DOCUMENTO</p>
+
+                <label>Cargo:</label>
+                <p>@Model.CARGO</p>
+
+                <label>Causal de retiro:</label>
+                <p>@Model.NOMBRE_CAUSA_RETIRO</p>
+
+                <label>Fecha de retiro:</label>
+                <p>@Model.FECHA_RETIRO</p>
+
+                <label>Estado:</label>
+                <p>@Model.ESTADO</p>
+                <label>Genera vacante:</label>
+                <p>@G_VACANTE</p>
+
+                <row class="detalle-comentarios">
+                    <label> Comentarios:</label>
+                    <div>
+                        <p>@Model.COMENTARIOS</p>
+                    </div>
+                </row>
+
+
+                <row class="documentos-relacionados">
+                    <div class="col-md-12 documentos-header">
+                        <p>Documentos Relacionados   <span>- Debe aprobar estos documentos para confirmar el retiro</span></p>
+                    </div>
+                    <div class="col-md-12 documentos-body">
+                        @{
+                            if (Model.SOPORTES != null)
+                            {
+                                <div id="DETALLE_SOPORTES_APROBADOS" name="DETALLE_SOPORTES_APROBADOS">
+                                    @Html.Partial("_SOPORTES_APROBADOS", Model.SOPORTES)
+                                </div>
+                            }
+                        }
+
+
+                    </div>
+                </row>
+                <button onclick="REGRESAR(); return false;" class="btn-cancelar-retriro">Cancelar </button>
+                @*<button class="btn-confirmar-retiro">Aprobar</button>*@
+
+                <input type="submit" class="btn-confirmar-retiro" value="Aprobar" />
+            </div>
+        }
+    </form>
+  
+</div>
+
+<div class="modal fade" id="modalFinalizarRetiro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h5 class="modal-title" id="exampleModalLabel">@Model.NOMBRE</h5>
+            </div>
+            <div class="modal-body">@ViewBag.MENSAJE</div>
+            <div class="modal-footer">
+                <button class="cancelar-modal" type="button" data-dismiss="modal">Cancelar</button>
+                @*<input type="submit" class="btn-principal" value="Continuar" />*@
+                <button class="btn-principal" type="button" onclick="CONTINUAR()">Continuar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@{
+    if (Model.ERROR != null)
+    {
+        <div id="DETALLE_ERROR_RETORNO" name="DETALLE_ERROR_RETORNO">
+            @Html.Partial("_ERRORES", Model.ERROR);
+        </div>
+    }
+}
+
+
+
+@*<script src="../../assets/js/scripts.js"></script>*@
+
+
+<script>
+
+     $(document).ready(function () {
+        debugger;
+        if ('@ViewBag.MENSAJE' != "") {
+            //$('.modal-body').load('content.html', function () {
+                $('#modalFinalizarRetiro').modal({ show: true });
+            //});
+         }
+
+    });
+
+
+     function CONTINUAR() {
+         //window.location.href = "../CONSULTAR";
+         window.location.href = "/SOLICITUD/CONSULTAR";
+    }
+    function REGRESAR() {
+        window.location.href = "/SOLICITUD/CONSULTAR";
+        //window.location.href = "/RETIRO/CONSULTAR";
+    }
+</script>

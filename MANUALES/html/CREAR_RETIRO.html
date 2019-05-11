@@ -1,0 +1,170 @@
+﻿<link href="../css/styles.css" rel="stylesheet" />
+<!doctype html>
+<title>Manual Retiros</title>
+<body>
+
+    <header><h3>Manual Gestión Humana</h3></header>
+
+    <div id="main">
+        <!-- Cuerpo-->
+        <article>
+            <h2><strong>Crear Retiro</strong></h2>
+
+            <p>
+                Esta ventana corresponde al rol del <strong>“Jefe”</strong> a continuación veremos la ventana y sus opciones:<br /><br />
+            </p>
+            
+            <img src="../img/crear retiro.PNG" height="500"/>
+
+            <p>
+                Como se puede observar hay varias opciones e interacciones nuevas, cada una de estas interacciones fue enumerada de forma que se muestre como debe ser el flujo de estas, a continuación la explicación de cada una de ellas:<br /><br />
+
+                <strong>1. Buscar</strong>
+                En esta opción podemos buscar el usuario al cual se le va a hacer el proceso de retiro. Se puede buscar por datos como el usuario de ingreso al computador de oficina, nombre y cedula, una vez estos datos deberá hacer click en el botón identificado con una lupa, una vez hecho el click se mostrará una ventana modal o emergente, en la cual deberá seleccionar la persona que busca. La ventana modal tiene este aspecto: <br /><br />
+
+                <img src="../img/modal buscar crear.PNG" /><br /><br />
+
+                <strong>2. Tipo De Retiro</strong>
+                Está opción muestra el tipo de retiro por el cual se va a iniciar este proceso.  Esta opción se habilitará una vez se haya seleccionado la persona a la cual se le va a hacer este proceso.<br /><br />
+
+                A continuación se muestran las opciones disponibles para dicho proceso<br /><br />
+
+                <img src="../img/seleccion tipo retiro.PNG" height="500" /><br /><br />
+
+                Al seleccionar algún tipo de retiro se habilitará automáticamente la opción de cargar los archivos soporte para continuar con el proceso. Dependiendo el retiro se habilitará desde un archivo solicitado hasta un máximo de dos:<br /><br />
+
+                <img src="../img/archivos.PNG" height="300" />
+
+                <h3>Cargue de Archivos</h3>
+
+                <strong>1. Selección de archivo:</strong> Se debe hacer click, una vez hecho el click se abrirá una ventana emergente para la selección del archivo requerido
+
+                <img src="../img/seleccion archvo.PNG" height="300" /><br /><br />
+
+                Una vez seleccionado el archivo se cargará de forma automática para poder continuar con el proceso de creación
+
+                <strong>3. Fecha</strong>
+                Retomando la pantalla principal en este campo se deberá seleccionar la fecha en las cual se va llevar al cabo el proceso de retiro.
+
+                <img src="../img/seleccion fecha.PNG" height="300" /><br /><br />
+
+                <strong>4. Comentario</strong>
+                En este apartado se podrá poner un comentario que pueda aportar en el proceso de retiro.<br /><br />
+
+                <strong>5. Registrar</strong>
+                Este botón tiene la función de guardar el retiro que se va a crear, una vez hecho el click aparecerá una ventana modal o emergente solicitando la confirmación de este proceso.<br /><br />
+
+                <img src="../img/modal guardar.PNG" height="300" /><br /><br />
+
+                Para guardar el proceso anteriormente hecho debe hacer click en el botón <strong>“Si”</strong>, de los contrario al botón <strong>“No”</strong><br /><br />
+
+                <strong>6. Cancelar</strong>
+                Esta opción tiene la función de cancelar el proceso anteriormente hecho, deberá hacer click en dicho botón, al hacer click aparecerá una ventana modal o emergente la cual va a solicitar la confirmación de este proceso.<br /><br />
+
+                <img src="../img/modal cancelar creacion.PNG" height="300" /><br /><br />
+
+                Para cancelar el proceso anteriormente hecho debe hacer click en el botón <strong>“Si”</strong>, de los contrario al botón <strong>“No”</strong>.
+
+
+            </p>
+
+        </article>
+        <!-- Menú navegación -->
+        <nav>
+            <!-- Ventanas de la aplicacion-->
+            <button class="accordion"><strong>Ventanas de la aplicacíón</strong></button>
+            <div class="panel">
+
+                <!-- Inicio de sesión-->
+                <a href="INICIO_SESION.html">
+                    <button class="accordion">Inicio De Sesión</button>
+                </a>
+                <!--Fin Inicio de sesión-->
+                <!--Inicio consultar solicitudes-->
+                <a href="CONSULTAR_SOLICITUDES.html">
+                    <button class="accordion">Consultar Solicitudes</button>
+                </a>
+
+                <!--fin consultar solicitudes-->
+                <!-- Consultar retiros jefe-->
+                <a href="CONSULTAR_RETIROS_JEFE.html">
+                    <button class="accordion">Consultar Retiros Jefe</button>
+                </a>
+
+                <!-- Fin Consultar retiros jefe-->
+                <!--Consultar Retiros Business Partner-->
+                <a href="CONSULTAR_RETIROS_BP.html">
+                    <button class="accordion">Consultar Retiros Business Partner</button>
+                </a>
+                <!--Fin Consultar Retiros Business Partner-->
+                <!--Consultar Retiros Proveedor-->
+                <a href="CONSULTAR_RETIROS_PROVEEDOR.html">
+                    <button class="accordion">Consultar Retiros Proveedor</button>
+                </a>
+
+                <!--Fin Consultar Retiros Proveedor-->
+                <!--Editar Retiro Jefe-->
+                <a href="EDITAR_RETIRO_JEFE.html">
+                    <button class="accordion">Editar Retiro Jefe</button>
+                </a>
+
+                <!--Fin Editar Retiro Jefe-->
+                <!--Editar Retiro Business Partner-->
+                <a href="EDITAR_RETIRO_BP.html">
+                    <button class="accordion">Editar Retiro Business Partner</button>
+                </a>
+
+                <!--Fin Editar Retiro Business Partner-->
+                <!--Aprobar Retiro-->
+                <a href="APROBAR_RETIRO.html">
+                    <button class="accordion">Aprobar Retiro</button>
+                </a>
+                <!--Fin Aprobar Retiro-->
+            </div>
+            <!--Crear Retiro-->
+            <a href="CREAR_RETIRO.html">
+                <button class="accordion">Crear Retiro</button>
+            </a>
+            <!--Fin Crear Retiro-->
+            <!--Fin ventanas de la aplicacion-->
+            <!--inicio Procedimientos-->
+            <button class="accordion"><strong>Procedimientos</strong></button>
+            <div class="panel">
+                <!--Inicio  Crear Nuevo Retiro-->
+                <a href="CREAR_NUEVO_RETIRO.html">
+                    <button class="accordion"> Crear Nuevo Retiro</button>
+                </a>
+                <!--Fin Crear Nuevo Retiro-->
+                <!--Inicio Aprobar documentos-->
+                <a href="APROBAR_DOCUMENTOS.html">
+                    <button class="accordion">Aprobar Documento</button>
+                </a>
+                <!--Fin Aprobar documentos-->
+                <!--Inicio Verificar vacante-->
+                <a href="GENERA_VACANTE.html">
+                    <button class="accordion">Verificar vacante</button>
+                </a>
+                <!--Fin Verificar vacante-->
+            </div>
+            <!--Fin Procedimientos-->
+
+        </nav>
+    </div>
+
+</body>
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+</script>

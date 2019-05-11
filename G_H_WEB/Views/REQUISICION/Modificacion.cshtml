@@ -1,0 +1,134 @@
+﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
+@{
+    //ViewBag.Title = "retiros_buscar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-9">
+    <table class="table">
+        <tr>
+            <td>
+                <h2>Modificar Requisición</h2>
+            </td>
+
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <img src="http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Bridge-Copyrighted-icon.png" />
+            </td>
+            <td>
+                <img src="http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Dreamweaver-Copyrighted-icon.png" />
+            </td>
+            <td>
+                <img src="http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Fireworks-Copyrighted-icon.png" />
+            </td>
+            <td>
+                <img src="http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Flash-Copyrighted-icon.png" />
+            </td>
+        </tr>
+    </table>
+    <br />
+
+    <form id="form">
+
+        <div class="form-row">
+            <div class="form-group col-md-6" id="pnlEmpleado" name="pnlEmpleado">
+                <label for="inputEmpleado"> Documento o Nombre del Empleado</label>
+                <div class="form-group">
+                    @Html.DropDownListFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
+                    @*  @Html.ValidationMessageFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, "*", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div>
+            @*@Html.ActionLink("Cancelar Requisición", "Index")*@
+            <input type="button" value="Cancelar Requisición" id="Submit" class="btn-cancelar-retriro" onclick="cancelar()" />
+            <input type="submit" value="Modificar Requisición" id="Submit" class="btn-confirmar-retiro" onclick="CrearModificacion()"  />
+        </div>
+
+        <div class="modal fade" id="ModalCancel" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel">Esta a punto de cancelar la requisición</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                    </div>
+                    <div class="modal-body">
+                        <br />
+                        <h4>¿Esta Seguro de Cancelarla?</h4>
+
+                        <button type="button" class="btn-cancelar-retriro" data-dismiss="modal" aria-label="Aceptar" onclick="NoCancelar()">
+                            No
+                            
+                        </button>
+                        <button type="button" class="btn-confirmar-retiro" data-dismiss="modal" aria-label="Cancelar" onclick="SiCancelar()">
+                            Si
+                            
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+
+        <script type="text/javascript">
+            function CrearModificacion() {
+                var $form = $("#form");
+                var model = JSON.stringify(getFormData($form), null, 2);
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("CrearModificacion", "REQUISICION")',
+                    contentType: "application/json; charset=utf-8",
+                    data: model,
+                    dataType: "json",
+                    //success: function () { window.location.href = '@Url.Action("Index", "REQUISICION")'; }
+                    success: function () {
+                        if (document.getElementById('NUMERO_DOCUMENTO_EMPLEADO').value != "") {
+                            window.location.href = '@Url.Action("Index", "REQUISICION")';
+                        } else  {
+                            @*window.location.href = '@Url.Action("Modificacion", "REQUISICION")';*@
+                        }
+                    }
+                })
+            };
+                function getFormData($form) {
+                    var unindexed_array = $form.serializeArray();
+                    var indexed_array = {};
+
+                         $.map(unindexed_array, function (n, i) {
+                        indexed_array[n['name']] = n['value'];
+                    });
+
+                    return indexed_array;
+            };
+            
+            function cancelar() {
+                $('#ModalCancel').modal('show');
+            };
+
+            function SiCancelar() {
+                $('#ModalCancel').modal('hide');
+                window.location.href = '@Url.Action("Index", "REQUISICION")';
+            };
+            function NoCancelar() {
+                $('#ModalCancel').modal('hide');
+            };
+
+        </script>
+    </form>

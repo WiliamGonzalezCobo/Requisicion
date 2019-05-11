@@ -1,0 +1,253 @@
+﻿@using G_H_WEB.Models;
+@model IEnumerable<SOPORTES_RETIRO_ViewModel>
+
+@{
+    int CONTADOR = 0;
+    string REQUERIDO = "";
+}
+
+
+@foreach (SOPORTES_RETIRO_ViewModel SOPORTE in Model)
+{
+    CONTADOR = CONTADOR + 1;
+
+    if (SOPORTE.NOMBRE_SOPORTE == "")
+    {
+        string ID = "";
+
+        if (SOPORTE.COD_SOPORTE == 0)
+        {
+            ID = "subirarchivo" + SOPORTE.COD_SOPORTE.ToString();
+        }
+
+        else
+        {
+            ID = "subirarchivo" + CONTADOR;
+
+
+        }
+
+<div class="row item-documento">
+    @{ if (SOPORTE.REQUERIDO) { REQUERIDO = "*"; }
+        string BARRACARGAR = "proceso" + SOPORTE.COD_SOPORTE.ToString(); }
+
+    <div id="NOMBRE_TIPO_SOPORTE" class="col-md-3 tipo-documento">@SOPORTE.NOMBRE_TIPO_SOPORTE  @REQUERIDO </div>
+    <input type="hidden" id="REQUERIDO" class="validate" name="'@SOPORTE.REQUERIDO.ToString()'" value="'@SOPORTE.REQUERIDO.ToString()'" />
+    <div class="col-md-9 col-lg-9 col-xl-9">
+        <div id="CARGAR_ICONO">
+            <p class="texto-subir-archivo"><span class="fas fa-cloud-download-alt"><input type="hidden" id="cod_soporte_" value=@SOPORTE.COD_SOPORTE /><input type="hidden" id="cod_tipo_soporte_" value=@SOPORTE.COD_TIPO_SOPORTE /><label for="@ID" id="subirarchivo" class="subirarchivolabel">Seleccione un archivo</label><input type="file" id="@ID" onchange="CARGARARCHIVO('@ID','@SOPORTE.COD_TIPO_SOPORTE','@BARRACARGAR')" class="SubirArchivo"></span><span class="fas fa-cloud-download-alt"></span></p>            
+        </div>
+        <div class="progress" id="@BARRACARGAR" hidden></div>        
+    </div>
+</div>
+
+        }
+        else
+        {
+         string BARRACARGAR = "proceso" + SOPORTE.COD_SOPORTE.ToString();
+        <div class="row item-documento">
+            <div class="col-md-3 tipo-documento">@SOPORTE.NOMBRE_TIPO_SOPORTE</div>
+            <div class="col-md-9">
+                @*<p class="texto-archivo-subido"><span>@Html.ActionLink(SOPORTE.NOMBRE_SOPORTE, "CONSULTAR_SOPORTE", new { COD_SOPORTE = SOPORTE.COD_SOPORTE })  </span><span class="peso-archivo">@SOPORTE.TAMANO</span> <a href="../RETIRAR_SOPORTE?COD_SOPORTE=@SOPORTE.COD_SOPORTE&COD_RETIRO=@SOPORTE.COD_RETIRO">  <span class="fas fa-times"> </span></a> </p>*@
+                <p class="texto-archivo-subido"><span>@Html.ActionLink(SOPORTE.NOMBRE_SOPORTE, "CONSULTAR_SOPORTE", new { COD_SOPORTE = SOPORTE.COD_SOPORTE })  </span><span class="peso-archivo">@SOPORTE.TAMANO</span> <a onclick="RETIRAR('@SOPORTE.COD_SOPORTE', '@SOPORTE.COD_RETIRO')">  <span class="fas fa-times" data-toggle="tooltip" data-placement="top" title="Cancelar"> </span></a> </p> @*<span class="fas fa-times"> </span></a> </p>*@
+            </div>
+        </div>
+    }
+}
+<input type="hidden" id="CANTIDAD_ARCHIVOS" name="CANTIDAD_ARCHIVOS" value=@CONTADOR />
+<script>
+    /*funcion para crear el soporte cuando carga el documento la primera vez, crea el cod_retiro y despues crea el soporte*/
+    function CreaRegistro(IDUPLOADFILE, BARRACARGAR) {
+        
+        var Retiro = {};
+        Retiro = {
+            "NUMERO_DOCUMENTO": $("#NumeroDocumento").text(),
+            "COD_CAUSA_RETIRO": $("#causaretiro").val(),
+            "FECHA_RETIRO": $('#FechaRetiro').datepicker({ dateFormat: 'yy-mm-dd' }).val(),
+            "FECHA_RETIRO_TEXTO": $('#FechaRetiro').val(),
+            "COMENTARIOS": ($(".generar-comentarios").val() != "" ? $(".generar-comentarios").val() : "N/D")
+        }
+        
+        $.ajax({
+            url: "/RETIRO/CREAR",
+            data: Retiro,
+            type: "POST",
+            success: function (result) {
+                
+                $("#DETALLE_ERROR").html(result);
+                /*carga el archivo y crea el soporte */
+                var data = new FormData();
+                Barra = document.getElementById(BARRACARGAR)
+                Archivo = document.getElementById(IDUPLOADFILE).files[0]
+                data.append("   ", Archivo);
+                $("#campoArchivoCargado").attr("hidden", "hidden")
+                $("#CARGAR_ICONO").hide();
+                $.ajax({
+                    xhr: function () {
+                        var xhr = new window.XMLHttpRequest();
+                        xhr.upload.addEventListener("progress", function (evt) {
+                            if (evt.lengthComputable) {
+                                var percentComplete = evt.loaded / evt.total;
+                                console.log(percentComplete);
+                                $("#" + BARRACARGAR).removeAttr('hidden');
+
+                                $("#" + BARRACARGAR).css({
+                                    width: percentComplete * 100 + '%'
+                                });
+                                if (percentComplete === 1) {
+                                    $("#" + BARRACARGAR).addClass('hide');
+                                }
+                            }
+                        }, false);
+                        xhr.addEventListener("progress", function (evt) {
+                            if (evt.lengthComputable) {
+                                var percentComplete = evt.loaded / evt.total;
+                                console.log(percentComplete);
+                                $("#" + BARRACARGAR).css({
+                                    width: percentComplete * 100 + '%'
+                                });
+                            }
+                        }, false);
+                        return xhr;
+                    },
+                    type: "POST",
+                    url: '/RETIRO/EDITAR_SOPORTE?COD_RETIRO=' + $("#codRetiro").val() + '&COD_SOPORTE=' + parseInt($("#cod_soporte_").val()) + '&COD_TIPO_SOPORTE=' + parseInt($("#cod_tipo_soporte_").val()) + '&VISTA=' + '_SOPORTES_CREADO' + '&COD_CAUSA_RETIRO=' +parseInt($("#causaretiro").val()),
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    target: "#DETALLE_SOPORTES",
+                    success: function (result) {
+
+                        $("#tieneArchivo").val(1);
+                        $('#DETALLE_SOPORTES').html(result);
+                        $("#tieneArchivo").val(1);
+                    },
+                    error: function (result, xhr, status) {
+                        $('#DETALLE_ERROR').html(result.responseText);
+                        var err = "Error " + " " + status;
+                        console.log(err);
+                    }
+                });
+            },
+            error: function (result, xhr, status) {
+                $('#DETALLE_ERROR').html(result.responseText);
+                var err = "Error " + " " + status;
+                console.log(err);
+            }
+        });
+    }
+
+    /*funcion para cargar  el archivo y crear el soporte si ya tiene el cod de retiro crea el soporte*/
+    function CARGARARCHIVO(IDUPLOADFILE, COD_TIPO_SOPORTE, BARRACARGAR) {
+        
+       
+        if ((file = document.getElementById(IDUPLOADFILE).files[0])) {
+            var sizeByte = file.size;
+            var sizekiloBytes = parseFloat(sizeByte / 1024);
+            var sizeMegabits = parseFloat(sizekiloBytes / 1024);
+            if (sizeMegabits > 4) {
+                $("#CuerpoModalError").hide('hide');
+                $("#ErrorModalArchivo").text("El archivo excede el tamaño permitido, debe ser menor o igual a 4MB. " + " El tamaño de su archivo es de " + sizeMegabits.toFixed(3) + " MB ");
+                $('.modal-body').load('content.html', function () {
+                    $('#modaLErrorArchivo').modal({ show: true });
+                });
+                return;
+            } else {
+
+         /*funcional */
+        if ($('#FechaRetiro').val() != "" && $("#FechaRetiro").val() != "Fecha") {
+            if (typeof $("#codRetiro").val() === 'undefined') {
+                CreaRegistro(IDUPLOADFILE, BARRACARGAR);
+            }
+            else {
+
+                $("#ListaDesplegableCausaRetiro").attr("disabled", "disabled");
+                $("#campoArchivoCargado").attr("hidden", "hidden");
+                
+
+                var data = new FormData();
+                Archivo = document.getElementById(IDUPLOADFILE).files[0]
+                data.append("   ", Archivo);
+                $("#CARGAR_ICONO").hide();
+                $.ajax({
+                    xhr: function () {
+                        var xhr = new window.XMLHttpRequest();
+                        xhr.upload.addEventListener("progress", function (evt) {
+                            if (evt.lengthComputable) {
+                                var percentComplete = evt.loaded / evt.total;
+                                console.log(percentComplete);
+                                $("#" + BARRACARGAR).removeAttr('hidden');
+
+                                $("#" + BARRACARGAR).css({
+                                    width: percentComplete * 100 + '%'
+                                });
+                                if (percentComplete === 1) {
+                                    $("#" + BARRACARGAR).addClass('hide');
+                                }
+                            }
+                        }, false);
+                        xhr.addEventListener("progress", function (evt) {
+                            if (evt.lengthComputable) {
+                                var percentComplete = evt.loaded / evt.total;
+                                console.log(percentComplete);
+                                $("#" + BARRACARGAR).css({
+                                    width: percentComplete * 100 + '%'
+                                });
+                            }
+                        }, false);
+                        return xhr;
+                    },
+                    type: "POST",
+                    url: '/RETIRO/EDITAR_SOPORTE?COD_RETIRO=' + $("#codRetiro").val() + '&COD_SOPORTE=' + parseInt($("#cod_soporte_").val()) + '&COD_TIPO_SOPORTE=' + parseInt($("#cod_tipo_soporte_").val()) + '&VISTA=' + '_SOPORTES_CREADO' + '&COD_CAUSA_RETIRO=' + parseInt($("#causaretiro").val()),
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    target: "#DETALLE_SOPORTES",
+                    success: function (result) {
+                        var contador = parseInt($("#tieneArchivo").val()) + 1;
+                        $("#tieneArchivo").val(contador);
+                        $('#DETALLE_SOPORTES').html(result);
+                    },
+                    error: function (result, xhr, status) {
+                        $('#DETALLE_ERROR').html(result.responseText);
+                        var err = "Error " + " " + status;
+                        console.log(err);
+                    }
+                });
+            }
+        }
+        else {
+            if ($('#FechaRetiro').val() == "" || $("#FechaRetiro").val() == "Fecha") { $("#campoFecha").removeAttr("hidden"); }
+            capturacausaretiro($("#causaretiro").val());
+        }
+          /* fin funcional */
+
+            }
+        } 
+    }
+
+    /*funcion para cancelar los archivos cargados*/
+    function RETIRAR(COD_SOPORTE, COD_RETIRO) {
+        
+        $.ajax({
+            type: "GET",
+            url: '/RETIRO/RETIRAR_SOPORTE?COD_SOPORTE=' + parseInt(COD_SOPORTE) + '&COD_RETIRO=' + parseInt(COD_RETIRO) + '&VISTA=' + '_SOPORTES_CREADO',
+            contentType: false,
+            processData: false,
+            target: "#DETALLE_SOPORTES",
+            success: function (result) {
+                $('#DETALLE_SOPORTES').html(result);
+                //location.reload();
+            },
+            error: function (result, xhr, status) {
+                $('#DETALLE_ERROR').html(result.responseText);
+                var err = "Error " + " " + status;
+                console.log(err);
+            }
+        });
+    }
+
+</script>
+
+
+

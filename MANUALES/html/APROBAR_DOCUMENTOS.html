@@ -1,0 +1,154 @@
+﻿<link href="../css/styles.css" rel="stylesheet" />
+<!doctype html>
+<title>Manual Retiros</title>
+<body>
+
+    <header><h3>Manual Gestión Humana</h3></header>
+
+    <div id="main">
+        <!-- Cuerpo-->
+        <article>
+            <h2><strong>Aprobar Documentos</strong></h2>
+
+            <p>
+                El proceso de crear retiros solo lo puede hacer el usuario con rol <strong>“Proveedor”:</strong><br /><br />
+
+                Ingresamos el usuario.<br /><br />
+
+                <img src="../img Procedimientos/login usuario.PNG" height="400" /><br /><br />
+
+                Ingresamos la contraseña.<br /><br />
+
+                <img src="../img Procedimientos/login contrasena.PNG" height="400" /><br /><br />
+
+                Hacemos click en el botón <strong>“Iniciar Sesión”</strong>.<br /><br />
+
+                <img src="../img Procedimientos/login boton.PNG" height="400" /><br /><br />
+
+                Una vez iniciada sesión, nos va a llevar a la ventana de <strong>“consultar solicitudes”</strong>, allí deberemos hacer click en símbolo que se señaliza a continuación:<br /><br />
+
+                <img src="../img Procedimientos/consultar solicitudes aprobar documento.PNG" height="400" /><br /><br />
+
+                Una vez hecho el click nos dirigirá la ventana <strong>“Aprobar Retiro”</strong>, para poder visualizar el documento deberemos hacer click en el nombre del documento y se descargará el archivo de forma automática<br /><br />
+
+                <img src="../img Procedimientos/aprobar documento archivo.PNG" height="400" /><br /><br />
+
+                Una vez descargado el documento y verificar que el archivo cumple con los requisitos podemos aprobar dicho archivo, para esto debemos hacer click en el cuadro <strong>“Aprobado”</strong>.<br /><br />
+
+                <img src="../img Procedimientos/aprobar documento aprobado.PNG" height="400" /><br /><br />
+
+                Al aprobar el archivo deberemos guardar los cambios hechos, para esto deberemos hacer click en el botón <strong>“Aprobar”</strong>
+
+                <img src="../img Procedimientos/aprobar documento boton aprobar.PNG" height="400" /><br /><br />
+
+                Una vez hecho el click nos aparecerá una ventana emergente solicitando la confirmación para poder guardar los cambios hechos. Para confirmar el proceso deberemos hacer click en el botón <strong>“Continuar”</strong><br /><br />
+
+                <img src="../img Procedimientos/aprobar documento modal aprobar.PNG" height="400" /><br /><br />
+
+                Ya guardados nuestros datos nos dirigirá <strong>“Consultar Solicitudes”</strong>, podemos ver que el estado de nuestro proceso ha cambiado a <strong>“documentos aprobados”</strong>
+
+                <img src="../img Procedimientos/consultar solicitudes aprobar documento.PNG" height="400" /><br /><br />
+
+            </p>
+
+        </article>
+        <!-- Menú navegación -->
+        <nav>
+            <!-- Ventanas de la aplicacion-->
+            <button class="accordion"><strong>Ventanas de la aplicacíón</strong></button>
+            <div class="panel">
+
+                <!-- Inicio de sesión-->
+                <a href="INICIO_SESION.html">
+                    <button class="accordion">Inicio De Sesión</button>
+                </a>
+                <!--Fin Inicio de sesión-->
+                <!--Inicio consultar solicitudes-->
+                <a href="CONSULTAR_SOLICITUDES.html">
+                    <button class="accordion">Consultar Solicitudes</button>
+                </a>
+
+                <!--fin consultar solicitudes-->
+                <!-- Consultar retiros jefe-->
+                <a href="CONSULTAR_RETIROS_JEFE.html">
+                    <button class="accordion">Consultar Retiros Jefe</button>
+                </a>
+
+                <!-- Fin Consultar retiros jefe-->
+                <!--Consultar Retiros Business Partner-->
+                <a href="CONSULTAR_RETIROS_BP.html">
+                    <button class="accordion">Consultar Retiros Business Partner</button>
+                </a>
+                <!--Fin Consultar Retiros Business Partner-->
+                <!--Consultar Retiros Proveedor-->
+                <a href="CONSULTAR_RETIROS_PROVEEDOR.html">
+                    <button class="accordion">Consultar Retiros Proveedor</button>
+                </a>
+
+                <!--Fin Consultar Retiros Proveedor-->
+                <!--Crear Retiro-->
+                <a href="CREAR_RETIRO.html">
+                    <button class="accordion">Crear Retiro</button>
+                </a>
+
+                <!--Fin Crear Retiro-->
+                <!--Editar Retiro Jefe-->
+                <a href="EDITAR_RETIRO_JEFE.html">
+                    <button class="accordion">Editar Retiro Jefe</button>
+                </a>
+
+                <!--Fin Editar Retiro Jefe-->
+                <!--Editar Retiro Business Partner-->
+                <a href="EDITAR_RETIRO_BP.html">
+                    <button class="accordion">Editar Retiro Business Partner</button>
+                </a>
+
+                <!--Fin Editar Retiro Business Partner-->
+                <!--Aprobar Retiro-->
+                <a href="APROBAR_RETIRO.html">
+                    <button class="accordion">Aprobar Retiro</button>
+                </a>
+                <!--Fin Aprobar Retiro-->
+            </div>
+            <!--Fin ventanas de la aplicacion-->
+            <!--inicio Procedimientos-->
+            <button class="accordion"><strong>Procedimientos</strong></button>
+            <div class="panel">
+                <!--Inicio  Crear Nuevo Retiro-->
+                <a href="CREAR_NUEVO_RETIRO.html">
+                    <button class="accordion"> Crear Nuevo Retiro</button>
+                </a>
+                <!--Fin Crear Nuevo Retiro-->
+                <!--Inicio Verificar vacante-->
+                <a href="GENERA_VACANTE.html">
+                    <button class="accordion">Verificar vacante</button>
+                </a>
+                <!--Fin Verificar vacante-->
+            </div>
+            <!--Inicio Aprobar documentos-->
+            <a href="APROBAR_DOCUMENTOS.html">
+                <button class="accordion-static">Aprobar Documento</button>
+            </a>
+            <!--Fin Aprobar documentos-->
+            <!--Fin Procedimientos-->
+
+        </nav>
+    </div>
+
+</body>
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+</script>
