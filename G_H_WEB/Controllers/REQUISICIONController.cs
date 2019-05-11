@@ -231,7 +231,7 @@ namespace G_H_WEB.Controllers
                    new SelectListItem { Text = "Nombre 3", Value = "3" }
                    };
 
-            ViewBag.resultado = TempData["resultado"]??false;
+            //ViewBag.resultado = TempData["resultado"]??false;
 
             return View (rvm);
         }

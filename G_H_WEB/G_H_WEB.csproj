@@ -264,6 +264,7 @@
     <Compile Include="Controllers\CUENTAController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\REQUISICIONController.cs" />
+    <Compile Include="Controllers\REQUISICION_PRESUPUESTADAController.cs" />
     <Compile Include="Controllers\RETIROController.cs" />
     <Compile Include="Controllers\ROL_USUARIO.cs" />
     <Compile Include="Controllers\SOLICITUDController.cs" />
@@ -666,6 +667,8 @@
     <Content Include="Views\REQUISICION\LICENCIA_INCAPACIDAD_PROPUESTAS.cshtml" />
     <Content Include="Views\REQUISICION\No_Presupuestada.cshtml" />
     <Content Include="Views\REQUISICION\No_Presupuestada_General.cshtml" />
+    <Content Include="Views\REQUISICION_PRESUPUESTADA\_PartialPresupuestadaJefe.cshtml" />
+    <Content Include="Views\REQUISICION_PRESUPUESTADA\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

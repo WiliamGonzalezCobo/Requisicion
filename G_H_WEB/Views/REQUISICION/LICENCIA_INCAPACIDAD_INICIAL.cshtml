@@ -195,12 +195,14 @@
             @Html.ValidationMessageFor(model => model.OBSERVACION_CREACION, "", new { @class = "text-danger" })
         </div>
     </div>
-    <div class="form-group col-md-12 row">
-        <div class="col-md-offset-2 col-md-4">
-            <button class="btn-cancelar-retriro" type="button" id="btnLcancelar">Cancelar</button>
-        </div>
-        <div class="col-md-offset-2 col-md-4">
-            <input type="submit" value="Crear Requisición" class="btn btn-confirmar" id="btnLcrear" />
+    <div class="retiros-detalle">
+        <div class="form-group col-md-12 row">
+            <div class="col-md-offset-2 col-md-4">
+                <button class="btn-cancelar-retriro" type="button" id="btnLcancelar">Cancelar</button>
+            </div>
+            <div class="col-md-offset-2 col-md-4">
+                <input type="submit" value="Crear Requisición" class="btn-confirmar-retiro" id="btnLcrear" />
+            </div>
         </div>
     </div>
 }
