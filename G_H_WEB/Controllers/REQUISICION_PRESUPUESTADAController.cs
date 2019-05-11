@@ -9,7 +9,7 @@ namespace G_H_WEB.Controllers
     public class REQUISICION_PRESUPUESTADAController : Controller
     {
         // GET: REQUISICION_PRESUPUESTADA
-        public ActionResult Index()
+        public ActionResult Crear()
         {
             return View();
         }

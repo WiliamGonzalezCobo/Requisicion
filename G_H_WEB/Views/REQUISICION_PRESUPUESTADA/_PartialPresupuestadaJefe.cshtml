@@ -1,3 +1,33 @@
-﻿@model G_H_WEB.Models.RegisterViewModel
+﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 
-<p>presupuestada parciales</p>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="lblTipoNecesidad"> @Html.LabelFor(model => model.NOMBRE_TIPO_NECESIDAD, new { htmlAttributes = new { @class = "form-control" } }):</label>
+        <div class="form-group">
+            @Html.DropDownListFor(model => model.COD_TIPO_NECESIDAD, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="lblCargo"> @Html.LabelFor(model => model.NOMBRE_CARGO, new { htmlAttributes = new { @class = "form-control" } }):</label>
+        <div class="form-group">
+            @Html.DropDownListFor(model => model.COD_CARGO, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
+        </div>
+    </div>
+</div>
+
+<div class="form-row" id="pnlPresupuestada">
+    <div class="form-group col-md-6">
+        <label for="lblOrden"> @Html.LabelFor(model => model.ORDEN, new { htmlAttributes = new { @class = "form-control" } }):</label>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.ORDEN, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ORDEN)
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="lblCeCo"> @Html.LabelFor(model => model.NOMBRE_CECO, new { htmlAttributes = new { @class = "form-control" } }):</label>
+        <div class="form-group">
+            @Html.DropDownListFor(model => model.COD_CECO, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
+        </div>
+    </div>
+</div>

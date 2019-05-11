@@ -43,7 +43,14 @@ namespace G_H_WEB.Controllers
             Session["requisicion"] = idTipo;
             if (idTipo != null)
             {
-                return View();
+                if (idTipo == 2)
+                {
+                    return RedirectToAction("Crear", "REQUISICION_PRESUPUESTADA");
+                }
+                else {
+                    return View();
+                }
+                
             }
             else
             {
