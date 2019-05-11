@@ -15,6 +15,7 @@ namespace LOGICA.REQUISICION_LOGICA
     {
         public List<REQUISICIONViewModel> ConsultarTodos()
         {
+            // para ver
             List<REQUISICIONViewModel> lst = new List<REQUISICIONViewModel>();
 
             using (var db = new GESTION_HUMANA_HITSSEntities2())
