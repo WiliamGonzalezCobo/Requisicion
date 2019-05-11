@@ -128,8 +128,6 @@
     <Compile Include="CLIENTE_CORREO.cs" />
     <Compile Include="CORREO.cs" />
     <Compile Include="EMPLEADO.cs" />
-    <Compile Include="INTERFAZREQUISICION\IREQUISICION.cs" />
-    <Compile Include="INTERFAZREQUISICION\IREQUISICIONTIPO.cs" />
     <Compile Include="BASE_REQUISICION\BASE_PROXY.cs" />
     <Compile Include="BASE_REQUISICION\PROXY.cs" />
     <Compile Include="MODELO_LOGICA\AUTENTICA_DIRECTORIO_MODELO.cs" />

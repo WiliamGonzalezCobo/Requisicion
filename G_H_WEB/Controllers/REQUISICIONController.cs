@@ -27,16 +27,16 @@ namespace G_H_WEB.Controllers
                 item.FECHA_CREACION = DateTime.Now.AddDays(-i).ToShortDateString();
                 modelo.Add(item);
             }
-
-            ViewBag.Necesidad = lsNecesidad;
-
+          
+            ViewBag.Estado = new LOGICA_REQUISICION().CONSULTAR_ESTADOS();
+            ViewBag.Tipo = new LOGICA_REQUISICION().CONSULTAR_TIPOS_REQUISICION();
             return View(modelo);
         }
 		
 		 // GET: REQUISICION/Create
         public ActionResult Create(int? idTipo)
         {
-            LlenarControles();
+            ViewBag.Necesidad = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
             Session["requisicion"] = idTipo;
             if (idTipo != null)
             {
@@ -54,25 +54,7 @@ namespace G_H_WEB.Controllers
 
         private void LlenarControles()
         {
-            LOGICA_REQUISICION logica = new LOGICA_REQUISICION();
-            List<SelectListItem> lsNecesidad = new List<SelectListItem>();
-
-            var consulta = logica.ConsultarTodos();
-            foreach (var item in consulta)
-            {
-                SelectListItem listItem = new SelectListItem();
-                listItem.Text = item.NOMBRE_NECESIDAD;
-                listItem.Value = item.COD_TIPO_NECESIDAD.ToString();
-                lsNecesidad.Add(listItem);
-            }
-            ViewBag.Necesidad = lsNecesidad;
-
-            List<SelectListItem> lsEstado = new List<SelectListItem>();
-            for (int i = 0; i < 3; i++)
-            {
-                lsEstado.Add(new SelectListItem() { Text = "ESTADO" + i, Value = i.ToString() });
-            }
-            ViewBag.Estado = lsEstado;
+    
 
 
             List<SelectListItem> lsTipo = new List<SelectListItem>();
@@ -270,7 +252,7 @@ namespace G_H_WEB.Controllers
                 if (ModelState.IsValid)
                 {
                     requisicionLogica = new LOGICA_REQUISICION();
-                    requisicionLogica.AgregarRequisicion(requisitionModel);
+                    //requisicionLogica.AgregarRequisicion(requisitionModel);
                     return View();
                 }
                 else
