@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace G_H_WEB.Models.Requisicion
+namespace MODELO_DATOS.MODELO_REQUISICION
 {
     public class ESTADOViewModel
     {
