@@ -44,6 +44,12 @@
     text-align: left;
     text-align: center;
 }
+
+.field-validation-error {
+    color: red;
+    font-weight: bold;
+}
+}
 .polig {
     height: 200px;
     border: 1px solid Black;
