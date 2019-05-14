@@ -22,10 +22,10 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         [Required]
         [DisplayName("Cargo")]
         public int COD_CARGO { get; set; }
-
+        public string NOMBRE_CARGO { get; set; }
         [Required]
         [DisplayName("Cargo")]
-        public List<SelectListItem> NOMBRE_CARGO { get; set; }
+        public List<SelectListItem> NOMBRE_CARGO_LIST { get; set; }
         [Required]
         [DisplayName("Orden")]
         public string ORDEN { get; set; }

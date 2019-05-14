@@ -1,4 +1,4 @@
-﻿@charset "UTF-8";
+﻿/*@charset "UTF-8";*/
 /* OSWALD */
 @font-face {
   font-family: 'oswald-extralight';
@@ -206,6 +206,17 @@ form.buscador {
   background: #ffffff;
   float: right;
   position: relative; }
+
+.buscador {
+    width: 360px;
+    height: 48px;
+    margin: 0 0 50px 0;
+    padding: 0;
+    background: #ffffff;
+    float: right;
+    position: relative;
+}
+
   form.buscador a.search-btn {
     width: 48px;
     height: 48px;
@@ -223,11 +234,44 @@ form.buscador {
     background: #080015; }
     form.buscador a.search-btn:hover {
       color: #ffffff; }
+
+
+
+   .buscador span.search-btn {
+        width: 48px;
+        height: 48px;
+        margin: 0;
+        padding: 18px 0 0 0;
+        font-size: 14px;
+        font-size: 0.875rem;
+        font-family: "Font Awesome 5 Free";
+        line-height: 1;
+        color: #f1f1f1;
+        text-align: center;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: #080015;
+    }
+
+   .buscador span.search-btn:hover {
+            color: #ffffff;
+        }
+
+
+
   form.buscador input.search-input {
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 15px; }
+
+buscador input.search-input {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 15px;
+}
   form.buscador.version2 {
     display: block;
     width: 100%;
@@ -767,6 +811,27 @@ body.retiros {
     body.retiros .table-wrapper table.tabla-retiro tbody td.td-nombre:hover {
       color: #666666;
       cursor: pointer; }
+
+
+
+
+
+    body.retiros .table-wrapper table.tabla-retiro tbody td.td-nombre-req {
+        font-size: 14px;
+        font-size: 0.875rem;
+        font-family: "source-bold", sans-serif;
+        line-height: 18px;
+        color: #007bff;
+        text-align: left;
+    }
+
+        body.retiros .table-wrapper table.tabla-retiro tbody td.td-nombre-req:hover {
+            color: #514fc0;
+            cursor: pointer;
+        }
+
+
+
     body.retiros .table-wrapper table.tabla-retiro tbody td span.td-email {
       display: block;
       width: 100%;
@@ -815,6 +880,10 @@ body.retiros .table-wrapper table.tabla-retiro tbody td.td-acciones span {
       font-size: 14px; }
   body.retiros .titulo-retiros {
     margin-bottom: 30px; }
+
+    body.retiros .margenbottton {
+        margin-bottom: 30px;
+    }
   body.retiros .retiros-detalle {
     margin-bottom: 30px; }
     body.retiros .retiros-detalle > label {
@@ -925,3 +994,7 @@ body.retiros .table-wrapper table.tabla-retiro tbody td.td-acciones span {
         opacity: 0;
         transition: opacity 1.3s;
     }
+
+#filtroPorUsuario:hover {
+    cursor:pointer;
+}

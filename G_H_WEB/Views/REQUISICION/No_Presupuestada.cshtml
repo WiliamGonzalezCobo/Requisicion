@@ -6,7 +6,7 @@
 
 <div class="col-md-9 col-lg-9 col-xl-9 tablaRetiros">
     <h2>@ViewBag.Title</h2>
-    @using (Html.BeginForm("No_Presupuestada", "REQUISICION", FormMethod.Post, new { id = "frmNoPresupuestada", @class = "col-md-12 row" }))
+    @using (Html.BeginForm("Licencia_Incapacidad", "REQUISICION", FormMethod.Post, new { id = "frmNoPresupuestada", @class = "col-md-12 row" }))
     {
 
 
@@ -16,14 +16,14 @@
         @*}*@
 
    
-        @Html.Partial("_PartialPresupuestadaJefe", Model)
+    
 
         <div class="form-group row col-md-12">
         <div class="col-md-4">
             <input type="button" value="Rechazar" class="btn-cancelar-retriro" style="margin-right: 20%;" />
         </div>
         <div class="col-md-4">Z
-            <input type="button" value="Aprobar" onclick="aprobarClick()" class="btn btn-confirmar" style="margin-right: 20%;" />
+            <input type="submit" value="Aprobar" class="btn btn-confirmar" style="margin-right: 20%;" />
         </div>
         <div class="col-md-4">
             <input type="button" value="Modificar" class="btn btn-modificar" />

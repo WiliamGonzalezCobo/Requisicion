@@ -41,7 +41,8 @@ namespace REPOSITORIOS.SEGURIDAD
                 HILO.Start();
 
                 APPLICATIONUSER user = await UserManager.FindAsync(_USUARIO, _USUARIO);
-                return user;
+                APPLICATIONUSER usuario = UserManager.Users.Where(x => x.UserName == _USUARIO).First();
+                return usuario;
                 //if (user != null)
                 //{
                 //	//await SignInAsync(user, false);
@@ -80,10 +81,21 @@ namespace REPOSITORIOS.SEGURIDAD
                 throw ex;
             }
         }
-			
 
 
-		public async Task<IdentityResult> CREAR_USUARIO(String _USUARIO)
+
+
+
+
+
+
+
+
+
+
+
+
+        public async Task<IdentityResult> CREAR_USUARIO(String _USUARIO)
 		{
             try
             {
