@@ -43,6 +43,10 @@ namespace G_H_WEB.Controllers
         {
             
             Session["requisicion"] = idTipo;
+            if (idTipo == 1)
+            {
+                return RedirectToAction("Index", "REQUISICION_PRESUPUESTADA");
+            }
             if (idTipo == 2)
             {
                 return RedirectToAction("Index", "REQUISICION_NOPRESUPUESTADA");

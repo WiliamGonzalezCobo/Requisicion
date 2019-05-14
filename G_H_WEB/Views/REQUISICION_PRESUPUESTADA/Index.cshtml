@@ -1,4 +1,5 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
+@using UTILS.Settings
 @{
     ViewBag.Title = "REQUISICION PRESUPUESTADA";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,23 +11,23 @@
                 @using (Html.BeginForm("Index", "REQUISICION_PRESUPUESTADA"))
                 {
                     <h1>Requisicíon Presupuestada</h1>
-                    if (User.IsInRole("Jefe"))
+                    if (User.IsInRole(SettingsManager.PerfilJefe))
                     {
                         @Html.Partial("_PartialPresupuestadaJefe", Model)
                     }
-                    if (User.IsInRole("Controller"))
+                    if (User.IsInRole(SettingsManager.PerfilController))
                     {
                         @Html.Partial("_PartialPresupuestadaController", Model)
                     }
-                    if (User.IsInRole("BP"))
+                    if (User.IsInRole(SettingsManager.PerfilBp))
                     {
                         @Html.Partial("_PartialPresupuestadaBp", Model)
                     }
-                    if (User.IsInRole("RRHH"))
+                    if (User.IsInRole(SettingsManager.PerfilRRHH))
                     {
                         @Html.Partial("_PartialPresupuestadaGerenteRRHH", Model)
                     }
-                    if (User.IsInRole("USC"))
+                    if (User.IsInRole(SettingsManager.PerfilUSC))
                     {
                         @Html.Partial("_PartialPresupuestadaGerenteUSC", Model)
                     }
@@ -36,26 +37,26 @@
                     <div class="form-group">
                         <div class="col-md-12">
                             @Html.ActionLink("Cancelar", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "btn-cancelar-retriro col-md-3 " })
-                            @if (User.IsInRole("Jefe"))
+                            @if (User.IsInRole(SettingsManager.PerfilJefe))
                             {
                                 <input name="submitButton" type="submit" value="Crear Requisición" class="btn-confirmar-retiro col-md-3" />
                             }
-                            @if (User.IsInRole("Controller"))
+                            @if (User.IsInRole(SettingsManager.PerfilController))
                             {
                                 <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
                                 <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
                             }
-                            @if (User.IsInRole("BP"))
+                            @if (User.IsInRole(SettingsManager.PerfilBp))
                             {
                                 <input name="submitButton" type="submit" value="Enviar" class="btn-confirmar-retiro col-md-3" />
                             }
-                            @if (User.IsInRole("RRHH"))
+                            @if (User.IsInRole(SettingsManager.PerfilRRHH))
                             {
                                 <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
                                 <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
                                 <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
                             }
-                            @if (User.IsInRole("USC"))
+                            @if (User.IsInRole(SettingsManager.PerfilUSC))
                             {
                                 <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
                                 <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
