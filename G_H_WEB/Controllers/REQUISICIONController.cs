@@ -167,7 +167,8 @@ namespace G_H_WEB.Controllers
             }
         }
 
-        public ActionResult Licencia_Incapacidad() {
+        public ActionResult Licencia_Incapacidad()
+        {
             REQUISICIONViewModel rvm = new REQUISICIONViewModel();
 
             rvm.TIPO_DOCUMENTO = new List<SelectListItem>() {
@@ -212,7 +213,7 @@ namespace G_H_WEB.Controllers
 
             //ViewBag.resultado = TempData["resultado"]??false;
 
-            return View (rvm);
+            return View(rvm);
         }
 
         [HttpPost]
@@ -221,10 +222,10 @@ namespace G_H_WEB.Controllers
             // implementamos Silvia
 
             TempData["resultado"] = true;
-            return   RedirectToAction("Licencia_Incapacidad", "REQUISICION");
+            return RedirectToAction("Licencia_Incapacidad", "REQUISICION");
         }
-		
-		 public ActionResult No_Presupuestada()
+
+        public ActionResult No_Presupuestada()
         {
             List<SelectListItem> lstAux = new List<SelectListItem>();
             List<SelectListItem> lstAuxLab = new List<SelectListItem>();
@@ -233,7 +234,7 @@ namespace G_H_WEB.Controllers
             lstAux.Add(new SelectListItem() { Text = "Tipo 2", Value = "2" });
             lstAux.Add(new SelectListItem() { Text = "Tipo 3", Value = "3" });
             lstAux.Add(new SelectListItem() { Text = "Tipo 4", Value = "4" });
-            
+
             lstAuxLab.Add(new SelectListItem() { Text = "Tiempo Parcial", Value = "TP" });
             lstAuxLab.Add(new SelectListItem() { Text = "Tiempo Completo", Value = "TC" });
             lstAuxLab.Add(new SelectListItem() { Text = "Medio Tiempo", Value = "MT" });
