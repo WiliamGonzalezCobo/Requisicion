@@ -48,6 +48,7 @@ namespace LOGICA.REQUISICION_LOGICA
                 item.NOMBRE_TIPO_REQUISICION = "Presupuestada";
                 item.NOMBRE_ESTADO_REQUISICION = "Registrada";
                 item.FECHA_CREACION = DateTime.Now.AddDays(-i).ToShortDateString();
+                item.COD_TIPO_REQUISICION = 2;
                 
                 modelo.Add(item);
             }
@@ -59,16 +60,58 @@ namespace LOGICA.REQUISICION_LOGICA
                 EMAIL_USUARIO_CREACION = "martinezluir@globalhitss.com",
                 NOMBRE_TIPO_REQUISICION = "No Presupuestada",
                 NOMBRE_ESTADO_REQUISICION = "Verificada BP",
-                FECHA_CREACION = DateTime.Now.ToShortDateString()
+                FECHA_CREACION = DateTime.Now.ToShortDateString(),
+                COD_TIPO_REQUISICION = 2
+            });
+            modelo.Add(new REQUISICIONViewModel()
+            {
+                COD_REQUISICION = 123456789,
+                COD_CARGO = 758913,
+                NOMBRE_CARGO_STR = "Ingeniero Desarrollo",
+                EMAIL_USUARIO_CREACION = "martinezluir@globalhitss.com",
+                NOMBRE_TIPO_REQUISICION = "No Presupuestada",
+                NOMBRE_ESTADO_REQUISICION = "Verificada BP",
+                FECHA_CREACION = DateTime.Now.ToShortDateString(),
+                COD_TIPO_REQUISICION = 2
+            });
+            modelo.Add(new REQUISICIONViewModel()
+            {
+                COD_REQUISICION = 1026566851,
+                COD_CARGO = 758913,
+                NOMBRE_CARGO_STR = "Ingeniero Desarrollo",
+                NOMBRE_TIPO_REQUISICION = "No Presupuestada",
+                NOMBRE_ESTADO_REQUISICION = "Verificada BP",
+                FECHA_CREACION = DateTime.Now.ToShortDateString(),
+                EMAIL_USUARIO_CREACION = "williamFabian@globalhitss.com",
+                COD_TIPO_REQUISICION = 1
             });
 
-           
+
             return modelo;
         }
 
         public REQUISICIONViewModel BUSCAR_REQUISICIONES(int idRequsicion){
-            REQUISICIONViewModel _modelo =new REQUISICIONViewModel();
-            return _modelo;
+            List<REQUISICIONViewModel> listReq = new List<REQUISICIONViewModel>();
+            listReq.Add( new REQUISICIONViewModel() {
+                COD_TIPO_NECESIDAD = 1,
+                COD_CARGO = 1,
+                ORDEN = "orden1",
+                COD_CECO = 123,
+                COD_REQUISICION = 1026566851,
+                COD_TIPO_REQUISICION = 1
+            });
+            listReq.Add(new REQUISICIONViewModel()
+            {
+                COD_TIPO_NECESIDAD = 2,
+                COD_CARGO =1,
+                ORDEN = "orden2",
+                COD_CECO = 456,
+                COD_REQUISICION = 123456789,
+                COD_TIPO_REQUISICION = 2
+            });
+
+
+            return listReq.Find(x => x.COD_REQUISICION.Equals(idRequsicion));
         }
 
 

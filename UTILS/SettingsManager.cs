@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 namespace UTILS.Settings
 {
     /// <summary>
@@ -36,7 +37,17 @@ namespace UTILS.Settings
         {
             get { return GetSettings("Urlapi"); }
         }
-        
+
+        public static int CodTipoReqPresupuestada
+        {
+            get { return Convert.ToInt32(GetSettings("CodTipoReqPresupuestada")); }
+        }
+
+        public static int CodTipoReqNoPresupuestada
+        {
+            get { return Convert.ToInt32(GetSettings("CodTipoReqNoPresupuestada")); }
+        }
+
 
         #endregion
 
