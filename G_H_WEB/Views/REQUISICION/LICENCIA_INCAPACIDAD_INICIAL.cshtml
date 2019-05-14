@@ -53,10 +53,10 @@
     <h4 class="LSubtitulos col-md-12">Información General</h4>
 
     <div class="form-group col-md-12 row">
-        @Html.LabelFor(model => model.NOMBRE_CARGO, htmlAttributes: new { @class = "control-label col-md-12" })
+        @Html.LabelFor(model => model.NOMBRE_CARGO_LIST, htmlAttributes: new { @class = "control-label col-md-12" })
         <div class="col-md-12">
-            @Html.DropDownListFor(model => model.COD_CARGO, Model.NOMBRE_CARGO, "Seleccione", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.NOMBRE_CARGO, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.COD_CARGO, Model.NOMBRE_CARGO_LIST, "Seleccione", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.NOMBRE_CARGO_LIST, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group col-md-12 row">
@@ -248,10 +248,9 @@
 
     <script>
         $(document).ready(function () {
-            debugger;
-            var resltado = "@ViewBag.resultado";
+            var resltado = "@ViewBag.resultadoCreacionJefe";
             if (resltado=="True") {
-                $(".modal-body").text("Esta seguro de crear la Requisición de Licencia/Incapacidad para " + $("#nombreEmpleado").val());
+                $(".ModalCreacionNoJefe").text("Esta seguro de crear la Requisición de Licencia/Incapacidad para " + $("#nombreEmpleado").val());
                 $('#modalCrearRetiro').modal("show");
             }
         }); 

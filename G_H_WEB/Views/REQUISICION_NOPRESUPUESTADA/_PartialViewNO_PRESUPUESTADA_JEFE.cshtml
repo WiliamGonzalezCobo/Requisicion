@@ -1,0 +1,137 @@
+﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
+
+<div class="col-md-9 col-lg-9 col-xl-9">
+
+                <div class="LSubtitulos col-md-12 col-lg-12 col-xl-12 row" style="margin-bottom:10px;">
+
+                    <div class="col-md-3 col-lg-3 col-xl-3">
+                        <img src="http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Bridge-Copyrighted-icon.png" />
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3">
+                        <img src="http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Dreamweaver-Copyrighted-icon.png" />
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3">
+                        <img src="http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Fireworks-Copyrighted-icon.png" />
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3">
+                        <img src="http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Flash-Copyrighted-icon.png" />
+                    </div>
+
+                 </div>
+
+
+     
+
+
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="lblTipoNecesidad"> @Html.LabelFor(model => model.NOMBRE_TIPO_NECESIDAD, new { htmlAttributes = new { @class = "form-control" } }):</label>
+                                @* @Html.DropDownListFor(model => model.NOMBRE_TIPO_NECESIDAD, null, new { htmlAttributes = new { @class = "form-control" } })*@
+                                <div class="form-group">
+                                    @Html.DropDownListFor(model => model.COD_TIPO_NECESIDAD, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="lblCargo"> @Html.LabelFor(model => model.NOMBRE_CARGO, new { htmlAttributes = new { @class = "form-control" } }):</label>
+                                <div class="form-group">
+                                    @Html.DropDownListFor(model => model.COD_CARGO, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control", @id="CodCargoNoJefe" })
+                                </div>
+                            </div>
+                        </div>
+
+                        @if (!User.IsInRole("Jefe")) {
+
+                        <div class="form-row" id="pnlPresupuestada">
+                            <div class="form-group col-md-6">
+                                <label for="lblOrden"> @Html.LabelFor(model => model.ORDEN, new { htmlAttributes = new { @class = "form-control" } }):</label>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.ORDEN, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ORDEN)
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="lblCeCo"> @Html.LabelFor(model => model.NOMBRE_CECO, new { htmlAttributes = new { @class = "form-control" } }):</label>
+                                <div class="form-group">
+                                    @Html.DropDownListFor(model => model.COD_CECO, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+
+                        }
+                        <div class="form-group">
+                            <label for="lblObservacionCreacion"> @Html.LabelFor(model => model.OBSERVACION_CREACION, new { htmlAttributes = new { @class = "form-control" } }):</label>
+                            <div class="form-group">
+                                @Html.TextAreaFor(model => model.OBSERVACION_CREACION, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+
+
+                        <div>
+                            <label for="lblCeCo">@Html.LabelFor(model => model.ES_MODIFICACION, new { htmlAttributes = new { @class = "form-control" } }):</label>
+                            @Html.CheckBoxFor(model => model.ES_MODIFICACION, new { htmlAttributes = new { @class = "form-control" } })
+                            <span></span>
+                        </div>
+
+
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="ModalLabel">Requisición Creada Con éxito</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="EnviarInfocreacion()">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+
+                                    </div>
+                                    <div class="modal-body">
+                                        <br />
+                                        <h2>Se créo la requisicion para el cargo de  <span id="mensaje1"></span> con ID <span id="mensaje2"></span></h2>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="modal fade" id="ModalCancelNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="ModalLabel">Esta a punto de cancelar la requisición</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+
+                                    </div>
+                                    <div class="retiros-detalle modal-body">
+                                        <br />
+                                        <h4>¿Esta Seguro de Cancelarla?</h4>
+
+                                        <button type="button" class="filtroPorUsuario btn-cancelar-retriro" data-dismiss="modal" aria-label="Aceptar" onclick="NoCancelarJefe()" style="cursor:pointer;">
+                                            No
+
+                                        </button>
+                                        <button type="button" class="filtroPorUsuario btn-confirmar-retiro" data-dismiss="modal" aria-label="Cancelar" onclick="SiCancelarJefe()" style="cursor:pointer;">
+                                            Si
+
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+                </div>

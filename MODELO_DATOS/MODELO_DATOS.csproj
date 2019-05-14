@@ -74,8 +74,10 @@
     <Compile Include="MODELO_REQUISICION\COMENTARIOViewModel.cs" />
     <Compile Include="MODELO_REQUISICION\DIAS_LABORALESViewModel.cs" />
     <Compile Include="MODELO_REQUISICION\ESTADOViewModel.cs" />
+    <Compile Include="MODELO_REQUISICION\FILTROREQUISICION.cs" />
     <Compile Include="MODELO_REQUISICION\HISTORICOViewModel.cs" />
     <Compile Include="MODELO_REQUISICION\MENU_ROLViewModel.cs" />
+    <Compile Include="MODELO_REQUISICION\NO_PRESUPESTADA_CREACION.cs" />
     <Compile Include="MODELO_REQUISICION\OPCIONES_MENUViewModel.cs" />
     <Compile Include="MODELO_REQUISICION\REQUISICIONViewModel.cs" />
     <Compile Include="MODELO_REQUISICION\ROLViewModel.cs" />
