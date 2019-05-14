@@ -1,0 +1,30 @@
+﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
+
+@{
+    ViewBag.Title = "Requisición Licencia/Incapacidad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="../../assets/js/scripts.js"></script>
+
+
+<div class="col-md-9 col-lg-9 col-xl-9 tablaRetiros">
+    <h2>@ViewBag.Title</h2>
+    @if (User.IsInRole("Jefe"))
+    {
+        @Html.Partial("_LICENCIA_INCAPACIDAD_JEFE", Model)        
+    }
+    @if (User.IsInRole("BP"))
+    {
+        @Html.Partial("_LICENCIA_INCAPACIDAD_BP", Model)        
+    }
+    @if (User.IsInRole("RRHH"))
+    {
+        @Html.Partial("_LICENCIA_INCAPACIDAD_RRHH", Model)        
+    }
+    @if (User.IsInRole("USC"))
+    {
+        @Html.Partial("_LICENCIA_INCAPACIDAD_USC", Model)        
+    }
+
+</div>
+

@@ -3,8 +3,74 @@
     ViewBag.Title = "REQUISICION PRESUPUESTADA";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="col">
+    <div id="CNform">
+        <div class="retiros-detalle">
+            <div class="form-group col-md-12">
+                @using (Html.BeginForm("Index", "REQUISICION_PRESUPUESTADA"))
+                {
+                    <h1>Requisicíon Presupuestada</h1>
+                    if (User.IsInRole("Jefe"))
+                    {
+                        @Html.Partial("_PartialPresupuestadaJefe", Model)
+                    }
+                    if (User.IsInRole("Controller"))
+                    {
+                        @Html.Partial("_PartialPresupuestadaController", Model)
+                    }
+                    if (User.IsInRole("BP"))
+                    {
+                        @Html.Partial("_PartialPresupuestadaBp", Model)
+                    }
+                    if (User.IsInRole("RRHH"))
+                    {
+                        @Html.Partial("_PartialPresupuestadaGerenteRRHH", Model)
+                    }
+                    if (User.IsInRole("USC"))
+                    {
+                        @Html.Partial("_PartialPresupuestadaGerenteUSC", Model)
+                    }
 
-<h2>@ViewBag.Title</h2>
 
-@Html.Partial("_PartialPresupuestadaJefe", Model)
+                    //Botones
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.ActionLink("Cancelar", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "btn-cancelar-retriro col-md-3 " })
+                            @if (User.IsInRole("Jefe"))
+                            {
+                                <input name="submitButton" type="submit" value="Crear Requisición" class="btn-confirmar-retiro col-md-3" />
+                            }
+                            @if (User.IsInRole("Controller"))
+                            {
+                                <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
+                            }
+                            @if (User.IsInRole("BP"))
+                            {
+                                <input name="submitButton" type="submit" value="Enviar" class="btn-confirmar-retiro col-md-3" />
+                            }
+                            @if (User.IsInRole("RRHH"))
+                            {
+                                <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
+                                <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                            }
+                            @if (User.IsInRole("USC"))
+                            {
+                                <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
+                                <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 

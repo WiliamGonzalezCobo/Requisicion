@@ -12,9 +12,9 @@ namespace MODELO_DATOS.MODELO_REQUISICION
     {
 
         public int COD_REQUISICION { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Tipo necesidad es requerido")]
         public int COD_TIPO_NECESIDAD { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Tipo necesidad es requerido")]
         [DisplayName("Tipo Necesidad")]
         public List<SelectListItem> NOMBRE_TIPO_NECESIDAD { get; set; }
          
@@ -22,18 +22,18 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         [Required]
         [DisplayName("Cargo")]
         public int COD_CARGO { get; set; }
-        public string NOMBRE_CARGO { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Nombre del cargo es requerido")]
         [DisplayName("Cargo")]
-        public List<SelectListItem> NOMBRE_CARGO_LIST { get; set; }
-        [Required]
+        public List<SelectListItem> NOMBRE_CARGO { get; set; }
+        [Required(ErrorMessage = "Orden es requerido")]
         [DisplayName("Orden")]
         public string ORDEN { get; set; }
         //public string CECO { get; set; }
 
         [Required]
         public int COD_TIPO_REQUISICION { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Tipo requisición es requerido")]
         [DisplayName("Tipo")]
         public string  NOMBRE_TIPO_REQUISICION { get; set; }
    
@@ -53,12 +53,13 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// </summary>
         [DisplayName("Documento")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Debe ingresar un numero de documento")]
-        [Required]
+        [Required(ErrorMessage = "Numero del documento es requerido")]
         public string NUMERO_DOCUMENTO_EMPLEADO { get; set; }
 
         [DisplayName("Nombre")]
         [DataType(DataType.Text, ErrorMessage = "El numbre del empleado debe ser solo texto") ]
-        public List<SelectListItem> NOMBRE_EMPLEADO { get; set; }
+        [Required(ErrorMessage = "Nombre del empleado es requerido")]
+        public string NOMBRE_EMPLEADO { get; set; }
 
         public string LOGIN_EMPLEADO { get; set; }
 
@@ -76,15 +77,15 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         [Required]
         [DisplayName("Es Modificación")]
         public Boolean ES_MODIFICACION { get; set; }
-        [Required]
+        [Required(ErrorMessage = "La Observación es requerido")]
         [DisplayName("Observación")]
         public string OBSERVACION { get; set; }
-        [Required]
+        [Required(ErrorMessage = "La Observación es requerido")]
         [DisplayName("Observación")]
         public string OBSERVACION_CREACION { get; set; }
 
         public int COD_ESTADO_REQUISICION { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Nombre del estado es requerido")]
         [DisplayName("Estado")]
         public string NOMBRE_ESTADO_REQUISICION { get; set; }
         [Required]
@@ -103,11 +104,11 @@ namespace MODELO_DATOS.MODELO_REQUISICION
 
         //martinezluir Porque tantas variables para gerencia
         public int COD_GERENCIA { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Nombre de gerencia es requerido")]
         [DisplayName("Gerencia")]
         public string NOMBRE_GERENCIA { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "La Gerencia es requerida")]
         [DisplayName("Gerencia")]
         public  List<SelectListItem>NOMBRE_GERENCIA_LISTA{ get; set; }
 
@@ -124,7 +125,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         [DisplayName("Ceco")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Solo permite numeros")]
         public int COD_CECO { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Centro de costo es requerido")]
         [DisplayName("CeCo")]
         public List<SelectListItem> NOMBRE_CECO { get; set; }
 
@@ -171,10 +172,25 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         public int COD_JORNADA_LABORAL { get; set; }
         [DisplayName("Jornada de Trabajo")]
         public string NOMBRE_JORNADA_LABORAL { get; set; }
-        [DisplayName("Horario Laboral"), StringLength(50)]
+
+        [DisplayName("desde"), StringLength(50)]
+        //[DataType(DataType.Date, ErrorMessage = "El campo desde tiene un formato incorrecto")]
         public string HORARIO_LABORAL_DESDE { get; set; }
-        [StringLength(50)]
+
+        [DisplayName("hasta"), StringLength(50)]
+        //[DataType(DataType.Date, ErrorMessage = "El campo Fecha hasta tiene un formato incorrecto")]
         public string HORARIO_LABORAL_HASTA { get; set; }
+
+        [DisplayName("desde"), StringLength(50)]
+        //[DataType(DataType.Date, ErrorMessage = "El campo desde tiene un formato incorrecto")]
+        public string DIA_LABORAL_DESDE { get; set; }
+
+        [DisplayName("hasta"), StringLength(50)]
+        //[DataType(DataType.Date, ErrorMessage = "El campo Fecha hasta tiene un formato incorrecto")]
+        public string DIA_LABORAL_HASTA { get; set; }
+
+
+
         [DisplayName("Dias Laborales")]
         public int COD_DIA_LABORAL_DESDE { get; set; }
         public int COD_DIA_LABORAL_HASTA { get; set; }
@@ -238,9 +254,11 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         public string NOMBRE_CATEGORIA { get; set; }
         [DisplayName("Categoria")]
         public List<SelectListItem> LIST_NOMBRE_CATEGORIA { get; set; }
-        [DisplayName("Punto Medio")]
+        [DisplayName("80%")]
         public decimal PUNTO_MEDIO_80 { get; set; }
+        [DisplayName("100%")]
         public decimal PUNTO_MEDIO_100 { get; set; }
+        [DisplayName("120%")]
         public decimal PUNTO_MEDIO_120 { get; set; }
         [DisplayName("Posicionamiento")]
         public decimal POSICIONAMIENTO { get; set; }
