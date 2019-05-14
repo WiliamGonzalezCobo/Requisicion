@@ -12,11 +12,17 @@ namespace G_H_WEB.Controllers
     public class REQUISICION_PRESUPUESTADAController : Controller
     {
         // GET: REQUISICION_PRESUPUESTADA
-        public ActionResult Index()
+        public ActionResult Index(int? _idReq)
         {
+            REQUISICIONViewModel model = new REQUISICIONViewModel();
+            if (_idReq.HasValue)
+            {
+                model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value);
+            }
+
             ViewBag.Necesidad = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
             ViewBag.Cargo = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD(); ;
-            return View();
+            return View(model);
         }
         [HttpPost]
         public ActionResult Index(REQUISICIONViewModel model, string submitButton)

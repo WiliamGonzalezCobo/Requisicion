@@ -11,7 +11,14 @@ namespace G_H_WEB.Controllers
     public class REQUISICION_NOPRESUPUESTADAController : Controller
     {
         // GET: REQUISICION_NOPRESUPUESTADA
-        public ActionResult Index(){
+        public ActionResult Index(int? _idReq)
+        {
+            REQUISICIONViewModel model = new REQUISICIONViewModel();
+            if (_idReq.HasValue)
+            {
+                model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value);
+            }
+
             List<SelectListItem> listaNecesidad = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
             NO_PRESUPESTADA_CREACION fromPost = TempData["resultado"] as NO_PRESUPESTADA_CREACION;
             // este filtro se debe hacer sobre la lista NOMBRE_CARGO y no sobre necesidad 
@@ -20,34 +27,33 @@ namespace G_H_WEB.Controllers
 
             // vienen de la logica - base de datos
             ViewBag.Necesidad = listaNecesidad;
-            ViewBag.Options= new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
+            ViewBag.Options = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
             ViewBag.Cargo = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
 
             //Logica para el POP UP
             ViewBag.resultadoNojefe = fromPost != null ? fromPost.RESULTADO : false;
             ViewBag.resultadoPopUpNoJefe = fromPost;
-            return View();
+            return View(model);
         }
         [HttpPost]
-        public ActionResult Index(REQUISICIONViewModel modelDatos) {
-            try{
+        public ActionResult Index(REQUISICIONViewModel modelDatos, string SubmitBtn)
+        {
+            try
+            {
                 // ir hasta base de datos
                 NO_PRESUPESTADA_CREACION npc = new NO_PRESUPESTADA_CREACION();
                 npc.COD_CARGO = modelDatos.COD_CARGO;
                 npc.RESULTADO = true;
                 TempData["resultado"] = npc;
                 return RedirectToAction("Index");
-            } catch (Exception) {
+            }
+            catch (Exception)
+            {
                 NO_PRESUPESTADA_CREACION npc = new NO_PRESUPESTADA_CREACION();
                 npc.RESULTADO = false;
                 TempData["resultado"] = npc;
                 return RedirectToAction("Index");
             }
         }
-
-        public ActionResult Detail(int idRequsicion) {
-            REQUISICIONViewModel modelo = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(idRequsicion);
-            return View();
-        }
-   }
+    }
 }
