@@ -1,6 +1,5 @@
-﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
-
-@using (Html.BeginForm("Licencia_Incapacidad", "REQUISICION", FormMethod.Post, new { id = "formLicenciaGeneral", @class = "col-md-12 row" }))
+﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel    
+@using (Html.BeginForm("Index", "LICENCIA_INCAPACIDAD", FormMethod.Post, new { id = "formLicenciaGeneralJEFE", @class = "col-md-12 row" }))
 {
 
 
@@ -33,18 +32,18 @@
                 @Html.EditorFor(model => model.FECHA_INICIO, new { htmlAttributes = new { @class = "form-control", @type = "text", @Value = DateTime.Now.ToString("yyyy/MM/dd") } })
                 <span class="input-group-addon"><span class="fas fa-calendar-alt"></span></span>
             </div>
-                @Html.ValidationMessageFor(model => model.FECHA_INICIO, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.FECHA_INICIO, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group col-md-12 row">
         @Html.LabelFor(model => model.FECHA_FIN, htmlAttributes: new { @class = "control-label col-md-12" })
         <div class="col-md-12">
             <div class="input-group date datepicker-retiro" style="width:100% !important;">
-                @Html.EditorFor(model => model.FECHA_FIN, new { htmlAttributes = new { @class = "form-control", @type = "text", @Value =DateTime.Now.ToString("yyyy/MM/dd")} })
+                @Html.EditorFor(model => model.FECHA_FIN, new { htmlAttributes = new { @class = "form-control", @type = "text", @Value = DateTime.Now.ToString("yyyy/MM/dd") } })
                 <span class="input-group-addon"><span class="fas fa-calendar-alt"></span></span>
             </div>
-                @Html.ValidationMessageFor(model => model.FECHA_FIN, "", new { @class = "text-danger" })
-           
+            @Html.ValidationMessageFor(model => model.FECHA_FIN, "", new { @class = "text-danger" })
+
         </div>
     </div>
     @*fin de la seccion Inicial Licencia e Incapacidad*@
@@ -53,10 +52,10 @@
     <h4 class="LSubtitulos col-md-12">Información General</h4>
 
     <div class="form-group col-md-12 row">
-        @Html.LabelFor(model => model.NOMBRE_CARGO_LIST, htmlAttributes: new { @class = "control-label col-md-12" })
+        @Html.LabelFor(model => model.NOMBRE_CARGO, htmlAttributes: new { @class = "control-label col-md-12" })
         <div class="col-md-12">
-            @Html.DropDownListFor(model => model.COD_CARGO, Model.NOMBRE_CARGO_LIST, "Seleccione", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.NOMBRE_CARGO_LIST, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.COD_CARGO, Model.NOMBRE_CARGO, "Seleccione", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.NOMBRE_CARGO, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group col-md-12 row">
@@ -195,64 +194,99 @@
             @Html.ValidationMessageFor(model => model.OBSERVACION_CREACION, "", new { @class = "text-danger" })
         </div>
     </div>
+    @* Fin de la seccion Información salarial *@
+
+    @*Inicio de la seccion Botones*@
     <div class="retiros-detalle">
         <div class="form-group col-md-12 row">
             <div class="col-md-offset-2 col-md-4">
                 <button class="btn-cancelar-retriro" type="button" id="btnLcancelar">Cancelar</button>
             </div>
             <div class="col-md-offset-2 col-md-4">
-                <input type="submit" value="Crear Requisición" class="btn-confirmar-retiro" id="btnLcrear" />
+                <input type="submit" value="Crear licencia" class="btn-confirmar-retiro" id="btnLcrear" />
+                @*<input type="submit" onclick="registrar()" value="Crear licencia" class="btn-confirmar-retiro" id="btnLcrear" />*@
             </div>
         </div>
     </div>
+    @*fin de la seccion Botones*@
 }
-    @* Fin de la seccion Información salarial *@
 
-    <!-- Modal a cancelar  -->
-    <div class="modal fade" id="modalFinalizarRetiro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h6 class="modal-title" id="exampleModalLabel">Va a cancelar el retiro para:<br /><br /><label> </label></h6>
-                </div>
-                <div class="modal-body">Esta seguro de cancelar el retiro para ?</div>
-                <div class="modal-footer">
-                    <button class="cancelar-modal" type="button" data-dismiss="modal">  No  </button>
-                    <button onclick="CancelarRetiro()" class="btn-principal" type="button"> Si </button>
-                </div>
+
+<!-- Modal a cancelar  -->
+@*<div class="modal fade" id="modalFinalizarRetiro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h6 class="modal-title" id="exampleModalLabel">Va a cancelar el retiro para:<br /><br /><label> </label></h6>
+            </div>
+            <div class="modal-body">Esta seguro de cancelar el retiro para ?</div>
+            <div class="modal-footer">
+                <button class="cancelar-modal" type="button" data-dismiss="modal">  No  </button>
+                <button onclick="CancelarRetiro()" class="btn-principal" type="button"> Si </button>
             </div>
         </div>
     </div>
-    <!-- fin Modal para cancelar -->
-    <!-- Modal para  aprobar -->
-    <div class="modal fade" id="modalCrearRetiro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h6 class="modal-title" id="exampleModalLabel"><br /><label id="NombreEmpl"></label><br /></h6>
-                </div>
-                <div class="modal-body"></div>
-                <div class="modal-footer">
-                    <button class="cancelar-modal" type="button" data-dismiss="modal">  No  </button>
-                    <button class="btn-principal" onclick="registrar();" type="button">  Si  </button>
-                </div>
+</div>*@
+<!-- fin Modal para cancelar -->
+<!-- Modal para  aprobar -->
+<div class="modal fade" id="modalCrearRetiro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h6 class="modal-title" id="exampleModalLabel"><br /><label id="NombreEmpl"></label><br /></h6>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button class="cancelar-modal" type="button" data-dismiss="modal">  No  </button>
+                <button class="btn-principal" type="submit">  Si  </button>
             </div>
         </div>
     </div>
-    <!-- fin Modal para  aprobar-->
+</div>
+<!-- fin Modal para  aprobar-->
 
-    <script src="../../assets/js/scripts.js"></script>
+<script src="../../assets/js/scripts.js"></script>
 
 
-    <script>
-        $(document).ready(function () {
-            var resltado = "@ViewBag.resultadoCreacionJefe";
-            if (resltado=="True") {
-                $(".ModalCreacionNoJefe").text("Esta seguro de crear la Requisición de Licencia/Incapacidad para " + $("#nombreEmpleado").val());
-                $('#modalCrearRetiro').modal("show");
-            }
-        }); 
+<script>
+    $(document).ready(function () {
+        debugger;
+        var resltado = "@ViewBag.resultado";
+        if (resltado=="True") {
+            $(".modal-body").text("La Requisición de Licencia/Incapacidad para " + $("#nombreEmpleado").val() + ". Se creo correctamente.");
+            $('#modalCrearRetiro').modal("show");
+        }
+    });
 
-    </script>
+    function registrar() {           
+
+        $(".modal-body").text("Esta seguro de crear la Requisición de Licencia/Incapacidad para " + $("#nombreEmpleado").val());
+        $('#modalCrearRetiro').modal("show");
+    }
+
+    @*function Guardar() {
+        debugger;
+        var $form = $("#formLicenciaGeneralJEFE");
+        var model = JSON.stringify(getFormData($form), null, 2);
+        console.log('model', JSON.parse(model));
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Guardar_click", "LICENCIA_INCAPACIDAD")',
+            contentType: "application/json; charset=utf-8",
+            data: model,
+            dataType: "json",
+            success: function () { window.location.href = '@Url.Action("Index", "REQUISICION")'; }
+        });
+    };
+
+    function getFormData($form) {
+        var unindexed_array = $form.serializeArray();
+        var indexed_array = {};
+        $.map(unindexed_array, function (n, i) {
+            indexed_array[n['name']] = n['value'];
+        });
+        return indexed_array;
+    }*@
+</script>

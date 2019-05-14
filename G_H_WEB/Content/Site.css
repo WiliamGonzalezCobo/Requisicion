@@ -49,3 +49,22 @@
     color: red;
     font-weight: bold;
 }
+}
+.polig {
+    height: 200px;
+    border: 1px solid Black;
+    border-radius: 10px;    
+    padding-left: 45px;
+}
+.polig .p1 {
+    height: 100px;
+    border: 1px solid Black;
+    /*border-radius: 10px;*/
+    text-align:center;
+}
+.polig .p1 .Negr {
+    font-weight:bold;
+}
+.Ne {
+    font-weight: bold;
+}

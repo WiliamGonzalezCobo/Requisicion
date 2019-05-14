@@ -26,11 +26,20 @@ namespace G_H_WEB.Controllers
                 switch (submitButton)
                 {
                     case "Crear Requisición":
-                        return RedirectToAction("Crear", "REQUISICION_PRESUPUESTADA", model);
+                        Crear(model);
+                        break;
                     case "Aprobar":
-                        return RedirectToAction("Aprobar", "REQUISICION_PRESUPUESTADA", model);
+                        Aprobar(model);
+                        break;
                     case "Rechazar":
-                        return RedirectToAction("Rechazar", "REQUISICION_PRESUPUESTADA", model);
+                        Rechazar(model);
+                        break;
+                    case "Enviar":
+                        Enviar(model);
+                        break;
+                    case "Modificar":
+                        Modificar(model);
+                        break;
                 }
                 return RedirectToAction("Index");
             }
@@ -39,26 +48,21 @@ namespace G_H_WEB.Controllers
                 return View();
             }
         }
-        public ActionResult Crear(REQUISICIONViewModel model)
+
+        public void Crear(REQUISICIONViewModel model)
         {
-            //insertamos la requisicion 
-            ViewBag.Necesidad = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
-            ViewBag.Cargo = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
-            return RedirectToAction("Index");
         }
-        public ActionResult Aprobar(REQUISICIONViewModel model)
+        public void Aprobar(REQUISICIONViewModel model)
         {
-            //insertamos la requisicion 
-            ViewBag.Necesidad = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
-            ViewBag.Cargo = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
-            return RedirectToAction("Index");
         }
-        public ActionResult Rechazar(REQUISICIONViewModel model)
+        public void Rechazar(REQUISICIONViewModel model)
         {
-            //insertamos la requisicion 
-            ViewBag.Necesidad = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
-            ViewBag.Cargo = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
-            return RedirectToAction("Index");
+        }
+        public void Enviar(REQUISICIONViewModel model)
+        {
+        }
+        public void Modificar(REQUISICIONViewModel model)
+        {
         }
 
 

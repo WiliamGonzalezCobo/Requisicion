@@ -98,10 +98,6 @@
                 @Html.ValidationMessageFor(model => model.CARGO_CRITICO, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="form-group col-md-6 col-sm-12">
-            @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA_ED, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.DropDownListFor(model => model.LIST_NOMBRE_CATEGORIA_ED, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
-        </div>
     </div>
 
 
@@ -152,7 +148,6 @@
     </div>
     <div class="row">
         <div class="form-group col-md-6 col-sm-12">
-            @*@Html.LabelFor(model => model.DIA_LABORAL_DESDE, htmlAttributes: new { @class = "control-label" })*@
             <div class="input-group date datepicker-retiro">
                 @Html.EditorFor(model => model.DIA_LABORAL_DESDE, new { htmlAttributes = new { @class = "form-control datepicker", placeholder = "Desde" } })
                 <span class="input-group-addon">
@@ -163,7 +158,6 @@
             @Html.ValidationMessageFor(model => model.DIA_LABORAL_DESDE, "", new { @class = "text-danger" })
         </div>
         <div class="form-group col-md-6 col-sm-12">
-            @*@Html.LabelFor(model => model.DIA_LABORAL_HASTA, htmlAttributes: new { @class = "control-label" })*@
             <div class="input-group date datepicker-retiro">
                 @Html.EditorFor(model => model.DIA_LABORAL_HASTA, new { htmlAttributes = new { @class = "form-control datepicker", placeholder = "Desde" } })
                 <span class="input-group-addon">
@@ -176,6 +170,7 @@
     </div>
 </section>
 <section id="infoSalarial">
+    <h3>Imformación Salarial</h3>
     <div class="row">
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.SALARIO_FIJO, htmlAttributes: new { @class = "control-label" })
