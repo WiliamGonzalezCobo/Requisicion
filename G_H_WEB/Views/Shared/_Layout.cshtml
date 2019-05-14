@@ -33,22 +33,25 @@
     }
 
 }
-    <body class="@CLASE">
-        @{Html.RenderPartial("_Cabecera", RenderSection("topright", false)); }
+<body class="@CLASE">
+    @{Html.RenderPartial("_Cabecera", RenderSection("topright", false)); }
+    <div class="row">
         @{
             if (Request.IsAuthenticated)
             {
 
                 Html.RenderPartial("_Lateral", RenderSection("topright", false));
                 @RenderBody()
-             
+
+
             }
             if (!Request.IsAuthenticated)
             {
                 @RenderBody()
             }
         }
-        @{ Html.RenderPartial("_PieDePagina", RenderSection("topright", false)); }
-        @RenderSection("scripts", required: false)
+    </div>
+    @{ Html.RenderPartial("_PieDePagina", RenderSection("topright", false)); }
+    @RenderSection("scripts", required: false)
 
 

@@ -171,10 +171,25 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         public int COD_JORNADA_LABORAL { get; set; }
         [DisplayName("Jornada de Trabajo")]
         public string NOMBRE_JORNADA_LABORAL { get; set; }
-        [DisplayName("Horario Laboral"), StringLength(50)]
+
+        [DisplayName("desde"), StringLength(50)]
+        //[DataType(DataType.Date, ErrorMessage = "El campo desde tiene un formato incorrecto")]
         public string HORARIO_LABORAL_DESDE { get; set; }
-        [StringLength(50)]
+
+        [DisplayName("hasta"), StringLength(50)]
+        //[DataType(DataType.Date, ErrorMessage = "El campo Fecha hasta tiene un formato incorrecto")]
         public string HORARIO_LABORAL_HASTA { get; set; }
+
+        [DisplayName("desde"), StringLength(50)]
+        //[DataType(DataType.Date, ErrorMessage = "El campo desde tiene un formato incorrecto")]
+        public string DIA_LABORAL_DESDE { get; set; }
+
+        [DisplayName("hasta"), StringLength(50)]
+        //[DataType(DataType.Date, ErrorMessage = "El campo Fecha hasta tiene un formato incorrecto")]
+        public string DIA_LABORAL_HASTA { get; set; }
+
+
+
         [DisplayName("Dias Laborales")]
         public int COD_DIA_LABORAL_DESDE { get; set; }
         public int COD_DIA_LABORAL_HASTA { get; set; }
@@ -238,9 +253,11 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         public string NOMBRE_CATEGORIA { get; set; }
         [DisplayName("Categoria")]
         public List<SelectListItem> LIST_NOMBRE_CATEGORIA { get; set; }
-        [DisplayName("Punto Medio")]
+        [DisplayName("80%")]
         public decimal PUNTO_MEDIO_80 { get; set; }
+        [DisplayName("100%")]
         public decimal PUNTO_MEDIO_100 { get; set; }
+        [DisplayName("120%")]
         public decimal PUNTO_MEDIO_120 { get; set; }
         [DisplayName("Posicionamiento")]
         public decimal POSICIONAMIENTO { get; set; }

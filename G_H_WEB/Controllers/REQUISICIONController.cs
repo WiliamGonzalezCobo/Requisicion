@@ -36,13 +36,13 @@ namespace G_H_WEB.Controllers
 		 // GET: REQUISICION/Create
         public ActionResult Create(int? idTipo)
         {
-            ViewBag.Necesidad = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
+            
             Session["requisicion"] = idTipo;
             if (idTipo != null)
             {
-                if (idTipo == 2)
+                if (idTipo == 1)
                 {
-                    return RedirectToAction("Crear", "REQUISICION_PRESUPUESTADA");
+                    return RedirectToAction("Index", "REQUISICION_PRESUPUESTADA");
                 }
                 else {
                     return View();
