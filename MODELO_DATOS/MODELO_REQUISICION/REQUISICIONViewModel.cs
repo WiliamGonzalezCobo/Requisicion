@@ -26,6 +26,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         [Required(ErrorMessage = "Nombre del cargo es requerido")]
         [DisplayName("Cargo")]
         public List<SelectListItem> NOMBRE_CARGO { get; set; }
+        public string NOMBRE_CARGO_STR{ get; set; }
         [Required(ErrorMessage = "Orden es requerido")]
         [DisplayName("Orden")]
         public string ORDEN { get; set; }

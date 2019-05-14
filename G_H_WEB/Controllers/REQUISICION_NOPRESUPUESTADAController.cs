@@ -17,10 +17,15 @@ namespace G_H_WEB.Controllers
             // este filtro se debe hacer sobre la lista NOMBRE_CARGO y no sobre necesidad 
             if (fromPost != null)
                 fromPost.NOMBRE_COD_CARGO = listaNecesidad.Where(x => x.Value == fromPost.COD_CARGO.ToString()).First().Text;
+
+            // vienen de la logica - base de datos
             ViewBag.Necesidad = listaNecesidad;
-            ViewBag.resultadoNojefe = fromPost!= null?fromPost.RESULTADO:false;
-            ViewBag.resultadoPopUpNoJefe = fromPost;
             ViewBag.Options= new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
+            ViewBag.Cargo = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
+
+            //Logica para el POP UP
+            ViewBag.resultadoNojefe = fromPost != null ? fromPost.RESULTADO : false;
+            ViewBag.resultadoPopUpNoJefe = fromPost;
             return View();
         }
         [HttpPost]

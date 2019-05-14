@@ -41,7 +41,7 @@ namespace LOGICA.REQUISICION_LOGICA
             {
                 REQUISICIONViewModel item = new REQUISICIONViewModel();
                 item.COD_CARGO = 20738780;
-                item.NOMBRE_CARGO = "Ingeniero Desarrollo";
+                item.NOMBRE_CARGO_STR = "Ingeniero Desarrollo";
                 item.EMAIL_USUARIO_CREACION = "martinezluir@globalhitss.com";
                 item.USUARIO_CREACION = "Luis David Martinez Rojas" + i;
                 item.NOMBRE_TIPO_REQUISICION = "Presupuestada";
@@ -53,7 +53,7 @@ namespace LOGICA.REQUISICION_LOGICA
             modelo.Add(new REQUISICIONViewModel()
             {
                 COD_CARGO = 758913,
-                NOMBRE_CARGO = "Ingeniero Desarrollo",
+                NOMBRE_CARGO_STR = "Ingeniero Desarrollo",
                 EMAIL_USUARIO_CREACION = "martinezluir@globalhitss.com",
                 NOMBRE_TIPO_REQUISICION = "No Presupuestada",
                 NOMBRE_ESTADO_REQUISICION = "Verificada BP",
