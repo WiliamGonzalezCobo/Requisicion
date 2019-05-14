@@ -44,5 +44,10 @@ namespace G_H_WEB.Controllers
                 return RedirectToAction("Index");
             }
         }
-    }
+
+        public ActionResult Detail(int idRequsicion) {
+            REQUISICIONViewModel modelo = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(idRequsicion);
+            return View();
+        }
+   }
 }

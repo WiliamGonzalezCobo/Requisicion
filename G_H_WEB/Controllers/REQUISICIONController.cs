@@ -39,41 +39,19 @@ namespace G_H_WEB.Controllers
 
 
         // GET: REQUISICION/Create
-        public ActionResult Create(int? idTipo)
-        {
-            
-            Session["requisicion"] = idTipo;
+        public ActionResult Create(int? idTipo) {
             if (idTipo == 2)
-            {
                 return RedirectToAction("Index", "REQUISICION_NOPRESUPUESTADA");
-            }
             else
-            {
                 return View();
-
-            }
-            //
+            
         }
 
-        [HttpPost]
 
-        public ActionResult Create(REQUISICIONViewModel collection)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    return View();
-                }
-                return View();
-                // TODO: Add insert logic here
-                //return PartialView("Modificacion", collection);
-
-            }
-            catch
-            {
-                return View();
-            }
+        public ActionResult Detalle(int _idRequisicion, string _tipoRequisicion) {
+            if(_tipoRequisicion.ToLower()=="no presupuestada")
+                return RedirectToAction("Detail", "REQUISICION_NOPRESUPUESTADA",new { idRequsicion= _idRequisicion });
+            return null;
         }
 
 

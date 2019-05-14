@@ -40,6 +40,7 @@ namespace LOGICA.REQUISICION_LOGICA
             for (int i = 0; i < 2; i++)
             {
                 REQUISICIONViewModel item = new REQUISICIONViewModel();
+                item.COD_REQUISICION = i;
                 item.COD_CARGO = 20738780;
                 item.NOMBRE_CARGO_STR = "Ingeniero Desarrollo";
                 item.EMAIL_USUARIO_CREACION = "martinezluir@globalhitss.com";
@@ -52,6 +53,7 @@ namespace LOGICA.REQUISICION_LOGICA
             }
             modelo.Add(new REQUISICIONViewModel()
             {
+                COD_REQUISICION = 3,
                 COD_CARGO = 758913,
                 NOMBRE_CARGO_STR = "Ingeniero Desarrollo",
                 EMAIL_USUARIO_CREACION = "martinezluir@globalhitss.com",
@@ -64,6 +66,11 @@ namespace LOGICA.REQUISICION_LOGICA
             return modelo;
         }
 
-       
-    }
+        public REQUISICIONViewModel BUSCAR_REQUISICIONES(int idRequsicion){
+            REQUISICIONViewModel _modelo =new REQUISICIONViewModel();
+            return _modelo;
+        }
+
+
+        }
 }
