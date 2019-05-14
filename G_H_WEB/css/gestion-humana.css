@@ -998,3 +998,13 @@ body.retiros .table-wrapper table.tabla-retiro tbody td.td-acciones span {
 #filtroPorUsuario:hover {
     cursor:pointer;
 }
+
+.alineas {
+    text-decoration: none !important;
+}
+
+.alineas :hover {
+        font-family: verdana;
+        color: #BFA62B;
+        text-decoration: none !important;
+    }
