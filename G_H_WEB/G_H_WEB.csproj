@@ -706,6 +706,10 @@
       <Project>{d75630f9-8bc8-4c79-bb27-8c68de2bf991}</Project>
       <Name>REPOSITORIOS</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UTILS\UTILS.csproj">
+      <Project>{99f08c2b-3228-4511-8ece-eff09372e990}</Project>
+      <Name>UTILS</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

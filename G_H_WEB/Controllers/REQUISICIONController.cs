@@ -39,7 +39,14 @@ namespace G_H_WEB.Controllers
 
 
         // GET: REQUISICION/Create
-        public ActionResult Create(int? idTipo) {
+        public ActionResult Create(int? idTipo)
+        {
+            
+            Session["requisicion"] = idTipo;
+            if (idTipo == 1)
+            {
+                return RedirectToAction("Index", "REQUISICION_PRESUPUESTADA");
+            }
             if (idTipo == 2)
                 return RedirectToAction("Index", "REQUISICION_NOPRESUPUESTADA");
             else
