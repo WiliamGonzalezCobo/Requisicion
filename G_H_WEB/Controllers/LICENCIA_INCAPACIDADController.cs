@@ -1,4 +1,5 @@
 ﻿using LOGICA.LICENCIA_INCAPACIDAD_LOGICA;
+using LOGICA.REQUISICION_LOGICA;
 using MODELO_DATOS.MODELO_REQUISICION;
 using REPOSITORIOS.REQUISICION_ENTITY;
 using System;
@@ -13,43 +14,54 @@ namespace G_H_WEB.Controllers
     {
        private GESTION_HUMANA_HITSSEntities2 db = new GESTION_HUMANA_HITSSEntities2();
         // GET: LICENCIA_INCAPACIDAD
-        public ActionResult Index()
+        public ActionResult Index(int? _idReq)
         {           
             REQUISICIONViewModel rvm = new REQUISICIONViewModel();
+            try
+            {
+                if (_idReq.HasValue)
+                {
+                    rvm = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value);
+                }
+            }
+            catch (Exception)
+            {
 
-            rvm.TIPO_DOCUMENTO = new List<SelectListItem>() {
+                throw;
+            }
+            rvm.LIST_TIPO_DOCUMENTO = new List<SelectListItem>() {
                    new SelectListItem { Text = "C.C", Value = "1" },
                    new SelectListItem { Text = "C.E", Value = "2" },
                    new SelectListItem { Text = "Pasaporte", Value = "3" } };
 
-            rvm.NOMBRE_CARGO = new List<SelectListItem>() {
+            rvm.LIST_NOMBRE_CARGO = new List<SelectListItem>() {
                    new SelectListItem { Text = "Cargo 1", Value = "1" },
                    new SelectListItem { Text = "Cargo 2", Value = "2" },
                    new SelectListItem { Text = "Cargo 3", Value = "3" }};
 
 
-            rvm.NOMBRE_GERENCIA_LISTA = new List<SelectListItem>() {
+            rvm.LIST_NOMBRE_GERENCIA = new List<SelectListItem>() {
                 new SelectListItem { Text = "Gerencia 1", Value = "1" },
                    new SelectListItem { Text = "Gerencia 2", Value = "2" },
                    new SelectListItem { Text = "Gerencia 3", Value = "3" }
                    };
 
 
-            rvm.NOMBRE_SOCIEDAD_LISTA = new List<SelectListItem>() {
+            rvm.LIST_NOMBRE_SOCIEDAD = new List<SelectListItem>() {
                 new SelectListItem { Text = "Sociedad 1", Value = "1" },
                    new SelectListItem { Text = "Sociedad 2", Value = "2" },
                    new SelectListItem { Text = "Sociedad 3", Value = "3" }
                    };
 
 
-            rvm.COD_EQUIPO_VENTAS_LISTA = new List<SelectListItem>() {
+            rvm.LIST_NOMBRE_EQIPO_VENTAS = new List<SelectListItem>() {
                 new SelectListItem { Text = "Eq Ventas 1", Value = "1" },
                    new SelectListItem { Text = "Eq Ventas 2", Value = "2" },
                    new SelectListItem { Text = "Eq Ventas 3", Value = "3" }
                    };
                        
 
-            rvm.COD_CATEGORIA_ED_LISTA = new List<SelectListItem>() {
+            rvm.LIST_NOMBRE_CATEGORIA_ED = new List<SelectListItem>() {
                 new SelectListItem { Text = "Categoria 1", Value = "1" },
                    new SelectListItem { Text = "Categoria 2", Value = "2" },
                    new SelectListItem { Text = "Categoria 3", Value = "3" }

@@ -49,6 +49,16 @@ namespace UTILS.Settings
             get { return Convert.ToInt32(GetSettings("CodTipoReqNoPresupuestada")); }
         }
 
+        public static int CodTipoReqIncapacidad
+        {
+            get { return Convert.ToInt32(GetSettings("CodTipoReqIncapacidad")); }
+        }
+
+        public static int CodTipoReqLicencia
+        {
+            get { return Convert.ToInt32(GetSettings("CodTipoReqLicencia")); }
+        }
+
 
         #endregion
 

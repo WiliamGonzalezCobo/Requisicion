@@ -33,7 +33,7 @@
 <table width="70%">
     <tr>
         <td>
-            @Html.ActionLink("Presupuestada", "Create",new { @idTipo = 1 }, new { @class = "presupuestada" })
+            @Html.ActionLink("Presupuestada", "Create", new { @idTipo = 1 }, new { @class = "presupuestada" })
             @*<a href="#" title="">Presupuestada<img src="../img/my-image-1.png" class="img-responsive"></a>*@
         </td>
         <td>
@@ -41,13 +41,14 @@
             @*<a href="#" title="">No Presupuestada<img src="../img/my-image-1.png" class="img-responsive"></a>*@
         </td>
         <td>
-            @Html.ActionLink("Licencia", "CreateLicencia", null, new { @class = "Licencia" })
-            @*<a href="#" title="">Licencia<img src="../img/my-image-1.png" class="img-responsive"></a>*@
-        </td>
-        <td>
-            @Html.ActionLink("Incapacidad", "CreateIncapacidad", null, new { @class = "Incapacidad" })
+            @Html.ActionLink("Incapacidad", "Create", new { @idTipo = 3 }, new { @class = "Incapacidad" })
             @*<a href="#" title="">Incapacidad<img src="../img/my-image-1.png" class="img-responsive"></a>*@
         </td>
+        <td>
+            @Html.ActionLink("Licencia", "Create", new { @idTipo = 4 }, new { @class = "Licencia" })
+            @*<a href="#" title="">Licencia<img src="../img/my-image-1.png" class="img-responsive"></a>*@
+        </td>
+
     </tr>
 </table>
 

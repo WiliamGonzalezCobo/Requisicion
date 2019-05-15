@@ -47,10 +47,18 @@ namespace G_H_WEB.Controllers
             {
                 return RedirectToAction("Index", "REQUISICION_PRESUPUESTADA");
             }
-            if (idTipo == SettingsManager.CodTipoReqNoPresupuestada)
+            if (idTipo == SettingsManager.CodTipoReqNoPresupuestada) {
                 return RedirectToAction("Index", "REQUISICION_NOPRESUPUESTADA");
-            else
-                return View();
+            }
+            if (idTipo.Equals(SettingsManager.CodTipoReqIncapacidad))
+            {
+                return RedirectToAction("Index", "LICENCIA_INCAPACIDAD");
+            }
+            if (idTipo.Equals(SettingsManager.CodTipoReqLicencia))
+            {
+                return RedirectToAction("Index", "LICENCIA_INCAPACIDAD");
+            }
+            return View();
         }
 
 
@@ -65,6 +73,15 @@ namespace G_H_WEB.Controllers
             {
                 return RedirectToAction("Index", "REQUISICION_NOPRESUPUESTADA", new { _idReq = _idRequisicion });
             }
+            if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqIncapacidad))
+            {
+                return RedirectToAction("Index", "LICENCIA_INCAPACIDAD", new { _idReq = _idRequisicion });
+            }
+            if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqLicencia))
+            {
+                return RedirectToAction("Index", "LICENCIA_INCAPACIDAD", new { _idReq = _idRequisicion });
+            }
+
 
             return RedirectToAction("Index");
         }

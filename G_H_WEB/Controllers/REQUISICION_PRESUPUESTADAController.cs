@@ -15,13 +15,21 @@ namespace G_H_WEB.Controllers
         public ActionResult Index(int? _idReq)
         {
             REQUISICIONViewModel model = new REQUISICIONViewModel();
-            if (_idReq.HasValue)
+            try
             {
-                model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value);
+                if (_idReq.HasValue)
+                {
+                    model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value);
+                }
+
+                ViewBag.Necesidad = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
+                ViewBag.Cargo = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
             }
 
-            ViewBag.Necesidad = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
-            ViewBag.Cargo = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD(); ;
             return View(model);
         }
         [HttpPost]
