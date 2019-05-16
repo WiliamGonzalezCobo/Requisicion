@@ -33,6 +33,7 @@ namespace UTILS.Settings
         {
             get { return GetSettings("PerfilRRHH"); }
         }
+
         public static string Urlapi
         {
             get { return GetSettings("Urlapi"); }

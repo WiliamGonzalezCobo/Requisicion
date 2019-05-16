@@ -13,23 +13,32 @@
                     <h1>Requisicíon Presupuestada</h1>
                     if (User.IsInRole(SettingsManager.PerfilJefe))
                     {
-                        @Html.Partial("_PartialPresupuestadaJefe", Model)
+                        @Html.Partial("_PartialInfoRequisicion", Model)
                     }
                     if (User.IsInRole(SettingsManager.PerfilController))
                     {
-                        @Html.Partial("_PartialPresupuestadaController", Model)
+                        @Html.Partial("_PartialInfoRequisicion", Model)
                     }
                     if (User.IsInRole(SettingsManager.PerfilBp))
                     {
-                        @Html.Partial("_PartialPresupuestadaBp", Model)
+                        @Html.Partial("_PartialInfoRequisicion", Model)
+                        @Html.Partial("_PartialInfoGeneral", Model)
+                        @Html.Partial("_PartialInfoSalarial", Model)
+
                     }
                     if (User.IsInRole(SettingsManager.PerfilRRHH))
                     {
-                        @Html.Partial("_PartialPresupuestadaGerenteRRHH", Model)
+                        @Html.Partial("_PartialInfoRequisicion", Model)
+                        @Html.Partial("_PartialInfoGeneral", Model)
+                        @Html.Partial("_PartialInfoSalarial", Model)
+                        @Html.Partial("_PartialAutorizacion", Model)
                     }
                     if (User.IsInRole(SettingsManager.PerfilUSC))
                     {
-                        @Html.Partial("_PartialPresupuestadaGerenteUSC", Model)
+                        @Html.Partial("_PartialInfoRequisicion", Model)
+                        @Html.Partial("_PartialInfoGeneral", Model)
+                        @Html.Partial("_PartialInfoSalarial", Model)
+                        @Html.Partial("_PartialAutorizacion", Model)
                     }
 
 
@@ -69,6 +78,11 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(function () {
+        $('.datepicker').datepicker();
+    });
+</script>
 
 
 

@@ -234,12 +234,12 @@ namespace LOGICA.REQUISICION_LOGICA
             {
                 objReqModel = new ACCES_REQUISICION().CONSULTAR_REQUISICION_X_ID(idRequsicion);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-              
+                throw ex;
             }
-
             return objReqModel;
+        }
 
 
            
@@ -248,5 +248,5 @@ namespace LOGICA.REQUISICION_LOGICA
         public Boolean INSERTAR_REQUISICION_LOGICA(REQUISICIONViewModel _modelo, string usuario) {
             return new ACCES_REQUISICION().INSERTAR_REQUISICION(_modelo, usuario);
         }
-     }
+    }
 }
