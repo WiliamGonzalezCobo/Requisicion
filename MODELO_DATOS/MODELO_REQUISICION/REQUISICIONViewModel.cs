@@ -129,6 +129,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         [Required(ErrorMessage = "Centro de costo es requerido")]
         [DisplayName("CeCo")]
         public List<SelectListItem> NOMBRE_CECO { get; set; }
+        public string NOMBRE_CECO_STR { get; set; }
 
         //Martinezluir porque tantas variables para sociedad
         public int COD_SOCIEDAD { get; set; }
@@ -142,10 +143,10 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         [DisplayName("Equipo de Ventas")]
         public List<SelectListItem> COD_EQUIPO_VENTAS_LISTA { get; set; }
         public int COD_EQUIPO_VENTAS { get; set; }
-
-
-        public int COD_NOMBRE_EQIPO_VENTAS { get; set; }
         public string NOMBRE_EQIPO_VENTAS { get; set; }
+
+
+
         [DisplayName("Equipo de Ventas")]
         public List<SelectListItem> LIST_NOMBRE_EQIPO_VENTAS { get; set; }
         public int COD_CIUDAD_TRABAJO { get; set; }
@@ -160,7 +161,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         [DisplayName("Nivel Riesgo ARL")]
         public List<SelectListItem> LIST_NIVEL_RIESGO_ARL { get; set; }
         public int COD_CATEGORIA_ED { get; set; }
-
+        public string CATEGORIA_ED_NOMBRE { get; set; }
         [DisplayName("Categoría ED")]
         public List<SelectListItem> COD_CATEGORIA_ED_LISTA { get; set; }
 

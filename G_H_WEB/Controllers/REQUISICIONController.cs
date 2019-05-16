@@ -11,8 +11,6 @@ namespace G_H_WEB.Controllers
     public class REQUISICIONController : Controller
     {
 
-        LOGICA_REQUISICION requisicionLogica;
-
         public ActionResult Index()
         {
             FILTROREQUISICION _filtro = new FILTROREQUISICION();
