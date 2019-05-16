@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UTILS.Settings;
 
 namespace G_H_WEB.Controllers
 {
@@ -16,7 +17,7 @@ namespace G_H_WEB.Controllers
             REQUISICIONViewModel model = new REQUISICIONViewModel();
             if (_idReq.HasValue)
             {
-                model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value);
+                model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value)?? new REQUISICIONViewModel();
             }
 
             List<SelectListItem> listaNecesidad = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
@@ -36,15 +37,18 @@ namespace G_H_WEB.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Index(REQUISICIONViewModel modelDatos, string SubmitBtn)
-        {
-            try
-            {
-                // ir hasta base de datos
+        public ActionResult Index(REQUISICIONViewModel modelDatos) {
+            try {
+                Boolean _resultado = false;
+                modelDatos.COD_TIPO_REQUISICION = 2;// viene de la web config
+                _resultado = new LOGICA_REQUISICION().INSERTAR_REQUISICION_LOGICA(modelDatos, User.Identity.Name);
+
+                //INICIO Esta logica es para el POP UP----------
                 NO_PRESUPESTADA_CREACION npc = new NO_PRESUPESTADA_CREACION();
                 npc.COD_CARGO = modelDatos.COD_CARGO;
-                npc.RESULTADO = true;
+                npc.RESULTADO = _resultado;
                 TempData["resultado"] = npc;
+                //FIN Esta logica es para el POP UP----------
                 return RedirectToAction("Index");
             }
             catch (Exception)

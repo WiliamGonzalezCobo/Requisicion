@@ -1,81 +1,43 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 @using MODELO_DATOS.MODELO_REQUISICION;
+@using UTILS.Settings
 @{
     ViewBag.Title = "Requisición No Presupuestada";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    NO_PRESUPESTADA_CREACION paraModel = @ViewBag.resultadoPopUpNoJefe??new NO_PRESUPESTADA_CREACION();
-    } 
+    NO_PRESUPESTADA_CREACION paraModel = @ViewBag.resultadoPopUpNoJefe ?? new NO_PRESUPESTADA_CREACION();
+}
 
 <div class="col-md-9 col-lg-9 col-xl-9 tablaRetiros">
     <h2>@ViewBag.Title</h2>
-    @using (Html.BeginForm("Index", "REQUISICION_NOPRESUPUESTADA", FormMethod.Post, new { id = "frmNoPresupuestada", @class = "col-md-12 row" }))
+
+    @if (User.IsInRole(SettingsManager.PerfilJefe))
     {
-        if (User.IsInRole("Jefe") || User.IsInRole("Controller"))
-        {
-            @Html.Partial("_PartialViewNO_PRESUPUESTADA_JEFE", Model)
-        }
+        @Html.Partial("_PartialViewNO_PRESUPUESTADA_JEFE", Model)
+    }
 
-        if (User.IsInRole("BP") || User.IsInRole("Gerente RRHH") || User.IsInRole("Gerente USC"))
-        {
-            @Html.Partial("_PartialViewNO_PRESUPUESTADA_JEFE", Model)
-            @Html.Partial("_PartialViewNO_PRESUPUESTADA_GENERAL", Model);
-        }
-
-
-
-
-        if (User.IsInRole("Jefe"))
-        {
-            <div class="retiros-detalle form-group row col-md-12 row">
-                <div class="col-lg-offset-2 col-md-offset-2 col-lg-4 col-md-4">
-                    <input type="button" value="Cancelar" id="btnCancelarNoJefe" class="btn-cancelar-retriro" style="margin-right: 20%;cursor:pointer;" />
-                </div>
-                <div class="col-lg-offset-2 col-md-offset-2 col-lg-4 col-md-4">
-                    <input type="submit" value="Crear Requisición" class="btn-confirmar-retiro" style="margin-right: 20%;cursor:pointer;" />
-                </div>
-            </div>
-        }
-
-        if (User.IsInRole("Controller"))
-        {
-            <div class="retiros-detalle form-group row col-md-12 row">
-                <div class="col-lg-offset-2 col-md-offset-2 col-lg-4 col-md-4">
-                    <input type="button" value="rechazar" id="btnRechazarNoJefe" class="btn-cancelar-retriro" style="margin-right: 20%;cursor:pointer;" />
-                </div>
-                <div class="col-lg-offset-2 col-md-offset-2 col-lg-4 col-md-4">
-                    <input type="button" id="btnAprobarNoJefe" value="Aprobar" class="btn-confirmar-retiro" style="margin-right: 20%;cursor:pointer;" />
-                </div>
-            </div>
-        }
+    @if (User.IsInRole(SettingsManager.PerfilController))
+    {
+        @Html.Partial("_PartialViewNO_PRESUPUESTADA_CONTROLLER", Model)
 
     }
+
+    @if (User.IsInRole(SettingsManager.PerfilBp))
+    {
+        @Html.Partial("_PartialViewNO_PRESUPUESTADA_BP", Model)
+
+    }
+    @if (User.IsInRole(SettingsManager.PerfilRRHH))
+    {
+        @Html.Partial("_PartialViewNO_PRESUPUESTADA_RRHH", Model)
+
+    }
+
+    @if (User.IsInRole(SettingsManager.PerfilUSC))
+    {
+        @Html.Partial("_PartialViewNO_PRESUPUESTADA_USC", Model)
+
+    }
+
+
 </div>
-
-    <script>
-    $(document).ready(function () {
-        debugger;
-        var resultado = "@ViewBag.resultadoNojefe";
-
-       
-        if (resultado == "True") {
-            debugger;
-            var CargoText = "@paraModel.NOMBRE_COD_CARGO";
-            var CargoCod = "@paraModel.COD_CARGO";
-            $("#mensaje1").text(CargoText);
-            $("#mensaje2").text(CargoCod);
-                $('#ModalCreacionNoJefe').modal("show");
-            }
-        });
-    $("#btnCancelarNoJefe").on("click", function () {
-        $('#ModalCancelNoJefe').modal('show');
-    });
-
-    function SiCancelarJefe() {
-            $('#ModalCancel').modal('hide');
-            window.location.href = '@Url.Action("Index", "REQUISICION")';
-        };
-    function NoCancelarJefe() {
-            $('#ModalCancel').modal('hide');
-    };
-    </script>
 

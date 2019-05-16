@@ -90,7 +90,7 @@
                 <tr style="height:62px;">
 
 
-                    <td class="td-nombre-req"><a href="@Url.Action("Detalle", "REQUISICION",new { _idRequisicion = item.COD_REQUISICION, _tipoRequisicion = item.COD_TIPO_REQUISICION })">@Html.DisplayFor(modelItem => item.USUARIO_CREACION) <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span></a></td>
+                    <td class="td-nombre-req"><a class="alineas" href="@Url.Action("Detalle", "REQUISICION",new { _idRequisicion = item.COD_REQUISICION, _tipoRequisicion = item.COD_TIPO_REQUISICION })">@Html.DisplayFor(modelItem => item.USUARIO_CREACION) <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span></a></td>
                     <td class="td-causal">@Html.DisplayFor(modelItem => item.NOMBRE_CARGO)<span class="td-email">@Html.DisplayFor(mItem => item.COD_CARGO)</span></td>
                     <td class="td-acciones">@Html.DisplayFor(modelItem => item.NOMBRE_TIPO_REQUISICION)</td>
                     <td>@Html.DisplayFor(modelItem => item.FECHA_CREACION)</td>
