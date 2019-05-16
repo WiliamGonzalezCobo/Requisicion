@@ -1,0 +1,10 @@
+﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
+<section id="autorizacion">
+    <div class="row">
+        <div class="form-group col-md-12 col-sm-12">
+            @Html.LabelFor(model => model.OBSERVACION, htmlAttributes: new { @class = "control-label" })
+            @Html.TextAreaFor(model => model.OBSERVACION, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.OBSERVACION)
+        </div>
+    </div>
+</section>
