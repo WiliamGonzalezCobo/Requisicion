@@ -154,5 +154,10 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             }
             return requicisionModel;
         }
+
+        public bool INSERTAR_REQUISICION(REQUISICIONViewModel modelo, string usuario)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

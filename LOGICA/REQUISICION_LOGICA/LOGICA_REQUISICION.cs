@@ -193,7 +193,6 @@ namespace LOGICA.REQUISICION_LOGICA
                 COD_CARGO = 758913,
                 NOMBRE_CARGO = "Ingeniero Desarrollo",
                 EMAIL_USUARIO_CREACION = "martinezluir@globalhitss.com",
-                USUARIO_CREACION = "Luis David Martinez Rojas 3",
                 NOMBRE_TIPO_REQUISICION = "No Presupuestada",
                 NOMBRE_ESTADO_REQUISICION = "Verificada BP",
                 FECHA_CREACION = DateTime.Now.ToShortDateString(),
@@ -205,7 +204,6 @@ namespace LOGICA.REQUISICION_LOGICA
                 COD_CARGO = 758913,
                 NOMBRE_CARGO = "Ingeniero Desarrollo",
                 EMAIL_USUARIO_CREACION = "martinezluir@globalhitss.com",
-                USUARIO_CREACION = "Luis David Martinez Rojas",
                 NOMBRE_TIPO_REQUISICION = "No Presupuestada",
                 NOMBRE_ESTADO_REQUISICION = "Verificada BP",
                 FECHA_CREACION = DateTime.Now.ToShortDateString(),
@@ -220,7 +218,6 @@ namespace LOGICA.REQUISICION_LOGICA
                 NOMBRE_ESTADO_REQUISICION = "Verificada BP",
                 FECHA_CREACION = DateTime.Now.ToShortDateString(),
                 EMAIL_USUARIO_CREACION = "williamFabian@globalhitss.com",
-                USUARIO_CREACION = "Luis David Martinez Rojas",
                 COD_TIPO_REQUISICION = 1
             });
 
@@ -236,30 +233,14 @@ namespace LOGICA.REQUISICION_LOGICA
             }
             catch (Exception ex)
             {
-                COD_TIPO_NECESIDAD = 2,
-                COD_CARGO =1,
-                ORDEN = "orden2",
-                COD_CECO = 456,
-                COD_REQUISICION = 123456789,
-                COD_TIPO_REQUISICION = 2
-            });
-
-            listReq.Add(new REQUISICIONViewModel()
-            {
-                COD_TIPO_NECESIDAD = 2,
-                COD_CARGO = 1,
-                ORDEN = "orden2",
-                COD_CECO = 456,
-                COD_REQUISICION = 3,
-                COD_TIPO_REQUISICION = 2
-            });
-
-
-            return listReq.Find(x => x.COD_REQUISICION.Equals(idRequsicion));
+                throw ex;
+            }
+            return objReqModel;
         }
 
-        public Boolean INSERTAR_REQUISICION_LOGICA(REQUISICIONViewModel _modelo, string usuario) {
+        public Boolean INSERTAR_REQUISICION_LOGICA(REQUISICIONViewModel _modelo, string usuario)
+        {
             return new ACCES_REQUISICION().INSERTAR_REQUISICION(_modelo, usuario);
         }
-     }
+    }
 }
