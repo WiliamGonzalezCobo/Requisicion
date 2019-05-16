@@ -320,6 +320,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// salario fijo
         /// </summary>
         [DisplayName("Salario fijo")]
+        [Required(ErrorMessage = "Salario fijo requerido")]
         public decimal SALARIO_FIJO { get; set; }
 
         /// <summary>
