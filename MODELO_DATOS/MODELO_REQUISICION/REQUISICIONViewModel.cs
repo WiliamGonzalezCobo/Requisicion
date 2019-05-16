@@ -20,17 +20,16 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// </summary>
         [Required(ErrorMessage = "Tipo necesidad es requerido")]
         public int COD_TIPO_NECESIDAD { get; set; }
-        [Required(ErrorMessage = "Tipo necesidad es requerido")]
         [DisplayName("Tipo Necesidad")]
         public List<SelectListItem> LIST_NOMBRE_TIPO_NECESIDAD { get; set; }
 
         /// <summary>
         /// id del cargo
         /// </summary>
+        [Required(ErrorMessage = "Nombre del cargo es requerido")]
         public int COD_CARGO { get; set; }
         [DisplayName("Cargo")]
         public string NOMBRE_CARGO { get; set; }
-        [Required(ErrorMessage = "Nombre del cargo es requerido")]
         [DisplayName("Cargo")]
         public List<SelectListItem> LIST_NOMBRE_CARGO { get; set; }
         
@@ -101,14 +100,14 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// 
         /// </summary>
-        [Required(ErrorMessage = "La Observación es requerido")]
+        [Required(ErrorMessage = "La Observación es requerida")]
         [DisplayName("Observación")]
         public string OBSERVACION { get; set; }
 
         /// <summary>
         ///  OBSERVACION DE CREACION
         /// </summary>
-        [Required(ErrorMessage = "La Observación es requerido")]
+        [Required(ErrorMessage = "La Observación es requerida")]
         [DisplayName("Observación")]
         public string OBSERVACION_CREACION { get; set; }
 
@@ -159,18 +158,18 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// COD DE GERENCIA
         /// </summary>
+        [Required(ErrorMessage = "La Gerencia es requerida")]
         public int COD_GERENCIA { get; set; }
         public string NOMBRE_GERENCIA { get; set; }
-        [Required(ErrorMessage = "La Gerencia es requerida")]
         [DisplayName("Gerencia")]
         public List<SelectListItem> LIST_NOMBRE_GERENCIA { get; set; }
 
         /// <summary>
         /// CODIGO TIPO DE CONTRATO
         /// </summary>
+        [Required(ErrorMessage = "El contrato es requerido")]
         public int COD_TIPO_CONTRATO { get; set; }
         public string NOMBRE_TIPO_CONTRATO { get; set; }
-        [Required]
         [DisplayName("Tipo Contrato")]
         public List<SelectListItem> LIST_NOMBRE_TIPO_CONTRATO { get; set; }
 
@@ -178,6 +177,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// NOMBRE JEFE INMEDIATO
         /// </summary>
         [DisplayName("Jefe Inmediato"), StringLength(100)]
+        [Required(ErrorMessage = "El Jefe Inmediato es requerido")]
         public string JEFE_INMEDIATO { get; set; }
 
         /// <summary>
@@ -194,6 +194,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// COD DE SOCIEDAD
         /// </summary>
+        [Required(ErrorMessage = "Sociedad es requerida")]
         public int COD_SOCIEDAD { get; set; }
         public string NOMBRE_SOCIEDAD { get; set; }
         [DisplayName("Sociedad")]
@@ -202,6 +203,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// CODIGO DE EQUIPO DE VENTAS
         /// </summary>
+        [Required(ErrorMessage = "Equipo de ventas es requerido")]
         public int COD_EQUIPO_VENTAS { get; set; }
         public string NOMBRE_EQIPO_VENTAS { get; set; }
         [DisplayName("Equipo de Ventas")]
@@ -210,8 +212,8 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// CODIGO CIUDAD DE TRABAJO
         /// </summary>
+        [Required(ErrorMessage = "Ciudad trabajo es requerida")]
         public int COD_CIUDAD_TRABAJO { get; set; }
-        [DisplayName("Ciudad Trabajo")]
         public string NOMBRE_CIUDAD_TRABAJO { get; set; }
         [DisplayName("Ciudad Trabajo")]
         public List<SelectListItem> LIST_NOMBRE_CIUDAD_TRABAJO { get; set; }
@@ -224,6 +226,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// CODIGO UBICACION FISICA
         /// </summary>
+        [Required(ErrorMessage = "Ubicación Física es requerida")]
         public int COD_UBICACION_FISICA { get; set; }
         [DisplayName("Ubicación Física")]
         public string NOMBRE_UBICACION_FISICA { get; set; }
@@ -233,6 +236,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// CODIGO NIVEL DE RIESGO ARL
         /// </summary>
+        [Required(ErrorMessage = "Nivel Riesgo ARL es requerida")]
         public int COD_NIVEL_RIESGO_ARL { get; set; }
         public string NIVEL_RIESGO_ARL { get; set; }
         [DisplayName("Nivel Riesgo ARL")]
@@ -241,6 +245,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// CODIGO CATEGORIA ED
         /// </summary>
+        [Required(ErrorMessage = "Categoria ED es requerida")]
         public int COD_CATEGORIA_ED { get; set; }
         public string NOMBRE_CATEGORIA_ED { get; set; }
         [DisplayName("Categoria ED*")]
@@ -255,6 +260,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// COD JORNADA LABORAL
         /// </summary>
+        [Required(ErrorMessage = "Jornada laboral es requerida")]
         public int COD_JORNADA_LABORAL { get; set; }
         [DisplayName("Jornada laboral")]
         public string NOMBRE_JORNADA_LABORAL { get; set; }
@@ -265,17 +271,20 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// fecha desde de horario laboral
         /// </summary>
         [DisplayName("desde"), StringLength(50)]
+        [Required(ErrorMessage = "Horario laboral desde es requerido")]
         public string HORARIO_LABORAL_DESDE { get; set; }
 
         /// <summary>
         /// fecha hasta de horario laboral
         /// </summary>
         [DisplayName("hasta"), StringLength(50)]
+        [Required(ErrorMessage = "Horario laboral hasta es requerido")]
         public string HORARIO_LABORAL_HASTA { get; set; }
 
         /// <summary>
         /// cod dia laboral desde
         /// </summary>
+        [Required(ErrorMessage ="Dia laboral desde es requerida")]
         public int COD_DIA_LABORAL_DESDE { get; set; }
         public string DIA_LABORAL_DESDE { get; set; }
         [DisplayName("Dia laboral desde")]
@@ -284,6 +293,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// COD DIA LABORAL HASTA
         /// </summary>
+        [Required(ErrorMessage = "Dia laboral hasta es requerida")]
         public int COD_DIA_LABORAL_HASTA { get; set; }
         public string DIA_LABORAL_HASTA { get; set; }
         [DisplayName("Dia laboral hasta")]
@@ -387,6 +397,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// cod tipo de salario
         /// </summary>
+        [Required(ErrorMessage = "Tipo Salario es requerido")]
         public int COD_TIPO_SALARIO { get; set; }
         public string NOMBRE_TIPO_SALARIO { get; set; }
         [DisplayName("Tipo Salario")]
@@ -413,12 +424,14 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// texto de mercado
         /// </summary>
+        [Required(ErrorMessage = "Mercado es requerido")]
         [DisplayName("Mercado"), StringLength(100)]
         public string MERCADO { get; set; }
 
         /// <summary>
         /// cod categoria
         /// </summary>
+        [Required(ErrorMessage = "Categoria es requerida")]
         public int COD_CATEGORIA { get; set; }
         public string NOMBRE_CATEGORIA { get; set; }
         [DisplayName("Categoria")]

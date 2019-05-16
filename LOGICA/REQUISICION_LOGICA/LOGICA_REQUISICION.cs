@@ -11,6 +11,7 @@ namespace LOGICA.REQUISICION_LOGICA
     {
 
         private REQUISICIONViewModel objReqModel = null;
+
         public List<SelectListItem> CONSULTAR_TIPOS_NECESIDAD()
         {
             return new ACCES_REQUISICION().CONSULTAR_TIPOS_NECESIDAD_ACCESS().Select(x => new SelectListItem()
@@ -29,6 +30,134 @@ namespace LOGICA.REQUISICION_LOGICA
             }).ToList();
         }
 
+        public List<SelectListItem> CONSULTAR_CECOS()
+        {
+            return new ACCES_REQUISICION().CONSULTAR_TIPOS_NECESIDAD_ACCESS().Select(x => new SelectListItem()
+            {
+                Text = x.NOMBRE_NECESIDAD,
+                Value = x.COD_TIPO_NECESIDAD.ToString()
+            }).ToList();
+        }
+
+        public List<SelectListItem> CONSULTAR_EQUIPOS_VENTAS()
+        {
+            return new ACCES_REQUISICION().CONSULTAR_TIPOS_NECESIDAD_ACCESS().Select(x => new SelectListItem()
+            {
+                Text = x.NOMBRE_NECESIDAD,
+                Value = x.COD_TIPO_NECESIDAD.ToString()
+            }).ToList();
+        }
+
+        public List<SelectListItem> CONSULTAR_RIESGOS_ARL()
+        {
+            return new ACCES_REQUISICION().CONSULTAR_TIPOS_NECESIDAD_ACCESS().Select(x => new SelectListItem()
+            {
+                Text = x.NOMBRE_NECESIDAD,
+                Value = x.COD_TIPO_NECESIDAD.ToString()
+            }).ToList();
+        }
+
+        public List<SelectListItem> CONSULTAR_CATEGORIAS_ED()
+        {
+            return new ACCES_REQUISICION().CONSULTAR_TIPOS_NECESIDAD_ACCESS().Select(x => new SelectListItem()
+            {
+                Text = x.NOMBRE_NECESIDAD,
+                Value = x.COD_TIPO_NECESIDAD.ToString()
+            }).ToList();
+        }
+
+        public List<SelectListItem> CONSULTAR_SOCIEDADES()
+        {
+            return new ACCES_REQUISICION().CONSULTAR_TIPOS_NECESIDAD_ACCESS().Select(x => new SelectListItem()
+            {
+                Text = x.NOMBRE_NECESIDAD,
+                Value = x.COD_TIPO_NECESIDAD.ToString()
+            }).ToList();
+        }
+
+        public List<SelectListItem> CONSULTAR_CONTRATOS()
+        {
+            return new ACCES_REQUISICION().CONSULTAR_TIPOS_NECESIDAD_ACCESS().Select(x => new SelectListItem()
+            {
+                Text = x.NOMBRE_NECESIDAD,
+                Value = x.COD_TIPO_NECESIDAD.ToString()
+            }).ToList();
+        }
+
+        public List<SelectListItem> CONSULTAR_GERENCIAS()
+        {
+            return new ACCES_REQUISICION().CONSULTAR_TIPOS_NECESIDAD_ACCESS().Select(x => new SelectListItem()
+            {
+                Text = x.NOMBRE_NECESIDAD,
+                Value = x.COD_TIPO_NECESIDAD.ToString()
+            }).ToList();
+        }
+
+        public List<SelectListItem> CONSULTAR_UBICACIONES_FISICAS()
+        {
+            return new ACCES_REQUISICION().CONSULTAR_TIPOS_NECESIDAD_ACCESS().Select(x => new SelectListItem()
+            {
+                Text = x.NOMBRE_NECESIDAD,
+                Value = x.COD_TIPO_NECESIDAD.ToString()
+            }).ToList();
+        }
+
+        public List<SelectListItem> CONSULTAR_JORNADAS_LABORALES() {
+            List<SelectListItem> jornadas = new List<SelectListItem>()
+            {
+                new SelectListItem() {Text="Tiempo Parcial", Value="1"},
+                new SelectListItem() { Text="Tiempo Completo", Value="2"},
+                new SelectListItem() { Text="Medio Tiempo", Value="3"}
+            };
+            return jornadas;
+        }
+
+        public List<SelectListItem> CONSULTAR_DIAS_LABORALES()
+        {
+            List<SelectListItem> DIAS = new List<SelectListItem>()
+            {
+                new SelectListItem() {Text="1", Value="1"},
+                new SelectListItem() { Text="2", Value="2"},
+                new SelectListItem() { Text="3", Value="3"}
+            };
+            return DIAS;
+        }
+
+        public List<SelectListItem> CONSULTAR_CIUDADES_TRABAJO()
+        {
+            return new ACCES_REQUISICION().CONSULTAR_TIPOS_NECESIDAD_ACCESS().Select(x => new SelectListItem()
+            {
+                Text = x.NOMBRE_NECESIDAD,
+                Value = x.COD_TIPO_NECESIDAD.ToString()
+            }).ToList();
+        }
+
+        public List<SelectListItem> CONSULTAR_CATEGORIAS()
+        {
+            return new ACCES_REQUISICION().CONSULTAR_TIPOS_NECESIDAD_ACCESS().Select(x => new SelectListItem()
+            {
+                Text = x.NOMBRE_NECESIDAD,
+                Value = x.COD_TIPO_NECESIDAD.ToString()
+            }).ToList();
+        }
+
+        public List<SelectListItem> CONSULTAR_TIPOS_SALARIOS()
+        {
+            return new ACCES_REQUISICION().CONSULTAR_TIPOS_NECESIDAD_ACCESS().Select(x => new SelectListItem()
+            {
+                Text = x.NOMBRE_NECESIDAD,
+                Value = x.COD_TIPO_NECESIDAD.ToString()
+            }).ToList();
+        }
+
+        public List<SelectListItem> CONSULTAR_CARGOS()
+        {
+            return new ACCES_REQUISICION().CONSULTAR_TIPOS_NECESIDAD_ACCESS().Select(x => new SelectListItem()
+            {
+                Text = x.NOMBRE_NECESIDAD,
+                Value = x.COD_TIPO_NECESIDAD.ToString()
+            }).ToList();
+        }
 
         public List<SelectListItem> CONSULTAR_TIPOS_REQUISICION()
         {

@@ -69,16 +69,6 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                           where r.COD_REQUISICION.Equals(idReq)
                           select r).First();
 
-                    //requicisionModel = new REQUISICIONViewModel()
-                    //{
-                    //    COD_REQUISICION = queryReq.COD_REQUISICION,
-                    //    COD_CARGO = queryReq.COD_CARGO.HasValue ? queryReq.COD_CARGO.Value : 0,
-                    //    COD_TIPO_NECESIDAD = queryReq.COD_TIPO_NECESIDAD.HasValue ? queryReq.COD_TIPO_NECESIDAD.Value : 0,
-                    //    ORDEN = queryReq.ORDEN,
-                    //    COD_CECO = Convert.ToInt32(queryReq.COD_CECO),
-                    //    COD_TIPO_REQUISICION = queryReq.COD_TIPO_REQUISICION.HasValue ? queryReq.COD_TIPO_REQUISICION.Value : 0
-                    //};
-
                     requicisionModel = new REQUISICIONViewModel()
                     {
                         COD_REQUISICION = queryReq.COD_REQUISICION,
