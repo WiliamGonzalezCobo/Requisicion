@@ -1,5 +1,4 @@
-﻿
-@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
+﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 
 <div class="LSubtitulos col-md-12 col-lg-12 col-xl-12 row" style="margin-bottom:10px;">
 
@@ -21,7 +20,7 @@
 
 <div class="row">
     <div class="form-group col-md-6">
-        @Html.LabelFor(model => model.NOMBRE_TIPO_NECESIDAD, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.LabelFor(model => model.LIST_NOMBRE_TIPO_NECESIDAD, new { htmlAttributes = new { @class = "form-control" } })
         @Html.DropDownList("Tipo Necesidad", new SelectList(ViewBag.Necesidad, "Value", "Text", Model.COD_TIPO_NECESIDAD), new { @class = "form-control", @disabled = "disabled" })
     </div>
 
@@ -54,12 +53,12 @@
         <h3>Imformación General</h3>
         <div class="row">
             <div class="form-group col-md-6 col-sm-12">
-                @Html.LabelFor(model => model.NOMBRE_GERENCIA_LISTA, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.DropDownListFor(model => model.NOMBRE_GERENCIA_LISTA, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
+                @Html.LabelFor(model => model.LIST_NOMBRE_GERENCIA, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.COD_GERENCIA, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
             </div>
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NOMBRE_TIPO_CONTRATO, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.DropDownListFor(model => model.LIST_NOMBRE_TIPO_CONTRATO, (IEnumerable<SelectListItem>)ViewBag.Cargo, "-- Seleccione --", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.COD_TIPO_CONTRATO, (IEnumerable<SelectListItem>)ViewBag.Cargo, "-- Seleccione --", new { @class = "form-control" })
             </div>
         </div>
 
@@ -78,12 +77,12 @@
 
         <div class="row">
             <div class="form-group col-md-6 col-sm-12">
-                @Html.LabelFor(model => model.NOMBRE_SOCIEDAD_LISTA, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.DropDownListFor(model => model.NOMBRE_SOCIEDAD_LISTA, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
+                @Html.LabelFor(model => model.LIST_NOMBRE_SOCIEDAD, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.COD_SOCIEDAD, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
             </div>
             <div class="form-group col-md-6 col-sm-12">
-                @Html.LabelFor(model => model.COD_EQUIPO_VENTAS_LISTA, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.DropDownListFor(model => model.COD_EQUIPO_VENTAS_LISTA, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
+                @Html.LabelFor(model => model.LIST_NOMBRE_EQIPO_VENTAS, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.COD_EQUIPO_VENTAS, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
             </div>
         </div>
 
@@ -103,11 +102,11 @@
         <div class="row">
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NIVEL_RIESGO_ARL, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.DropDownListFor(model => model.LIST_NIVEL_RIESGO_ARL, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
             </div>
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA_ED, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.DropDownListFor(model => model.LIST_NOMBRE_CATEGORIA_ED, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
             </div>
         </div>
 
@@ -301,7 +300,7 @@
         <div class="row">
             <div class="form-group col-md-12 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.DropDownListFor(model => model.LIST_NOMBRE_CATEGORIA, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.COD_CATEGORIA, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
             </div>
         </div>
 
@@ -346,14 +345,9 @@
                 @Html.EditorFor(model => model.POSICIONAMIENTO, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.POSICIONAMIENTO, "", new { @class = "text-danger" })
             </div>
-
-            <div class="form-group col-md-12">
-                @Html.LabelFor(model => model.OBSERVACION, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.TextAreaFor(model => model.OBSERVACION, new { @class = "form-control" })
-
-            </div>
         </div>
     </section>
+
 
     <div class="retiros-detalle form-group row col-md-12 row">
         <div class="col-lg-offset-2 col-md-offset-2 col-lg-4 col-md-4">

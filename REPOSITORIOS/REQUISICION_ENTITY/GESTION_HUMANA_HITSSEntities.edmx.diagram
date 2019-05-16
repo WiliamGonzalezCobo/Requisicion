@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2dd80fab6fa942e999e529b8a2679b74" Name="Diagram1" ZoomLevel="34">
+      <Diagram DiagramId="2dd80fab6fa942e999e529b8a2679b74" Name="Diagram1" ZoomLevel="75">
         <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel.REQUISICION_COMENTARIO" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel.REQUISICION_DIAS_LABORALES" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel.REQUISICION_ESTADO" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel.REQUISICION_HISTORICO" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel.REQUISICION_HISTORICO" Width="1.5" PointX="8.125" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel.REQUISICION_MENU_ROL" Width="1.5" PointX="5.25" PointY="19.625" IsExpanded="true" />
         <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel.REQUISICION_OPCIONES_MENU" Width="1.5" PointX="3" PointY="23.625" IsExpanded="true" />
         <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel.REQUISICION_REQUISICION" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
@@ -27,6 +27,28 @@
         <AssociationConnector Association="GESTION_HUMANA_HITSSModel.FK_REQUISICION_REQUISICION_REQUISICION_TIPO" ManuallyRouted="false" />
         <AssociationConnector Association="GESTION_HUMANA_HITSSModel.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_DOCUMENTO" ManuallyRouted="false" />
         <AssociationConnector Association="GESTION_HUMANA_HITSSModel.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_NECESIDAD" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel.COMENTARIO" Width="1.5" PointX="14.875" PointY="8.375" />
+        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel.DIAS_LABORALES" Width="1.5" PointX="10.375" PointY="8.625" />
+        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel.ESTADO" Width="1.5" PointX="15.625" PointY="4.75" />
+        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel.HISTORICO" Width="1.5" PointX="17.875" PointY="5.75" />
+        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel.MENU_ROL" Width="1.5" PointX="14.875" PointY="19.625" />
+        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel.OPCIONES_MENU" Width="1.5" PointX="12.625" PointY="23.625" />
+        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel.REQUISICION" Width="1.5" PointX="12.625" PointY="1.625" />
+        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel.ROL" Width="1.5" PointX="12.625" PointY="19.625" />
+        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel.TIPO" Width="1.5" PointX="10.375" PointY="18.375" />
+        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel.TIPO_DOCUMENTO" Width="1.5" PointX="10.375" PointY="2.75" />
+        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel.TIPO_NECESIDAD" Width="1.5" PointX="10.375" PointY="15.125" />
+        <AssociationConnector Association="GESTION_HUMANA_HITSSModel.FK_REQUISICION_COMENTARIO_REQUISICION_REQUISICION1" />
+        <AssociationConnector Association="GESTION_HUMANA_HITSSModel.FK_REQUISICION_COMENTARIO_REQUISICION_ROL1" />
+        <AssociationConnector Association="GESTION_HUMANA_HITSSModel.FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES2" />
+        <AssociationConnector Association="GESTION_HUMANA_HITSSModel.FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES11" />
+        <AssociationConnector Association="GESTION_HUMANA_HITSSModel.FK_REQUISICION_HISTORICO_REQUISICION_ESTADO1" />
+        <AssociationConnector Association="GESTION_HUMANA_HITSSModel.FK_REQUISICION_HISTORICO_REQUISICION_REQUISICION1" />
+        <AssociationConnector Association="GESTION_HUMANA_HITSSModel.FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU1" />
+        <AssociationConnector Association="GESTION_HUMANA_HITSSModel.FK_REQUISICION_MENU_ROL_REQUISICION_ROL1" />
+        <AssociationConnector Association="GESTION_HUMANA_HITSSModel.FK_REQUISICION_REQUISICION_REQUISICION_TIPO1" />
+        <AssociationConnector Association="GESTION_HUMANA_HITSSModel.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_DOCUMENTO1" />
+        <AssociationConnector Association="GESTION_HUMANA_HITSSModel.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_NECESIDAD1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -97,6 +97,9 @@
     <Compile Include="MAPEOS\MAPEO_DEPURACION.cs" />
     <Compile Include="MAPEOS\MAPEO_ERRORES.cs" />
     <Compile Include="REQUISICION.ACCESS\ACCES_REQUISICION.cs" />
+    <Compile Include="REQUISICION_ENTITY\COMENTARIO.cs">
+      <DependentUpon>GESTION_HUMANA_HITSSEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="REQUISICION_ENTITY\CONSULTAR_COMENTARIO_Result.cs">
       <DependentUpon>GESTION_HUMANA_HITSSEntities.tt</DependentUpon>
     </Compile>
@@ -127,6 +130,12 @@
     <Compile Include="REQUISICION_ENTITY\CONSULTAR_TIPOS_REQUISICION_Result.cs">
       <DependentUpon>GESTION_HUMANA_HITSSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="REQUISICION_ENTITY\DIAS_LABORALES.cs">
+      <DependentUpon>GESTION_HUMANA_HITSSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="REQUISICION_ENTITY\ESTADO.cs">
+      <DependentUpon>GESTION_HUMANA_HITSSEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="REQUISICION_ENTITY\GESTION_HUMANA_HITSSEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -141,6 +150,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GESTION_HUMANA_HITSSEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="REQUISICION_ENTITY\HISTORICO.cs">
+      <DependentUpon>GESTION_HUMANA_HITSSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="REQUISICION_ENTITY\MENU_ROL.cs">
+      <DependentUpon>GESTION_HUMANA_HITSSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="REQUISICION_ENTITY\OPCIONES_MENU.cs">
+      <DependentUpon>GESTION_HUMANA_HITSSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="REQUISICION_ENTITY\REQUISICION.cs">
+      <DependentUpon>GESTION_HUMANA_HITSSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="REQUISICION_ENTITY\REQUISICION_COMENTARIO.cs">
       <DependentUpon>GESTION_HUMANA_HITSSEntities.tt</DependentUpon>
@@ -173,6 +194,18 @@
       <DependentUpon>GESTION_HUMANA_HITSSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="REQUISICION_ENTITY\REQUISICION_TIPO_NECESIDAD.cs">
+      <DependentUpon>GESTION_HUMANA_HITSSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="REQUISICION_ENTITY\ROL.cs">
+      <DependentUpon>GESTION_HUMANA_HITSSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="REQUISICION_ENTITY\TIPO.cs">
+      <DependentUpon>GESTION_HUMANA_HITSSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="REQUISICION_ENTITY\TIPO_DOCUMENTO.cs">
+      <DependentUpon>GESTION_HUMANA_HITSSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="REQUISICION_ENTITY\TIPO_NECESIDAD.cs">
       <DependentUpon>GESTION_HUMANA_HITSSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TIPO_SOPORTES_REP.cs" />

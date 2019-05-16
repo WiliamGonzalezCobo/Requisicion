@@ -22,7 +22,7 @@
 
 <div class="row">
     <div class="form-group col-md-6">
-        @Html.LabelFor(model => model.NOMBRE_TIPO_NECESIDAD, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.LabelFor(model => model.LIST_NOMBRE_TIPO_NECESIDAD, new { htmlAttributes = new { @class = "form-control" } })
         @Html.DropDownList("Tipo Necesidad", new SelectList(ViewBag.Necesidad, "Value", "Text", Model.COD_TIPO_NECESIDAD), new { @class = "form-control", @disabled = "disabled" })
     </div>
 

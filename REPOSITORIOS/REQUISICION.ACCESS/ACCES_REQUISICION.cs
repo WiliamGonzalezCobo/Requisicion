@@ -3,6 +3,7 @@ using REPOSITORIOS.REQUISICION_ENTITY;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -153,6 +154,79 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                 throw ex;
             }
             return requicisionModel;
+        }
+
+        public Boolean INSERTAR_REQUISICION(REQUISICIONViewModel _modelo, string usuario) {
+            try
+            {
+                using (var db = new GESTION_HUMANA_HITSSEntities2())
+                {
+
+                    db.INSERTAR_REQUISICION(
+                         _modelo.COD_TIPO_NECESIDAD,
+                         _modelo.COD_TIPO_REQUISICION,
+                         _modelo.COD_CARGO,
+                         _modelo.NOMBRE_CARGO,
+                         _modelo.ORDEN,
+                         _modelo.COD_CECO,
+                         _modelo.NOMBRE_CECO,
+                         _modelo.OBSERVACION_CREACION,
+                         _modelo.COD_TIPO_DOCUMENTO,
+                         _modelo.NUMERO_DOCUMENTO_EMPLEADO,
+                         _modelo.NOMBRE_EMPLEADO,
+                         _modelo.FECHA_INICIO,
+                         _modelo.FECHA_FIN,
+                         _modelo.COD_GERENCIA,
+                         _modelo.NOMBRE_GERENCIA,
+                         _modelo.COD_SOCIEDAD,
+                         _modelo.NOMBRE_SOCIEDAD,
+                         _modelo.COD_EQUIPO_VENTAS,
+                         _modelo.NOMBRE_EQIPO_VENTAS,
+                         _modelo.COD_CATEGORIA_ED,
+                         _modelo.NOMBRE_CATEGORIA_ED,
+                         _modelo.CARGO_CRITICO,
+                         _modelo.POSICION,
+                         _modelo.SALARIO_FIJO,
+                         _modelo.PORCENTAJE_SALARIO_FIJO,
+                         _modelo.SALARIO_VARIABLE,
+                         _modelo.PORCENTAJE_SALARIO_VARIABLE,
+                         _modelo.SOBREREMUNERACION,
+                         _modelo.EXTRA_FIJA,
+                         _modelo.RECARGO_NOCTURNO,
+                         _modelo.MEDIO_TRANSPORTE,
+                         _modelo.SALARIO_TOTAL,
+                         _modelo.BONO_ANUAL,
+                         _modelo.NUMERO_SALARIOS,
+                         _modelo.COD_NIVEL_RIESGO_ARL,
+                         _modelo.COD_JORNADA_LABORAL,
+                         _modelo.COD_DIA_LABORAL_DESDE,
+                         _modelo.COD_DIA_LABORAL_HASTA,
+                          _modelo.COD_DIA_LABORAL_DESDE,
+                         _modelo.COD_DIA_LABORAL_HASTA,
+                        Convert.ToInt32(_modelo.PORCENTAJE_SOBREREMUNERACION),
+                        _modelo.MESES_GARANTIZADOS,
+                        _modelo.COD_TIPO_SALARIO,
+                        _modelo.FACTOR_PRESTACIONAL.ToString(),  // EN BASE DE DATOS ES VARCHAR
+                        _modelo.INGRESO_PROM_MENSUAL,
+                        _modelo.INGRESO_PROM_ANUAL,
+                        _modelo.MERCADO,
+                       _modelo.COD_CATEGORIA,
+                       _modelo.PUNTO_MEDIO_80,
+                       _modelo.PUNTO_MEDIO_100,
+                       _modelo.PUNTO_MEDIO_120,
+                       _modelo.POSICIONAMIENTO.ToString(), // EN BASE DE DATOS ES VARCHAR
+                       usuario,
+                       1
+                   );
+                }
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                var error = ex;
+                return false;
+            }
+
         }
     }
 }

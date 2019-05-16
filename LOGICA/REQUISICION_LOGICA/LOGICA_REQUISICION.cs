@@ -234,28 +234,15 @@ namespace LOGICA.REQUISICION_LOGICA
             {
                 objReqModel = new ACCES_REQUISICION().CONSULTAR_REQUISICION_X_ID(idRequsicion);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                COD_TIPO_NECESIDAD = 2,
-                COD_CARGO =1,
-                ORDEN = "orden2",
-                COD_CECO = 456,
-                COD_REQUISICION = 123456789,
-                COD_TIPO_REQUISICION = 2
-            });
+              
+            }
 
-            listReq.Add(new REQUISICIONViewModel()
-            {
-                COD_TIPO_NECESIDAD = 2,
-                COD_CARGO = 1,
-                ORDEN = "orden2",
-                COD_CECO = 456,
-                COD_REQUISICION = 3,
-                COD_TIPO_REQUISICION = 2
-            });
+            return objReqModel;
 
 
-            return listReq.Find(x => x.COD_REQUISICION.Equals(idRequsicion));
+           
         }
 
         public Boolean INSERTAR_REQUISICION_LOGICA(REQUISICIONViewModel _modelo, string usuario) {
