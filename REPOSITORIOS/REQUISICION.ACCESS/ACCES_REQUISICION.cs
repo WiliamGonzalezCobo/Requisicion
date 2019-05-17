@@ -65,8 +65,8 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             {
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
-                    REQUISICION_REQUISICION queryReq =
-                         (from r in db.REQUISICION_REQUISICION
+                    var queryReq =
+                         (from r in db.REQUISICION
                           where r.COD_REQUISICION.Equals(idReq)
                           select r).First();
 
@@ -131,11 +131,11 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                         SALARIO_TOTAL = queryReq.SALARIO_TOTAL.HasValue ? queryReq.SALARIO_TOTAL.Value : 0,
                         BONO_ANUAL = queryReq.BONO_ANUAL.HasValue ? queryReq.BONO_ANUAL.Value : 0,
                         NUMERO_SALARIOS = queryReq.NUMERO_SALARIOS.HasValue ? queryReq.NUMERO_SALARIOS.Value : 0,
-                        MESES_GARANTIZADOS = queryReq.MESES_GARANTIZADOS.HasValue ? queryReq.MESES_GARANTIZADOS.Value:0,
-                        COD_TIPO_SALARIO = queryReq.COD_TIPO_SALARIO.HasValue?queryReq.COD_TIPO_SALARIO.Value:0,
+                        MESES_GARANTIZADOS = queryReq.MESES_GARANTIZADOS.HasValue ? queryReq.MESES_GARANTIZADOS.Value : 0,
+                        COD_TIPO_SALARIO = queryReq.COD_TIPO_SALARIO.HasValue ? queryReq.COD_TIPO_SALARIO.Value : 0,
                         NOMBRE_TIPO_SALARIO = queryReq.NOMBRE_TIPO_SALARIO,
-                        FACTOR_PRESTACIONAL = queryReq.FACTOR_PRESTACIONAL.HasValue?queryReq.FACTOR_PRESTACIONAL.Value:0,
-                        INGRESO_PROM_MENSUAL = queryReq.INGRESO_PROM_MENSUAL.HasValue?queryReq.INGRESO_PROM_MENSUAL.Value:0,
+                        FACTOR_PRESTACIONAL = queryReq.FACTOR_PRESTACIONAL.HasValue ? queryReq.FACTOR_PRESTACIONAL.Value : 0,
+                        INGRESO_PROM_MENSUAL = queryReq.INGRESO_PROM_MENSUAL.HasValue ? queryReq.INGRESO_PROM_MENSUAL.Value : 0,
                         INGRESO_PROM_ANUAL = queryReq.INGRESO_PROM_ANUAL.HasValue ? queryReq.INGRESO_PROM_ANUAL.Value : 0,
                         MERCADO = queryReq.MERCADO,
                         COD_CATEGORIA = queryReq.COD_CATEGORIA.HasValue ? queryReq.COD_CATEGORIA.Value : 0,
@@ -143,7 +143,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                         PUNTO_MEDIO_80 = queryReq.PUNTO_MEDIO_80.HasValue ? queryReq.PUNTO_MEDIO_80.Value : 0,
                         PUNTO_MEDIO_100 = queryReq.PUNTO_MEDIO_100.HasValue ? queryReq.PUNTO_MEDIO_100.Value : 0,
                         PUNTO_MEDIO_120 = queryReq.PUNTO_MEDIO_120.HasValue ? queryReq.PUNTO_MEDIO_120.Value : 0,
-                        POSICIONAMIENTO = queryReq.POSICIONAMIENTO.HasValue ? queryReq.POSICIONAMIENTO.Value:0,
+                        POSICIONAMIENTO = queryReq.POSICIONAMIENTO.HasValue ? queryReq.POSICIONAMIENTO.Value : 0,
                         EMAIL_USUARIO_CREACION = queryReq.EMAIL_USUARIO_CREACION,
                         LOGIN_EMPLEADO = queryReq.LOGIN_EMPLEADO
                     };

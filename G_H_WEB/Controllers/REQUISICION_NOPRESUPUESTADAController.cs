@@ -15,25 +15,21 @@ namespace G_H_WEB.Controllers
         public ActionResult Index(int? _idReq)
         {
             REQUISICIONViewModel model = new REQUISICIONViewModel();
-            if (_idReq.HasValue)
-            {
+            if (_idReq.HasValue) {
                 model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value)?? new REQUISICIONViewModel();
             }
+            model = new LOGICA_REQUISICION().LLENAR_CONTROLES(model);
 
-            List<SelectListItem> listaNecesidad = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
+
+            List<SelectListItem> listacargos = model.LIST_NOMBRE_CARGO;
             NO_PRESUPESTADA_CREACION fromPost = TempData["resultado"] as NO_PRESUPESTADA_CREACION;
             // este filtro se debe hacer sobre la lista NOMBRE_CARGO y no sobre necesidad 
             if (fromPost != null)
-                fromPost.NOMBRE_COD_CARGO = listaNecesidad.Where(x => x.Value == fromPost.COD_CARGO.ToString()).First().Text;
-
-            // vienen de la logica - base de datos
-            ViewBag.Necesidad = listaNecesidad;
-            ViewBag.Options = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
-            ViewBag.Cargo = new LOGICA_REQUISICION().CONSULTAR_TIPOS_NECESIDAD();
-
+                fromPost.NOMBRE_COD_CARGO = listacargos.Where(x => x.Value == fromPost.COD_CARGO.ToString()).First().Text;
             //Logica para el POP UP
             ViewBag.resultadoNojefe = fromPost != null ? fromPost.RESULTADO : false;
             ViewBag.resultadoPopUpNoJefe = fromPost;
+
             return View(model);
         }
         [HttpPost]

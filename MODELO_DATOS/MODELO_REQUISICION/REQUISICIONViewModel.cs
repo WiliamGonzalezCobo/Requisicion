@@ -10,6 +10,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
 {
     public class REQUISICIONViewModel
     {
+   
         /// <summary>
         /// codigo unico de la requisicion
         /// </summary>
@@ -47,6 +48,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         public int COD_TIPO_REQUISICION { get; set; }
         [DisplayName("Tipo Requisicion")]
         public string NOMBRE_TIPO_REQUISICION { get; set; }
+        public List<SelectListItem> LIST_NOMBRE_TIPO_REQUISICION { get; set; }
 
         /// <summary>
         /// cod tipo de documento

@@ -27,17 +27,6 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<REQUISICION_COMENTARIO> REQUISICION_COMENTARIO { get; set; }
-        public virtual DbSet<REQUISICION_DIAS_LABORALES> REQUISICION_DIAS_LABORALES { get; set; }
-        public virtual DbSet<REQUISICION_ESTADO> REQUISICION_ESTADO { get; set; }
-        public virtual DbSet<REQUISICION_HISTORICO> REQUISICION_HISTORICO { get; set; }
-        public virtual DbSet<REQUISICION_MENU_ROL> REQUISICION_MENU_ROL { get; set; }
-        public virtual DbSet<REQUISICION_OPCIONES_MENU> REQUISICION_OPCIONES_MENU { get; set; }
-        public virtual DbSet<REQUISICION_REQUISICION> REQUISICION_REQUISICION { get; set; }
-        public virtual DbSet<REQUISICION_ROL> REQUISICION_ROL { get; set; }
-        public virtual DbSet<REQUISICION_TIPO> REQUISICION_TIPO { get; set; }
-        public virtual DbSet<REQUISICION_TIPO_DOCUMENTO> REQUISICION_TIPO_DOCUMENTO { get; set; }
-        public virtual DbSet<REQUISICION_TIPO_NECESIDAD> REQUISICION_TIPO_NECESIDAD { get; set; }
         public virtual DbSet<COMENTARIO> COMENTARIO { get; set; }
         public virtual DbSet<DIAS_LABORALES> DIAS_LABORALES { get; set; }
         public virtual DbSet<ESTADO> ESTADO { get; set; }

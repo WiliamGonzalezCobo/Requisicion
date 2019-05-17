@@ -4,7 +4,364 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="GESTION_HUMANA_HITSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="GESTION_HUMANA_HITSSModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="COMENTARIO">
+          <Key>
+            <PropertyRef Name="COD_COMENTARIO" />
+          </Key>
+          <Property Name="COD_COMENTARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COD_REQUISICION" Type="int" />
+          <Property Name="COD_ESTADO_REQUISICION" Type="int" />
+          <Property Name="COMENTARIO_AUTORIZACION" Type="varchar" MaxLength="200" />
+          <Property Name="OBSERVACIONES" Type="varchar" MaxLength="200" />
+          <Property Name="COD_ROL" Type="int" />
+          <Property Name="COD_USUARIO" Type="int" />
+          <Property Name="USARIO_CREACION" Type="varchar" MaxLength="100" />
+          <Property Name="FECHA_CREACION" Type="date" />
+        </EntityType>
+        <EntityType Name="DIAS_LABORALES">
+          <Key>
+            <PropertyRef Name="COD_DIAS_LABORALES" />
+          </Key>
+          <Property Name="COD_DIAS_LABORALES" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DIA_SEMANA" Type="varchar" MaxLength="50" />
+          <Property Name="USUARIO_CREACION" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_CREACION" Type="date" />
+          <Property Name="USUARIO_MODIFICACION" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_MODIFICACION" Type="date" />
+        </EntityType>
+        <EntityType Name="ESTADO">
+          <Key>
+            <PropertyRef Name="COD_ESTADO_REQUISICION" />
+          </Key>
+          <Property Name="COD_ESTADO_REQUISICION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_ESTADO" Type="varchar" MaxLength="50" />
+          <Property Name="USUARIO_CREACION" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_CREACION" Type="date" />
+          <Property Name="USARIO_MODIFICACION" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_MODIFICACION" Type="date" />
+        </EntityType>
+        <EntityType Name="HISTORICO">
+          <Key>
+            <PropertyRef Name="COD_HISTORICO_REQUISICION" />
+          </Key>
+          <Property Name="COD_HISTORICO_REQUISICION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COD_REQUISICION" Type="int" Nullable="false" />
+          <Property Name="COD_ROL" Type="int" Nullable="false" />
+          <Property Name="COD_NIVEL_RIESGO_ARL" Type="int" />
+          <Property Name="COD_CATEGORIA_ED" Type="int" />
+          <Property Name="CARGO_CRITICO" Type="bit" />
+          <Property Name="COD_JORNADA_LABORAL" Type="int" />
+          <Property Name="HORARIO_LABORAL_DESDE" Type="varchar" MaxLength="50" />
+          <Property Name="HORARIO_LABORAL_HASTA" Type="varchar" MaxLength="50" />
+          <Property Name="COD_DIA_LABORAL_DESDE" Type="int" />
+          <Property Name="COD_DIA_LABORAL_HASTA" Type="int" />
+          <Property Name="SALARIO_FIJO" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="PORCENTAJE_SALARIO_FIJO" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="SALARIO_VARIABLE" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="PORCENTAJE_SALARIO_VARIABLE" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="SOBREREMUNERACION" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="PORCENTAJE_SOBREREMUNERACION" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="EXTRA_FIJA" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="RECARGO_NOCTURNO" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="MEDIO_TRANSPORTE" Type="varchar" MaxLength="50" />
+          <Property Name="SALARIO_TOTAL" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="BONO_ANUAL" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NUMERO_SALARIOS" Type="int" />
+          <Property Name="MESES_GARANTIZADOS" Type="int" />
+          <Property Name="COD_TIPO_SALARIO" Type="int" />
+          <Property Name="FACTOR_PRESTACIONAL" Type="varchar" MaxLength="50" />
+          <Property Name="INGRESO_PROM_MENSUAL" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="INGRESO_PROM_ANUAL" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="MERCADO" Type="varchar" MaxLength="50" />
+          <Property Name="COD_CATEGORIA" Type="int" />
+          <Property Name="PUNTO_MEDIO_80" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="PUNTO_MEDIO_100" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="PUNTO_MEDIO_120" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="POSICIONAMIENTO" Type="varchar" MaxLength="50" />
+          <Property Name="USUARIO_REGISTRO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FECHA_REGISTRO" Type="date" Nullable="false" />
+          <Property Name="COD_ESTADO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MENU_ROL">
+          <Key>
+            <PropertyRef Name="COD_MENU_ROL" />
+          </Key>
+          <Property Name="COD_MENU_ROL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COD_ROL" Type="int" Nullable="false" />
+          <Property Name="COD_OPCIONES_MENU" Type="int" Nullable="false" />
+          <Property Name="USUARIO_CREACION" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_CREACION" Type="date" />
+          <Property Name="USUARIO_MODIFICACION" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_MODIFICACION" Type="date" />
+        </EntityType>
+        <EntityType Name="OPCIONES_MENU">
+          <Key>
+            <PropertyRef Name="COD_OPCIONES_MENU" />
+          </Key>
+          <Property Name="COD_OPCIONES_MENU" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_OPCION" Type="varchar" MaxLength="50" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
+          <Property Name="ESTADO" Type="bit" />
+          <Property Name="USUARIO_CREACION" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_CREACION" Type="date" />
+          <Property Name="USUARIO_MODIFICACION" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_MODIFICACION" Type="date" />
+        </EntityType>
+        <EntityType Name="REQUISICION">
+          <Key>
+            <PropertyRef Name="COD_REQUISICION" />
+          </Key>
+          <Property Name="COD_REQUISICION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COD_TIPO_NECESIDAD" Type="int" />
+          <Property Name="COD_CARGO" Type="int" />
+          <Property Name="NOMBRE_CARGO" Type="varchar" MaxLength="100" />
+          <Property Name="ORDEN" Type="varchar" MaxLength="100" />
+          <Property Name="COD_CECO" Type="varchar" MaxLength="100" />
+          <Property Name="NOMBRE_CECO" Type="varchar" MaxLength="100" />
+          <Property Name="COD_TIPO_REQUISICION" Type="int" />
+          <Property Name="FECHA_INICIO" Type="date" />
+          <Property Name="FECHA_FIN" Type="date" />
+          <Property Name="ES_MODIFICACION" Type="bit" />
+          <Property Name="OBSERVACION" Type="varchar" MaxLength="200" />
+          <Property Name="COD_ESTADO_REQUISICION" Type="int" />
+          <Property Name="USUARIO_CREACION" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_CREACION" Type="date" />
+          <Property Name="USUARIO_MODIFICACION" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_MODIFICACION" Type="date" />
+          <Property Name="COD_GERENCIA" Type="int" />
+          <Property Name="NOMBRE_GERENCIA" Type="varchar" MaxLength="100" />
+          <Property Name="COD_TIPO_CONTRATO" Type="int" />
+          <Property Name="NOMBRE_TIPO_CONTRATO" Type="varchar" MaxLength="100" />
+          <Property Name="COD_TIPO_DOCUMENTO" Type="int" />
+          <Property Name="NUMERO_DOCUMENTO_EMPLEADO" Type="varchar" MaxLength="50" />
+          <Property Name="NOMBRE_EMPLEADO" Type="varchar" MaxLength="100" />
+          <Property Name="JEFE_INMEDIATO" Type="varchar" MaxLength="100" />
+          <Property Name="COD_SOCIEDAD" Type="int" />
+          <Property Name="NOMBRE_SOCIEDAD" Type="varchar" MaxLength="100" />
+          <Property Name="COD_EQUIPO_VENTAS" Type="int" />
+          <Property Name="NOMBRE_EQUIPO_VENTAS" Type="varchar" MaxLength="100" />
+          <Property Name="COD_CIUDAD_TRABAJO" Type="int" />
+          <Property Name="NOMBRE_CIUDAD_TRABAJO" Type="varchar" MaxLength="100" />
+          <Property Name="COD_DANE_CIUDAD_TRABAJO" Type="int" />
+          <Property Name="COD_UBICACION_FISICA" Type="int" />
+          <Property Name="NOMBRE_UBICACION_FISICA" Type="varchar" MaxLength="100" />
+          <Property Name="COD_NIVEL_RIESGO_ARL" Type="int" />
+          <Property Name="NIVEL_RIESGO_ARL" Type="varchar" MaxLength="100" />
+          <Property Name="COD_CATEGORIA_ED" Type="int" />
+          <Property Name="NOMBRE_CATEGORIA_ED" Type="varchar" MaxLength="100" />
+          <Property Name="CARGO_CRITICO" Type="bit" />
+          <Property Name="COD_JORNADA_LABORAL" Type="int" />
+          <Property Name="NOMBRE_JORNADA_LABORAL" Type="varchar" MaxLength="100" />
+          <Property Name="HORARIO_LABORAL_DESDE" Type="varchar" MaxLength="50" />
+          <Property Name="HORARIO_LABORAL_HASTA" Type="varchar" MaxLength="50" />
+          <Property Name="COD_DIA_LABORAL_DESDE" Type="int" />
+          <Property Name="COD_DIA_LABORAL_HASTA" Type="int" />
+          <Property Name="POSICION" Type="varchar" MaxLength="100" />
+          <Property Name="EMPRESA_TEMPORAL" Type="varchar" MaxLength="100" />
+          <Property Name="SALARIO_FIJO" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="PORCENTAJE_SALARIO_FIJO" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="SALARIO_VARIABLE" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="PORCENTAJE_SALARIO_VARIABLE" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="SOBREREMUNERACION" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="PORCENTAJE_SOBREREMUNERACION" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="EXTRA_FIJA" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="RECARGO_NOCTURNO" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="MEDIO_TRANSPORTE" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="SALARIO_TOTAL" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="BONO_ANUAL" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="NUMERO_SALARIOS" Type="int" />
+          <Property Name="MESES_GARANTIZADOS" Type="int" />
+          <Property Name="COD_TIPO_SALARIO" Type="int" />
+          <Property Name="NOMBRE_TIPO_SALARIO" Type="varchar" MaxLength="50" />
+          <Property Name="FACTOR_PRESTACIONAL" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="INGRESO_PROM_MENSUAL" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="INGRESO_PROM_ANUAL" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="MERCADO" Type="varchar" MaxLength="100" />
+          <Property Name="COD_CATEGORIA" Type="int" />
+          <Property Name="NOMBRE_CATEGORIA" Type="varchar" MaxLength="100" />
+          <Property Name="PUNTO_MEDIO_80" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="PUNTO_MEDIO_100" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="PUNTO_MEDIO_120" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="POSICIONAMIENTO" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="EMAIL_USUARIO_CREACION" Type="varchar" MaxLength="100" />
+          <Property Name="LOGIN_EMPLEADO" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ROL">
+          <Key>
+            <PropertyRef Name="COD_ROL" />
+          </Key>
+          <Property Name="COD_ROL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="50" />
+          <Property Name="USUARIO_CREACION" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_CREACION" Type="date" />
+          <Property Name="USUARIO_MODIFICACION" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_MODIFICACION" Type="date" />
+        </EntityType>
+        <EntityType Name="TIPO">
+          <Key>
+            <PropertyRef Name="COD_TIPO_REQUISICION" />
+          </Key>
+          <Property Name="COD_TIPO_REQUISICION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_REQUISICION" Type="varchar" MaxLength="50" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
+          <Property Name="ESTADO" Type="bit" />
+          <Property Name="USUARIO_CREACION" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_CREACION" Type="date" />
+          <Property Name="USUARIO_MODIFICACION" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_MODIFICACION" Type="date" />
+        </EntityType>
+        <EntityType Name="TIPO_DOCUMENTO">
+          <Key>
+            <PropertyRef Name="COD_TIPO_DOCUMENTO" />
+          </Key>
+          <Property Name="COD_TIPO_DOCUMENTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TIPO_DOCUMENTO" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TIPO_NECESIDAD">
+          <Key>
+            <PropertyRef Name="COD_TIPO_NECESIDAD" />
+          </Key>
+          <Property Name="COD_TIPO_NECESIDAD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_NECESIDAD" Type="varchar" MaxLength="50" />
+          <Property Name="ESTADO" Type="bit" />
+          <Property Name="USUARIO_CREACION" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_CREACION" Type="date" />
+          <Property Name="USUARIO_MODIFICACION" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_MODIFICACION" Type="date" />
+        </EntityType>
+        <Association Name="FK_REQUISICION_COMENTARIO_REQUISICION_REQUISICION">
+          <End Role="REQUISICION" Type="Self.REQUISICION" Multiplicity="0..1" />
+          <End Role="COMENTARIO" Type="Self.COMENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REQUISICION">
+              <PropertyRef Name="COD_REQUISICION" />
+            </Principal>
+            <Dependent Role="COMENTARIO">
+              <PropertyRef Name="COD_REQUISICION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUISICION_COMENTARIO_REQUISICION_ROL">
+          <End Role="ROL" Type="Self.ROL" Multiplicity="0..1" />
+          <End Role="COMENTARIO" Type="Self.COMENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROL">
+              <PropertyRef Name="COD_ROL" />
+            </Principal>
+            <Dependent Role="COMENTARIO">
+              <PropertyRef Name="COD_ROL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUISICION_HISTORICO_REQUISICION_ESTADO">
+          <End Role="ESTADO" Type="Self.ESTADO" Multiplicity="1" />
+          <End Role="HISTORICO" Type="Self.HISTORICO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTADO">
+              <PropertyRef Name="COD_ESTADO_REQUISICION" />
+            </Principal>
+            <Dependent Role="HISTORICO">
+              <PropertyRef Name="COD_ESTADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUISICION_HISTORICO_REQUISICION_REQUISICION">
+          <End Role="REQUISICION" Type="Self.REQUISICION" Multiplicity="1" />
+          <End Role="HISTORICO" Type="Self.HISTORICO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REQUISICION">
+              <PropertyRef Name="COD_REQUISICION" />
+            </Principal>
+            <Dependent Role="HISTORICO">
+              <PropertyRef Name="COD_REQUISICION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU">
+          <End Role="OPCIONES_MENU" Type="Self.OPCIONES_MENU" Multiplicity="1" />
+          <End Role="MENU_ROL" Type="Self.MENU_ROL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OPCIONES_MENU">
+              <PropertyRef Name="COD_OPCIONES_MENU" />
+            </Principal>
+            <Dependent Role="MENU_ROL">
+              <PropertyRef Name="COD_OPCIONES_MENU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUISICION_MENU_ROL_REQUISICION_ROL">
+          <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
+          <End Role="MENU_ROL" Type="Self.MENU_ROL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROL">
+              <PropertyRef Name="COD_ROL" />
+            </Principal>
+            <Dependent Role="MENU_ROL">
+              <PropertyRef Name="COD_ROL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES">
+          <End Role="DIAS_LABORALES" Type="Self.DIAS_LABORALES" Multiplicity="0..1" />
+          <End Role="REQUISICION" Type="Self.REQUISICION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DIAS_LABORALES">
+              <PropertyRef Name="COD_DIAS_LABORALES" />
+            </Principal>
+            <Dependent Role="REQUISICION">
+              <PropertyRef Name="COD_DIA_LABORAL_DESDE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES1">
+          <End Role="DIAS_LABORALES" Type="Self.DIAS_LABORALES" Multiplicity="0..1" />
+          <End Role="REQUISICION" Type="Self.REQUISICION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DIAS_LABORALES">
+              <PropertyRef Name="COD_DIAS_LABORALES" />
+            </Principal>
+            <Dependent Role="REQUISICION">
+              <PropertyRef Name="COD_DIA_LABORAL_HASTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUISICION_REQUISICION_REQUISICION_TIPO">
+          <End Role="TIPO" Type="Self.TIPO" Multiplicity="0..1" />
+          <End Role="REQUISICION" Type="Self.REQUISICION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO">
+              <PropertyRef Name="COD_TIPO_REQUISICION" />
+            </Principal>
+            <Dependent Role="REQUISICION">
+              <PropertyRef Name="COD_TIPO_REQUISICION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUISICION_REQUISICION_REQUISICION_TIPO_DOCUMENTO">
+          <End Role="TIPO_DOCUMENTO" Type="Self.TIPO_DOCUMENTO" Multiplicity="0..1" />
+          <End Role="REQUISICION" Type="Self.REQUISICION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_DOCUMENTO">
+              <PropertyRef Name="COD_TIPO_DOCUMENTO" />
+            </Principal>
+            <Dependent Role="REQUISICION">
+              <PropertyRef Name="COD_TIPO_DOCUMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUISICION_REQUISICION_REQUISICION_TIPO_NECESIDAD">
+          <End Role="TIPO_NECESIDAD" Type="Self.TIPO_NECESIDAD" Multiplicity="0..1" />
+          <End Role="REQUISICION" Type="Self.REQUISICION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_NECESIDAD">
+              <PropertyRef Name="COD_TIPO_NECESIDAD" />
+            </Principal>
+            <Dependent Role="REQUISICION">
+              <PropertyRef Name="COD_TIPO_NECESIDAD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="ACTUALIZAR_REQUISICION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION">
           <Parameter Name="COD_REQUISICION" Type="int" Mode="In" />
           <Parameter Name="COD_TIPO_NECESIDAD" Type="int" Mode="In" />
@@ -205,12 +562,69 @@
           <Parameter Name="COD_REQUISICION" Type="int" Mode="In" />
           <Parameter Name="USUARIO" Type="varchar" Mode="In" />
         </Function>
-        <EntityContainer Name="GESTION_HUMANA_HITSSModelStoreContainer" />
-      </Schema></edmx:StorageModels>
+        <EntityContainer Name="GESTION_HUMANA_HITSSModel2StoreContainer">
+          <EntitySet Name="COMENTARIO" EntityType="Self.COMENTARIO" Schema="REQUISICION" store:Type="Tables" />
+          <EntitySet Name="DIAS_LABORALES" EntityType="Self.DIAS_LABORALES" Schema="REQUISICION" store:Type="Tables" />
+          <EntitySet Name="ESTADO" EntityType="Self.ESTADO" Schema="REQUISICION" store:Type="Tables" />
+          <EntitySet Name="HISTORICO" EntityType="Self.HISTORICO" Schema="REQUISICION" store:Type="Tables" />
+          <EntitySet Name="MENU_ROL" EntityType="Self.MENU_ROL" Schema="REQUISICION" store:Type="Tables" />
+          <EntitySet Name="OPCIONES_MENU" EntityType="Self.OPCIONES_MENU" Schema="REQUISICION" store:Type="Tables" />
+          <EntitySet Name="REQUISICION" EntityType="Self.REQUISICION" Schema="REQUISICION" store:Type="Tables" />
+          <EntitySet Name="ROL" EntityType="Self.ROL" Schema="REQUISICION" store:Type="Tables" />
+          <EntitySet Name="TIPO" EntityType="Self.TIPO" Schema="REQUISICION" store:Type="Tables" />
+          <EntitySet Name="TIPO_DOCUMENTO" EntityType="Self.TIPO_DOCUMENTO" Schema="REQUISICION" store:Type="Tables" />
+          <EntitySet Name="TIPO_NECESIDAD" EntityType="Self.TIPO_NECESIDAD" Schema="REQUISICION" store:Type="Tables" />
+          <AssociationSet Name="FK_REQUISICION_COMENTARIO_REQUISICION_REQUISICION" Association="Self.FK_REQUISICION_COMENTARIO_REQUISICION_REQUISICION">
+            <End Role="REQUISICION" EntitySet="REQUISICION" />
+            <End Role="COMENTARIO" EntitySet="COMENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUISICION_COMENTARIO_REQUISICION_ROL" Association="Self.FK_REQUISICION_COMENTARIO_REQUISICION_ROL">
+            <End Role="ROL" EntitySet="ROL" />
+            <End Role="COMENTARIO" EntitySet="COMENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUISICION_HISTORICO_REQUISICION_ESTADO" Association="Self.FK_REQUISICION_HISTORICO_REQUISICION_ESTADO">
+            <End Role="ESTADO" EntitySet="ESTADO" />
+            <End Role="HISTORICO" EntitySet="HISTORICO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUISICION_HISTORICO_REQUISICION_REQUISICION" Association="Self.FK_REQUISICION_HISTORICO_REQUISICION_REQUISICION">
+            <End Role="REQUISICION" EntitySet="REQUISICION" />
+            <End Role="HISTORICO" EntitySet="HISTORICO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU" Association="Self.FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU">
+            <End Role="OPCIONES_MENU" EntitySet="OPCIONES_MENU" />
+            <End Role="MENU_ROL" EntitySet="MENU_ROL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUISICION_MENU_ROL_REQUISICION_ROL" Association="Self.FK_REQUISICION_MENU_ROL_REQUISICION_ROL">
+            <End Role="ROL" EntitySet="ROL" />
+            <End Role="MENU_ROL" EntitySet="MENU_ROL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES" Association="Self.FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES">
+            <End Role="DIAS_LABORALES" EntitySet="DIAS_LABORALES" />
+            <End Role="REQUISICION" EntitySet="REQUISICION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES1" Association="Self.FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES1">
+            <End Role="DIAS_LABORALES" EntitySet="DIAS_LABORALES" />
+            <End Role="REQUISICION" EntitySet="REQUISICION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUISICION_REQUISICION_REQUISICION_TIPO" Association="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO">
+            <End Role="TIPO" EntitySet="TIPO" />
+            <End Role="REQUISICION" EntitySet="REQUISICION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUISICION_REQUISICION_REQUISICION_TIPO_DOCUMENTO" Association="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_DOCUMENTO">
+            <End Role="TIPO_DOCUMENTO" EntitySet="TIPO_DOCUMENTO" />
+            <End Role="REQUISICION" EntitySet="REQUISICION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUISICION_REQUISICION_REQUISICION_TIPO_NECESIDAD" Association="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_NECESIDAD">
+            <End Role="TIPO_NECESIDAD" EntitySet="TIPO_NECESIDAD" />
+            <End Role="REQUISICION" EntitySet="REQUISICION" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="GESTION_HUMANA_HITSSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="REQUISICION_COMENTARIO">
+      <Schema Namespace="GESTION_HUMANA_HITSSModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="COMENTARIO">
           <Key>
             <PropertyRef Name="COD_COMENTARIO" />
           </Key>
@@ -223,10 +637,10 @@
           <Property Name="COD_USUARIO" Type="Int32" />
           <Property Name="USARIO_CREACION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="REQUISICION_REQUISICION" Relationship="Self.FK_REQUISICION_COMENTARIO_REQUISICION_REQUISICION" FromRole="REQUISICION_COMENTARIO" ToRole="REQUISICION_REQUISICION" />
-          <NavigationProperty Name="REQUISICION_ROL" Relationship="Self.FK_REQUISICION_COMENTARIO_REQUISICION_ROL" FromRole="REQUISICION_COMENTARIO" ToRole="REQUISICION_ROL" />
+          <NavigationProperty Name="REQUISICION" Relationship="Self.FK_REQUISICION_COMENTARIO_REQUISICION_REQUISICION" FromRole="COMENTARIO" ToRole="REQUISICION" />
+          <NavigationProperty Name="ROL" Relationship="Self.FK_REQUISICION_COMENTARIO_REQUISICION_ROL" FromRole="COMENTARIO" ToRole="ROL" />
         </EntityType>
-        <EntityType Name="REQUISICION_DIAS_LABORALES">
+        <EntityType Name="DIAS_LABORALES">
           <Key>
             <PropertyRef Name="COD_DIAS_LABORALES" />
           </Key>
@@ -236,10 +650,10 @@
           <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
           <Property Name="USUARIO_MODIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FECHA_MODIFICACION" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="REQUISICION_REQUISICION" Relationship="Self.FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES" FromRole="REQUISICION_DIAS_LABORALES" ToRole="REQUISICION_REQUISICION" />
-          <NavigationProperty Name="REQUISICION_REQUISICION1" Relationship="Self.FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES1" FromRole="REQUISICION_DIAS_LABORALES" ToRole="REQUISICION_REQUISICION" />
+          <NavigationProperty Name="REQUISICION" Relationship="Self.FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES" FromRole="DIAS_LABORALES" ToRole="REQUISICION" />
+          <NavigationProperty Name="REQUISICION1" Relationship="Self.FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES1" FromRole="DIAS_LABORALES" ToRole="REQUISICION" />
         </EntityType>
-        <EntityType Name="REQUISICION_ESTADO">
+        <EntityType Name="ESTADO">
           <Key>
             <PropertyRef Name="COD_ESTADO_REQUISICION" />
           </Key>
@@ -249,9 +663,9 @@
           <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
           <Property Name="USARIO_MODIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FECHA_MODIFICACION" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="REQUISICION_HISTORICO" Relationship="Self.FK_REQUISICION_HISTORICO_REQUISICION_ESTADO" FromRole="REQUISICION_ESTADO" ToRole="REQUISICION_HISTORICO" />
+          <NavigationProperty Name="HISTORICO" Relationship="Self.FK_REQUISICION_HISTORICO_REQUISICION_ESTADO" FromRole="ESTADO" ToRole="HISTORICO" />
         </EntityType>
-        <EntityType Name="REQUISICION_HISTORICO">
+        <EntityType Name="HISTORICO">
           <Key>
             <PropertyRef Name="COD_HISTORICO_REQUISICION" />
           </Key>
@@ -292,10 +706,10 @@
           <Property Name="USUARIO_REGISTRO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FECHA_REGISTRO" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="COD_ESTADO" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="REQUISICION_ESTADO" Relationship="Self.FK_REQUISICION_HISTORICO_REQUISICION_ESTADO" FromRole="REQUISICION_HISTORICO" ToRole="REQUISICION_ESTADO" />
-          <NavigationProperty Name="REQUISICION_REQUISICION" Relationship="Self.FK_REQUISICION_HISTORICO_REQUISICION_REQUISICION" FromRole="REQUISICION_HISTORICO" ToRole="REQUISICION_REQUISICION" />
+          <NavigationProperty Name="ESTADO" Relationship="Self.FK_REQUISICION_HISTORICO_REQUISICION_ESTADO" FromRole="HISTORICO" ToRole="ESTADO" />
+          <NavigationProperty Name="REQUISICION" Relationship="Self.FK_REQUISICION_HISTORICO_REQUISICION_REQUISICION" FromRole="HISTORICO" ToRole="REQUISICION" />
         </EntityType>
-        <EntityType Name="REQUISICION_MENU_ROL">
+        <EntityType Name="MENU_ROL">
           <Key>
             <PropertyRef Name="COD_MENU_ROL" />
           </Key>
@@ -306,10 +720,10 @@
           <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
           <Property Name="USUARIO_MODIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FECHA_MODIFICACION" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="REQUISICION_OPCIONES_MENU" Relationship="Self.FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU" FromRole="REQUISICION_MENU_ROL" ToRole="REQUISICION_OPCIONES_MENU" />
-          <NavigationProperty Name="REQUISICION_ROL" Relationship="Self.FK_REQUISICION_MENU_ROL_REQUISICION_ROL" FromRole="REQUISICION_MENU_ROL" ToRole="REQUISICION_ROL" />
+          <NavigationProperty Name="OPCIONES_MENU" Relationship="Self.FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU" FromRole="MENU_ROL" ToRole="OPCIONES_MENU" />
+          <NavigationProperty Name="ROL" Relationship="Self.FK_REQUISICION_MENU_ROL_REQUISICION_ROL" FromRole="MENU_ROL" ToRole="ROL" />
         </EntityType>
-        <EntityType Name="REQUISICION_OPCIONES_MENU">
+        <EntityType Name="OPCIONES_MENU">
           <Key>
             <PropertyRef Name="COD_OPCIONES_MENU" />
           </Key>
@@ -321,9 +735,9 @@
           <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
           <Property Name="USUARIO_MODIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FECHA_MODIFICACION" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="REQUISICION_MENU_ROL" Relationship="Self.FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU" FromRole="REQUISICION_OPCIONES_MENU" ToRole="REQUISICION_MENU_ROL" />
+          <NavigationProperty Name="MENU_ROL" Relationship="Self.FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU" FromRole="OPCIONES_MENU" ToRole="MENU_ROL" />
         </EntityType>
-        <EntityType Name="REQUISICION_REQUISICION">
+        <EntityType Name="REQUISICION">
           <Key>
             <PropertyRef Name="COD_REQUISICION" />
           </Key>
@@ -401,15 +815,15 @@
           <Property Name="POSICIONAMIENTO" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="EMAIL_USUARIO_CREACION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="LOGIN_EMPLEADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="REQUISICION_COMENTARIO" Relationship="Self.FK_REQUISICION_COMENTARIO_REQUISICION_REQUISICION" FromRole="REQUISICION_REQUISICION" ToRole="REQUISICION_COMENTARIO" />
-          <NavigationProperty Name="REQUISICION_DIAS_LABORALES" Relationship="Self.FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES" FromRole="REQUISICION_REQUISICION" ToRole="REQUISICION_DIAS_LABORALES" />
-          <NavigationProperty Name="REQUISICION_DIAS_LABORALES1" Relationship="Self.FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES1" FromRole="REQUISICION_REQUISICION" ToRole="REQUISICION_DIAS_LABORALES" />
-          <NavigationProperty Name="REQUISICION_HISTORICO" Relationship="Self.FK_REQUISICION_HISTORICO_REQUISICION_REQUISICION" FromRole="REQUISICION_REQUISICION" ToRole="REQUISICION_HISTORICO" />
-          <NavigationProperty Name="REQUISICION_TIPO" Relationship="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO" FromRole="REQUISICION_REQUISICION" ToRole="REQUISICION_TIPO" />
-          <NavigationProperty Name="REQUISICION_TIPO_DOCUMENTO" Relationship="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_DOCUMENTO" FromRole="REQUISICION_REQUISICION" ToRole="REQUISICION_TIPO_DOCUMENTO" />
-          <NavigationProperty Name="REQUISICION_TIPO_NECESIDAD" Relationship="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_NECESIDAD" FromRole="REQUISICION_REQUISICION" ToRole="REQUISICION_TIPO_NECESIDAD" />
+          <NavigationProperty Name="COMENTARIO" Relationship="Self.FK_REQUISICION_COMENTARIO_REQUISICION_REQUISICION" FromRole="REQUISICION" ToRole="COMENTARIO" />
+          <NavigationProperty Name="DIAS_LABORALES" Relationship="Self.FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES" FromRole="REQUISICION" ToRole="DIAS_LABORALES" />
+          <NavigationProperty Name="DIAS_LABORALES1" Relationship="Self.FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES1" FromRole="REQUISICION" ToRole="DIAS_LABORALES" />
+          <NavigationProperty Name="HISTORICO" Relationship="Self.FK_REQUISICION_HISTORICO_REQUISICION_REQUISICION" FromRole="REQUISICION" ToRole="HISTORICO" />
+          <NavigationProperty Name="TIPO" Relationship="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO" FromRole="REQUISICION" ToRole="TIPO" />
+          <NavigationProperty Name="TIPO_DOCUMENTO" Relationship="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_DOCUMENTO" FromRole="REQUISICION" ToRole="TIPO_DOCUMENTO" />
+          <NavigationProperty Name="TIPO_NECESIDAD" Relationship="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_NECESIDAD" FromRole="REQUISICION" ToRole="TIPO_NECESIDAD" />
         </EntityType>
-        <EntityType Name="REQUISICION_ROL">
+        <EntityType Name="ROL">
           <Key>
             <PropertyRef Name="COD_ROL" />
           </Key>
@@ -419,10 +833,10 @@
           <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
           <Property Name="USUARIO_MODIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FECHA_MODIFICACION" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="REQUISICION_COMENTARIO" Relationship="Self.FK_REQUISICION_COMENTARIO_REQUISICION_ROL" FromRole="REQUISICION_ROL" ToRole="REQUISICION_COMENTARIO" />
-          <NavigationProperty Name="REQUISICION_MENU_ROL" Relationship="Self.FK_REQUISICION_MENU_ROL_REQUISICION_ROL" FromRole="REQUISICION_ROL" ToRole="REQUISICION_MENU_ROL" />
+          <NavigationProperty Name="COMENTARIO" Relationship="Self.FK_REQUISICION_COMENTARIO_REQUISICION_ROL" FromRole="ROL" ToRole="COMENTARIO" />
+          <NavigationProperty Name="MENU_ROL" Relationship="Self.FK_REQUISICION_MENU_ROL_REQUISICION_ROL" FromRole="ROL" ToRole="MENU_ROL" />
         </EntityType>
-        <EntityType Name="REQUISICION_TIPO">
+        <EntityType Name="TIPO">
           <Key>
             <PropertyRef Name="COD_TIPO_REQUISICION" />
           </Key>
@@ -434,17 +848,17 @@
           <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
           <Property Name="USUARIO_MODIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FECHA_MODIFICACION" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="REQUISICION_REQUISICION" Relationship="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO" FromRole="REQUISICION_TIPO" ToRole="REQUISICION_REQUISICION" />
+          <NavigationProperty Name="REQUISICION" Relationship="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO" FromRole="TIPO" ToRole="REQUISICION" />
         </EntityType>
-        <EntityType Name="REQUISICION_TIPO_DOCUMENTO">
+        <EntityType Name="TIPO_DOCUMENTO">
           <Key>
             <PropertyRef Name="COD_TIPO_DOCUMENTO" />
           </Key>
           <Property Name="COD_TIPO_DOCUMENTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TIPO_DOCUMENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="REQUISICION_REQUISICION" Relationship="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_DOCUMENTO" FromRole="REQUISICION_TIPO_DOCUMENTO" ToRole="REQUISICION_REQUISICION" />
+          <Property Name="TIPO_DOCUMENTO1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="REQUISICION" Relationship="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_DOCUMENTO" FromRole="TIPO_DOCUMENTO" ToRole="REQUISICION" />
         </EntityType>
-        <EntityType Name="REQUISICION_TIPO_NECESIDAD">
+        <EntityType Name="TIPO_NECESIDAD">
           <Key>
             <PropertyRef Name="COD_TIPO_NECESIDAD" />
           </Key>
@@ -455,195 +869,195 @@
           <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
           <Property Name="USUARIO_MODIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FECHA_MODIFICACION" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="REQUISICION_REQUISICION" Relationship="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_NECESIDAD" FromRole="REQUISICION_TIPO_NECESIDAD" ToRole="REQUISICION_REQUISICION" />
+          <NavigationProperty Name="REQUISICION" Relationship="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_NECESIDAD" FromRole="TIPO_NECESIDAD" ToRole="REQUISICION" />
         </EntityType>
         <Association Name="FK_REQUISICION_COMENTARIO_REQUISICION_REQUISICION">
-          <End Role="REQUISICION_REQUISICION" Type="Self.REQUISICION_REQUISICION" Multiplicity="0..1" />
-          <End Role="REQUISICION_COMENTARIO" Type="Self.REQUISICION_COMENTARIO" Multiplicity="*" />
+          <End Role="REQUISICION" Type="Self.REQUISICION" Multiplicity="0..1" />
+          <End Role="COMENTARIO" Type="Self.COMENTARIO" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="REQUISICION_REQUISICION">
+            <Principal Role="REQUISICION">
               <PropertyRef Name="COD_REQUISICION" />
             </Principal>
-            <Dependent Role="REQUISICION_COMENTARIO">
+            <Dependent Role="COMENTARIO">
               <PropertyRef Name="COD_REQUISICION" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_REQUISICION_COMENTARIO_REQUISICION_ROL">
-          <End Role="REQUISICION_ROL" Type="Self.REQUISICION_ROL" Multiplicity="0..1" />
-          <End Role="REQUISICION_COMENTARIO" Type="Self.REQUISICION_COMENTARIO" Multiplicity="*" />
+          <End Role="ROL" Type="Self.ROL" Multiplicity="0..1" />
+          <End Role="COMENTARIO" Type="Self.COMENTARIO" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="REQUISICION_ROL">
+            <Principal Role="ROL">
               <PropertyRef Name="COD_ROL" />
             </Principal>
-            <Dependent Role="REQUISICION_COMENTARIO">
+            <Dependent Role="COMENTARIO">
               <PropertyRef Name="COD_ROL" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES">
-          <End Role="REQUISICION_DIAS_LABORALES" Type="Self.REQUISICION_DIAS_LABORALES" Multiplicity="0..1" />
-          <End Role="REQUISICION_REQUISICION" Type="Self.REQUISICION_REQUISICION" Multiplicity="*" />
+          <End Role="DIAS_LABORALES" Type="Self.DIAS_LABORALES" Multiplicity="0..1" />
+          <End Role="REQUISICION" Type="Self.REQUISICION" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="REQUISICION_DIAS_LABORALES">
+            <Principal Role="DIAS_LABORALES">
               <PropertyRef Name="COD_DIAS_LABORALES" />
             </Principal>
-            <Dependent Role="REQUISICION_REQUISICION">
+            <Dependent Role="REQUISICION">
               <PropertyRef Name="COD_DIA_LABORAL_DESDE" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES1">
-          <End Role="REQUISICION_DIAS_LABORALES" Type="Self.REQUISICION_DIAS_LABORALES" Multiplicity="0..1" />
-          <End Role="REQUISICION_REQUISICION" Type="Self.REQUISICION_REQUISICION" Multiplicity="*" />
+          <End Role="DIAS_LABORALES" Type="Self.DIAS_LABORALES" Multiplicity="0..1" />
+          <End Role="REQUISICION" Type="Self.REQUISICION" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="REQUISICION_DIAS_LABORALES">
+            <Principal Role="DIAS_LABORALES">
               <PropertyRef Name="COD_DIAS_LABORALES" />
             </Principal>
-            <Dependent Role="REQUISICION_REQUISICION">
+            <Dependent Role="REQUISICION">
               <PropertyRef Name="COD_DIA_LABORAL_HASTA" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_REQUISICION_HISTORICO_REQUISICION_ESTADO">
-          <End Role="REQUISICION_ESTADO" Type="Self.REQUISICION_ESTADO" Multiplicity="1" />
-          <End Role="REQUISICION_HISTORICO" Type="Self.REQUISICION_HISTORICO" Multiplicity="*" />
+          <End Role="ESTADO" Type="Self.ESTADO" Multiplicity="1" />
+          <End Role="HISTORICO" Type="Self.HISTORICO" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="REQUISICION_ESTADO">
+            <Principal Role="ESTADO">
               <PropertyRef Name="COD_ESTADO_REQUISICION" />
             </Principal>
-            <Dependent Role="REQUISICION_HISTORICO">
+            <Dependent Role="HISTORICO">
               <PropertyRef Name="COD_ESTADO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_REQUISICION_HISTORICO_REQUISICION_REQUISICION">
-          <End Role="REQUISICION_REQUISICION" Type="Self.REQUISICION_REQUISICION" Multiplicity="1" />
-          <End Role="REQUISICION_HISTORICO" Type="Self.REQUISICION_HISTORICO" Multiplicity="*" />
+          <End Role="REQUISICION" Type="Self.REQUISICION" Multiplicity="1" />
+          <End Role="HISTORICO" Type="Self.HISTORICO" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="REQUISICION_REQUISICION">
+            <Principal Role="REQUISICION">
               <PropertyRef Name="COD_REQUISICION" />
             </Principal>
-            <Dependent Role="REQUISICION_HISTORICO">
+            <Dependent Role="HISTORICO">
               <PropertyRef Name="COD_REQUISICION" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU">
-          <End Role="REQUISICION_OPCIONES_MENU" Type="Self.REQUISICION_OPCIONES_MENU" Multiplicity="1" />
-          <End Role="REQUISICION_MENU_ROL" Type="Self.REQUISICION_MENU_ROL" Multiplicity="*" />
+          <End Role="OPCIONES_MENU" Type="Self.OPCIONES_MENU" Multiplicity="1" />
+          <End Role="MENU_ROL" Type="Self.MENU_ROL" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="REQUISICION_OPCIONES_MENU">
+            <Principal Role="OPCIONES_MENU">
               <PropertyRef Name="COD_OPCIONES_MENU" />
             </Principal>
-            <Dependent Role="REQUISICION_MENU_ROL">
+            <Dependent Role="MENU_ROL">
               <PropertyRef Name="COD_OPCIONES_MENU" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_REQUISICION_MENU_ROL_REQUISICION_ROL">
-          <End Role="REQUISICION_ROL" Type="Self.REQUISICION_ROL" Multiplicity="1" />
-          <End Role="REQUISICION_MENU_ROL" Type="Self.REQUISICION_MENU_ROL" Multiplicity="*" />
+          <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
+          <End Role="MENU_ROL" Type="Self.MENU_ROL" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="REQUISICION_ROL">
+            <Principal Role="ROL">
               <PropertyRef Name="COD_ROL" />
             </Principal>
-            <Dependent Role="REQUISICION_MENU_ROL">
+            <Dependent Role="MENU_ROL">
               <PropertyRef Name="COD_ROL" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_REQUISICION_REQUISICION_REQUISICION_TIPO">
-          <End Role="REQUISICION_TIPO" Type="Self.REQUISICION_TIPO" Multiplicity="0..1" />
-          <End Role="REQUISICION_REQUISICION" Type="Self.REQUISICION_REQUISICION" Multiplicity="*" />
+          <End Role="TIPO" Type="Self.TIPO" Multiplicity="0..1" />
+          <End Role="REQUISICION" Type="Self.REQUISICION" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="REQUISICION_TIPO">
+            <Principal Role="TIPO">
               <PropertyRef Name="COD_TIPO_REQUISICION" />
             </Principal>
-            <Dependent Role="REQUISICION_REQUISICION">
+            <Dependent Role="REQUISICION">
               <PropertyRef Name="COD_TIPO_REQUISICION" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_REQUISICION_REQUISICION_REQUISICION_TIPO_DOCUMENTO">
-          <End Role="REQUISICION_TIPO_DOCUMENTO" Type="Self.REQUISICION_TIPO_DOCUMENTO" Multiplicity="0..1" />
-          <End Role="REQUISICION_REQUISICION" Type="Self.REQUISICION_REQUISICION" Multiplicity="*" />
+          <End Role="TIPO_DOCUMENTO" Type="Self.TIPO_DOCUMENTO" Multiplicity="0..1" />
+          <End Role="REQUISICION" Type="Self.REQUISICION" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="REQUISICION_TIPO_DOCUMENTO">
+            <Principal Role="TIPO_DOCUMENTO">
               <PropertyRef Name="COD_TIPO_DOCUMENTO" />
             </Principal>
-            <Dependent Role="REQUISICION_REQUISICION">
+            <Dependent Role="REQUISICION">
               <PropertyRef Name="COD_TIPO_DOCUMENTO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_REQUISICION_REQUISICION_REQUISICION_TIPO_NECESIDAD">
-          <End Role="REQUISICION_TIPO_NECESIDAD" Type="Self.REQUISICION_TIPO_NECESIDAD" Multiplicity="0..1" />
-          <End Role="REQUISICION_REQUISICION" Type="Self.REQUISICION_REQUISICION" Multiplicity="*" />
+          <End Role="TIPO_NECESIDAD" Type="Self.TIPO_NECESIDAD" Multiplicity="0..1" />
+          <End Role="REQUISICION" Type="Self.REQUISICION" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="REQUISICION_TIPO_NECESIDAD">
+            <Principal Role="TIPO_NECESIDAD">
               <PropertyRef Name="COD_TIPO_NECESIDAD" />
             </Principal>
-            <Dependent Role="REQUISICION_REQUISICION">
+            <Dependent Role="REQUISICION">
               <PropertyRef Name="COD_TIPO_NECESIDAD" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="GESTION_HUMANA_HITSSEntities2" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="REQUISICION_COMENTARIO" EntityType="Self.REQUISICION_COMENTARIO" />
-          <EntitySet Name="REQUISICION_DIAS_LABORALES" EntityType="Self.REQUISICION_DIAS_LABORALES" />
-          <EntitySet Name="REQUISICION_ESTADO" EntityType="Self.REQUISICION_ESTADO" />
-          <EntitySet Name="REQUISICION_HISTORICO" EntityType="Self.REQUISICION_HISTORICO" />
-          <EntitySet Name="REQUISICION_MENU_ROL" EntityType="Self.REQUISICION_MENU_ROL" />
-          <EntitySet Name="REQUISICION_OPCIONES_MENU" EntityType="Self.REQUISICION_OPCIONES_MENU" />
-          <EntitySet Name="REQUISICION_REQUISICION" EntityType="Self.REQUISICION_REQUISICION" />
-          <EntitySet Name="REQUISICION_ROL" EntityType="Self.REQUISICION_ROL" />
-          <EntitySet Name="REQUISICION_TIPO" EntityType="Self.REQUISICION_TIPO" />
-          <EntitySet Name="REQUISICION_TIPO_DOCUMENTO" EntityType="Self.REQUISICION_TIPO_DOCUMENTO" />
-          <EntitySet Name="REQUISICION_TIPO_NECESIDAD" EntityType="Self.REQUISICION_TIPO_NECESIDAD" />
+          <EntitySet Name="COMENTARIO" EntityType="Self.COMENTARIO" />
+          <EntitySet Name="DIAS_LABORALES" EntityType="Self.DIAS_LABORALES" />
+          <EntitySet Name="ESTADO" EntityType="Self.ESTADO" />
+          <EntitySet Name="HISTORICO" EntityType="Self.HISTORICO" />
+          <EntitySet Name="MENU_ROL" EntityType="Self.MENU_ROL" />
+          <EntitySet Name="OPCIONES_MENU" EntityType="Self.OPCIONES_MENU" />
+          <EntitySet Name="REQUISICION" EntityType="Self.REQUISICION" />
+          <EntitySet Name="ROL" EntityType="Self.ROL" />
+          <EntitySet Name="TIPO" EntityType="Self.TIPO" />
+          <EntitySet Name="TIPO_DOCUMENTO" EntityType="Self.TIPO_DOCUMENTO" />
+          <EntitySet Name="TIPO_NECESIDAD" EntityType="Self.TIPO_NECESIDAD" />
           <AssociationSet Name="FK_REQUISICION_COMENTARIO_REQUISICION_REQUISICION" Association="Self.FK_REQUISICION_COMENTARIO_REQUISICION_REQUISICION">
-            <End Role="REQUISICION_REQUISICION" EntitySet="REQUISICION_REQUISICION" />
-            <End Role="REQUISICION_COMENTARIO" EntitySet="REQUISICION_COMENTARIO" />
+            <End Role="REQUISICION" EntitySet="REQUISICION" />
+            <End Role="COMENTARIO" EntitySet="COMENTARIO" />
           </AssociationSet>
           <AssociationSet Name="FK_REQUISICION_COMENTARIO_REQUISICION_ROL" Association="Self.FK_REQUISICION_COMENTARIO_REQUISICION_ROL">
-            <End Role="REQUISICION_ROL" EntitySet="REQUISICION_ROL" />
-            <End Role="REQUISICION_COMENTARIO" EntitySet="REQUISICION_COMENTARIO" />
+            <End Role="ROL" EntitySet="ROL" />
+            <End Role="COMENTARIO" EntitySet="COMENTARIO" />
           </AssociationSet>
           <AssociationSet Name="FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES" Association="Self.FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES">
-            <End Role="REQUISICION_DIAS_LABORALES" EntitySet="REQUISICION_DIAS_LABORALES" />
-            <End Role="REQUISICION_REQUISICION" EntitySet="REQUISICION_REQUISICION" />
+            <End Role="DIAS_LABORALES" EntitySet="DIAS_LABORALES" />
+            <End Role="REQUISICION" EntitySet="REQUISICION" />
           </AssociationSet>
           <AssociationSet Name="FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES1" Association="Self.FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES1">
-            <End Role="REQUISICION_DIAS_LABORALES" EntitySet="REQUISICION_DIAS_LABORALES" />
-            <End Role="REQUISICION_REQUISICION" EntitySet="REQUISICION_REQUISICION" />
+            <End Role="DIAS_LABORALES" EntitySet="DIAS_LABORALES" />
+            <End Role="REQUISICION" EntitySet="REQUISICION" />
           </AssociationSet>
           <AssociationSet Name="FK_REQUISICION_HISTORICO_REQUISICION_ESTADO" Association="Self.FK_REQUISICION_HISTORICO_REQUISICION_ESTADO">
-            <End Role="REQUISICION_ESTADO" EntitySet="REQUISICION_ESTADO" />
-            <End Role="REQUISICION_HISTORICO" EntitySet="REQUISICION_HISTORICO" />
+            <End Role="ESTADO" EntitySet="ESTADO" />
+            <End Role="HISTORICO" EntitySet="HISTORICO" />
           </AssociationSet>
           <AssociationSet Name="FK_REQUISICION_HISTORICO_REQUISICION_REQUISICION" Association="Self.FK_REQUISICION_HISTORICO_REQUISICION_REQUISICION">
-            <End Role="REQUISICION_REQUISICION" EntitySet="REQUISICION_REQUISICION" />
-            <End Role="REQUISICION_HISTORICO" EntitySet="REQUISICION_HISTORICO" />
+            <End Role="REQUISICION" EntitySet="REQUISICION" />
+            <End Role="HISTORICO" EntitySet="HISTORICO" />
           </AssociationSet>
           <AssociationSet Name="FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU" Association="Self.FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU">
-            <End Role="REQUISICION_OPCIONES_MENU" EntitySet="REQUISICION_OPCIONES_MENU" />
-            <End Role="REQUISICION_MENU_ROL" EntitySet="REQUISICION_MENU_ROL" />
+            <End Role="OPCIONES_MENU" EntitySet="OPCIONES_MENU" />
+            <End Role="MENU_ROL" EntitySet="MENU_ROL" />
           </AssociationSet>
           <AssociationSet Name="FK_REQUISICION_MENU_ROL_REQUISICION_ROL" Association="Self.FK_REQUISICION_MENU_ROL_REQUISICION_ROL">
-            <End Role="REQUISICION_ROL" EntitySet="REQUISICION_ROL" />
-            <End Role="REQUISICION_MENU_ROL" EntitySet="REQUISICION_MENU_ROL" />
+            <End Role="ROL" EntitySet="ROL" />
+            <End Role="MENU_ROL" EntitySet="MENU_ROL" />
           </AssociationSet>
           <AssociationSet Name="FK_REQUISICION_REQUISICION_REQUISICION_TIPO" Association="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO">
-            <End Role="REQUISICION_TIPO" EntitySet="REQUISICION_TIPO" />
-            <End Role="REQUISICION_REQUISICION" EntitySet="REQUISICION_REQUISICION" />
+            <End Role="TIPO" EntitySet="TIPO" />
+            <End Role="REQUISICION" EntitySet="REQUISICION" />
           </AssociationSet>
           <AssociationSet Name="FK_REQUISICION_REQUISICION_REQUISICION_TIPO_DOCUMENTO" Association="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_DOCUMENTO">
-            <End Role="REQUISICION_TIPO_DOCUMENTO" EntitySet="REQUISICION_TIPO_DOCUMENTO" />
-            <End Role="REQUISICION_REQUISICION" EntitySet="REQUISICION_REQUISICION" />
+            <End Role="TIPO_DOCUMENTO" EntitySet="TIPO_DOCUMENTO" />
+            <End Role="REQUISICION" EntitySet="REQUISICION" />
           </AssociationSet>
           <AssociationSet Name="FK_REQUISICION_REQUISICION_REQUISICION_TIPO_NECESIDAD" Association="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_NECESIDAD">
-            <End Role="REQUISICION_TIPO_NECESIDAD" EntitySet="REQUISICION_TIPO_NECESIDAD" />
-            <End Role="REQUISICION_REQUISICION" EntitySet="REQUISICION_REQUISICION" />
+            <End Role="TIPO_NECESIDAD" EntitySet="TIPO_NECESIDAD" />
+            <End Role="REQUISICION" EntitySet="REQUISICION" />
           </AssociationSet>
           <FunctionImport Name="ACTUALIZAR_REQUISICION">
             <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
@@ -721,20 +1135,20 @@
             <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
             <Parameter Name="USUARIO" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="CONSULTAR_COMENTARIO" ReturnType="Collection(GESTION_HUMANA_HITSSModel.CONSULTAR_COMENTARIO_Result)">
-          <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
+          <FunctionImport Name="CONSULTAR_COMENTARIO" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_COMENTARIO_Result)">
+            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="CONSULTAR_ESTADOS" ReturnType="Collection(GESTION_HUMANA_HITSSModel.CONSULTAR_ESTADOS_Result)" />
-          <FunctionImport Name="CONSULTAR_REQUISICIONES_BP" ReturnType="Collection(GESTION_HUMANA_HITSSModel.CONSULTAR_REQUISICIONES_BP_Result)" />
-          <FunctionImport Name="CONSULTAR_REQUISICIONES_CONTROLLER" ReturnType="Collection(GESTION_HUMANA_HITSSModel.CONSULTAR_REQUISICIONES_CONTROLLER_Result)" />
-          <FunctionImport Name="CONSULTAR_REQUISICIONES_FILTRO" ReturnType="Collection(GESTION_HUMANA_HITSSModel.CONSULTAR_REQUISICIONES_FILTRO_Result)" />
-          <FunctionImport Name="CONSULTAR_REQUISICIONES_JEFE" ReturnType="Collection(GESTION_HUMANA_HITSSModel.CONSULTAR_REQUISICIONES_JEFE_Result)" />
-          <FunctionImport Name="CONSULTAR_REQUISICIONES_RRHH" ReturnType="Collection(GESTION_HUMANA_HITSSModel.CONSULTAR_REQUISICIONES_RRHH_Result)" />
-          <FunctionImport Name="CONSULTAR_REQUISICIONXID" ReturnType="Collection(GESTION_HUMANA_HITSSModel.CONSULTAR_REQUISICIONXID_Result)">
-          <Parameter Name="IDREQUISICION" Mode="In" Type="Int32" />
+          <FunctionImport Name="CONSULTAR_ESTADOS" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_ESTADOS_Result)" />
+          <FunctionImport Name="CONSULTAR_REQUISICIONES_BP" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONES_BP_Result)" />
+          <FunctionImport Name="CONSULTAR_REQUISICIONES_CONTROLLER" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONES_CONTROLLER_Result)" />
+          <FunctionImport Name="CONSULTAR_REQUISICIONES_FILTRO" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONES_FILTRO_Result)" />
+          <FunctionImport Name="CONSULTAR_REQUISICIONES_JEFE" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONES_JEFE_Result)" />
+          <FunctionImport Name="CONSULTAR_REQUISICIONES_RRHH" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONES_RRHH_Result)" />
+          <FunctionImport Name="CONSULTAR_REQUISICIONXID" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONXID_Result)">
+            <Parameter Name="IDREQUISICION" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="CONSULTAR_TIPOS_NECESIDAD" ReturnType="Collection(GESTION_HUMANA_HITSSModel.CONSULTAR_TIPOS_NECESIDAD_Result)" />
-          <FunctionImport Name="CONSULTAR_TIPOS_REQUISICION" ReturnType="Collection(GESTION_HUMANA_HITSSModel.CONSULTAR_TIPOS_REQUISICION_Result)" />
+          <FunctionImport Name="CONSULTAR_TIPOS_NECESIDAD" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_TIPOS_NECESIDAD_Result)" />
+          <FunctionImport Name="CONSULTAR_TIPOS_REQUISICION" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_TIPOS_REQUISICION_Result)" />
           <FunctionImport Name="INSERTAR_COMENTARIO">
             <Parameter Name="COD_COMENTARIO" Mode="In" Type="Int32" />
             <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
@@ -998,12 +1412,248 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="GESTION_HUMANA_HITSSModelStoreContainer" CdmEntityContainer="GESTION_HUMANA_HITSSEntities2">
-          <FunctionImportMapping FunctionImportName="ACTUALIZAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel.Store.ACTUALIZAR_REQUISICION" />
-          <FunctionImportMapping FunctionImportName="APROBAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel.Store.APROBAR_REQUISICION" />
-          <FunctionImportMapping FunctionImportName="CONSULTAR_COMENTARIO" FunctionName="GESTION_HUMANA_HITSSModel.Store.CONSULTAR_COMENTARIO">
+        <EntityContainerMapping StorageEntityContainer="GESTION_HUMANA_HITSSModel2StoreContainer" CdmEntityContainer="GESTION_HUMANA_HITSSEntities2">
+          <EntitySetMapping Name="COMENTARIO">
+            <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.COMENTARIO">
+              <MappingFragment StoreEntitySet="COMENTARIO">
+                <ScalarProperty Name="COD_COMENTARIO" ColumnName="COD_COMENTARIO" />
+                <ScalarProperty Name="COD_REQUISICION" ColumnName="COD_REQUISICION" />
+                <ScalarProperty Name="COD_ESTADO_REQUISICION" ColumnName="COD_ESTADO_REQUISICION" />
+                <ScalarProperty Name="COMENTARIO_AUTORIZACION" ColumnName="COMENTARIO_AUTORIZACION" />
+                <ScalarProperty Name="OBSERVACIONES" ColumnName="OBSERVACIONES" />
+                <ScalarProperty Name="COD_ROL" ColumnName="COD_ROL" />
+                <ScalarProperty Name="COD_USUARIO" ColumnName="COD_USUARIO" />
+                <ScalarProperty Name="USARIO_CREACION" ColumnName="USARIO_CREACION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DIAS_LABORALES">
+            <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.DIAS_LABORALES">
+              <MappingFragment StoreEntitySet="DIAS_LABORALES">
+                <ScalarProperty Name="COD_DIAS_LABORALES" ColumnName="COD_DIAS_LABORALES" />
+                <ScalarProperty Name="DIA_SEMANA" ColumnName="DIA_SEMANA" />
+                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="USUARIO_MODIFICACION" ColumnName="USUARIO_MODIFICACION" />
+                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ESTADO">
+            <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.ESTADO">
+              <MappingFragment StoreEntitySet="ESTADO">
+                <ScalarProperty Name="COD_ESTADO_REQUISICION" ColumnName="COD_ESTADO_REQUISICION" />
+                <ScalarProperty Name="NOMBRE_ESTADO" ColumnName="NOMBRE_ESTADO" />
+                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="USARIO_MODIFICACION" ColumnName="USARIO_MODIFICACION" />
+                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HISTORICO">
+            <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.HISTORICO">
+              <MappingFragment StoreEntitySet="HISTORICO">
+                <ScalarProperty Name="COD_HISTORICO_REQUISICION" ColumnName="COD_HISTORICO_REQUISICION" />
+                <ScalarProperty Name="COD_REQUISICION" ColumnName="COD_REQUISICION" />
+                <ScalarProperty Name="COD_ROL" ColumnName="COD_ROL" />
+                <ScalarProperty Name="COD_NIVEL_RIESGO_ARL" ColumnName="COD_NIVEL_RIESGO_ARL" />
+                <ScalarProperty Name="COD_CATEGORIA_ED" ColumnName="COD_CATEGORIA_ED" />
+                <ScalarProperty Name="CARGO_CRITICO" ColumnName="CARGO_CRITICO" />
+                <ScalarProperty Name="COD_JORNADA_LABORAL" ColumnName="COD_JORNADA_LABORAL" />
+                <ScalarProperty Name="HORARIO_LABORAL_DESDE" ColumnName="HORARIO_LABORAL_DESDE" />
+                <ScalarProperty Name="HORARIO_LABORAL_HASTA" ColumnName="HORARIO_LABORAL_HASTA" />
+                <ScalarProperty Name="COD_DIA_LABORAL_DESDE" ColumnName="COD_DIA_LABORAL_DESDE" />
+                <ScalarProperty Name="COD_DIA_LABORAL_HASTA" ColumnName="COD_DIA_LABORAL_HASTA" />
+                <ScalarProperty Name="SALARIO_FIJO" ColumnName="SALARIO_FIJO" />
+                <ScalarProperty Name="PORCENTAJE_SALARIO_FIJO" ColumnName="PORCENTAJE_SALARIO_FIJO" />
+                <ScalarProperty Name="SALARIO_VARIABLE" ColumnName="SALARIO_VARIABLE" />
+                <ScalarProperty Name="PORCENTAJE_SALARIO_VARIABLE" ColumnName="PORCENTAJE_SALARIO_VARIABLE" />
+                <ScalarProperty Name="SOBREREMUNERACION" ColumnName="SOBREREMUNERACION" />
+                <ScalarProperty Name="PORCENTAJE_SOBREREMUNERACION" ColumnName="PORCENTAJE_SOBREREMUNERACION" />
+                <ScalarProperty Name="EXTRA_FIJA" ColumnName="EXTRA_FIJA" />
+                <ScalarProperty Name="RECARGO_NOCTURNO" ColumnName="RECARGO_NOCTURNO" />
+                <ScalarProperty Name="MEDIO_TRANSPORTE" ColumnName="MEDIO_TRANSPORTE" />
+                <ScalarProperty Name="SALARIO_TOTAL" ColumnName="SALARIO_TOTAL" />
+                <ScalarProperty Name="BONO_ANUAL" ColumnName="BONO_ANUAL" />
+                <ScalarProperty Name="NUMERO_SALARIOS" ColumnName="NUMERO_SALARIOS" />
+                <ScalarProperty Name="MESES_GARANTIZADOS" ColumnName="MESES_GARANTIZADOS" />
+                <ScalarProperty Name="COD_TIPO_SALARIO" ColumnName="COD_TIPO_SALARIO" />
+                <ScalarProperty Name="FACTOR_PRESTACIONAL" ColumnName="FACTOR_PRESTACIONAL" />
+                <ScalarProperty Name="INGRESO_PROM_MENSUAL" ColumnName="INGRESO_PROM_MENSUAL" />
+                <ScalarProperty Name="INGRESO_PROM_ANUAL" ColumnName="INGRESO_PROM_ANUAL" />
+                <ScalarProperty Name="MERCADO" ColumnName="MERCADO" />
+                <ScalarProperty Name="COD_CATEGORIA" ColumnName="COD_CATEGORIA" />
+                <ScalarProperty Name="PUNTO_MEDIO_80" ColumnName="PUNTO_MEDIO_80" />
+                <ScalarProperty Name="PUNTO_MEDIO_100" ColumnName="PUNTO_MEDIO_100" />
+                <ScalarProperty Name="PUNTO_MEDIO_120" ColumnName="PUNTO_MEDIO_120" />
+                <ScalarProperty Name="POSICIONAMIENTO" ColumnName="POSICIONAMIENTO" />
+                <ScalarProperty Name="USUARIO_REGISTRO" ColumnName="USUARIO_REGISTRO" />
+                <ScalarProperty Name="FECHA_REGISTRO" ColumnName="FECHA_REGISTRO" />
+                <ScalarProperty Name="COD_ESTADO" ColumnName="COD_ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MENU_ROL">
+            <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.MENU_ROL">
+              <MappingFragment StoreEntitySet="MENU_ROL">
+                <ScalarProperty Name="COD_MENU_ROL" ColumnName="COD_MENU_ROL" />
+                <ScalarProperty Name="COD_ROL" ColumnName="COD_ROL" />
+                <ScalarProperty Name="COD_OPCIONES_MENU" ColumnName="COD_OPCIONES_MENU" />
+                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="USUARIO_MODIFICACION" ColumnName="USUARIO_MODIFICACION" />
+                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OPCIONES_MENU">
+            <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.OPCIONES_MENU">
+              <MappingFragment StoreEntitySet="OPCIONES_MENU">
+                <ScalarProperty Name="COD_OPCIONES_MENU" ColumnName="COD_OPCIONES_MENU" />
+                <ScalarProperty Name="NOMBRE_OPCION" ColumnName="NOMBRE_OPCION" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="USUARIO_MODIFICACION" ColumnName="USUARIO_MODIFICACION" />
+                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REQUISICION">
+            <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.REQUISICION">
+              <MappingFragment StoreEntitySet="REQUISICION">
+                <ScalarProperty Name="COD_REQUISICION" ColumnName="COD_REQUISICION" />
+                <ScalarProperty Name="COD_TIPO_NECESIDAD" ColumnName="COD_TIPO_NECESIDAD" />
+                <ScalarProperty Name="COD_CARGO" ColumnName="COD_CARGO" />
+                <ScalarProperty Name="NOMBRE_CARGO" ColumnName="NOMBRE_CARGO" />
+                <ScalarProperty Name="ORDEN" ColumnName="ORDEN" />
+                <ScalarProperty Name="COD_CECO" ColumnName="COD_CECO" />
+                <ScalarProperty Name="NOMBRE_CECO" ColumnName="NOMBRE_CECO" />
+                <ScalarProperty Name="COD_TIPO_REQUISICION" ColumnName="COD_TIPO_REQUISICION" />
+                <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
+                <ScalarProperty Name="FECHA_FIN" ColumnName="FECHA_FIN" />
+                <ScalarProperty Name="ES_MODIFICACION" ColumnName="ES_MODIFICACION" />
+                <ScalarProperty Name="OBSERVACION" ColumnName="OBSERVACION" />
+                <ScalarProperty Name="COD_ESTADO_REQUISICION" ColumnName="COD_ESTADO_REQUISICION" />
+                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="USUARIO_MODIFICACION" ColumnName="USUARIO_MODIFICACION" />
+                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
+                <ScalarProperty Name="COD_GERENCIA" ColumnName="COD_GERENCIA" />
+                <ScalarProperty Name="NOMBRE_GERENCIA" ColumnName="NOMBRE_GERENCIA" />
+                <ScalarProperty Name="COD_TIPO_CONTRATO" ColumnName="COD_TIPO_CONTRATO" />
+                <ScalarProperty Name="NOMBRE_TIPO_CONTRATO" ColumnName="NOMBRE_TIPO_CONTRATO" />
+                <ScalarProperty Name="COD_TIPO_DOCUMENTO" ColumnName="COD_TIPO_DOCUMENTO" />
+                <ScalarProperty Name="NUMERO_DOCUMENTO_EMPLEADO" ColumnName="NUMERO_DOCUMENTO_EMPLEADO" />
+                <ScalarProperty Name="NOMBRE_EMPLEADO" ColumnName="NOMBRE_EMPLEADO" />
+                <ScalarProperty Name="JEFE_INMEDIATO" ColumnName="JEFE_INMEDIATO" />
+                <ScalarProperty Name="COD_SOCIEDAD" ColumnName="COD_SOCIEDAD" />
+                <ScalarProperty Name="NOMBRE_SOCIEDAD" ColumnName="NOMBRE_SOCIEDAD" />
+                <ScalarProperty Name="COD_EQUIPO_VENTAS" ColumnName="COD_EQUIPO_VENTAS" />
+                <ScalarProperty Name="NOMBRE_EQUIPO_VENTAS" ColumnName="NOMBRE_EQUIPO_VENTAS" />
+                <ScalarProperty Name="COD_CIUDAD_TRABAJO" ColumnName="COD_CIUDAD_TRABAJO" />
+                <ScalarProperty Name="NOMBRE_CIUDAD_TRABAJO" ColumnName="NOMBRE_CIUDAD_TRABAJO" />
+                <ScalarProperty Name="COD_DANE_CIUDAD_TRABAJO" ColumnName="COD_DANE_CIUDAD_TRABAJO" />
+                <ScalarProperty Name="COD_UBICACION_FISICA" ColumnName="COD_UBICACION_FISICA" />
+                <ScalarProperty Name="NOMBRE_UBICACION_FISICA" ColumnName="NOMBRE_UBICACION_FISICA" />
+                <ScalarProperty Name="COD_NIVEL_RIESGO_ARL" ColumnName="COD_NIVEL_RIESGO_ARL" />
+                <ScalarProperty Name="NIVEL_RIESGO_ARL" ColumnName="NIVEL_RIESGO_ARL" />
+                <ScalarProperty Name="COD_CATEGORIA_ED" ColumnName="COD_CATEGORIA_ED" />
+                <ScalarProperty Name="NOMBRE_CATEGORIA_ED" ColumnName="NOMBRE_CATEGORIA_ED" />
+                <ScalarProperty Name="CARGO_CRITICO" ColumnName="CARGO_CRITICO" />
+                <ScalarProperty Name="COD_JORNADA_LABORAL" ColumnName="COD_JORNADA_LABORAL" />
+                <ScalarProperty Name="NOMBRE_JORNADA_LABORAL" ColumnName="NOMBRE_JORNADA_LABORAL" />
+                <ScalarProperty Name="HORARIO_LABORAL_DESDE" ColumnName="HORARIO_LABORAL_DESDE" />
+                <ScalarProperty Name="HORARIO_LABORAL_HASTA" ColumnName="HORARIO_LABORAL_HASTA" />
+                <ScalarProperty Name="COD_DIA_LABORAL_DESDE" ColumnName="COD_DIA_LABORAL_DESDE" />
+                <ScalarProperty Name="COD_DIA_LABORAL_HASTA" ColumnName="COD_DIA_LABORAL_HASTA" />
+                <ScalarProperty Name="POSICION" ColumnName="POSICION" />
+                <ScalarProperty Name="EMPRESA_TEMPORAL" ColumnName="EMPRESA_TEMPORAL" />
+                <ScalarProperty Name="SALARIO_FIJO" ColumnName="SALARIO_FIJO" />
+                <ScalarProperty Name="PORCENTAJE_SALARIO_FIJO" ColumnName="PORCENTAJE_SALARIO_FIJO" />
+                <ScalarProperty Name="SALARIO_VARIABLE" ColumnName="SALARIO_VARIABLE" />
+                <ScalarProperty Name="PORCENTAJE_SALARIO_VARIABLE" ColumnName="PORCENTAJE_SALARIO_VARIABLE" />
+                <ScalarProperty Name="SOBREREMUNERACION" ColumnName="SOBREREMUNERACION" />
+                <ScalarProperty Name="PORCENTAJE_SOBREREMUNERACION" ColumnName="PORCENTAJE_SOBREREMUNERACION" />
+                <ScalarProperty Name="EXTRA_FIJA" ColumnName="EXTRA_FIJA" />
+                <ScalarProperty Name="RECARGO_NOCTURNO" ColumnName="RECARGO_NOCTURNO" />
+                <ScalarProperty Name="MEDIO_TRANSPORTE" ColumnName="MEDIO_TRANSPORTE" />
+                <ScalarProperty Name="SALARIO_TOTAL" ColumnName="SALARIO_TOTAL" />
+                <ScalarProperty Name="BONO_ANUAL" ColumnName="BONO_ANUAL" />
+                <ScalarProperty Name="NUMERO_SALARIOS" ColumnName="NUMERO_SALARIOS" />
+                <ScalarProperty Name="MESES_GARANTIZADOS" ColumnName="MESES_GARANTIZADOS" />
+                <ScalarProperty Name="COD_TIPO_SALARIO" ColumnName="COD_TIPO_SALARIO" />
+                <ScalarProperty Name="NOMBRE_TIPO_SALARIO" ColumnName="NOMBRE_TIPO_SALARIO" />
+                <ScalarProperty Name="FACTOR_PRESTACIONAL" ColumnName="FACTOR_PRESTACIONAL" />
+                <ScalarProperty Name="INGRESO_PROM_MENSUAL" ColumnName="INGRESO_PROM_MENSUAL" />
+                <ScalarProperty Name="INGRESO_PROM_ANUAL" ColumnName="INGRESO_PROM_ANUAL" />
+                <ScalarProperty Name="MERCADO" ColumnName="MERCADO" />
+                <ScalarProperty Name="COD_CATEGORIA" ColumnName="COD_CATEGORIA" />
+                <ScalarProperty Name="NOMBRE_CATEGORIA" ColumnName="NOMBRE_CATEGORIA" />
+                <ScalarProperty Name="PUNTO_MEDIO_80" ColumnName="PUNTO_MEDIO_80" />
+                <ScalarProperty Name="PUNTO_MEDIO_100" ColumnName="PUNTO_MEDIO_100" />
+                <ScalarProperty Name="PUNTO_MEDIO_120" ColumnName="PUNTO_MEDIO_120" />
+                <ScalarProperty Name="POSICIONAMIENTO" ColumnName="POSICIONAMIENTO" />
+                <ScalarProperty Name="EMAIL_USUARIO_CREACION" ColumnName="EMAIL_USUARIO_CREACION" />
+                <ScalarProperty Name="LOGIN_EMPLEADO" ColumnName="LOGIN_EMPLEADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROL">
+            <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.ROL">
+              <MappingFragment StoreEntitySet="ROL">
+                <ScalarProperty Name="COD_ROL" ColumnName="COD_ROL" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="USUARIO_MODIFICACION" ColumnName="USUARIO_MODIFICACION" />
+                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO">
+            <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.TIPO">
+              <MappingFragment StoreEntitySet="TIPO">
+                <ScalarProperty Name="COD_TIPO_REQUISICION" ColumnName="COD_TIPO_REQUISICION" />
+                <ScalarProperty Name="NOMBRE_REQUISICION" ColumnName="NOMBRE_REQUISICION" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="USUARIO_MODIFICACION" ColumnName="USUARIO_MODIFICACION" />
+                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_DOCUMENTO">
+            <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.TIPO_DOCUMENTO">
+              <MappingFragment StoreEntitySet="TIPO_DOCUMENTO">
+                <ScalarProperty Name="COD_TIPO_DOCUMENTO" ColumnName="COD_TIPO_DOCUMENTO" />
+                <ScalarProperty Name="TIPO_DOCUMENTO1" ColumnName="TIPO_DOCUMENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_NECESIDAD">
+            <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.TIPO_NECESIDAD">
+              <MappingFragment StoreEntitySet="TIPO_NECESIDAD">
+                <ScalarProperty Name="COD_TIPO_NECESIDAD" ColumnName="COD_TIPO_NECESIDAD" />
+                <ScalarProperty Name="NOMBRE_NECESIDAD" ColumnName="NOMBRE_NECESIDAD" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="USUARIO_MODIFICACION" ColumnName="USUARIO_MODIFICACION" />
+                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ACTUALIZAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.ACTUALIZAR_REQUISICION" />
+          <FunctionImportMapping FunctionImportName="APROBAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.APROBAR_REQUISICION" />
+          <FunctionImportMapping FunctionImportName="CONSULTAR_COMENTARIO" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTAR_COMENTARIO">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel.CONSULTAR_COMENTARIO_Result">
+              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTAR_COMENTARIO_Result">
                 <ScalarProperty Name="COD_COMENTARIO" ColumnName="COD_COMENTARIO" />
                 <ScalarProperty Name="COD_ESTADO_REQUISICION" ColumnName="COD_ESTADO_REQUISICION" />
                 <ScalarProperty Name="COD_ROL" ColumnName="COD_ROL" />
@@ -1012,17 +1662,17 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CONSULTAR_ESTADOS" FunctionName="GESTION_HUMANA_HITSSModel.Store.CONSULTAR_ESTADOS">
+          <FunctionImportMapping FunctionImportName="CONSULTAR_ESTADOS" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTAR_ESTADOS">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel.CONSULTAR_ESTADOS_Result">
+              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTAR_ESTADOS_Result">
                 <ScalarProperty Name="COD_ESTADO_REQUISICION" ColumnName="COD_ESTADO_REQUISICION" />
                 <ScalarProperty Name="NOMBRE_ESTADO" ColumnName="NOMBRE_ESTADO" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CONSULTAR_REQUISICIONES_BP" FunctionName="GESTION_HUMANA_HITSSModel.Store.CONSULTAR_REQUISICIONES_BP">
+          <FunctionImportMapping FunctionImportName="CONSULTAR_REQUISICIONES_BP" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTAR_REQUISICIONES_BP">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel.CONSULTAR_REQUISICIONES_BP_Result">
+              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONES_BP_Result">
                 <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
                 <ScalarProperty Name="EMAIL_USUARIO_CREACION" ColumnName="EMAIL_USUARIO_CREACION" />
                 <ScalarProperty Name="COD_CARGO" ColumnName="COD_CARGO" />
@@ -1035,9 +1685,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CONSULTAR_REQUISICIONES_CONTROLLER" FunctionName="GESTION_HUMANA_HITSSModel.Store.CONSULTAR_REQUISICIONES_CONTROLLER">
+          <FunctionImportMapping FunctionImportName="CONSULTAR_REQUISICIONES_CONTROLLER" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTAR_REQUISICIONES_CONTROLLER">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel.CONSULTAR_REQUISICIONES_CONTROLLER_Result">
+              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONES_CONTROLLER_Result">
                 <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
                 <ScalarProperty Name="EMAIL_USUARIO_CREACION" ColumnName="EMAIL_USUARIO_CREACION" />
                 <ScalarProperty Name="COD_CARGO" ColumnName="COD_CARGO" />
@@ -1050,9 +1700,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CONSULTAR_REQUISICIONES_FILTRO" FunctionName="GESTION_HUMANA_HITSSModel.Store.CONSULTAR_REQUISICIONES_FILTRO">
+          <FunctionImportMapping FunctionImportName="CONSULTAR_REQUISICIONES_FILTRO" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTAR_REQUISICIONES_FILTRO">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel.CONSULTAR_REQUISICIONES_FILTRO_Result">
+              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONES_FILTRO_Result">
                 <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
                 <ScalarProperty Name="EMAIL_USUARIO_CREACION" ColumnName="EMAIL_USUARIO_CREACION" />
                 <ScalarProperty Name="COD_CARGO" ColumnName="COD_CARGO" />
@@ -1063,9 +1713,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CONSULTAR_REQUISICIONES_JEFE" FunctionName="GESTION_HUMANA_HITSSModel.Store.CONSULTAR_REQUISICIONES_JEFE">
+          <FunctionImportMapping FunctionImportName="CONSULTAR_REQUISICIONES_JEFE" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTAR_REQUISICIONES_JEFE">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel.CONSULTAR_REQUISICIONES_JEFE_Result">
+              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONES_JEFE_Result">
                 <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
                 <ScalarProperty Name="EMAIL_USUARIO_CREACION" ColumnName="EMAIL_USUARIO_CREACION" />
                 <ScalarProperty Name="COD_CARGO" ColumnName="COD_CARGO" />
@@ -1077,9 +1727,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CONSULTAR_REQUISICIONES_RRHH" FunctionName="GESTION_HUMANA_HITSSModel.Store.CONSULTAR_REQUISICIONES_RRHH">
+          <FunctionImportMapping FunctionImportName="CONSULTAR_REQUISICIONES_RRHH" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTAR_REQUISICIONES_RRHH">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel.CONSULTAR_REQUISICIONES_RRHH_Result">
+              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONES_RRHH_Result">
                 <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
                 <ScalarProperty Name="EMAIL_USUARIO_CREACION" ColumnName="EMAIL_USUARIO_CREACION" />
                 <ScalarProperty Name="COD_CARGO" ColumnName="COD_CARGO" />
@@ -1092,9 +1742,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CONSULTAR_REQUISICIONXID" FunctionName="GESTION_HUMANA_HITSSModel.Store.CONSULTAR_REQUISICIONXID">
+          <FunctionImportMapping FunctionImportName="CONSULTAR_REQUISICIONXID" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTAR_REQUISICIONXID">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel.CONSULTAR_REQUISICIONXID_Result">
+              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONXID_Result">
                 <ScalarProperty Name="COD_REQUISICION" ColumnName="COD_REQUISICION" />
                 <ScalarProperty Name="COD_TIPO_NECESIDAD" ColumnName="COD_TIPO_NECESIDAD" />
                 <ScalarProperty Name="COD_CARGO" ColumnName="COD_CARGO" />
@@ -1172,26 +1822,26 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CONSULTAR_TIPOS_NECESIDAD" FunctionName="GESTION_HUMANA_HITSSModel.Store.CONSULTAR_TIPOS_NECESIDAD">
+          <FunctionImportMapping FunctionImportName="CONSULTAR_TIPOS_NECESIDAD" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTAR_TIPOS_NECESIDAD">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel.CONSULTAR_TIPOS_NECESIDAD_Result">
+              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTAR_TIPOS_NECESIDAD_Result">
                 <ScalarProperty Name="COD_TIPO_NECESIDAD" ColumnName="COD_TIPO_NECESIDAD" />
                 <ScalarProperty Name="NOMBRE_NECESIDAD" ColumnName="NOMBRE_NECESIDAD" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CONSULTAR_TIPOS_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel.Store.CONSULTAR_TIPOS_REQUISICION">
+          <FunctionImportMapping FunctionImportName="CONSULTAR_TIPOS_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTAR_TIPOS_REQUISICION">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel.CONSULTAR_TIPOS_REQUISICION_Result">
+              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTAR_TIPOS_REQUISICION_Result">
                 <ScalarProperty Name="COD_TIPO_REQUISICION" ColumnName="COD_TIPO_REQUISICION" />
                 <ScalarProperty Name="NOMBRE_REQUISICION" ColumnName="NOMBRE_REQUISICION" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="INSERTAR_COMENTARIO" FunctionName="GESTION_HUMANA_HITSSModel.Store.INSERTAR_COMENTARIO" />
-          <FunctionImportMapping FunctionImportName="INSERTAR_HISTORICO" FunctionName="GESTION_HUMANA_HITSSModel.Store.INSERTAR_HISTORICO" />
-          <FunctionImportMapping FunctionImportName="INSERTAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel.Store.INSERTAR_REQUISICION" />
-          <FunctionImportMapping FunctionImportName="RECHAZAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel.Store.RECHAZAR_REQUISICION" />
+          <FunctionImportMapping FunctionImportName="INSERTAR_COMENTARIO" FunctionName="GESTION_HUMANA_HITSSModel2.Store.INSERTAR_COMENTARIO" />
+          <FunctionImportMapping FunctionImportName="INSERTAR_HISTORICO" FunctionName="GESTION_HUMANA_HITSSModel2.Store.INSERTAR_HISTORICO" />
+          <FunctionImportMapping FunctionImportName="INSERTAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.INSERTAR_REQUISICION" />
+          <FunctionImportMapping FunctionImportName="RECHAZAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.RECHAZAR_REQUISICION" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

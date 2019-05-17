@@ -14,14 +14,16 @@ namespace G_H_WEB.Controllers
         public ActionResult Index()
         {
             FILTROREQUISICION _filtro = new FILTROREQUISICION();
-            List<SelectListItem> lista_estado = new LOGICA_REQUISICION().CONSULTAR_ESTADOS();
-            ViewBag.Estado = lista_estado;
-            ViewBag.Tipo = new LOGICA_REQUISICION().CONSULTAR_TIPOS_REQUISICION();
             _filtro.idUsuario = User.Identity.GetUserId();
             _filtro.filtro = TempData["tempFiltro"] as string ?? "";
             _filtro.porUsuario = TempData["buscarPorUsuario"] as string ?? "";
             List<REQUISICIONViewModel> modelo = new LOGICA_REQUISICION().SOLICITAR_REQUISICIONES(_filtro);
+            List<SelectListItem> lista_estado = new LOGICA_REQUISICION().CONSULTAR_ESTADOS();
+
+            ViewBag.Estado = new LOGICA_REQUISICION().CONSULTAR_ESTADOS();
+            ViewBag.Tipo = new LOGICA_REQUISICION().CONSULTAR_TIPOS_REQUISICION();
             ViewBag.valorSeleccionado = _filtro.filtro == "" ? "" : lista_estado.Where(x => x.Text == _filtro.filtro).First().Value;
+
             return View(modelo);
         }
 
