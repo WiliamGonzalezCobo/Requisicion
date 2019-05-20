@@ -59,6 +59,10 @@ namespace UTILS.Settings
             get { return Convert.ToInt32(GetSettings("CodTipoReqLicencia")); }
         }
 
+        public static int EstadoAporbadoController
+        {
+            get { return Convert.ToInt32(GetSettings("EstadoAporbadoController")); }
+        }
 
         #endregion
 

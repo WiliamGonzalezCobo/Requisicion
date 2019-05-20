@@ -18,7 +18,12 @@ namespace G_H_WEB.Controllers
             if (_idReq.HasValue) {
                 model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value)?? new REQUISICIONViewModel();
             }
-            model = new LOGICA_REQUISICION().LLENAR_CONTROLES(model);
+            if (Session["objetoListas"] != null){
+                model = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(model, Session["objetoListas"] as REQUISICIONViewModel);
+            }
+            else {
+                return RedirectToAction("Index", "REQUISICION");
+            }
 
 
             List<SelectListItem> listacargos = model.LIST_NOMBRE_CARGO;
@@ -36,8 +41,18 @@ namespace G_H_WEB.Controllers
         public ActionResult Index(REQUISICIONViewModel modelDatos) {
             try {
                 Boolean _resultado = false;
-                modelDatos.COD_TIPO_REQUISICION = 2;// viene de la web config
+                modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqNoPresupuestada;
+                REQUISICIONViewModel listas = new REQUISICIONViewModel();
+                if (Session["objetoListas"] != null){
+                    listas = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(listas, Session["objetoListas"] as REQUISICIONViewModel);
+                }
+                else{
+                    return RedirectToAction("Index", "REQUISICION");
+                }
+
+                modelDatos.NOMBRE_CARGO = listas.LIST_NOMBRE_CARGO.Where(x => x.Value == modelDatos.COD_CARGO.ToString()).First().Text;
                 _resultado = new LOGICA_REQUISICION().INSERTAR_REQUISICION_LOGICA(modelDatos, User.Identity.Name);
+                
 
                 //INICIO Esta logica es para el POP UP----------
                 NO_PRESUPESTADA_CREACION npc = new NO_PRESUPESTADA_CREACION();

@@ -1,5 +1,6 @@
 ﻿using MODELO_DATOS.MODELO_REQUISICION.LISTAS_API;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -88,6 +89,15 @@ namespace LOGICA.LOGICA_REQUISICION
         public List<HORARIO_TRABAJO> CONSULTAR_HORARIOS_LABORALES_API() {
             HttpStatusCode status;
             List<HORARIO_TRABAJO> respuesta = new BASE_PROXY(urlApi + "HORARIOS_TRABAJO").Get<List<HORARIO_TRABAJO>>(out status, null);
+            return respuesta;
+        }
+
+        public JObject CONSULTAR_PUNTOS_MEDIO_API(string _COD_CARGO)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("_COD_CARGO",_COD_CARGO);
+            HttpStatusCode status;
+            JObject respuesta = new BASE_PROXY(urlApi + "PUESTOS").GetObject(out status, parameters);
             return respuesta;
         }
 

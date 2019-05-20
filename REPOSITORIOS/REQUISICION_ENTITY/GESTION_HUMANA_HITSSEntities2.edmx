@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="GESTION_HUMANA_HITSSModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="GESTION_HUMANA_HITSSModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="COMENTARIO">
           <Key>
             <PropertyRef Name="COD_COMENTARIO" />
@@ -40,6 +40,7 @@
           <Property Name="FECHA_CREACION" Type="date" />
           <Property Name="USARIO_MODIFICACION" Type="varchar" MaxLength="50" />
           <Property Name="FECHA_MODIFICACION" Type="date" />
+          <Property Name="Color" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="HISTORICO">
           <Key>
@@ -438,6 +439,11 @@
           <Parameter Name="COD_REQUISICION" Type="int" Mode="In" />
           <Parameter Name="USUARIO" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION">
+          <Parameter Name="COD_USUARIO" Type="varchar" Mode="In" />
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="COD_ESTADO_REQUISICION" Type="int" Mode="In" />
+        </Function>
         <Function Name="CONSULTAR_COMENTARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION">
           <Parameter Name="COD_REQUISICION" Type="int" Mode="In" />
         </Function>
@@ -619,8 +625,7 @@
             <End Role="REQUISICION" EntitySet="REQUISICION" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GESTION_HUMANA_HITSSModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -664,6 +669,7 @@
           <Property Name="USARIO_MODIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FECHA_MODIFICACION" Type="DateTime" Precision="0" />
           <NavigationProperty Name="HISTORICO" Relationship="Self.FK_REQUISICION_HISTORICO_REQUISICION_ESTADO" FromRole="ESTADO" ToRole="HISTORICO" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="HISTORICO">
           <Key>
@@ -1136,7 +1142,7 @@
             <Parameter Name="USUARIO" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="CONSULTAR_COMENTARIO" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_COMENTARIO_Result)">
-            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
+          <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CONSULTAR_ESTADOS" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_ESTADOS_Result)" />
           <FunctionImport Name="CONSULTAR_REQUISICIONES_BP" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONES_BP_Result)" />
@@ -1145,7 +1151,7 @@
           <FunctionImport Name="CONSULTAR_REQUISICIONES_JEFE" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONES_JEFE_Result)" />
           <FunctionImport Name="CONSULTAR_REQUISICIONES_RRHH" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONES_RRHH_Result)" />
           <FunctionImport Name="CONSULTAR_REQUISICIONXID" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONXID_Result)">
-            <Parameter Name="IDREQUISICION" Mode="In" Type="Int32" />
+          <Parameter Name="IDREQUISICION" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CONSULTAR_TIPOS_NECESIDAD" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_TIPOS_NECESIDAD_Result)" />
           <FunctionImport Name="CONSULTAR_TIPOS_REQUISICION" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_TIPOS_REQUISICION_Result)" />
@@ -1258,6 +1264,11 @@
             <Parameter Name="ROL_RECHAZADOR" Mode="In" Type="Int32" />
             <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
             <Parameter Name="USUARIO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result)">
+            <Parameter Name="COD_USUARIO" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="COD_ESTADO_REQUISICION" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="CONSULTAR_COMENTARIO_Result">
@@ -1407,6 +1418,19 @@
           <Property Type="Int32" Name="COD_TIPO_REQUISICION" Nullable="false" />
           <Property Type="String" Name="NOMBRE_REQUISICION" Nullable="true" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result">
+          <Property Type="Int32" Name="COD_REQUISICION" Nullable="false" />
+          <Property Type="Int32" Name="COD_ESTADO_REQUISICION" Nullable="true" />
+          <Property Type="String" Name="USUARIO_CREACION" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EMAIL_USUARIO_CREACION" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="COD_CARGO" Nullable="true" />
+          <Property Type="String" Name="NOMBRE_CARGO" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="COD_TIPO_REQUISICION" Nullable="true" />
+          <Property Type="String" Name="NOMBRE_REQUISICION" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="true" />
+          <Property Type="String" Name="NOMBRE_ESTADO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1443,6 +1467,7 @@
           <EntitySetMapping Name="ESTADO">
             <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.ESTADO">
               <MappingFragment StoreEntitySet="ESTADO">
+                <ScalarProperty Name="Color" ColumnName="Color" />
                 <ScalarProperty Name="COD_ESTADO_REQUISICION" ColumnName="COD_ESTADO_REQUISICION" />
                 <ScalarProperty Name="NOMBRE_ESTADO" ColumnName="NOMBRE_ESTADO" />
                 <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
@@ -1842,6 +1867,23 @@
           <FunctionImportMapping FunctionImportName="INSERTAR_HISTORICO" FunctionName="GESTION_HUMANA_HITSSModel2.Store.INSERTAR_HISTORICO" />
           <FunctionImportMapping FunctionImportName="INSERTAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.INSERTAR_REQUISICION" />
           <FunctionImportMapping FunctionImportName="RECHAZAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.RECHAZAR_REQUISICION" />
+          <FunctionImportMapping FunctionImportName="CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result">
+                <ScalarProperty Name="COD_REQUISICION" ColumnName="COD_REQUISICION" />
+                <ScalarProperty Name="COD_ESTADO_REQUISICION" ColumnName="COD_ESTADO_REQUISICION" />
+                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
+                <ScalarProperty Name="EMAIL_USUARIO_CREACION" ColumnName="EMAIL_USUARIO_CREACION" />
+                <ScalarProperty Name="COD_CARGO" ColumnName="COD_CARGO" />
+                <ScalarProperty Name="NOMBRE_CARGO" ColumnName="NOMBRE_CARGO" />
+                <ScalarProperty Name="COD_TIPO_REQUISICION" ColumnName="COD_TIPO_REQUISICION" />
+                <ScalarProperty Name="NOMBRE_REQUISICION" ColumnName="NOMBRE_REQUISICION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="NOMBRE_ESTADO" ColumnName="NOMBRE_ESTADO" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

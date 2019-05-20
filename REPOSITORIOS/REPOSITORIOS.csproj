@@ -130,6 +130,9 @@
     <Compile Include="REQUISICION_ENTITY\CONSULTAR_TIPOS_REQUISICION_Result.cs">
       <DependentUpon>GESTION_HUMANA_HITSSEntities2.tt</DependentUpon>
     </Compile>
+    <Compile Include="REQUISICION_ENTITY\CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result.cs">
+      <DependentUpon>GESTION_HUMANA_HITSSEntities2.tt</DependentUpon>
+    </Compile>
     <Compile Include="REQUISICION_ENTITY\DIAS_LABORALES.cs">
       <DependentUpon>GESTION_HUMANA_HITSSEntities2.tt</DependentUpon>
     </Compile>

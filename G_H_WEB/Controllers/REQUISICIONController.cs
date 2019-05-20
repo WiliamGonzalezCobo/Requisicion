@@ -13,23 +13,31 @@ namespace G_H_WEB.Controllers
 
         public ActionResult Index()
         {
+           // seccion filtro principal y consulta principal inicio
             FILTROREQUISICION _filtro = new FILTROREQUISICION();
             _filtro.idUsuario = User.Identity.GetUserId();
-            _filtro.filtro = TempData["tempFiltro"] as string ?? "";
-            _filtro.porUsuario = TempData["buscarPorUsuario"] as string ?? "";
+            if (TempData["tempFiltro"]!=null) { _filtro.cod_estado_requisicion =Convert.ToInt32(TempData["tempFiltro"].ToString());}
+            _filtro.porUsuario = TempData["buscarPorUsuario"] as string ?? null;
+            if (User.IsInRole(SettingsManager.PerfilJefe)) { _filtro.porUsuario = User.Identity.Name; }
             List<REQUISICIONViewModel> modelo = new LOGICA_REQUISICION().SOLICITAR_REQUISICIONES(_filtro);
-            List<SelectListItem> lista_estado = new LOGICA_REQUISICION().CONSULTAR_ESTADOS();
+            // seccion filtro principal y consulta principal fin
 
+            // seccion ViewBag inicio
             ViewBag.Estado = new LOGICA_REQUISICION().CONSULTAR_ESTADOS();
             ViewBag.Tipo = new LOGICA_REQUISICION().CONSULTAR_TIPOS_REQUISICION();
-            ViewBag.valorSeleccionado = _filtro.filtro == "" ? "" : lista_estado.Where(x => x.Text == _filtro.filtro).First().Value;
+            ViewBag.valorSeleccionado = _filtro.cod_estado_requisicion == null ? "": _filtro.cod_estado_requisicion.ToString();
+            // seccion ViewBag fin
 
+            REQUISICIONViewModel MODEL_SESSION = new REQUISICIONViewModel();
+            if (Session["objetoListas"]==null)
+                Session["objetoListas"] = new LOGICA_REQUISICION().LLENAR_CONTROLES(MODEL_SESSION);
             return View(modelo);
         }
 
+
         public ActionResult filtros(string filtro)
         {
-            TempData["tempFiltro"] = filtro;
+            TempData["tempFiltro"] = filtro==""?null:filtro;
             return RedirectToAction("Index");
         }
 

@@ -8,7 +8,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION.LISTAS_API
 {
   public class CATEGORIA_SALARIAL
     {
-        public decimal COD_CATEGORIAS_SALARIAL { get; set; }
+        public int COD_CATEGORIAS_SALARIAL { get; set; }
         public string NOMBRE { get; set; }
     }
 }

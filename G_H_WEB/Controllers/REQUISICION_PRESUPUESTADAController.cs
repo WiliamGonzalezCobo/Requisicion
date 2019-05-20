@@ -17,11 +17,17 @@ namespace G_H_WEB.Controllers
             REQUISICIONViewModel model = new REQUISICIONViewModel();
             try
             {
-                if (_idReq.HasValue)
-                {
-                    model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value);
+                if (_idReq.HasValue){
+                    model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value)?? new REQUISICIONViewModel();
                 }
-                model = new LOGICA_REQUISICION().LLENAR_CONTROLES(model);
+
+
+                if (Session["objetoListas"] != null){
+                    model = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(model, Session["objetoListas"] as REQUISICIONViewModel);
+                }
+                else {
+                    return RedirectToAction("Index", "EQUISICION");
+                }
 
             }
             catch (Exception ex)

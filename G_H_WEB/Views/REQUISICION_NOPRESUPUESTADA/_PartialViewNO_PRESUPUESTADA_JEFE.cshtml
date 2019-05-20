@@ -31,12 +31,12 @@
         <div class="row">
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NOMBRE_TIPO_NECESIDAD, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.DropDownListFor(model => model.COD_TIPO_NECESIDAD, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.COD_TIPO_NECESIDAD,Model.LIST_NOMBRE_TIPO_NECESIDAD, "-- Seleccione --", new { @class = "form-control" })
             </div>
 
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.NOMBRE_CARGO, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.DropDownListFor(model => model.COD_CARGO, (IEnumerable<SelectListItem>)ViewBag.Necesidad, "-- Seleccione --", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.COD_CARGO,Model.LIST_NOMBRE_CARGO, "-- Seleccione --", new { @class = "form-control" })
             </div>
 
             <div class="form-group col-md-12">

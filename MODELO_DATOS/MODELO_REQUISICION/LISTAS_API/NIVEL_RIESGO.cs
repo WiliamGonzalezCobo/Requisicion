@@ -8,7 +8,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION.LISTAS_API
 {
    public class NIVEL_RIESGO
     {
-        public decimal COD_NIVEL_RIESGO { get; set; }
+        public int COD_NIVEL_RIESGO { get; set; }
         public decimal NIVELRIESGO { get; set; }
     }
 }

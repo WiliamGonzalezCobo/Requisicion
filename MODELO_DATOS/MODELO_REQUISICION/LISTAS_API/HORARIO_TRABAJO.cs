@@ -8,7 +8,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION.LISTAS_API
 {
   public  class HORARIO_TRABAJO
     {
-        public decimal COD_HORARIO_TRABAJO { get; set; }
+        public int COD_HORARIO_TRABAJO { get; set; }
         public string NOMBRE { get; set; }
     }
 }

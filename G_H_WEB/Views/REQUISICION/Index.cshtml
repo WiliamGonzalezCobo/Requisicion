@@ -91,12 +91,40 @@
                         <tr style="height:62px;">
 
 
-                            <td class="td-nombre-req"><a class="alineas" href="@Url.Action("Detalle", "REQUISICION",new { _idRequisicion = item.COD_REQUISICION, _tipoRequisicion = item.COD_TIPO_REQUISICION })">@Html.DisplayFor(modelItem => item.USUARIO_CREACION) <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span></a></td>
+                            <td class="td-nombre-req">
+                                @if (!User.IsInRole(SettingsManager.PerfilJefe))
+                                {
+                                    <a class="alineas" href="@Url.Action("Detalle", "REQUISICION", new { _idRequisicion = item.COD_REQUISICION, _tipoRequisicion = item.COD_TIPO_REQUISICION })">
+                                        @Html.DisplayFor(modelItem => item.USUARIO_CREACION)
+                                        <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span>
+                                    </a>
+                                }
+                                else if (User.IsInRole(SettingsManager.PerfilBp))
+                                {
+                                    if (item.COD_ESTADO_REQUISICION == SettingsManager.EstadoAporbadoController)
+                                    {
+                                        <a class="alineas" href="@Url.Action("Detalle", "REQUISICION", new { _idRequisicion = item.COD_REQUISICION, _tipoRequisicion = item.COD_TIPO_REQUISICION })">
+                                            @Html.DisplayFor(modelItem => item.USUARIO_CREACION)
+                                            <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span>
+                                        </a>
+                                    }
+                                    else
+                                    {
+
+                                    @Html.DisplayFor(modelItem => item.USUARIO_CREACION)
+                                    <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span>
+                                    }
+                                } else
+                                        {
+                                            @Html.DisplayFor(modelItem => item.USUARIO_CREACION)
+                                            <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span>
+                                }
+
+                            </td>
                             <td class="td-causal">@Html.DisplayFor(modelItem => item.NOMBRE_CARGO)<span class="td-email">@Html.DisplayFor(mItem => item.COD_CARGO)</span></td>
                             <td class="td-acciones">@Html.DisplayFor(modelItem => item.NOMBRE_TIPO_REQUISICION)</td>
                             <td>@Html.DisplayFor(modelItem => item.FECHA_CREACION)</td>
-                            <td>@Html.DisplayFor(modelItem => item.NOMBRE_ESTADO_REQUISICION)</td>
-                            <td class="d-none">@Html.DisplayFor(modelItem => item.COD_REQUISICION)</td>
+                            <td><font color="@item.COLORES_ESTADOS">@Html.DisplayFor(modelItem => item.NOMBRE_ESTADO_REQUISICION)</font></td>
                         </tr>
 
                     }
@@ -185,13 +213,12 @@
 
 
         $('#filtroEstados').change(function () {
-            var buscar = $('#filtroEstados option:selected').text();
+            var buscar = $('#filtroEstados').val();
             var url = '@Url.Action("filtros", "REQUISICION", new { filtro = "valor_filtro" })';
             window.location.href = url.replace('valor_filtro', buscar);
         });
 
         $("#filtroPorUsuario").on("click", function () {
-            debugger;
             var buscar = $("#filtroPorUsuarioValor").val();
             var url = '@Url.Action("buscarPorUsuario", "REQUISICION", new { filtro = "valor_filtro" })';
             window.location.href = url.replace('valor_filtro', buscar);

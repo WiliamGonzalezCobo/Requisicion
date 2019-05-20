@@ -9,7 +9,8 @@ namespace MODELO_DATOS.MODELO_REQUISICION
   public class FILTROREQUISICION
     {
         public string idUsuario  { get; set; }
-        public string filtro { get; set; }
+        public Nullable<int> cod_estado_requisicion { get; set; }
+        public string estado_requisicion { get; set; }
         public string porUsuario { get; set; }
     }
 }

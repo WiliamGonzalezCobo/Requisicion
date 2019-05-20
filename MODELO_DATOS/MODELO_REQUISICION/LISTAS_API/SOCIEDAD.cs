@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MODELO_DATOS.MODELO_REQUISICION.LISTAS_API
 {
  public   class SOCIEDAD {
-        public decimal COD_SOCIEDAD { get; set; }
+        public int COD_SOCIEDAD { get; set; }
         public string NOMBRE { get; set; }
     }
 }

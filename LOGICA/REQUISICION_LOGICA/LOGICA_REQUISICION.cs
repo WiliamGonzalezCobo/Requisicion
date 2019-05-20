@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using LOGICA.LOGICA_REQUISICION;
 using MODELO_DATOS.MODELO_REQUISICION;
+using MODELO_DATOS.MODELO_REQUISICION.LISTAS_API;
+using Newtonsoft.Json.Linq;
 using REPOSITORIOS.REQUISICION.ACCESS;
 
 namespace LOGICA.REQUISICION_LOGICA
@@ -29,9 +32,41 @@ namespace LOGICA.REQUISICION_LOGICA
             MODEL_RETURN.LIST_NOMBRE_TIPO_SALARIO = CONSULTAR_TIPOS_SALARIOS();
             MODEL_RETURN.LIST_NOMBRE_CARGO = CONSULTAR_CARGOS();
             MODEL_RETURN.LIST_NOMBRE_TIPO_REQUISICION = CONSULTAR_TIPOS_REQUISICION();
+            MODEL_RETURN.LIST_DIA_LABORAL_DESDE = CONSULTAR_DIAS_LABORALES();
+            MODEL_RETURN.LIST_DIA_LABORAL_HASTA = CONSULTAR_JORNADAS_LABORALES();// ESTE SOBRA
+
+
 
             return MODEL_RETURN;
         }
+
+        public REQUISICIONViewModel LLENAR_CONTROLES_SESSSION(REQUISICIONViewModel MODEL_RETURN, REQUISICIONViewModel MODEL_ENTRADA)
+        {
+
+            MODEL_RETURN.LIST_NOMBRE_TIPO_NECESIDAD = MODEL_ENTRADA.LIST_NOMBRE_TIPO_NECESIDAD;
+            MODEL_RETURN.LIST_NOMBRE_ESTADO_REQUISICION = MODEL_ENTRADA.LIST_NOMBRE_ESTADO_REQUISICION;
+            MODEL_RETURN.LIST_NOMBRE_CECO = MODEL_ENTRADA.LIST_NOMBRE_CECO;
+            MODEL_RETURN.LIST_NOMBRE_EQIPO_VENTAS = MODEL_ENTRADA.LIST_NOMBRE_EQIPO_VENTAS;
+            MODEL_RETURN.LIST_NIVEL_RIESGO_ARL = MODEL_ENTRADA.LIST_NIVEL_RIESGO_ARL;
+            MODEL_RETURN.LIST_NOMBRE_CATEGORIA_ED = MODEL_ENTRADA.LIST_NOMBRE_CATEGORIA_ED;
+            MODEL_RETURN.LIST_NOMBRE_SOCIEDAD = MODEL_ENTRADA.LIST_NOMBRE_SOCIEDAD;
+            MODEL_RETURN.LIST_NOMBRE_TIPO_CONTRATO = MODEL_ENTRADA.LIST_NOMBRE_TIPO_CONTRATO;
+            MODEL_RETURN.LIST_NOMBRE_GERENCIA = MODEL_ENTRADA.LIST_NOMBRE_GERENCIA;
+            MODEL_RETURN.LIST_NOMBRE_UBICACION_FISICA = MODEL_ENTRADA.LIST_NOMBRE_UBICACION_FISICA;
+            MODEL_RETURN.LIST_NOMBRE_JORNADA_LABORAL = MODEL_ENTRADA.LIST_NOMBRE_JORNADA_LABORAL;
+            MODEL_RETURN.LIST_NOMBRE_CIUDAD_TRABAJO = MODEL_ENTRADA.LIST_NOMBRE_CIUDAD_TRABAJO;
+            MODEL_RETURN.LIST_NOMBRE_CATEGORIA = MODEL_ENTRADA.LIST_NOMBRE_CATEGORIA;
+            MODEL_RETURN.LIST_NOMBRE_TIPO_SALARIO = MODEL_ENTRADA.LIST_NOMBRE_TIPO_SALARIO;
+            MODEL_RETURN.LIST_NOMBRE_CARGO = MODEL_ENTRADA.LIST_NOMBRE_CARGO;
+            MODEL_RETURN.LIST_NOMBRE_TIPO_REQUISICION = MODEL_ENTRADA.LIST_NOMBRE_TIPO_REQUISICION;
+            MODEL_RETURN.LIST_DIA_LABORAL_DESDE = MODEL_ENTRADA.LIST_DIA_LABORAL_DESDE;
+            MODEL_RETURN.LIST_DIA_LABORAL_HASTA = MODEL_ENTRADA.LIST_DIA_LABORAL_HASTA;
+
+
+            return MODEL_RETURN;
+        }
+
+
         /// <summary>
         /// desde base de datos
         /// mapeada
@@ -146,12 +181,11 @@ namespace LOGICA.REQUISICION_LOGICA
         }
 
         private List<SelectListItem> CONSULTAR_JORNADAS_LABORALES() {
-            List<SelectListItem> jornadas = new List<SelectListItem>(){
-                new SelectListItem() {Text="Tiempo Parcial", Value="1"},
-                new SelectListItem() { Text="Tiempo Completo", Value="2"},
-                new SelectListItem() { Text="Medio Tiempo", Value="3"}
-            };
-            return jornadas;
+            return new PROXY().CONSULTAR_JORNADAS_LABORALES_API().Select(x => new SelectListItem()
+            {
+                Text = x.NOMBRE,
+                Value = x.COD_JORNADA_TRABAJO.ToString()
+            }).ToList();
         }
 
         /// <summary>
@@ -195,7 +229,7 @@ namespace LOGICA.REQUISICION_LOGICA
         private List<SelectListItem> CONSULTAR_CARGOS() {
            return new PROXY().CONSULTAR_CARGOS_API().Select(x => new SelectListItem(){
                Text = x.NOMBRE,
-               Value = x.COD_CARGO.ToString()
+               Value =Convert.ToInt32(x.COD_CARGO).ToString()
            }).ToList(); ;
         }
         /// <summary>
@@ -212,70 +246,35 @@ namespace LOGICA.REQUISICION_LOGICA
             }).ToList();
         }
 
-        public List<REQUISICIONViewModel> SOLICITAR_REQUISICIONES(FILTROREQUISICION _filtro)
+        /// <summary>
+        /// DESDE BASE DE DATOS
+        /// MAPEDO
+        /// </summary>
+        /// <returns></returns>
+        public List<SelectListItem> CONSULTAR_DIAS_LABORALES()
         {
-            string filtroDb = _filtro.filtro.ToLower() == "Activos" ? "" : _filtro.filtro;
-            List<REQUISICIONViewModel> modelo = new List<REQUISICIONViewModel>();
-            for (int i = 0; i < 2; i++)
+            return new PROXY().CONSULTAR_DIAS_LABORALES_API().Select(x => new SelectListItem()
             {
-                REQUISICIONViewModel item = new REQUISICIONViewModel();
-                item.COD_REQUISICION = i;
-                item.COD_CARGO = 20738780;
-                item.NOMBRE_CARGO = "Ingeniero Desarrollo";
-                item.EMAIL_USUARIO_CREACION = "martinezluir@globalhitss.com";
-                item.USUARIO_CREACION = "Luis David Martinez Rojas" + i;
-                item.NOMBRE_TIPO_REQUISICION = "Presupuestada";
-                item.NOMBRE_ESTADO_REQUISICION = "Registrada";
-                item.FECHA_CREACION = DateTime.Now.AddDays(-i).ToShortDateString();
-                item.COD_TIPO_REQUISICION = 2;
-
-                modelo.Add(item);
-            }
-            modelo.Add(new REQUISICIONViewModel()
-            {
-                COD_REQUISICION = 3,
-                COD_CARGO = 758913,
-                NOMBRE_CARGO = "Ingeniero Desarrollo",
-                EMAIL_USUARIO_CREACION = "martinezluir@globalhitss.com",
-                USUARIO_CREACION = "Luis David Martinez Rojas 3",
-                NOMBRE_TIPO_REQUISICION = "No Presupuestada",
-                NOMBRE_ESTADO_REQUISICION = "Verificada BP",
-                FECHA_CREACION = DateTime.Now.ToShortDateString(),
-                COD_TIPO_REQUISICION = 2
-            });
-            modelo.Add(new REQUISICIONViewModel()
-            {
-                COD_REQUISICION = 123456789,
-                COD_CARGO = 758913,
-                NOMBRE_CARGO = "Ingeniero Desarrollo",
-                EMAIL_USUARIO_CREACION = "martinezluir@globalhitss.com",
-                USUARIO_CREACION = "Luis David Martinez Rojas",
-                NOMBRE_TIPO_REQUISICION = "No Presupuestada",
-                NOMBRE_ESTADO_REQUISICION = "Verificada BP",
-                FECHA_CREACION = DateTime.Now.ToShortDateString(),
-                COD_TIPO_REQUISICION = 2
-            });
-            modelo.Add(new REQUISICIONViewModel()
-            {
-                COD_REQUISICION = 4,
-                COD_CARGO = 758913,
-                NOMBRE_CARGO = "Ingeniero Desarrollo",
-                NOMBRE_TIPO_REQUISICION = "No Presupuestada",
-                NOMBRE_ESTADO_REQUISICION = "Verificada BP",
-                FECHA_CREACION = DateTime.Now.ToShortDateString(),
-                EMAIL_USUARIO_CREACION = "williamFabian@globalhitss.com",
-                USUARIO_CREACION = "Luis David Martinez Rojas",
-                COD_TIPO_REQUISICION = 1
-            });
-
-
-            return modelo;
+                Text = x.NOMBRE,
+                Value = x.COD_DIAS_LABORAL.ToString()
+            }).ToList();
         }
+
+        public List<REQUISICIONViewModel> SOLICITAR_REQUISICIONES(FILTROREQUISICION _filtro) {
+            return new ACCES_REQUISICION().CONSULTAR_REQUISICION_PANTALLA_INICIO(_filtro);
+        }
+
+   
 
         public REQUISICIONViewModel BUSCAR_REQUISICIONES(int idRequsicion){
             REQUISICIONViewModel objReqModel = null;
             try {
-                objReqModel = null;
+                objReqModel = new ACCES_REQUISICION().CONSULTAR_REQUISICION_X_ID_ACCES(idRequsicion);
+                //JObject _puntosMedio = new PROXY().CONSULTAR_PUNTOS_MEDIO_API(objReqModel.COD_CARGO.ToString());
+                //objReqModel.PUNTO_MEDIO_80 =Convert.ToDecimal(_puntosMedio.GetValue("puntO_MEDIO_80_PORCIENTO"));
+                //objReqModel.PUNTO_MEDIO_100 = Convert.ToDecimal(_puntosMedio.GetValue("puntO_MEDIO_100_PORCIENTO"));
+                //objReqModel.PUNTO_MEDIO_120 = Convert.ToDecimal(_puntosMedio.GetValue("puntO_MEDIO_120_PORCIENTO"));
+
             }
             catch (Exception ex) {
                 throw ex;

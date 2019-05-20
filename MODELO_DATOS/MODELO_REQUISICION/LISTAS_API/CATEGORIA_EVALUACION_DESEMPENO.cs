@@ -8,7 +8,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION.LISTAS_API
 {
    public class CATEGORIA_EVALUACION_DESEMPENO
     {
-        public decimal COD_CATEGORIA_EVALUACION_DESEMPENO { get; set; }
+        public int COD_CATEGORIA_EVALUACION_DESEMPENO { get; set; }
         public string NOMBRE { get; set; }
     }
 }

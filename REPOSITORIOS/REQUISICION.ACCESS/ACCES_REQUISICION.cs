@@ -57,97 +57,110 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
 
             return lst;
         }
+        public List<REQUISICIONViewModel> CONSULTAR_REQUISICION_PANTALLA_INICIO(FILTROREQUISICION _FILTRO) {
+            using (var db = new GESTION_HUMANA_HITSSEntities2()) {
+                ObjectResult<CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result> resultadoSP = 
+                    db.CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION(_FILTRO.idUsuario, _FILTRO.porUsuario,_FILTRO.cod_estado_requisicion);
+                List<REQUISICIONViewModel> retorno = resultadoSP.Select(x => new REQUISICIONViewModel() {
+                    COD_REQUISICION=x.COD_REQUISICION,
+                    COD_ESTADO_REQUISICION=x.COD_ESTADO_REQUISICION??0,
+                    USUARIO_CREACION=x.USUARIO_CREACION,
+                    EMAIL_USUARIO_CREACION=x.EMAIL_USUARIO_CREACION,
+                    COD_CARGO=x.COD_CARGO??0,
+                    NOMBRE_CARGO=x.NOMBRE_CARGO,
+                    COD_TIPO_REQUISICION=x.COD_TIPO_REQUISICION??0,
+                    NOMBRE_TIPO_REQUISICION=x.NOMBRE_REQUISICION,
+                    FECHA_CREACION=x.FECHA_CREACION.ToString(),
+                    NOMBRE_ESTADO_REQUISICION=x.NOMBRE_ESTADO,
+                    COLORES_ESTADOS=x.Color
+                }).ToList();
+                return retorno;
+             }
+        }
 
-        public REQUISICIONViewModel CONSULTAR_REQUISICION_X_ID(int idReq)
+        public REQUISICIONViewModel CONSULTAR_REQUISICION_X_ID_ACCES(int idReq)
         {
-            REQUISICIONViewModel requicisionModel = null;
+            REQUISICIONViewModel requicisionModel = new REQUISICIONViewModel();
             try
             {
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
-                    var queryReq =
-                         (from r in db.REQUISICION
-                          where r.COD_REQUISICION.Equals(idReq)
-                          select r).First();
-
-                    requicisionModel = new REQUISICIONViewModel()
-                    {
-                        COD_REQUISICION = queryReq.COD_REQUISICION,
-                        COD_TIPO_NECESIDAD = queryReq.COD_TIPO_NECESIDAD.HasValue ? queryReq.COD_TIPO_NECESIDAD.Value : 0,
-                        COD_CARGO = queryReq.COD_CARGO.HasValue ? queryReq.COD_CARGO.Value : 0,
-                        NOMBRE_CARGO = queryReq.NOMBRE_CARGO,
-                        ORDEN = queryReq.ORDEN,
-                        COD_CECO = Convert.ToInt32(queryReq.COD_CECO),//en base de datos es string
-                        NOMBRE_CECO = queryReq.NOMBRE_CECO,
-                        COD_TIPO_REQUISICION = queryReq.COD_TIPO_REQUISICION.HasValue ? queryReq.COD_TIPO_REQUISICION.Value : 0,
-                        FECHA_INICIO = queryReq.FECHA_INICIO.HasValue ? queryReq.FECHA_INICIO.Value : DateTime.Now,
-                        FECHA_FIN = queryReq.FECHA_FIN.HasValue ? queryReq.FECHA_FIN.Value : new DateTime(),
-                        ES_MODIFICACION = queryReq.ES_MODIFICACION.HasValue ? queryReq.ES_MODIFICACION.Value : false,
-                        OBSERVACION = queryReq.OBSERVACION,
-                        COD_ESTADO_REQUISICION = queryReq.COD_ESTADO_REQUISICION.HasValue ? queryReq.COD_ESTADO_REQUISICION.Value : 0,
-                        USUARIO_CREACION = queryReq.USUARIO_CREACION,
-                        FECHA_CREACION = queryReq.FECHA_CREACION.HasValue ? queryReq.FECHA_CREACION.Value.ToString() : new DateTime().ToString(), //en el modelo es string
-                        USUARIO_MODIFICACION = queryReq.USUARIO_MODIFICACION,
-                        FECHA_MODIFICACION = queryReq.FECHA_MODIFICACION.HasValue ? queryReq.FECHA_MODIFICACION.Value : new DateTime(),
-                        COD_GERENCIA = queryReq.COD_GERENCIA.HasValue ? queryReq.COD_GERENCIA.Value : 0,
-                        NOMBRE_GERENCIA = queryReq.NOMBRE_GERENCIA,
-                        COD_TIPO_CONTRATO = queryReq.COD_TIPO_CONTRATO.HasValue ? queryReq.COD_TIPO_CONTRATO.Value : 0,
-                        NOMBRE_TIPO_CONTRATO = queryReq.NOMBRE_TIPO_CONTRATO,
-                        COD_TIPO_DOCUMENTO = queryReq.COD_TIPO_DOCUMENTO.HasValue ? queryReq.COD_TIPO_DOCUMENTO.Value : 0,
-                        NUMERO_DOCUMENTO_EMPLEADO = queryReq.NUMERO_DOCUMENTO_EMPLEADO,
-                        NOMBRE_EMPLEADO = queryReq.NOMBRE_EMPLEADO,
-                        JEFE_INMEDIATO = queryReq.JEFE_INMEDIATO,
-                        COD_SOCIEDAD = queryReq.COD_SOCIEDAD.HasValue ? queryReq.COD_SOCIEDAD.Value : 0,
-                        NOMBRE_SOCIEDAD = queryReq.NOMBRE_SOCIEDAD,
-                        COD_EQUIPO_VENTAS = queryReq.COD_EQUIPO_VENTAS.HasValue ? queryReq.COD_EQUIPO_VENTAS.Value : 0,
-                        NOMBRE_EQIPO_VENTAS = queryReq.NOMBRE_EQUIPO_VENTAS,
-                        COD_CIUDAD_TRABAJO = queryReq.COD_CIUDAD_TRABAJO.HasValue ? queryReq.COD_CIUDAD_TRABAJO.Value : 0,
-                        NOMBRE_CIUDAD_TRABAJO = queryReq.NOMBRE_CIUDAD_TRABAJO,
-                        COD_DANE_CIUDAD_TRABAJO = queryReq.COD_DANE_CIUDAD_TRABAJO.HasValue ? queryReq.COD_DANE_CIUDAD_TRABAJO.Value : 0,
-                        COD_UBICACION_FISICA = queryReq.COD_UBICACION_FISICA.HasValue ? queryReq.COD_UBICACION_FISICA.Value : 0,
-                        NOMBRE_UBICACION_FISICA = queryReq.NOMBRE_UBICACION_FISICA,
-                        COD_NIVEL_RIESGO_ARL = queryReq.COD_NIVEL_RIESGO_ARL.HasValue ? queryReq.COD_NIVEL_RIESGO_ARL.Value : 0,
-                        NIVEL_RIESGO_ARL = queryReq.NIVEL_RIESGO_ARL,
-                        COD_CATEGORIA_ED = queryReq.COD_CATEGORIA_ED.HasValue ? queryReq.COD_CATEGORIA_ED.Value : 0,
-                        NOMBRE_CATEGORIA_ED = queryReq.NOMBRE_CATEGORIA_ED,
-                        CARGO_CRITICO = queryReq.CARGO_CRITICO.HasValue ? queryReq.CARGO_CRITICO.Value : false,
-                        COD_JORNADA_LABORAL = queryReq.COD_JORNADA_LABORAL.HasValue ? queryReq.COD_JORNADA_LABORAL.Value : 0,
-                        NOMBRE_JORNADA_LABORAL = queryReq.NOMBRE_JORNADA_LABORAL,
-                        HORARIO_LABORAL_DESDE = queryReq.HORARIO_LABORAL_DESDE,
-                        HORARIO_LABORAL_HASTA = queryReq.HORARIO_LABORAL_HASTA,
-                        COD_DIA_LABORAL_DESDE = queryReq.COD_DIA_LABORAL_DESDE.HasValue ? queryReq.COD_DIA_LABORAL_DESDE.Value : 0,
-                        COD_DIA_LABORAL_HASTA = queryReq.COD_DIA_LABORAL_HASTA.HasValue ? queryReq.COD_DIA_LABORAL_HASTA.Value : 0,
-                        POSICION = queryReq.POSICION,
-                        EMPRESA_TEMPORAL = queryReq.EMPRESA_TEMPORAL,
-                        SALARIO_FIJO = queryReq.SALARIO_FIJO.HasValue ? queryReq.SALARIO_FIJO.Value : 0,
-                        PORCENTAJE_SALARIO_FIJO = queryReq.PORCENTAJE_SALARIO_FIJO.HasValue ? queryReq.PORCENTAJE_SALARIO_FIJO.Value : 0,
-                        SALARIO_VARIABLE = queryReq.SALARIO_VARIABLE.HasValue ? queryReq.SALARIO_VARIABLE.Value : 0,
-                        PORCENTAJE_SALARIO_VARIABLE = queryReq.PORCENTAJE_SALARIO_VARIABLE.HasValue ? queryReq.PORCENTAJE_SALARIO_VARIABLE.Value : 0,
-                        SOBREREMUNERACION = queryReq.SOBREREMUNERACION.HasValue ? queryReq.SOBREREMUNERACION.Value : 0,
-                        PORCENTAJE_SOBREREMUNERACION = queryReq.PORCENTAJE_SOBREREMUNERACION.HasValue ? queryReq.PORCENTAJE_SOBREREMUNERACION.Value : 0,
-                        EXTRA_FIJA = queryReq.EXTRA_FIJA.HasValue ? queryReq.EXTRA_FIJA.Value : 0,
-                        RECARGO_NOCTURNO = queryReq.RECARGO_NOCTURNO.HasValue ? queryReq.RECARGO_NOCTURNO.Value : 0,
-                        MEDIO_TRANSPORTE = queryReq.MEDIO_TRANSPORTE.HasValue ? queryReq.MEDIO_TRANSPORTE.Value : 0,
-                        SALARIO_TOTAL = queryReq.SALARIO_TOTAL.HasValue ? queryReq.SALARIO_TOTAL.Value : 0,
-                        BONO_ANUAL = queryReq.BONO_ANUAL.HasValue ? queryReq.BONO_ANUAL.Value : 0,
-                        NUMERO_SALARIOS = queryReq.NUMERO_SALARIOS.HasValue ? queryReq.NUMERO_SALARIOS.Value : 0,
-                        MESES_GARANTIZADOS = queryReq.MESES_GARANTIZADOS.HasValue ? queryReq.MESES_GARANTIZADOS.Value : 0,
-                        COD_TIPO_SALARIO = queryReq.COD_TIPO_SALARIO.HasValue ? queryReq.COD_TIPO_SALARIO.Value : 0,
-                        NOMBRE_TIPO_SALARIO = queryReq.NOMBRE_TIPO_SALARIO,
-                        FACTOR_PRESTACIONAL = queryReq.FACTOR_PRESTACIONAL.HasValue ? queryReq.FACTOR_PRESTACIONAL.Value : 0,
-                        INGRESO_PROM_MENSUAL = queryReq.INGRESO_PROM_MENSUAL.HasValue ? queryReq.INGRESO_PROM_MENSUAL.Value : 0,
-                        INGRESO_PROM_ANUAL = queryReq.INGRESO_PROM_ANUAL.HasValue ? queryReq.INGRESO_PROM_ANUAL.Value : 0,
-                        MERCADO = queryReq.MERCADO,
-                        COD_CATEGORIA = queryReq.COD_CATEGORIA.HasValue ? queryReq.COD_CATEGORIA.Value : 0,
-                        NOMBRE_CATEGORIA = queryReq.NOMBRE_CATEGORIA,
-                        PUNTO_MEDIO_80 = queryReq.PUNTO_MEDIO_80.HasValue ? queryReq.PUNTO_MEDIO_80.Value : 0,
-                        PUNTO_MEDIO_100 = queryReq.PUNTO_MEDIO_100.HasValue ? queryReq.PUNTO_MEDIO_100.Value : 0,
-                        PUNTO_MEDIO_120 = queryReq.PUNTO_MEDIO_120.HasValue ? queryReq.PUNTO_MEDIO_120.Value : 0,
-                        POSICIONAMIENTO = queryReq.POSICIONAMIENTO.HasValue ? queryReq.POSICIONAMIENTO.Value : 0,
-                        EMAIL_USUARIO_CREACION = queryReq.EMAIL_USUARIO_CREACION,
-                        LOGIN_EMPLEADO = queryReq.LOGIN_EMPLEADO
-                    };
-                }
+                    CONSULTAR_REQUISICIONXID_Result respuesta = db.CONSULTAR_REQUISICIONXID(idReq).First();
+                    requicisionModel.COD_REQUISICION = respuesta.COD_REQUISICION;
+                    requicisionModel.COD_TIPO_NECESIDAD = respuesta.COD_TIPO_NECESIDAD??0;
+                    requicisionModel.COD_CARGO = respuesta.COD_CARGO??0;
+                    requicisionModel.NOMBRE_CARGO = respuesta.NOMBRE_CARGO;
+                    requicisionModel.ORDEN = respuesta.ORDEN;
+                    requicisionModel.COD_CECO = respuesta.COD_CARGO??0;
+                    requicisionModel.NOMBRE_CECO = respuesta.NOMBRE_CARGO;
+                    requicisionModel.COD_TIPO_REQUISICION = respuesta.COD_TIPO_REQUISICION??0;
+                    requicisionModel.FECHA_INICIO = respuesta.FECHA_INICIO??DateTime.Now;
+                    requicisionModel.FECHA_FIN = respuesta.FECHA_FIN??DateTime.Now;
+                    requicisionModel.ES_MODIFICACION = respuesta.ES_MODIFICACION??false;
+                    requicisionModel.OBSERVACION = respuesta.OBSERVACION;
+                    requicisionModel.COD_ESTADO_REQUISICION = respuesta.COD_ESTADO_REQUISICION??0;
+                    requicisionModel.USUARIO_CREACION = respuesta.USUARIO_CREACION;
+                    requicisionModel.FECHA_CREACION = respuesta.FECHA_CREACION.ToString()??DateTime.Now.ToShortDateString();
+                    requicisionModel.USUARIO_MODIFICACION = respuesta.USUARIO_MODIFICACION;
+                    requicisionModel.FECHA_MODIFICACION = respuesta.FECHA_MODIFICACION??DateTime.Now;
+                    requicisionModel.COD_GERENCIA = respuesta.COD_GERENCIA??0;
+                    requicisionModel.NOMBRE_GERENCIA = respuesta.NOMBRE_GERENCIA;
+                    requicisionModel.COD_TIPO_CONTRATO = respuesta.COD_TIPO_CONTRATO??0;
+                    requicisionModel.NOMBRE_TIPO_CONTRATO = respuesta.NOMBRE_TIPO_CONTRATO;
+                    requicisionModel.COD_TIPO_DOCUMENTO = respuesta.COD_TIPO_DOCUMENTO ?? 0;
+                    requicisionModel.NUMERO_DOCUMENTO_EMPLEADO = respuesta.NUMERO_DOCUMENTO_EMPLEADO;
+                    requicisionModel.NOMBRE_EMPLEADO = respuesta.NOMBRE_EMPLEADO;
+                    requicisionModel.JEFE_INMEDIATO = respuesta.JEFE_INMEDIATO;
+                    requicisionModel.COD_SOCIEDAD = respuesta.COD_SOCIEDAD??0;
+                    requicisionModel.NOMBRE_SOCIEDAD = respuesta.NOMBRE_SOCIEDAD;
+                    requicisionModel.COD_EQUIPO_VENTAS = respuesta.COD_EQUIPO_VENTAS??0;
+                    requicisionModel.NOMBRE_EQIPO_VENTAS = respuesta.NOMBRE_EQUIPO_VENTAS;
+                    requicisionModel.COD_CIUDAD_TRABAJO = respuesta.COD_CIUDAD_TRABAJO??0;
+                    requicisionModel.NOMBRE_CIUDAD_TRABAJO = respuesta.NOMBRE_CIUDAD_TRABAJO;
+                    requicisionModel.COD_DANE_CIUDAD_TRABAJO = respuesta.COD_DANE_CIUDAD_TRABAJO??0;
+                    requicisionModel.COD_UBICACION_FISICA = respuesta.COD_UBICACION_FISICA??0;
+                    requicisionModel.NOMBRE_UBICACION_FISICA = respuesta.NOMBRE_UBICACION_FISICA;
+                    requicisionModel.COD_NIVEL_RIESGO_ARL = respuesta.COD_NIVEL_RIESGO_ARL??0;
+                    requicisionModel.NIVEL_RIESGO_ARL = respuesta.NIVEL_RIESGO_ARL;
+                    requicisionModel.COD_CATEGORIA_ED = respuesta.COD_CATEGORIA_ED??0;
+                    requicisionModel.NOMBRE_CATEGORIA_ED = respuesta.NOMBRE_CATEGORIA_ED;
+                    requicisionModel.CARGO_CRITICO = respuesta.CARGO_CRITICO ?? false;
+                    requicisionModel.COD_JORNADA_LABORAL = respuesta.COD_JORNADA_LABORAL??0;
+                    requicisionModel.NOMBRE_JORNADA_LABORAL = respuesta.NOMBRE_JORNADA_LABORAL;
+                    requicisionModel.HORARIO_LABORAL_DESDE = respuesta.HORARIO_LABORAL_DESDE;
+                    //requicisionModel.HORARIO_LABORAL_HASTA = respuesta.HORARIO_LABORAL_DESDE;
+                    requicisionModel.COD_DIA_LABORAL_DESDE = respuesta.COD_DIA_LABORAL_DESDE??0;
+                    //requicisionModel.COD_DIA_LABORAL_HASTA = respuesta.COD_DIA_LABORAL_HASTA??0; 
+                    requicisionModel.POSICION = respuesta.POSICION;
+                    requicisionModel.EMPRESA_TEMPORAL = respuesta.EMPRESA_TEMPORAL;
+                    requicisionModel.SALARIO_FIJO = respuesta.SALARIO_FIJO??0;
+                    requicisionModel.PORCENTAJE_SALARIO_FIJO = respuesta.PORCENTAJE_SALARIO_FIJO??0;
+                    requicisionModel.SALARIO_VARIABLE = respuesta.SALARIO_VARIABLE ?? 0;
+                    requicisionModel.PORCENTAJE_SALARIO_VARIABLE = respuesta.PORCENTAJE_SALARIO_VARIABLE ?? 0;
+                    requicisionModel.SOBREREMUNERACION = respuesta.SOBREREMUNERACION??0;
+                    requicisionModel.PORCENTAJE_SOBREREMUNERACION = respuesta.PORCENTAJE_SOBREREMUNERACION??0;
+                    requicisionModel.EXTRA_FIJA = respuesta.EXTRA_FIJA??0;
+                    requicisionModel.RECARGO_NOCTURNO = respuesta.RECARGO_NOCTURNO??0;
+                    requicisionModel.MEDIO_TRANSPORTE = respuesta.MEDIO_TRANSPORTE??0;
+                    requicisionModel.SALARIO_TOTAL = respuesta.SALARIO_TOTAL??0;
+                    requicisionModel.BONO_ANUAL = respuesta.BONO_ANUAL??0;
+                    requicisionModel.NUMERO_SALARIOS = respuesta.NUMERO_SALARIOS??0;
+                    requicisionModel.MESES_GARANTIZADOS = respuesta.MESES_GARANTIZADOS??0;
+                    requicisionModel.COD_TIPO_SALARIO = respuesta.COD_TIPO_REQUISICION??0;
+                    requicisionModel.NOMBRE_TIPO_SALARIO = respuesta.NOMBRE_TIPO_SALARIO;
+                    //requicisionModel.FACTOR_PRESTACIONA = respuesta.FACTOR_PRESTACIONAL;  no existe
+                    requicisionModel.INGRESO_PROM_MENSUAL = respuesta.INGRESO_PROM_MENSUAL??0;
+                    requicisionModel.INGRESO_PROM_ANUAL = respuesta.INGRESO_PROM_ANUAL??0;
+                    requicisionModel.MERCADO = respuesta.MERCADO;
+                    requicisionModel.COD_CATEGORIA = respuesta.COD_CATEGORIA??0;
+                    requicisionModel.NOMBRE_CATEGORIA = respuesta.NOMBRE_CATEGORIA;
+                    requicisionModel.PUNTO_MEDIO_80 = respuesta.PUNTO_MEDIO_80??0;//desde api
+                    requicisionModel.PUNTO_MEDIO_100 = respuesta.PUNTO_MEDIO_100??0;// desde api
+                    requicisionModel.PUNTO_MEDIO_120 = respuesta.PUNTO_MEDIO_120??0; // desde api
+                    requicisionModel.POSICIONAMIENTO = respuesta.POSICIONAMIENTO??0;
+                    requicisionModel.EMAIL_USUARIO_CREACION = respuesta.EMAIL_USUARIO_CREACION;
+                    requicisionModel.LOGIN_EMPLEADO = respuesta.LOGIN_EMPLEADO; 
+    }
             }
             catch (Exception ex)
             {

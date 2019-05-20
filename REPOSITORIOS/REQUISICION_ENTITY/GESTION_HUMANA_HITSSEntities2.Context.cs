@@ -822,5 +822,22 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RECHAZAR_REQUISICION", rOL_RECHAZADORParameter, cOD_REQUISICIONParameter, uSUARIOParameter);
         }
+    
+        public virtual ObjectResult<CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result> CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION(string cOD_USUARIO, string usuario, Nullable<int> cOD_ESTADO_REQUISICION)
+        {
+            var cOD_USUARIOParameter = cOD_USUARIO != null ?
+                new ObjectParameter("COD_USUARIO", cOD_USUARIO) :
+                new ObjectParameter("COD_USUARIO", typeof(string));
+    
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("Usuario", usuario) :
+                new ObjectParameter("Usuario", typeof(string));
+    
+            var cOD_ESTADO_REQUISICIONParameter = cOD_ESTADO_REQUISICION.HasValue ?
+                new ObjectParameter("COD_ESTADO_REQUISICION", cOD_ESTADO_REQUISICION) :
+                new ObjectParameter("COD_ESTADO_REQUISICION", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result>("CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION", cOD_USUARIOParameter, usuarioParameter, cOD_ESTADO_REQUISICIONParameter);
+        }
     }
 }
