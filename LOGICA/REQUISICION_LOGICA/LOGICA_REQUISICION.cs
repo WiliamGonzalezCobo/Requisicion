@@ -270,10 +270,10 @@ namespace LOGICA.REQUISICION_LOGICA
             REQUISICIONViewModel objReqModel = null;
             try {
                 objReqModel = new ACCES_REQUISICION().CONSULTAR_REQUISICION_X_ID_ACCES(idRequsicion);
-                //JObject _puntosMedio = new PROXY().CONSULTAR_PUNTOS_MEDIO_API(objReqModel.COD_CARGO.ToString());
-                //objReqModel.PUNTO_MEDIO_80 =Convert.ToDecimal(_puntosMedio.GetValue("puntO_MEDIO_80_PORCIENTO"));
-                //objReqModel.PUNTO_MEDIO_100 = Convert.ToDecimal(_puntosMedio.GetValue("puntO_MEDIO_100_PORCIENTO"));
-                //objReqModel.PUNTO_MEDIO_120 = Convert.ToDecimal(_puntosMedio.GetValue("puntO_MEDIO_120_PORCIENTO"));
+                PUNTOS_MEDIO _puntosMedio = new PROXY().CONSULTAR_PUNTOS_MEDIO_API(objReqModel.COD_CARGO.ToString()).First();
+                objReqModel.PUNTO_MEDIO_80 = _puntosMedio.PUNTO_MEDIO_80_PORCIENTO??0;
+                objReqModel.PUNTO_MEDIO_100 = _puntosMedio.PUNTO_MEDIO_100_PORCIENTO??0;
+                objReqModel.PUNTO_MEDIO_120 = _puntosMedio.PUNTO_MEDIO_120_PORCIENTO??0;
 
             }
             catch (Exception ex) {

@@ -1,14 +1,6 @@
 ﻿using MODELO_DATOS.MODELO_REQUISICION.LISTAS_API;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
 using UTILS.Settings;
 
 namespace LOGICA.LOGICA_REQUISICION
@@ -92,12 +84,12 @@ namespace LOGICA.LOGICA_REQUISICION
             return respuesta;
         }
 
-        public JObject CONSULTAR_PUNTOS_MEDIO_API(string _COD_CARGO)
+        public List<PUNTOS_MEDIO> CONSULTAR_PUNTOS_MEDIO_API(string _COD_CARGO)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Add("_COD_CARGO",_COD_CARGO);
             HttpStatusCode status;
-            JObject respuesta = new BASE_PROXY(urlApi + "PUESTOS").GetObject(out status, parameters);
+            List<PUNTOS_MEDIO>respuesta = new BASE_PROXY(urlApi + "PUESTOS").Get<List<PUNTOS_MEDIO>>(out status, parameters);
             return respuesta;
         }
 

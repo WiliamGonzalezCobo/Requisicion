@@ -1,14 +1,9 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace LOGICA.LOGICA_REQUISICION
 {
  public   class BASE_PROXY
@@ -61,33 +56,7 @@ namespace LOGICA.LOGICA_REQUISICION
             }
         }
 
-        public JObject GetObject(out HttpStatusCode statusCode, Dictionary<string, string> parameters = null)
-        {
-            using (var httpClient = new HttpClient())
-            {
-                var endpoint = _endpoint;
-                if (parameters != null)
-                {
-                    endpoint += "?";
-                    string _parameters = string.Empty;
-                    int iCount = 0;
-                    foreach (var item in parameters)
-                    {
-                        iCount++;
-                        _parameters += string.Format("{0}={1}", item.Key, item.Value);
-                        if (parameters.Count() != iCount)
-                            _parameters += "&";
-                    }
-                    endpoint += _parameters;
-                }
-                var response = httpClient.GetAsync(endpoint).Result;
-                statusCode = response.StatusCode;
-                if (statusCode == HttpStatusCode.OK)
-                    return JObject.Parse(response.Content.ReadAsStringAsync().Result);
-                else
-                    return null;
-            }
-        }
+
         public T Get<T>(int id, out HttpStatusCode statusCode)
         {
             using (var httpClient = NewHttpClient())

@@ -49,7 +49,7 @@
 
         <div class="form-group col-md-4">
             <label class="label">Filtre Por Estado</label>
-            @Html.DropDownList("ddlEstado", new SelectList(ViewBag.Estado, "Value", "Text", ViewBag.valorSeleccionado), "Activos ", new { @class = "form-control", @style = "height: 48px;", id = "filtroEstados" })
+            @Html.DropDownList("ddlEstado", new SelectList(ViewBag.Estado, "Value", "Text", ViewBag.valorSeleccionado), "Seleccione  ", new { @class = "form-control", @style = "height: 48px;", id = "filtroEstados" })
         </div>
 
     </div>
@@ -75,9 +75,6 @@
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.NOMBRE_ESTADO_REQUISICION)&nbsp;<span class="fas fa-sort-down"></span>
-                    </th>
-                    <th class="d-none">
-                        @Html.DisplayNameFor(model => model.COD_REQUISICION)&nbsp;<span class="fas fa-sort-down"></span>
                     </th>
                 </tr>
             </thead>
@@ -131,13 +128,25 @@
                 }
                 else
                 {
-                    <tr>
-                        <td colspan="3">
-                            No existe información
-                        </td>
+                        <tr>
+                            <td>
+                                No existe información
+                            </td>
+                            <td>
+                                No existe información
+                            </td>
+                            <td>
+                                No existe información
+                            </td>
+                            <td>
+                                No existe información
+                            </td>
+                            <td>
+                                No existe información
+                            </td>
 
 
-                    </tr>
+                        </tr>
                 }
 
             </tbody>
@@ -213,6 +222,7 @@
 
 
         $('#filtroEstados').change(function () {
+            debugger;
             var buscar = $('#filtroEstados').val();
             var url = '@Url.Action("filtros", "REQUISICION", new { filtro = "valor_filtro" })';
             window.location.href = url.replace('valor_filtro', buscar);
