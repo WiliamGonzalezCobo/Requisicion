@@ -16,6 +16,7 @@ namespace G_H_WEB.Controllers
         // GET: REQUISICION_NOPRESUPUESTADA
         public ActionResult Index(int? _idReq)
         {
+            ViewBag.RequisicionNombre = "Requsicion No Presupuestada";
             REQUISICIONViewModel model = new REQUISICIONViewModel();
             if (_idReq.HasValue) {
                 model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value)?? new REQUISICIONViewModel();
@@ -25,10 +26,12 @@ namespace G_H_WEB.Controllers
 
             // Esto es para el POP UP
             List<SelectListItem> listacargos = model.LIST_NOMBRE_CARGO;
-            NO_PRESUPESTADA_CREACION fromPost = TempData["resultado"] as NO_PRESUPESTADA_CREACION;
-            if (fromPost != null && fromPost.RESULTADO==true)
-                fromPost.NOMBRE_COD_CARGO = listacargos.Where(x => x.Value == fromPost.COD_CARGO.ToString()).First().Text;
-            ViewBag.resultadoNojefe = fromPost != null ? fromPost.RESULTADO : false;
+            RESPUESTA_POP_UP fromPost = TempData["resultado"] as RESPUESTA_POP_UP;
+            // este filtro se debe hacer sobre la lista NOMBRE_CARGO y no sobre necesidad 
+            if (fromPost != null)
+                fromPost.NOMBRE_COD_CARGO = listacargos.Where(x => x.Value == fromPost.COD_REQUISICION_CREADA.ToString()).First().Text;
+            //Logica para el POP UP
+            ViewBag.resultadoNojefe = fromPost != null ? !fromPost.RESULTADO.Equals(0) : false;
             ViewBag.resultadoPopUpNoJefe = fromPost;
 
             //FIN POP UP
@@ -38,8 +41,7 @@ namespace G_H_WEB.Controllers
         [HttpPost]
         public ActionResult Index(REQUISICIONViewModel modelDatos) {
             try {
-                
-                Boolean _resultado = false;
+                int _resultadoIdReguisicion = 0;
                 modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqNoPresupuestada;
                 modelDatos.USUARIO_CREACION = User.Identity.Name;
                 REQUISICIONViewModel listas = new REQUISICIONViewModel();
@@ -55,16 +57,16 @@ namespace G_H_WEB.Controllers
                 
 
                 //INICIO Esta logica es para el POP UP----------
-                NO_PRESUPESTADA_CREACION npc = new NO_PRESUPESTADA_CREACION();
-                npc.COD_CARGO = modelDatos.COD_CARGO;
-                npc.RESULTADO = _resultado;
+                RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
+                npc.COD_REQUISICION_CREADA = _resultadoIdReguisicion;
+                npc.RESULTADO = !_resultadoIdReguisicion.Equals(0);
                 TempData["resultado"] = npc;
                 //FIN Esta logica es para el POP UP----------
                 return RedirectToAction("Index");
             }
             catch (Exception)
             {
-                NO_PRESUPESTADA_CREACION npc = new NO_PRESUPESTADA_CREACION();
+                RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
                 npc.RESULTADO = false;
                 TempData["resultado"] = npc;
                 return RedirectToAction("Index");

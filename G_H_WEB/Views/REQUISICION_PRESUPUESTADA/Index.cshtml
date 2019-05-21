@@ -8,6 +8,8 @@
     <div id="CNform">
         <div class="retiros-detalle">
             <div class="form-group col-md-12">
+
+
                 @using (Html.BeginForm("Index", "REQUISICION_PRESUPUESTADA"))
                 {
                     <h1>Requisicíon Presupuestada</h1>
@@ -21,8 +23,8 @@
                     }
                     if (User.IsInRole(SettingsManager.PerfilBp))
                     {
-                        @*@Html.Partial("_PartialInfoRequisicion", Model)
-                        @Html.Partial("_PartialInfoGeneral", Model)*@
+                        @Html.Partial("_PartialInfoRequisicion", Model)
+                        @Html.Partial("_PartialInfoGeneral", Model)
                         @Html.Partial("_PartialInfoSalarial", Model)
 
                     }

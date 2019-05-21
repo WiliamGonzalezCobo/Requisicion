@@ -613,7 +613,9 @@
     <Content Include="Views\Home\css\jquery.fileupload-ui.css" />
     <Content Include="Views\Home\css\jquery.fileupload.css" />
     <Content Include="Views\Home\css\style.css" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -684,10 +686,10 @@
     <Content Include="Views\REQUISICION_NOPRESUPUESTADA\_PartialViewNO_PRESUPUESTADA_RRHH.cshtml" />
     <Content Include="Views\REQUISICION_NOPRESUPUESTADA\_PartialViewNO_PRESUPUESTADA_USC.cshtml" />
     <Content Include="Views\REQUISICION\_SelectRequisicion.cshtml" />
-    <Content Include="Views\REQUISICION_PRESUPUESTADA\_PartialInfoRequisicion.cshtml" />
-    <Content Include="Views\REQUISICION_PRESUPUESTADA\_PartialInfoGeneral.cshtml" />
-    <Content Include="Views\REQUISICION_PRESUPUESTADA\_PartialInfoSalarial.cshtml" />
-    <Content Include="Views\REQUISICION_PRESUPUESTADA\_PartialAutorizacion.cshtml" />
+    <Content Include="Views\Shared\_PartialInfoRequisicion.cshtml" />
+    <Content Include="Views\Shared\_PartialInfoGeneral.cshtml" />
+    <Content Include="Views\Shared\_PartialInfoSalarial.cshtml" />
+    <Content Include="Views\Shared\_PartialAutorizacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

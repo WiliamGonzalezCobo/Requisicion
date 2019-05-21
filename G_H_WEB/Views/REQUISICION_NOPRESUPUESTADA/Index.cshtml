@@ -2,42 +2,182 @@
 @using MODELO_DATOS.MODELO_REQUISICION;
 @using UTILS.Settings
 @{
-    ViewBag.Title = "Requisición No Presupuestada";
+    ViewBag.Title = "REQUISICION NO PRESUPUESTADA";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    NO_PRESUPESTADA_CREACION paraModel = @ViewBag.resultadoPopUpNoJefe ?? new NO_PRESUPESTADA_CREACION();
+    RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
 }
+<div class="col">
 
-<div class="col-md-9 col-lg-9 col-xl-9 tablaRetiros">
-    <h2>@ViewBag.Title</h2>
+    <div id="IconosRequisicion" class="LSubtitulos col-md-12 col-lg-12 col-xl-12 row" style="margin-bottom:10px;">
 
-    @if (User.IsInRole(SettingsManager.PerfilJefe))
-    {
-        @Html.Partial("_PartialViewNO_PRESUPUESTADA_JEFE", Model)
-    }
+        <div class="col-md-3 col-lg-3 col-xl-3">
+            <img src="http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Bridge-Copyrighted-icon.png" />
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-3">
+            <img src="http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Dreamweaver-Copyrighted-icon.png" />
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-3">
+            <img src="http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Fireworks-Copyrighted-icon.png" />
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-3">
+            <img src="http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Flash-Copyrighted-icon.png" />
+        </div>
 
-    @if (User.IsInRole(SettingsManager.PerfilController))
-    {
-        @Html.Partial("_PartialViewNO_PRESUPUESTADA_CONTROLLER", Model)
+    </div>
 
-    }
+    <div id="SeccionRequisicionParciales" class="col">
+        <div id="CNform">
+            <div class="retiros-detalle">
+                <div class="form-group col-md-12">
+                    @using (Html.BeginForm("Index", "REQUISICION_NOPRESUPUESTADA"))
+                    {
+                        <h1>@ViewBag.Title</h1>
+                        if (User.IsInRole(SettingsManager.PerfilJefe))
+                        {
+                            @Html.Partial("_PartialInfoRequisicion", Model)
+                            @Html.Partial("_PartialAutorizacion", Model)
+                        }
+                        if (User.IsInRole(SettingsManager.PerfilController))
+                        {
+                            @Html.Partial("_PartialInfoRequisicion", Model)
+                            @Html.Partial("_PartialAutorizacion", Model)
+                        }
+                        if (User.IsInRole(SettingsManager.PerfilBp))
+                        {
+                            @Html.Partial("_PartialInfoRequisicion", Model)
+                            @Html.Partial("_PartialInfoGeneral", Model)
+                            @Html.Partial("_PartialInfoSalarial", Model)
+                            @Html.Partial("_PartialAutorizacion", Model)
 
-    @if (User.IsInRole(SettingsManager.PerfilBp))
-    {
-        @Html.Partial("_PartialViewNO_PRESUPUESTADA_BP", Model)
+                        }
+                        if (User.IsInRole(SettingsManager.PerfilRRHH))
+                        {
+                            @Html.Partial("_PartialInfoRequisicion", Model)
+                            @Html.Partial("_PartialInfoGeneral", Model)
+                            @Html.Partial("_PartialInfoSalarial", Model)
+                            @Html.Partial("_PartialAutorizacion", Model)
+                        }
+                        if (User.IsInRole(SettingsManager.PerfilUSC))
+                        {
+                            @Html.Partial("_PartialInfoRequisicion", Model)
+                            @Html.Partial("_PartialInfoGeneral", Model)
+                            @Html.Partial("_PartialInfoSalarial", Model)
+                            @Html.Partial("_PartialAutorizacion", Model)
+                        }
 
-    }
-    @if (User.IsInRole(SettingsManager.PerfilRRHH))
-    {
-        @Html.Partial("_PartialViewNO_PRESUPUESTADA_RRHH", Model)
+                        //Botones
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.ActionLink("Cancelar", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "btn-cancelar-retriro col-md-3 " })
+                                @if (User.IsInRole(SettingsManager.PerfilJefe))
+                                {
+                                    <input name="submitButton" type="submit" value="Crear Requisición" class="btn-confirmar-retiro col-md-3" />
+                                }
+                                @if (User.IsInRole(SettingsManager.PerfilController))
+                                {
+                                    <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
+                                }
+                                @if (User.IsInRole(SettingsManager.PerfilBp))
+                                {
+                                    <input name="submitButton" type="submit" value="Enviar" class="btn-confirmar-retiro col-md-3" />
+                                }
+                                @if (User.IsInRole(SettingsManager.PerfilRRHH))
+                                {
+                                    <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                }
+                                @if (User.IsInRole(SettingsManager.PerfilUSC))
+                                {
+                                    <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 
-    }
+    <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Requisición Creada Con éxito</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="EnviarInfocreacion()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <br />
+                    <h2>Se créo la requisicion para el cargo de  <span id="mensaje1"></span> con ID <span id="mensaje2"></span></h2>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    @if (User.IsInRole(SettingsManager.PerfilUSC))
-    {
-        @Html.Partial("_PartialViewNO_PRESUPUESTADA_USC", Model)
+    <div class="modal fade" id="ModalCancelNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Esta a punto de cancelar la requisición</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
 
-    }
+                </div>
+                <div class="retiros-detalle modal-body">
+                    <br />
+                    <h4>¿Esta Seguro de Cancelarla?</h4>
 
+                    <button type="button" class="filtroPorUsuario btn-cancelar-retriro" data-dismiss="modal" aria-label="Aceptar" onclick="NoCancelarJefe()" style="cursor:pointer;">
+                        No
 
+                    </button>
+                    <button type="button" class="filtroPorUsuario btn-confirmar-retiro" data-dismiss="modal" aria-label="Cancelar" onclick="SiCancelarJefe()" style="cursor:pointer;">
+                        Si
+
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        debugger;
+        var resultado = "@ViewBag.resultadoNojefe";
+
+
+        if (resultado == "True") {
+            debugger;
+            var CargoText = "@paraModel.NOMBRE_COD_CARGO";
+            var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+            $("#mensaje1").text(CargoText);
+            $("#mensaje2").text(CargoCod);
+                $('#ModalCreacionNoJefe').modal("show");
+            }
+        });
+    $("#btnCancelarNoJefe").on("click", function () {
+        $('#ModalCancelNoJefe').modal('show');
+    });
+
+    function SiCancelarJefe() {
+            $('#ModalCancel').modal('hide');
+            window.location.href = '@Url.Action("Index", "REQUISICION")';
+        };
+    function NoCancelarJefe() {
+            $('#ModalCancel').modal('hide');
+    };
+
+    $(function () {
+        $('.datepicker').datepicker();
+    });
+</script>
+
 

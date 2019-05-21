@@ -93,9 +93,9 @@
     <Compile Include="MODELO_REQUISICION\LISTAS_API\TIPO_SALARIO.cs" />
     <Compile Include="MODELO_REQUISICION\LISTAS_API\UBICACION_FISICA.cs" />
     <Compile Include="MODELO_REQUISICION\MENU_ROLViewModel.cs" />
-    <Compile Include="MODELO_REQUISICION\NO_PRESUPESTADA_CREACION.cs" />
     <Compile Include="MODELO_REQUISICION\OPCIONES_MENUViewModel.cs" />
     <Compile Include="MODELO_REQUISICION\REQUISICIONViewModel.cs" />
+    <Compile Include="MODELO_REQUISICION\RESPUESTA_POP_UP.cs" />
     <Compile Include="MODELO_REQUISICION\ROLViewModel.cs" />
     <Compile Include="MODELO_REQUISICION\TIPOViewModel.cs" />
     <Compile Include="MODELO_REQUISICION\TIPO_NECESIDADViewModel.cs" />
