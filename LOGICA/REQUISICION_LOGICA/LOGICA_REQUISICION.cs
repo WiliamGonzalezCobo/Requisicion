@@ -233,7 +233,7 @@ namespace LOGICA.REQUISICION_LOGICA
            }).ToList(); ;
         }
         /// <summary>
-        /// DESDE BASE DE DATOS
+        /// DESDE BASE DE DATOS, para la pantalla principal
         /// MAPEDO
         /// </summary>
         /// <returns></returns>
@@ -271,9 +271,6 @@ namespace LOGICA.REQUISICION_LOGICA
             try {
                 objReqModel = new ACCES_REQUISICION().CONSULTAR_REQUISICION_X_ID_ACCES(idRequsicion);
                 PUNTOS_MEDIO _puntosMedio = new PROXY().CONSULTAR_PUNTOS_MEDIO_API(objReqModel.COD_CARGO.ToString()).First();
-                objReqModel.PUNTO_MEDIO_80 = _puntosMedio.PUNTO_MEDIO_80_PORCIENTO??0;
-                objReqModel.PUNTO_MEDIO_100 = _puntosMedio.PUNTO_MEDIO_100_PORCIENTO??0;
-                objReqModel.PUNTO_MEDIO_120 = _puntosMedio.PUNTO_MEDIO_120_PORCIENTO??0;
 
             }
             catch (Exception ex) {
@@ -282,12 +279,34 @@ namespace LOGICA.REQUISICION_LOGICA
             return objReqModel;
         }
 
+        public Boolean INSERTAR_REQUISICION_LOGICA(REQUISICIONViewModel _modelo) {
+            return new ACCES_REQUISICION().INSERTAR_REQUISICION(_modelo);
+        }
+        public Boolean ACTUALIZARREQUISICION(REQUISICIONViewModel _modelo){
+            return new ACCES_REQUISICION().ACTUALIZARREQUISICION_ACESS(_modelo);
+        }
+        // LO LLENO PARA LAS LISTAS
+        public REQUISICIONViewModel CONSULTAR_VALORES_LISTAS_POR_CODIGO(REQUISICIONViewModel _MODEL_CODIGOS) {
 
-           
-  
 
-        public Boolean INSERTAR_REQUISICION_LOGICA(REQUISICIONViewModel _modelo, string usuario) {
-            return new ACCES_REQUISICION().INSERTAR_REQUISICION(_modelo, usuario);
+            if (_MODEL_CODIGOS.COD_CARGO != 0) { _MODEL_CODIGOS.NOMBRE_CARGO = _MODEL_CODIGOS.LIST_NOMBRE_CARGO.Where(x => x.Value == _MODEL_CODIGOS.COD_CARGO.ToString()).First().Text; }
+            if (_MODEL_CODIGOS.COD_GERENCIA != 0) { _MODEL_CODIGOS.NOMBRE_GERENCIA = _MODEL_CODIGOS.LIST_NOMBRE_GERENCIA.Where(x => x.Value == _MODEL_CODIGOS.COD_GERENCIA.ToString()).First().Text; }
+            if (_MODEL_CODIGOS.COD_TIPO_CONTRATO != 0) { _MODEL_CODIGOS.NOMBRE_TIPO_CONTRATO = _MODEL_CODIGOS.LIST_NOMBRE_TIPO_CONTRATO.Where(x => x.Value == _MODEL_CODIGOS.COD_TIPO_CONTRATO.ToString()).First().Text; }
+            if (_MODEL_CODIGOS.COD_CECO != 0) { _MODEL_CODIGOS.NOMBRE_CECO = _MODEL_CODIGOS.LIST_NOMBRE_CECO.Where(x => x.Value == _MODEL_CODIGOS.COD_CECO.ToString()).First().Text; }
+            if (_MODEL_CODIGOS.COD_SOCIEDAD != 0) { _MODEL_CODIGOS.NOMBRE_SOCIEDAD = _MODEL_CODIGOS.LIST_NOMBRE_SOCIEDAD.Where(x => x.Value == _MODEL_CODIGOS.COD_SOCIEDAD.ToString()).First().Text; }
+            if (_MODEL_CODIGOS.COD_EQUIPO_VENTAS != 0) { _MODEL_CODIGOS.NOMBRE_EQIPO_VENTAS = _MODEL_CODIGOS.LIST_NOMBRE_EQIPO_VENTAS.Where(x => x.Value == _MODEL_CODIGOS.COD_EQUIPO_VENTAS.ToString()).First().Text; }
+            if (_MODEL_CODIGOS.COD_CIUDAD_TRABAJO != 0) { _MODEL_CODIGOS.NOMBRE_CIUDAD_TRABAJO = _MODEL_CODIGOS.LIST_NOMBRE_CIUDAD_TRABAJO.Where(x => x.Value == _MODEL_CODIGOS.COD_CIUDAD_TRABAJO.ToString()).First().Text; }
+            if (_MODEL_CODIGOS.COD_UBICACION_FISICA != 0) { _MODEL_CODIGOS.NOMBRE_UBICACION_FISICA = _MODEL_CODIGOS.LIST_NOMBRE_UBICACION_FISICA.Where(x => x.Value == _MODEL_CODIGOS.COD_UBICACION_FISICA.ToString()).First().Text; }
+            if (_MODEL_CODIGOS.COD_NIVEL_RIESGO_ARL != 0) { _MODEL_CODIGOS.NIVEL_RIESGO_ARL = _MODEL_CODIGOS.LIST_NIVEL_RIESGO_ARL.Where(x => x.Value == _MODEL_CODIGOS.COD_NIVEL_RIESGO_ARL.ToString()).First().Text; }
+            if (_MODEL_CODIGOS.COD_CATEGORIA_ED != 0) { _MODEL_CODIGOS.NOMBRE_CATEGORIA_ED = _MODEL_CODIGOS.LIST_NOMBRE_CATEGORIA_ED.Where(x => x.Value == _MODEL_CODIGOS.COD_CATEGORIA_ED.ToString()).First().Text; }
+            if (_MODEL_CODIGOS.COD_JORNADA_LABORAL != 0) { _MODEL_CODIGOS.NOMBRE_JORNADA_LABORAL = _MODEL_CODIGOS.LIST_NOMBRE_JORNADA_LABORAL.Where(x => x.Value == _MODEL_CODIGOS.COD_JORNADA_LABORAL.ToString()).First().Text; }
+            if (_MODEL_CODIGOS.COD_DIA_LABORAL_DESDE!=0) { _MODEL_CODIGOS.DIA_LABORAL_DESDE = _MODEL_CODIGOS.LIST_DIA_LABORAL_DESDE.Where(x => x.Value == _MODEL_CODIGOS.COD_DIA_LABORAL_DESDE.ToString()).First().Text; }
+            if (_MODEL_CODIGOS.COD_DIA_LABORAL_HASTA != 0) { _MODEL_CODIGOS.DIA_LABORAL_HASTA = _MODEL_CODIGOS.LIST_DIA_LABORAL_HASTA.Where(x => x.Value == _MODEL_CODIGOS.COD_DIA_LABORAL_HASTA.ToString()).First().Text; }
+            if (_MODEL_CODIGOS.COD_TIPO_SALARIO != 0) { _MODEL_CODIGOS.NOMBRE_TIPO_SALARIO = _MODEL_CODIGOS.LIST_NOMBRE_TIPO_SALARIO.Where(x => x.Value == _MODEL_CODIGOS.COD_TIPO_SALARIO.ToString()).First().Text; }
+            if (_MODEL_CODIGOS.COD_CATEGORIA != 0) { _MODEL_CODIGOS.NOMBRE_CATEGORIA = _MODEL_CODIGOS.LIST_NOMBRE_CATEGORIA.Where(x => x.Value == _MODEL_CODIGOS.COD_CATEGORIA.ToString()).First().Text; }
+
+
+            return _MODEL_CODIGOS;
         }
     }
 }

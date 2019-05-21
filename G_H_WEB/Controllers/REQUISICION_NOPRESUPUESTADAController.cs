@@ -1,4 +1,5 @@
-﻿using LOGICA.REQUISICION_LOGICA;
+﻿using G_H_WEB.Logica_Session;
+using LOGICA.REQUISICION_LOGICA;
 using MODELO_DATOS.MODELO_REQUISICION;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using UTILS.Settings;
 
 namespace G_H_WEB.Controllers
 {
+    [CustAuthFilter]
     public class REQUISICION_NOPRESUPUESTADAController : Controller
     {
         // GET: REQUISICION_NOPRESUPUESTADA
@@ -18,40 +20,38 @@ namespace G_H_WEB.Controllers
             if (_idReq.HasValue) {
                 model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value)?? new REQUISICIONViewModel();
             }
-            if (Session["objetoListas"] != null){
-                model = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(model, Session["objetoListas"] as REQUISICIONViewModel);
-            }
-            else {
-                return RedirectToAction("Index", "REQUISICION");
-            }
 
+           model = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(model, Session["objetoListas"] as REQUISICIONViewModel);
 
+            // Esto es para el POP UP
             List<SelectListItem> listacargos = model.LIST_NOMBRE_CARGO;
             NO_PRESUPESTADA_CREACION fromPost = TempData["resultado"] as NO_PRESUPESTADA_CREACION;
-            // este filtro se debe hacer sobre la lista NOMBRE_CARGO y no sobre necesidad 
-            if (fromPost != null)
+            if (fromPost != null && fromPost.RESULTADO==true)
                 fromPost.NOMBRE_COD_CARGO = listacargos.Where(x => x.Value == fromPost.COD_CARGO.ToString()).First().Text;
-            //Logica para el POP UP
             ViewBag.resultadoNojefe = fromPost != null ? fromPost.RESULTADO : false;
             ViewBag.resultadoPopUpNoJefe = fromPost;
+
+            //FIN POP UP
 
             return View(model);
         }
         [HttpPost]
         public ActionResult Index(REQUISICIONViewModel modelDatos) {
             try {
+                
                 Boolean _resultado = false;
                 modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqNoPresupuestada;
+                modelDatos.USUARIO_CREACION = User.Identity.Name;
                 REQUISICIONViewModel listas = new REQUISICIONViewModel();
-                if (Session["objetoListas"] != null){
-                    listas = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(listas, Session["objetoListas"] as REQUISICIONViewModel);
+                // llena los combos
+                modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(modelDatos, Session["objetoListas"] as REQUISICIONViewModel);
+                // saca los valores de los combos
+                modelDatos = new LOGICA_REQUISICION().CONSULTAR_VALORES_LISTAS_POR_CODIGO(modelDatos);
+                if (User.IsInRole(SettingsManager.PerfilJefe)) {
+                    _resultado = new LOGICA_REQUISICION().INSERTAR_REQUISICION_LOGICA(modelDatos);
+                } else {
+                    _resultado = new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos);
                 }
-                else{
-                    return RedirectToAction("Index", "REQUISICION");
-                }
-
-                modelDatos.NOMBRE_CARGO = listas.LIST_NOMBRE_CARGO.Where(x => x.Value == modelDatos.COD_CARGO.ToString()).First().Text;
-                _resultado = new LOGICA_REQUISICION().INSERTAR_REQUISICION_LOGICA(modelDatos, User.Identity.Name);
                 
 
                 //INICIO Esta logica es para el POP UP----------
@@ -69,6 +69,10 @@ namespace G_H_WEB.Controllers
                 TempData["resultado"] = npc;
                 return RedirectToAction("Index");
             }
+        }
+
+        public JsonResult APROBAR_REQUISICION() {
+            return Json("", JsonRequestBehavior.AllowGet);
         }
     }
 }

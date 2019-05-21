@@ -275,6 +275,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LOGICA_IU\ESTADO.cs" />
+    <Compile Include="Logica_Session\CustAuthFilter.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CUENTAViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
