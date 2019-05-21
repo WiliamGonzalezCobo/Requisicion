@@ -2,11 +2,11 @@
 @using MODELO_DATOS.MODELO_REQUISICION;
 @{
     ViewBag.Title = "Requisición No Presupuestada";
-    NO_PRESUPESTADA_CREACION paraModel = @ViewBag.resultadoPopUpNoJefe ?? new NO_PRESUPESTADA_CREACION();
+    RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
 }
 <div class="col-md-12 col-lg-12 col-xl-12">
 
-    <div class="LSubtitulos col-md-12 col-lg-12 col-xl-12 row" style="margin-bottom:10px;">
+    @*<div class="LSubtitulos col-md-12 col-lg-12 col-xl-12 row" style="margin-bottom:10px;">
 
         <div class="col-md-3 col-lg-3 col-xl-3">
             <img src="http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Bridge-Copyrighted-icon.png" />
@@ -21,103 +21,61 @@
             <img src="http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Flash-Copyrighted-icon.png" />
         </div>
 
-    </div>
-    <div class="form-row col-md-12 col-lg-12 col-xl-12 row">
+    </div>*@
+    @*Seccion Requisicion*@
+    @*<div class="form-row col-md-12 col-lg-12 col-xl-12 row">
 
-        @using (Html.BeginForm("Index", "REQUISICION_NOPRESUPUESTADA", FormMethod.Post, new { id = "frmNoPresupuestada", @class = "col-md-12 col-lg-12 col-xl-12" }))
-        {
-
-
-        <div class="row">
-            <div class="form-group col-md-6 col-sm-12">
-                @Html.LabelFor(model => model.LIST_NOMBRE_TIPO_NECESIDAD, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.DropDownListFor(model => model.COD_TIPO_NECESIDAD,Model.LIST_NOMBRE_TIPO_NECESIDAD, "-- Seleccione --", new { @class = "form-control" })
-            </div>
-
-            <div class="form-group col-md-6 col-sm-12">
-                @Html.LabelFor(model => model.NOMBRE_CARGO, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.DropDownListFor(model => model.COD_CARGO,Model.LIST_NOMBRE_CARGO, "-- Seleccione --", new { @class = "form-control" })
-            </div>
-
-            <div class="form-group col-md-12">
-                @Html.LabelFor(model => model.OBSERVACION_CREACION, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.TextAreaFor(model => model.OBSERVACION_CREACION, new { @class = "form-control" })
-
-            </div>
-
-        </div>
+            @using (Html.BeginForm("Index", "REQUISICION_NOPRESUPUESTADA", FormMethod.Post, new { id = "frmNoPresupuestada", @class = "col-md-12 col-lg-12 col-xl-12" }))
+            {
 
 
+                <div class="row">
+                    <div class="form-group col-md-6 col-sm-12">
+                        @Html.LabelFor(model => model.LIST_NOMBRE_TIPO_NECESIDAD, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownListFor(model => model.COD_TIPO_NECESIDAD, Model.LIST_NOMBRE_TIPO_NECESIDAD, "-- Seleccione --", new { @class = "form-control" })
+                    </div>
 
-        
+                    <div class="form-group col-md-6 col-sm-12">
+                        @Html.LabelFor(model => model.NOMBRE_CARGO, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownListFor(model => model.COD_CARGO, Model.LIST_NOMBRE_CARGO, "-- Seleccione --", new { @class = "form-control" })
+                    </div>
 
-
-            <div>
-                @Html.LabelFor(model => model.ES_MODIFICACION, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.CheckBoxFor(model => model.ES_MODIFICACION, new { htmlAttributes = new { @class = "form-control" } })
-                <span></span>
-            </div>
-
-            <div class="retiros-detalle form-group row col-md-12 row">
-                <div class="col-lg-offset-2 col-md-offset-2 col-lg-4 col-md-4">
-                    <input type="button" value="Cancelar" id="btnCancelarNoJefe" class="btn-cancelar-retriro" style="margin-right: 20%;cursor:pointer;" />
-                </div>
-                <div class="col-lg-offset-2 col-md-offset-2 col-lg-4 col-md-4">
-                    <input type="submit" value="Crear Requisición" class="btn-confirmar-retiro" style="margin-right: 20%;cursor:pointer;" />
-                </div>
-            </div>
-
-        }
-
-    </div>
-        <!-- Modal -->
-        <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="ModalLabel">Requisición Creada Con éxito</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="EnviarInfocreacion()">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                    <div class="form-group col-md-12">
+                        @Html.LabelFor(model => model.OBSERVACION_CREACION, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.TextAreaFor(model => model.OBSERVACION_CREACION, new { @class = "form-control" })
 
                     </div>
-                    <div class="modal-body">
-                        <br />
-                        <h2>Se créo la requisicion para el cargo de  <span id="mensaje1"></span> con ID <span id="mensaje2"></span></h2>
 
+                </div>
+
+
+
+
+
+
+                <div>
+                    @Html.LabelFor(model => model.ES_MODIFICACION, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.CheckBoxFor(model => model.ES_MODIFICACION, new { htmlAttributes = new { @class = "form-control" } })
+                    <span></span>
+                </div>
+
+                <div class="retiros-detalle form-group row col-md-12 row">
+                    <div class="col-lg-offset-2 col-md-offset-2 col-lg-4 col-md-4">
+                        <input type="button" value="Cancelar" id="btnCancelarNoJefe" class="btn-cancelar-retriro" style="margin-right: 20%;cursor:pointer;" />
+                    </div>
+                    <div class="col-lg-offset-2 col-md-offset-2 col-lg-4 col-md-4">
+                        <input type="submit" value="Crear Requisición" class="btn-confirmar-retiro" style="margin-right: 20%;cursor:pointer;" />
                     </div>
                 </div>
-            </div>
-        </div>
 
+            }
 
-        <div class="modal fade" id="ModalCancelNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="ModalLabel">Esta a punto de cancelar la requisición</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+        </div>*@
 
-                    </div>
-                    <div class="retiros-detalle modal-body">
-                        <br />
-                        <h4>¿Esta Seguro de Cancelarla?</h4>
+    @*Fin Seccion Requisicion*@
+    <!-- Modal -->
 
-                        <button type="button" class="filtroPorUsuario btn-cancelar-retriro" data-dismiss="modal" aria-label="Aceptar" onclick="NoCancelarJefe()" style="cursor:pointer;">
-                            No
-
-                        </button>
-                        <button type="button" class="filtroPorUsuario btn-confirmar-retiro" data-dismiss="modal" aria-label="Cancelar" onclick="SiCancelarJefe()" style="cursor:pointer;">
-                            Si
-
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 
 <script>
     $(document).ready(function () {
@@ -128,7 +86,7 @@
         if (resultado == "True") {
             debugger;
             var CargoText = "@paraModel.NOMBRE_COD_CARGO";
-            var CargoCod = "@paraModel.COD_CARGO";
+            var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
             $("#mensaje1").text(CargoText);
             $("#mensaje2").text(CargoCod);
                 $('#ModalCreacionNoJefe').modal("show");

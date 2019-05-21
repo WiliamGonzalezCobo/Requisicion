@@ -410,13 +410,13 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             return requicisionModel;
         }
 
-        public Boolean INSERTAR_REQUISICION(REQUISICIONViewModel _modelo, string usuario) {
+        public int INSERTAR_REQUISICION(REQUISICIONViewModel _modelo, string usuario) {
             try
             {
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
 
-                    db.INSERTAR_REQUISICION(
+                    return db.INSERTAR_REQUISICION(
                          _modelo.COD_TIPO_NECESIDAD,
                          _modelo.COD_TIPO_REQUISICION,
                          _modelo.COD_CARGO,
@@ -471,14 +471,14 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                        _modelo.POSICIONAMIENTO.ToString(), // EN BASE DE DATOS ES VARCHAR
                        usuario,
                        1
-                   );
+                   ).FirstOrDefault().Value;
                 }
-                return true;
+                
             }
             catch (SqlException ex)
             {
                 var error = ex;
-                return false;
+                return 0;
             }
 
         }

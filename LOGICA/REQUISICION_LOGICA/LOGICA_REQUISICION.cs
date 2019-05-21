@@ -286,7 +286,7 @@ namespace LOGICA.REQUISICION_LOGICA
            
   
 
-        public Boolean INSERTAR_REQUISICION_LOGICA(REQUISICIONViewModel _modelo, string usuario) {
+        public int INSERTAR_REQUISICION_LOGICA(REQUISICIONViewModel _modelo, string usuario) {
             return new ACCES_REQUISICION().INSERTAR_REQUISICION(_modelo, usuario);
         }
     }

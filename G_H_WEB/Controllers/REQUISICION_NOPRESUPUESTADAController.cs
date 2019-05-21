@@ -14,6 +14,7 @@ namespace G_H_WEB.Controllers
         // GET: REQUISICION_NOPRESUPUESTADA
         public ActionResult Index(int? _idReq)
         {
+            ViewBag.RequisicionNombre = "Requsicion No Presupuestada";
             REQUISICIONViewModel model = new REQUISICIONViewModel();
             if (_idReq.HasValue) {
                 model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value)?? new REQUISICIONViewModel();
@@ -27,12 +28,12 @@ namespace G_H_WEB.Controllers
 
 
             List<SelectListItem> listacargos = model.LIST_NOMBRE_CARGO;
-            NO_PRESUPESTADA_CREACION fromPost = TempData["resultado"] as NO_PRESUPESTADA_CREACION;
+            RESPUESTA_POP_UP fromPost = TempData["resultado"] as RESPUESTA_POP_UP;
             // este filtro se debe hacer sobre la lista NOMBRE_CARGO y no sobre necesidad 
             if (fromPost != null)
-                fromPost.NOMBRE_COD_CARGO = listacargos.Where(x => x.Value == fromPost.COD_CARGO.ToString()).First().Text;
+                fromPost.NOMBRE_COD_CARGO = listacargos.Where(x => x.Value == fromPost.COD_REQUISICION_CREADA.ToString()).First().Text;
             //Logica para el POP UP
-            ViewBag.resultadoNojefe = fromPost != null ? fromPost.RESULTADO : false;
+            ViewBag.resultadoNojefe = fromPost != null ? !fromPost.RESULTADO.Equals(0) : false;
             ViewBag.resultadoPopUpNoJefe = fromPost;
 
             return View(model);
@@ -40,7 +41,7 @@ namespace G_H_WEB.Controllers
         [HttpPost]
         public ActionResult Index(REQUISICIONViewModel modelDatos) {
             try {
-                Boolean _resultado = false;
+                int _resultadoIdReguisicion = 0;
                 modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqNoPresupuestada;
                 REQUISICIONViewModel listas = new REQUISICIONViewModel();
                 if (Session["objetoListas"] != null){
@@ -51,20 +52,20 @@ namespace G_H_WEB.Controllers
                 }
 
                 modelDatos.NOMBRE_CARGO = listas.LIST_NOMBRE_CARGO.Where(x => x.Value == modelDatos.COD_CARGO.ToString()).First().Text;
-                _resultado = new LOGICA_REQUISICION().INSERTAR_REQUISICION_LOGICA(modelDatos, User.Identity.Name);
+                _resultadoIdReguisicion = new LOGICA_REQUISICION().INSERTAR_REQUISICION_LOGICA(modelDatos, User.Identity.Name);
                 
 
                 //INICIO Esta logica es para el POP UP----------
-                NO_PRESUPESTADA_CREACION npc = new NO_PRESUPESTADA_CREACION();
-                npc.COD_CARGO = modelDatos.COD_CARGO;
-                npc.RESULTADO = _resultado;
+                RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
+                npc.COD_REQUISICION_CREADA = _resultadoIdReguisicion;
+                npc.RESULTADO = !_resultadoIdReguisicion.Equals(0);
                 TempData["resultado"] = npc;
                 //FIN Esta logica es para el POP UP----------
                 return RedirectToAction("Index");
             }
             catch (Exception)
             {
-                NO_PRESUPESTADA_CREACION npc = new NO_PRESUPESTADA_CREACION();
+                RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
                 npc.RESULTADO = false;
                 TempData["resultado"] = npc;
                 return RedirectToAction("Index");
