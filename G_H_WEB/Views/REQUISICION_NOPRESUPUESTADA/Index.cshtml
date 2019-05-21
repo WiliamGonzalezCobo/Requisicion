@@ -35,16 +35,19 @@
                         if (User.IsInRole(SettingsManager.PerfilJefe))
                         {
                             @Html.Partial("_PartialInfoRequisicion", Model)
+                            @Html.Partial("_PartialAutorizacion", Model)
                         }
                         if (User.IsInRole(SettingsManager.PerfilController))
                         {
                             @Html.Partial("_PartialInfoRequisicion", Model)
+                            @Html.Partial("_PartialAutorizacion", Model)
                         }
                         if (User.IsInRole(SettingsManager.PerfilBp))
                         {
                             @Html.Partial("_PartialInfoRequisicion", Model)
                             @Html.Partial("_PartialInfoGeneral", Model)
                             @Html.Partial("_PartialInfoSalarial", Model)
+                            @Html.Partial("_PartialAutorizacion", Model)
 
                         }
                         if (User.IsInRole(SettingsManager.PerfilRRHH))

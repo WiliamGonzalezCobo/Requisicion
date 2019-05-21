@@ -107,6 +107,12 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         public string OBSERVACION { get; set; }
 
         /// <summary>
+        /// contiene los comentarios concatenados
+        /// </summary>
+        [DisplayName("Observaciones")]
+        public string OBSERVACIONES { get; set; }
+
+        /// <summary>
         ///  OBSERVACION DE CREACION
         /// </summary>
         [Required(ErrorMessage = "La Observación es requerida")]

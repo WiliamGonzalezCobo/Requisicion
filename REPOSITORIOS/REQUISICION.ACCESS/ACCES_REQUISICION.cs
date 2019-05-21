@@ -341,7 +341,8 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     requicisionModel.FECHA_INICIO = respuesta.FECHA_INICIO??DateTime.Now;
                     requicisionModel.FECHA_FIN = respuesta.FECHA_FIN??DateTime.Now;
                     requicisionModel.ES_MODIFICACION = respuesta.ES_MODIFICACION??false;
-                    requicisionModel.OBSERVACION = respuesta.OBSERVACION;
+                    requicisionModel.OBSERVACION = "";
+                    requicisionModel.OBSERVACIONES = respuesta.OBSERVACION??"";
                     requicisionModel.COD_ESTADO_REQUISICION = respuesta.COD_ESTADO_REQUISICION??0;
                     requicisionModel.USUARIO_CREACION = respuesta.USUARIO_CREACION;
                     requicisionModel.FECHA_CREACION = respuesta.FECHA_CREACION.ToString()??DateTime.Now.ToShortDateString();
