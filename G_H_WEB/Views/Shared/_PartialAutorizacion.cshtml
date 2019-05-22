@@ -4,6 +4,7 @@
         <div class="form-group col-md-12 col-sm-12">
             @Html.LabelFor(model => model.OBSERVACIONES, htmlAttributes: new { @class = "control-label" })
             <table>
+                <tr><td>Fecha</td><td>Usuario</td><td>Observación</td></tr>
                 @Html.Raw(Model.OBSERVACIONES)
             </table>
             
