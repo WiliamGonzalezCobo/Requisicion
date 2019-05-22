@@ -29,7 +29,7 @@ namespace G_H_WEB.Controllers
             RESPUESTA_POP_UP fromPost = TempData["resultado"] as RESPUESTA_POP_UP;
             // este filtro se debe hacer sobre la lista NOMBRE_CARGO y no sobre necesidad 
             if (fromPost != null)
-                fromPost.NOMBRE_COD_CARGO = listacargos.Where(x => x.Value == fromPost.COD_REQUISICION_CREADA.ToString()).First().Text;
+                fromPost.NOMBRE_COD_CARGO = listacargos.Where(x => x.Value == fromPost.COD_CARGO.ToString()).First().Text;
             //Logica para el POP UP
             ViewBag.resultadoNojefe = fromPost != null ? !fromPost.RESULTADO.Equals(0) : false;
             ViewBag.resultadoPopUpNoJefe = fromPost;
@@ -50,21 +50,22 @@ namespace G_H_WEB.Controllers
                 // saca los valores de los combos
                 modelDatos = new LOGICA_REQUISICION().CONSULTAR_VALORES_LISTAS_POR_CODIGO(modelDatos);
                 if (User.IsInRole(SettingsManager.PerfilJefe)) {
-                    _resultado = new LOGICA_REQUISICION().INSERTAR_REQUISICION_LOGICA(modelDatos);
+                    _resultadoIdReguisicion = new LOGICA_REQUISICION().INSERTAR_REQUISICION_LOGICA(modelDatos);
                 } else {
-                    _resultado = new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos);
+                    _resultadoIdReguisicion =Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos));
                 }
                 
 
                 //INICIO Esta logica es para el POP UP----------
                 RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
                 npc.COD_REQUISICION_CREADA = _resultadoIdReguisicion;
+                npc.COD_CARGO = modelDatos.COD_CARGO;
                 npc.RESULTADO = !_resultadoIdReguisicion.Equals(0);
                 TempData["resultado"] = npc;
                 //FIN Esta logica es para el POP UP----------
                 return RedirectToAction("Index");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
                 npc.RESULTADO = false;

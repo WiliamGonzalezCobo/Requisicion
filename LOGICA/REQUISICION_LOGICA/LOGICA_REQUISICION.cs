@@ -279,7 +279,7 @@ namespace LOGICA.REQUISICION_LOGICA
             return objReqModel;
         }
 
-        public Boolean INSERTAR_REQUISICION_LOGICA(REQUISICIONViewModel _modelo) {
+        public int INSERTAR_REQUISICION_LOGICA(REQUISICIONViewModel _modelo) {
             return new ACCES_REQUISICION().INSERTAR_REQUISICION(_modelo);
         }
         public Boolean ACTUALIZARREQUISICION(REQUISICIONViewModel _modelo){
