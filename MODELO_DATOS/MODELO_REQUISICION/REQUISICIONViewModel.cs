@@ -274,6 +274,9 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// fecha desde de horario laboral
         /// </summary>
+        public int COD_HORARIO_LABORAL_DESDE { get; set; }
+        [DisplayName("Jornada laboral")]
+        public List<SelectListItem> LIST_HORARIO_LABORAL_DESDE { get; set; }
         [DisplayName("desde"), StringLength(50)]
         [Required(ErrorMessage = "Horario laboral desde es requerido")]
         public string HORARIO_LABORAL_DESDE { get; set; }
@@ -281,6 +284,9 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// fecha hasta de horario laboral
         /// </summary>
+        public int COD_HORARIO_LABORAL_HASTA { get; set; }
+        [DisplayName("Jornada laboral")]
+        public List<SelectListItem> LIST_HORARIO_LABORAL_HASTA { get; set; }
         [DisplayName("hasta"), StringLength(50)]
         [Required(ErrorMessage = "Horario laboral hasta es requerido")]
         public string HORARIO_LABORAL_HASTA { get; set; }
@@ -428,6 +434,10 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// texto de mercado
         /// </summary>
+        [Required(ErrorMessage = "Mercado es requerida")]
+        public int COD_MERCADO { get; set; }
+        [DisplayName("Mercado")]
+        public List<SelectListItem> LIST_MERCADO { get; set; }
         [Required(ErrorMessage = "Mercado es requerido")]
         [DisplayName("Mercado"), StringLength(100)]
         public string MERCADO { get; set; }

@@ -63,6 +63,13 @@ namespace LOGICA.LOGICA_REQUISICION
             List<JORNADA_TRABAJO> respuesta = new BASE_PROXY(urlApi + "JORNADAS_TRABAJO").Get<List<JORNADA_TRABAJO>>(out status, null);
             return respuesta;
         }
+        public List<MERCADO> CONSULTAR_MERCADO_API()
+        {
+            HttpStatusCode status;
+            List<MERCADO> respuesta = new BASE_PROXY(urlApi + "MERCADOS").Get<List<MERCADO>>(out status, null);
+            return respuesta;
+        }
+        
         public List<TIPO_SALARIO> CONSULTAR_TIPOS_SALARIOS_API(){
             HttpStatusCode status;
             List<TIPO_SALARIO> respuesta = new BASE_PROXY(urlApi + "TIPOS_SALARIO").Get<List<TIPO_SALARIO>>(out status, null);
@@ -76,6 +83,12 @@ namespace LOGICA.LOGICA_REQUISICION
         public List<DIA_LABORAL> CONSULTAR_DIAS_LABORALES_API(){
             HttpStatusCode status;
             List<DIA_LABORAL> respuesta = new BASE_PROXY(urlApi + "DIAS_LABORAL").Get<List<DIA_LABORAL>>(out status, null);
+            return respuesta;
+        }
+        public List<HORARIO_LABORAL> CONSULTAR_HORARIO_LABORAL_API()
+        {
+            HttpStatusCode status;
+            List<HORARIO_LABORAL> respuesta = new BASE_PROXY(urlApi + "HORARIOS_TRABAJO").Get<List<HORARIO_LABORAL>>(out status, null);
             return respuesta;
         }
         public List<HORARIO_TRABAJO> CONSULTAR_HORARIOS_LABORALES_API() {
