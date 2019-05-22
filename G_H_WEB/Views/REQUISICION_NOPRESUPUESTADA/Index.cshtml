@@ -71,7 +71,7 @@
                                 @Html.ActionLink("Cancelar", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "btn-cancelar-retriro col-md-3 " })
                                 @if (User.IsInRole(SettingsManager.PerfilJefe))
                                 {
-                                    <input name="submitButton" type="submit" value="Crear Requisición" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="btn-confirmar-retiro col-md-3" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilController))
                                 {
@@ -108,6 +108,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title _metodoCrear" id="ModalLabel">Requisición Creada Con éxito</h5>
                     <h5 class="modal-title __metodoAprobar" id="ModalLabel">Requisición Aprobada Con éxito</h5>
+                    <h5 class="modal-title __metodoModificar" id="ModalLabel">Requisición Modificada Con éxito</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -116,6 +117,7 @@
                     <br />
                     <h2 class="_metodoCrear">Se créo la requisicion para el cargo de  <span id="mensaje1"></span> con ID <span id="mensaje2"></span></h2>
                     <h2 class="__metodoAprobar">Se aprobó la requisicion con ID <span id="mensaje_aprobar"></span></h2>
+                    <h2 class="__metodoModificar">Se modifico la requisicion con ID <span id="mensaje_modificar"></span></h2>
                 </div>
             </div>
         </div>
@@ -153,8 +155,15 @@
 
     $(document).ready(function () {
         debugger;
+        if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {
+            if (@Model.COD_REQUISICION!= 0) {
+                $("#submitButtonCrear").text("Modificar Requisición");
+            }
+        }
         $("._metodoCrear").css("display", "none");
         $(".__metodoAprobar").css("display", "none");
+        $(".__metodoModificar").css("display", "none");
+        
         var resultado = "@ViewBag.resultadoInsertExitosoOno";
 
 
@@ -166,6 +175,9 @@
             }
             if (_metodo == "Aprobar") {
                 APROBAR_REQUISICION();
+            }
+            if (_metodo == "Modificar") {
+                MODIFICAR_REQUISICION();
             }
             
                 $('#ModalCreacionNoJefe').modal("show");
@@ -187,6 +199,11 @@
         $(".__metodoAprobar").css("display", "block");
         $("#mensaje_aprobar").text(CargoCod);
 
+    }
+    function MODIFICAR_REQUISICION() {
+          var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+        $(".__metodoModificar").css("display", "block");
+        $("#mensaje_modificar").text(CargoCod);
     }
 
 

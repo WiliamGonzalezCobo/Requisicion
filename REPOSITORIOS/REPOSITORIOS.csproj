@@ -169,6 +169,9 @@
     <Compile Include="REQUISICION_ENTITY\ROL.cs">
       <DependentUpon>GESTION_HUMANA_HITSSEntities2.tt</DependentUpon>
     </Compile>
+    <Compile Include="REQUISICION_ENTITY\ROL_REQUISICION.cs">
+      <DependentUpon>GESTION_HUMANA_HITSSEntities2.tt</DependentUpon>
+    </Compile>
     <Compile Include="REQUISICION_ENTITY\TIPO.cs">
       <DependentUpon>GESTION_HUMANA_HITSSEntities2.tt</DependentUpon>
     </Compile>

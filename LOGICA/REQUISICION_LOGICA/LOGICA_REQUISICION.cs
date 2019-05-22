@@ -307,7 +307,16 @@ namespace LOGICA.REQUISICION_LOGICA
         }
 
         public int INSERTAR_REQUISICION_LOGICA(REQUISICIONViewModel _modelo) {
+            if (_modelo.COD_REQUISICION != 0){
+                if (new ACCES_REQUISICION().ACTUALIZARREQUISICION_ACESS(_modelo)) {
+                    return _modelo.COD_REQUISICION;
+                } else {
+                    return 0;
+                }
+            }
+            else { 
             return new ACCES_REQUISICION().INSERTAR_REQUISICION(_modelo);
+            }
         }
         public Boolean ACTUALIZARREQUISICION(REQUISICIONViewModel _modelo){
             return new ACCES_REQUISICION().ACTUALIZARREQUISICION_ACESS(_modelo);
@@ -338,6 +347,11 @@ namespace LOGICA.REQUISICION_LOGICA
 
         public int APROBAR_REQUISICION_LOGICA(int COD_REQUISICION, String ID_USUARIO) {
           return new ACCES_REQUISICION().APROBAR_REQUISICION_ACESS(COD_REQUISICION, ID_USUARIO);
+        }
+
+        public int REQUISICION_MODIFICAR_LOGICA(int COD_REQUISICION, string oBSERVACIONES, String ID_USUARIO)
+        {
+            return new ACCES_REQUISICION().REQUISICION_MODIFICAR_ACESS(COD_REQUISICION, oBSERVACIONES, ID_USUARIO);
         }
     }
 }
