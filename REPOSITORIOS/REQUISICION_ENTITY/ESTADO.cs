@@ -18,6 +18,7 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
         public ESTADO()
         {
             this.HISTORICO = new HashSet<HISTORICO>();
+            this.HISTORICO1 = new HashSet<HISTORICO1>();
         }
     
         public int COD_ESTADO_REQUISICION { get; set; }
@@ -30,5 +31,7 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HISTORICO> HISTORICO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HISTORICO1> HISTORICO1 { get; set; }
     }
 }

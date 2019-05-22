@@ -38,6 +38,7 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
         public virtual DbSet<TIPO> TIPO { get; set; }
         public virtual DbSet<TIPO_DOCUMENTO> TIPO_DOCUMENTO { get; set; }
         public virtual DbSet<TIPO_NECESIDAD> TIPO_NECESIDAD { get; set; }
+        public virtual DbSet<HISTORICO1> HISTORICO1Set { get; set; }
     
         public virtual int ACTUALIZAR_REQUISICION(Nullable<int> cOD_REQUISICION, Nullable<int> cOD_TIPO_NECESIDAD, Nullable<int> cOD_CARGO, string nOMBRE_CARGO, string oRDEN, string cOD_CECO, string nOMBRE_CECO, Nullable<int> cOD_TIPO_REQUISICION, Nullable<System.DateTime> fECHA_INICIO, Nullable<System.DateTime> fECHA_FIN, Nullable<bool> eS_MODIFICACION, string oBSERVACION, Nullable<int> cOD_ESTADO_REQUISICION, string uSUARIO_MODIFICACION, Nullable<int> cOD_GERENCIA, string nOMBRE_GERENCIA, Nullable<int> cOD_TIPO_CONTRATO, string nOMBRE_TIPO_CONTRATO, Nullable<int> cOD_TIPO_DOCUMENTO, string nUMERO_DOCUMENTO_EMPLEADO, string nOMBRE_EMPLEADO, string jEFE_INMEDIATO, Nullable<int> cOD_SOCIEDAD, string nOMBRE_SOCIEDAD, Nullable<int> cOD_EQUIPO_VENTAS, string nOMBRE_EQUIPO_VENTAS, Nullable<int> cOD_CIUDAD_TRABAJO, string nOMBRE_CIUDAD_TRABAJO, Nullable<int> cOD_DANE_CIUDAD_TRABAJO, string cOD_UBICACION_FISICA, string nOMBRE_UBICACION_FISICA, Nullable<int> cOD_NIVEL_RIESGO_ARL, string nIVEL_RIESGO_ARL, Nullable<int> cOD_CATEGORIA_ED, string nOMBRE_CATEGORIA_ED, string cARGO_CRITICO, Nullable<int> cOD_JORNADA_LABORAL, string nOMBRE_JORNADA_LABORAL, string hORARIO_LABORAL_DESDE, string hORARIO_LABORAL_HASTA, Nullable<int> cOD_DIA_LABORAL_DESDE, Nullable<int> cOD_DIA_LABORAL_HASTA, string pOSICION, string eMPRESA_TEMPORAL, Nullable<decimal> sALARIO_FIJO, Nullable<decimal> pORCENTAJE_SALARIO_FIJO, Nullable<decimal> sALARIO_VARIABLE, Nullable<decimal> pORCENTAJE_SALARIO_VARIABLE, Nullable<decimal> sOBREREMUNERACION, Nullable<decimal> pORCENTAJE_SOBREREMUNERACION, Nullable<decimal> eXTRA_FIJA, Nullable<decimal> rECARGO_NOCTURNO, Nullable<decimal> mEDIO_TRANSPORTE, Nullable<decimal> sALARIO_TOTAL, Nullable<decimal> bONO_ANUAL, Nullable<int> nUMERO_SALARIOS, Nullable<int> mESES_GARANTIZADOS, Nullable<int> cOD_TIPO_SALARIO, string nOMBRE_TIPO_SALARIO, Nullable<decimal> fACTOR_PRESTACIONAL, Nullable<decimal> iNGRESO_PROM_MENSUAL, Nullable<decimal> iNGRESO_PROM_ANUAL, string mERCADO, Nullable<int> cOD_CATEGORIA, string nOMBRE_CATEGORIA, Nullable<decimal> pUNTO_MEDIO_80, Nullable<decimal> pUNTO_MEDIO_100, Nullable<decimal> pUNTO_MEDIO_120, Nullable<decimal> pOSICIONAMIENTO)
         {
@@ -834,6 +835,23 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
                 new ObjectParameter("COD_REQUISICION", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("APROBAR_REQUISICION", iD_USUARIOParameter, cOD_REQUISICIONParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> MODIFICACIONES(Nullable<int> cOD_REQUISICION, string oBSERVACIONES, string cOD_USUARIO)
+        {
+            var cOD_REQUISICIONParameter = cOD_REQUISICION.HasValue ?
+                new ObjectParameter("COD_REQUISICION", cOD_REQUISICION) :
+                new ObjectParameter("COD_REQUISICION", typeof(int));
+    
+            var oBSERVACIONESParameter = oBSERVACIONES != null ?
+                new ObjectParameter("OBSERVACIONES", oBSERVACIONES) :
+                new ObjectParameter("OBSERVACIONES", typeof(string));
+    
+            var cOD_USUARIOParameter = cOD_USUARIO != null ?
+                new ObjectParameter("COD_USUARIO", cOD_USUARIO) :
+                new ObjectParameter("COD_USUARIO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("MODIFICACIONES", cOD_REQUISICIONParameter, oBSERVACIONESParameter, cOD_USUARIOParameter);
         }
     }
 }

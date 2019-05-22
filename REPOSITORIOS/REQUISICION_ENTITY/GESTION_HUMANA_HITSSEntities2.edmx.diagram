@@ -27,6 +27,9 @@
         <AssociationConnector Association="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_REQUISICION_REQUISICION_TIPO" ManuallyRouted="false" />
         <AssociationConnector Association="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_DOCUMENTO" ManuallyRouted="false" />
         <AssociationConnector Association="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_NECESIDAD" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel2.HISTORICO1" Width="1.5" PointX="11.25" PointY="4.75" />
+        <AssociationConnector Association="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_HISTORICO_REQUISICION_ESTADO1" />
+        <AssociationConnector Association="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_HISTORICO_REQUISICION_REQUISICION1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

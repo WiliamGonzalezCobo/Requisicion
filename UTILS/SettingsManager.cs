@@ -64,6 +64,19 @@ namespace UTILS.Settings
             get { return Convert.ToInt32(GetSettings("EstadoAporbadoController")); }
         }
 
+        public static int EstadoDevueltaRRHH
+        {
+            get { return Convert.ToInt32(GetSettings("EstadoDevueltaRRHH")); }
+        }
+
+        public static int EstadoDevueltaUSC
+        {
+            get { return Convert.ToInt32(GetSettings("EstadoDevueltaUSC")); }
+        }
+        public static int EstadoDevueltaController
+        {
+            get { return Convert.ToInt32(GetSettings("EstadoDevueltaController")); }
+        }
         #endregion
 
         #region Private Methods

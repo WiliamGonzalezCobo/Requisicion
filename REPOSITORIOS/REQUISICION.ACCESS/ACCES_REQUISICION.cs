@@ -158,7 +158,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                 }
                 return true;
             }
-            catch {
+            catch(Exception ex){
                 return false;
             }
          
@@ -337,6 +337,18 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                      ID_USUARIO,
                     COD_REQUISICION
                     ).First().Value;
+            }
+        }
+
+
+        public int REQUISICION_MODIFICAR_ACESS(int COD_REQUISICION, string oBSERVACIONES,String ID_USUARIO)
+        {
+            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            {
+                return db.MODIFICACIONES(
+                    COD_REQUISICION,
+                    oBSERVACIONES,
+                       ID_USUARIO ).First().Value;
             }
         }
     }

@@ -59,7 +59,11 @@ namespace G_H_WEB.Controllers
                 {
                     case "Crear Requisición":
                         _resultadoIdReguisicion = new LOGICA_REQUISICION().INSERTAR_REQUISICION_LOGICA(modelDatos);
-                         npc.METODO = "Crear";
+                        if (modelDatos.COD_REQUISICION == 0)
+                            npc.METODO = "Crear";
+                        else
+                            npc.METODO = "Modificar";
+
                         break;
                     case "Aprobar":
                         _resultadoIdReguisicion = new LOGICA_REQUISICION().APROBAR_REQUISICION_LOGICA(modelDatos.COD_REQUISICION, User.Identity.GetUserId());
@@ -72,7 +76,8 @@ namespace G_H_WEB.Controllers
                         _resultadoIdReguisicion = Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos));
                         break;
                     case "Modificar":
-                      
+                        _resultadoIdReguisicion = Convert.ToInt32(new LOGICA_REQUISICION().REQUISICION_MODIFICAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.GetUserId()));
+                        npc.METODO = "Modificar";
                         break;
                 }
 
