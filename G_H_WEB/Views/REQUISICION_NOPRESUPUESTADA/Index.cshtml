@@ -76,7 +76,7 @@
                                 @if (User.IsInRole(SettingsManager.PerfilController))
                                 {
                                     <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="button" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilBp))
                                 {
@@ -106,14 +106,16 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="ModalLabel">Requisición Creada Con éxito</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="EnviarInfocreacion()">
+                    <h5 class="modal-title _metodoCrear" id="ModalLabel">Requisición Creada Con éxito</h5>
+                    <h5 class="modal-title __metodoAprobar" id="ModalLabel">Requisición Aprobada Con éxito</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <br />
-                    <h2>Se créo la requisicion para el cargo de  <span id="mensaje1"></span> con ID <span id="mensaje2"></span></h2>
+                    <h2 class="_metodoCrear">Se créo la requisicion para el cargo de  <span id="mensaje1"></span> con ID <span id="mensaje2"></span></h2>
+                    <h2 class="__metodoAprobar">Se aprobó la requisicion con ID <span id="mensaje_aprobar"></span></h2>
                 </div>
             </div>
         </div>
@@ -151,18 +153,43 @@
 
     $(document).ready(function () {
         debugger;
-        var resultado = "@ViewBag.resultadoNojefe";
+        $("._metodoCrear").css("display", "none");
+        $(".__metodoAprobar").css("display", "none");
+        var resultado = "@ViewBag.resultadoInsertExitosoOno";
 
 
         if (resultado == "True") {
             debugger;
-            var CargoText = "@paraModel.NOMBRE_COD_CARGO";
+            var _metodo = "@paraModel.METODO";
+            if (_metodo == "Crear") {
+                CREAR_REQUISICION();
+            }
+            if (_metodo == "Aprobar") {
+                APROBAR_REQUISICION();
+            }
+            
+                $('#ModalCreacionNoJefe').modal("show");
+            }
+    });
+
+
+    function CREAR_REQUISICION() {
+         var CargoText = "@paraModel.NOMBRE_COD_CARGO";
             var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
             $("#mensaje1").text(CargoText);
             $("#mensaje2").text(CargoCod);
-                $('#ModalCreacionNoJefe').modal("show");
-            }
-        });
+        $("._metodoCrear").css("display", "block");
+    }
+
+    
+    function APROBAR_REQUISICION() {
+        var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+        $(".__metodoAprobar").css("display", "block");
+        $("#mensaje_aprobar").text(CargoCod);
+
+    }
+
+
     $("#btnCancelarNoJefe").on("click", function () {
         $('#ModalCancelNoJefe').modal('show');
     });
