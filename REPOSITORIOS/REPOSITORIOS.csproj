@@ -157,9 +157,6 @@
     <Compile Include="REQUISICION_ENTITY\HISTORICO.cs">
       <DependentUpon>GESTION_HUMANA_HITSSEntities2.tt</DependentUpon>
     </Compile>
-    <Compile Include="REQUISICION_ENTITY\HISTORICO1.cs">
-      <DependentUpon>GESTION_HUMANA_HITSSEntities2.tt</DependentUpon>
-    </Compile>
     <Compile Include="REQUISICION_ENTITY\MENU_ROL.cs">
       <DependentUpon>GESTION_HUMANA_HITSSEntities2.tt</DependentUpon>
     </Compile>
@@ -170,6 +167,9 @@
       <DependentUpon>GESTION_HUMANA_HITSSEntities2.tt</DependentUpon>
     </Compile>
     <Compile Include="REQUISICION_ENTITY\ROL.cs">
+      <DependentUpon>GESTION_HUMANA_HITSSEntities2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="REQUISICION_ENTITY\ROL_REQUISICION.cs">
       <DependentUpon>GESTION_HUMANA_HITSSEntities2.tt</DependentUpon>
     </Compile>
     <Compile Include="REQUISICION_ENTITY\TIPO.cs">

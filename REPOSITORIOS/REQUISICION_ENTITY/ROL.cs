@@ -17,7 +17,6 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ROL()
         {
-            this.COMENTARIO = new HashSet<COMENTARIO>();
             this.MENU_ROL = new HashSet<MENU_ROL>();
         }
     
@@ -28,8 +27,6 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
         public string USUARIO_MODIFICACION { get; set; }
         public Nullable<System.DateTime> FECHA_MODIFICACION { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<COMENTARIO> COMENTARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MENU_ROL> MENU_ROL { get; set; }
     }

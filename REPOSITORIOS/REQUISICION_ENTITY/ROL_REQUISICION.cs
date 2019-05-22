@@ -12,18 +12,11 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
     using System;
     using System.Collections.Generic;
     
-    public partial class COMENTARIO
+    public partial class ROL_REQUISICION
     {
-        public int COD_COMENTARIO { get; set; }
-        public Nullable<int> COD_REQUISICION { get; set; }
+        public int COD_ID_ROL_REQUISICION { get; set; }
+        public string ID_ROL { get; set; }
+        public Nullable<int> COD_TIPO_REQUISICION { get; set; }
         public Nullable<int> COD_ESTADO_REQUISICION { get; set; }
-        public string COMENTARIO_AUTORIZACION { get; set; }
-        public string OBSERVACIONES { get; set; }
-        public string COD_ROL { get; set; }
-        public Nullable<int> COD_USUARIO { get; set; }
-        public string USARIO_CREACION { get; set; }
-        public Nullable<System.DateTime> FECHA_CREACION { get; set; }
-    
-        public virtual REQUISICION REQUISICION { get; set; }
     }
 }

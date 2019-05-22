@@ -16,7 +16,7 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
     {
         public int COD_HISTORICO_REQUISICION { get; set; }
         public int COD_REQUISICION { get; set; }
-        public Nullable<int> COD_ROL { get; set; }
+        public string COD_ROL { get; set; }
         public Nullable<int> COD_NIVEL_RIESGO_ARL { get; set; }
         public Nullable<int> COD_CATEGORIA_ED { get; set; }
         public Nullable<bool> CARGO_CRITICO { get; set; }
