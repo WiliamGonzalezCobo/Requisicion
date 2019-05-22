@@ -435,9 +435,8 @@
           <Parameter Name="POSICIONAMIENTO" Type="numeric" Mode="In" />
         </Function>
         <Function Name="APROBAR_REQUISICION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION">
-          <Parameter Name="ROL_APROBADOR" Type="int" Mode="In" />
+          <Parameter Name="ID_USUARIO" Type="varchar" Mode="In" />
           <Parameter Name="COD_REQUISICION" Type="int" Mode="In" />
-          <Parameter Name="USUARIO" Type="varchar" Mode="In" />
         </Function>
         <Function Name="CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION">
           <Parameter Name="COD_USUARIO" Type="varchar" Mode="In" />
@@ -448,11 +447,6 @@
           <Parameter Name="COD_REQUISICION" Type="int" Mode="In" />
         </Function>
         <Function Name="CONSULTAR_ESTADOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION" />
-        <Function Name="CONSULTAR_REQUISICIONES_BP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION" />
-        <Function Name="CONSULTAR_REQUISICIONES_CONTROLLER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION" />
-        <Function Name="CONSULTAR_REQUISICIONES_FILTRO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION" />
-        <Function Name="CONSULTAR_REQUISICIONES_JEFE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION" />
-        <Function Name="CONSULTAR_REQUISICIONES_RRHH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION" />
         <Function Name="CONSULTAR_REQUISICIONXID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION">
           <Parameter Name="IDREQUISICION" Type="int" Mode="In" />
         </Function>
@@ -1136,11 +1130,6 @@
             <Parameter Name="PUNTO_MEDIO_120" Mode="In" Type="Decimal" />
             <Parameter Name="POSICIONAMIENTO" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="APROBAR_REQUISICION">
-            <Parameter Name="ROL_APROBADOR" Mode="In" Type="Int32" />
-            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
-            <Parameter Name="USUARIO" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="CONSULTAR_COMENTARIO" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_COMENTARIO_Result)">
           <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1269,6 +1258,10 @@
             <Parameter Name="POSICIONAMIENTO" Mode="In" Type="String" />
             <Parameter Name="USUARIO" Mode="In" Type="String" />
             <Parameter Name="COD_ESTADO" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="APROBAR_REQUISICION" ReturnType="Collection(Int32)">
+            <Parameter Name="ID_USUARIO" Mode="In" Type="String" />
+            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="CONSULTAR_COMENTARIO_Result">
@@ -1675,7 +1668,6 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="ACTUALIZAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.ACTUALIZAR_REQUISICION" />
-          <FunctionImportMapping FunctionImportName="APROBAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.APROBAR_REQUISICION" />
           <FunctionImportMapping FunctionImportName="CONSULTAR_COMENTARIO" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTAR_COMENTARIO">
             <ResultMapping>
               <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTAR_COMENTARIO_Result">
@@ -1690,78 +1682,6 @@
           <FunctionImportMapping FunctionImportName="CONSULTAR_ESTADOS" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTAR_ESTADOS">
             <ResultMapping>
               <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTAR_ESTADOS_Result">
-                <ScalarProperty Name="COD_ESTADO_REQUISICION" ColumnName="COD_ESTADO_REQUISICION" />
-                <ScalarProperty Name="NOMBRE_ESTADO" ColumnName="NOMBRE_ESTADO" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CONSULTAR_REQUISICIONES_BP" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTAR_REQUISICIONES_BP">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONES_BP_Result">
-                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
-                <ScalarProperty Name="EMAIL_USUARIO_CREACION" ColumnName="EMAIL_USUARIO_CREACION" />
-                <ScalarProperty Name="COD_CARGO" ColumnName="COD_CARGO" />
-                <ScalarProperty Name="NOMBRE_CARGO" ColumnName="NOMBRE_CARGO" />
-                <ScalarProperty Name="COD_TIPO_REQUISICION" ColumnName="COD_TIPO_REQUISICION" />
-                <ScalarProperty Name="NOMBRE_REQUISICION" ColumnName="NOMBRE_REQUISICION" />
-                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
-                <ScalarProperty Name="COD_ESTADO_REQUISICION" ColumnName="COD_ESTADO_REQUISICION" />
-                <ScalarProperty Name="NOMBRE_ESTADO" ColumnName="NOMBRE_ESTADO" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CONSULTAR_REQUISICIONES_CONTROLLER" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTAR_REQUISICIONES_CONTROLLER">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONES_CONTROLLER_Result">
-                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
-                <ScalarProperty Name="EMAIL_USUARIO_CREACION" ColumnName="EMAIL_USUARIO_CREACION" />
-                <ScalarProperty Name="COD_CARGO" ColumnName="COD_CARGO" />
-                <ScalarProperty Name="NOMBRE_CARGO" ColumnName="NOMBRE_CARGO" />
-                <ScalarProperty Name="COD_TIPO_REQUISICION" ColumnName="COD_TIPO_REQUISICION" />
-                <ScalarProperty Name="NOMBRE_REQUISICION" ColumnName="NOMBRE_REQUISICION" />
-                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
-                <ScalarProperty Name="COD_ESTADO_REQUISICION" ColumnName="COD_ESTADO_REQUISICION" />
-                <ScalarProperty Name="NOMBRE_ESTADO" ColumnName="NOMBRE_ESTADO" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CONSULTAR_REQUISICIONES_FILTRO" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTAR_REQUISICIONES_FILTRO">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONES_FILTRO_Result">
-                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
-                <ScalarProperty Name="EMAIL_USUARIO_CREACION" ColumnName="EMAIL_USUARIO_CREACION" />
-                <ScalarProperty Name="COD_CARGO" ColumnName="COD_CARGO" />
-                <ScalarProperty Name="NOMBRE_CARGO" ColumnName="NOMBRE_CARGO" />
-                <ScalarProperty Name="NOMBRE_REQUISICION" ColumnName="NOMBRE_REQUISICION" />
-                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
-                <ScalarProperty Name="NOMBRE_ESTADO" ColumnName="NOMBRE_ESTADO" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CONSULTAR_REQUISICIONES_JEFE" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTAR_REQUISICIONES_JEFE">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONES_JEFE_Result">
-                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
-                <ScalarProperty Name="EMAIL_USUARIO_CREACION" ColumnName="EMAIL_USUARIO_CREACION" />
-                <ScalarProperty Name="COD_CARGO" ColumnName="COD_CARGO" />
-                <ScalarProperty Name="NOMBRE_CARGO" ColumnName="NOMBRE_CARGO" />
-                <ScalarProperty Name="COD_TIPO_REQUISICION" ColumnName="COD_TIPO_REQUISICION" />
-                <ScalarProperty Name="NOMBRE_REQUISICION" ColumnName="NOMBRE_REQUISICION" />
-                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
-                <ScalarProperty Name="NOMBRE_ESTADO" ColumnName="NOMBRE_ESTADO" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CONSULTAR_REQUISICIONES_RRHH" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTAR_REQUISICIONES_RRHH">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONES_RRHH_Result">
-                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
-                <ScalarProperty Name="EMAIL_USUARIO_CREACION" ColumnName="EMAIL_USUARIO_CREACION" />
-                <ScalarProperty Name="COD_CARGO" ColumnName="COD_CARGO" />
-                <ScalarProperty Name="NOMBRE_CARGO" ColumnName="NOMBRE_CARGO" />
-                <ScalarProperty Name="COD_TIPO_REQUISICION" ColumnName="COD_TIPO_REQUISICION" />
-                <ScalarProperty Name="NOMBRE_REQUISICION" ColumnName="NOMBRE_REQUISICION" />
-                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
                 <ScalarProperty Name="COD_ESTADO_REQUISICION" ColumnName="COD_ESTADO_REQUISICION" />
                 <ScalarProperty Name="NOMBRE_ESTADO" ColumnName="NOMBRE_ESTADO" />
               </ComplexTypeMapping>
@@ -1884,6 +1804,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="INSERTAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.INSERTAR_REQUISICION" />
+          <FunctionImportMapping FunctionImportName="APROBAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.APROBAR_REQUISICION" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

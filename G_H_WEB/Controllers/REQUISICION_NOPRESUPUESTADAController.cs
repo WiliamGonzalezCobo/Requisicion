@@ -1,5 +1,6 @@
 ﻿using G_H_WEB.Logica_Session;
 using LOGICA.REQUISICION_LOGICA;
+using Microsoft.AspNet.Identity;
 using MODELO_DATOS.MODELO_REQUISICION;
 using System;
 using System.Collections.Generic;
@@ -28,10 +29,10 @@ namespace G_H_WEB.Controllers
             List<SelectListItem> listacargos = model.LIST_NOMBRE_CARGO;
             RESPUESTA_POP_UP fromPost = TempData["resultado"] as RESPUESTA_POP_UP;
             // este filtro se debe hacer sobre la lista NOMBRE_CARGO y no sobre necesidad 
-            if (fromPost != null)
+            if (fromPost != null && fromPost.RESULTADO == true && fromPost.COD_CARGO != 0)
                 fromPost.NOMBRE_COD_CARGO = listacargos.Where(x => x.Value == fromPost.COD_CARGO.ToString()).First().Text;
             //Logica para el POP UP
-            ViewBag.resultadoNojefe = fromPost != null ? !fromPost.RESULTADO.Equals(0) : false;
+            ViewBag.resultadoInsertExitosoOno = fromPost != null ? !fromPost.RESULTADO.Equals(0) : false;
             ViewBag.resultadoPopUpNoJefe = fromPost;
 
             //FIN POP UP
@@ -49,15 +50,20 @@ namespace G_H_WEB.Controllers
                 modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(modelDatos, Session["objetoListas"] as REQUISICIONViewModel);
                 // saca los valores de los combos
                 modelDatos = new LOGICA_REQUISICION().CONSULTAR_VALORES_LISTAS_POR_CODIGO(modelDatos);
-              
+
+                //INICIO Esta logica es para el POP UP----------
+                RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
+                // FIN
 
                 switch (submitButton)
                 {
                     case "Crear Requisición":
                         _resultadoIdReguisicion = new LOGICA_REQUISICION().INSERTAR_REQUISICION_LOGICA(modelDatos);
+                         npc.METODO = "Crear";
                         break;
                     case "Aprobar":
-                        //Aprobar(model);
+                        _resultadoIdReguisicion = new LOGICA_REQUISICION().APROBAR_REQUISICION_LOGICA(modelDatos.COD_REQUISICION, User.Identity.GetUserId());
+                        npc.METODO = "Aprobar";
                         break;
                     case "Rechazar":
                         //Rechazar(model);
@@ -66,13 +72,12 @@ namespace G_H_WEB.Controllers
                         _resultadoIdReguisicion = Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos));
                         break;
                     case "Modificar":
-                        //Modificar(model);
+                      
                         break;
                 }
 
 
                 //INICIO Esta logica es para el POP UP----------
-                RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
                 npc.COD_REQUISICION_CREADA = _resultadoIdReguisicion;
                 npc.COD_CARGO = modelDatos.COD_CARGO;
                 npc.RESULTADO = !_resultadoIdReguisicion.Equals(0);
@@ -81,7 +86,7 @@ namespace G_H_WEB.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
                 npc.RESULTADO = false;
@@ -90,6 +95,5 @@ namespace G_H_WEB.Controllers
             }
         }
 
-       
     }
 }

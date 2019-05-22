@@ -465,5 +465,6 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         public decimal POSICIONAMIENTO { get; set; }
 
         public string COLORES_ESTADOS { get; set; }
+        public int RESPUESTA { get; set; }
     }
 }

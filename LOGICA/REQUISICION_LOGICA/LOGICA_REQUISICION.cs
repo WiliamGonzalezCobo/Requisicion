@@ -308,5 +308,9 @@ namespace LOGICA.REQUISICION_LOGICA
 
             return _MODEL_CODIGOS;
         }
+
+        public int APROBAR_REQUISICION_LOGICA(int COD_REQUISICION, String ID_USUARIO) {
+          return new ACCES_REQUISICION().APROBAR_REQUISICION_ACESS(COD_REQUISICION, ID_USUARIO);
+        }
     }
 }

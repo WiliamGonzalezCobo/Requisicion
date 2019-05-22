@@ -12,5 +12,6 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         public int COD_CARGO { get; set; }
         public string NOMBRE_COD_CARGO { get; set; }
         public bool RESULTADO { get; set; }
+        public string METODO { get; set; }
     }
 }

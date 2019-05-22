@@ -328,5 +328,16 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             }
 
         }
+
+        public int APROBAR_REQUISICION_ACESS(int COD_REQUISICION, String ID_USUARIO)
+        {
+            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            {
+              return  db.APROBAR_REQUISICION(
+                     ID_USUARIO,
+                    COD_REQUISICION
+                    ).First().Value;
+            }
+        }
     }
 }
