@@ -39,7 +39,7 @@ namespace G_H_WEB.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Index(REQUISICIONViewModel modelDatos) {
+        public ActionResult Index(REQUISICIONViewModel modelDatos, string submitButton) {
             try {
                 int _resultadoIdReguisicion = 0;
                 modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqNoPresupuestada;
@@ -49,12 +49,27 @@ namespace G_H_WEB.Controllers
                 modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(modelDatos, Session["objetoListas"] as REQUISICIONViewModel);
                 // saca los valores de los combos
                 modelDatos = new LOGICA_REQUISICION().CONSULTAR_VALORES_LISTAS_POR_CODIGO(modelDatos);
-                if (User.IsInRole(SettingsManager.PerfilJefe)) {
-                    _resultadoIdReguisicion = new LOGICA_REQUISICION().INSERTAR_REQUISICION_LOGICA(modelDatos);
-                } else {
-                    _resultadoIdReguisicion =Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos));
+              
+
+                switch (submitButton)
+                {
+                    case "Crear Requisición":
+                        _resultadoIdReguisicion = new LOGICA_REQUISICION().INSERTAR_REQUISICION_LOGICA(modelDatos);
+                        break;
+                    case "Aprobar":
+                        //Aprobar(model);
+                        break;
+                    case "Rechazar":
+                        //Rechazar(model);
+                        break;
+                    case "Enviar":
+                        _resultadoIdReguisicion = Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos));
+                        break;
+                    case "Modificar":
+                        //Modificar(model);
+                        break;
                 }
-                
+
 
                 //INICIO Esta logica es para el POP UP----------
                 RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
@@ -63,9 +78,10 @@ namespace G_H_WEB.Controllers
                 npc.RESULTADO = !_resultadoIdReguisicion.Equals(0);
                 TempData["resultado"] = npc;
                 //FIN Esta logica es para el POP UP----------
+
                 return RedirectToAction("Index");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
                 npc.RESULTADO = false;
@@ -74,8 +90,6 @@ namespace G_H_WEB.Controllers
             }
         }
 
-        public JsonResult APROBAR_REQUISICION() {
-            return Json("", JsonRequestBehavior.AllowGet);
-        }
+       
     }
 }
