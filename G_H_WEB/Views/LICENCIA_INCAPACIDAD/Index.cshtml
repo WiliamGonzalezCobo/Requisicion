@@ -1,30 +1,264 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
-
+@using MODELO_DATOS.MODELO_REQUISICION;
+@using UTILS.Settings
 @{
-    ViewBag.Title = "Requisición Licencia/Incapacidad";
+    ViewBag.Title = "Crear Requisición No Presupuestada";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
 }
-<script src="../../assets/js/scripts.js"></script>
+<div class="col">
+    <h4>@ViewBag.Title</h4>
+    <div id="IconosRequisicion" class="LSubtitulos col-md-12 col-lg-12 col-xl-12 row" style="margin-bottom:10px;">
 
+        <div class="col-md-3 col-lg-3 col-xl-3">
+            <img src="../../assets/img/presupuestada.png" class="img-responsive maxImagenMenu" />
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-3">
+            <img src="../../assets/img/NoPresupuestada.png" class="img-responsive maxImagenMenu" />
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-3">
+            <img src="../../assets/img/Incapacidad.png" class="img-responsive maxImagenMenu" />
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-3">
+            <img src="../../assets/img/Licencia.png" class="img-responsive maxImagenMenu" />
+        </div>
 
-<div class="col-md-9 col-lg-9 col-xl-9 tablaRetiros">
-    <h2>@ViewBag.Title</h2>
-    @if (User.IsInRole("Jefe"))
-    {
-        @Html.Partial("_LICENCIA_INCAPACIDAD_JEFE", Model)        
-    }
-    @if (User.IsInRole("BP"))
-    {
-        @Html.Partial("_LICENCIA_INCAPACIDAD_BP", Model)        
-    }
-    @if (User.IsInRole("RRHH"))
-    {
-        @Html.Partial("_LICENCIA_INCAPACIDAD_RRHH", Model)        
-    }
-    @if (User.IsInRole("USC"))
-    {
-        @Html.Partial("_LICENCIA_INCAPACIDAD_USC", Model)        
-    }
+    </div>
 
+    <div id="SeccionRequisicionParciales" class="col">
+        <div id="CNform">
+            <div class="retiros-detalle">
+                <div class="form-group col-md-12">
+                    @using (Html.BeginForm("Index", "LICENCIA_INCAPACIDADController"))
+                    {
+
+                        if (User.IsInRole(SettingsManager.PerfilJefe))
+                        {
+                            @Html.Partial("_PartialInfoRequisicion", Model)
+                            @Html.Partial("_PartialAutorizacion", Model)
+                        }
+                        if (User.IsInRole(SettingsManager.PerfilController))
+                        {
+                            @Html.Partial("_PartialInfoRequisicion", Model)
+                            @Html.Partial("_PartialAutorizacion", Model)
+                        }
+                        if (User.IsInRole(SettingsManager.PerfilBp))
+                        {
+                            @Html.Partial("_PartialInfoRequisicion", Model)
+                            @Html.Partial("_PartialInfoGeneral", Model)
+                            @Html.Partial("_PartialInfoSalarial", Model)
+                            @Html.Partial("_PartialAutorizacion", Model)
+
+                        }
+                        if (User.IsInRole(SettingsManager.PerfilRRHH))
+                        {
+                            @Html.Partial("_PartialInfoRequisicion", Model)
+                            @Html.Partial("_PartialInfoGeneral", Model)
+                            @Html.Partial("_PartialInfoSalarial", Model)
+                            @Html.Partial("_PartialAutorizacion", Model)
+                        }
+                        if (User.IsInRole(SettingsManager.PerfilUSC))
+                        {
+                            @Html.Partial("_PartialInfoRequisicion", Model)
+                            @Html.Partial("_PartialInfoGeneral", Model)
+                            @Html.Partial("_PartialInfoSalarial", Model)
+                            @Html.Partial("_PartialAutorizacion", Model)
+                        }
+
+                        //Botones
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.ActionLink("Cancelar", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "btn-cancelar-retriro col-md-3 " })
+                                @if (User.IsInRole(SettingsManager.PerfilJefe))
+                                {
+                                    <input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="btn-confirmar-retiro col-md-3" />
+                                }
+                                @if (User.IsInRole(SettingsManager.PerfilController))
+                                {
+                                    <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                }
+                                @if (User.IsInRole(SettingsManager.PerfilBp))
+                                {
+                                    <input name="submitButton" type="submit" value="Enviar" class="btn-confirmar-retiro col-md-3" />
+                                }
+                                @if (User.IsInRole(SettingsManager.PerfilRRHH))
+                                {
+                                    <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                }
+                                @if (User.IsInRole(SettingsManager.PerfilUSC))
+                                {
+                                    <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title _metodoDefecto" id="ModalLabel">Se ha presentado un error</h5>
+                    <h5 class="modal-title _metodoCrear" id="ModalLabel">Requisición Creada Con éxito</h5>
+                    <h5 class="modal-title __metodoAprobar" id="ModalLabel">Requisición Aprobada Con éxito</h5>
+                    <h5 class="modal-title __metodoModificar" id="ModalLabel">Requisición Modificada Con éxito</h5>
+                    <h5 class="modal-title __metodoRechazar" id="ModalLabel">Requisición Rechazada Con éxito</h5>
+                    <h5 class="modal-title __metodoEnviar" id="ModalLabel">Requisición Enviada Con éxito</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <br />
+                    <h2 class="_metodoCrear">Se créo la requisicion para el cargo de  <span id="mensaje1"></span> con ID <span id="mensaje2"></span></h2>
+                    <h2 class="__metodoAprobar">Se aprobó la requisicion con ID <span id="mensaje_aprobar"></span></h2>
+                    <h2 class="__metodoModificar">Se modifico la requisicion con ID <span id="mensaje_modificar"></span></h2>
+                    <h2 class="__metodoRechazar">Se Rechazado la requisicion con ID <span id="mensaje_rechazar"></span></h2>
+                    <h2 class="_metodoDefecto">Por favor contacte al <span id="mensaje_rechazar">administrador</span> del sistema</h2>
+                    <h2 class="__metodoEnviar">Se Envio la requisicion con ID <span id="mensaje_Enviar"></span></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalCancelNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Esta a punto de cancelar la requisición</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+                <div class="retiros-detalle modal-body">
+                    <br />
+                    <h4>¿Esta Seguro de Cancelarla?</h4>
+
+                    <button type="button" class="filtroPorUsuario btn-cancelar-retriro" data-dismiss="modal" aria-label="Aceptar" onclick="NoCancelarJefe()" style="cursor:pointer;">
+                        No
+
+                    </button>
+                    <button type="button" class="filtroPorUsuario btn-confirmar-retiro" data-dismiss="modal" aria-label="Cancelar" onclick="SiCancelarJefe()" style="cursor:pointer;">
+                        Si
+
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        debugger;
+        if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {
+            if (@Model.COD_REQUISICION!= 0) {
+                $("#submitButtonCrear").text("Modificar Requisición");
+            }
+        }
+        $("._metodoCrear").css("display", "none");
+        $(".__metodoAprobar").css("display", "none");
+        $(".__metodoModificar").css("display", "none");
+        $(".__metodoRechazar").css("display", "none");
+        $(".__metodoEnviar").css("display", "none");
+
+
+
+        var resultado = "@ViewBag.resultadoInsertExitosoOno";
+
+
+        if (resultado == "True") {
+            debugger;
+            var _metodo = "@paraModel.METODO";
+            if (_metodo == "Crear") {
+                CREAR_REQUISICION();
+                $("._metodoDefecto").css("display", "none");
+
+            }
+            else if (_metodo == "Aprobar") {
+                APROBAR_REQUISICION();
+                $("._metodoDefecto").css("display", "none");
+            }
+            else if (_metodo == "Modificar") {
+                MODIFICAR_REQUISICION();
+                $("._metodoDefecto").css("display", "none");
+            }
+
+            else if (_metodo == "Rechazar") {
+                RECHAZAR_REQUISICION();
+                $("._metodoDefecto").css("display", "none");
+            }
+            else if (_metodo == "Enviar") {
+                ENVIAR_REQUISICION();
+                $("._metodoDefecto").css("display", "none");
+            }
+
+            $('#ModalCreacionNoJefe').modal("show");
+        }
+
+
+    });
+
+
+    function CREAR_REQUISICION() {
+         var CargoText = "@paraModel.NOMBRE_COD_CARGO";
+            var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+            $("#mensaje1").text(CargoText);
+            $("#mensaje2").text(CargoCod);
+        $("._metodoCrear").css("display", "block");
+    }
+
+
+    function APROBAR_REQUISICION() {
+        var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+        $(".__metodoAprobar").css("display", "block");
+        $("#mensaje_aprobar").text(CargoCod);
+
+    }
+    function MODIFICAR_REQUISICION() {
+          var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+        $(".__metodoModificar").css("display", "block");
+        $("#mensaje_modificar").text(CargoCod);
+    }
+
+      function RECHAZAR_REQUISICION() {
+          var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+          $(".__metodoRechazar").css("display", "block");
+          $("#mensaje_rechazar").text(CargoCod);
+    }
+
+          function ENVIAR_REQUISICION() {
+          var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+          $(".__metodoEnviar").css("display", "block");
+          $("#mensaje_Enviar").text(CargoCod);
+    }
+
+
+    $("#btnCancelarNoJefe").on("click", function () {
+        $('#ModalCancelNoJefe').modal('show');
+    });
+
+    function SiCancelarJefe() {
+            $('#ModalCancel').modal('hide');
+            window.location.href = '@Url.Action("Index", "REQUISICION")';
+        };
+    function NoCancelarJefe() {
+            $('#ModalCancel').modal('hide');
+    };
+
+    $(function () {
+        $('.datepicker').datepicker();
+    });
+</script>
+
 

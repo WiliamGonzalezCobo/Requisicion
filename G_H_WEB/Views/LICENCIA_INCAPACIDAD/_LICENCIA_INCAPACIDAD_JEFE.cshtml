@@ -5,10 +5,10 @@
 
     <h4 class="LSubtitulos col-md-12">Información Basica</h4>
     <div class="form-group col-md-12 row">
-        @Html.LabelFor(model => model.TIPO_DOCUMENTO, htmlAttributes: new { @class = "control-label col-md-12" })
+        @Html.LabelFor(model => model.LIST_TIPO_DOCUMENTO, htmlAttributes: new { @class = "control-label col-md-12" })
         <div class="col-md-12">
-            @Html.DropDownListFor(model => model.COD_TIPO_DOCUMENTO, Model.TIPO_DOCUMENTO, "Seleccione ", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.TIPO_DOCUMENTO, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.COD_TIPO_DOCUMENTO, Model.LIST_TIPO_DOCUMENTO, "Seleccione ", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.LIST_TIPO_DOCUMENTO, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group col-md-12 row">
@@ -59,10 +59,10 @@
         </div>
     </div>
     <div class="form-group col-md-12 row">
-        @Html.LabelFor(model => model.NOMBRE_GERENCIA_LISTA, htmlAttributes: new { @class = "control-label col-md-12" })
+        @Html.LabelFor(model => model.NOMBRE_GERENCIA, htmlAttributes: new { @class = "control-label col-md-12" })
         <div class="col-md-12">
-            @Html.DropDownListFor(model => model.COD_GERENCIA, Model.NOMBRE_GERENCIA_LISTA, "Seleccione ", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.NOMBRE_GERENCIA_LISTA, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.COD_GERENCIA, Model.LIST_NOMBRE_GERENCIA, "Seleccione ", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.LIST_NOMBRE_GERENCIA, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group col-md-12 row">
@@ -73,24 +73,24 @@
         </div>
     </div>
     <div class="form-group col-md-12 row">
-        @Html.LabelFor(model => model.NOMBRE_SOCIEDAD_LISTA, htmlAttributes: new { @class = "control-label col-md-12" })
+        @Html.LabelFor(model => model.NOMBRE_SOCIEDAD, htmlAttributes: new { @class = "control-label col-md-12" })
         <div class="col-md-12">
-            @Html.DropDownListFor(model => model.COD_SOCIEDAD, Model.NOMBRE_SOCIEDAD_LISTA, "Selecione ", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.NOMBRE_SOCIEDAD_LISTA, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.COD_SOCIEDAD, Model.LIST_NOMBRE_GERENCIA, "Selecione ", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.LIST_NOMBRE_GERENCIA, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group col-md-12 row">
-        @Html.LabelFor(model => model.COD_EQUIPO_VENTAS_LISTA, htmlAttributes: new { @class = "control-label col-md-12" })
+        @Html.LabelFor(model => model.NOMBRE_EQIPO_VENTAS, htmlAttributes: new { @class = "control-label col-md-12" })
         <div class="col-md-12">
-            @Html.DropDownListFor(model => model.COD_EQUIPO_VENTAS, Model.COD_EQUIPO_VENTAS_LISTA, "Seleccione ", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.COD_EQUIPO_VENTAS_LISTA, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.COD_EQUIPO_VENTAS, Model.LIST_NOMBRE_EQIPO_VENTAS, "Seleccione ", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.LIST_NOMBRE_EQIPO_VENTAS, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group col-md-12 row">
-        @Html.LabelFor(model => model.COD_CATEGORIA_ED_LISTA, htmlAttributes: new { @class = "control-label col-md-12" })
+        @Html.LabelFor(model => model.NOMBRE_CATEGORIA_ED, htmlAttributes: new { @class = "control-label col-md-12" })
         <div class="col-md-12">
-            @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, Model.COD_CATEGORIA_ED_LISTA, "Seleccione ", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.COD_CATEGORIA_ED_LISTA, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, Model.LIST_NOMBRE_CATEGORIA_ED, "Seleccione ", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.LIST_NOMBRE_CATEGORIA_ED, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group col-md-12 row">

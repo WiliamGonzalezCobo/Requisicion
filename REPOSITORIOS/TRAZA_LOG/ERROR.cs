@@ -30,7 +30,7 @@ namespace REPOSITORIOS.TRAZA_LOG
 
                     _ERROR.COD_ERROR = 1;
                     _ERROR.CODIGO_ERROR = CODIGO_ERROR;
-                    _ERROR.FECHA = Convert.ToDateTime("18/02/2019");
+                    _ERROR.FECHA = Convert.ToDateTime("2019/3/3");
                     _ERROR.NOMBRE_CLASE = _NOMBRE_CLASE;
                     _ERROR.NOMBRE_METODO = _NOMBRE_METODO;
                     _ERROR.DETALLE = _INFO;

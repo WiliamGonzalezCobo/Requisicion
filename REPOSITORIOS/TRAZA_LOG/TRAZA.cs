@@ -38,7 +38,7 @@ namespace REPOSITORIOS.TRAZA_LOG
                     log.Info("CODIGO : DPTR1," + INFO);
                     _DEPURAR.COD_ERROR = 1;//SI
                     _DEPURAR.CODIGO_ERROR = CODIGO_ERROR;//SI
-                    _DEPURAR.FECHA = Convert.ToDateTime("18/02/2019");
+                    _DEPURAR.FECHA = Convert.ToDateTime("2019/4/4");
                     _DEPURAR.NOMBRE_CLASE = _NOMBRE_CLASE;//SI
                     _DEPURAR.NOMBRE_METODO = _NOMBRE_METODO;//SI
                     _DEPURAR.DETALLE = _INFO;//SI
