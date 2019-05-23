@@ -104,7 +104,7 @@ namespace LOGICA.REQUISICION_LOGICA
         /// <returns></returns>
         private List<SelectListItem> CONSULTAR_CECOS() {
             return new PROXY().CONSULTAR_CECO_API().Select(x => new SelectListItem() {
-                Value=x.COD_CENTRO_TRABAJO.ToString(),
+                Value=x.coD_CENTRO_COSTO.ToString(),
                 Text=x.NOMBRE
             }).ToList();
         }
@@ -345,13 +345,18 @@ namespace LOGICA.REQUISICION_LOGICA
             return _MODEL_CODIGOS;
         }
 
-        public int APROBAR_REQUISICION_LOGICA(int COD_REQUISICION, String ID_USUARIO) {
-          return new ACCES_REQUISICION().APROBAR_REQUISICION_ACESS(COD_REQUISICION, ID_USUARIO);
+        public int APROBAR_REQUISICION_LOGICA(int COD_REQUISICION, String ID_USUARIO, string observacion) {
+          return new ACCES_REQUISICION().APROBAR_REQUISICION_ACESS(COD_REQUISICION, ID_USUARIO, observacion);
         }
 
         public int REQUISICION_MODIFICAR_LOGICA(int COD_REQUISICION, string oBSERVACIONES, String ID_USUARIO)
         {
             return new ACCES_REQUISICION().REQUISICION_MODIFICAR_ACESS(COD_REQUISICION, oBSERVACIONES, ID_USUARIO);
+        }
+
+        public int REQUISICION_RECHAZAR_LOGICA(int COD_REQUISICION, string oBSERVACIONES, String USUARIO)
+        {
+            return new ACCES_REQUISICION().REQUISICION_RECHAZAR_ACESS(COD_REQUISICION, oBSERVACIONES, USUARIO);
         }
     }
 }

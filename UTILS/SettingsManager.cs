@@ -38,7 +38,15 @@ namespace UTILS.Settings
         {
             get { return GetSettings("Urlapi"); }
         }
+        public static string ApiUsuario
+        {
+            get { return GetSettings("ApiUsuario"); }
+        }
 
+        public static string ApiPassword
+        {
+            get { return GetSettings("ApiPassword"); }
+        }
         public static int CodTipoReqPresupuestada
         {
             get { return Convert.ToInt32(GetSettings("CodTipoReqPresupuestada")); }

@@ -66,11 +66,12 @@ namespace G_H_WEB.Controllers
 
                         break;
                     case "Aprobar":
-                        _resultadoIdReguisicion = new LOGICA_REQUISICION().APROBAR_REQUISICION_LOGICA(modelDatos.COD_REQUISICION, User.Identity.GetUserId());
+                        _resultadoIdReguisicion = new LOGICA_REQUISICION().APROBAR_REQUISICION_LOGICA(modelDatos.COD_REQUISICION, User.Identity.GetUserId(),modelDatos.OBSERVACION);
                         npc.METODO = "Aprobar";
                         break;
                     case "Rechazar":
-                        //Rechazar(model);
+                        _resultadoIdReguisicion = new LOGICA_REQUISICION().REQUISICION_RECHAZAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.Name);
+                        npc.METODO = "Rechazar";
                         break;
                     case "Enviar":
                         _resultadoIdReguisicion = Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos));

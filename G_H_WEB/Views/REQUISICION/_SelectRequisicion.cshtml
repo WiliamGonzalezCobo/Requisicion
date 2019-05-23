@@ -1,55 +1,26 @@
-﻿<style>
-    a.presupuestada {
-        background: url(http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Bridge-Copyrighted-icon.png) no-repeat top left;
-        display: block;
-        width: 140px;
-        height: 150px;
-        text-indent: -9999px; /* hides the link text */
-    }
-    a.Nopresupuestada {
-        background: url(http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Dreamweaver-Copyrighted-icon.png) no-repeat top left;
-        display: block;
-        width: 140px;
-        height: 150px;
-        text-indent: -9999px; /* hides the link text */
-    }
-    a.Licencia {
-        background: url(http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Fireworks-Copyrighted-icon.png) no-repeat top left;
-        display: block;
-        width: 140px;
-        height: 150px;
-        text-indent: -9999px; /* hides the link text */
-    }
-    a.Incapacidad {
-        background: url(http://icons.iconarchive.com/icons/icons8/ios7/128/Logos-Adobe-Flash-Copyrighted-icon.png) no-repeat top left;
-        display: block;
-        width: 140px;
-        height: 150px;
-        text-indent: -9999px; /* hides the link text */
-    }
-   
-</style>
+﻿
+    <div class="col-md-3 col-lg-3 col-xl-3">
+        <a class="alineas" href='@Url.Action("Create","REQUISICION",new { @idTipo = 1})'>
+        <img src="../../assets/img/presupuestada.png" class="img-responsive maxImagen"/>
+       </a>
+    </div>
+    <div class="col-md-3 col-lg-3 col-xl-3">
 
-<table width="70%">
-    <tr>
-        <td>
-            @Html.ActionLink("Presupuestada", "Create", new { @idTipo = 1 }, new { @class = "presupuestada" })
-            @*<a href="#" title="">Presupuestada<img src="../img/my-image-1.png" class="img-responsive"></a>*@
-        </td>
-        <td>
-            @Html.ActionLink("NoPresupuestada", "Create", new { @idTipo = 2 }, new { @class = "Nopresupuestada" })
-            @*<a href="#" title="">No Presupuestada<img src="../img/my-image-1.png" class="img-responsive"></a>*@
-        </td>
-        <td>
-            @Html.ActionLink("Incapacidad", "Create", new { @idTipo = 3 }, new { @class = "Incapacidad" })
-            @*<a href="#" title="">Incapacidad<img src="../img/my-image-1.png" class="img-responsive"></a>*@
-        </td>
-        <td>
-            @Html.ActionLink("Licencia", "Create", new { @idTipo = 4 }, new { @class = "Licencia" })
-            @*<a href="#" title="">Licencia<img src="../img/my-image-1.png" class="img-responsive"></a>*@
-        </td>
+        <a class="alineas"  href='@Url.Action("Create","REQUISICION",new { @idTipo = 2})'>
+            <img src="../../assets/img/NoPresupuestada.png" class="img-responsive maxImagen"/>
+        </a>
+    </div>
+    <div class="col-md-3 col-lg-3 col-xl-3">
+        <a class="alineas" href='@Url.Action("Create","REQUISICION",new { @idTipo = 3})'>
+            <img src="../../assets/img/Incapacidad.png" class="img-responsive maxImagen"/>
+        </a>
+    </div>
+    <div class="col-md-3 col-lg-3 col-xl-3">
+        <a class="alineas"  href='@Url.Action("Create","REQUISICION",new { @idTipo = 4})'>
+            <img src="../../assets/img/Licencia.png" class="img-responsive maxImagen"/>
+        </a>
+    </div>
 
-    </tr>
-</table>
+
 
 

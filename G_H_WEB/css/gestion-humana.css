@@ -1008,3 +1008,11 @@ body.retiros .table-wrapper table.tabla-retiro tbody td.td-acciones span {
         color: #BFA62B;
         text-decoration: none !important;
     }
+
+.maxImagen {
+    max-width: 100%;
+}
+.maxImagenMenu {
+    max-width: 80%;
+}
+   

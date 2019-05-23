@@ -569,23 +569,6 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("INSERTAR_HISTORICO", uLTIMO_IDParameter, cOD_ROLParameter, cOD_CARGOParameter, cOD_CATEGORIA_EDParameter, cARGO_CRITICOParameter, pOSICIONParameter, sALARIO_FIJOParameter, pORCENTAJE_SALARIO_FIJOParameter, sALARIO_VARIABLEParameter, pORCENTAJE_SALARIO_VARIABLEParameter, sOBREREMUNERACIONParameter, eXTRA_FIJAParameter, rECARGO_NOCTURNOParameter, mEDIO_TRANSPORTEParameter, sALARIO_TOTALParameter, bONO_ANUALParameter, nUMERO_SALARIOSParameter, cOD_NIVEL_RIESGO_ARLParameter, cOD_JORNADA_LABORALParameter, hORARIO_LABORAL_DESDEParameter, hORARIO_LABORAL_HASTAParameter, cOD_DIA_LABORAL_DESDEParameter, cOD_DIA_LABORAL_HASTAParameter, pORCENTAJE_SOBREREMUNERACIONParameter, mESES_GARANTIZADOSParameter, cOD_TIPO_SALARIOParameter, fACTOR_PRESTACIONALParameter, iNGRESO_PROM_MENSUALParameter, iNGRESO_PROM_ANUALParameter, mERCADOParameter, cOD_CATEGORIAParameter, pUNTO_MEDIO_80Parameter, pUNTO_MEDIO_100Parameter, pUNTO_MEDIO_120Parameter, pOSICIONAMIENTOParameter, uSUARIOParameter, cOD_ESTADOParameter);
         }
     
-        public virtual int RECHAZAR_REQUISICION(Nullable<int> rOL_RECHAZADOR, Nullable<int> cOD_REQUISICION, string uSUARIO)
-        {
-            var rOL_RECHAZADORParameter = rOL_RECHAZADOR.HasValue ?
-                new ObjectParameter("ROL_RECHAZADOR", rOL_RECHAZADOR) :
-                new ObjectParameter("ROL_RECHAZADOR", typeof(int));
-    
-            var cOD_REQUISICIONParameter = cOD_REQUISICION.HasValue ?
-                new ObjectParameter("COD_REQUISICION", cOD_REQUISICION) :
-                new ObjectParameter("COD_REQUISICION", typeof(int));
-    
-            var uSUARIOParameter = uSUARIO != null ?
-                new ObjectParameter("USUARIO", uSUARIO) :
-                new ObjectParameter("USUARIO", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RECHAZAR_REQUISICION", rOL_RECHAZADORParameter, cOD_REQUISICIONParameter, uSUARIOParameter);
-        }
-    
         public virtual ObjectResult<CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result> CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION(string cOD_USUARIO, string usuario, Nullable<int> cOD_ESTADO_REQUISICION)
         {
             var cOD_USUARIOParameter = cOD_USUARIO != null ?
@@ -824,19 +807,6 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("INSERTAR_REQUISICION", cOD_TIPO_NECESIDADParameter, cOD_TIPO_REQUISICIONParameter, cOD_CARGOParameter, nOMBRE_CARGOParameter, oRDENParameter, cOD_CECOParameter, nOMBRE_CECOParameter, oBSERVACIONParameter, cOD_TIPO_DOCUMENTOParameter, nUMERO_DOCUMENTO_EMPLEADOParameter, nOMBRE_EMPLEADOParameter, fECHA_INICIOParameter, fECHA_FINParameter, cOD_GERENCIAParameter, nOMBRE_GERENCIAParameter, cOD_SOCIEDADParameter, nOMBRE_SOCIEDADParameter, cOD_EQUIPO_VENTASParameter, nOMBRE_EQUIPO_VENTASParameter, cOD_CATEGORIA_EDParameter, nOMBRE_CATEGORIA_EDParameter, cARGO_CRITICOParameter, pOSICIONParameter, sALARIO_FIJOParameter, pORCENTAJE_SALARIO_FIJOParameter, sALARIO_VARIABLEParameter, pORCENTAJE_SALARIO_VARIABLEParameter, sOBREREMUNERACIONParameter, eXTRA_FIJAParameter, rECARGO_NOCTURNOParameter, mEDIO_TRANSPORTEParameter, sALARIO_TOTALParameter, bONO_ANUALParameter, nUMERO_SALARIOSParameter, cOD_NIVEL_RIESGO_ARLParameter, cOD_JORNADA_LABORALParameter, hORARIO_LABORAL_DESDEParameter, hORARIO_LABORAL_HASTAParameter, cOD_DIA_LABORAL_DESDEParameter, cOD_DIA_LABORAL_HASTAParameter, pORCENTAJE_SOBREREMUNERACIONParameter, mESES_GARANTIZADOSParameter, cOD_TIPO_SALARIOParameter, fACTOR_PRESTACIONALParameter, iNGRESO_PROM_MENSUALParameter, iNGRESO_PROM_ANUALParameter, mERCADOParameter, cOD_CATEGORIAParameter, pUNTO_MEDIO_80Parameter, pUNTO_MEDIO_100Parameter, pUNTO_MEDIO_120Parameter, pOSICIONAMIENTOParameter, uSUARIOParameter, cOD_ESTADOParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> APROBAR_REQUISICION(string iD_USUARIO, Nullable<int> cOD_REQUISICION)
-        {
-            var iD_USUARIOParameter = iD_USUARIO != null ?
-                new ObjectParameter("ID_USUARIO", iD_USUARIO) :
-                new ObjectParameter("ID_USUARIO", typeof(string));
-    
-            var cOD_REQUISICIONParameter = cOD_REQUISICION.HasValue ?
-                new ObjectParameter("COD_REQUISICION", cOD_REQUISICION) :
-                new ObjectParameter("COD_REQUISICION", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("APROBAR_REQUISICION", iD_USUARIOParameter, cOD_REQUISICIONParameter);
-        }
-    
         public virtual ObjectResult<Nullable<int>> MODIFICACIONES(Nullable<int> cOD_REQUISICION, string oBSERVACIONES, string cOD_USUARIO)
         {
             var cOD_REQUISICIONParameter = cOD_REQUISICION.HasValue ?
@@ -852,6 +822,40 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
                 new ObjectParameter("COD_USUARIO", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("MODIFICACIONES", cOD_REQUISICIONParameter, oBSERVACIONESParameter, cOD_USUARIOParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> APROBAR_REQUISICION(Nullable<int> cOD_REQUISICION, string iD_USUARIO, string oBSERVACION)
+        {
+            var cOD_REQUISICIONParameter = cOD_REQUISICION.HasValue ?
+                new ObjectParameter("COD_REQUISICION", cOD_REQUISICION) :
+                new ObjectParameter("COD_REQUISICION", typeof(int));
+    
+            var iD_USUARIOParameter = iD_USUARIO != null ?
+                new ObjectParameter("ID_USUARIO", iD_USUARIO) :
+                new ObjectParameter("ID_USUARIO", typeof(string));
+    
+            var oBSERVACIONParameter = oBSERVACION != null ?
+                new ObjectParameter("OBSERVACION", oBSERVACION) :
+                new ObjectParameter("OBSERVACION", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("APROBAR_REQUISICION", cOD_REQUISICIONParameter, iD_USUARIOParameter, oBSERVACIONParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> RECHAZAR_REQUISICION(Nullable<int> cOD_REQUISICION, string uSUARIO, string oBSERVACIONES)
+        {
+            var cOD_REQUISICIONParameter = cOD_REQUISICION.HasValue ?
+                new ObjectParameter("COD_REQUISICION", cOD_REQUISICION) :
+                new ObjectParameter("COD_REQUISICION", typeof(int));
+    
+            var uSUARIOParameter = uSUARIO != null ?
+                new ObjectParameter("USUARIO", uSUARIO) :
+                new ObjectParameter("USUARIO", typeof(string));
+    
+            var oBSERVACIONESParameter = oBSERVACIONES != null ?
+                new ObjectParameter("OBSERVACIONES", oBSERVACIONES) :
+                new ObjectParameter("OBSERVACIONES", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("RECHAZAR_REQUISICION", cOD_REQUISICIONParameter, uSUARIOParameter, oBSERVACIONESParameter);
         }
     }
 }

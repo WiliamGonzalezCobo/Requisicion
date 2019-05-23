@@ -4,11 +4,16 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
+using UTILS.Settings;
+
 namespace LOGICA.LOGICA_REQUISICION
 {
  public   class BASE_PROXY
     {
         protected readonly string _endpoint;
+        protected readonly string _User;
+        protected readonly string _Pass;
+
 
         /// <summary>
         /// Constructor
@@ -18,7 +23,10 @@ namespace LOGICA.LOGICA_REQUISICION
         public BASE_PROXY(string endpoint)
         {
             _endpoint = endpoint;
+            _User = SettingsManager.ApiUsuario;
+            _Pass = SettingsManager.ApiPassword;
         }
+
 
         /// <summary>
         /// Metodo generico para realizar petición post para obtener una lista
@@ -47,6 +55,7 @@ namespace LOGICA.LOGICA_REQUISICION
                     }
                     endpoint += _parameters;
                 }
+                httpClient.SetBasicAuthentication(_User, _Pass);
                 var response = httpClient.GetAsync(endpoint).Result;
                 statusCode = response.StatusCode;
                 if (statusCode == HttpStatusCode.OK)
@@ -61,6 +70,7 @@ namespace LOGICA.LOGICA_REQUISICION
         {
             using (var httpClient = NewHttpClient())
             {
+                httpClient.SetBasicAuthentication(_User, _Pass);
                 var response = httpClient.GetAsync(_endpoint + id).Result;
                 statusCode = response.StatusCode;
                 if (statusCode == HttpStatusCode.OK)
@@ -74,6 +84,7 @@ namespace LOGICA.LOGICA_REQUISICION
         {
             using (var httpClient = NewHttpClient())
             {
+                httpClient.SetBasicAuthentication(_User, _Pass);
                 var response = httpClient.PostAsJsonAsync(_endpoint, data).Result;
                 statusCode = response.StatusCode;
                 if (statusCode == HttpStatusCode.OK)
@@ -91,6 +102,7 @@ namespace LOGICA.LOGICA_REQUISICION
         {
             using (var httpClient = NewHttpClient())
             {
+                httpClient.SetBasicAuthentication(_User, _Pass);
                 var response = httpClient.PostAsJsonAsync(_endpoint, data).Result;
                 statusCode = response.StatusCode;
                 if (statusCode == HttpStatusCode.OK)
@@ -108,6 +120,7 @@ namespace LOGICA.LOGICA_REQUISICION
         {
             using (var httpClient = NewHttpClient())
             {
+                httpClient.SetBasicAuthentication(_User, _Pass);
                 var content = new ObjectContent<T>(data, new JsonMediaTypeFormatter());
                 var response = httpClient.PutAsync(_endpoint + (id == null ? "" : id.ToString()), content).Result;
                 var result = response.Content.ReadAsStringAsync().Result;
@@ -119,6 +132,7 @@ namespace LOGICA.LOGICA_REQUISICION
         {
             using (var httpClient = NewHttpClient())
             {
+                httpClient.SetBasicAuthentication(_User, _Pass);
                 var result = httpClient.DeleteAsync(_endpoint + id).Result;
                 return result.StatusCode;
             }

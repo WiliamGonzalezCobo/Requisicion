@@ -432,8 +432,9 @@
           <Parameter Name="POSICIONAMIENTO" Type="numeric" Mode="In" />
         </Function>
         <Function Name="APROBAR_REQUISICION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION">
-          <Parameter Name="ID_USUARIO" Type="varchar" Mode="In" />
           <Parameter Name="COD_REQUISICION" Type="int" Mode="In" />
+          <Parameter Name="ID_USUARIO" Type="varchar" Mode="In" />
+          <Parameter Name="OBSERVACION" Type="varchar(max)" Mode="In" />
         </Function>
         <Function Name="CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION">
           <Parameter Name="COD_USUARIO" Type="varchar" Mode="In" />
@@ -560,9 +561,9 @@
           <Parameter Name="COD_USUARIO" Type="varchar" Mode="In" />
         </Function>
         <Function Name="RECHAZAR_REQUISICION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION">
-          <Parameter Name="ROL_RECHAZADOR" Type="int" Mode="In" />
           <Parameter Name="COD_REQUISICION" Type="int" Mode="In" />
           <Parameter Name="USUARIO" Type="varchar" Mode="In" />
+          <Parameter Name="OBSERVACIONES" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="GESTION_HUMANA_HITSSModel2StoreContainer">
           <EntitySet Name="COMENTARIO" EntityType="Self.COMENTARIO" Schema="REQUISICION" store:Type="Tables" />
@@ -832,11 +833,6 @@
             <Parameter Name="USUARIO" Mode="In" Type="String" />
             <Parameter Name="COD_ESTADO" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="RECHAZAR_REQUISICION">
-            <Parameter Name="ROL_RECHAZADOR" Mode="In" Type="Int32" />
-            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
-            <Parameter Name="USUARIO" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result)">
             <Parameter Name="COD_USUARIO" Mode="In" Type="String" />
             <Parameter Name="Usuario" Mode="In" Type="String" />
@@ -898,10 +894,6 @@
             <Parameter Name="USUARIO" Mode="In" Type="String" />
             <Parameter Name="COD_ESTADO" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="APROBAR_REQUISICION" ReturnType="Collection(Int32)">
-            <Parameter Name="ID_USUARIO" Mode="In" Type="String" />
-            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="MODIFICACIONES" ReturnType="Collection(Int32)">
             <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
             <Parameter Name="OBSERVACIONES" Mode="In" Type="String" />
@@ -948,6 +940,16 @@
             <End Role="TIPO_NECESIDAD" EntitySet="TIPO_NECESIDAD" />
             <End Role="REQUISICION" EntitySet="REQUISICION" />
           </AssociationSet>
+          <FunctionImport Name="APROBAR_REQUISICION" ReturnType="Collection(Int32)">
+            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
+            <Parameter Name="ID_USUARIO" Mode="In" Type="String" />
+            <Parameter Name="OBSERVACION" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RECHAZAR_REQUISICION" ReturnType="Collection(Int32)">
+            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
+            <Parameter Name="USUARIO" Mode="In" Type="String" />
+            <Parameter Name="OBSERVACIONES" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="CONSULTAR_COMENTARIO_Result">
           <Property Type="Int32" Name="COD_COMENTARIO" Nullable="false" />
@@ -1583,7 +1585,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="INSERTAR_COMENTARIO" FunctionName="GESTION_HUMANA_HITSSModel2.Store.INSERTAR_COMENTARIO" />
           <FunctionImportMapping FunctionImportName="INSERTAR_HISTORICO" FunctionName="GESTION_HUMANA_HITSSModel2.Store.INSERTAR_HISTORICO" />
-          <FunctionImportMapping FunctionImportName="RECHAZAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.RECHAZAR_REQUISICION" />
           <FunctionImportMapping FunctionImportName="CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION">
             <ResultMapping>
               <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result">
@@ -1602,7 +1603,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="INSERTAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.INSERTAR_REQUISICION" />
-          <FunctionImportMapping FunctionImportName="APROBAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.APROBAR_REQUISICION" />
           <FunctionImportMapping FunctionImportName="MODIFICACIONES" FunctionName="GESTION_HUMANA_HITSSModel2.Store.MODIFICACIONES" />
           <EntitySetMapping Name="COMENTARIO">
             <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.COMENTARIO">
@@ -1812,6 +1812,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="APROBAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.APROBAR_REQUISICION" />
+          <FunctionImportMapping FunctionImportName="RECHAZAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.RECHAZAR_REQUISICION" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

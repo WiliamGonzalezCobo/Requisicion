@@ -270,7 +270,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                          _modelo.ORDEN,
                          _modelo.COD_CECO,
                          _modelo.NOMBRE_CECO,
-                         _modelo.OBSERVACION_CREACION,
+                         _modelo.OBSERVACION,
                          _modelo.COD_TIPO_DOCUMENTO,
                          _modelo.NUMERO_DOCUMENTO_EMPLEADO,
                          _modelo.NOMBRE_EMPLEADO,
@@ -329,13 +329,14 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
 
         }
 
-        public int APROBAR_REQUISICION_ACESS(int COD_REQUISICION, String ID_USUARIO)
+        public int APROBAR_REQUISICION_ACESS(int COD_REQUISICION, String ID_USUARIO, string observacion)
         {
             using (var db = new GESTION_HUMANA_HITSSEntities2())
             {
               return  db.APROBAR_REQUISICION(
+                   COD_REQUISICION,
                      ID_USUARIO,
-                    COD_REQUISICION
+                    observacion
                     ).First().Value;
             }
         }
@@ -349,6 +350,18 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     COD_REQUISICION,
                     oBSERVACIONES,
                        ID_USUARIO ).First().Value;
+            }
+        }
+
+        public int REQUISICION_RECHAZAR_ACESS(int COD_REQUISICION, string oBSERVACIONES, String USUARIO)
+        {
+            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            {
+                return db.RECHAZAR_REQUISICION(
+                    COD_REQUISICION,
+                    USUARIO,
+                    oBSERVACIONES
+                       ).First().Value;
             }
         }
     }

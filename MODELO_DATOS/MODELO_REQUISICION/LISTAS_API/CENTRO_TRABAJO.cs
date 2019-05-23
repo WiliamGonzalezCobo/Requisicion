@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace MODELO_DATOS.MODELO_REQUISICION.LISTAS_API
 {
    public class CENTRO_TRABAJO {
-        public int COD_CENTRO_TRABAJO { get; set; }
+        
+        public int coD_CENTRO_COSTO { get; set; }
         public string NOMBRE { get; set; }
     }
 }

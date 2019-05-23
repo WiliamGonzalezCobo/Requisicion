@@ -89,7 +89,7 @@
 
 
                             <td class="td-nombre-req">
-                                @if (!User.IsInRole(SettingsManager.PerfilJefe))
+                                @if (!User.IsInRole(SettingsManager.PerfilJefe) && !User.IsInRole(SettingsManager.PerfilBp))
                                 {
                                     <a class="alineas" href="@Url.Action("Detalle", "REQUISICION", new { _idRequisicion = item.COD_REQUISICION, _tipoRequisicion = item.COD_TIPO_REQUISICION })">
                                         @Html.DisplayFor(modelItem => item.USUARIO_CREACION)
@@ -182,12 +182,13 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                Seleccione una opción de Requisición
-                <br />
-                @Html.Partial("_SelectRequisicion")
+            <div class="row modal-body">
+                <div class="col-md-12 col-lg-12 col-xl-12">
+                    Seleccione una opción de Requisición
+                 </div>
+                    @Html.Partial("_SelectRequisicion")
+                </div>
             </div>
-        </div>
     </div>
 </div>
 
