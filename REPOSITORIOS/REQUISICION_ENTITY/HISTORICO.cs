@@ -51,6 +51,13 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
         public string USUARIO_REGISTRO { get; set; }
         public System.DateTime FECHA_REGISTRO { get; set; }
         public int COD_ESTADO { get; set; }
+        public Nullable<int> COD_HORARIO_LABORAL_DESDE { get; set; }
+        public Nullable<int> COD_HORARIO_LABORAL_HASTA { get; set; }
+        public Nullable<int> COD_MERCADO { get; set; }
+        public string DIA_LABORAL_DESDE { get; set; }
+        public string DIA_LABORAL_HASTA { get; set; }
+        public string NOMBRE_JORNADA_LABORAL { get; set; }
+        public string NOMBRE_TIPO_SALARIO { get; set; }
     
         public virtual ESTADO ESTADO { get; set; }
         public virtual REQUISICION REQUISICION { get; set; }
