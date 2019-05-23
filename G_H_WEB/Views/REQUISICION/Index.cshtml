@@ -98,7 +98,7 @@
                                 }
                                 else if (User.IsInRole(SettingsManager.PerfilBp))
                                 {
-                                    if (item.COD_ESTADO_REQUISICION == SettingsManager.EstadoAporbadoController)
+                                    if (item.COD_ESTADO_REQUISICION == SettingsManager.EstadoAporbadoController || item.COD_ESTADO_REQUISICION == SettingsManager.EstadoDevueltaRRHH || item.COD_ESTADO_REQUISICION == SettingsManager.EstadoDevueltaUSC)
                                     {
                                         <a class="alineas" href="@Url.Action("Detalle", "REQUISICION", new { _idRequisicion = item.COD_REQUISICION, _tipoRequisicion = item.COD_TIPO_REQUISICION })">
                                             @Html.DisplayFor(modelItem => item.USUARIO_CREACION)

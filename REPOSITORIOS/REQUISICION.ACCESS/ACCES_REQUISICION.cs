@@ -93,11 +93,13 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                    _MODEL.COD_CECO.ToString(),
                    _MODEL.NOMBRE_CECO,
                    _MODEL.COD_TIPO_REQUISICION,
-                   _MODEL.FECHA_INICIO,
-                   _MODEL.FECHA_FIN,
+                   DateTime.Now,
+                   DateTime.Now,
+                   //_MODEL.FECHA_INICIO,
+                   //_MODEL.FECHA_FIN,
                    _MODEL.ES_MODIFICACION,
                    _MODEL.OBSERVACION,
-                   _MODEL.COD_ESTADO_REQUISICION,
+                   1, //_MODEL.COD_ESTADO_REQUISICION, toca ver
                    _MODEL.USUARIO_MODIFICACION, //llenar con USER.
                    _MODEL.COD_GERENCIA,
                    _MODEL.NOMBRE_GERENCIA,
@@ -183,8 +185,8 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     requicisionModel.COD_CARGO = respuesta.COD_CARGO ?? 0;
                     requicisionModel.NOMBRE_CARGO = respuesta.NOMBRE_CARGO;
                     requicisionModel.ORDEN = respuesta.ORDEN;
-                    requicisionModel.COD_CECO = respuesta.COD_CARGO ?? 0;
-                    requicisionModel.NOMBRE_CECO = respuesta.NOMBRE_CARGO;
+                    requicisionModel.COD_CECO =Convert.ToInt32(respuesta.COD_CECO);
+                    requicisionModel.NOMBRE_CECO = respuesta.NOMBRE_CECO;
                     requicisionModel.COD_TIPO_REQUISICION = respuesta.COD_TIPO_REQUISICION ?? 0;
                     requicisionModel.FECHA_INICIO = respuesta.FECHA_INICIO ?? DateTime.Now;
                     requicisionModel.FECHA_FIN = respuesta.FECHA_FIN ?? DateTime.Now;

@@ -50,6 +50,7 @@ namespace G_H_WEB.Controllers
                 int _resultadoIdReguisicion = 0;
                 modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqNoPresupuestada;
                 modelDatos.USUARIO_CREACION = User.Identity.Name;
+                modelDatos.USUARIO_MODIFICACION = User.Identity.Name;//      martinezluir esto es para test toca hacer la logica
                 REQUISICIONViewModel listas = new REQUISICIONViewModel();
                 // llena los combos
                 modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(modelDatos, Session["objetoListas"] as REQUISICIONViewModel);
@@ -79,7 +80,9 @@ namespace G_H_WEB.Controllers
                         npc.METODO = "Rechazar";
                         break;
                     case "Enviar":
-                        _resultadoIdReguisicion = Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos));
+                         Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos));
+                        _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
+                        npc.METODO = "Enviar";
                         break;
                     case "Modificar":
                         _resultadoIdReguisicion = Convert.ToInt32(new LOGICA_REQUISICION().REQUISICION_MODIFICAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.GetUserId()));

@@ -27,20 +27,20 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<MENU_ROL> MENU_ROL { get; set; }
-        public virtual DbSet<OPCIONES_MENU> OPCIONES_MENU { get; set; }
-        public virtual DbSet<ROL> ROL { get; set; }
         public virtual DbSet<COMENTARIO> COMENTARIO { get; set; }
         public virtual DbSet<DIAS_LABORALES> DIAS_LABORALES { get; set; }
         public virtual DbSet<ESTADO> ESTADO { get; set; }
         public virtual DbSet<HISTORICO> HISTORICO { get; set; }
+        public virtual DbSet<MENU_ROL> MENU_ROL { get; set; }
+        public virtual DbSet<OPCIONES_MENU> OPCIONES_MENU { get; set; }
         public virtual DbSet<REQUISICION> REQUISICION { get; set; }
+        public virtual DbSet<ROL> ROL { get; set; }
         public virtual DbSet<ROL_REQUISICION> ROL_REQUISICION { get; set; }
         public virtual DbSet<TIPO> TIPO { get; set; }
         public virtual DbSet<TIPO_DOCUMENTO> TIPO_DOCUMENTO { get; set; }
         public virtual DbSet<TIPO_NECESIDAD> TIPO_NECESIDAD { get; set; }
     
-        public virtual int ACTUALIZAR_REQUISICION(Nullable<int> cOD_REQUISICION, Nullable<int> cOD_TIPO_NECESIDAD, Nullable<int> cOD_CARGO, string nOMBRE_CARGO, string oRDEN, string cOD_CECO, string nOMBRE_CECO, Nullable<int> cOD_TIPO_REQUISICION, Nullable<System.DateTime> fECHA_INICIO, Nullable<System.DateTime> fECHA_FIN, Nullable<bool> eS_MODIFICACION, string oBSERVACION, Nullable<int> cOD_ESTADO_REQUISICION, string uSUARIO_MODIFICACION, Nullable<int> cOD_GERENCIA, string nOMBRE_GERENCIA, Nullable<int> cOD_TIPO_CONTRATO, string nOMBRE_TIPO_CONTRATO, Nullable<int> cOD_TIPO_DOCUMENTO, string nUMERO_DOCUMENTO_EMPLEADO, string nOMBRE_EMPLEADO, string jEFE_INMEDIATO, Nullable<int> cOD_SOCIEDAD, string nOMBRE_SOCIEDAD, Nullable<int> cOD_EQUIPO_VENTAS, string nOMBRE_EQUIPO_VENTAS, Nullable<int> cOD_CIUDAD_TRABAJO, string nOMBRE_CIUDAD_TRABAJO, Nullable<int> cOD_DANE_CIUDAD_TRABAJO, string cOD_UBICACION_FISICA, string nOMBRE_UBICACION_FISICA, Nullable<int> cOD_NIVEL_RIESGO_ARL, string nIVEL_RIESGO_ARL, Nullable<int> cOD_CATEGORIA_ED, string nOMBRE_CATEGORIA_ED, string cARGO_CRITICO, Nullable<int> cOD_JORNADA_LABORAL, string nOMBRE_JORNADA_LABORAL, string hORARIO_LABORAL_DESDE, string hORARIO_LABORAL_HASTA, Nullable<int> cOD_DIA_LABORAL_DESDE, Nullable<int> cOD_DIA_LABORAL_HASTA, string pOSICION, string eMPRESA_TEMPORAL, Nullable<decimal> sALARIO_FIJO, Nullable<decimal> pORCENTAJE_SALARIO_FIJO, Nullable<decimal> sALARIO_VARIABLE, Nullable<decimal> pORCENTAJE_SALARIO_VARIABLE, Nullable<decimal> sOBREREMUNERACION, Nullable<decimal> pORCENTAJE_SOBREREMUNERACION, Nullable<decimal> eXTRA_FIJA, Nullable<decimal> rECARGO_NOCTURNO, Nullable<decimal> mEDIO_TRANSPORTE, Nullable<decimal> sALARIO_TOTAL, Nullable<decimal> bONO_ANUAL, Nullable<int> nUMERO_SALARIOS, Nullable<int> mESES_GARANTIZADOS, Nullable<int> cOD_TIPO_SALARIO, string nOMBRE_TIPO_SALARIO, Nullable<decimal> fACTOR_PRESTACIONAL, Nullable<decimal> iNGRESO_PROM_MENSUAL, Nullable<decimal> iNGRESO_PROM_ANUAL, string mERCADO, Nullable<int> cOD_CATEGORIA, string nOMBRE_CATEGORIA, Nullable<decimal> pUNTO_MEDIO_80, Nullable<decimal> pUNTO_MEDIO_100, Nullable<decimal> pUNTO_MEDIO_120, Nullable<decimal> pOSICIONAMIENTO)
+        public virtual int ACTUALIZAR_REQUISICION(Nullable<int> cOD_REQUISICION, Nullable<int> cOD_TIPO_NECESIDAD, Nullable<int> cOD_CARGO, string nOMBRE_CARGO, string oRDEN, string cOD_CECO, string nOMBRE_CECO, Nullable<int> cOD_TIPO_REQUISICION, Nullable<System.DateTime> fECHA_INICIO, Nullable<System.DateTime> fECHA_FIN, Nullable<bool> eS_MODIFICACION, string oBSERVACION, Nullable<int> cOD_ESTADO_REQUISICION, string uSUARIO_MODIFICACION, Nullable<int> cOD_GERENCIA, string nOMBRE_GERENCIA, Nullable<int> cOD_TIPO_CONTRATO, string nOMBRE_TIPO_CONTRATO, Nullable<int> cOD_TIPO_DOCUMENTO, string nUMERO_DOCUMENTO_EMPLEADO, string nOMBRE_EMPLEADO, string jEFE_INMEDIATO, Nullable<int> cOD_SOCIEDAD, string nOMBRE_SOCIEDAD, Nullable<int> cOD_EQUIPO_VENTAS, string nOMBRE_EQUIPO_VENTAS, Nullable<int> cOD_CIUDAD_TRABAJO, string nOMBRE_CIUDAD_TRABAJO, Nullable<int> cOD_DANE_CIUDAD_TRABAJO, string cOD_UBICACION_FISICA, string nOMBRE_UBICACION_FISICA, Nullable<int> cOD_NIVEL_RIESGO_ARL, string nIVEL_RIESGO_ARL, Nullable<int> cOD_CATEGORIA_ED, string nOMBRE_CATEGORIA_ED, string cARGO_CRITICO, Nullable<int> cOD_JORNADA_LABORAL, string nOMBRE_JORNADA_LABORAL, Nullable<int> cOD_HORARIO_LABORAL_DESDE, string hORARIO_LABORAL_DESDE, Nullable<int> cOD_HORARIO_LABORAL_HASTA, string hORARIO_LABORAL_HASTA, Nullable<int> cOD_DIA_LABORAL_DESDE, string dIA_LABORAL_DESDE, Nullable<int> cOD_DIA_LABORAL_HASTA, string dIA_LABORAL_HASTA, string pOSICION, string eMPRESA_TEMPORAL, Nullable<decimal> sALARIO_FIJO, Nullable<decimal> pORCENTAJE_SALARIO_FIJO, Nullable<decimal> sALARIO_VARIABLE, Nullable<decimal> pORCENTAJE_SALARIO_VARIABLE, Nullable<decimal> sOBREREMUNERACION, Nullable<decimal> pORCENTAJE_SOBREREMUNERACION, Nullable<decimal> eXTRA_FIJA, Nullable<decimal> rECARGO_NOCTURNO, Nullable<decimal> mEDIO_TRANSPORTE, Nullable<decimal> sALARIO_TOTAL, Nullable<decimal> bONO_ANUAL, Nullable<int> nUMERO_SALARIOS, Nullable<int> mESES_GARANTIZADOS, Nullable<int> cOD_TIPO_SALARIO, string nOMBRE_TIPO_SALARIO, Nullable<decimal> fACTOR_PRESTACIONAL, Nullable<decimal> iNGRESO_PROM_MENSUAL, Nullable<decimal> iNGRESO_PROM_ANUAL, Nullable<int> cOD_MERCADO, string mERCADO, Nullable<int> cOD_CATEGORIA, string nOMBRE_CATEGORIA, Nullable<decimal> pUNTO_MEDIO_80, Nullable<decimal> pUNTO_MEDIO_100, Nullable<decimal> pUNTO_MEDIO_120, Nullable<decimal> pOSICIONAMIENTO)
         {
             var cOD_REQUISICIONParameter = cOD_REQUISICION.HasValue ?
                 new ObjectParameter("COD_REQUISICION", cOD_REQUISICION) :
@@ -194,9 +194,17 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
                 new ObjectParameter("NOMBRE_JORNADA_LABORAL", nOMBRE_JORNADA_LABORAL) :
                 new ObjectParameter("NOMBRE_JORNADA_LABORAL", typeof(string));
     
+            var cOD_HORARIO_LABORAL_DESDEParameter = cOD_HORARIO_LABORAL_DESDE.HasValue ?
+                new ObjectParameter("COD_HORARIO_LABORAL_DESDE", cOD_HORARIO_LABORAL_DESDE) :
+                new ObjectParameter("COD_HORARIO_LABORAL_DESDE", typeof(int));
+    
             var hORARIO_LABORAL_DESDEParameter = hORARIO_LABORAL_DESDE != null ?
                 new ObjectParameter("HORARIO_LABORAL_DESDE", hORARIO_LABORAL_DESDE) :
                 new ObjectParameter("HORARIO_LABORAL_DESDE", typeof(string));
+    
+            var cOD_HORARIO_LABORAL_HASTAParameter = cOD_HORARIO_LABORAL_HASTA.HasValue ?
+                new ObjectParameter("COD_HORARIO_LABORAL_HASTA", cOD_HORARIO_LABORAL_HASTA) :
+                new ObjectParameter("COD_HORARIO_LABORAL_HASTA", typeof(int));
     
             var hORARIO_LABORAL_HASTAParameter = hORARIO_LABORAL_HASTA != null ?
                 new ObjectParameter("HORARIO_LABORAL_HASTA", hORARIO_LABORAL_HASTA) :
@@ -206,9 +214,17 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
                 new ObjectParameter("COD_DIA_LABORAL_DESDE", cOD_DIA_LABORAL_DESDE) :
                 new ObjectParameter("COD_DIA_LABORAL_DESDE", typeof(int));
     
+            var dIA_LABORAL_DESDEParameter = dIA_LABORAL_DESDE != null ?
+                new ObjectParameter("DIA_LABORAL_DESDE", dIA_LABORAL_DESDE) :
+                new ObjectParameter("DIA_LABORAL_DESDE", typeof(string));
+    
             var cOD_DIA_LABORAL_HASTAParameter = cOD_DIA_LABORAL_HASTA.HasValue ?
                 new ObjectParameter("COD_DIA_LABORAL_HASTA", cOD_DIA_LABORAL_HASTA) :
                 new ObjectParameter("COD_DIA_LABORAL_HASTA", typeof(int));
+    
+            var dIA_LABORAL_HASTAParameter = dIA_LABORAL_HASTA != null ?
+                new ObjectParameter("DIA_LABORAL_HASTA", dIA_LABORAL_HASTA) :
+                new ObjectParameter("DIA_LABORAL_HASTA", typeof(string));
     
             var pOSICIONParameter = pOSICION != null ?
                 new ObjectParameter("POSICION", pOSICION) :
@@ -290,6 +306,10 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
                 new ObjectParameter("INGRESO_PROM_ANUAL", iNGRESO_PROM_ANUAL) :
                 new ObjectParameter("INGRESO_PROM_ANUAL", typeof(decimal));
     
+            var cOD_MERCADOParameter = cOD_MERCADO.HasValue ?
+                new ObjectParameter("COD_MERCADO", cOD_MERCADO) :
+                new ObjectParameter("COD_MERCADO", typeof(int));
+    
             var mERCADOParameter = mERCADO != null ?
                 new ObjectParameter("MERCADO", mERCADO) :
                 new ObjectParameter("MERCADO", typeof(string));
@@ -318,7 +338,7 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
                 new ObjectParameter("POSICIONAMIENTO", pOSICIONAMIENTO) :
                 new ObjectParameter("POSICIONAMIENTO", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZAR_REQUISICION", cOD_REQUISICIONParameter, cOD_TIPO_NECESIDADParameter, cOD_CARGOParameter, nOMBRE_CARGOParameter, oRDENParameter, cOD_CECOParameter, nOMBRE_CECOParameter, cOD_TIPO_REQUISICIONParameter, fECHA_INICIOParameter, fECHA_FINParameter, eS_MODIFICACIONParameter, oBSERVACIONParameter, cOD_ESTADO_REQUISICIONParameter, uSUARIO_MODIFICACIONParameter, cOD_GERENCIAParameter, nOMBRE_GERENCIAParameter, cOD_TIPO_CONTRATOParameter, nOMBRE_TIPO_CONTRATOParameter, cOD_TIPO_DOCUMENTOParameter, nUMERO_DOCUMENTO_EMPLEADOParameter, nOMBRE_EMPLEADOParameter, jEFE_INMEDIATOParameter, cOD_SOCIEDADParameter, nOMBRE_SOCIEDADParameter, cOD_EQUIPO_VENTASParameter, nOMBRE_EQUIPO_VENTASParameter, cOD_CIUDAD_TRABAJOParameter, nOMBRE_CIUDAD_TRABAJOParameter, cOD_DANE_CIUDAD_TRABAJOParameter, cOD_UBICACION_FISICAParameter, nOMBRE_UBICACION_FISICAParameter, cOD_NIVEL_RIESGO_ARLParameter, nIVEL_RIESGO_ARLParameter, cOD_CATEGORIA_EDParameter, nOMBRE_CATEGORIA_EDParameter, cARGO_CRITICOParameter, cOD_JORNADA_LABORALParameter, nOMBRE_JORNADA_LABORALParameter, hORARIO_LABORAL_DESDEParameter, hORARIO_LABORAL_HASTAParameter, cOD_DIA_LABORAL_DESDEParameter, cOD_DIA_LABORAL_HASTAParameter, pOSICIONParameter, eMPRESA_TEMPORALParameter, sALARIO_FIJOParameter, pORCENTAJE_SALARIO_FIJOParameter, sALARIO_VARIABLEParameter, pORCENTAJE_SALARIO_VARIABLEParameter, sOBREREMUNERACIONParameter, pORCENTAJE_SOBREREMUNERACIONParameter, eXTRA_FIJAParameter, rECARGO_NOCTURNOParameter, mEDIO_TRANSPORTEParameter, sALARIO_TOTALParameter, bONO_ANUALParameter, nUMERO_SALARIOSParameter, mESES_GARANTIZADOSParameter, cOD_TIPO_SALARIOParameter, nOMBRE_TIPO_SALARIOParameter, fACTOR_PRESTACIONALParameter, iNGRESO_PROM_MENSUALParameter, iNGRESO_PROM_ANUALParameter, mERCADOParameter, cOD_CATEGORIAParameter, nOMBRE_CATEGORIAParameter, pUNTO_MEDIO_80Parameter, pUNTO_MEDIO_100Parameter, pUNTO_MEDIO_120Parameter, pOSICIONAMIENTOParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZAR_REQUISICION", cOD_REQUISICIONParameter, cOD_TIPO_NECESIDADParameter, cOD_CARGOParameter, nOMBRE_CARGOParameter, oRDENParameter, cOD_CECOParameter, nOMBRE_CECOParameter, cOD_TIPO_REQUISICIONParameter, fECHA_INICIOParameter, fECHA_FINParameter, eS_MODIFICACIONParameter, oBSERVACIONParameter, cOD_ESTADO_REQUISICIONParameter, uSUARIO_MODIFICACIONParameter, cOD_GERENCIAParameter, nOMBRE_GERENCIAParameter, cOD_TIPO_CONTRATOParameter, nOMBRE_TIPO_CONTRATOParameter, cOD_TIPO_DOCUMENTOParameter, nUMERO_DOCUMENTO_EMPLEADOParameter, nOMBRE_EMPLEADOParameter, jEFE_INMEDIATOParameter, cOD_SOCIEDADParameter, nOMBRE_SOCIEDADParameter, cOD_EQUIPO_VENTASParameter, nOMBRE_EQUIPO_VENTASParameter, cOD_CIUDAD_TRABAJOParameter, nOMBRE_CIUDAD_TRABAJOParameter, cOD_DANE_CIUDAD_TRABAJOParameter, cOD_UBICACION_FISICAParameter, nOMBRE_UBICACION_FISICAParameter, cOD_NIVEL_RIESGO_ARLParameter, nIVEL_RIESGO_ARLParameter, cOD_CATEGORIA_EDParameter, nOMBRE_CATEGORIA_EDParameter, cARGO_CRITICOParameter, cOD_JORNADA_LABORALParameter, nOMBRE_JORNADA_LABORALParameter, cOD_HORARIO_LABORAL_DESDEParameter, hORARIO_LABORAL_DESDEParameter, cOD_HORARIO_LABORAL_HASTAParameter, hORARIO_LABORAL_HASTAParameter, cOD_DIA_LABORAL_DESDEParameter, dIA_LABORAL_DESDEParameter, cOD_DIA_LABORAL_HASTAParameter, dIA_LABORAL_HASTAParameter, pOSICIONParameter, eMPRESA_TEMPORALParameter, sALARIO_FIJOParameter, pORCENTAJE_SALARIO_FIJOParameter, sALARIO_VARIABLEParameter, pORCENTAJE_SALARIO_VARIABLEParameter, sOBREREMUNERACIONParameter, pORCENTAJE_SOBREREMUNERACIONParameter, eXTRA_FIJAParameter, rECARGO_NOCTURNOParameter, mEDIO_TRANSPORTEParameter, sALARIO_TOTALParameter, bONO_ANUALParameter, nUMERO_SALARIOSParameter, mESES_GARANTIZADOSParameter, cOD_TIPO_SALARIOParameter, nOMBRE_TIPO_SALARIOParameter, fACTOR_PRESTACIONALParameter, iNGRESO_PROM_MENSUALParameter, iNGRESO_PROM_ANUALParameter, cOD_MERCADOParameter, mERCADOParameter, cOD_CATEGORIAParameter, nOMBRE_CATEGORIAParameter, pUNTO_MEDIO_80Parameter, pUNTO_MEDIO_100Parameter, pUNTO_MEDIO_120Parameter, pOSICIONAMIENTOParameter);
         }
     
         public virtual ObjectResult<CONSULTAR_COMENTARIO_Result> CONSULTAR_COMENTARIO(Nullable<int> cOD_REQUISICION)
@@ -586,7 +606,7 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result>("CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION", cOD_USUARIOParameter, usuarioParameter, cOD_ESTADO_REQUISICIONParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> INSERTAR_REQUISICION(Nullable<int> cOD_TIPO_NECESIDAD, Nullable<int> cOD_TIPO_REQUISICION, Nullable<int> cOD_CARGO, string nOMBRE_CARGO, string oRDEN, Nullable<int> cOD_CECO, string nOMBRE_CECO, string oBSERVACION, Nullable<int> cOD_TIPO_DOCUMENTO, string nUMERO_DOCUMENTO_EMPLEADO, string nOMBRE_EMPLEADO, Nullable<System.DateTime> fECHA_INICIO, Nullable<System.DateTime> fECHA_FIN, Nullable<int> cOD_GERENCIA, string nOMBRE_GERENCIA, Nullable<int> cOD_SOCIEDAD, string nOMBRE_SOCIEDAD, Nullable<int> cOD_EQUIPO_VENTAS, string nOMBRE_EQUIPO_VENTAS, Nullable<int> cOD_CATEGORIA_ED, string nOMBRE_CATEGORIA_ED, Nullable<bool> cARGO_CRITICO, string pOSICION, Nullable<decimal> sALARIO_FIJO, Nullable<decimal> pORCENTAJE_SALARIO_FIJO, Nullable<decimal> sALARIO_VARIABLE, Nullable<decimal> pORCENTAJE_SALARIO_VARIABLE, Nullable<decimal> sOBREREMUNERACION, Nullable<decimal> eXTRA_FIJA, Nullable<decimal> rECARGO_NOCTURNO, Nullable<decimal> mEDIO_TRANSPORTE, Nullable<decimal> sALARIO_TOTAL, Nullable<decimal> bONO_ANUAL, Nullable<int> nUMERO_SALARIOS, Nullable<int> cOD_NIVEL_RIESGO_ARL, Nullable<int> cOD_JORNADA_LABORAL, Nullable<int> hORARIO_LABORAL_DESDE, Nullable<int> hORARIO_LABORAL_HASTA, Nullable<int> cOD_DIA_LABORAL_DESDE, Nullable<int> cOD_DIA_LABORAL_HASTA, Nullable<int> pORCENTAJE_SOBREREMUNERACION, Nullable<int> mESES_GARANTIZADOS, Nullable<int> cOD_TIPO_SALARIO, string fACTOR_PRESTACIONAL, Nullable<decimal> iNGRESO_PROM_MENSUAL, Nullable<decimal> iNGRESO_PROM_ANUAL, string mERCADO, Nullable<int> cOD_CATEGORIA, Nullable<decimal> pUNTO_MEDIO_80, Nullable<decimal> pUNTO_MEDIO_100, Nullable<decimal> pUNTO_MEDIO_120, string pOSICIONAMIENTO, string uSUARIO, Nullable<int> cOD_ESTADO)
+        public virtual ObjectResult<Nullable<int>> INSERTAR_REQUISICION(Nullable<int> cOD_TIPO_NECESIDAD, Nullable<int> cOD_TIPO_REQUISICION, Nullable<int> cOD_CARGO, string nOMBRE_CARGO, string oRDEN, Nullable<int> cOD_CECO, string nOMBRE_CECO, string oBSERVACION, Nullable<int> cOD_TIPO_DOCUMENTO, string nUMERO_DOCUMENTO_EMPLEADO, string nOMBRE_EMPLEADO, Nullable<System.DateTime> fECHA_INICIO, Nullable<System.DateTime> fECHA_FIN, Nullable<int> cOD_GERENCIA, string nOMBRE_GERENCIA, Nullable<int> cOD_SOCIEDAD, string nOMBRE_SOCIEDAD, Nullable<int> cOD_EQUIPO_VENTAS, string nOMBRE_EQUIPO_VENTAS, Nullable<int> cOD_CATEGORIA_ED, string nOMBRE_CATEGORIA_ED, Nullable<bool> cARGO_CRITICO, string pOSICION, Nullable<decimal> sALARIO_FIJO, Nullable<decimal> pORCENTAJE_SALARIO_FIJO, Nullable<decimal> sALARIO_VARIABLE, Nullable<decimal> pORCENTAJE_SALARIO_VARIABLE, Nullable<decimal> sOBREREMUNERACION, Nullable<decimal> eXTRA_FIJA, Nullable<decimal> rECARGO_NOCTURNO, Nullable<decimal> mEDIO_TRANSPORTE, Nullable<decimal> sALARIO_TOTAL, Nullable<decimal> bONO_ANUAL, Nullable<int> nUMERO_SALARIOS, Nullable<int> cOD_NIVEL_RIESGO_ARL, Nullable<int> cOD_JORNADA_LABORAL, string nOMBRE_JORNADA_LABORAL, Nullable<int> cOD_HORARIO_LABORAL_DESDE, string hORARIO_LABORAL_DESDE, Nullable<int> cOD_HORARIO_LABORAL_HASTA, string hORARIO_LABORAL_HASTA, Nullable<int> cOD_DIA_LABORAL_DESDE, string dIA_LABORAL_DESDE, Nullable<int> cOD_DIA_LABORAL_HASTA, string dIA_LABORAL_HASTA, Nullable<decimal> pORCENTAJE_SOBREREMUNERACION, Nullable<int> mESES_GARANTIZADOS, Nullable<int> cOD_TIPO_SALARIO, string nOMBRE_TIPO_SALARIO, string fACTOR_PRESTACIONAL, Nullable<decimal> iNGRESO_PROM_MENSUAL, Nullable<decimal> iNGRESO_PROM_ANUAL, Nullable<int> cOD_MERCADO, string mERCADO, Nullable<int> cOD_CATEGORIA, Nullable<decimal> pUNTO_MEDIO_80, Nullable<decimal> pUNTO_MEDIO_100, Nullable<decimal> pUNTO_MEDIO_120, string pOSICIONAMIENTO, string uSUARIO, Nullable<int> cOD_ESTADO)
         {
             var cOD_TIPO_NECESIDADParameter = cOD_TIPO_NECESIDAD.HasValue ?
                 new ObjectParameter("COD_TIPO_NECESIDAD", cOD_TIPO_NECESIDAD) :
@@ -732,25 +752,45 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
                 new ObjectParameter("COD_JORNADA_LABORAL", cOD_JORNADA_LABORAL) :
                 new ObjectParameter("COD_JORNADA_LABORAL", typeof(int));
     
-            var hORARIO_LABORAL_DESDEParameter = hORARIO_LABORAL_DESDE.HasValue ?
-                new ObjectParameter("HORARIO_LABORAL_DESDE", hORARIO_LABORAL_DESDE) :
-                new ObjectParameter("HORARIO_LABORAL_DESDE", typeof(int));
+            var nOMBRE_JORNADA_LABORALParameter = nOMBRE_JORNADA_LABORAL != null ?
+                new ObjectParameter("NOMBRE_JORNADA_LABORAL", nOMBRE_JORNADA_LABORAL) :
+                new ObjectParameter("NOMBRE_JORNADA_LABORAL", typeof(string));
     
-            var hORARIO_LABORAL_HASTAParameter = hORARIO_LABORAL_HASTA.HasValue ?
+            var cOD_HORARIO_LABORAL_DESDEParameter = cOD_HORARIO_LABORAL_DESDE.HasValue ?
+                new ObjectParameter("COD_HORARIO_LABORAL_DESDE", cOD_HORARIO_LABORAL_DESDE) :
+                new ObjectParameter("COD_HORARIO_LABORAL_DESDE", typeof(int));
+    
+            var hORARIO_LABORAL_DESDEParameter = hORARIO_LABORAL_DESDE != null ?
+                new ObjectParameter("HORARIO_LABORAL_DESDE", hORARIO_LABORAL_DESDE) :
+                new ObjectParameter("HORARIO_LABORAL_DESDE", typeof(string));
+    
+            var cOD_HORARIO_LABORAL_HASTAParameter = cOD_HORARIO_LABORAL_HASTA.HasValue ?
+                new ObjectParameter("COD_HORARIO_LABORAL_HASTA", cOD_HORARIO_LABORAL_HASTA) :
+                new ObjectParameter("COD_HORARIO_LABORAL_HASTA", typeof(int));
+    
+            var hORARIO_LABORAL_HASTAParameter = hORARIO_LABORAL_HASTA != null ?
                 new ObjectParameter("HORARIO_LABORAL_HASTA", hORARIO_LABORAL_HASTA) :
-                new ObjectParameter("HORARIO_LABORAL_HASTA", typeof(int));
+                new ObjectParameter("HORARIO_LABORAL_HASTA", typeof(string));
     
             var cOD_DIA_LABORAL_DESDEParameter = cOD_DIA_LABORAL_DESDE.HasValue ?
                 new ObjectParameter("COD_DIA_LABORAL_DESDE", cOD_DIA_LABORAL_DESDE) :
                 new ObjectParameter("COD_DIA_LABORAL_DESDE", typeof(int));
     
+            var dIA_LABORAL_DESDEParameter = dIA_LABORAL_DESDE != null ?
+                new ObjectParameter("DIA_LABORAL_DESDE", dIA_LABORAL_DESDE) :
+                new ObjectParameter("DIA_LABORAL_DESDE", typeof(string));
+    
             var cOD_DIA_LABORAL_HASTAParameter = cOD_DIA_LABORAL_HASTA.HasValue ?
                 new ObjectParameter("COD_DIA_LABORAL_HASTA", cOD_DIA_LABORAL_HASTA) :
                 new ObjectParameter("COD_DIA_LABORAL_HASTA", typeof(int));
     
+            var dIA_LABORAL_HASTAParameter = dIA_LABORAL_HASTA != null ?
+                new ObjectParameter("DIA_LABORAL_HASTA", dIA_LABORAL_HASTA) :
+                new ObjectParameter("DIA_LABORAL_HASTA", typeof(string));
+    
             var pORCENTAJE_SOBREREMUNERACIONParameter = pORCENTAJE_SOBREREMUNERACION.HasValue ?
                 new ObjectParameter("PORCENTAJE_SOBREREMUNERACION", pORCENTAJE_SOBREREMUNERACION) :
-                new ObjectParameter("PORCENTAJE_SOBREREMUNERACION", typeof(int));
+                new ObjectParameter("PORCENTAJE_SOBREREMUNERACION", typeof(decimal));
     
             var mESES_GARANTIZADOSParameter = mESES_GARANTIZADOS.HasValue ?
                 new ObjectParameter("MESES_GARANTIZADOS", mESES_GARANTIZADOS) :
@@ -759,6 +799,10 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
             var cOD_TIPO_SALARIOParameter = cOD_TIPO_SALARIO.HasValue ?
                 new ObjectParameter("COD_TIPO_SALARIO", cOD_TIPO_SALARIO) :
                 new ObjectParameter("COD_TIPO_SALARIO", typeof(int));
+    
+            var nOMBRE_TIPO_SALARIOParameter = nOMBRE_TIPO_SALARIO != null ?
+                new ObjectParameter("NOMBRE_TIPO_SALARIO", nOMBRE_TIPO_SALARIO) :
+                new ObjectParameter("NOMBRE_TIPO_SALARIO", typeof(string));
     
             var fACTOR_PRESTACIONALParameter = fACTOR_PRESTACIONAL != null ?
                 new ObjectParameter("FACTOR_PRESTACIONAL", fACTOR_PRESTACIONAL) :
@@ -771,6 +815,10 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
             var iNGRESO_PROM_ANUALParameter = iNGRESO_PROM_ANUAL.HasValue ?
                 new ObjectParameter("INGRESO_PROM_ANUAL", iNGRESO_PROM_ANUAL) :
                 new ObjectParameter("INGRESO_PROM_ANUAL", typeof(decimal));
+    
+            var cOD_MERCADOParameter = cOD_MERCADO.HasValue ?
+                new ObjectParameter("COD_MERCADO", cOD_MERCADO) :
+                new ObjectParameter("COD_MERCADO", typeof(int));
     
             var mERCADOParameter = mERCADO != null ?
                 new ObjectParameter("MERCADO", mERCADO) :
@@ -804,7 +852,7 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
                 new ObjectParameter("COD_ESTADO", cOD_ESTADO) :
                 new ObjectParameter("COD_ESTADO", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("INSERTAR_REQUISICION", cOD_TIPO_NECESIDADParameter, cOD_TIPO_REQUISICIONParameter, cOD_CARGOParameter, nOMBRE_CARGOParameter, oRDENParameter, cOD_CECOParameter, nOMBRE_CECOParameter, oBSERVACIONParameter, cOD_TIPO_DOCUMENTOParameter, nUMERO_DOCUMENTO_EMPLEADOParameter, nOMBRE_EMPLEADOParameter, fECHA_INICIOParameter, fECHA_FINParameter, cOD_GERENCIAParameter, nOMBRE_GERENCIAParameter, cOD_SOCIEDADParameter, nOMBRE_SOCIEDADParameter, cOD_EQUIPO_VENTASParameter, nOMBRE_EQUIPO_VENTASParameter, cOD_CATEGORIA_EDParameter, nOMBRE_CATEGORIA_EDParameter, cARGO_CRITICOParameter, pOSICIONParameter, sALARIO_FIJOParameter, pORCENTAJE_SALARIO_FIJOParameter, sALARIO_VARIABLEParameter, pORCENTAJE_SALARIO_VARIABLEParameter, sOBREREMUNERACIONParameter, eXTRA_FIJAParameter, rECARGO_NOCTURNOParameter, mEDIO_TRANSPORTEParameter, sALARIO_TOTALParameter, bONO_ANUALParameter, nUMERO_SALARIOSParameter, cOD_NIVEL_RIESGO_ARLParameter, cOD_JORNADA_LABORALParameter, hORARIO_LABORAL_DESDEParameter, hORARIO_LABORAL_HASTAParameter, cOD_DIA_LABORAL_DESDEParameter, cOD_DIA_LABORAL_HASTAParameter, pORCENTAJE_SOBREREMUNERACIONParameter, mESES_GARANTIZADOSParameter, cOD_TIPO_SALARIOParameter, fACTOR_PRESTACIONALParameter, iNGRESO_PROM_MENSUALParameter, iNGRESO_PROM_ANUALParameter, mERCADOParameter, cOD_CATEGORIAParameter, pUNTO_MEDIO_80Parameter, pUNTO_MEDIO_100Parameter, pUNTO_MEDIO_120Parameter, pOSICIONAMIENTOParameter, uSUARIOParameter, cOD_ESTADOParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("INSERTAR_REQUISICION", cOD_TIPO_NECESIDADParameter, cOD_TIPO_REQUISICIONParameter, cOD_CARGOParameter, nOMBRE_CARGOParameter, oRDENParameter, cOD_CECOParameter, nOMBRE_CECOParameter, oBSERVACIONParameter, cOD_TIPO_DOCUMENTOParameter, nUMERO_DOCUMENTO_EMPLEADOParameter, nOMBRE_EMPLEADOParameter, fECHA_INICIOParameter, fECHA_FINParameter, cOD_GERENCIAParameter, nOMBRE_GERENCIAParameter, cOD_SOCIEDADParameter, nOMBRE_SOCIEDADParameter, cOD_EQUIPO_VENTASParameter, nOMBRE_EQUIPO_VENTASParameter, cOD_CATEGORIA_EDParameter, nOMBRE_CATEGORIA_EDParameter, cARGO_CRITICOParameter, pOSICIONParameter, sALARIO_FIJOParameter, pORCENTAJE_SALARIO_FIJOParameter, sALARIO_VARIABLEParameter, pORCENTAJE_SALARIO_VARIABLEParameter, sOBREREMUNERACIONParameter, eXTRA_FIJAParameter, rECARGO_NOCTURNOParameter, mEDIO_TRANSPORTEParameter, sALARIO_TOTALParameter, bONO_ANUALParameter, nUMERO_SALARIOSParameter, cOD_NIVEL_RIESGO_ARLParameter, cOD_JORNADA_LABORALParameter, nOMBRE_JORNADA_LABORALParameter, cOD_HORARIO_LABORAL_DESDEParameter, hORARIO_LABORAL_DESDEParameter, cOD_HORARIO_LABORAL_HASTAParameter, hORARIO_LABORAL_HASTAParameter, cOD_DIA_LABORAL_DESDEParameter, dIA_LABORAL_DESDEParameter, cOD_DIA_LABORAL_HASTAParameter, dIA_LABORAL_HASTAParameter, pORCENTAJE_SOBREREMUNERACIONParameter, mESES_GARANTIZADOSParameter, cOD_TIPO_SALARIOParameter, nOMBRE_TIPO_SALARIOParameter, fACTOR_PRESTACIONALParameter, iNGRESO_PROM_MENSUALParameter, iNGRESO_PROM_ANUALParameter, cOD_MERCADOParameter, mERCADOParameter, cOD_CATEGORIAParameter, pUNTO_MEDIO_80Parameter, pUNTO_MEDIO_100Parameter, pUNTO_MEDIO_120Parameter, pOSICIONAMIENTOParameter, uSUARIOParameter, cOD_ESTADOParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> MODIFICACIONES(Nullable<int> cOD_REQUISICION, string oBSERVACIONES, string cOD_USUARIO)

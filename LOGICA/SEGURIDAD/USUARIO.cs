@@ -136,15 +136,17 @@ namespace LOGICA.SEGURIDAD
 
                 AUTENTICA_DIRECTORIO_MODELO _AUTENTICA = new AUTENTICA_DIRECTORIO_MODELO();
 
-				
-				string DOMINIO_SERVIDOR = "LDAP://" + ((System.Configuration.ConfigurationManager.AppSettings["Dominio_Directorio_Activo"]) == null ? "CEET" : System.Configuration.ConfigurationManager.AppSettings["Dominio_Directorio_Activo"]);
-
-				_AUTENTICA.SUCCESS = false;
+                //martinezluir comentado para publicacion  INicio
+                //string DOMINIO_SERVIDOR = "LDAP://" + ((System.Configuration.ConfigurationManager.AppSettings["Dominio_Directorio_Activo"]) == null ? "CEET" : System.Configuration.ConfigurationManager.AppSettings["Dominio_Directorio_Activo"]);
+                //martinezluir comentado para publicacion  FIN
+                _AUTENTICA.SUCCESS = false;
 
                 try
                 {
-                    DirectoryEntry ENTRADA = new DirectoryEntry(DOMINIO_SERVIDOR, USUARIO, CONTRASENA);
-                    object OBJETO_NATIVO = ENTRADA.NativeObject;
+                    //martinezluir comentado para publicacion  INicio
+                    //DirectoryEntry ENTRADA = new DirectoryEntry(DOMINIO_SERVIDOR, USUARIO, CONTRASENA);
+                    //object OBJETO_NATIVO = ENTRADA.NativeObject;
+                    //martinezluir comentado para publicacion  FIN
                     _AUTENTICA.SUCCESS = true;
                 }
                 catch (DirectoryServicesCOMException cex)

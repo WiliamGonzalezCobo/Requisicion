@@ -83,6 +83,13 @@
           <Property Name="USUARIO_REGISTRO" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FECHA_REGISTRO" Type="date" Nullable="false" />
           <Property Name="COD_ESTADO" Type="int" Nullable="false" />
+          <Property Name="COD_HORARIO_LABORAL_DESDE" Type="int" />
+          <Property Name="COD_HORARIO_LABORAL_HASTA" Type="int" />
+          <Property Name="COD_MERCADO" Type="int" />
+          <Property Name="DIA_LABORAL_DESDE" Type="varchar" MaxLength="50" />
+          <Property Name="DIA_LABORAL_HASTA" Type="varchar" MaxLength="50" />
+          <Property Name="NOMBRE_JORNADA_LABORAL" Type="varchar" MaxLength="50" />
+          <Property Name="NOMBRE_TIPO_SALARIO" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="MENU_ROL">
           <Key>
@@ -187,6 +194,11 @@
           <Property Name="POSICIONAMIENTO" Type="numeric" Precision="18" Scale="2" />
           <Property Name="EMAIL_USUARIO_CREACION" Type="varchar" MaxLength="100" />
           <Property Name="LOGIN_EMPLEADO" Type="varchar" MaxLength="50" />
+          <Property Name="COD_HORARIO_LABORAL_DESDE" Type="int" />
+          <Property Name="COD_HORARIO_LABORAL_HASTA" Type="int" />
+          <Property Name="COD_MERCADO" Type="int" />
+          <Property Name="DIA_LABORAL_DESDE" Type="varchar" MaxLength="50" />
+          <Property Name="DIA_LABORAL_HASTA" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ROL">
           <Key>
@@ -399,10 +411,14 @@
           <Parameter Name="CARGO_CRITICO" Type="varchar" Mode="In" />
           <Parameter Name="COD_JORNADA_LABORAL" Type="int" Mode="In" />
           <Parameter Name="NOMBRE_JORNADA_LABORAL" Type="varchar" Mode="In" />
+          <Parameter Name="COD_HORARIO_LABORAL_DESDE" Type="int" Mode="In" />
           <Parameter Name="HORARIO_LABORAL_DESDE" Type="varchar" Mode="In" />
+          <Parameter Name="COD_HORARIO_LABORAL_HASTA" Type="int" Mode="In" />
           <Parameter Name="HORARIO_LABORAL_HASTA" Type="varchar" Mode="In" />
           <Parameter Name="COD_DIA_LABORAL_DESDE" Type="int" Mode="In" />
+          <Parameter Name="DIA_LABORAL_DESDE" Type="varchar" Mode="In" />
           <Parameter Name="COD_DIA_LABORAL_HASTA" Type="int" Mode="In" />
+          <Parameter Name="DIA_LABORAL_HASTA" Type="varchar" Mode="In" />
           <Parameter Name="POSICION" Type="varchar" Mode="In" />
           <Parameter Name="EMPRESA_TEMPORAL" Type="varchar" Mode="In" />
           <Parameter Name="SALARIO_FIJO" Type="numeric" Mode="In" />
@@ -423,6 +439,7 @@
           <Parameter Name="FACTOR_PRESTACIONAL" Type="numeric" Mode="In" />
           <Parameter Name="INGRESO_PROM_MENSUAL" Type="numeric" Mode="In" />
           <Parameter Name="INGRESO_PROM_ANUAL" Type="numeric" Mode="In" />
+          <Parameter Name="COD_MERCADO" Type="int" Mode="In" />
           <Parameter Name="MERCADO" Type="varchar" Mode="In" />
           <Parameter Name="COD_CATEGORIA" Type="int" Mode="In" />
           <Parameter Name="NOMBRE_CATEGORIA" Type="varchar" Mode="In" />
@@ -536,16 +553,23 @@
           <Parameter Name="NUMERO_SALARIOS" Type="int" Mode="In" />
           <Parameter Name="COD_NIVEL_RIESGO_ARL" Type="int" Mode="In" />
           <Parameter Name="COD_JORNADA_LABORAL" Type="int" Mode="In" />
-          <Parameter Name="HORARIO_LABORAL_DESDE" Type="int" Mode="In" />
-          <Parameter Name="HORARIO_LABORAL_HASTA" Type="int" Mode="In" />
+          <Parameter Name="NOMBRE_JORNADA_LABORAL" Type="varchar" Mode="In" />
+          <Parameter Name="COD_HORARIO_LABORAL_DESDE" Type="int" Mode="In" />
+          <Parameter Name="HORARIO_LABORAL_DESDE" Type="varchar" Mode="In" />
+          <Parameter Name="COD_HORARIO_LABORAL_HASTA" Type="int" Mode="In" />
+          <Parameter Name="HORARIO_LABORAL_HASTA" Type="varchar" Mode="In" />
           <Parameter Name="COD_DIA_LABORAL_DESDE" Type="int" Mode="In" />
+          <Parameter Name="DIA_LABORAL_DESDE" Type="varchar" Mode="In" />
           <Parameter Name="COD_DIA_LABORAL_HASTA" Type="int" Mode="In" />
-          <Parameter Name="PORCENTAJE_SOBREREMUNERACION" Type="int" Mode="In" />
+          <Parameter Name="DIA_LABORAL_HASTA" Type="varchar" Mode="In" />
+          <Parameter Name="PORCENTAJE_SOBREREMUNERACION" Type="numeric" Mode="In" />
           <Parameter Name="MESES_GARANTIZADOS" Type="int" Mode="In" />
           <Parameter Name="COD_TIPO_SALARIO" Type="int" Mode="In" />
+          <Parameter Name="NOMBRE_TIPO_SALARIO" Type="varchar" Mode="In" />
           <Parameter Name="FACTOR_PRESTACIONAL" Type="varchar" Mode="In" />
           <Parameter Name="INGRESO_PROM_MENSUAL" Type="numeric" Mode="In" />
           <Parameter Name="INGRESO_PROM_ANUAL" Type="numeric" Mode="In" />
+          <Parameter Name="COD_MERCADO" Type="int" Mode="In" />
           <Parameter Name="MERCADO" Type="varchar" Mode="In" />
           <Parameter Name="COD_CATEGORIA" Type="int" Mode="In" />
           <Parameter Name="PUNTO_MEDIO_80" Type="numeric" Mode="In" />
@@ -623,82 +647,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GESTION_HUMANA_HITSSModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="MENU_ROL">
-          <Key>
-            <PropertyRef Name="COD_MENU_ROL" />
-          </Key>
-          <Property Name="COD_MENU_ROL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="COD_ROL" Type="Int32" Nullable="false" />
-          <Property Name="COD_OPCIONES_MENU" Type="Int32" Nullable="false" />
-          <Property Name="USUARIO_CREACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
-          <Property Name="USUARIO_MODIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA_MODIFICACION" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="OPCIONES_MENU" Relationship="Self.FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU" FromRole="MENU_ROL" ToRole="OPCIONES_MENU" />
-          <NavigationProperty Name="ROL" Relationship="Self.FK_REQUISICION_MENU_ROL_REQUISICION_ROL" FromRole="MENU_ROL" ToRole="ROL" />
-        </EntityType>
-        <EntityType Name="OPCIONES_MENU">
-          <Key>
-            <PropertyRef Name="COD_OPCIONES_MENU" />
-          </Key>
-          <Property Name="COD_OPCIONES_MENU" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NOMBRE_OPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ESTADO" Type="Boolean" />
-          <Property Name="USUARIO_CREACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
-          <Property Name="USUARIO_MODIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA_MODIFICACION" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="MENU_ROL" Relationship="Self.FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU" FromRole="OPCIONES_MENU" ToRole="MENU_ROL" />
-        </EntityType>
-        <EntityType Name="ROL">
-          <Key>
-            <PropertyRef Name="COD_ROL" />
-          </Key>
-          <Property Name="COD_ROL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="USUARIO_CREACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
-          <Property Name="USUARIO_MODIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA_MODIFICACION" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="MENU_ROL" Relationship="Self.FK_REQUISICION_MENU_ROL_REQUISICION_ROL" FromRole="ROL" ToRole="MENU_ROL" />
-        </EntityType>
-        <Association Name="FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU">
-          <End Role="OPCIONES_MENU" Type="Self.OPCIONES_MENU" Multiplicity="1" />
-          <End Role="MENU_ROL" Type="Self.MENU_ROL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OPCIONES_MENU">
-              <PropertyRef Name="COD_OPCIONES_MENU" />
-            </Principal>
-            <Dependent Role="MENU_ROL">
-              <PropertyRef Name="COD_OPCIONES_MENU" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_REQUISICION_MENU_ROL_REQUISICION_ROL">
-          <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
-          <End Role="MENU_ROL" Type="Self.MENU_ROL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ROL">
-              <PropertyRef Name="COD_ROL" />
-            </Principal>
-            <Dependent Role="MENU_ROL">
-              <PropertyRef Name="COD_ROL" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="GESTION_HUMANA_HITSSEntities2" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="MENU_ROL" EntityType="Self.MENU_ROL" />
-          <EntitySet Name="OPCIONES_MENU" EntityType="Self.OPCIONES_MENU" />
-          <EntitySet Name="ROL" EntityType="Self.ROL" />
-          <AssociationSet Name="FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU" Association="Self.FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU">
-            <End Role="OPCIONES_MENU" EntitySet="OPCIONES_MENU" />
-            <End Role="MENU_ROL" EntitySet="MENU_ROL" />
-          </AssociationSet>
-          <AssociationSet Name="FK_REQUISICION_MENU_ROL_REQUISICION_ROL" Association="Self.FK_REQUISICION_MENU_ROL_REQUISICION_ROL">
-            <End Role="ROL" EntitySet="ROL" />
-            <End Role="MENU_ROL" EntitySet="MENU_ROL" />
-          </AssociationSet>
           <FunctionImport Name="ACTUALIZAR_REQUISICION">
             <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
             <Parameter Name="COD_TIPO_NECESIDAD" Mode="In" Type="Int32" />
@@ -738,10 +687,14 @@
             <Parameter Name="CARGO_CRITICO" Mode="In" Type="String" />
             <Parameter Name="COD_JORNADA_LABORAL" Mode="In" Type="Int32" />
             <Parameter Name="NOMBRE_JORNADA_LABORAL" Mode="In" Type="String" />
+            <Parameter Name="COD_HORARIO_LABORAL_DESDE" Mode="In" Type="Int32" />
             <Parameter Name="HORARIO_LABORAL_DESDE" Mode="In" Type="String" />
+            <Parameter Name="COD_HORARIO_LABORAL_HASTA" Mode="In" Type="Int32" />
             <Parameter Name="HORARIO_LABORAL_HASTA" Mode="In" Type="String" />
             <Parameter Name="COD_DIA_LABORAL_DESDE" Mode="In" Type="Int32" />
+            <Parameter Name="DIA_LABORAL_DESDE" Mode="In" Type="String" />
             <Parameter Name="COD_DIA_LABORAL_HASTA" Mode="In" Type="Int32" />
+            <Parameter Name="DIA_LABORAL_HASTA" Mode="In" Type="String" />
             <Parameter Name="POSICION" Mode="In" Type="String" />
             <Parameter Name="EMPRESA_TEMPORAL" Mode="In" Type="String" />
             <Parameter Name="SALARIO_FIJO" Mode="In" Type="Decimal" />
@@ -762,6 +715,7 @@
             <Parameter Name="FACTOR_PRESTACIONAL" Mode="In" Type="Decimal" />
             <Parameter Name="INGRESO_PROM_MENSUAL" Mode="In" Type="Decimal" />
             <Parameter Name="INGRESO_PROM_ANUAL" Mode="In" Type="Decimal" />
+            <Parameter Name="COD_MERCADO" Mode="In" Type="Int32" />
             <Parameter Name="MERCADO" Mode="In" Type="String" />
             <Parameter Name="COD_CATEGORIA" Mode="In" Type="Int32" />
             <Parameter Name="NOMBRE_CATEGORIA" Mode="In" Type="String" />
@@ -875,16 +829,23 @@
             <Parameter Name="NUMERO_SALARIOS" Mode="In" Type="Int32" />
             <Parameter Name="COD_NIVEL_RIESGO_ARL" Mode="In" Type="Int32" />
             <Parameter Name="COD_JORNADA_LABORAL" Mode="In" Type="Int32" />
-            <Parameter Name="HORARIO_LABORAL_DESDE" Mode="In" Type="Int32" />
-            <Parameter Name="HORARIO_LABORAL_HASTA" Mode="In" Type="Int32" />
+            <Parameter Name="NOMBRE_JORNADA_LABORAL" Mode="In" Type="String" />
+            <Parameter Name="COD_HORARIO_LABORAL_DESDE" Mode="In" Type="Int32" />
+            <Parameter Name="HORARIO_LABORAL_DESDE" Mode="In" Type="String" />
+            <Parameter Name="COD_HORARIO_LABORAL_HASTA" Mode="In" Type="Int32" />
+            <Parameter Name="HORARIO_LABORAL_HASTA" Mode="In" Type="String" />
             <Parameter Name="COD_DIA_LABORAL_DESDE" Mode="In" Type="Int32" />
+            <Parameter Name="DIA_LABORAL_DESDE" Mode="In" Type="String" />
             <Parameter Name="COD_DIA_LABORAL_HASTA" Mode="In" Type="Int32" />
-            <Parameter Name="PORCENTAJE_SOBREREMUNERACION" Mode="In" Type="Int32" />
+            <Parameter Name="DIA_LABORAL_HASTA" Mode="In" Type="String" />
+            <Parameter Name="PORCENTAJE_SOBREREMUNERACION" Mode="In" Type="Decimal" />
             <Parameter Name="MESES_GARANTIZADOS" Mode="In" Type="Int32" />
             <Parameter Name="COD_TIPO_SALARIO" Mode="In" Type="Int32" />
+            <Parameter Name="NOMBRE_TIPO_SALARIO" Mode="In" Type="String" />
             <Parameter Name="FACTOR_PRESTACIONAL" Mode="In" Type="String" />
             <Parameter Name="INGRESO_PROM_MENSUAL" Mode="In" Type="Decimal" />
             <Parameter Name="INGRESO_PROM_ANUAL" Mode="In" Type="Decimal" />
+            <Parameter Name="COD_MERCADO" Mode="In" Type="Int32" />
             <Parameter Name="MERCADO" Mode="In" Type="String" />
             <Parameter Name="COD_CATEGORIA" Mode="In" Type="Int32" />
             <Parameter Name="PUNTO_MEDIO_80" Mode="In" Type="Decimal" />
@@ -899,11 +860,24 @@
             <Parameter Name="OBSERVACIONES" Mode="In" Type="String" />
             <Parameter Name="COD_USUARIO" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="APROBAR_REQUISICION" ReturnType="Collection(Int32)">
+            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
+            <Parameter Name="ID_USUARIO" Mode="In" Type="String" />
+            <Parameter Name="OBSERVACION" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RECHAZAR_REQUISICION" ReturnType="Collection(Int32)">
+            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
+            <Parameter Name="USUARIO" Mode="In" Type="String" />
+            <Parameter Name="OBSERVACIONES" Mode="In" Type="String" />
+          </FunctionImport>
           <EntitySet Name="COMENTARIO" EntityType="GESTION_HUMANA_HITSSModel2.COMENTARIO" />
           <EntitySet Name="DIAS_LABORALES" EntityType="GESTION_HUMANA_HITSSModel2.DIAS_LABORALES" />
           <EntitySet Name="ESTADO" EntityType="GESTION_HUMANA_HITSSModel2.ESTADO" />
           <EntitySet Name="HISTORICO" EntityType="GESTION_HUMANA_HITSSModel2.HISTORICO" />
+          <EntitySet Name="MENU_ROL" EntityType="GESTION_HUMANA_HITSSModel2.MENU_ROL" />
+          <EntitySet Name="OPCIONES_MENU" EntityType="GESTION_HUMANA_HITSSModel2.OPCIONES_MENU" />
           <EntitySet Name="REQUISICION" EntityType="GESTION_HUMANA_HITSSModel2.REQUISICION" />
+          <EntitySet Name="ROL" EntityType="GESTION_HUMANA_HITSSModel2.ROL" />
           <EntitySet Name="ROL_REQUISICION" EntityType="GESTION_HUMANA_HITSSModel2.ROL_REQUISICION" />
           <EntitySet Name="TIPO" EntityType="GESTION_HUMANA_HITSSModel2.TIPO" />
           <EntitySet Name="TIPO_DOCUMENTO" EntityType="GESTION_HUMANA_HITSSModel2.TIPO_DOCUMENTO" />
@@ -928,6 +902,14 @@
             <End Role="REQUISICION" EntitySet="REQUISICION" />
             <End Role="HISTORICO" EntitySet="HISTORICO" />
           </AssociationSet>
+          <AssociationSet Name="FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU" Association="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU">
+            <End Role="OPCIONES_MENU" EntitySet="OPCIONES_MENU" />
+            <End Role="MENU_ROL" EntitySet="MENU_ROL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUISICION_MENU_ROL_REQUISICION_ROL" Association="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_MENU_ROL_REQUISICION_ROL">
+            <End Role="ROL" EntitySet="ROL" />
+            <End Role="MENU_ROL" EntitySet="MENU_ROL" />
+          </AssociationSet>
           <AssociationSet Name="FK_REQUISICION_REQUISICION_REQUISICION_TIPO" Association="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_REQUISICION_REQUISICION_TIPO">
             <End Role="TIPO" EntitySet="TIPO" />
             <End Role="REQUISICION" EntitySet="REQUISICION" />
@@ -940,16 +922,6 @@
             <End Role="TIPO_NECESIDAD" EntitySet="TIPO_NECESIDAD" />
             <End Role="REQUISICION" EntitySet="REQUISICION" />
           </AssociationSet>
-          <FunctionImport Name="APROBAR_REQUISICION" ReturnType="Collection(Int32)">
-            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
-            <Parameter Name="ID_USUARIO" Mode="In" Type="String" />
-            <Parameter Name="OBSERVACION" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="RECHAZAR_REQUISICION" ReturnType="Collection(Int32)">
-            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
-            <Parameter Name="USUARIO" Mode="In" Type="String" />
-            <Parameter Name="OBSERVACIONES" Mode="In" Type="String" />
-          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="CONSULTAR_COMENTARIO_Result">
           <Property Type="Int32" Name="COD_COMENTARIO" Nullable="false" />
@@ -1193,8 +1165,43 @@
           <Property Name="USUARIO_REGISTRO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FECHA_REGISTRO" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="COD_ESTADO" Type="Int32" Nullable="false" />
+          <Property Name="COD_HORARIO_LABORAL_DESDE" Type="Int32" />
+          <Property Name="COD_HORARIO_LABORAL_HASTA" Type="Int32" />
+          <Property Name="COD_MERCADO" Type="Int32" />
+          <Property Name="DIA_LABORAL_DESDE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DIA_LABORAL_HASTA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE_JORNADA_LABORAL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE_TIPO_SALARIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ESTADO" Relationship="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_HISTORICO_REQUISICION_ESTADO" FromRole="HISTORICO" ToRole="ESTADO" />
           <NavigationProperty Name="REQUISICION" Relationship="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_HISTORICO_REQUISICION_REQUISICION" FromRole="HISTORICO" ToRole="REQUISICION" />
+        </EntityType>
+        <EntityType Name="MENU_ROL">
+          <Key>
+            <PropertyRef Name="COD_MENU_ROL" />
+          </Key>
+          <Property Name="COD_MENU_ROL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COD_ROL" Type="Int32" Nullable="false" />
+          <Property Name="COD_OPCIONES_MENU" Type="Int32" Nullable="false" />
+          <Property Name="USUARIO_CREACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
+          <Property Name="USUARIO_MODIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_MODIFICACION" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="OPCIONES_MENU" Relationship="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU" FromRole="MENU_ROL" ToRole="OPCIONES_MENU" />
+          <NavigationProperty Name="ROL" Relationship="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_MENU_ROL_REQUISICION_ROL" FromRole="MENU_ROL" ToRole="ROL" />
+        </EntityType>
+        <EntityType Name="OPCIONES_MENU">
+          <Key>
+            <PropertyRef Name="COD_OPCIONES_MENU" />
+          </Key>
+          <Property Name="COD_OPCIONES_MENU" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_OPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="Boolean" />
+          <Property Name="USUARIO_CREACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
+          <Property Name="USUARIO_MODIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_MODIFICACION" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="MENU_ROL" Relationship="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU" FromRole="OPCIONES_MENU" ToRole="MENU_ROL" />
         </EntityType>
         <EntityType Name="REQUISICION">
           <Key>
@@ -1274,6 +1281,11 @@
           <Property Name="POSICIONAMIENTO" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="EMAIL_USUARIO_CREACION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="LOGIN_EMPLEADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="COD_HORARIO_LABORAL_DESDE" Type="Int32" />
+          <Property Name="COD_HORARIO_LABORAL_HASTA" Type="Int32" />
+          <Property Name="COD_MERCADO" Type="Int32" />
+          <Property Name="DIA_LABORAL_DESDE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DIA_LABORAL_HASTA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="COMENTARIO" Relationship="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_COMENTARIO_REQUISICION_REQUISICION" FromRole="REQUISICION" ToRole="COMENTARIO" />
           <NavigationProperty Name="DIAS_LABORALES" Relationship="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES" FromRole="REQUISICION" ToRole="DIAS_LABORALES" />
           <NavigationProperty Name="DIAS_LABORALES1" Relationship="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES1" FromRole="REQUISICION" ToRole="DIAS_LABORALES" />
@@ -1281,6 +1293,18 @@
           <NavigationProperty Name="TIPO" Relationship="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_REQUISICION_REQUISICION_TIPO" FromRole="REQUISICION" ToRole="TIPO" />
           <NavigationProperty Name="TIPO_DOCUMENTO" Relationship="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_DOCUMENTO" FromRole="REQUISICION" ToRole="TIPO_DOCUMENTO" />
           <NavigationProperty Name="TIPO_NECESIDAD" Relationship="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_NECESIDAD" FromRole="REQUISICION" ToRole="TIPO_NECESIDAD" />
+        </EntityType>
+        <EntityType Name="ROL">
+          <Key>
+            <PropertyRef Name="COD_ROL" />
+          </Key>
+          <Property Name="COD_ROL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USUARIO_CREACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
+          <Property Name="USUARIO_MODIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_MODIFICACION" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="MENU_ROL" Relationship="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_MENU_ROL_REQUISICION_ROL" FromRole="ROL" ToRole="MENU_ROL" />
         </EntityType>
         <EntityType Name="ROL_REQUISICION">
           <Key>
@@ -1386,6 +1410,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_REQUISICION_MENU_ROL_REQUISICION_OPCIONES_MENU">
+          <End Type="GESTION_HUMANA_HITSSModel2.OPCIONES_MENU" Role="OPCIONES_MENU" Multiplicity="1" />
+          <End Type="GESTION_HUMANA_HITSSModel2.MENU_ROL" Role="MENU_ROL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OPCIONES_MENU">
+              <PropertyRef Name="COD_OPCIONES_MENU" />
+            </Principal>
+            <Dependent Role="MENU_ROL">
+              <PropertyRef Name="COD_OPCIONES_MENU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUISICION_MENU_ROL_REQUISICION_ROL">
+          <End Type="GESTION_HUMANA_HITSSModel2.ROL" Role="ROL" Multiplicity="1" />
+          <End Type="GESTION_HUMANA_HITSSModel2.MENU_ROL" Role="MENU_ROL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROL">
+              <PropertyRef Name="COD_ROL" />
+            </Principal>
+            <Dependent Role="MENU_ROL">
+              <PropertyRef Name="COD_ROL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_REQUISICION_REQUISICION_REQUISICION_TIPO">
           <End Type="GESTION_HUMANA_HITSSModel2.TIPO" Role="TIPO" Multiplicity="0..1" />
           <End Type="GESTION_HUMANA_HITSSModel2.REQUISICION" Role="REQUISICION" Multiplicity="*" />
@@ -1428,45 +1476,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="GESTION_HUMANA_HITSSModel2StoreContainer" CdmEntityContainer="GESTION_HUMANA_HITSSEntities2">
-          <EntitySetMapping Name="MENU_ROL">
-            <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.MENU_ROL">
-              <MappingFragment StoreEntitySet="MENU_ROL">
-                <ScalarProperty Name="COD_MENU_ROL" ColumnName="COD_MENU_ROL" />
-                <ScalarProperty Name="COD_ROL" ColumnName="COD_ROL" />
-                <ScalarProperty Name="COD_OPCIONES_MENU" ColumnName="COD_OPCIONES_MENU" />
-                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
-                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
-                <ScalarProperty Name="USUARIO_MODIFICACION" ColumnName="USUARIO_MODIFICACION" />
-                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OPCIONES_MENU">
-            <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.OPCIONES_MENU">
-              <MappingFragment StoreEntitySet="OPCIONES_MENU">
-                <ScalarProperty Name="COD_OPCIONES_MENU" ColumnName="COD_OPCIONES_MENU" />
-                <ScalarProperty Name="NOMBRE_OPCION" ColumnName="NOMBRE_OPCION" />
-                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
-                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
-                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
-                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
-                <ScalarProperty Name="USUARIO_MODIFICACION" ColumnName="USUARIO_MODIFICACION" />
-                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ROL">
-            <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.ROL">
-              <MappingFragment StoreEntitySet="ROL">
-                <ScalarProperty Name="COD_ROL" ColumnName="COD_ROL" />
-                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
-                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
-                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
-                <ScalarProperty Name="USUARIO_MODIFICACION" ColumnName="USUARIO_MODIFICACION" />
-                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="ACTUALIZAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.ACTUALIZAR_REQUISICION" />
           <FunctionImportMapping FunctionImportName="CONSULTAR_COMENTARIO" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTAR_COMENTARIO">
             <ResultMapping>
@@ -1604,6 +1613,8 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="INSERTAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.INSERTAR_REQUISICION" />
           <FunctionImportMapping FunctionImportName="MODIFICACIONES" FunctionName="GESTION_HUMANA_HITSSModel2.Store.MODIFICACIONES" />
+          <FunctionImportMapping FunctionImportName="APROBAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.APROBAR_REQUISICION" />
+          <FunctionImportMapping FunctionImportName="RECHAZAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.RECHAZAR_REQUISICION" />
           <EntitySetMapping Name="COMENTARIO">
             <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.COMENTARIO">
               <MappingFragment StoreEntitySet="COMENTARIO">
@@ -1647,6 +1658,13 @@
           <EntitySetMapping Name="HISTORICO">
             <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.HISTORICO">
               <MappingFragment StoreEntitySet="HISTORICO">
+                <ScalarProperty Name="NOMBRE_TIPO_SALARIO" ColumnName="NOMBRE_TIPO_SALARIO" />
+                <ScalarProperty Name="NOMBRE_JORNADA_LABORAL" ColumnName="NOMBRE_JORNADA_LABORAL" />
+                <ScalarProperty Name="DIA_LABORAL_HASTA" ColumnName="DIA_LABORAL_HASTA" />
+                <ScalarProperty Name="DIA_LABORAL_DESDE" ColumnName="DIA_LABORAL_DESDE" />
+                <ScalarProperty Name="COD_MERCADO" ColumnName="COD_MERCADO" />
+                <ScalarProperty Name="COD_HORARIO_LABORAL_HASTA" ColumnName="COD_HORARIO_LABORAL_HASTA" />
+                <ScalarProperty Name="COD_HORARIO_LABORAL_DESDE" ColumnName="COD_HORARIO_LABORAL_DESDE" />
                 <ScalarProperty Name="COD_ESTADO" ColumnName="COD_ESTADO" />
                 <ScalarProperty Name="FECHA_REGISTRO" ColumnName="FECHA_REGISTRO" />
                 <ScalarProperty Name="USUARIO_REGISTRO" ColumnName="USUARIO_REGISTRO" />
@@ -1687,9 +1705,41 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MENU_ROL">
+            <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.MENU_ROL">
+              <MappingFragment StoreEntitySet="MENU_ROL">
+                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
+                <ScalarProperty Name="USUARIO_MODIFICACION" ColumnName="USUARIO_MODIFICACION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
+                <ScalarProperty Name="COD_OPCIONES_MENU" ColumnName="COD_OPCIONES_MENU" />
+                <ScalarProperty Name="COD_ROL" ColumnName="COD_ROL" />
+                <ScalarProperty Name="COD_MENU_ROL" ColumnName="COD_MENU_ROL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OPCIONES_MENU">
+            <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.OPCIONES_MENU">
+              <MappingFragment StoreEntitySet="OPCIONES_MENU">
+                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
+                <ScalarProperty Name="USUARIO_MODIFICACION" ColumnName="USUARIO_MODIFICACION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="NOMBRE_OPCION" ColumnName="NOMBRE_OPCION" />
+                <ScalarProperty Name="COD_OPCIONES_MENU" ColumnName="COD_OPCIONES_MENU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="REQUISICION">
             <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.REQUISICION">
               <MappingFragment StoreEntitySet="REQUISICION">
+                <ScalarProperty Name="DIA_LABORAL_HASTA" ColumnName="DIA_LABORAL_HASTA" />
+                <ScalarProperty Name="DIA_LABORAL_DESDE" ColumnName="DIA_LABORAL_DESDE" />
+                <ScalarProperty Name="COD_MERCADO" ColumnName="COD_MERCADO" />
+                <ScalarProperty Name="COD_HORARIO_LABORAL_HASTA" ColumnName="COD_HORARIO_LABORAL_HASTA" />
+                <ScalarProperty Name="COD_HORARIO_LABORAL_DESDE" ColumnName="COD_HORARIO_LABORAL_DESDE" />
                 <ScalarProperty Name="LOGIN_EMPLEADO" ColumnName="LOGIN_EMPLEADO" />
                 <ScalarProperty Name="EMAIL_USUARIO_CREACION" ColumnName="EMAIL_USUARIO_CREACION" />
                 <ScalarProperty Name="POSICIONAMIENTO" ColumnName="POSICIONAMIENTO" />
@@ -1767,6 +1817,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ROL">
+            <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.ROL">
+              <MappingFragment StoreEntitySet="ROL">
+                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
+                <ScalarProperty Name="USUARIO_MODIFICACION" ColumnName="USUARIO_MODIFICACION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="COD_ROL" ColumnName="COD_ROL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ROL_REQUISICION">
             <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.ROL_REQUISICION">
               <MappingFragment StoreEntitySet="ROL_REQUISICION">
@@ -1812,8 +1874,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="APROBAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.APROBAR_REQUISICION" />
-          <FunctionImportMapping FunctionImportName="RECHAZAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.RECHAZAR_REQUISICION" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

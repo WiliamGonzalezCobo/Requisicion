@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0c6f8950cb194beab0a4172ddac5b502" Name="Diagram1" ZoomLevel="20">
+      <Diagram DiagramId="0c6f8950cb194beab0a4172ddac5b502" Name="Diagram1" ZoomLevel="42">
         <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel2.COMENTARIO" Width="1.5" PointX="5.25" PointY="19.625" />
         <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel2.DIAS_LABORALES" Width="1.5" PointX="0.75" PointY="9.25" />
         <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel2.ESTADO" Width="1.5" PointX="3" PointY="21.25" />
         <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel2.HISTORICO" Width="1.5" PointX="5.25" PointY="5.5" />
         <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel2.MENU_ROL" Width="1.5" PointX="8" PointY="1" />
-        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel2.OPCIONES_MENU" Width="1.5" PointX="5.75" PointY="24" />
+        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel2.OPCIONES_MENU" Width="1.5" PointX="5.75" PointY="1" />
         <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel2.REQUISICION" Width="1.5" PointX="3" PointY="1.75" />
-        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel2.ROL" Width="1.5" PointX="5.75" PointY="1.125" />
+        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel2.ROL" Width="1.5" PointX="5.75" PointY="24.125" />
         <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel2.ROL_REQUISICION" Width="1.5" PointX="7.75" PointY="4.75" />
-        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel2.TIPO" Width="1.5" PointX="0.75" PointY="14.875" />
-        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel2.TIPO_DOCUMENTO" Width="1.5" PointX="0.75" PointY="12.625" />
-        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel2.TIPO_NECESIDAD" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel2.TIPO" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel2.TIPO_DOCUMENTO" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="GESTION_HUMANA_HITSSModel2.TIPO_NECESIDAD" Width="1.5" PointX="0.75" PointY="15.125" />
         <AssociationConnector Association="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_COMENTARIO_REQUISICION_REQUISICION" />
         <AssociationConnector Association="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES" />
         <AssociationConnector Association="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_REQUISICION_REQUISICION_DIAS_LABORALES1" />
