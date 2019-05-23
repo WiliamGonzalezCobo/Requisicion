@@ -5,5 +5,10 @@
 }
 
 <h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">Error al procesar la solicitud.</h2>
+<div>
+    <p> <strong>acción: </strong>  @Model.ActionName</p>
+    <p> <strong>controlador: </strong>  @Model.ControllerName</p>
+    <p> <strong>excepción: </strong>  @Model.Exception.GetType().Name</p>
+    <p> <strong>mensaje: </strong>  @Model.Exception.InnerException</p>
+</div>
 

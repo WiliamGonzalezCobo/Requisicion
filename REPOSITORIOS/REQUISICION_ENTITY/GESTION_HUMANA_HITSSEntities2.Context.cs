@@ -380,15 +380,6 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTAR_REQUISICIONES_RRHH_Result>("CONSULTAR_REQUISICIONES_RRHH");
         }
     
-        public virtual ObjectResult<CONSULTAR_REQUISICIONXID_Result> CONSULTAR_REQUISICIONXID(Nullable<int> iDREQUISICION)
-        {
-            var iDREQUISICIONParameter = iDREQUISICION.HasValue ?
-                new ObjectParameter("IDREQUISICION", iDREQUISICION) :
-                new ObjectParameter("IDREQUISICION", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTAR_REQUISICIONXID_Result>("CONSULTAR_REQUISICIONXID", iDREQUISICIONParameter);
-        }
-    
         public virtual ObjectResult<CONSULTAR_TIPOS_NECESIDAD_Result> CONSULTAR_TIPOS_NECESIDAD()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTAR_TIPOS_NECESIDAD_Result>("CONSULTAR_TIPOS_NECESIDAD");
@@ -904,6 +895,15 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
                 new ObjectParameter("OBSERVACIONES", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("RECHAZAR_REQUISICION", cOD_REQUISICIONParameter, uSUARIOParameter, oBSERVACIONESParameter);
+        }
+    
+        public virtual ObjectResult<CONSULTAR_REQUISICIONXID_Result> CONSULTAR_REQUISICIONXID(Nullable<int> iDREQUISICION)
+        {
+            var iDREQUISICIONParameter = iDREQUISICION.HasValue ?
+                new ObjectParameter("IDREQUISICION", iDREQUISICION) :
+                new ObjectParameter("IDREQUISICION", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTAR_REQUISICIONXID_Result>("CONSULTAR_REQUISICIONXID", iDREQUISICIONParameter);
         }
     }
 }
