@@ -91,14 +91,68 @@ namespace REPOSITORIOS.LICENCIA_INCAPACIDAD.ACCESS
 
 
 
-                db.INSERTAR_REQUISICION(model.COD_TIPO_NECESIDAD, model.COD_TIPO_REQUISICION, model.COD_CARGO, "Cargo", model.ORDEN ?? "", model.COD_CECO, "Ceco", model.OBSERVACION ?? "", model.COD_TIPO_DOCUMENTO, model.NUMERO_DOCUMENTO_EMPLEADO ?? "", "model.NOMBRE_EMPLEADO", model.FECHA_INICIO, model.FECHA_FIN, model.COD_GERENCIA, model.NOMBRE_GERENCIA ?? "", model.COD_SOCIEDAD, model.NOMBRE_SOCIEDAD ?? "", model.COD_EQUIPO_VENTAS, model.NOMBRE_EQIPO_VENTAS ?? "", model.COD_CATEGORIA_ED, "model.LIST_NOMBRE_CATEGORIA_ED", model.CARGO_CRITICO, model.POSICION ?? "", model.SALARIO_FIJO, model.PORCENTAJE_SALARIO_FIJO, model.SALARIO_VARIABLE, model.PORCENTAJE_SALARIO_VARIABLE, model.SOBREREMUNERACION, model.EXTRA_FIJA, model.RECARGO_NOCTURNO, model.MEDIO_TRANSPORTE, model.SALARIO_TOTAL, model.BONO_ANUAL, model.NUMERO_SALARIOS, model.COD_NIVEL_RIESGO_ARL, model.COD_JORNADA_LABORAL, Convert.ToInt32(model.HORARIO_LABORAL_DESDE), Convert.ToInt32(model.HORARIO_LABORAL_HASTA),model.COD_DIA_LABORAL_HASTA,model.COD_DIA_LABORAL_DESDE, Convert.ToInt32(model.PORCENTAJE_SOBREREMUNERACION), model.MESES_GARANTIZADOS, model.COD_TIPO_SALARIO, model.FACTOR_PRESTACIONAL.ToString() ?? "", model.INGRESO_PROM_MENSUAL, model.INGRESO_PROM_ANUAL, model.MERCADO ?? "", model.COD_CATEGORIA, model.PUNTO_MEDIO_80, model.PUNTO_MEDIO_100, model.PUNTO_MEDIO_120, model.POSICIONAMIENTO.ToString() ?? "", model.USUARIO_CREACION ?? "", model.COD_ESTADO_REQUISICION);
-                //db.INSERTAR_REQUISICION(model.COD_TIPO_NECESIDAD, model.COD_TIPO_REQUISICION, model.COD_CARGO, model.NOMBRE_CARGO, model.ORDEN, model.COD_CECO, model.NOMBRE_CECO, model.OBSERVACION, model.COD_TIPO_DOCUMENTO, model.NUMERO_DOCUMENTO_EMPLEADO, model.NOMBRE_EMPLEADO, model.FECHA_INICIO, model.FECHA_FIN, model.COD_GERENCIA, model.NOMBRE_GERENCIA, model.COD_SOCIEDAD, model.NOMBRE_SOCIEDAD, model.COD_EQUIPO_VENTAS, model.NOMBRE_EQIPO_VENTAS, model.COD_CATEGORIA_ED, model.LIST_NOMBRE_CATEGORIA_ED, model.CARGO_CRITICO, model.POSICION, model.SALARIO_FIJO, model.PORCENTAJE_SALARIO_FIJO, model.SALARIO_VARIABLE, model.PORCENTAJE_SALARIO_VARIABLE, model.SOBREREMUNERACION, model.EXTRA_FIJA, model.RECARGO_NOCTURNO, model.MEDIO_TRANSPORTE, model.SALARIO_TOTAL, model.BONO_ANUAL, model.NUMERO_SALARIOS, model.COD_NIVEL_RIESGO_ARL, model.COD_JORNADA_LABORAL, model.HORARIO_LABORAL_DESDE, model.HORARIO_LABORAL_HASTA, model.PORCENTAJE_SOBREREMUNERACION, model.MESES_GARANTIZADOS, model.COD_TIPO_SALARIO, model.FACTOR_PRESTACIONAL, model.INGRESO_PROM_MENSUAL, model.INGRESO_PROM_ANUAL, model.MERCADO, model.COD_CATEGORIA, model.PUNTO_MEDIO_80, model.PUNTO_MEDIO_100, model.PUNTO_MEDIO_120, model.POSICIONAMIENTO, model.USUARIO_CREACION, model.COD_ESTADO_REQUISICION);
-                //    //INSERTAR_REQUISICION(int cOD_TIPO_NECESIDAD, int, List < SelectListItem > nOMBRE_CARGO, string oRDEN, int cOD_CECO, List < SelectListItem > nOMBRE_CECO, string oBSERVACION, , string nUMERO_DOCUMENTO_EMPLEADO, List < SelectListItem > nOMBRE_EMPLEADO, DateTime fECHA_INICIO, DateTime fECHA_FIN, int cOD_GERENCIA, string nOMBRE_GERENCIA, int cOD_SOCIEDAD, string nOMBRE_SOCIEDAD, int cOD_EQUIstring nOMBRE_EQIPO_VENTAS, int cOD_CATEGORIA_ED, List < SelectListItem > lIST_NOMBRE_CATEGORIA_ED, bool cARGO_CRITICO, string pOSICION, decimal sALARIO_FIJO, decimal pORCENTAJE_SALARIO_FIJO, decimal sALARIO_VARIABLE, decimal sOBREREMUNERACION, decimal eXTRA_FIJA, decimal rECARGO_NOCTURNO, decimal mEDIO_TRANSPORTE, decimal decimal bONO_ANUAL, int nUMERO_SALARIOS, int cOD_NIVEL_RIESGO_ARL, int cOD_JORNADA_LABORAL, string hORARIO_LABORAL_DESDE, string hORARIO_LABORAL_HASTA, decimal pORCENTAJE_SOBREREMUNERACION, int mESES_GARANTIZADOS, int cOD_TIPO_SALARIO, decimal fACTOR_PRESTACIONAL, decimal iNGRESO_PROM_MENSUAL, decimal iNGRESO_PROM_ANUAL, string mERCADO, int cOD_CATEGORIA, deci, decimal pUNTO_MEDIO_100, decimal pUNTO_MEDIO_120, decimal pOSICIONAMIENTO, string uSUARIO_CREACION, int cOD_ESTADO_REQUISICION)
-                //    ////lst = consulta.Select(x => new TIPO_NECESIDADViewModel()
-                //    //{
-                //    //    COD_TIPO_NECESIDAD = x.COD_TIPO_NECESIDAD,
-                //    //    NOMBRE_NECESIDAD = x.NOMBRE_NECESIDAD
-                //    //}).ToList();
+                db.INSERTAR_REQUISICION(model.COD_TIPO_NECESIDAD
+                                        , model.COD_TIPO_REQUISICION
+                                        , model.COD_CARGO
+                                        , model.NOMBRE_CARGO
+                                        , model.ORDEN ?? ""
+                                        , model.COD_CECO
+                                        , model.NOMBRE_CECO
+                                        , model.OBSERVACION ?? ""
+                                        , model.COD_TIPO_DOCUMENTO
+                                        , model.NUMERO_DOCUMENTO_EMPLEADO ?? ""
+                                        , model.NOMBRE_EMPLEADO
+                                        , model.FECHA_INICIO
+                                        , model.FECHA_FIN
+                                        , model.COD_GERENCIA
+                                        , model.NOMBRE_GERENCIA ?? ""
+                                        , model.COD_SOCIEDAD
+                                        , model.NOMBRE_SOCIEDAD ?? ""
+                                        , model.COD_EQUIPO_VENTAS
+                                        , model.NOMBRE_EQIPO_VENTAS ?? ""
+                                        , model.COD_CATEGORIA_ED
+                                        , model.NOMBRE_CATEGORIA_ED
+                                        , model.CARGO_CRITICO
+                                        , model.POSICION ?? ""
+                                        , model.SALARIO_FIJO
+                                        , model.PORCENTAJE_SALARIO_FIJO
+                                        , model.SALARIO_VARIABLE
+                                        , model.PORCENTAJE_SALARIO_VARIABLE
+                                        , model.SOBREREMUNERACION
+                                        , model.EXTRA_FIJA
+                                        , model.RECARGO_NOCTURNO
+                                        , model.MEDIO_TRANSPORTE
+                                        , model.SALARIO_TOTAL
+                                        , model.BONO_ANUAL
+                                        , model.NUMERO_SALARIOS
+                                        , model.COD_NIVEL_RIESGO_ARL
+                                        , model.COD_JORNADA_LABORAL
+                                        , model.NOMBRE_JORNADA_LABORAL
+                                        , model.COD_HORARIO_LABORAL_DESDE
+                                        , model.HORARIO_LABORAL_DESDE
+                                        , model.COD_HORARIO_LABORAL_HASTA
+                                        , model.HORARIO_LABORAL_HASTA
+                                        , model.COD_DIA_LABORAL_DESDE
+                                        , model.DIA_LABORAL_DESDE
+                                        , model.COD_DIA_LABORAL_HASTA
+                                        , model.DIA_LABORAL_HASTA
+                                        , model.PORCENTAJE_SOBREREMUNERACION
+                                        , model.MESES_GARANTIZADOS
+                                        , model.COD_TIPO_SALARIO
+                                        , model.NOMBRE_TIPO_SALARIO
+                                        , model.FACTOR_PRESTACIONAL.ToString() ?? ""
+                                        , model.INGRESO_PROM_MENSUAL
+                                        , model.INGRESO_PROM_ANUAL
+                                        , model.COD_MERCADO
+                                        , model.MERCADO ?? ""
+                                        , model.COD_CATEGORIA
+                                        , model.PUNTO_MEDIO_80
+                                        , model.PUNTO_MEDIO_100
+                                        , model.PUNTO_MEDIO_120
+                                        , model.POSICIONAMIENTO.ToString() ?? ""
+                                        , model.USUARIO_CREACION ?? ""
+                                        , model.COD_ESTADO_REQUISICION);
+
             }
             return "Exitoso";
         }
