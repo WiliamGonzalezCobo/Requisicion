@@ -57,25 +57,28 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
 
             return lst;
         }
-        public List<REQUISICIONViewModel> CONSULTAR_REQUISICION_PANTALLA_INICIO(FILTROREQUISICION _FILTRO) {
-            using (var db = new GESTION_HUMANA_HITSSEntities2()) {
-                ObjectResult<CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result> resultadoSP = 
-                    db.CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION(_FILTRO.idUsuario, _FILTRO.porUsuario,_FILTRO.cod_estado_requisicion);
-                List<REQUISICIONViewModel> retorno = resultadoSP.ToList().Select(x => new REQUISICIONViewModel() {
-                    COD_REQUISICION=x.COD_REQUISICION,
-                    COD_ESTADO_REQUISICION=x.COD_ESTADO_REQUISICION??0,
-                    USUARIO_CREACION=x.USUARIO_CREACION,
-                    EMAIL_USUARIO_CREACION=x.EMAIL_USUARIO_CREACION,
-                    COD_CARGO=x.COD_CARGO??0,
-                    NOMBRE_CARGO=x.NOMBRE_CARGO,
-                    COD_TIPO_REQUISICION=x.COD_TIPO_REQUISICION??0,
-                    NOMBRE_TIPO_REQUISICION=x.NOMBRE_REQUISICION,
-                    FECHA_CREACION=x.FECHA_CREACION.Value.ToShortDateString(),
-                    NOMBRE_ESTADO_REQUISICION=x.NOMBRE_ESTADO,
-                    COLORES_ESTADOS=x.Color
+        public List<REQUISICIONViewModel> CONSULTAR_REQUISICION_PANTALLA_INICIO(FILTROREQUISICION _FILTRO)
+        {
+            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            {
+                ObjectResult<CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result> resultadoSP =
+                    db.CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION(_FILTRO.idUsuario, _FILTRO.porUsuario, _FILTRO.cod_estado_requisicion);
+                List<REQUISICIONViewModel> retorno = resultadoSP.ToList().Select(x => new REQUISICIONViewModel()
+                {
+                    COD_REQUISICION = x.COD_REQUISICION,
+                    COD_ESTADO_REQUISICION = x.COD_ESTADO_REQUISICION ?? 0,
+                    USUARIO_CREACION = x.USUARIO_CREACION,
+                    EMAIL_USUARIO_CREACION = x.EMAIL_USUARIO_CREACION,
+                    COD_CARGO = x.COD_CARGO ?? 0,
+                    NOMBRE_CARGO = x.NOMBRE_CARGO,
+                    COD_TIPO_REQUISICION = x.COD_TIPO_REQUISICION ?? 0,
+                    NOMBRE_TIPO_REQUISICION = x.NOMBRE_REQUISICION,
+                    FECHA_CREACION = x.FECHA_CREACION.Value.ToShortDateString(),
+                    NOMBRE_ESTADO_REQUISICION = x.NOMBRE_ESTADO,
+                    COLORES_ESTADOS = x.Color
                 }).ToList();
                 return retorno;
-             }
+            }
         }
 
         public Boolean ACTUALIZARREQUISICION_ACESS(REQUISICIONViewModel _MODEL)
@@ -123,10 +126,14 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                    _MODEL.CARGO_CRITICO.ToString(),
                    _MODEL.COD_JORNADA_LABORAL,
                    _MODEL.NOMBRE_JORNADA_LABORAL,
+                   _MODEL.COD_HORARIO_LABORAL_DESDE,
                    _MODEL.HORARIO_LABORAL_DESDE,
+                   _MODEL.COD_HORARIO_LABORAL_HASTA,
                    _MODEL.HORARIO_LABORAL_HASTA,
                    _MODEL.COD_DIA_LABORAL_DESDE,
+                   _MODEL.DIA_LABORAL_DESDE,
                    _MODEL.COD_DIA_LABORAL_HASTA,
+                   _MODEL.DIA_LABORAL_HASTA,
                    _MODEL.POSICION,
                    _MODEL.EMPRESA_TEMPORAL,
                    _MODEL.SALARIO_FIJO,
@@ -147,6 +154,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     _MODEL.FACTOR_PRESTACIONAL,
                     _MODEL.INGRESO_PROM_MENSUAL,
                     _MODEL.INGRESO_PROM_ANUAL,
+                    _MODEL.COD_MERCADO,
                     _MODEL.MERCADO,
                     _MODEL.COD_CATEGORIA,
                     _MODEL.NOMBRE_CATEGORIA,
@@ -158,10 +166,11 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                 }
                 return true;
             }
-            catch(Exception ex){
+            catch (Exception ex)
+            {
                 return false;
             }
-         
+
 
         }
         public REQUISICIONViewModel CONSULTAR_REQUISICION_X_ID_ACCES(int idReq)
@@ -256,7 +265,8 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             return requicisionModel;
         }
 
-        public int INSERTAR_REQUISICION(REQUISICIONViewModel _modelo) {
+        public int INSERTAR_REQUISICION(REQUISICIONViewModel _modelo)
+        {
             try
             {
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
@@ -299,27 +309,34 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                          _modelo.NUMERO_SALARIOS,
                          _modelo.COD_NIVEL_RIESGO_ARL,
                          _modelo.COD_JORNADA_LABORAL,
+                         _modelo.NOMBRE_JORNADA_LABORAL,
+                         _modelo.COD_HORARIO_LABORAL_DESDE,
+                         _modelo.HORARIO_LABORAL_DESDE,
+                         _modelo.COD_HORARIO_LABORAL_HASTA,
+                         _modelo.HORARIO_LABORAL_HASTA,
                          _modelo.COD_DIA_LABORAL_DESDE,
-                         _modelo.COD_DIA_LABORAL_HASTA,
-                          _modelo.COD_DIA_LABORAL_DESDE,
-                         _modelo.COD_DIA_LABORAL_HASTA,
+                         _modelo.DIA_LABORAL_DESDE,
+                         _modelo.COD_DIA_LABORAL_HASTA,                         
+                         _modelo.DIA_LABORAL_HASTA,
                         Convert.ToInt32(_modelo.PORCENTAJE_SOBREREMUNERACION),
                         _modelo.MESES_GARANTIZADOS,
                         _modelo.COD_TIPO_SALARIO,
+                        _modelo.NOMBRE_TIPO_SALARIO,
                         _modelo.FACTOR_PRESTACIONAL.ToString(),  // EN BASE DE DATOS ES VARCHAR
                         _modelo.INGRESO_PROM_MENSUAL,
                         _modelo.INGRESO_PROM_ANUAL,
-                        _modelo.MERCADO,
+                        _modelo.COD_MERCADO,
+                        _modelo.MERCADO??"",
                        _modelo.COD_CATEGORIA,
                        _modelo.PUNTO_MEDIO_80,
                        _modelo.PUNTO_MEDIO_100,
                        _modelo.PUNTO_MEDIO_120,
-                       _modelo.POSICIONAMIENTO.ToString(), // EN BASE DE DATOS ES VARCHAR
-                       _modelo.USUARIO_CREACION,
-                       1
+                       Convert.ToString(_modelo.POSICIONAMIENTO.ToString()), // EN BASE DE DATOS ES VARCHAR
+                       _modelo.USUARIO_CREACION??"",
+                       _modelo.COD_ESTADO_REQUISICION
                    ).FirstOrDefault().Value;
                 }
-                
+
             }
             catch (SqlException ex)
             {
@@ -333,22 +350,22 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
         {
             using (var db = new GESTION_HUMANA_HITSSEntities2())
             {
-              return  db.APROBAR_REQUISICION(
-                     ID_USUARIO,
-                    COD_REQUISICION
-                    ).First().Value;
+                return db.APROBAR_REQUISICION(
+                       ID_USUARIO,
+                      COD_REQUISICION
+                      ).First().Value;
             }
         }
 
 
-        public int REQUISICION_MODIFICAR_ACESS(int COD_REQUISICION, string oBSERVACIONES,String ID_USUARIO)
+        public int REQUISICION_MODIFICAR_ACESS(int COD_REQUISICION, string oBSERVACIONES, String ID_USUARIO)
         {
             using (var db = new GESTION_HUMANA_HITSSEntities2())
             {
                 return db.MODIFICACIONES(
                     COD_REQUISICION,
                     oBSERVACIONES,
-                       ID_USUARIO ).First().Value;
+                       ID_USUARIO).First().Value;
             }
         }
     }
