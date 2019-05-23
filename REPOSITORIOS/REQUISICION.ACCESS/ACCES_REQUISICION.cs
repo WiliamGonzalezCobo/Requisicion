@@ -188,8 +188,6 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     requicisionModel.COD_CECO =Convert.ToInt32(respuesta.COD_CECO);
                     requicisionModel.NOMBRE_CECO = respuesta.NOMBRE_CECO;
                     requicisionModel.COD_TIPO_REQUISICION = respuesta.COD_TIPO_REQUISICION ?? 0;
-                    requicisionModel.FECHA_INICIO = respuesta.FECHA_INICIO ?? DateTime.Now;
-                    requicisionModel.FECHA_FIN = respuesta.FECHA_FIN ?? DateTime.Now;
                     requicisionModel.ES_MODIFICACION = respuesta.ES_MODIFICACION ?? false;
                     requicisionModel.OBSERVACION = "";
                     requicisionModel.OBSERVACIONES = respuesta.OBSERVACION ?? "";
@@ -223,9 +221,9 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     requicisionModel.COD_JORNADA_LABORAL = respuesta.COD_JORNADA_LABORAL ?? 0;
                     requicisionModel.NOMBRE_JORNADA_LABORAL = respuesta.NOMBRE_JORNADA_LABORAL;
                     requicisionModel.HORARIO_LABORAL_DESDE = respuesta.HORARIO_LABORAL_DESDE;
-                    //requicisionModel.HORARIO_LABORAL_HASTA = respuesta.HORARIO_LABORAL_DESDE;
+                    requicisionModel.HORARIO_LABORAL_HASTA = respuesta.HORARIO_LABORAL_DESDE;
                     requicisionModel.COD_DIA_LABORAL_DESDE = respuesta.COD_DIA_LABORAL_DESDE ?? 0;
-                    //requicisionModel.COD_DIA_LABORAL_HASTA = respuesta.COD_DIA_LABORAL_HASTA??0; 
+                    requicisionModel.COD_DIA_LABORAL_HASTA = respuesta.COD_DIA_LABORAL_HASTA ?? 0;
                     requicisionModel.POSICION = respuesta.POSICION;
                     requicisionModel.EMPRESA_TEMPORAL = respuesta.EMPRESA_TEMPORAL;
                     requicisionModel.SALARIO_FIJO = respuesta.SALARIO_FIJO ?? 0;
@@ -243,18 +241,26 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     requicisionModel.MESES_GARANTIZADOS = respuesta.MESES_GARANTIZADOS ?? 0;
                     requicisionModel.COD_TIPO_SALARIO = respuesta.COD_TIPO_REQUISICION ?? 0;
                     requicisionModel.NOMBRE_TIPO_SALARIO = respuesta.NOMBRE_TIPO_SALARIO;
-                    //requicisionModel.FACTOR_PRESTACIONA = respuesta.FACTOR_PRESTACIONAL;  no existe
+                    requicisionModel.FACTOR_PRESTACIONAL = respuesta.FACTOR_PRESTACIONAL??0;
                     requicisionModel.INGRESO_PROM_MENSUAL = respuesta.INGRESO_PROM_MENSUAL ?? 0;
                     requicisionModel.INGRESO_PROM_ANUAL = respuesta.INGRESO_PROM_ANUAL ?? 0;
                     requicisionModel.MERCADO = respuesta.MERCADO;
                     requicisionModel.COD_CATEGORIA = respuesta.COD_CATEGORIA ?? 0;
                     requicisionModel.NOMBRE_CATEGORIA = respuesta.NOMBRE_CATEGORIA;
-                    requicisionModel.PUNTO_MEDIO_80 = respuesta.PUNTO_MEDIO_80 ?? 0;//desde api
-                    requicisionModel.PUNTO_MEDIO_100 = respuesta.PUNTO_MEDIO_100 ?? 0;// desde api
-                    requicisionModel.PUNTO_MEDIO_120 = respuesta.PUNTO_MEDIO_120 ?? 0; // desde api
+                    requicisionModel.PUNTO_MEDIO_80 = respuesta.PUNTO_MEDIO_80 ?? 0;
+                    requicisionModel.PUNTO_MEDIO_100 = respuesta.PUNTO_MEDIO_100 ?? 0;
+                    requicisionModel.PUNTO_MEDIO_120 = respuesta.PUNTO_MEDIO_120 ?? 0;
                     requicisionModel.POSICIONAMIENTO = respuesta.POSICIONAMIENTO ?? 0;
                     requicisionModel.EMAIL_USUARIO_CREACION = respuesta.EMAIL_USUARIO_CREACION;
                     requicisionModel.LOGIN_EMPLEADO = respuesta.LOGIN_EMPLEADO;
+                    requicisionModel.COD_HORARIO_LABORAL_DESDE = respuesta.COD_HORARIO_LABORAL_DESDE??0;
+                    requicisionModel.COD_HORARIO_LABORAL_HASTA = respuesta.COD_HORARIO_LABORAL_HASTA??0;
+                    requicisionModel.COD_MERCADO = respuesta.COD_MERCADO??0;
+                    requicisionModel.FECHA_INICIO = respuesta.FECHA_INICIO ?? DateTime.Now;
+                    requicisionModel.FECHA_FIN = respuesta.FECHA_FIN ?? DateTime.Now;
+                    requicisionModel.DIA_LABORAL_DESDE = respuesta.DIA_LABORAL_DESDE;
+                    requicisionModel.DIA_LABORAL_HASTA = respuesta.DIA_LABORAL_HASTA;
+
                 }
             }
             catch (Exception ex)

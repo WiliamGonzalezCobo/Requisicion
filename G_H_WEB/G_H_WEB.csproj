@@ -539,7 +539,7 @@
     <Content Include="js\jquery.iframe-transport.js" />
     <Content Include="js\main.js" />
     <Content Include="js\vendor\jquery.ui.widget.js" />
-    <Content Include="obj\Debug\G_H_WEB.csproj.FileListAbsolute.txt" />
+    <!-- <Content Include="obj\Debug\G_H_WEB.csproj.FileListAbsolute.txt" /> -->
     <Content Include="obj\Debug\G_H_WEB.dll" />
     <Content Include="obj\Debug\G_H_WEB.pdb" />
     <Content Include="ApplicationInsights.config">

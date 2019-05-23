@@ -21,8 +21,6 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
         public string COD_CECO { get; set; }
         public string NOMBRE_CECO { get; set; }
         public Nullable<int> COD_TIPO_REQUISICION { get; set; }
-        public Nullable<System.DateTime> FECHA_INICIO { get; set; }
-        public Nullable<System.DateTime> FECHA_FIN { get; set; }
         public Nullable<bool> ES_MODIFICACION { get; set; }
         public string OBSERVACION { get; set; }
         public Nullable<int> COD_ESTADO_REQUISICION { get; set; }
@@ -87,5 +85,12 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
         public Nullable<decimal> POSICIONAMIENTO { get; set; }
         public string EMAIL_USUARIO_CREACION { get; set; }
         public string LOGIN_EMPLEADO { get; set; }
+        public Nullable<int> COD_HORARIO_LABORAL_DESDE { get; set; }
+        public Nullable<int> COD_HORARIO_LABORAL_HASTA { get; set; }
+        public Nullable<int> COD_MERCADO { get; set; }
+        public Nullable<System.DateTime> FECHA_INICIO { get; set; }
+        public Nullable<System.DateTime> FECHA_FIN { get; set; }
+        public string DIA_LABORAL_DESDE { get; set; }
+        public string DIA_LABORAL_HASTA { get; set; }
     }
 }
