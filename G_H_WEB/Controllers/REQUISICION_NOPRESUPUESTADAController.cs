@@ -19,10 +19,15 @@ namespace G_H_WEB.Controllers
         {
             ViewBag.RequisicionNombre = "Requsicion No Presupuestada";
             REQUISICIONViewModel model = new REQUISICIONViewModel();
-            if (_idReq.HasValue) {
-                model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value)?? new REQUISICIONViewModel();
-            }
+            if (_idReq.HasValue)
+            {
+                model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value) ?? new REQUISICIONViewModel();
 
+                if (User.IsInRole(SettingsManager.PerfilBp))
+                {
+                    model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONESBP(model) ?? new REQUISICIONViewModel();
+                }
+            }
            model = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(model, Session["objetoListas"] as REQUISICIONViewModel);
 
             // Esto es para el POP UP
@@ -66,7 +71,7 @@ namespace G_H_WEB.Controllers
 
                         break;
                     case "Aprobar":
-                        _resultadoIdReguisicion = new LOGICA_REQUISICION().APROBAR_REQUISICION_LOGICA(modelDatos.COD_REQUISICION, User.Identity.GetUserId());
+                        _resultadoIdReguisicion = new LOGICA_REQUISICION().APROBAR_REQUISICION_LOGICA(modelDatos.COD_REQUISICION, User.Identity.GetUserId(), modelDatos.OBSERVACION);
                         npc.METODO = "Aprobar";
                         break;
                     case "Rechazar":

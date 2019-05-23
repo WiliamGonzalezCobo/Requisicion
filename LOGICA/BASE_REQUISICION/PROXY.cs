@@ -105,7 +105,6 @@ namespace LOGICA.LOGICA_REQUISICION
             List<PUNTOS_MEDIO>respuesta = new BASE_PROXY(urlApi + "PUESTOS").Get<List<PUNTOS_MEDIO>>(out status, parameters);
             return respuesta;
         }
-
     }
 
 
