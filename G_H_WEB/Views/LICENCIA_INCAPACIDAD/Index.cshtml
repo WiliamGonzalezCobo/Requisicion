@@ -6,6 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
 }
+
 <div class="col">
     <h4>@ViewBag.Title</h4>
     <div id="IconosRequisicion" class="LSubtitulos col-md-12 col-lg-12 col-xl-12 row" style="margin-bottom:10px;">
@@ -24,162 +25,169 @@
         </div>
 
     </div>
-
-    <div id="SeccionRequisicionParciales" class="col">
-        <div id="CNform">
-            <div class="retiros-detalle">
-                <div class="form-group col-md-12">
-                    @using (Html.BeginForm("Index", "LICENCIA_INCAPACIDAD"))
-                    {
-
-                        if (User.IsInRole(SettingsManager.PerfilJefe))
+    <div id="loading">
+        <div id="SeccionRequisicionParciales" class="col">
+            <div id="CNform">
+                <div class="retiros-detalle">
+                    <div class="form-group col-md-12">
+                        @using (Html.BeginForm("Index", "LICENCIA_INCAPACIDAD"))
                         {
 
-                            @Html.Partial("_PartialInfoRequisicionLi", Model)
-                            @Html.Partial("_PartialInfoGeneralLi", Model)
-                            @Html.Partial("_PartialInfoSalarialLi", Model)
-                            @Html.Partial("_PartialAutorizacion", Model)
+                            if (User.IsInRole(SettingsManager.PerfilJefe))
+                            {
+
+                                @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                @Html.Partial("_PartialInfoGeneralLi", Model)
+                                @Html.Partial("_PartialInfoSalarialLi", Model)
+                                @Html.Partial("_PartialAutorizacion", Model)
 
 
-                        }
-                        @*if (User.IsInRole(SettingsManager.PerfilController))
+                            }
+                            @*if (User.IsInRole(SettingsManager.PerfilController))
+                                {
+                                    @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                    @Html.Partial("_PartialAutorizacion", Model)
+                                }*@
+                            if (User.IsInRole(SettingsManager.PerfilBp))
                             {
                                 @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                @Html.Partial("_PartialInfoGeneralLi", Model)
+                                @Html.Partial("_PartialInfoSalarialLiLectura", Model)
+                                @Html.Partial("_PartialGeneralProPuestaLi", Model)
+                                @Html.Partial("_PartialInfoSalarialLi", Model)
+                                @Html.Partial("_PartialInfoSalarialLi2", Model)
+
+                            }
+                            if (User.IsInRole(SettingsManager.PerfilRRHH))
+                            {
+                                @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                @Html.Partial("_PartialInfoGeneralLi", Model)
+                                @Html.Partial("_PartialInfoSalarialLiLectura", Model)
+                                @Html.Partial("_PartialGeneralProPuestaLi", Model)
+                                @Html.Partial("_PartialInfoSalarialLi", Model)
+                                @Html.Partial("_PartialInfoSalarialLi2", Model)
                                 @Html.Partial("_PartialAutorizacion", Model)
-                            }*@
-                        if (User.IsInRole(SettingsManager.PerfilBp))
-                        {
-                            @Html.Partial("_PartialInfoRequisicionLi", Model)
-                            @Html.Partial("_PartialInfoGeneralLi", Model)
-                            @Html.Partial("_PartialInfoSalarialLiLectura", Model)
-                            @Html.Partial("_PartialGeneralProPuestaLi", Model)
-                            @Html.Partial("_PartialInfoSalarialLi", Model)
-                            @Html.Partial("_PartialInfoSalarialLi2", Model)
+                            }
+                            if (User.IsInRole(SettingsManager.PerfilUSC))
+                            {
+                                @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                @Html.Partial("_PartialInfoGeneralLi", Model)
+                                @Html.Partial("_PartialInfoSalarialLiLectura", Model)
+                                @Html.Partial("_PartialGeneralProPuestaLi", Model)
+                                @Html.Partial("_PartialInfoSalarialLi", Model)
+                                @Html.Partial("_PartialInfoSalarialLi2", Model)
+                                @Html.Partial("_PartialAutorizacion", Model)
+                            }
 
-                        }
-                        if (User.IsInRole(SettingsManager.PerfilRRHH))
-                        {
-                            @Html.Partial("_PartialInfoRequisicionLi", Model)
-                            @Html.Partial("_PartialInfoGeneralLi", Model)
-                            @Html.Partial("_PartialInfoSalarialLiLectura", Model)
-                            @Html.Partial("_PartialGeneralProPuestaLi", Model)
-                            @Html.Partial("_PartialInfoSalarialLi", Model)
-                            @Html.Partial("_PartialInfoSalarialLi2", Model)
-                            @Html.Partial("_PartialAutorizacion", Model)
-                        }
-                        if (User.IsInRole(SettingsManager.PerfilUSC))
-                        {
-                            @Html.Partial("_PartialInfoRequisicionLi", Model)
-                            @Html.Partial("_PartialInfoGeneralLi", Model)
-                            @Html.Partial("_PartialInfoSalarialLiLectura", Model)
-                            @Html.Partial("_PartialGeneralProPuestaLi", Model)
-                            @Html.Partial("_PartialInfoSalarialLi", Model)
-                            @Html.Partial("_PartialInfoSalarialLi2", Model)
-                            @Html.Partial("_PartialAutorizacion", Model)
-                        }
-
-                        //Botones
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                @Html.ActionLink("Cancelar", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "btn-cancelar-retriro col-md-3 " })
-                                @if (User.IsInRole(SettingsManager.PerfilJefe))
-                                {
-                                    <input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="btn-confirmar-retiro col-md-3" />
-                                }
-                                @*@if (User.IsInRole(SettingsManager.PerfilController))
+                            //Botones
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    @Html.ActionLink("Cancelar", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "btn-cancelar-retriro col-md-3 " })
+                                    @if (User.IsInRole(SettingsManager.PerfilJefe))
+                                    {
+                                        <input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="btn-confirmar-retiro col-md-3" />
+                                    }
+                                    @*@if (User.IsInRole(SettingsManager.PerfilController))
+                                        {
+                                            <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                            <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                        }*@
+                                    @if (User.IsInRole(SettingsManager.PerfilBp))
+                                    {
+                                        <input name="submitButton" type="submit" value="Enviar" class="btn-confirmar-retiro col-md-3" />
+                                    }
+                                    @if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
                                     {
                                         <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                        <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
                                         <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
-                                    }*@
-                                @if (User.IsInRole(SettingsManager.PerfilBp))
-                                {
-                                    <input name="submitButton" type="submit" value="Enviar" class="btn-confirmar-retiro col-md-3" />
-                                }
-                                @if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
-                                {
-                                    <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
-                                }
+                                    }
 
+                                </div>
                             </div>
-                        </div>
-                    }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title _metodoDefecto" id="ModalLabel">Se ha presentado un error</h5>
+                        <h5 class="modal-title _metodoCrear" id="ModalLabel">Requisición Creada Con éxito</h5>
+                        <h5 class="modal-title __metodoAprobar" id="ModalLabel">Requisición Aprobada Con éxito</h5>
+                        <h5 class="modal-title __metodoModificar" id="ModalLabel">Requisición Modificada Con éxito</h5>
+                        <h5 class="modal-title __metodoRechazar" id="ModalLabel">Requisición Rechazada Con éxito</h5>
+                        <h5 class="modal-title __metodoEnviar" id="ModalLabel">Requisición Enviada Con éxito</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <br />
+                        <h2 class="_metodoCrear">Se créo la requisicion para el cargo de  <span id="mensaje1"></span> con ID <span id="mensaje2"></span></h2>
+                        <h2 class="__metodoAprobar">Se aprobó la requisicion con ID <span id="mensaje_aprobar"></span></h2>
+                        <h2 class="__metodoModificar">Se modifico la requisicion con ID <span id="mensaje_modificar"></span></h2>
+                        <h2 class="__metodoRechazar">Se Rechazado la requisicion con ID <span id="mensaje_rechazar"></span></h2>
+                        <h2 class="_metodoDefecto">Por favor contacte al <span id="mensaje_rechazar">administrador</span> del sistema</h2>
+                        <h2 class="__metodoEnviar">Se Envio la requisicion con ID <span id="mensaje_Enviar"></span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="ModalCancelNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel">Esta a punto de cancelar la requisición</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                    </div>
+                    <div class="retiros-detalle modal-body">
+                        <br />
+                        <h4>¿Esta Seguro de Cancelarla?</h4>
+
+                        <button type="button" class="filtroPorUsuario btn-cancelar-retriro" data-dismiss="modal" aria-label="Aceptar" onclick="NoCancelarJefe()" style="cursor:pointer;">
+                            No
+
+                        </button>
+                        <button type="button" class="filtroPorUsuario btn-confirmar-retiro" data-dismiss="modal" aria-label="Cancelar" onclick="SiCancelarJefe()" style="cursor:pointer;">
+                            Si
+
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title _metodoDefecto" id="ModalLabel">Se ha presentado un error</h5>
-                    <h5 class="modal-title _metodoCrear" id="ModalLabel">Requisición Creada Con éxito</h5>
-                    <h5 class="modal-title __metodoAprobar" id="ModalLabel">Requisición Aprobada Con éxito</h5>
-                    <h5 class="modal-title __metodoModificar" id="ModalLabel">Requisición Modificada Con éxito</h5>
-                    <h5 class="modal-title __metodoRechazar" id="ModalLabel">Requisición Rechazada Con éxito</h5>
-                    <h5 class="modal-title __metodoEnviar" id="ModalLabel">Requisición Enviada Con éxito</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <br />
-                    <h2 class="_metodoCrear">Se créo la requisicion para el cargo de  <span id="mensaje1"></span> con ID <span id="mensaje2"></span></h2>
-                    <h2 class="__metodoAprobar">Se aprobó la requisicion con ID <span id="mensaje_aprobar"></span></h2>
-                    <h2 class="__metodoModificar">Se modifico la requisicion con ID <span id="mensaje_modificar"></span></h2>
-                    <h2 class="__metodoRechazar">Se Rechazado la requisicion con ID <span id="mensaje_rechazar"></span></h2>
-                    <h2 class="_metodoDefecto">Por favor contacte al <span id="mensaje_rechazar">administrador</span> del sistema</h2>
-                    <h2 class="__metodoEnviar">Se Envio la requisicion con ID <span id="mensaje_Enviar"></span></h2>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="ModalCancelNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ModalLabel">Esta a punto de cancelar la requisición</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-
-                </div>
-                <div class="retiros-detalle modal-body">
-                    <br />
-                    <h4>¿Esta Seguro de Cancelarla?</h4>
-
-                    <button type="button" class="filtroPorUsuario btn-cancelar-retriro" data-dismiss="modal" aria-label="Aceptar" onclick="NoCancelarJefe()" style="cursor:pointer;">
-                        No
-
-                    </button>
-                    <button type="button" class="filtroPorUsuario btn-confirmar-retiro" data-dismiss="modal" aria-label="Cancelar" onclick="SiCancelarJefe()" style="cursor:pointer;">
-                        Si
-
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script type="text/javascript">
 
     $(document).ready(function () {
-        debugger;
+        
         $('#COD_CARGO').change(function () {
             var id = $(this).val();
+            //$('#loading').loading({
+            //    message: 'Cargando...'
+            //});
+            $('body').loading({
+                message: 'Cargando...'
+            });
             $.ajax({
                 url: "@Url.Action("ConsultarCargo", "LICENCIA_INCAPACIDAD")",
                 type: 'POST',
                 data: { idCargo: id },
                 success: function (respuesta) {
-                    console.log(respuesta);
+                    mapeoObjCargoApi(respuesta)
+                    debugger; $('body').loading('stop');
                 },
                 error: function (er){
-                    console.log(er)
+                    $('body').loading('stop');
                 }
             });
         });
@@ -308,6 +316,79 @@
              success: function () { window.location.href = '@Url.Action("Index", "REQUISICION")'; }
          });
     };
+
+    function mapeoObjCargoApi(API) {
+        console.log(API.COD_CARGO);
+        debugger;
+        $("#COD_CARGO").val(API.COD_CARGO);
+        $("#NOMBRE_CARGO").val(API.NOMBRE_CARGO);
+        $("#COD_CECO").val(API.COD_CENTRO_COSTO);
+        $("#NOMBRE_CECO").val(API.NOMBRE_CENTRO_COSTO);
+        $("#COD_GERENCIA").val(API.COD_GERENCIA);
+        $("#NOMBRE_GERENCIA").val(API.NOMBRE_GERENCIA);
+        $("#COD_TIPO_CONTRATO").val(API.COD_TIPO_CONTRATO);
+        $("#NOMBRE_TIPO_CONTRATO").val(API.NOMBRE_TIPO_CONTRATO);
+        $("#JEFE_INMEDIATO").val(API.NOMBRE_JEFE);
+        $("#COD_CECO").val(API.COD_CENTRO_COSTO);
+        $("#NOMBRE_CECO").val(API.NOMBRE_CENTRO_COSTO);
+        $("#COD_SOCIEDAD").val(API.COD_SOCIEDAD);
+        $("#NOMBRE_SOCIEDAD").val(API.NOMBRE_SOCIEDAD);
+        $("#COD_EQUIPO_VENTAS").val(API.COD_EQUIPO_VENTA);
+        $("#NOMBRE_EQIPO_VENTAS").val(API.NOMBRE_EQUIPO_VENTA);
+        $("#COD_CIUDAD_TRABAJO").val(API.COD_DANE_CIUDAD);
+        $("#NOMBRE_CIUDAD_TRABAJO").val(API.NOMBRE_CIUDAD);
+        $("#COD_UBICACION_FISICA").val(API.COD_UBICACION_FISICA);
+        $("#NOMBRE_UBICACION_FISICA").val(API.NOMBRE_UBICACION_FIFICA);
+        $("#COD_NIVEL_RIESGO_ARL").val(API.COD_NIVEL_RIESGO);
+        $("#NIVEL_RIESGO_ARL").val(API.NIVEL_RIESGO);
+        $("#COD_CATEGORIA_ED").val(API.COD_CATEGORIA_EVALUACION_DESEMPENO);
+        $("#NOMBRE_CATEGORIA_ED").val(API.NOMBRE_CATEGORIA_EVALUACION_DESEMPENO);
+        debugger; if (API.CARGO_CRITICO == "1") {
+            $("#CARGO_CRITICO").val(true);
+        }
+        else {
+            $("CARGO_CRITICO").val(false);
+        }
+        $("#COD_JORNADA_LABORAL").val(API.COD_JORNADA_TRABAJO);
+        $("#NOMBRE_JORNADA_LABORAL").val(API.NOMBRE_JORNADA_TRABAJO);
+        $("#COD_HORARIO_LABORAL_DESDE").val(API.COD_HORARIO_TRABAJO);
+        $("#HORARIO_LABORAL_DESDE").val(API.NOMBRE_HORARIO_TRABAJO);
+        $("#COD_HORARIO_LABORAL_HASTA").val(API.COD_HORARIO_TRABAJO);
+        $("#HORARIO_LABORAL_HASTA").val(API.NOMBRE_HORARIO_TRABAJO);
+        $("#COD_DIA_LABORAL_DESDE").val(API.COD_DIA_LABORAL);
+        $("#DIA_LABORAL_DESDE").val(API.NOMBRE_DIA_LABORAL);
+        $("#COD_DIA_LABORAL_HASTA").val(API.COD_DIA_LABORAL);
+        $("#DIA_LABORAL_HASTA").val(API.NOMBRE_DIA_LABORAL);
+        $("#SALARIO_FIJO").val(API.SALARIO_FIJO);
+        $("#PORCENTAJE_SALARIO_FIJO").val(API.PORCENTAJE_SALARIO_FIJO);
+        $("#SALARIO_VARIABLE").val(API.SALARIO_VARIABLE);
+        $("#PORCENTAJE_SALARIO_VARIABLE").val(API.PORCENTAJE_SALARIO_VARIABLE);
+        $("#SOBREREMUNERACION").val(API.SOBREREMUNERACION);
+        $("#PORCENTAJE_SOBREREMUNERACION").val(API.PORCENTAJE_SOBREREMUNERACION);
+        $("#EXTRA_FIJA").val(API.EXTRA_FIJA);
+        $("#RECARGO_NOCTURNO").val(API.RECARGO_NOCTURNO_FIJO);
+        $("#MEDIO_TRANSPORTE").val(API.MEDIOS_TRANSPORTE);
+        $("#SALARIO_TOTAL").val(API.SALARIO_TOTAL);
+        $("#BONO_ANUAL").val(API.BONO_ANUAL);
+        $("#NUMERO_SALARIOS").val(API.NUMERO_SALARIO);
+        $("#MESES_GARANTIZADOS").val(API.MESES_GARANTIZADO);
+        $("#COD_TIPO_SALARIO").val(API.COD_TIPO_SALARIO);
+        $("#NOMBRE_TIPO_SALARIO").val(API.NOMBRE_TIPO_SALARIO);
+        $("#FACTOR_PRESTACIONAL").val(API.FP);
+        $("#INGRESO_PROM_MENSUAL").val(API.PROMEDIO_MES);
+        $("#INGRESO_PROM_ANUAL").val(API.PROMEDIO_ANO);
+        $("#COD_MERCADO").val(API.COD_MERCADO);
+        $("#MERCADO").val(API.NOMBRE_MERCADO);
+        $("#COD_CATEGORIA").val(API.COD_CATEGORIA_SALARIALES);
+        $("#NOMBRE_CATEGORIA").val(API.NOMBRE_CATEGORIA_SALARIO);
+        $("#PUNTO_MEDIO_80").val(API.PUNTO_MEDIO_80_PORCIENTO);
+        $("#PUNTO_MEDIO_100").val(API.PUNTO_MEDIO_100_PORCIENTO);
+        $("#PUNTO_MEDIO_120").val(API.PUNTO_MEDIO_120_PORCIENTO);
+        $("#POSICIONAMIENTO").val(API.POSICIONAMIENTO);
+    }
+
+
+
 </script>
 
 
