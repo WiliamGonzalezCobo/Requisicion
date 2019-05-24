@@ -29,6 +29,7 @@ namespace G_H_WEB.Controllers
                     model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONESBP(model) ?? new REQUISICIONViewModel();
                 }
             }
+            model.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqLicencia;
             model = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(model, Session["objetoListas"] as REQUISICIONViewModel);
 
             // Esto es para el POP UP
