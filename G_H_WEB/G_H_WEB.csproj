@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress />
+    <Use64BitIISExpress>false</Use64BitIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -526,6 +526,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="js\app.js" />
+    <Content Include="js\CALCULOS_SALARIOS.js" />
     <Content Include="js\cors\jquery.postmessage-transport.js" />
     <Content Include="js\cors\jquery.xdr-transport.js" />
     <Content Include="js\jquery.fileupload-angular.js" />
@@ -606,6 +607,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\loading.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\REQUISICIONES_PRESUPUESTADAS.js" />
     <Content Include="Scripts\ValidacionDecimalesMVC.js" />
     <Content Include="Views\components\documentos-relacionados.html" />
     <Content Include="Views\components\head.html" />
