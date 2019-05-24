@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress />
+    <Use64BitIISExpress>false</Use64BitIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -397,7 +397,7 @@
     <Content Include="bin\Antlr3.Runtime.pdb" />
     <Content Include="bin\EntityFramework.dll" />
     <Content Include="bin\EntityFramework.SqlServer.dll" />
-  <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
     <Content Include="bin\EntityFramework.xml" />
     <Content Include="bin\es\EntityFramework.resources.dll" />
     <Content Include="bin\es\EntityFramework.SqlServer.resources.dll" />
@@ -525,6 +525,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="js\app.js" />
+    <Content Include="js\CALCULOS_SALARIOS.js" />
     <Content Include="js\cors\jquery.postmessage-transport.js" />
     <Content Include="js\cors\jquery.xdr-transport.js" />
     <Content Include="js\jquery.fileupload-angular.js" />
@@ -604,6 +605,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\REQUISICIONES_PRESUPUESTADAS.js" />
     <Content Include="Scripts\ValidacionDecimalesMVC.js" />
     <Content Include="Views\components\documentos-relacionados.html" />
     <Content Include="Views\components\head.html" />
@@ -694,6 +696,7 @@
     <Content Include="Views\Shared\_PartialInfoGeneral.cshtml" />
     <Content Include="Views\Shared\_PartialInfoSalarial.cshtml" />
     <Content Include="Views\Shared\_PartialAutorizacion.cshtml" />
+    <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

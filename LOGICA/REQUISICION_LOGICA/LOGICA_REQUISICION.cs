@@ -274,7 +274,7 @@ namespace LOGICA.REQUISICION_LOGICA
             return new PROXY().CONSULTAR_DIAS_LABORALES_API().Select(x => new SelectListItem()
             {
                 Text = x.NOMBRE,
-                Value = x.COD_DIAS_LABORAL.ToString()
+                Value = x.NOMBRE
             }).ToList();
         }
 
@@ -421,30 +421,194 @@ namespace LOGICA.REQUISICION_LOGICA
         public REQUISICIONViewModel CONSULTAR_VALORES_LISTAS_POR_CODIGO(REQUISICIONViewModel _MODEL_CODIGOS) {
 
 
-            if (_MODEL_CODIGOS.COD_CARGO != 0) { _MODEL_CODIGOS.NOMBRE_CARGO = _MODEL_CODIGOS.LIST_NOMBRE_CARGO.Where(x => x.Value == _MODEL_CODIGOS.COD_CARGO.ToString()).First().Text; }
-            if (_MODEL_CODIGOS.COD_GERENCIA != 0) { _MODEL_CODIGOS.NOMBRE_GERENCIA = _MODEL_CODIGOS.LIST_NOMBRE_GERENCIA.Where(x => x.Value == _MODEL_CODIGOS.COD_GERENCIA.ToString()).First().Text; }
-            if (_MODEL_CODIGOS.COD_TIPO_CONTRATO != 0) { _MODEL_CODIGOS.NOMBRE_TIPO_CONTRATO = _MODEL_CODIGOS.LIST_NOMBRE_TIPO_CONTRATO.Where(x => x.Value == _MODEL_CODIGOS.COD_TIPO_CONTRATO.ToString()).First().Text; }
-            if (_MODEL_CODIGOS.COD_CECO != 0) { _MODEL_CODIGOS.NOMBRE_CECO = _MODEL_CODIGOS.LIST_NOMBRE_CECO.Where(x => x.Value == _MODEL_CODIGOS.COD_CECO.ToString()).First().Text; }
-            if (_MODEL_CODIGOS.COD_SOCIEDAD != 0) { _MODEL_CODIGOS.NOMBRE_SOCIEDAD = _MODEL_CODIGOS.LIST_NOMBRE_SOCIEDAD.Where(x => x.Value == _MODEL_CODIGOS.COD_SOCIEDAD.ToString()).First().Text; }
-            if (_MODEL_CODIGOS.COD_EQUIPO_VENTAS != 0) { _MODEL_CODIGOS.NOMBRE_EQIPO_VENTAS = _MODEL_CODIGOS.LIST_NOMBRE_EQIPO_VENTAS.Where(x => x.Value == _MODEL_CODIGOS.COD_EQUIPO_VENTAS.ToString()).First().Text; }
-            if (_MODEL_CODIGOS.COD_CIUDAD_TRABAJO != 0)
-            {
-                if (_MODEL_CODIGOS.LIST_NOMBRE_CIUDAD_TRABAJO.Where(x => x.Value == _MODEL_CODIGOS.COD_CIUDAD_TRABAJO.ToString()).ToList().Count > 0)
+            if (_MODEL_CODIGOS.COD_CARGO != 0) {
+                List<SelectListItem> LISTA_CARGO = _MODEL_CODIGOS.LIST_NOMBRE_CARGO.Where(x => x.Value == _MODEL_CODIGOS.COD_CARGO.ToString()).ToList();
+                if (LISTA_CARGO.Count > 0){
+                    _MODEL_CODIGOS.NOMBRE_CARGO = LISTA_CARGO.First().Text;
+                } else {
+                    _MODEL_CODIGOS.COD_CARGO = 0;
+                }
+            }
+            if (_MODEL_CODIGOS.COD_GERENCIA != 0){
+                List<SelectListItem> LISTA_GERENCIA = _MODEL_CODIGOS.LIST_NOMBRE_GERENCIA.Where(x => x.Value == _MODEL_CODIGOS.COD_GERENCIA.ToString()).ToList();
+                if (LISTA_GERENCIA.Count() > 0)
                 {
-                    _MODEL_CODIGOS.NOMBRE_CIUDAD_TRABAJO = _MODEL_CODIGOS.LIST_NOMBRE_CIUDAD_TRABAJO.Where(x => x.Value == _MODEL_CODIGOS.COD_CIUDAD_TRABAJO.ToString()).First().Text;
+                    _MODEL_CODIGOS.NOMBRE_GERENCIA = LISTA_GERENCIA.First().Text;
                 }
                 else {
+                    _MODEL_CODIGOS.COD_GERENCIA = 0;
+                }
+            }
+            if (_MODEL_CODIGOS.COD_TIPO_CONTRATO != 0) {
+                List<SelectListItem> LISTA_CONTRATO = _MODEL_CODIGOS.LIST_NOMBRE_TIPO_CONTRATO.Where(x => x.Value == _MODEL_CODIGOS.COD_TIPO_CONTRATO.ToString()).ToList();
+                if (LISTA_CONTRATO.Count > 0)
+                {
+                    _MODEL_CODIGOS.NOMBRE_TIPO_CONTRATO = LISTA_CONTRATO.First().Text;
+                }
+                else {
+                    _MODEL_CODIGOS.COD_TIPO_CONTRATO = 0;
+                }
+            }
+            if (_MODEL_CODIGOS.COD_CECO != 0) {
+                List<SelectListItem> LISTA_CECO = _MODEL_CODIGOS.LIST_NOMBRE_CECO.Where(x => x.Value == _MODEL_CODIGOS.COD_CECO.ToString()).ToList();
+                if (LISTA_CECO.Count > 0) {
+                    _MODEL_CODIGOS.NOMBRE_CECO = LISTA_CECO.First().Text;
+                }else {
+                    _MODEL_CODIGOS.COD_CECO = 0;
+                }
+                
+            }
+            if (_MODEL_CODIGOS.COD_SOCIEDAD != 0) {
+                List<SelectListItem> LISTA_SOCIEDAD = _MODEL_CODIGOS.LIST_NOMBRE_SOCIEDAD.Where(x => x.Value == _MODEL_CODIGOS.COD_SOCIEDAD.ToString()).ToList();
+                if (LISTA_SOCIEDAD.Count > 0) {
+                    _MODEL_CODIGOS.NOMBRE_SOCIEDAD = LISTA_SOCIEDAD.First().Text;
+                }else {
+                    _MODEL_CODIGOS.COD_SOCIEDAD = 0;
+                }
+                
+            }
+            if (_MODEL_CODIGOS.COD_EQUIPO_VENTAS != 0) {
+                List<SelectListItem> LISTA_VENTAS = _MODEL_CODIGOS.LIST_NOMBRE_EQIPO_VENTAS.Where(x => x.Value == _MODEL_CODIGOS.COD_EQUIPO_VENTAS.ToString()).ToList();
+                if (LISTA_VENTAS.Count > 0)
+                {
+                    _MODEL_CODIGOS.NOMBRE_EQIPO_VENTAS = LISTA_VENTAS.First().Text;
+                }
+                else {
+                    _MODEL_CODIGOS.COD_EQUIPO_VENTAS = 0;
+                }
+            }
+            if (_MODEL_CODIGOS.COD_CIUDAD_TRABAJO != 0)
+            {
+                List<SelectListItem> LISTA_CIUDAD_TRABAJO = _MODEL_CODIGOS.LIST_NOMBRE_CIUDAD_TRABAJO.Where(x => x.Value == _MODEL_CODIGOS.COD_CIUDAD_TRABAJO.ToString()).ToList();
+                if (LISTA_CIUDAD_TRABAJO.Count > 0){
+                    _MODEL_CODIGOS.NOMBRE_CIUDAD_TRABAJO = LISTA_CIUDAD_TRABAJO.First().Text;
+                }else {
                     _MODEL_CODIGOS.COD_CIUDAD_TRABAJO = 0;
                 }
             }
-            if (_MODEL_CODIGOS.COD_UBICACION_FISICA != 0) { _MODEL_CODIGOS.NOMBRE_UBICACION_FISICA = _MODEL_CODIGOS.LIST_NOMBRE_UBICACION_FISICA.Where(x => x.Value == _MODEL_CODIGOS.COD_UBICACION_FISICA.ToString()).First().Text; }
-            if (_MODEL_CODIGOS.COD_NIVEL_RIESGO_ARL != 0) { _MODEL_CODIGOS.NIVEL_RIESGO_ARL = _MODEL_CODIGOS.LIST_NIVEL_RIESGO_ARL.Where(x => x.Value == _MODEL_CODIGOS.COD_NIVEL_RIESGO_ARL.ToString()).First().Text; }
-            if (_MODEL_CODIGOS.COD_CATEGORIA_ED != 0) { _MODEL_CODIGOS.NOMBRE_CATEGORIA_ED = _MODEL_CODIGOS.LIST_NOMBRE_CATEGORIA_ED.Where(x => x.Value == _MODEL_CODIGOS.COD_CATEGORIA_ED.ToString()).First().Text; }
-            if (_MODEL_CODIGOS.COD_JORNADA_LABORAL != 0) { _MODEL_CODIGOS.NOMBRE_JORNADA_LABORAL = _MODEL_CODIGOS.LIST_NOMBRE_JORNADA_LABORAL.Where(x => x.Value == _MODEL_CODIGOS.COD_JORNADA_LABORAL.ToString()).First().Text; }
-            if (_MODEL_CODIGOS.COD_DIA_LABORAL_DESDE!=0) { _MODEL_CODIGOS.DIA_LABORAL_DESDE = _MODEL_CODIGOS.LIST_DIA_LABORAL_DESDE.Where(x => x.Value == _MODEL_CODIGOS.COD_DIA_LABORAL_DESDE.ToString()).First().Text; }
-            if (_MODEL_CODIGOS.COD_DIA_LABORAL_HASTA != 0) { _MODEL_CODIGOS.DIA_LABORAL_HASTA = _MODEL_CODIGOS.LIST_DIA_LABORAL_HASTA.Where(x => x.Value == _MODEL_CODIGOS.COD_DIA_LABORAL_HASTA.ToString()).First().Text; }
-            if (_MODEL_CODIGOS.COD_TIPO_SALARIO != 0) { _MODEL_CODIGOS.NOMBRE_TIPO_SALARIO = _MODEL_CODIGOS.LIST_NOMBRE_TIPO_SALARIO.Where(x => x.Value == _MODEL_CODIGOS.COD_TIPO_SALARIO.ToString()).First().Text; }
-            if (_MODEL_CODIGOS.COD_CATEGORIA != 0) { _MODEL_CODIGOS.NOMBRE_CATEGORIA = _MODEL_CODIGOS.LIST_NOMBRE_CATEGORIA.Where(x => x.Value == _MODEL_CODIGOS.COD_CATEGORIA.ToString()).First().Text; }
+            if (_MODEL_CODIGOS.COD_UBICACION_FISICA != 0) {
+                List<SelectListItem> LISTA_UBICACION_FISICA = _MODEL_CODIGOS.LIST_NOMBRE_UBICACION_FISICA.Where(x => x.Value == _MODEL_CODIGOS.COD_UBICACION_FISICA.ToString()).ToList();
+                if (LISTA_UBICACION_FISICA.Count > 0){
+                    _MODEL_CODIGOS.NOMBRE_UBICACION_FISICA = LISTA_UBICACION_FISICA.First().Text;
+                } else {
+                    _MODEL_CODIGOS.COD_UBICACION_FISICA = 0;
+                }
+                
+            }
+            if (_MODEL_CODIGOS.COD_NIVEL_RIESGO_ARL != 0) {
+                List<SelectListItem> LISTA_RIESGO_ARL = _MODEL_CODIGOS.LIST_NIVEL_RIESGO_ARL.Where(x => x.Value == _MODEL_CODIGOS.COD_NIVEL_RIESGO_ARL.ToString()).ToList();
+                if (LISTA_RIESGO_ARL.Count > 0) {
+                    _MODEL_CODIGOS.NIVEL_RIESGO_ARL = LISTA_RIESGO_ARL.First().Text;
+                } 
+            }
+            if (_MODEL_CODIGOS.COD_CATEGORIA_ED != 0) {
+                List<SelectListItem> LISTA_CATEGORIA_ED = _MODEL_CODIGOS.LIST_NOMBRE_CATEGORIA_ED.Where(x => x.Value == _MODEL_CODIGOS.COD_CATEGORIA_ED.ToString()).ToList();
+                if (LISTA_CATEGORIA_ED.Count > 0){
+                    _MODEL_CODIGOS.NOMBRE_CATEGORIA_ED = LISTA_CATEGORIA_ED.First().Text;
+                }
+                else { _MODEL_CODIGOS.COD_CATEGORIA_ED = 0;
+                }
+                
+            }
+            if (_MODEL_CODIGOS.COD_JORNADA_LABORAL != 0) {
+                List<SelectListItem> LISTA_JORNADA_LABORAL = _MODEL_CODIGOS.LIST_NOMBRE_JORNADA_LABORAL.Where(x => x.Value == _MODEL_CODIGOS.COD_JORNADA_LABORAL.ToString()).ToList();
+                if (LISTA_JORNADA_LABORAL.Count > 0)
+                {
+                    _MODEL_CODIGOS.NOMBRE_JORNADA_LABORAL = LISTA_JORNADA_LABORAL.First().Text;
+                }
+                else {
+                    _MODEL_CODIGOS.COD_JORNADA_LABORAL = 0;
+                }
+               
+            }
+            if (_MODEL_CODIGOS.COD_DIA_LABORAL_DESDE !=0) {
+                List<SelectListItem> LISTA_LABORAL_DESDE = _MODEL_CODIGOS.LIST_DIA_LABORAL_DESDE.Where(x => x.Value == _MODEL_CODIGOS.COD_DIA_LABORAL_DESDE.ToString()).ToList();
+                if (LISTA_LABORAL_DESDE.Count > 0)
+                {
+                    _MODEL_CODIGOS.DIA_LABORAL_DESDE = LISTA_LABORAL_DESDE.First().Text;
+                }
+                else {
+                    _MODEL_CODIGOS.COD_DIA_LABORAL_DESDE = 0;
+                }
+                
+            }
+            if (_MODEL_CODIGOS.COD_DIA_LABORAL_HASTA != 0) {
+                List<SelectListItem> LISTA_LABORAL_HASTA = _MODEL_CODIGOS.LIST_DIA_LABORAL_HASTA.Where(x => x.Value == _MODEL_CODIGOS.COD_DIA_LABORAL_HASTA.ToString()).ToList();
+                if (LISTA_LABORAL_HASTA.Count > 0)
+                {
+                    _MODEL_CODIGOS.DIA_LABORAL_HASTA = LISTA_LABORAL_HASTA.First().Text;
+                }
+                else {
+                    _MODEL_CODIGOS.COD_DIA_LABORAL_HASTA = 0;
+                }
+        
+            }
+            if (_MODEL_CODIGOS.COD_TIPO_SALARIO != 0) {
+                List<SelectListItem> LISTA_TIPO_SALARIO = _MODEL_CODIGOS.LIST_NOMBRE_TIPO_SALARIO.Where(x => x.Value == _MODEL_CODIGOS.COD_TIPO_SALARIO.ToString()).ToList();
+                if (LISTA_TIPO_SALARIO.Count > 0)
+                {
+                    _MODEL_CODIGOS.NOMBRE_TIPO_SALARIO = LISTA_TIPO_SALARIO.First().Text;
+                }
+                else {
+                    _MODEL_CODIGOS.COD_TIPO_SALARIO = 0;
+                }
+               
+            }
+            if (_MODEL_CODIGOS.COD_CATEGORIA != 0) {
+                List<SelectListItem> LISTA_COD_CATEGORIA = _MODEL_CODIGOS.LIST_NOMBRE_CATEGORIA.Where(x => x.Value == _MODEL_CODIGOS.COD_CATEGORIA.ToString()).ToList();
+                if (LISTA_COD_CATEGORIA.Count > 0)
+                {
+                    _MODEL_CODIGOS.NOMBRE_CATEGORIA = LISTA_COD_CATEGORIA.First().Text;
+                }
+                else {
+                    _MODEL_CODIGOS.COD_CATEGORIA = 0;
+                }
+                
+            }
+
+            if (_MODEL_CODIGOS.COD_TIPO_SALARIO != 0) {
+                List<SelectListItem> LISTA_TIPO_SALARIO = _MODEL_CODIGOS.LIST_NOMBRE_TIPO_SALARIO.Where(x => x.Value == _MODEL_CODIGOS.COD_TIPO_SALARIO.ToString()).ToList();
+                if (LISTA_TIPO_SALARIO.Count > 0)
+                {
+                    _MODEL_CODIGOS.NOMBRE_TIPO_SALARIO = LISTA_TIPO_SALARIO.First().Text;
+                }
+                else {
+                    _MODEL_CODIGOS.COD_TIPO_SALARIO = 0;
+                }
+            }
+
+            if (_MODEL_CODIGOS.COD_CARGO != 0) {
+                List<SelectListItem> LISTA_NOMBRE_CARGO = _MODEL_CODIGOS.LIST_NOMBRE_CARGO.Where(x => x.Value == _MODEL_CODIGOS.COD_CARGO.ToString()).ToList();
+                if (LISTA_NOMBRE_CARGO.Count > 0)
+                {
+                    _MODEL_CODIGOS.NOMBRE_CARGO = LISTA_NOMBRE_CARGO.First().Text;
+                }
+                else {
+                    _MODEL_CODIGOS.COD_CARGO = 0;
+                }
+            }
+
+            if (_MODEL_CODIGOS.COD_JORNADA_LABORAL != 0) {
+                List<SelectListItem> LISTA_JORNADA_LABORAL = _MODEL_CODIGOS.LIST_NOMBRE_JORNADA_LABORAL.Where(X => X.Value == _MODEL_CODIGOS.COD_JORNADA_LABORAL.ToString()).ToList();
+                if (LISTA_JORNADA_LABORAL.Count > 0) {
+                    _MODEL_CODIGOS.NOMBRE_JORNADA_LABORAL = LISTA_JORNADA_LABORAL.First().Text;
+                }
+                else
+                {
+                    _MODEL_CODIGOS.COD_JORNADA_LABORAL = 0;
+                }
+            }
+
+            if (_MODEL_CODIGOS.COD_MERCADO != 0) {
+                List<SelectListItem> LISTA_MERCADO = _MODEL_CODIGOS.LIST_MERCADO.Where(x => x.Value == _MODEL_CODIGOS.COD_MERCADO.ToString()).ToList();
+                if (LISTA_MERCADO.Count > 0)
+                {
+                    _MODEL_CODIGOS.MERCADO = LISTA_MERCADO.First().Text;
+                }
+                else {
+                    _MODEL_CODIGOS.COD_MERCADO = 0;
+                }
+            }
 
 
             return _MODEL_CODIGOS;
