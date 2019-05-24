@@ -109,15 +109,15 @@
     <div class="row">
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.HORARIO_LABORAL_DESDE, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.DropDownListFor(model => model.COD_HORARIO_LABORAL_DESDE, Model.LIST_HORARIO_LABORAL_DESDE, "-- Seleccione --", new { @class = "form-control", disabled = deshabilitar })
-            @Html.HiddenFor(model => model.COD_HORARIO_LABORAL_DESDE)
-            @Html.ValidationMessageFor(model => model.COD_HORARIO_LABORAL_DESDE)
+            @Html.DropDownListFor(model => model.HORARIO_LABORAL_DESDE, Model.LIST_HORARIO_LABORAL_DESDE, "-- Seleccione --", new { @class = "form-control", disabled = deshabilitar })
+            @Html.HiddenFor(model => model.HORARIO_LABORAL_DESDE)
+            @Html.ValidationMessageFor(model => model.HORARIO_LABORAL_DESDE)
         </div>
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.HORARIO_LABORAL_HASTA, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.DropDownListFor(model => model.COD_HORARIO_LABORAL_HASTA, Model.LIST_HORARIO_LABORAL_HASTA, "-- Seleccione --", new { @class = "form-control", disabled = deshabilitar })
-            @Html.HiddenFor(model => model.COD_HORARIO_LABORAL_HASTA)
-            @Html.ValidationMessageFor(model => model.COD_HORARIO_LABORAL_HASTA)
+            @Html.DropDownListFor(model => model.HORARIO_LABORAL_HASTA, Model.LIST_HORARIO_LABORAL_HASTA, "-- Seleccione --", new { @class = "form-control", disabled = deshabilitar })
+            @Html.HiddenFor(model => model.HORARIO_LABORAL_HASTA)
+            @Html.ValidationMessageFor(model => model.HORARIO_LABORAL_HASTA)
         </div>
     </div>
 
@@ -129,15 +129,15 @@
     <div class="row">
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.LIST_DIA_LABORAL_DESDE, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.DropDownListFor(model => model.COD_DIA_LABORAL_DESDE, Model.LIST_DIA_LABORAL_DESDE, "-- Seleccione --", new { @class = "form-control", disabled = deshabilitar })
-            @Html.HiddenFor(model => model.COD_DIA_LABORAL_DESDE)
-            @Html.ValidationMessageFor(model => model.COD_DIA_LABORAL_DESDE)
+            @Html.DropDownListFor(model => model.DIA_LABORAL_DESDE, Model.LIST_DIA_LABORAL_DESDE, "-- Seleccione --", new { @class = "form-control", disabled = deshabilitar })
+            @Html.HiddenFor(model => model.DIA_LABORAL_DESDE)
+            @Html.ValidationMessageFor(model => model.DIA_LABORAL_DESDE)
         </div>
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.LIST_DIA_LABORAL_HASTA, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.DropDownListFor(model => model.COD_DIA_LABORAL_HASTA, Model.LIST_DIA_LABORAL_HASTA, "-- Seleccione --", new { @class = "form-control", disabled = deshabilitar })
-            @Html.HiddenFor(model => model.COD_DIA_LABORAL_HASTA)
-            @Html.ValidationMessageFor(model => model.COD_DIA_LABORAL_HASTA)
+            @Html.DropDownListFor(model => model.DIA_LABORAL_HASTA, Model.LIST_DIA_LABORAL_HASTA, "-- Seleccione --", new { @class = "form-control", disabled = deshabilitar })
+            @Html.HiddenFor(model => model.DIA_LABORAL_HASTA)
+            @Html.ValidationMessageFor(model => model.DIA_LABORAL_HASTA)
         </div>
     </div>
 </section>
