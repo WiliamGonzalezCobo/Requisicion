@@ -1,25 +1,25 @@
-﻿
-    <div class="col-md-3 col-lg-3 col-xl-3">
-        <a class="alineas" href='@Url.Action("Create","REQUISICION",new { @idTipo = 1})'>
-        <img src="../../assets/img/presupuestada.png" class="img-responsive maxImagen"/>
-       </a>
-    </div>
-    <div class="col-md-3 col-lg-3 col-xl-3">
+﻿@using UTILS.Settings
+<div class="col-md-3 col-lg-3 col-xl-3">
+    <a class="alineas" href='@Url.Action("Create","REQUISICION",new { @idTipo = SettingsManager.CodTipoReqPresupuestada})'>
+        <img src="../../assets/img/presupuestada.png" class="img-responsive maxImagen" />
+    </a>
+</div>
+<div class="col-md-3 col-lg-3 col-xl-3">
 
-        <a class="alineas"  href='@Url.Action("Create","REQUISICION",new { @idTipo = 2})'>
-            <img src="../../assets/img/NoPresupuestada.png" class="img-responsive maxImagen"/>
-        </a>
-    </div>
-    <div class="col-md-3 col-lg-3 col-xl-3">
-        <a class="alineas" href='@Url.Action("Create","REQUISICION",new { @idTipo = 3})'>
-            <img src="../../assets/img/Incapacidad.png" class="img-responsive maxImagen"/>
-        </a>
-    </div>
-    <div class="col-md-3 col-lg-3 col-xl-3">
-        <a class="alineas"  href='@Url.Action("Create","REQUISICION",new { @idTipo = 4})'>
-            <img src="../../assets/img/Licencia.png" class="img-responsive maxImagen"/>
-        </a>
-    </div>
+    <a class="alineas" href='@Url.Action("Create","REQUISICION",new { @idTipo = SettingsManager.CodTipoReqNoPresupuestada})'>
+        <img src="../../assets/img/NoPresupuestada.png" class="img-responsive maxImagen" />
+    </a>
+</div>
+<div class="col-md-3 col-lg-3 col-xl-3">
+    <a class="alineas" href='@Url.Action("Create","REQUISICION",new { @idTipo = SettingsManager.CodTipoReqIncapacidad})'>
+        <img src="../../assets/img/Incapacidad.png" class="img-responsive maxImagen" />
+    </a>
+</div>
+<div class="col-md-3 col-lg-3 col-xl-3">
+    <a class="alineas" href='@Url.Action("Create","REQUISICION",new { @idTipo = SettingsManager.CodTipoReqLicencia})'>
+        <img src="../../assets/img/Licencia.png" class="img-responsive maxImagen" />
+    </a>
+</div>
 
 
 

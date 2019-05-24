@@ -38,6 +38,7 @@ namespace LOGICA.REQUISICION_LOGICA
             MODEL_RETURN.LIST_HORARIO_LABORAL_HASTA = CONSULTAR_HORARIO_LABORAL();
             MODEL_RETURN.LIST_NOMBRE_JORNADA_LABORAL = CONSULTAR_JORNADAS_LABORALES();
             MODEL_RETURN.LIST_MERCADO = CONSULTAR_MERCADO();
+            MODEL_RETURN.LIST_TIPO_DOCUMENTO = CONSULTAR_TIPO_DOCUMENTO();
 
 
 
@@ -69,6 +70,7 @@ namespace LOGICA.REQUISICION_LOGICA
             MODEL_RETURN.LIST_HORARIO_LABORAL_HASTA = MODEL_ENTRADA.LIST_HORARIO_LABORAL_HASTA;
             MODEL_RETURN.LIST_NOMBRE_JORNADA_LABORAL = MODEL_ENTRADA.LIST_NOMBRE_JORNADA_LABORAL;
             MODEL_RETURN.LIST_MERCADO = MODEL_ENTRADA.LIST_MERCADO;
+            MODEL_RETURN.LIST_TIPO_DOCUMENTO = MODEL_ENTRADA.LIST_TIPO_DOCUMENTO; 
 
 
             return MODEL_RETURN;
@@ -204,7 +206,17 @@ namespace LOGICA.REQUISICION_LOGICA
                 Value = x.COD_MERCADO.ToString()
             }).ToList();
         }
+
+        private List<SelectListItem> CONSULTAR_TIPO_DOCUMENTO()
+        {
+            return new PROXY().CONSULTAR_TIPO_DOCUMENTO_API().Select(x => new SelectListItem()
+            {
+                Text = x.NOMBRE,
+                Value = x.COD_DOCUMENTO.ToString()
+            }).ToList();
+        }
         
+
 
         /// <summary>
         /// DESDE LA API
@@ -389,6 +401,23 @@ namespace LOGICA.REQUISICION_LOGICA
                // throw ex;                
             }
             return model;
+        }
+
+        public PUNTOS_MEDIO BUSCAR_CARGO_API(string idCargo)
+        {
+            PUNTOS_MEDIO _puntosMedio = new PUNTOS_MEDIO();
+            try
+            {
+                if (!idCargo.Equals("0"))
+                {
+                    _puntosMedio = new PROXY().CONSULTAR_PUNTOS_MEDIO_API(idCargo).First();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;          
+            }
+            return _puntosMedio;
         }
 
         public REQUISICIONViewModel BUSCAR_REQUISICIONES(int idRequsicion){
@@ -610,6 +639,18 @@ namespace LOGICA.REQUISICION_LOGICA
                 }
             }
 
+            if (_MODEL_CODIGOS.COD_TIPO_DOCUMENTO != 0)
+            {
+                List<SelectListItem> LISTA_TIPO_DOCUMENTO = _MODEL_CODIGOS.LIST_TIPO_DOCUMENTO.Where(X => X.Value == _MODEL_CODIGOS.COD_TIPO_DOCUMENTO.ToString()).ToList();
+                if (LISTA_TIPO_DOCUMENTO.Count > 0)
+                {
+                    _MODEL_CODIGOS.NOMBRE_TIPO_DOCUMENTO = LISTA_TIPO_DOCUMENTO.First().Text;
+                }
+                else
+                {
+                    _MODEL_CODIGOS.COD_TIPO_DOCUMENTO = 0;
+                }
+            }
 
             return _MODEL_CODIGOS;
         }

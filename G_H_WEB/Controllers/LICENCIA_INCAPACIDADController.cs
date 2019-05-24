@@ -1,161 +1,128 @@
-﻿using LOGICA.LICENCIA_INCAPACIDAD_LOGICA;
+﻿using G_H_WEB.Logica_Session;
 using LOGICA.REQUISICION_LOGICA;
+using Microsoft.AspNet.Identity;
 using MODELO_DATOS.MODELO_REQUISICION;
-using REPOSITORIOS.REQUISICION_ENTITY;
+using MODELO_DATOS.MODELO_REQUISICION.LISTAS_API;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using UTILS.Settings;
 
 namespace G_H_WEB.Controllers
 {
     public class LICENCIA_INCAPACIDADController : Controller
     {
-       private GESTION_HUMANA_HITSSEntities2 db = new GESTION_HUMANA_HITSSEntities2();
-        // GET: LICENCIA_INCAPACIDAD
+        // GET: REQUISICION_NOPRESUPUESTADA
         public ActionResult Index(int? _idReq)
-        {           
-            REQUISICIONViewModel rvm = new REQUISICIONViewModel();
-            try
+        {
+            ViewBag.RequisicionNombre = "Requisicion Licencia";
+            REQUISICIONViewModel model = new REQUISICIONViewModel();
+            if (_idReq.HasValue)
             {
-                if (_idReq.HasValue)
+                model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value) ?? new REQUISICIONViewModel();
+
+                if (User.IsInRole(SettingsManager.PerfilBp))
                 {
-                    rvm = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value);
+                    model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONESBP(model) ?? new REQUISICIONViewModel();
                 }
             }
-            catch (Exception)
+            model = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(model, Session["objetoListas"] as REQUISICIONViewModel);
+
+            // Esto es para el POP UP
+            List<SelectListItem> listacargos = model.LIST_NOMBRE_CARGO;
+            RESPUESTA_POP_UP fromPost = TempData["resultado"] as RESPUESTA_POP_UP;
+            // este filtro se debe hacer sobre la lista NOMBRE_CARGO y no sobre necesidad 
+            if (fromPost != null && fromPost.RESULTADO == true && fromPost.COD_CARGO != 0)
+                fromPost.NOMBRE_COD_CARGO = listacargos.Where(x => x.Value == fromPost.COD_CARGO.ToString()).First().Text;
+            //Logica para el POP UP
+            ViewBag.resultadoInsertExitosoOno = fromPost != null ? !fromPost.RESULTADO.Equals(0) : false;
+            ViewBag.resultadoPopUpNoJefe = fromPost;
+
+            //FIN POP UP
+
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Index(REQUISICIONViewModel modelDatos, string submitButton)
+        {
+            try
             {
+                int _resultadoIdReguisicion = 0;
+                modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqLicencia;
+                modelDatos.USUARIO_CREACION = User.Identity.Name;
+                modelDatos.USUARIO_MODIFICACION = User.Identity.Name;//      martinezluir esto es para test toca hacer la logica
+                REQUISICIONViewModel listas = new REQUISICIONViewModel();
+                // llena los combos
+                modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(modelDatos, Session["objetoListas"] as REQUISICIONViewModel);
+                // saca los valores de los combos
+                modelDatos = new LOGICA_REQUISICION().CONSULTAR_VALORES_LISTAS_POR_CODIGO(modelDatos);
 
-                throw;
+                //INICIO Esta logica es para el POP UP----------
+                RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
+                // FIN
+
+                switch (submitButton)
+                {
+                    case "Crear Requisición":
+                        _resultadoIdReguisicion = new LOGICA_REQUISICION().INSERTAR_REQUISICION_LOGICA(modelDatos);
+                        if (modelDatos.COD_REQUISICION == 0)
+                            npc.METODO = "Crear";
+                        else
+                            npc.METODO = "Modificar";
+
+                        break;
+                    case "Aprobar":
+                        _resultadoIdReguisicion = new LOGICA_REQUISICION().APROBAR_REQUISICION_LOGICA(modelDatos.COD_REQUISICION, User.Identity.GetUserId(), modelDatos.OBSERVACION);
+                        npc.METODO = "Aprobar";
+                        break;
+                    case "Rechazar":
+                        _resultadoIdReguisicion = new LOGICA_REQUISICION().REQUISICION_RECHAZAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.Name);
+                        npc.METODO = "Rechazar";
+                        break;
+                    case "Enviar":
+                        Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos));
+                        _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
+                        npc.METODO = "Enviar";
+                        break;
+                    case "Modificar":
+                        _resultadoIdReguisicion = Convert.ToInt32(new LOGICA_REQUISICION().REQUISICION_MODIFICAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.GetUserId()));
+                        npc.METODO = "Modificar";
+                        break;
+                }
+
+
+                //INICIO Esta logica es para el POP UP----------
+                npc.COD_REQUISICION_CREADA = _resultadoIdReguisicion;
+                npc.COD_CARGO = modelDatos.COD_CARGO;
+                npc.RESULTADO = !_resultadoIdReguisicion.Equals(0);
+                TempData["resultado"] = npc;
+                //FIN Esta logica es para el POP UP----------
+
+                return RedirectToAction("Index");
             }
-            rvm.LIST_TIPO_DOCUMENTO = new List<SelectListItem>() {
-                   new SelectListItem { Text = "C.C", Value = "1" },
-                   new SelectListItem { Text = "C.E", Value = "2" },
-                   new SelectListItem { Text = "Pasaporte", Value = "3" } };
-
-            rvm.LIST_NOMBRE_CARGO = new List<SelectListItem>() {
-                   new SelectListItem { Text = "Cargo 1", Value = "1" },
-                   new SelectListItem { Text = "Cargo 2", Value = "2" },
-                   new SelectListItem { Text = "Cargo 3", Value = "3" }};
-
-
-            rvm.LIST_NOMBRE_GERENCIA = new List<SelectListItem>() {
-                new SelectListItem { Text = "Gerencia 1", Value = "1" },
-                   new SelectListItem { Text = "Gerencia 2", Value = "2" },
-                   new SelectListItem { Text = "Gerencia 3", Value = "3" }
-                   };
-
-
-            rvm.LIST_NOMBRE_SOCIEDAD = new List<SelectListItem>() {
-                new SelectListItem { Text = "Sociedad 1", Value = "1" },
-                   new SelectListItem { Text = "Sociedad 2", Value = "2" },
-                   new SelectListItem { Text = "Sociedad 3", Value = "3" }
-                   };
-
-
-            rvm.LIST_NOMBRE_EQIPO_VENTAS = new List<SelectListItem>() {
-                new SelectListItem { Text = "Eq Ventas 1", Value = "1" },
-                   new SelectListItem { Text = "Eq Ventas 2", Value = "2" },
-                   new SelectListItem { Text = "Eq Ventas 3", Value = "3" }
-                   };
-                       
-
-            rvm.LIST_NOMBRE_CATEGORIA_ED = new List<SelectListItem>() {
-                new SelectListItem { Text = "Categoria 1", Value = "1" },
-                   new SelectListItem { Text = "Categoria 2", Value = "2" },
-                   new SelectListItem { Text = "Categoria 3", Value = "3" }
-                   };
-
-
-            rvm.LIST_NOMBRE_TIPO_CONTRATO = new List<SelectListItem>(){
-                new SelectListItem { Text = "Indefinido" , Value ="1" },
-                new SelectListItem { Text = "Termino Fijo" , Value ="2" },
-                new SelectListItem { Text = "Prestacion de servicios" , Value ="3" }
-            };
-
-            rvm.LIST_NIVEL_RIESGO_ARL = new List<SelectListItem>() {
-                new SelectListItem { Text = "Nivel ARL 1" , Value ="1" },
-                new SelectListItem { Text = "Nivel ARL 2" , Value ="2" },
-                new SelectListItem { Text = "Nivel ARL 3" , Value ="3" }
-            };
-
-            rvm.LIST_NOMBRE_TIPO_SALARIO = new List<SelectListItem>() {
-                new SelectListItem { Text = "T Salario 1" , Value ="1" },
-                new SelectListItem { Text = "T Salario 2" , Value ="2" },
-                new SelectListItem { Text = "T Salario 3" , Value ="3" }
-            };
-
-            rvm.LIST_NOMBRE_CATEGORIA = new List<SelectListItem>() {
-                new SelectListItem { Text = "L Categoria 1" , Value ="1" },
-                new SelectListItem { Text = "L Categoria 2" , Value ="2" },
-                new SelectListItem { Text = "L Categoria 3" , Value ="3" }
-            };
-
-            ViewBag.resultado = TempData["resultado"] ?? false;
-
-            return View(rvm);
+            catch (Exception ex)
+            {
+                RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
+                npc.RESULTADO = false;
+                TempData["resultado"] = npc;
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
-        public ActionResult Index(REQUISICIONViewModel model)
+        public JsonResult ConsultarCargo(string idCargo)
         {
-            if(model.COD_TIPO_REQUISICION == 0)
-                model.COD_TIPO_REQUISICION = 3;
-            if(model.COD_ESTADO_REQUISICION == 0)
-                model.COD_ESTADO_REQUISICION = 1;
-            if(model.COD_TIPO_NECESIDAD==0)
-                model.COD_TIPO_NECESIDAD = 2;
-            if(model.USUARIO_CREACION==null)
-                model.USUARIO_CREACION = User.Identity.Name; 
-            if (model.COD_ESTADO_REQUISICION == 0)
-                model.COD_ESTADO_REQUISICION = 1;
-            
-            
-
-
-            string Respuesta = new LOGICA_LICENCIA_INCAPACIDAD().INSERTAR_LICENCIA_INCAPACIDAD(model);
-            if (Respuesta == "Exitoso")
+            if (!string.IsNullOrEmpty(idCargo) && !idCargo.Equals(0))
             {
-                TempData["resultado"] = "true";
+                PUNTOS_MEDIO datosCargo = new LOGICA_REQUISICION().BUSCAR_CARGO_API(idCargo);
+
+                return Json(datosCargo, JsonRequestBehavior.AllowGet);
             }
 
-            //TempData["resultado"] = "true";
-            return RedirectToAction("Index", "licencia_incapacidad");
+            return Json(string.Empty, JsonRequestBehavior.AllowGet);
         }
-
-        [HttpPost]
-        public ActionResult Guardar_click(REQUISICIONViewModel model)
-        {
-            // implementamos Silvia
-
-            TempData["resultadoModelo"].Equals(model);
-
-            
-            
-            return RedirectToAction("Index", "licencia_incapacidad");
-        }
-
-
-        public ActionResult No_Presupuestada()
-        {
-            List<SelectListItem> lstAux = new List<SelectListItem>();
-            List<SelectListItem> lstAuxLab = new List<SelectListItem>();
-
-            lstAux.Add(new SelectListItem() { Text = "Tipo 1", Value = "1" });
-            lstAux.Add(new SelectListItem() { Text = "Tipo 2", Value = "2" });
-            lstAux.Add(new SelectListItem() { Text = "Tipo 3", Value = "3" });
-            lstAux.Add(new SelectListItem() { Text = "Tipo 4", Value = "4" });
-
-            lstAuxLab.Add(new SelectListItem() { Text = "Tiempo Parcial", Value = "TP" });
-            lstAuxLab.Add(new SelectListItem() { Text = "Tiempo Completo", Value = "TC" });
-            lstAuxLab.Add(new SelectListItem() { Text = "Medio Tiempo", Value = "MT" });
-
-            ViewBag.Options = lstAux;
-            ViewBag.OptionsLab = lstAuxLab;
-
-            return View();
-        }
-
     }
 }

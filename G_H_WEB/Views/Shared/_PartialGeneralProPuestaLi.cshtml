@@ -1,0 +1,28 @@
+﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
+@{string deshabilitar = "true";}
+<section id="infoGeneral">
+    <h3>Imformación General</h3>
+    <div class="row">
+        <div class="form-group col-md-6 col-sm-12">
+            @Html.LabelFor(model => model.LIST_NOMBRE_TIPO_CONTRATO, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.DropDownListFor(model => model.COD_TIPO_CONTRATO, Model.LIST_NOMBRE_TIPO_CONTRATO, "-- Seleccione --", new { @class = "form-control", disabled = deshabilitar })
+            @Html.HiddenFor(model => model.COD_TIPO_CONTRATO)
+            @Html.ValidationMessageFor(model => model.COD_TIPO_CONTRATO)
+        </div>
+        <div class="form-group col-md-6 col-sm-12">
+            @Html.LabelFor(model => model.JEFE_INMEDIATO, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.TextBoxFor(model => model.JEFE_INMEDIATO, new { @class = "form-control", disabled = deshabilitar })
+            @Html.HiddenFor(model => model.JEFE_INMEDIATO)
+            @Html.ValidationMessageFor(model => model.JEFE_INMEDIATO)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-12 col-sm-12">
+            @Html.LabelFor(model => model.LIST_NIVEL_RIESGO_ARL, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, Model.LIST_NIVEL_RIESGO_ARL, "-- Seleccione --", new { @class = "form-control", disabled = deshabilitar })
+            @Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL)
+            @Html.ValidationMessageFor(model => model.COD_NIVEL_RIESGO_ARL)
+        </div>
+    </div>
+</section>
