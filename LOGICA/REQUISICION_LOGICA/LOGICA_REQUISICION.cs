@@ -410,7 +410,11 @@ namespace LOGICA.REQUISICION_LOGICA
             {
                 if (!idCargo.Equals("0"))
                 {
-                    _puntosMedio = new PROXY().CONSULTAR_PUNTOS_MEDIO_API(idCargo).First();
+                    List<PUNTOS_MEDIO> listPuntosMedio = new PROXY().CONSULTAR_PUNTOS_MEDIO_API(idCargo);
+                    if (listPuntosMedio.Count() > 0)
+                    {
+                        _puntosMedio = listPuntosMedio.First();
+                    }
                 }
             }
             catch (Exception ex)
