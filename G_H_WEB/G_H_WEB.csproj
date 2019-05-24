@@ -695,6 +695,7 @@
     <Content Include="Views\Shared\_PartialInfoSalarialLiLectura.cshtml" />
     <Content Include="Views\Shared\_PartialGeneralProPuestaLi.cshtml" />
     <Content Include="Views\Shared\_PartialInfoSalarialLi2.cshtml" />
+    <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
