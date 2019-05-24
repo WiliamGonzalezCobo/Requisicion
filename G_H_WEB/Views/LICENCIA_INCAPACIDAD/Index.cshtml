@@ -43,10 +43,10 @@
 
                         }
                         @*if (User.IsInRole(SettingsManager.PerfilController))
-                        {
-                            @Html.Partial("_PartialInfoRequisicionLi", Model)
-                            @Html.Partial("_PartialAutorizacion", Model)
-                        }*@
+                            {
+                                @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                @Html.Partial("_PartialAutorizacion", Model)
+                            }*@
                         if (User.IsInRole(SettingsManager.PerfilBp))
                         {
                             @Html.Partial("_PartialInfoRequisicionLi", Model)
@@ -57,7 +57,7 @@
                             @Html.Partial("_PartialInfoSalarialLi2", Model)
 
                         }
-                            if (User.IsInRole(SettingsManager.PerfilRRHH))
+                        if (User.IsInRole(SettingsManager.PerfilRRHH))
                         {
                             @Html.Partial("_PartialInfoRequisicionLi", Model)
                             @Html.Partial("_PartialInfoGeneralLi", Model)
@@ -169,6 +169,22 @@
 
     $(document).ready(function () {
         debugger;
+        $('#COD_CARGO').change(function () {
+            var id = $(this).val();
+            $.ajax({
+                url: "@Url.Action("ConsultarCargo", "LICENCIA_INCAPACIDAD")",
+                type: 'POST',
+                data: { idCargo: id },
+                success: function (respuesta) {
+                    console.log(respuesta);
+                },
+                error: function (er){
+                    console.log(er)
+                }
+            });
+        });
+
+
         if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {
             if (@Model.COD_REQUISICION!= 0) {
                 $("#submitButtonCrear").text("Modificar Requisición");
@@ -267,6 +283,31 @@
     $(function () {
         $('.datepicker').datepicker();
     });
+
+    //Método consume el api segun el valor del cargo
+    //Método que extrae valores del fomulario
+    function getFormData($form) {
+        var unindexed_array = $form.serializeArray();
+        var indexed_array = {};
+        $.map(unindexed_array, function (n, i) {
+            indexed_array[n['name']] = n['value'];
+        });
+        return indexed_array;
+    }
+
+    function aprobarClick() {
+        var $form = $("#frmNoPresupuestada");
+        var model = JSON.stringify(getFormData($form), null, 2);
+        console.log('model', JSON.parse(model));
+         $.ajax({
+             type: "POST",
+             url: '@Url.Action("Aprobar_Click", "REQUISICION")',
+             contentType: "application/json; charset=utf-8",
+             data: model,
+             dataType: "json",
+             success: function () { window.location.href = '@Url.Action("Index", "REQUISICION")'; }
+         });
+    };
 </script>
 
 

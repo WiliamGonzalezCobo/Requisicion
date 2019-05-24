@@ -2,9 +2,11 @@
 using LOGICA.REQUISICION_LOGICA;
 using Microsoft.AspNet.Identity;
 using MODELO_DATOS.MODELO_REQUISICION;
+using MODELO_DATOS.MODELO_REQUISICION.LISTAS_API;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using UTILS.Settings;
@@ -110,6 +112,17 @@ namespace G_H_WEB.Controllers
             }
         }
 
+        [HttpPost]
+        public JsonResult ConsultarCargo(string idCargo)
+        {
+            if (!string.IsNullOrEmpty(idCargo) && !idCargo.Equals(0))
+            {
+                PUNTOS_MEDIO datosCargo = new LOGICA_REQUISICION().BUSCAR_CARGO_API(idCargo);
 
+                return Json(datosCargo, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(string.Empty, JsonRequestBehavior.AllowGet);
+        }
     }
 }

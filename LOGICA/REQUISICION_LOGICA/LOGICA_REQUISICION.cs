@@ -403,6 +403,23 @@ namespace LOGICA.REQUISICION_LOGICA
             return model;
         }
 
+        public PUNTOS_MEDIO BUSCAR_CARGO_API(string idCargo)
+        {
+            PUNTOS_MEDIO _puntosMedio = new PUNTOS_MEDIO();
+            try
+            {
+                if (!idCargo.Equals("0"))
+                {
+                    _puntosMedio = new PROXY().CONSULTAR_PUNTOS_MEDIO_API(idCargo).First();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;          
+            }
+            return _puntosMedio;
+        }
+
         public REQUISICIONViewModel BUSCAR_REQUISICIONES(int idRequsicion){
             REQUISICIONViewModel objReqModel = null;
             try {
