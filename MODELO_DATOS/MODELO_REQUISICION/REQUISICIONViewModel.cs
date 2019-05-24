@@ -54,6 +54,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// cod tipo de documento,(martinezluir)  el valor no se guarda en base de datos
         /// </summary>
         public int? COD_TIPO_DOCUMENTO { get; set; }
+        public string NOMBRE_TIPO_DOCUMENTO { get; set; }
         [DisplayName("Tipo Documento")]
         public List<SelectListItem> LIST_TIPO_DOCUMENTO { get; set; }
 
@@ -82,14 +83,14 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// campo para fecha con validacion
         /// </summary>
         [DisplayName("Fecha Inicio")]
-        [DataType(DataType.Date, ErrorMessage = "El campo Fecha Inicio tiene un formato incorrecto")]
+        [DataType(DataType.Text, ErrorMessage = "El campo Fecha Inicio tiene un formato incorrecto")]
         public DateTime FECHA_INICIO { get; set; }
 
         /// <summary>
         /// campo para fecha con validacion
         /// </summary>
         [DisplayName("Fecha Fin")]
-        [DataType(DataType.Date, ErrorMessage = "El campo Fecha Fin tiene un formato incorrecto")]
+        [DataType(DataType.Text, ErrorMessage = "El campo Fecha Fin tiene un formato incorrecto")]
         public DateTime FECHA_FIN { get; set; }
 
         /// <summary>

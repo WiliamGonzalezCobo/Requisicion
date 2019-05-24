@@ -2,7 +2,7 @@
 @using MODELO_DATOS.MODELO_REQUISICION;
 @using UTILS.Settings
 @{
-    ViewBag.Title = "Crear Requisición No Presupuestada";
+    ViewBag.Title = "Crear Requisición Licencia";
     Layout = "~/Views/Shared/_Layout.cshtml";
     RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
 }
@@ -29,39 +29,52 @@
         <div id="CNform">
             <div class="retiros-detalle">
                 <div class="form-group col-md-12">
-                    @using (Html.BeginForm("Index", "LICENCIA_INCAPACIDADController"))
+                    @using (Html.BeginForm("Index", "LICENCIA_INCAPACIDAD"))
                     {
 
                         if (User.IsInRole(SettingsManager.PerfilJefe))
                         {
-                            @Html.Partial("_PartialInfoRequisicion", Model)
-                            @Html.Partial("_PartialAutorizacion", Model)
-                        }
-                        if (User.IsInRole(SettingsManager.PerfilController))
-                        {
-                            @Html.Partial("_PartialInfoRequisicion", Model)
-                            @Html.Partial("_PartialAutorizacion", Model)
-                        }
-                        if (User.IsInRole(SettingsManager.PerfilBp))
-                        {
-                            @Html.Partial("_PartialInfoRequisicion", Model)
-                            @Html.Partial("_PartialInfoGeneral", Model)
-                            @Html.Partial("_PartialInfoSalarial", Model)
+
+                            @Html.Partial("_PartialInfoRequisicionLi", Model)
+                            @Html.Partial("_PartialInfoGeneralLi", Model)
+                            @Html.Partial("_PartialInfoSalarialLi", Model)
                             @Html.Partial("_PartialAutorizacion", Model)
 
+
                         }
-                        if (User.IsInRole(SettingsManager.PerfilRRHH))
+                        @*if (User.IsInRole(SettingsManager.PerfilController))
                         {
-                            @Html.Partial("_PartialInfoRequisicion", Model)
-                            @Html.Partial("_PartialInfoGeneral", Model)
-                            @Html.Partial("_PartialInfoSalarial", Model)
+                            @Html.Partial("_PartialInfoRequisicionLi", Model)
+                            @Html.Partial("_PartialAutorizacion", Model)
+                        }*@
+                        if (User.IsInRole(SettingsManager.PerfilBp))
+                        {
+                            @Html.Partial("_PartialInfoRequisicionLi", Model)
+                            @Html.Partial("_PartialInfoGeneralLi", Model)
+                            @Html.Partial("_PartialInfoSalarialLiLectura", Model)
+                            @Html.Partial("_PartialGeneralProPuestaLi", Model)
+                            @Html.Partial("_PartialInfoSalarialLi", Model)
+                            @Html.Partial("_PartialInfoSalarialLi2", Model)
+
+                        }
+                            if (User.IsInRole(SettingsManager.PerfilRRHH))
+                        {
+                            @Html.Partial("_PartialInfoRequisicionLi", Model)
+                            @Html.Partial("_PartialInfoGeneralLi", Model)
+                            @Html.Partial("_PartialInfoSalarialLiLectura", Model)
+                            @Html.Partial("_PartialGeneralProPuestaLi", Model)
+                            @Html.Partial("_PartialInfoSalarialLi", Model)
+                            @Html.Partial("_PartialInfoSalarialLi2", Model)
                             @Html.Partial("_PartialAutorizacion", Model)
                         }
                         if (User.IsInRole(SettingsManager.PerfilUSC))
                         {
-                            @Html.Partial("_PartialInfoRequisicion", Model)
-                            @Html.Partial("_PartialInfoGeneral", Model)
-                            @Html.Partial("_PartialInfoSalarial", Model)
+                            @Html.Partial("_PartialInfoRequisicionLi", Model)
+                            @Html.Partial("_PartialInfoGeneralLi", Model)
+                            @Html.Partial("_PartialInfoSalarialLiLectura", Model)
+                            @Html.Partial("_PartialGeneralProPuestaLi", Model)
+                            @Html.Partial("_PartialInfoSalarialLi", Model)
+                            @Html.Partial("_PartialInfoSalarialLi2", Model)
                             @Html.Partial("_PartialAutorizacion", Model)
                         }
 
@@ -73,27 +86,22 @@
                                 {
                                     <input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="btn-confirmar-retiro col-md-3" />
                                 }
-                                @if (User.IsInRole(SettingsManager.PerfilController))
-                                {
-                                    <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
-                                }
+                                @*@if (User.IsInRole(SettingsManager.PerfilController))
+                                    {
+                                        <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                        <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                    }*@
                                 @if (User.IsInRole(SettingsManager.PerfilBp))
                                 {
                                     <input name="submitButton" type="submit" value="Enviar" class="btn-confirmar-retiro col-md-3" />
                                 }
-                                @if (User.IsInRole(SettingsManager.PerfilRRHH))
+                                @if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
                                 {
                                     <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
                                     <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
                                     <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
                                 }
-                                @if (User.IsInRole(SettingsManager.PerfilUSC))
-                                {
-                                    <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
-                                }
+
                             </div>
                         </div>
                     }

@@ -69,7 +69,15 @@ namespace LOGICA.LOGICA_REQUISICION
             List<MERCADO> respuesta = new BASE_PROXY(urlApi + "MERCADOS").Get<List<MERCADO>>(out status, null);
             return respuesta;
         }
+
+        public List<DOCUMENTO> CONSULTAR_TIPO_DOCUMENTO_API()
+        {
+            HttpStatusCode status;
+            List<DOCUMENTO> respuesta = new BASE_PROXY(urlApi + "TIPOS_DOCUMENTO").Get<List<DOCUMENTO>>(out status, null);
+            return respuesta;
+        }
         
+
         public List<TIPO_SALARIO> CONSULTAR_TIPOS_SALARIOS_API(){
             HttpStatusCode status;
             List<TIPO_SALARIO> respuesta = new BASE_PROXY(urlApi + "TIPOS_SALARIO").Get<List<TIPO_SALARIO>>(out status, null);
