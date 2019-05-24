@@ -14,7 +14,8 @@ namespace LOGICA.REQUISICION_LOGICA
     public class LOGICA_REQUISICION
     {
 
-        public REQUISICIONViewModel LLENAR_CONTROLES(REQUISICIONViewModel MODEL_RETURN) {
+        public REQUISICIONViewModel LLENAR_CONTROLES(REQUISICIONViewModel MODEL_RETURN)
+        {
 
             MODEL_RETURN.LIST_NOMBRE_TIPO_NECESIDAD = CONSULTAR_TIPOS_NECESIDAD();
             MODEL_RETURN.LIST_NOMBRE_ESTADO_REQUISICION = CONSULTAR_ESTADOS();
@@ -22,7 +23,7 @@ namespace LOGICA.REQUISICION_LOGICA
             MODEL_RETURN.LIST_NOMBRE_EQIPO_VENTAS = CONSULTAR_EQUIPOS_VENTAS();
             MODEL_RETURN.LIST_NIVEL_RIESGO_ARL = CONSULTAR_RIESGOS_ARL();
             MODEL_RETURN.LIST_NOMBRE_CATEGORIA_ED = CONSULTAR_CATEGORIAS_ED();
-            MODEL_RETURN.LIST_NOMBRE_SOCIEDAD  = CONSULTAR_SOCIEDADES();
+            MODEL_RETURN.LIST_NOMBRE_SOCIEDAD = CONSULTAR_SOCIEDADES();
             MODEL_RETURN.LIST_NOMBRE_TIPO_CONTRATO = CONSULTAR_CONTRATOS();
             MODEL_RETURN.LIST_NOMBRE_GERENCIA = CONSULTAR_GERENCIAS();
             MODEL_RETURN.LIST_NOMBRE_UBICACION_FISICA = CONSULTAR_UBICACIONES_FISICAS();
@@ -70,7 +71,7 @@ namespace LOGICA.REQUISICION_LOGICA
             MODEL_RETURN.LIST_HORARIO_LABORAL_HASTA = MODEL_ENTRADA.LIST_HORARIO_LABORAL_HASTA;
             MODEL_RETURN.LIST_NOMBRE_JORNADA_LABORAL = MODEL_ENTRADA.LIST_NOMBRE_JORNADA_LABORAL;
             MODEL_RETURN.LIST_MERCADO = MODEL_ENTRADA.LIST_MERCADO;
-            MODEL_RETURN.LIST_TIPO_DOCUMENTO = MODEL_ENTRADA.LIST_TIPO_DOCUMENTO; 
+            MODEL_RETURN.LIST_TIPO_DOCUMENTO = MODEL_ENTRADA.LIST_TIPO_DOCUMENTO;
 
 
             return MODEL_RETURN;
@@ -82,8 +83,10 @@ namespace LOGICA.REQUISICION_LOGICA
         /// mapeada
         /// </summary>
         /// <returns></returns>
-        private List<SelectListItem> CONSULTAR_TIPOS_NECESIDAD(){
-            return new ACCES_REQUISICION().CONSULTAR_TIPOS_NECESIDAD_ACCESS().Select(x => new SelectListItem(){
+        private List<SelectListItem> CONSULTAR_TIPOS_NECESIDAD()
+        {
+            return new ACCES_REQUISICION().CONSULTAR_TIPOS_NECESIDAD_ACCESS().Select(x => new SelectListItem()
+            {
                 Text = x.NOMBRE_NECESIDAD,
                 Value = x.COD_TIPO_NECESIDAD.ToString()
             }).ToList();
@@ -93,8 +96,10 @@ namespace LOGICA.REQUISICION_LOGICA
         /// mapeada
         /// </summary>
         /// <returns></returns>
-        public List<SelectListItem> CONSULTAR_ESTADOS(){
-            return new ACCES_REQUISICION().CONSULTAR_ESTADOS_ACCESS().Select(x => new SelectListItem(){
+        public List<SelectListItem> CONSULTAR_ESTADOS()
+        {
+            return new ACCES_REQUISICION().CONSULTAR_ESTADOS_ACCESS().Select(x => new SelectListItem()
+            {
                 Text = x.NOMBRE_ESTADO,
                 Value = x.COD_ESTADO_REQUISICION.ToString()
             }).ToList();
@@ -104,10 +109,12 @@ namespace LOGICA.REQUISICION_LOGICA
         /// MAPEADO
         /// </summary>
         /// <returns></returns>
-        private List<SelectListItem> CONSULTAR_CECOS() {
-            return new PROXY().CONSULTAR_CECO_API().Select(x => new SelectListItem() {
-                Value=x.coD_CENTRO_COSTO.ToString(),
-                Text=x.NOMBRE
+        private List<SelectListItem> CONSULTAR_CECOS()
+        {
+            return new PROXY().CONSULTAR_CECO_API().Select(x => new SelectListItem()
+            {
+                Value = x.coD_CENTRO_COSTO.ToString(),
+                Text = x.NOMBRE
             }).ToList();
         }
 
@@ -116,8 +123,10 @@ namespace LOGICA.REQUISICION_LOGICA
         /// MAPEADO
         /// </summary>
         /// <returns></returns>
-        private List<SelectListItem> CONSULTAR_EQUIPOS_VENTAS(){
-            return new PROXY().CONSULTAR_EQUIPOS_VENTAS_API().Select(x => new SelectListItem(){
+        private List<SelectListItem> CONSULTAR_EQUIPOS_VENTAS()
+        {
+            return new PROXY().CONSULTAR_EQUIPOS_VENTAS_API().Select(x => new SelectListItem()
+            {
                 Text = x.NOMBRE,
                 Value = x.COD_EQUIPO_VENTA.ToString()
             }).ToList();
@@ -128,8 +137,10 @@ namespace LOGICA.REQUISICION_LOGICA
         /// MAPEADO
         /// </summary>
         /// <returns></returns>
-        private List<SelectListItem> CONSULTAR_RIESGOS_ARL(){
-            return new PROXY().CONSULTAR_RIESGOS_ARL_API().Select(x => new SelectListItem(){
+        private List<SelectListItem> CONSULTAR_RIESGOS_ARL()
+        {
+            return new PROXY().CONSULTAR_RIESGOS_ARL_API().Select(x => new SelectListItem()
+            {
                 Text = x.NIVELRIESGO.ToString(),
                 Value = x.COD_NIVEL_RIESGO.ToString()
             }).ToList();
@@ -140,8 +151,10 @@ namespace LOGICA.REQUISICION_LOGICA
         /// MAPEADO
         /// </summary>
         /// <returns></returns>
-        private List<SelectListItem> CONSULTAR_CATEGORIAS_ED() {
-            return new PROXY().CONSULTAR_CATEGORIAS_ED_API().Select(x => new SelectListItem() {
+        private List<SelectListItem> CONSULTAR_CATEGORIAS_ED()
+        {
+            return new PROXY().CONSULTAR_CATEGORIAS_ED_API().Select(x => new SelectListItem()
+            {
                 Text = x.NOMBRE,
                 Value = x.COD_CATEGORIA_EVALUACION_DESEMPENO.ToString()
             }).ToList();
@@ -151,8 +164,10 @@ namespace LOGICA.REQUISICION_LOGICA
         /// MAPEADO
         /// </summary>
         /// <returns></returns>
-        private List<SelectListItem> CONSULTAR_SOCIEDADES(){
-            return new PROXY().CONSULTAR_SOCIEDAD_API().Select(x => new SelectListItem(){
+        private List<SelectListItem> CONSULTAR_SOCIEDADES()
+        {
+            return new PROXY().CONSULTAR_SOCIEDAD_API().Select(x => new SelectListItem()
+            {
                 Text = x.NOMBRE,
                 Value = x.COD_SOCIEDAD.ToString()
             }).ToList();
@@ -162,8 +177,10 @@ namespace LOGICA.REQUISICION_LOGICA
         /// MAPEADO
         /// </summary>
         /// <returns></returns>
-        private List<SelectListItem> CONSULTAR_CONTRATOS(){
-            return new PROXY().CONSULTAR_CONTRATO_API().Select(x => new SelectListItem() {
+        private List<SelectListItem> CONSULTAR_CONTRATOS()
+        {
+            return new PROXY().CONSULTAR_CONTRATO_API().Select(x => new SelectListItem()
+            {
                 Text = x.NOMBRE,
                 Value = x.COD_TIPO_CONTRATO.ToString()
             }).ToList();
@@ -173,8 +190,10 @@ namespace LOGICA.REQUISICION_LOGICA
         /// MAPEDO
         /// </summary>
         /// <returns></returns>
-        private List<SelectListItem> CONSULTAR_GERENCIAS(){
-            return new PROXY().CONSULTAR_GERENCIAS_API().Select(x => new SelectListItem(){
+        private List<SelectListItem> CONSULTAR_GERENCIAS()
+        {
+            return new PROXY().CONSULTAR_GERENCIAS_API().Select(x => new SelectListItem()
+            {
                 Text = x.NOMBRE,
                 Value = x.COD_GERENCIA.ToString()
             }).ToList();
@@ -183,14 +202,17 @@ namespace LOGICA.REQUISICION_LOGICA
         /// DESDE LA API
         /// </summary>
         /// <returns></returns>
-        private List<SelectListItem> CONSULTAR_UBICACIONES_FISICAS(){
-            return new PROXY().CONSULTAR_UBICACIONES_FISICAS_API().Select(x => new SelectListItem(){
+        private List<SelectListItem> CONSULTAR_UBICACIONES_FISICAS()
+        {
+            return new PROXY().CONSULTAR_UBICACIONES_FISICAS_API().Select(x => new SelectListItem()
+            {
                 Text = x.NOMBRE,
                 Value = x.COD_UBICACION_FISICA.ToString()
             }).ToList();
         }
 
-        private List<SelectListItem> CONSULTAR_JORNADAS_LABORALES() {
+        private List<SelectListItem> CONSULTAR_JORNADAS_LABORALES()
+        {
             return new PROXY().CONSULTAR_JORNADAS_LABORALES_API().Select(x => new SelectListItem()
             {
                 Text = x.NOMBRE,
@@ -215,7 +237,7 @@ namespace LOGICA.REQUISICION_LOGICA
                 Value = x.COD_DOCUMENTO.ToString()
             }).ToList();
         }
-        
+
 
 
         /// <summary>
@@ -223,8 +245,10 @@ namespace LOGICA.REQUISICION_LOGICA
         /// MAPEADO
         /// </summary>
         /// <returns></returns>
-        private List<SelectListItem> CONSULTAR_CIUDADES_TRABAJO(){
-            return new PROXY().CONSULTAR_CIUDADES_TRABAJO_API().Select(x => new SelectListItem() {
+        private List<SelectListItem> CONSULTAR_CIUDADES_TRABAJO()
+        {
+            return new PROXY().CONSULTAR_CIUDADES_TRABAJO_API().Select(x => new SelectListItem()
+            {
                 Text = x.NOMBRE,
                 Value = x.COD_CIUDAD.ToString()
             }).ToList();
@@ -234,8 +258,10 @@ namespace LOGICA.REQUISICION_LOGICA
         /// MAPEADO
         /// </summary>
         /// <returns></returns>
-        private List<SelectListItem> CONSULTAR_CATEGORIAS(){
-            return new PROXY().CONSULTAR_CATEGORIAS_API().Select(x => new SelectListItem(){
+        private List<SelectListItem> CONSULTAR_CATEGORIAS()
+        {
+            return new PROXY().CONSULTAR_CATEGORIAS_API().Select(x => new SelectListItem()
+            {
                 Text = x.NOMBRE,
                 Value = x.COD_CATEGORIAS_SALARIAL.ToString()
             }).ToList();
@@ -245,8 +271,10 @@ namespace LOGICA.REQUISICION_LOGICA
         /// MAPEDO
         /// </summary>
         /// <returns></returns>
-        private List<SelectListItem> CONSULTAR_TIPOS_SALARIOS() {
-            return new PROXY().CONSULTAR_TIPOS_SALARIOS_API().Select(x => new SelectListItem(){
+        private List<SelectListItem> CONSULTAR_TIPOS_SALARIOS()
+        {
+            return new PROXY().CONSULTAR_TIPOS_SALARIOS_API().Select(x => new SelectListItem()
+            {
                 Text = x.NOMBRE,
                 Value = x.COD_TIPO_SALARIO.ToString()
             }).ToList();
@@ -256,11 +284,13 @@ namespace LOGICA.REQUISICION_LOGICA
         /// MAPEDO
         /// </summary>
         /// <returns></returns>
-        private List<SelectListItem> CONSULTAR_CARGOS() {
-           return new PROXY().CONSULTAR_CARGOS_API().Select(x => new SelectListItem(){
-               Text = x.NOMBRE,
-               Value =Convert.ToInt32(x.COD_CARGO).ToString()
-           }).ToList(); ;
+        private List<SelectListItem> CONSULTAR_CARGOS()
+        {
+            return new PROXY().CONSULTAR_CARGOS_API().Select(x => new SelectListItem()
+            {
+                Text = x.NOMBRE,
+                Value = Convert.ToInt32(x.COD_CARGO).ToString()
+            }).ToList(); ;
         }
         /// <summary>
         /// DESDE BASE DE DATOS, para la pantalla principal
@@ -299,7 +329,8 @@ namespace LOGICA.REQUISICION_LOGICA
             }).ToList();
         }
 
-        public List<REQUISICIONViewModel> SOLICITAR_REQUISICIONES(FILTROREQUISICION _filtro) {
+        public List<REQUISICIONViewModel> SOLICITAR_REQUISICIONES(FILTROREQUISICION _filtro)
+        {
             return new ACCES_REQUISICION().CONSULTAR_REQUISICION_PANTALLA_INICIO(_filtro);
         }
 
@@ -312,7 +343,7 @@ namespace LOGICA.REQUISICION_LOGICA
             //ORDEN
             MODELO_REQUISICION.COD_CECO = Convert.ToInt32(API.COD_CENTRO_COSTO);
             MODELO_REQUISICION.NOMBRE_CECO = API.NOMBRE_CENTRO_COSTO;
-            
+
             //INFROMACION GENERAL
             MODELO_REQUISICION.COD_GERENCIA = Convert.ToInt32(API.COD_GERENCIA);
             MODELO_REQUISICION.NOMBRE_GERENCIA = API.NOMBRE_GERENCIA;
@@ -340,7 +371,7 @@ namespace LOGICA.REQUISICION_LOGICA
             else
             {
                 MODELO_REQUISICION.CARGO_CRITICO = false;
-            }               
+            }
             MODELO_REQUISICION.COD_JORNADA_LABORAL = Convert.ToInt32(API.COD_JORNADA_TRABAJO);
             MODELO_REQUISICION.NOMBRE_JORNADA_LABORAL = API.NOMBRE_JORNADA_TRABAJO;
             MODELO_REQUISICION.COD_HORARIO_LABORAL_DESDE = Convert.ToInt32(API.COD_HORARIO_TRABAJO);
@@ -398,7 +429,7 @@ namespace LOGICA.REQUISICION_LOGICA
             }
             catch (Exception ex)
             {
-               // throw ex;                
+                // throw ex;                
             }
             return model;
         }
@@ -410,44 +441,65 @@ namespace LOGICA.REQUISICION_LOGICA
             {
                 if (!idCargo.Equals("0"))
                 {
-                    _puntosMedio = new PROXY().CONSULTAR_PUNTOS_MEDIO_API(idCargo).First();
+                    List<PUNTOS_MEDIO> listPuntosMedio = new PROXY().CONSULTAR_PUNTOS_MEDIO_API(idCargo);
+                    if (listPuntosMedio.Count() > 0)
+                    {
+                        _puntosMedio = listPuntosMedio.First();
+                    }
+                    //List<PUNTOS_MEDIO> listPuntosMedio = new List<PUNTOS_MEDIO>();
+                    //listPuntosMedio.Add(new PUNTOS_MEDIO() { COD_GERENCIA = 3, SALARIO_FIJO = 666 });
+                    //if (listPuntosMedio.Count() > 0)
+                    //{
+                    //    _puntosMedio = listPuntosMedio.First();
+                    //}
                 }
             }
             catch (Exception ex)
             {
-                throw ex;          
+                throw ex;
             }
             return _puntosMedio;
         }
 
-        public REQUISICIONViewModel BUSCAR_REQUISICIONES(int idRequsicion){
+        public REQUISICIONViewModel BUSCAR_REQUISICIONES(int idRequsicion)
+        {
             REQUISICIONViewModel objReqModel = null;
-            try {
+            try
+            {
                 objReqModel = new ACCES_REQUISICION().CONSULTAR_REQUISICION_X_ID_ACCES(idRequsicion);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 throw ex;
             }
             return objReqModel;
         }
 
-        public int INSERTAR_REQUISICION_LOGICA(REQUISICIONViewModel _modelo) {
-            if (_modelo.COD_REQUISICION != 0){
-                if (new ACCES_REQUISICION().ACTUALIZARREQUISICION_ACESS(_modelo)) {
+        public int INSERTAR_REQUISICION_LOGICA(REQUISICIONViewModel _modelo)
+        {
+            if (_modelo.COD_REQUISICION != 0)
+            {
+                if (new ACCES_REQUISICION().ACTUALIZARREQUISICION_ACESS(_modelo))
+                {
                     return _modelo.COD_REQUISICION;
-                } else {
+                }
+                else
+                {
                     return 0;
                 }
             }
-            else { 
-            return new ACCES_REQUISICION().INSERTAR_REQUISICION(_modelo);
+            else
+            {
+                return new ACCES_REQUISICION().INSERTAR_REQUISICION(_modelo);
             }
         }
-        public Boolean ACTUALIZARREQUISICION(REQUISICIONViewModel _modelo){
+        public Boolean ACTUALIZARREQUISICION(REQUISICIONViewModel _modelo)
+        {
             return new ACCES_REQUISICION().ACTUALIZARREQUISICION_ACESS(_modelo);
         }
         // LO LLENO PARA LAS LISTAS
-        public REQUISICIONViewModel CONSULTAR_VALORES_LISTAS_POR_CODIGO(REQUISICIONViewModel _MODEL_CODIGOS) {
+        public REQUISICIONViewModel CONSULTAR_VALORES_LISTAS_POR_CODIGO(REQUISICIONViewModel _MODEL_CODIGOS)
+        {
 
 
             if (_MODEL_CODIGOS.COD_CARGO != 0) { _MODEL_CODIGOS.NOMBRE_CARGO = _MODEL_CODIGOS.LIST_NOMBRE_CARGO.Where(x => x.Value == _MODEL_CODIGOS.COD_CARGO.ToString()).First().Text; }
@@ -462,7 +514,8 @@ namespace LOGICA.REQUISICION_LOGICA
                 {
                     _MODEL_CODIGOS.NOMBRE_CIUDAD_TRABAJO = _MODEL_CODIGOS.LIST_NOMBRE_CIUDAD_TRABAJO.Where(x => x.Value == _MODEL_CODIGOS.COD_CIUDAD_TRABAJO.ToString()).First().Text;
                 }
-                else {
+                else
+                {
                     _MODEL_CODIGOS.COD_CIUDAD_TRABAJO = 0;
                 }
             }
@@ -470,7 +523,7 @@ namespace LOGICA.REQUISICION_LOGICA
             if (_MODEL_CODIGOS.COD_NIVEL_RIESGO_ARL != 0) { _MODEL_CODIGOS.NIVEL_RIESGO_ARL = _MODEL_CODIGOS.LIST_NIVEL_RIESGO_ARL.Where(x => x.Value == _MODEL_CODIGOS.COD_NIVEL_RIESGO_ARL.ToString()).First().Text; }
             if (_MODEL_CODIGOS.COD_CATEGORIA_ED != 0) { _MODEL_CODIGOS.NOMBRE_CATEGORIA_ED = _MODEL_CODIGOS.LIST_NOMBRE_CATEGORIA_ED.Where(x => x.Value == _MODEL_CODIGOS.COD_CATEGORIA_ED.ToString()).First().Text; }
             if (_MODEL_CODIGOS.COD_JORNADA_LABORAL != 0) { _MODEL_CODIGOS.NOMBRE_JORNADA_LABORAL = _MODEL_CODIGOS.LIST_NOMBRE_JORNADA_LABORAL.Where(x => x.Value == _MODEL_CODIGOS.COD_JORNADA_LABORAL.ToString()).First().Text; }
-            if (_MODEL_CODIGOS.COD_DIA_LABORAL_DESDE!=0) { _MODEL_CODIGOS.DIA_LABORAL_DESDE = _MODEL_CODIGOS.LIST_DIA_LABORAL_DESDE.Where(x => x.Value == _MODEL_CODIGOS.COD_DIA_LABORAL_DESDE.ToString()).First().Text; }
+            if (_MODEL_CODIGOS.COD_DIA_LABORAL_DESDE != 0) { _MODEL_CODIGOS.DIA_LABORAL_DESDE = _MODEL_CODIGOS.LIST_DIA_LABORAL_DESDE.Where(x => x.Value == _MODEL_CODIGOS.COD_DIA_LABORAL_DESDE.ToString()).First().Text; }
             if (_MODEL_CODIGOS.COD_DIA_LABORAL_HASTA != 0) { _MODEL_CODIGOS.DIA_LABORAL_HASTA = _MODEL_CODIGOS.LIST_DIA_LABORAL_HASTA.Where(x => x.Value == _MODEL_CODIGOS.COD_DIA_LABORAL_HASTA.ToString()).First().Text; }
             if (_MODEL_CODIGOS.COD_TIPO_SALARIO != 0) { _MODEL_CODIGOS.NOMBRE_TIPO_SALARIO = _MODEL_CODIGOS.LIST_NOMBRE_TIPO_SALARIO.Where(x => x.Value == _MODEL_CODIGOS.COD_TIPO_SALARIO.ToString()).First().Text; }
             if (_MODEL_CODIGOS.COD_CATEGORIA != 0) { _MODEL_CODIGOS.NOMBRE_CATEGORIA = _MODEL_CODIGOS.LIST_NOMBRE_CATEGORIA.Where(x => x.Value == _MODEL_CODIGOS.COD_CATEGORIA.ToString()).First().Text; }
@@ -491,8 +544,9 @@ namespace LOGICA.REQUISICION_LOGICA
             return _MODEL_CODIGOS;
         }
 
-        public int APROBAR_REQUISICION_LOGICA(int COD_REQUISICION, String ID_USUARIO, string observacion) {
-          return new ACCES_REQUISICION().APROBAR_REQUISICION_ACESS(COD_REQUISICION, ID_USUARIO, observacion);
+        public int APROBAR_REQUISICION_LOGICA(int COD_REQUISICION, String ID_USUARIO, string observacion)
+        {
+            return new ACCES_REQUISICION().APROBAR_REQUISICION_ACESS(COD_REQUISICION, ID_USUARIO, observacion);
         }
 
         public int REQUISICION_MODIFICAR_LOGICA(int COD_REQUISICION, string oBSERVACIONES, String ID_USUARIO)
