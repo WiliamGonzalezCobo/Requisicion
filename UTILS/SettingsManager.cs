@@ -89,6 +89,10 @@ namespace UTILS.Settings
         {
             get { return Convert.ToInt32(GetSettings("EstadoDevueltaController")); }
         }
+        public static int EstadoAprobadoJefe
+        {
+            get { return Convert.ToInt32(GetSettings("EstadoAprobadoJefe")); }
+        }
         #endregion
 
         #region Private Methods
