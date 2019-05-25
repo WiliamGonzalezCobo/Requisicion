@@ -580,23 +580,6 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("INSERTAR_HISTORICO", uLTIMO_IDParameter, cOD_ROLParameter, cOD_CARGOParameter, cOD_CATEGORIA_EDParameter, cARGO_CRITICOParameter, pOSICIONParameter, sALARIO_FIJOParameter, pORCENTAJE_SALARIO_FIJOParameter, sALARIO_VARIABLEParameter, pORCENTAJE_SALARIO_VARIABLEParameter, sOBREREMUNERACIONParameter, eXTRA_FIJAParameter, rECARGO_NOCTURNOParameter, mEDIO_TRANSPORTEParameter, sALARIO_TOTALParameter, bONO_ANUALParameter, nUMERO_SALARIOSParameter, cOD_NIVEL_RIESGO_ARLParameter, cOD_JORNADA_LABORALParameter, hORARIO_LABORAL_DESDEParameter, hORARIO_LABORAL_HASTAParameter, cOD_DIA_LABORAL_DESDEParameter, cOD_DIA_LABORAL_HASTAParameter, pORCENTAJE_SOBREREMUNERACIONParameter, mESES_GARANTIZADOSParameter, cOD_TIPO_SALARIOParameter, fACTOR_PRESTACIONALParameter, iNGRESO_PROM_MENSUALParameter, iNGRESO_PROM_ANUALParameter, mERCADOParameter, cOD_CATEGORIAParameter, pUNTO_MEDIO_80Parameter, pUNTO_MEDIO_100Parameter, pUNTO_MEDIO_120Parameter, pOSICIONAMIENTOParameter, uSUARIOParameter, cOD_ESTADOParameter);
         }
     
-        public virtual ObjectResult<CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result> CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION(string cOD_USUARIO, string usuario, Nullable<int> cOD_ESTADO_REQUISICION)
-        {
-            var cOD_USUARIOParameter = cOD_USUARIO != null ?
-                new ObjectParameter("COD_USUARIO", cOD_USUARIO) :
-                new ObjectParameter("COD_USUARIO", typeof(string));
-    
-            var usuarioParameter = usuario != null ?
-                new ObjectParameter("Usuario", usuario) :
-                new ObjectParameter("Usuario", typeof(string));
-    
-            var cOD_ESTADO_REQUISICIONParameter = cOD_ESTADO_REQUISICION.HasValue ?
-                new ObjectParameter("COD_ESTADO_REQUISICION", cOD_ESTADO_REQUISICION) :
-                new ObjectParameter("COD_ESTADO_REQUISICION", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result>("CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION", cOD_USUARIOParameter, usuarioParameter, cOD_ESTADO_REQUISICIONParameter);
-        }
-    
         public virtual ObjectResult<Nullable<int>> INSERTAR_REQUISICION(Nullable<int> cOD_TIPO_NECESIDAD, Nullable<int> cOD_TIPO_REQUISICION, Nullable<int> cOD_CARGO, string nOMBRE_CARGO, string oRDEN, Nullable<int> cOD_CECO, string nOMBRE_CECO, string oBSERVACION, Nullable<int> cOD_TIPO_DOCUMENTO, string nUMERO_DOCUMENTO_EMPLEADO, string nOMBRE_EMPLEADO, Nullable<System.DateTime> fECHA_INICIO, Nullable<System.DateTime> fECHA_FIN, Nullable<int> cOD_GERENCIA, string nOMBRE_GERENCIA, Nullable<int> cOD_SOCIEDAD, string nOMBRE_SOCIEDAD, Nullable<int> cOD_EQUIPO_VENTAS, string nOMBRE_EQUIPO_VENTAS, Nullable<int> cOD_CATEGORIA_ED, string nOMBRE_CATEGORIA_ED, Nullable<bool> cARGO_CRITICO, string pOSICION, Nullable<decimal> sALARIO_FIJO, Nullable<decimal> pORCENTAJE_SALARIO_FIJO, Nullable<decimal> sALARIO_VARIABLE, Nullable<decimal> pORCENTAJE_SALARIO_VARIABLE, Nullable<decimal> sOBREREMUNERACION, Nullable<decimal> eXTRA_FIJA, Nullable<decimal> rECARGO_NOCTURNO, Nullable<decimal> mEDIO_TRANSPORTE, Nullable<decimal> sALARIO_TOTAL, Nullable<decimal> bONO_ANUAL, Nullable<int> nUMERO_SALARIOS, Nullable<int> cOD_NIVEL_RIESGO_ARL, Nullable<int> cOD_JORNADA_LABORAL, string nOMBRE_JORNADA_LABORAL, Nullable<int> cOD_HORARIO_LABORAL_DESDE, string hORARIO_LABORAL_DESDE, Nullable<int> cOD_HORARIO_LABORAL_HASTA, string hORARIO_LABORAL_HASTA, Nullable<int> cOD_DIA_LABORAL_DESDE, string dIA_LABORAL_DESDE, Nullable<int> cOD_DIA_LABORAL_HASTA, string dIA_LABORAL_HASTA, Nullable<decimal> pORCENTAJE_SOBREREMUNERACION, Nullable<int> mESES_GARANTIZADOS, Nullable<int> cOD_TIPO_SALARIO, string nOMBRE_TIPO_SALARIO, string fACTOR_PRESTACIONAL, Nullable<decimal> iNGRESO_PROM_MENSUAL, Nullable<decimal> iNGRESO_PROM_ANUAL, Nullable<int> cOD_MERCADO, string mERCADO, Nullable<int> cOD_CATEGORIA, Nullable<decimal> pUNTO_MEDIO_80, Nullable<decimal> pUNTO_MEDIO_100, Nullable<decimal> pUNTO_MEDIO_120, string pOSICIONAMIENTO, string uSUARIO, Nullable<int> cOD_ESTADO)
         {
             var cOD_TIPO_NECESIDADParameter = cOD_TIPO_NECESIDAD.HasValue ?
@@ -904,6 +887,23 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
                 new ObjectParameter("IDREQUISICION", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTAR_REQUISICIONXID_Result>("CONSULTAR_REQUISICIONXID", iDREQUISICIONParameter);
+        }
+    
+        public virtual ObjectResult<CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result> CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION(string cOD_USUARIO, string usuario, Nullable<int> cOD_ESTADO_REQUISICION)
+        {
+            var cOD_USUARIOParameter = cOD_USUARIO != null ?
+                new ObjectParameter("COD_USUARIO", cOD_USUARIO) :
+                new ObjectParameter("COD_USUARIO", typeof(string));
+    
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("Usuario", usuario) :
+                new ObjectParameter("Usuario", typeof(string));
+    
+            var cOD_ESTADO_REQUISICIONParameter = cOD_ESTADO_REQUISICION.HasValue ?
+                new ObjectParameter("COD_ESTADO_REQUISICION", cOD_ESTADO_REQUISICION) :
+                new ObjectParameter("COD_ESTADO_REQUISICION", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result>("CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION", cOD_USUARIOParameter, usuarioParameter, cOD_ESTADO_REQUISICIONParameter);
         }
     }
 }

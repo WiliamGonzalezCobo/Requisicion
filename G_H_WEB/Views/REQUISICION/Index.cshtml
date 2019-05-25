@@ -21,7 +21,7 @@
         }
         <div class="col-lg-12 col-md-12 col-sm-12 row">
             <div class="buscador" style="width:100%;">
-                <input class="search-input" id="filtroPorUsuarioValor" type="text" placeholder="  Buscar por ID, usuario, nombre o cédula" style="width:100%; height:  100%;">
+                <input class="search-input" id="filtroPorUsuarioValor" type="text" placeholder=" Nombre o cédula" style="width:100%; height:  100%;">
                 <span id="filtroPorUsuario" class="search-btn fas fa-search"></span>
             </div>
         </div>
@@ -67,6 +67,10 @@
                         @Html.DisplayNameFor(model => model.NOMBRE_CARGO)&nbsp;<span class="fas fa-sort-down"></span>
                     </th>
                     <th>
+                        @Html.DisplayNameFor(model => model.NOMBRE_EMPLEADO)&nbsp;/Documento<span class="fas fa-sort-down"></span>
+                    </th>
+
+                    <th>
                         @Html.DisplayNameFor(model => model.NOMBRE_TIPO_REQUISICION)&nbsp;<span class="fas fa-sort-down"></span>
                     </th>
 
@@ -88,46 +92,73 @@
                         <tr style="height:62px;">
 
 
-                            <td class="td-nombre-req">
+                            <td class="td">
                                 @if (!User.IsInRole(SettingsManager.PerfilJefe) && !User.IsInRole(SettingsManager.PerfilBp))
                                 {
-                                    <a class="alineas" href="@Url.Action("Detalle", "REQUISICION", new { _idRequisicion = item.COD_REQUISICION, _tipoRequisicion = item.COD_TIPO_REQUISICION })">
-                                        @Html.DisplayFor(modelItem => item.USUARIO_CREACION)
+                                <a class="alineas" href="@Url.Action("Detalle", "REQUISICION", new { _idRequisicion = item.COD_REQUISICION, _tipoRequisicion = item.COD_TIPO_REQUISICION })">
+                                    <row style="color: blue;font-weight: bold;">@Html.DisplayFor(modelItem => item.NOMBRES_USUARIO)</row>
+                                    <span class="td-email">
+                                        @Html.DisplayFor(modelItem => item.USUARIO_CREACION) </span>
                                         <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span>
-                                    </a>
+                                </a>
                                 }
                                 else if (User.IsInRole(SettingsManager.PerfilBp))
                                 {
                                     if (item.COD_ESTADO_REQUISICION == SettingsManager.EstadoAporbadoController || item.COD_ESTADO_REQUISICION == SettingsManager.EstadoDevueltaRRHH || item.COD_ESTADO_REQUISICION == SettingsManager.EstadoDevueltaUSC)
                                     {
                                         <a class="alineas" href="@Url.Action("Detalle", "REQUISICION", new { _idRequisicion = item.COD_REQUISICION, _tipoRequisicion = item.COD_TIPO_REQUISICION })">
-                                            @Html.DisplayFor(modelItem => item.USUARIO_CREACION)
-                                            <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span>
-                                        </a>
+                                            <row style="color: blue;font-weight: bold;">@Html.DisplayFor(modelItem => item.NOMBRES_USUARIO)</row>
+                                            <span class="td-email">
+                                                @Html.DisplayFor(modelItem => item.USUARIO_CREACION)</span>
+                                                                                        <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span>
+</a>
                                     }
                                     else
                                     {
-
-                                        @Html.DisplayFor(modelItem => item.USUARIO_CREACION)
-                                        <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span>
-                                    }
-                                }
-                                else
-                                {
-                                    if (item.COD_ESTADO_REQUISICION == SettingsManager.EstadoDevueltaController) {
-                                        <a class="alineas" href="@Url.Action("Detalle", "REQUISICION", new { _idRequisicion = item.COD_REQUISICION, _tipoRequisicion = item.COD_TIPO_REQUISICION })">
-                                            @Html.DisplayFor(modelItem => item.USUARIO_CREACION)
+                                        <row style="color: blue;font-weight: bold;">
+                                            @Html.DisplayFor(modelItem => item.NOMBRES_USUARIO)
+                                        </row>
+                                        <span class="td-email">
+                                            @Html.DisplayFor(modelItem => item.USUARIO_CREACION)</span>
                                             <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span>
-                                        </a>
-                                    }else {
-
-                                        @Html.DisplayFor(modelItem => item.USUARIO_CREACION)
-                                        <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span>
+                                        }
                                     }
-                                }
+                                    else
+                                    {
+                                        if (item.COD_ESTADO_REQUISICION == SettingsManager.EstadoDevueltaController)
+                                        {
+                                            <a class="alineas" href="@Url.Action("Detalle", "REQUISICION", new { _idRequisicion = item.COD_REQUISICION, _tipoRequisicion = item.COD_TIPO_REQUISICION })">
+                                                <row style="color: blue;font-weight: bold;">
+                                                    @Html.DisplayFor(modelItem => item.NOMBRES_USUARIO)
+                                                </row>
+                                                <span class="td-email">
+                                                    @Html.DisplayFor(modelItem => item.USUARIO_CREACION)
+                                                </span>
+                                                <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <row style="color: blue;font-weight: bold;">
+                                                @Html.DisplayFor(modelItem => item.NOMBRES_USUARIO)
+                                            </row>
+                                            <span class="td-email">
+                                                @Html.DisplayFor(modelItem => item.USUARIO_CREACION)
+                                            </span>
+                                            <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span>
+                                        }
+                                    }
 
-                            </td>
+</td>
                             <td class="td-causal">@Html.DisplayFor(modelItem => item.NOMBRE_CARGO)<span class="td-email">@Html.DisplayFor(mItem => item.COD_CARGO)</span></td>
+                            
+                            <td class="td-causal">
+                                <row style="color: blue;font-weight: bold;">
+                                    @Html.DisplayFor(modelItem => item.NOMBRE_EMPLEADO)
+                                </row>
+                                <span class="td-email"> @Html.DisplayFor(modelItem => item.NUMERO_DOCUMENTO_EMPLEADO)</span>
+                            </td>
+
                             <td class="td-acciones">@Html.DisplayFor(modelItem => item.NOMBRE_TIPO_REQUISICION)</td>
                             <td>@Html.DisplayFor(modelItem => item.FECHA_CREACION)</td>
                             <td><font color="@item.COLORES_ESTADOS">@Html.DisplayFor(modelItem => item.NOMBRE_ESTADO_REQUISICION)</font></td>
@@ -153,7 +184,9 @@
                             <td>
                                 No existe información
                             </td>
-
+                            <td>
+                                No existe información
+                            </td>
 
                         </tr>
                 }
@@ -185,10 +218,10 @@
             <div class="row modal-body">
                 <div class="col-md-12 col-lg-12 col-xl-12">
                     Seleccione una opción de Requisición
-                 </div>
-                    @Html.Partial("_SelectRequisicion")
                 </div>
+                @Html.Partial("_SelectRequisicion")
             </div>
+        </div>
     </div>
 </div>
 
@@ -206,6 +239,11 @@
             fixedHeader: false
         });
 
+       
+        $('#filtroPorUsuario').on('click', function () {
+            table.column(2).search($('#filtroPorUsuarioValor').val()).draw();
+        });
+
 
         $('#txtFiltroFecha').change(function () {
             if (table.column(3).search() !== this.value) {
@@ -217,17 +255,26 @@
             $('.dataTables_empty').css("display", "none");
         });
 
-        $('#filtroTipo').change(function () {
-            var buscar = $('#filtroTipo option:selected').text();
-            if (this.selectedIndex == 0) { buscar = ""; }
-                if (table.column(2).search() !== this.value) {
-                    table
-                        .column(2)
-                        .search(buscar)
-                        .draw();
-                }
-            $('.dataTables_empty').css("display", "none");
+
+        $('#filtroTipo').on('change', function () {
+            table.column(3).search($('#filtroTipo option:selected').text(), false).draw();
         });
+
+        
+
+
+        //$('#filtroTipo').change(function () {
+        //    var buscar = $('#filtroTipo option:selected').text();
+        //    if (this.selectedIndex == 0) { buscar = ""; }
+        //        if (table.column(2).search() !== this.value) {
+        //            table
+        //                .column(2)
+        //                .search(buscar)
+        //                .draw();
+        //        }
+        //    $('.dataTables_empty').css("display", "none");
+        //});
+
 
 
 
@@ -238,11 +285,11 @@
             window.location.href = url.replace('valor_filtro', buscar);
         });
 
-        $("#filtroPorUsuario").on("click", function () {
+        @*$("#filtroPorUsuario").on("click", function () {
             var buscar = $("#filtroPorUsuarioValor").val();
             var url = '@Url.Action("buscarPorUsuario", "REQUISICION", new { filtro = "valor_filtro" })';
             window.location.href = url.replace('valor_filtro', buscar);
-        });
+        });*@
 
         $('.dataTables_filter').css("display", "none");
         $('.dataTables_info').css("display", "none");
