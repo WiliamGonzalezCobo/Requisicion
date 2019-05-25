@@ -2,7 +2,14 @@
 @using MODELO_DATOS.MODELO_REQUISICION;
 @using UTILS.Settings
 @{
-    ViewBag.Title = "Crear Requisición Licencia";
+    if (ViewBag.RequisicionNombre != null)
+    {
+        ViewBag.Title = "Crear " + ViewBag.RequisicionNombre;
+    }
+    else {
+        ViewBag.Title = "Crear Requisicion ";
+    }
+
     Layout = "~/Views/Shared/_Layout.cshtml";
     RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
 }
@@ -169,7 +176,7 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        
+        //$("#CARGO_CRITICO").attr("disabled", true);
         $('#COD_CARGO').change(function () {
             var id = $(this).val();
             //$('#loading').loading({
@@ -357,6 +364,7 @@
         $("#COD_CATEGORIA_ED").val(API.COD_CATEGORIA_EVALUACION_DESEMPENO);
         $("#hdCOD_CATEGORIA_ED").val(API.COD_CATEGORIA_EVALUACION_DESEMPENO);
 
+        
         if (API.CARGO_CRITICO == "1") {
             $('#CARGO_CRITICO')[0].checked = true;
             $("#CARGO_CRITICO").val(true);

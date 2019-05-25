@@ -66,14 +66,11 @@
         }
 
         $.validator.methods.date = function (value, element) {
-            if ($.browser.webkit) {
-                var d = value.split("/");
-                return this.optional(element) || !/Invalid|NaN/.test(new Date((/chrom(e|ium)/.test(navigator.userAgent.toLowerCase())) ? d[1] + "/" + d[0] + "/" + d[2] : value));
-            }
-            else {
-                return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
-            }
-        };
+            var miDate = value.split('/');
+            var iMes = parseInt(miDate[1]) - 1;
+            return this.optional(element) ||
+                !/Invalid|NaN/.test(new Date(miDate[2], iMes.toString(), miDate[0]));
+        }
 
 
 

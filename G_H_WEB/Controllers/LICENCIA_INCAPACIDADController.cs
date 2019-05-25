@@ -18,7 +18,21 @@ namespace G_H_WEB.Controllers
         // GET: REQUISICION_NOPRESUPUESTADA
         public ActionResult Index(int? _idReq)
         {
-            ViewBag.RequisicionNombre = "Requisicion Licencia";
+            if (Session["requisicion"] != null)
+            {
+                if (SettingsManager.CodTipoReqLicencia.Equals(Convert.ToInt32(Session["requisicion"])))
+                {
+                    ViewBag.RequisicionNombre = "Requisicion Licencia";
+                }
+                else if (SettingsManager.CodTipoReqIncapacidad.Equals(Convert.ToInt32(Session["requisicion"])))
+                {
+                    ViewBag.RequisicionNombre = "Requisicion Incapacidad";
+                }
+            }
+            else {
+                return RedirectToAction("Index", "REQUISICION");
+            }
+            
             REQUISICIONViewModel model = new REQUISICIONViewModel();
 
             if (_idReq.HasValue)
@@ -53,8 +67,24 @@ namespace G_H_WEB.Controllers
         {
             try
             {
+                if (Session["requisicion"] != null)
+                {
+                    if (SettingsManager.CodTipoReqLicencia.Equals(Convert.ToInt32(Session["requisicion"])))
+                    {
+                        modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqLicencia;
+                    }
+                    else if (SettingsManager.CodTipoReqIncapacidad.Equals(Convert.ToInt32(Session["requisicion"])))
+                    {
+                        modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqIncapacidad;
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Index", "REQUISICION");
+                }
+
                 int _resultadoIdReguisicion = 0;
-                modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqLicencia;
+                
                 modelDatos.USUARIO_CREACION = User.Identity.Name;
                 modelDatos.USUARIO_MODIFICACION = User.Identity.Name;//      martinezluir esto es para test toca hacer la logica
                 REQUISICIONViewModel listas = new REQUISICIONViewModel();
