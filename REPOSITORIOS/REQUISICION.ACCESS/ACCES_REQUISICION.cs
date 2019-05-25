@@ -72,7 +72,8 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     NOMBRE_TIPO_REQUISICION=x.NOMBRE_REQUISICION,
                     FECHA_CREACION=x.FECHA_CREACION.Value.ToShortDateString(),
                     NOMBRE_ESTADO_REQUISICION=x.NOMBRE_ESTADO,
-                    COLORES_ESTADOS=x.Color
+                    COLORES_ESTADOS=x.Color,
+                    ES_MODIFICACION=x.ES_MODIFICACION??false
                 }).ToList();
                 return retorno;
              }
@@ -338,7 +339,8 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                        _modelo.PUNTO_MEDIO_120,
                        Convert.ToString(_modelo.POSICIONAMIENTO.ToString()), // EN BASE DE DATOS ES VARCHAR
                        _modelo.USUARIO_CREACION??"",
-                       _modelo.COD_ESTADO_REQUISICION
+                       _modelo.COD_ESTADO_REQUISICION,
+                       _modelo.ES_MODIFICACION
                    ).FirstOrDefault().Value;
                 }
 

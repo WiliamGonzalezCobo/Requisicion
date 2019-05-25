@@ -390,15 +390,18 @@ namespace LOGICA.REQUISICION_LOGICA
         {
             try
             {
-                if (model.COD_CARGO != 0)
-                {
+                if (model.ES_MODIFICACION) {
+                    PUNTOS_MEDIO PUESTO_EMPLEADO = new PROXY().CONSULTAR_PUESTOS_POR_CEDULA_API(model.NUMERO_DOCUMENTO_EMPLEADO);
+                    model = CARGAR_MODELO_DEL_API(model, PUESTO_EMPLEADO);
+                }
+                else if (model.COD_CARGO != 0){
                     PUNTOS_MEDIO _puntosMedio = new PROXY().CONSULTAR_PUNTOS_MEDIO_API(model.COD_CARGO.ToString()).First();
                     model = CARGAR_MODELO_DEL_API(model, _puntosMedio);
                 }
             }
             catch (Exception ex)
             {
-               // throw ex;                
+                throw ex;                
             }
             return model;
         }
@@ -671,6 +674,15 @@ namespace LOGICA.REQUISICION_LOGICA
         public int REQUISICION_RECHAZAR_LOGICA(int COD_REQUISICION, string oBSERVACIONES, String USUARIO)
         {
             return new ACCES_REQUISICION().REQUISICION_RECHAZAR_ACESS(COD_REQUISICION, oBSERVACIONES, USUARIO);
+        }
+
+        public List<SelectListItem> CONSULTAR_EMPLEADOS_LOGICA()
+        {
+            return new PROXY().CONSULTAR_EMPLEADOS_API().Select(x => new SelectListItem()
+            {
+                Text = x.NOMBRES,
+                Value = x.DOCUMENTO_NUMERO.ToString()
+            }).ToList();
         }
     }
 }

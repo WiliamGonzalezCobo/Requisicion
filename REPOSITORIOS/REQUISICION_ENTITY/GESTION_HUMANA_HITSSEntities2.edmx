@@ -324,30 +324,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_REQUISICION_REQUISICION_REQUISICION_TIPO_DOCUMENTO">
-          <End Role="TIPO_DOCUMENTO" Type="Self.TIPO_DOCUMENTO" Multiplicity="0..1" />
-          <End Role="REQUISICION" Type="Self.REQUISICION" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TIPO_DOCUMENTO">
-              <PropertyRef Name="COD_TIPO_DOCUMENTO" />
-            </Principal>
-            <Dependent Role="REQUISICION">
-              <PropertyRef Name="COD_TIPO_DOCUMENTO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_REQUISICION_REQUISICION_REQUISICION_TIPO_NECESIDAD">
-          <End Role="TIPO_NECESIDAD" Type="Self.TIPO_NECESIDAD" Multiplicity="0..1" />
-          <End Role="REQUISICION" Type="Self.REQUISICION" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TIPO_NECESIDAD">
-              <PropertyRef Name="COD_TIPO_NECESIDAD" />
-            </Principal>
-            <Dependent Role="REQUISICION">
-              <PropertyRef Name="COD_TIPO_NECESIDAD" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Function Name="ACTUALIZAR_REQUISICION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION">
           <Parameter Name="COD_REQUISICION" Type="int" Mode="In" />
           <Parameter Name="COD_TIPO_NECESIDAD" Type="int" Mode="In" />
@@ -453,45 +429,6 @@
           <Parameter Name="COD_USUARIO" Type="int" Mode="In" />
           <Parameter Name="USARIO_CREACION" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="INSERTAR_HISTORICO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION">
-          <Parameter Name="ULTIMO_ID" Type="int" Mode="In" />
-          <Parameter Name="COD_ROL" Type="int" Mode="In" />
-          <Parameter Name="COD_CARGO" Type="int" Mode="In" />
-          <Parameter Name="COD_CATEGORIA_ED" Type="int" Mode="In" />
-          <Parameter Name="CARGO_CRITICO" Type="bit" Mode="In" />
-          <Parameter Name="POSICION" Type="varchar" Mode="In" />
-          <Parameter Name="SALARIO_FIJO" Type="numeric" Mode="In" />
-          <Parameter Name="PORCENTAJE_SALARIO_FIJO" Type="numeric" Mode="In" />
-          <Parameter Name="SALARIO_VARIABLE" Type="numeric" Mode="In" />
-          <Parameter Name="PORCENTAJE_SALARIO_VARIABLE" Type="numeric" Mode="In" />
-          <Parameter Name="SOBREREMUNERACION" Type="numeric" Mode="In" />
-          <Parameter Name="EXTRA_FIJA" Type="numeric" Mode="In" />
-          <Parameter Name="RECARGO_NOCTURNO" Type="numeric" Mode="In" />
-          <Parameter Name="MEDIO_TRANSPORTE" Type="numeric" Mode="In" />
-          <Parameter Name="SALARIO_TOTAL" Type="numeric" Mode="In" />
-          <Parameter Name="BONO_ANUAL" Type="numeric" Mode="In" />
-          <Parameter Name="NUMERO_SALARIOS" Type="int" Mode="In" />
-          <Parameter Name="COD_NIVEL_RIESGO_ARL" Type="int" Mode="In" />
-          <Parameter Name="COD_JORNADA_LABORAL" Type="int" Mode="In" />
-          <Parameter Name="HORARIO_LABORAL_DESDE" Type="int" Mode="In" />
-          <Parameter Name="HORARIO_LABORAL_HASTA" Type="int" Mode="In" />
-          <Parameter Name="COD_DIA_LABORAL_DESDE" Type="int" Mode="In" />
-          <Parameter Name="COD_DIA_LABORAL_HASTA" Type="int" Mode="In" />
-          <Parameter Name="PORCENTAJE_SOBREREMUNERACION" Type="int" Mode="In" />
-          <Parameter Name="MESES_GARANTIZADOS" Type="int" Mode="In" />
-          <Parameter Name="COD_TIPO_SALARIO" Type="int" Mode="In" />
-          <Parameter Name="FACTOR_PRESTACIONAL" Type="varchar" Mode="In" />
-          <Parameter Name="INGRESO_PROM_MENSUAL" Type="numeric" Mode="In" />
-          <Parameter Name="INGRESO_PROM_ANUAL" Type="numeric" Mode="In" />
-          <Parameter Name="MERCADO" Type="varchar" Mode="In" />
-          <Parameter Name="COD_CATEGORIA" Type="int" Mode="In" />
-          <Parameter Name="PUNTO_MEDIO_80" Type="numeric" Mode="In" />
-          <Parameter Name="PUNTO_MEDIO_100" Type="numeric" Mode="In" />
-          <Parameter Name="PUNTO_MEDIO_120" Type="numeric" Mode="In" />
-          <Parameter Name="POSICIONAMIENTO" Type="varchar" Mode="In" />
-          <Parameter Name="USUARIO" Type="varchar" Mode="In" />
-          <Parameter Name="COD_ESTADO" Type="int" Mode="In" />
-        </Function>
         <Function Name="INSERTAR_REQUISICION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION">
           <Parameter Name="COD_TIPO_NECESIDAD" Type="int" Mode="In" />
           <Parameter Name="COD_TIPO_REQUISICION" Type="int" Mode="In" />
@@ -554,6 +491,7 @@
           <Parameter Name="POSICIONAMIENTO" Type="varchar" Mode="In" />
           <Parameter Name="USUARIO" Type="varchar" Mode="In" />
           <Parameter Name="COD_ESTADO" Type="int" Mode="In" />
+          <Parameter Name="ES_MODIFICACION" Type="bit" Mode="In" />
         </Function>
         <Function Name="MODIFICACIONES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION">
           <Parameter Name="COD_REQUISICION" Type="int" Mode="In" />
@@ -600,14 +538,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_REQUISICION_REQUISICION_REQUISICION_TIPO" Association="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO">
             <End Role="TIPO" EntitySet="TIPO" />
-            <End Role="REQUISICION" EntitySet="REQUISICION" />
-          </AssociationSet>
-          <AssociationSet Name="FK_REQUISICION_REQUISICION_REQUISICION_TIPO_DOCUMENTO" Association="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_DOCUMENTO">
-            <End Role="TIPO_DOCUMENTO" EntitySet="TIPO_DOCUMENTO" />
-            <End Role="REQUISICION" EntitySet="REQUISICION" />
-          </AssociationSet>
-          <AssociationSet Name="FK_REQUISICION_REQUISICION_REQUISICION_TIPO_NECESIDAD" Association="Self.FK_REQUISICION_REQUISICION_REQUISICION_TIPO_NECESIDAD">
-            <End Role="TIPO_NECESIDAD" EntitySet="TIPO_NECESIDAD" />
             <End Role="REQUISICION" EntitySet="REQUISICION" />
           </AssociationSet>
         </EntityContainer>
@@ -752,74 +682,6 @@
             <Parameter Name="USUARIO" Mode="In" Type="String" />
             <Parameter Name="COD_ESTADO" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result)">
-            <Parameter Name="COD_USUARIO" Mode="In" Type="String" />
-            <Parameter Name="Usuario" Mode="In" Type="String" />
-            <Parameter Name="COD_ESTADO_REQUISICION" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="INSERTAR_REQUISICION" ReturnType="Collection(Int32)">
-            <Parameter Name="COD_TIPO_NECESIDAD" Mode="In" Type="Int32" />
-            <Parameter Name="COD_TIPO_REQUISICION" Mode="In" Type="Int32" />
-            <Parameter Name="COD_CARGO" Mode="In" Type="Int32" />
-            <Parameter Name="NOMBRE_CARGO" Mode="In" Type="String" />
-            <Parameter Name="ORDEN" Mode="In" Type="String" />
-            <Parameter Name="COD_CECO" Mode="In" Type="Int32" />
-            <Parameter Name="NOMBRE_CECO" Mode="In" Type="String" />
-            <Parameter Name="OBSERVACION" Mode="In" Type="String" />
-            <Parameter Name="COD_TIPO_DOCUMENTO" Mode="In" Type="Int32" />
-            <Parameter Name="NUMERO_DOCUMENTO_EMPLEADO" Mode="In" Type="String" />
-            <Parameter Name="NOMBRE_EMPLEADO" Mode="In" Type="String" />
-            <Parameter Name="FECHA_INICIO" Mode="In" Type="DateTime" />
-            <Parameter Name="FECHA_FIN" Mode="In" Type="DateTime" />
-            <Parameter Name="COD_GERENCIA" Mode="In" Type="Int32" />
-            <Parameter Name="NOMBRE_GERENCIA" Mode="In" Type="String" />
-            <Parameter Name="COD_SOCIEDAD" Mode="In" Type="Int32" />
-            <Parameter Name="NOMBRE_SOCIEDAD" Mode="In" Type="String" />
-            <Parameter Name="COD_EQUIPO_VENTAS" Mode="In" Type="Int32" />
-            <Parameter Name="NOMBRE_EQUIPO_VENTAS" Mode="In" Type="String" />
-            <Parameter Name="COD_CATEGORIA_ED" Mode="In" Type="Int32" />
-            <Parameter Name="NOMBRE_CATEGORIA_ED" Mode="In" Type="String" />
-            <Parameter Name="CARGO_CRITICO" Mode="In" Type="Boolean" />
-            <Parameter Name="POSICION" Mode="In" Type="String" />
-            <Parameter Name="SALARIO_FIJO" Mode="In" Type="Decimal" />
-            <Parameter Name="PORCENTAJE_SALARIO_FIJO" Mode="In" Type="Decimal" />
-            <Parameter Name="SALARIO_VARIABLE" Mode="In" Type="Decimal" />
-            <Parameter Name="PORCENTAJE_SALARIO_VARIABLE" Mode="In" Type="Decimal" />
-            <Parameter Name="SOBREREMUNERACION" Mode="In" Type="Decimal" />
-            <Parameter Name="EXTRA_FIJA" Mode="In" Type="Decimal" />
-            <Parameter Name="RECARGO_NOCTURNO" Mode="In" Type="Decimal" />
-            <Parameter Name="MEDIO_TRANSPORTE" Mode="In" Type="Decimal" />
-            <Parameter Name="SALARIO_TOTAL" Mode="In" Type="Decimal" />
-            <Parameter Name="BONO_ANUAL" Mode="In" Type="Decimal" />
-            <Parameter Name="NUMERO_SALARIOS" Mode="In" Type="Int32" />
-            <Parameter Name="COD_NIVEL_RIESGO_ARL" Mode="In" Type="Int32" />
-            <Parameter Name="COD_JORNADA_LABORAL" Mode="In" Type="Int32" />
-            <Parameter Name="NOMBRE_JORNADA_LABORAL" Mode="In" Type="String" />
-            <Parameter Name="COD_HORARIO_LABORAL_DESDE" Mode="In" Type="Int32" />
-            <Parameter Name="HORARIO_LABORAL_DESDE" Mode="In" Type="String" />
-            <Parameter Name="COD_HORARIO_LABORAL_HASTA" Mode="In" Type="Int32" />
-            <Parameter Name="HORARIO_LABORAL_HASTA" Mode="In" Type="String" />
-            <Parameter Name="COD_DIA_LABORAL_DESDE" Mode="In" Type="Int32" />
-            <Parameter Name="DIA_LABORAL_DESDE" Mode="In" Type="String" />
-            <Parameter Name="COD_DIA_LABORAL_HASTA" Mode="In" Type="Int32" />
-            <Parameter Name="DIA_LABORAL_HASTA" Mode="In" Type="String" />
-            <Parameter Name="PORCENTAJE_SOBREREMUNERACION" Mode="In" Type="Decimal" />
-            <Parameter Name="MESES_GARANTIZADOS" Mode="In" Type="Int32" />
-            <Parameter Name="COD_TIPO_SALARIO" Mode="In" Type="Int32" />
-            <Parameter Name="NOMBRE_TIPO_SALARIO" Mode="In" Type="String" />
-            <Parameter Name="FACTOR_PRESTACIONAL" Mode="In" Type="String" />
-            <Parameter Name="INGRESO_PROM_MENSUAL" Mode="In" Type="Decimal" />
-            <Parameter Name="INGRESO_PROM_ANUAL" Mode="In" Type="Decimal" />
-            <Parameter Name="COD_MERCADO" Mode="In" Type="Int32" />
-            <Parameter Name="MERCADO" Mode="In" Type="String" />
-            <Parameter Name="COD_CATEGORIA" Mode="In" Type="Int32" />
-            <Parameter Name="PUNTO_MEDIO_80" Mode="In" Type="Decimal" />
-            <Parameter Name="PUNTO_MEDIO_100" Mode="In" Type="Decimal" />
-            <Parameter Name="PUNTO_MEDIO_120" Mode="In" Type="Decimal" />
-            <Parameter Name="POSICIONAMIENTO" Mode="In" Type="String" />
-            <Parameter Name="USUARIO" Mode="In" Type="String" />
-            <Parameter Name="COD_ESTADO" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="MODIFICACIONES" ReturnType="Collection(Int32)">
             <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
             <Parameter Name="OBSERVACIONES" Mode="In" Type="String" />
@@ -888,7 +750,76 @@
             <End Role="REQUISICION" EntitySet="REQUISICION" />
           </AssociationSet>
           <FunctionImport Name="CONSULTAR_REQUISICIONXID" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONXID_Result)">
-            <Parameter Name="IDREQUISICION" Mode="In" Type="Int32" />
+          <Parameter Name="IDREQUISICION" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="INSERTAR_REQUISICION" ReturnType="Collection(Int32)">
+            <Parameter Name="COD_TIPO_NECESIDAD" Mode="In" Type="Int32" />
+            <Parameter Name="COD_TIPO_REQUISICION" Mode="In" Type="Int32" />
+            <Parameter Name="COD_CARGO" Mode="In" Type="Int32" />
+            <Parameter Name="NOMBRE_CARGO" Mode="In" Type="String" />
+            <Parameter Name="ORDEN" Mode="In" Type="String" />
+            <Parameter Name="COD_CECO" Mode="In" Type="Int32" />
+            <Parameter Name="NOMBRE_CECO" Mode="In" Type="String" />
+            <Parameter Name="OBSERVACION" Mode="In" Type="String" />
+            <Parameter Name="COD_TIPO_DOCUMENTO" Mode="In" Type="Int32" />
+            <Parameter Name="NUMERO_DOCUMENTO_EMPLEADO" Mode="In" Type="String" />
+            <Parameter Name="NOMBRE_EMPLEADO" Mode="In" Type="String" />
+            <Parameter Name="FECHA_INICIO" Mode="In" Type="DateTime" />
+            <Parameter Name="FECHA_FIN" Mode="In" Type="DateTime" />
+            <Parameter Name="COD_GERENCIA" Mode="In" Type="Int32" />
+            <Parameter Name="NOMBRE_GERENCIA" Mode="In" Type="String" />
+            <Parameter Name="COD_SOCIEDAD" Mode="In" Type="Int32" />
+            <Parameter Name="NOMBRE_SOCIEDAD" Mode="In" Type="String" />
+            <Parameter Name="COD_EQUIPO_VENTAS" Mode="In" Type="Int32" />
+            <Parameter Name="NOMBRE_EQUIPO_VENTAS" Mode="In" Type="String" />
+            <Parameter Name="COD_CATEGORIA_ED" Mode="In" Type="Int32" />
+            <Parameter Name="NOMBRE_CATEGORIA_ED" Mode="In" Type="String" />
+            <Parameter Name="CARGO_CRITICO" Mode="In" Type="Boolean" />
+            <Parameter Name="POSICION" Mode="In" Type="String" />
+            <Parameter Name="SALARIO_FIJO" Mode="In" Type="Decimal" />
+            <Parameter Name="PORCENTAJE_SALARIO_FIJO" Mode="In" Type="Decimal" />
+            <Parameter Name="SALARIO_VARIABLE" Mode="In" Type="Decimal" />
+            <Parameter Name="PORCENTAJE_SALARIO_VARIABLE" Mode="In" Type="Decimal" />
+            <Parameter Name="SOBREREMUNERACION" Mode="In" Type="Decimal" />
+            <Parameter Name="EXTRA_FIJA" Mode="In" Type="Decimal" />
+            <Parameter Name="RECARGO_NOCTURNO" Mode="In" Type="Decimal" />
+            <Parameter Name="MEDIO_TRANSPORTE" Mode="In" Type="Decimal" />
+            <Parameter Name="SALARIO_TOTAL" Mode="In" Type="Decimal" />
+            <Parameter Name="BONO_ANUAL" Mode="In" Type="Decimal" />
+            <Parameter Name="NUMERO_SALARIOS" Mode="In" Type="Int32" />
+            <Parameter Name="COD_NIVEL_RIESGO_ARL" Mode="In" Type="Int32" />
+            <Parameter Name="COD_JORNADA_LABORAL" Mode="In" Type="Int32" />
+            <Parameter Name="NOMBRE_JORNADA_LABORAL" Mode="In" Type="String" />
+            <Parameter Name="COD_HORARIO_LABORAL_DESDE" Mode="In" Type="Int32" />
+            <Parameter Name="HORARIO_LABORAL_DESDE" Mode="In" Type="String" />
+            <Parameter Name="COD_HORARIO_LABORAL_HASTA" Mode="In" Type="Int32" />
+            <Parameter Name="HORARIO_LABORAL_HASTA" Mode="In" Type="String" />
+            <Parameter Name="COD_DIA_LABORAL_DESDE" Mode="In" Type="Int32" />
+            <Parameter Name="DIA_LABORAL_DESDE" Mode="In" Type="String" />
+            <Parameter Name="COD_DIA_LABORAL_HASTA" Mode="In" Type="Int32" />
+            <Parameter Name="DIA_LABORAL_HASTA" Mode="In" Type="String" />
+            <Parameter Name="PORCENTAJE_SOBREREMUNERACION" Mode="In" Type="Decimal" />
+            <Parameter Name="MESES_GARANTIZADOS" Mode="In" Type="Int32" />
+            <Parameter Name="COD_TIPO_SALARIO" Mode="In" Type="Int32" />
+            <Parameter Name="NOMBRE_TIPO_SALARIO" Mode="In" Type="String" />
+            <Parameter Name="FACTOR_PRESTACIONAL" Mode="In" Type="String" />
+            <Parameter Name="INGRESO_PROM_MENSUAL" Mode="In" Type="Decimal" />
+            <Parameter Name="INGRESO_PROM_ANUAL" Mode="In" Type="Decimal" />
+            <Parameter Name="COD_MERCADO" Mode="In" Type="Int32" />
+            <Parameter Name="MERCADO" Mode="In" Type="String" />
+            <Parameter Name="COD_CATEGORIA" Mode="In" Type="Int32" />
+            <Parameter Name="PUNTO_MEDIO_80" Mode="In" Type="Decimal" />
+            <Parameter Name="PUNTO_MEDIO_100" Mode="In" Type="Decimal" />
+            <Parameter Name="PUNTO_MEDIO_120" Mode="In" Type="Decimal" />
+            <Parameter Name="POSICIONAMIENTO" Mode="In" Type="String" />
+            <Parameter Name="USUARIO" Mode="In" Type="String" />
+            <Parameter Name="COD_ESTADO" Mode="In" Type="Int32" />
+            <Parameter Name="ES_MODIFICACION" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result)">
+            <Parameter Name="COD_USUARIO" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="COD_ESTADO_REQUISICION" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="CONSULTAR_COMENTARIO_Result">
@@ -961,19 +892,6 @@
         <ComplexType Name="CONSULTAR_TIPOS_REQUISICION_Result">
           <Property Type="Int32" Name="COD_TIPO_REQUISICION" Nullable="false" />
           <Property Type="String" Name="NOMBRE_REQUISICION" Nullable="true" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result">
-          <Property Type="Int32" Name="COD_REQUISICION" Nullable="false" />
-          <Property Type="Int32" Name="COD_ESTADO_REQUISICION" Nullable="true" />
-          <Property Type="String" Name="USUARIO_CREACION" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="EMAIL_USUARIO_CREACION" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="COD_CARGO" Nullable="true" />
-          <Property Type="String" Name="NOMBRE_CARGO" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="COD_TIPO_REQUISICION" Nullable="true" />
-          <Property Type="String" Name="NOMBRE_REQUISICION" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="true" />
-          <Property Type="String" Name="NOMBRE_ESTADO" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Color" Nullable="true" MaxLength="50" />
         </ComplexType>
         <EntityType Name="COMENTARIO">
           <Key>
@@ -1443,6 +1361,20 @@
           <Property Type="String" Name="DIA_LABORAL_DESDE" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="DIA_LABORAL_HASTA" Nullable="true" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result">
+          <Property Type="Int32" Name="COD_REQUISICION" Nullable="false" />
+          <Property Type="Int32" Name="COD_ESTADO_REQUISICION" Nullable="true" />
+          <Property Type="String" Name="USUARIO_CREACION" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EMAIL_USUARIO_CREACION" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="COD_CARGO" Nullable="true" />
+          <Property Type="String" Name="NOMBRE_CARGO" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="COD_TIPO_REQUISICION" Nullable="true" />
+          <Property Type="String" Name="NOMBRE_REQUISICION" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FECHA_CREACION" Nullable="true" />
+          <Property Type="String" Name="NOMBRE_ESTADO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="ES_MODIFICACION" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1486,25 +1418,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="INSERTAR_COMENTARIO" FunctionName="GESTION_HUMANA_HITSSModel2.Store.INSERTAR_COMENTARIO" />
-          <FunctionImportMapping FunctionImportName="INSERTAR_HISTORICO" FunctionName="GESTION_HUMANA_HITSSModel2.Store.INSERTAR_HISTORICO" />
-          <FunctionImportMapping FunctionImportName="CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result">
-                <ScalarProperty Name="COD_REQUISICION" ColumnName="COD_REQUISICION" />
-                <ScalarProperty Name="COD_ESTADO_REQUISICION" ColumnName="COD_ESTADO_REQUISICION" />
-                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
-                <ScalarProperty Name="EMAIL_USUARIO_CREACION" ColumnName="EMAIL_USUARIO_CREACION" />
-                <ScalarProperty Name="COD_CARGO" ColumnName="COD_CARGO" />
-                <ScalarProperty Name="NOMBRE_CARGO" ColumnName="NOMBRE_CARGO" />
-                <ScalarProperty Name="COD_TIPO_REQUISICION" ColumnName="COD_TIPO_REQUISICION" />
-                <ScalarProperty Name="NOMBRE_REQUISICION" ColumnName="NOMBRE_REQUISICION" />
-                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
-                <ScalarProperty Name="NOMBRE_ESTADO" ColumnName="NOMBRE_ESTADO" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="INSERTAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.INSERTAR_REQUISICION" />
           <FunctionImportMapping FunctionImportName="MODIFICACIONES" FunctionName="GESTION_HUMANA_HITSSModel2.Store.MODIFICACIONES" />
           <FunctionImportMapping FunctionImportName="APROBAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.APROBAR_REQUISICION" />
           <FunctionImportMapping FunctionImportName="RECHAZAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.RECHAZAR_REQUISICION" />
@@ -1849,6 +1762,25 @@
                 <ScalarProperty Name="FECHA_FIN" ColumnName="FECHA_FIN" />
                 <ScalarProperty Name="DIA_LABORAL_DESDE" ColumnName="DIA_LABORAL_DESDE" />
                 <ScalarProperty Name="DIA_LABORAL_HASTA" ColumnName="DIA_LABORAL_HASTA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="INSERTAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.INSERTAR_REQUISICION" />
+          <FunctionImportMapping FunctionImportName="CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result">
+                <ScalarProperty Name="COD_REQUISICION" ColumnName="COD_REQUISICION" />
+                <ScalarProperty Name="COD_ESTADO_REQUISICION" ColumnName="COD_ESTADO_REQUISICION" />
+                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
+                <ScalarProperty Name="EMAIL_USUARIO_CREACION" ColumnName="EMAIL_USUARIO_CREACION" />
+                <ScalarProperty Name="COD_CARGO" ColumnName="COD_CARGO" />
+                <ScalarProperty Name="NOMBRE_CARGO" ColumnName="NOMBRE_CARGO" />
+                <ScalarProperty Name="COD_TIPO_REQUISICION" ColumnName="COD_TIPO_REQUISICION" />
+                <ScalarProperty Name="NOMBRE_REQUISICION" ColumnName="NOMBRE_REQUISICION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="NOMBRE_ESTADO" ColumnName="NOMBRE_ESTADO" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="ES_MODIFICACION" ColumnName="ES_MODIFICACION" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -24,5 +24,6 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
         public Nullable<System.DateTime> FECHA_CREACION { get; set; }
         public string NOMBRE_ESTADO { get; set; }
         public string Color { get; set; }
+        public Nullable<bool> ES_MODIFICACION { get; set; }
     }
 }

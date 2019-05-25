@@ -61,7 +61,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// Numero de identificacion del empleado
         /// </summary>
-        [DisplayName("Documento")]
+        [DisplayName("Documento Empleado")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Debe ingresar un numero de documento")]
         [Required(ErrorMessage = "Numero del documento es requerido")]
         public string NUMERO_DOCUMENTO_EMPLEADO { get; set; }
@@ -69,7 +69,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// nombre completo del empleado
         /// </summary>
-        [DisplayName("Nombre")]
+        [DisplayName("Nombre Empleado")]
         [DataType(DataType.Text, ErrorMessage = "El numbre del empleado debe ser solo texto")]
         [Required(ErrorMessage = "Nombre del empleado es requerido")]
         public string NOMBRE_EMPLEADO { get; set; }
