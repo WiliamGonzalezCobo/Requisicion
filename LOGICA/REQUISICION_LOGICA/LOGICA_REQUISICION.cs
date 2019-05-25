@@ -212,7 +212,7 @@ namespace LOGICA.REQUISICION_LOGICA
             return new PROXY().CONSULTAR_TIPO_DOCUMENTO_API().Select(x => new SelectListItem()
             {
                 Text = x.NOMBRE,
-                Value = x.COD_DOCUMENTO.ToString()
+                Value = x.coD_TIPO_DOCUMENTO.ToString()
             }).ToList();
         }
         
@@ -415,6 +415,39 @@ namespace LOGICA.REQUISICION_LOGICA
                     {
                         _puntosMedio = listPuntosMedio.First();
                     }
+
+                    //Objeto de prueba cuando fallal el api
+                    //_puntosMedio = new PUNTOS_MEDIO() {
+                    //    COD_CARGO = 1,
+                    //    COD_CENTRO_COSTO = 1,
+                    //    COD_GERENCIA = 1,
+                    //    COD_TIPO_CONTRATO = 1,
+                    //    NOMBRE_JEFE = "prueba cargue",
+                    //    COD_SOCIEDAD = 1,
+                    //    COD_EQUIPO_VENTA = 1,
+                    //    COD_DANE_CIUDAD = "1",
+                    //    COD_UBICACION_FISICA = 1,
+                    //    COD_NIVEL_RIESGO = 1,
+                    //    COD_CATEGORIA_EVALUACION_DESEMPENO = 1,
+                    //    CARGO_CRITICO = "1",
+                    //    COD_JORNADA_TRABAJO=1,
+                    //    COD_HORARIO_TRABAJO = 1,
+                    //    COD_DIA_LABORAL = 1,
+                    //    SALARIO_FIJO = 1000,
+                    //    PORCENTAJE_SALARIO_FIJO = 11,
+                    //    SALARIO_VARIABLE = 22,
+                    //    PORCENTAJE_SALARIO_VARIABLE = 33,
+                    //    SOBREREMUNERACION = 44,
+                    //    PORCENTAJE_SOBREREMUNERACION = 55,
+                    //    EXTRA_FIJA = 66,
+                    //    RECARGO_NOCTURNO_FIJO = 77,
+                    //    MEDIOS_TRANSPORTE = 88,
+                    //    SALARIO_TOTAL = 99,
+                    //    BONO_ANUAL = 111,
+                    //    NUMERO_SALARIO = 222,
+                    //    MESES_GARANTIZADO = 333,
+                    //    COD_TIPO_SALARIO = 444
+                    //};
                 }
             }
             catch (Exception ex)
