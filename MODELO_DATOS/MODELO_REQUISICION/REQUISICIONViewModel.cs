@@ -84,6 +84,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// </summary>
         [DisplayName("Fecha Inicio")]
         [DataType(DataType.Text, ErrorMessage = "El campo Fecha Inicio tiene un formato incorrecto")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FECHA_INICIO { get; set; }
 
         /// <summary>
@@ -91,6 +92,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// </summary>
         [DisplayName("Fecha Fin")]
         [DataType(DataType.Text, ErrorMessage = "El campo Fecha Fin tiene un formato incorrecto")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FECHA_FIN { get; set; }
 
         /// <summary>

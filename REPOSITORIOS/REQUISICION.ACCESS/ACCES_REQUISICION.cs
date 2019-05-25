@@ -94,10 +94,8 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                    _MODEL.COD_CECO.ToString(),
                    _MODEL.NOMBRE_CECO,
                    _MODEL.COD_TIPO_REQUISICION,
-                   DateTime.Now,
-                   DateTime.Now,
-                   //_MODEL.FECHA_INICIO,
-                   //_MODEL.FECHA_FIN,
+                   _MODEL.FECHA_INICIO.Year.Equals(1)?DateTime.Now:_MODEL.FECHA_INICIO,
+                   _MODEL.FECHA_FIN.Year.Equals(1)? DateTime.Now:_MODEL.FECHA_FIN,
                    _MODEL.ES_MODIFICACION,
                    _MODEL.OBSERVACION,
                    1, //_MODEL.COD_ESTADO_REQUISICION, toca ver
@@ -240,7 +238,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     requicisionModel.BONO_ANUAL = respuesta.BONO_ANUAL ?? 0;
                     requicisionModel.NUMERO_SALARIOS = respuesta.NUMERO_SALARIOS ?? 0;
                     requicisionModel.MESES_GARANTIZADOS = respuesta.MESES_GARANTIZADOS ?? 0;
-                    requicisionModel.COD_TIPO_SALARIO = respuesta.COD_TIPO_REQUISICION ?? 0;
+                    requicisionModel.COD_TIPO_SALARIO = respuesta.COD_TIPO_SALARIO ?? 0;
                     requicisionModel.NOMBRE_TIPO_SALARIO = respuesta.NOMBRE_TIPO_SALARIO;
                     requicisionModel.FACTOR_PRESTACIONAL = respuesta.FACTOR_PRESTACIONAL??0;
                     requicisionModel.INGRESO_PROM_MENSUAL = respuesta.INGRESO_PROM_MENSUAL ?? 0;
