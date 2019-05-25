@@ -1,6 +1,7 @@
 ﻿@using UTILS.Settings
 @{
     List<SelectListItem> _BUSCAR_USUARIOS = ViewBag.Busca_USUARIOS;
+    string deshabilitar = "true";
 }
 @model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 <section id="Requisicion">
@@ -37,14 +38,15 @@
 
         @Html.HiddenFor(x => x.COD_REQUISICION)
 
-        <div class="form-group col-md-12 col-sm-12">
-            @Html.LabelFor(model => model.ES_MODIFICACION, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.CheckBoxFor(model => model.ES_MODIFICACION, new { htmlAttributes = new { @class = "form-control CH_ESMODIFICACION" } })
-            <span></span>
-        </div>
         @if (User.IsInRole(SettingsManager.PerfilJefe))
         {
-            <div class="form-group col-md-12 col-sm-12" id="buscadorR">
+
+            <div class="form-group col-md-12 col-sm-12">
+                @Html.LabelFor(model => model.ES_MODIFICACION, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.CheckBoxFor(model => model.ES_MODIFICACION, new { htmlAttributes = new { @class = "form-control CH_ESMODIFICACION" } })
+                <span></span>
+            </div>
+            <div class="form-group col-md-12 col-sm-12 buscadorR">
                 <input class="form-control" id="BuscadorUsuario" type="text" placeholder="Search..">
                 <br>
                 <ul class="list-group menu-scroll" id="myList">
@@ -69,18 +71,25 @@
         }
         else
         {
+            if (Model.ES_MODIFICACION)
+            {
+                <div class="form-group col-md-12 col-sm-12">
+                    @Html.LabelFor(model => model.ES_MODIFICACION, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.CheckBoxFor(model => model.ES_MODIFICACION, new { htmlAttributes = new { @class = "form-control CH_ESMODIFICACION" }, disabled = deshabilitar })
+                    <span></span>
+                </div>
+                <div class="form-group col-md-12 col-sm-12">
+                    @Html.LabelFor(model => model.NOMBRE_EMPLEADO, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextBoxFor(model => model.NOMBRE_EMPLEADO, new { @class = "form-control", disabled = deshabilitar })
+                    @Html.ValidationMessageFor(model => model.NOMBRE_EMPLEADO)
+                </div>
 
-        <div class="form-group col-md-12 col-sm-12">
-            @Html.LabelFor(model => model.NOMBRE_EMPLEADO, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.TextBoxFor(model => model.NOMBRE_EMPLEADO, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.NOMBRE_EMPLEADO)
-        </div>
-
-        <div class="form-group col-md-12 col-sm-12">
-            @Html.LabelFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.TextBoxFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.NUMERO_DOCUMENTO_EMPLEADO)
-        </div>
+                <div class="form-group col-md-12 col-sm-12">
+                    @Html.LabelFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextBoxFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, new { @class = "form-control", disabled = deshabilitar })
+                    @Html.ValidationMessageFor(model => model.NUMERO_DOCUMENTO_EMPLEADO)
+                </div>
+            }
         }
 
     </div>
@@ -99,7 +108,7 @@
 </style>
 <script>
     $(document).ready(function () {
-        $("#buscadorR").css("display", "none");
+        $(".buscadorR").css("display", "none");
 
         $("#ES_MODIFICACION").click(function () {
             if ($("#ES_MODIFICACION").is(':checked')) {

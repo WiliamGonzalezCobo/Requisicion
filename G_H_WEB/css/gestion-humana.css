@@ -1015,4 +1015,7 @@ body.retiros .table-wrapper table.tabla-retiro tbody td.td-acciones span {
 .maxImagenMenu {
     max-width: 80%;
 }
+.btn-confirmar-retiro {
+    cursor:pointer;
+}
    

@@ -283,20 +283,62 @@ namespace LOGICA.REQUISICION_LOGICA
         /// <returns></returns>
         public List<SelectListItem> CONSULTAR_DIAS_LABORALES()
         {
-            return new PROXY().CONSULTAR_DIAS_LABORALES_API().Select(x => new SelectListItem()
-            {
-                Text = x.NOMBRE,
-                Value = x.NOMBRE
-            }).ToList();
+            List<SelectListItem> HORARIOS_LABORAL = new List<SelectListItem>();
+            SelectListItem LHORARIO = new SelectListItem();
+            LHORARIO.Text = "LUNES";
+            LHORARIO.Value = "LUNES";
+            HORARIOS_LABORAL.Add(LHORARIO);
+            SelectListItem MHORARIO = new SelectListItem();
+            MHORARIO.Text = "MARTES";
+            MHORARIO.Value = "MARTES";
+            HORARIOS_LABORAL.Add(MHORARIO);
+            SelectListItem MMHORARIO = new SelectListItem();
+            MMHORARIO.Text = "MIERCOLES";
+            MMHORARIO.Value = "MIERCOLES";
+            HORARIOS_LABORAL.Add(MMHORARIO);
+            SelectListItem JHORARIO = new SelectListItem();
+            JHORARIO.Text = "JUEVES";
+            JHORARIO.Value = "JUEVES";
+            HORARIOS_LABORAL.Add(JHORARIO);
+            SelectListItem VHORARIO = new SelectListItem();
+            VHORARIO.Text = "VIERNES";
+            VHORARIO.Value = "VIERNES";
+            HORARIOS_LABORAL.Add(VHORARIO);
+
+            return HORARIOS_LABORAL;
         }
 
         public List<SelectListItem> CONSULTAR_HORARIO_LABORAL()
         {
-            return new PROXY().CONSULTAR_HORARIO_LABORAL_API().Select(x => new SelectListItem()
-            {
-                Text = x.NOMBRE,
-                Value = x.COD_HORARIO_LABORAL.ToString()
-            }).ToList();
+            List<SelectListItem> DIAS_LABORAL = new List<SelectListItem>();
+            DIAS_LABORAL.Add(new SelectListItem() {Text="00:00",Value="00:00"});
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "1:00", Value = "1:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "2:00", Value = "2:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "3:00", Value = "3:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "4:00", Value = "4:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "5:00", Value = "5:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "6:00", Value = "6:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "7:00", Value = "7:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "8:00", Value = "8:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "9:00", Value = "9:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "10:00", Value = "10:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "11:00", Value = "11:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "12:00", Value = "12:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "13:00", Value = "13:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "14:00", Value = "14:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "15:00", Value = "15:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "16:00", Value = "16:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "17:00", Value = "17:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "18:00", Value = "18:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "19:00", Value = "19:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "20:00", Value = "20:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "21:00", Value = "21:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "22:00", Value = "22:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "23:00", Value = "23:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "24:00", Value = "24:00" });
+
+
+            return DIAS_LABORAL;
         }
 
         public List<REQUISICIONViewModel> SOLICITAR_REQUISICIONES(FILTROREQUISICION _filtro) {
@@ -344,13 +386,13 @@ namespace LOGICA.REQUISICION_LOGICA
             MODELO_REQUISICION.COD_JORNADA_LABORAL = Convert.ToInt32(API.COD_JORNADA_TRABAJO);
             MODELO_REQUISICION.NOMBRE_JORNADA_LABORAL = API.NOMBRE_JORNADA_TRABAJO;
             MODELO_REQUISICION.COD_HORARIO_LABORAL_DESDE = Convert.ToInt32(API.COD_HORARIO_TRABAJO);
-            MODELO_REQUISICION.HORARIO_LABORAL_DESDE = API.NOMBRE_HORARIO_TRABAJO;
+            MODELO_REQUISICION.HORARIO_LABORAL_DESDE = API.horariO_DESDE;
             MODELO_REQUISICION.COD_HORARIO_LABORAL_HASTA = Convert.ToInt32(API.COD_HORARIO_TRABAJO);
-            MODELO_REQUISICION.HORARIO_LABORAL_HASTA = API.NOMBRE_HORARIO_TRABAJO;
+            MODELO_REQUISICION.HORARIO_LABORAL_HASTA = API.horariO_HASTA;
             MODELO_REQUISICION.COD_DIA_LABORAL_DESDE = Convert.ToInt32(API.COD_DIA_LABORAL);
-            MODELO_REQUISICION.DIA_LABORAL_DESDE = API.NOMBRE_DIA_LABORAL;
+            MODELO_REQUISICION.DIA_LABORAL_DESDE = API.diaS_LABORALES_DESDE;
             MODELO_REQUISICION.COD_DIA_LABORAL_HASTA = Convert.ToInt32(API.COD_DIA_LABORAL);
-            MODELO_REQUISICION.DIA_LABORAL_HASTA = API.NOMBRE_DIA_LABORAL;
+            MODELO_REQUISICION.DIA_LABORAL_HASTA = API.diaS_LABORALES_HASTA;
 
             //INFROMACION SALARIAL
             MODELO_REQUISICION.SALARIO_FIJO = Convert.ToDecimal(API.SALARIO_FIJO);
