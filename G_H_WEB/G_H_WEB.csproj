@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress />
+    <Use64BitIISExpress>false</Use64BitIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -518,6 +518,7 @@
     <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\loading.css" />
     <Content Include="css\gestion-humana.css" />
     <Content Include="css\modal-retiros.css" />
     <Content Include="favicon.ico" />
@@ -525,6 +526,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="js\app.js" />
+    <Content Include="js\CALCULOS_SALARIOS.js" />
     <Content Include="js\cors\jquery.postmessage-transport.js" />
     <Content Include="js\cors\jquery.xdr-transport.js" />
     <Content Include="js\jquery.fileupload-angular.js" />
@@ -603,7 +605,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\loading.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\REQUISICIONES_PRESUPUESTADAS.js" />
     <Content Include="Scripts\ValidacionDecimalesMVC.js" />
     <Content Include="Views\components\documentos-relacionados.html" />
     <Content Include="Views\components\head.html" />
@@ -695,6 +699,7 @@
     <Content Include="Views\Shared\_PartialInfoSalarialLiLectura.cshtml" />
     <Content Include="Views\Shared\_PartialGeneralProPuestaLi.cshtml" />
     <Content Include="Views\Shared\_PartialInfoSalarialLi2.cshtml" />
+    <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -157,108 +157,110 @@
     </div>
 </div>
 
+
 <script type="text/javascript">
 
     $(document).ready(function () {
-        debugger;
-        if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {
-            if (@Model.COD_REQUISICION!= 0) {
-                $("#submitButtonCrear").text("Modificar Requisición");
-            }
+    debugger;
+    if ("@User.IsInRole(SettingsManager.PerfilJefe)" == "True") {
+        if (@Model.COD_REQUISICION!= 0) {
+    $("#submitButtonCrear").text("Modificar Requisición");
+}
         }
-        $("._metodoCrear").css("display", "none");
-        $(".__metodoAprobar").css("display", "none");
-        $(".__metodoModificar").css("display", "none");
-        $(".__metodoRechazar").css("display", "none");
-        $(".__metodoEnviar").css("display", "none");
-
-      
-        
-        var resultado = "@ViewBag.resultadoInsertExitosoOno";
+$("._metodoCrear").css("display", "none");
+$(".__metodoAprobar").css("display", "none");
+$(".__metodoModificar").css("display", "none");
+$(".__metodoRechazar").css("display", "none");
+$(".__metodoEnviar").css("display", "none");
 
 
-        if (resultado == "True") {
-            debugger;
-            var _metodo = "@paraModel.METODO";
-            if (_metodo == "Crear") {
-                CREAR_REQUISICION();
-                $("._metodoDefecto").css("display", "none");
 
-            }
-            else if (_metodo == "Aprobar") {
-                APROBAR_REQUISICION();
-                $("._metodoDefecto").css("display", "none");
-            }
-            else if (_metodo == "Modificar") {
-                MODIFICAR_REQUISICION();
-                $("._metodoDefecto").css("display", "none");
-            }
+var resultado = "@ViewBag.resultadoInsertExitosoOno";
 
-            else if (_metodo == "Rechazar") {
-                RECHAZAR_REQUISICION();
-                $("._metodoDefecto").css("display", "none");
-            }
-            else if (_metodo == "Enviar") {
-                ENVIAR_REQUISICION();
-                $("._metodoDefecto").css("display", "none");
-            }
 
-            $('#ModalCreacionNoJefe').modal("show");
-        }
+if (resultado == "True") {
+    debugger;
+    var _metodo = "@paraModel.METODO";
+    if (_metodo == "Crear") {
+        CREAR_REQUISICION();
+        $("._metodoDefecto").css("display", "none");
+
+    }
+    else if (_metodo == "Aprobar") {
+        APROBAR_REQUISICION();
+        $("._metodoDefecto").css("display", "none");
+    }
+    else if (_metodo == "Modificar") {
+        MODIFICAR_REQUISICION();
+        $("._metodoDefecto").css("display", "none");
+    }
+
+    else if (_metodo == "Rechazar") {
+        RECHAZAR_REQUISICION();
+        $("._metodoDefecto").css("display", "none");
+    }
+    else if (_metodo == "Enviar") {
+        ENVIAR_REQUISICION();
+        $("._metodoDefecto").css("display", "none");
+    }
+
+    $('#ModalCreacionNoJefe').modal("show");
+}
 
        
     });
 
 
-    function CREAR_REQUISICION() {
-         var CargoText = "@paraModel.NOMBRE_COD_CARGO";
-            var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-            $("#mensaje1").text(CargoText);
-            $("#mensaje2").text(CargoCod);
-        $("._metodoCrear").css("display", "block");
-    }
-
-    
-    function APROBAR_REQUISICION() {
-        var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-        $(".__metodoAprobar").css("display", "block");
-        $("#mensaje_aprobar").text(CargoCod);
-
-    }
-    function MODIFICAR_REQUISICION() {
-          var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-        $(".__metodoModificar").css("display", "block");
-        $("#mensaje_modificar").text(CargoCod);
-    }
-
-      function RECHAZAR_REQUISICION() {
-          var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-          $(".__metodoRechazar").css("display", "block");
-          $("#mensaje_rechazar").text(CargoCod);
-    }
-
-          function ENVIAR_REQUISICION() {
-          var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-          $(".__metodoEnviar").css("display", "block");
-          $("#mensaje_Enviar").text(CargoCod);
-    }
+function CREAR_REQUISICION() {
+    var CargoText = "@paraModel.NOMBRE_COD_CARGO";
+    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+    $("#mensaje1").text(CargoText);
+    $("#mensaje2").text(CargoCod);
+    $("._metodoCrear").css("display", "block");
+}
 
 
-    $("#btnCancelarNoJefe").on("click", function () {
-        $('#ModalCancelNoJefe').modal('show');
-    });
+function APROBAR_REQUISICION() {
+    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+    $(".__metodoAprobar").css("display", "block");
+    $("#mensaje_aprobar").text(CargoCod);
 
-    function SiCancelarJefe() {
-            $('#ModalCancel').modal('hide');
-            window.location.href = '@Url.Action("Index", "REQUISICION")';
-        };
-    function NoCancelarJefe() {
-            $('#ModalCancel').modal('hide');
-    };
+}
+function MODIFICAR_REQUISICION() {
+    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+    $(".__metodoModificar").css("display", "block");
+    $("#mensaje_modificar").text(CargoCod);
+}
 
-    $(function () {
-        $('.datepicker').datepicker();
-    });
+function RECHAZAR_REQUISICION() {
+    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+    $(".__metodoRechazar").css("display", "block");
+    $("#mensaje_rechazar").text(CargoCod);
+}
+
+function ENVIAR_REQUISICION() {
+    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+    $(".__metodoEnviar").css("display", "block");
+    $("#mensaje_Enviar").text(CargoCod);
+}
+
+
+$("#btnCancelarNoJefe").on("click", function () {
+    $('#ModalCancelNoJefe').modal('show');
+});
+
+function SiCancelarJefe() {
+    $('#ModalCancel').modal('hide');
+    window.location.href = '@Url.Action("Index", "REQUISICION")';
+};
+function NoCancelarJefe() {
+    $('#ModalCancel').modal('hide');
+};
+
+$(function () {
+    $('.datepicker').datepicker();
+});
+
 </script>
 
 

@@ -17,14 +17,10 @@ namespace G_H_WEB.Controllers
         // GET: REQUISICION_NOPRESUPUESTADA
         public ActionResult Index(int? _idReq)
         {
-            ViewBag.RequisicionNombre = "Requsicion No Presupuestada";
             REQUISICIONViewModel model = new REQUISICIONViewModel();
-            if (_idReq.HasValue)
-            {
+            if (_idReq.HasValue){
                 model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value) ?? new REQUISICIONViewModel();
-
-                if (User.IsInRole(SettingsManager.PerfilBp))
-                {
+                if (User.IsInRole(SettingsManager.PerfilBp)){
                     model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONESBP(model) ?? new REQUISICIONViewModel();
                 }
             }
@@ -73,6 +69,11 @@ namespace G_H_WEB.Controllers
                         break;
                     case "Aprobar":
                         _resultadoIdReguisicion = new LOGICA_REQUISICION().APROBAR_REQUISICION_LOGICA(modelDatos.COD_REQUISICION, User.Identity.GetUserId(),modelDatos.OBSERVACION);
+                        if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
+                        {
+                            Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos));
+                            _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
+                        }
                         npc.METODO = "Aprobar";
                         break;
                     case "Rechazar":
