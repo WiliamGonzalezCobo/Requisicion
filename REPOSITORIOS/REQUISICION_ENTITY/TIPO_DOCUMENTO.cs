@@ -14,16 +14,7 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
     
     public partial class TIPO_DOCUMENTO
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TIPO_DOCUMENTO()
-        {
-            this.REQUISICION = new HashSet<REQUISICION>();
-        }
-    
         public int COD_TIPO_DOCUMENTO { get; set; }
         public string TIPO_DOCUMENTO1 { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<REQUISICION> REQUISICION { get; set; }
     }
 }

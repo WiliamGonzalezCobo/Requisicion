@@ -54,6 +54,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         public string NOMBRE_JORNADA_LABORAL { get; set; }
         public string NOMBRE_ARL { get; set; }
         public string NOMBRE_ESTADOS_REQUISICION { get; set; }
+        public string NOMBRE_TIPO_SALARIO { get; set; }
 
     }
 }

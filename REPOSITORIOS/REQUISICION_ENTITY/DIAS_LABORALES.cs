@@ -14,23 +14,11 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
     
     public partial class DIAS_LABORALES
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DIAS_LABORALES()
-        {
-            this.REQUISICION = new HashSet<REQUISICION>();
-            this.REQUISICION1 = new HashSet<REQUISICION>();
-        }
-    
         public int COD_DIAS_LABORALES { get; set; }
         public string DIA_SEMANA { get; set; }
         public string USUARIO_CREACION { get; set; }
         public Nullable<System.DateTime> FECHA_CREACION { get; set; }
         public string USUARIO_MODIFICACION { get; set; }
         public Nullable<System.DateTime> FECHA_MODIFICACION { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<REQUISICION> REQUISICION { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<REQUISICION> REQUISICION1 { get; set; }
     }
 }

@@ -49,7 +49,7 @@
             @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA_ED, htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-12">
                 @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, Model.LIST_NOMBRE_CATEGORIA_ED, "Seleccione ", new { @class = "form-control", disabled = deshabilitar })
-                <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')">  <i class="fa fa-check btn_centar"></i></span>
+                <span class="btn_traza" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')">  <i class="fa fa-check btn_centar"></i></span>
                 @Html.HiddenFor(model => model.COD_CATEGORIA_ED, new { @Id = "hdCOD_CATEGORIA_ED" })
                 @Html.ValidationMessageFor(model => model.COD_CATEGORIA_ED, "", new { @class = "text-danger" })
             </div>

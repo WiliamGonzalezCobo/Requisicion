@@ -100,7 +100,8 @@ namespace G_H_WEB.Controllers
             REQUISICIONViewModel _sesion = Session["objetoListas"] as REQUISICIONViewModel;
             List<SelectListItem> LISTA_ARL = _sesion.LIST_NIVEL_RIESGO_ARL;
             List<SelectListItem> LISTA_ESTADOS = _sesion.LIST_NOMBRE_ESTADO_REQUISICION;
-            List<TRAZA_BOTONES_ENTIDAD> datosTraza= new LOGICA_REQUISICION().TRAZA_BOTONES_LOGICA(COD_REQUISICION, CAMPO_REQUISICION, LISTA_ARL, LISTA_ESTADOS);
+            List<SelectListItem> LISTA_CATEGORIA = _sesion.LIST_NOMBRE_CATEGORIA;
+            List<TRAZA_BOTONES_ENTIDAD> datosTraza= new LOGICA_REQUISICION().TRAZA_BOTONES_LOGICA(COD_REQUISICION, CAMPO_REQUISICION, LISTA_ARL, LISTA_ESTADOS, LISTA_CATEGORIA);
             return Json(datosTraza, JsonRequestBehavior.AllowGet);
         }
 

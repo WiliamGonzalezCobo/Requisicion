@@ -67,7 +67,7 @@
                         @Html.DisplayNameFor(model => model.NOMBRE_CARGO)&nbsp;<span class="fas fa-sort-down"></span>
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.NOMBRE_EMPLEADO)&nbsp;/Documento<span class="fas fa-sort-down"></span>
+                        @Html.DisplayNameFor(model => model.NOMBRE_EMPLEADO)&nbsp;<span class="fas fa-sort-down"></span>
                     </th>
 
                     <th>
@@ -154,19 +154,6 @@
 
                             </td>
                             <td class="td-causal">@Html.DisplayFor(modelItem => item.NOMBRE_CARGO)<span class="td-email">@Html.DisplayFor(mItem => item.COD_CARGO)</span></td>
-                            <td class="td-acciones">
-                                @if (item.ES_MODIFICACION)
-                                {
-                                  <label>Modificacion</label> 
-
-                               }
-                               else
-                               {
-                                   @Html.DisplayFor(modelItem => item.NOMBRE_TIPO_REQUISICION)
-                               }
-
-
-                                </td>
 
                             <td class="td-causal">
                                 <row style="color: blue;font-weight: bold;">
@@ -175,7 +162,19 @@
                                 <span class="td-email"> @Html.DisplayFor(modelItem => item.NUMERO_DOCUMENTO_EMPLEADO)</span>
                             </td>
 
-                            <td class="td-acciones">@Html.DisplayFor(modelItem => item.NOMBRE_TIPO_REQUISICION)</td>
+                            <td class="td-acciones">
+
+                                @if (item.ES_MODIFICACION)
+                                {
+                                    <label>Modificacion</label>
+
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => item.NOMBRE_TIPO_REQUISICION)
+                                }
+
+                            </td>
                             <td>@Html.DisplayFor(modelItem => item.FECHA_CREACION)</td>
                             <td><font color="@item.COLORES_ESTADOS">@Html.DisplayFor(modelItem => item.NOMBRE_ESTADO_REQUISICION)</font></td>
                         </tr>

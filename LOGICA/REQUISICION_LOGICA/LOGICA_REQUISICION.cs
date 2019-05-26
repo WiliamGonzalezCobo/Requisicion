@@ -785,11 +785,19 @@ namespace LOGICA.REQUISICION_LOGICA
             }).ToList();
         }
 
-        public List<TRAZA_BOTONES_ENTIDAD> TRAZA_BOTONES_LOGICA(int COD_REQUISICION, string CAMPO_REQUISICION, List<SelectListItem> LISTA_ARL, List<SelectListItem> LISTA_ESTADOS) {
+        public List<TRAZA_BOTONES_ENTIDAD> TRAZA_BOTONES_LOGICA(int COD_REQUISICION, string CAMPO_REQUISICION, List<SelectListItem> LISTA_ARL, List<SelectListItem> LISTA_ESTADOS, List<SelectListItem> LISTA_CATEGORIA) {
             List <TRAZA_BOTONES_ENTIDAD> OBJETO_TRAZA = new ACCES_REQUISICION().TRAZA_BOTONES_ACESS(COD_REQUISICION, CAMPO_REQUISICION);
             foreach (TRAZA_BOTONES_ENTIDAD ITEM in OBJETO_TRAZA) {
-                ITEM.NOMBRE_ARL = LISTA_ARL.Where(x => x.Value == ITEM.COD_NIVEL_RIESGO_ARL.ToString()).First().Text;
-                ITEM.NOMBRE_ESTADOS_REQUISICION = LISTA_ESTADOS.Where(x => x.Value == ITEM.COD_ESTADO.ToString()).First().Text;
+                if (ITEM.COD_NIVEL_RIESGO_ARL != null && ITEM.COD_NIVEL_RIESGO_ARL!=0){
+                    ITEM.NOMBRE_ARL = LISTA_ARL.Where(x => x.Value == ITEM.COD_NIVEL_RIESGO_ARL.ToString()).First().Text;
+                }
+                if (ITEM.COD_ESTADO != 0){
+                    ITEM.NOMBRE_ESTADOS_REQUISICION = LISTA_ESTADOS.Where(x => x.Value == ITEM.COD_ESTADO.ToString()).First().Text;
+                }
+                if (ITEM.COD_CATEGORIA != 0 && ITEM.COD_CATEGORIA!=null)
+                {
+                    ITEM.CATRGORIA = LISTA_CATEGORIA.Where(x => x.Value == ITEM.COD_CATEGORIA.ToString()).First().Text;
+                }
             }
             return OBJETO_TRAZA;
         }

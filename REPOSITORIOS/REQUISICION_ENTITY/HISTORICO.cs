@@ -18,13 +18,10 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
         public int COD_REQUISICION { get; set; }
         public string COD_ROL { get; set; }
         public Nullable<int> COD_NIVEL_RIESGO_ARL { get; set; }
-        public Nullable<int> COD_CATEGORIA_ED { get; set; }
         public Nullable<bool> CARGO_CRITICO { get; set; }
         public Nullable<int> COD_JORNADA_LABORAL { get; set; }
         public string HORARIO_LABORAL_DESDE { get; set; }
         public string HORARIO_LABORAL_HASTA { get; set; }
-        public Nullable<int> COD_DIA_LABORAL_DESDE { get; set; }
-        public Nullable<int> COD_DIA_LABORAL_HASTA { get; set; }
         public Nullable<decimal> SALARIO_FIJO { get; set; }
         public Nullable<decimal> PORCENTAJE_SALARIO_FIJO { get; set; }
         public Nullable<decimal> SALARIO_VARIABLE { get; set; }
@@ -38,7 +35,6 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
         public Nullable<decimal> BONO_ANUAL { get; set; }
         public Nullable<int> NUMERO_SALARIOS { get; set; }
         public Nullable<int> MESES_GARANTIZADOS { get; set; }
-        public Nullable<int> COD_TIPO_SALARIO { get; set; }
         public string FACTOR_PRESTACIONAL { get; set; }
         public Nullable<decimal> INGRESO_PROM_MENSUAL { get; set; }
         public Nullable<decimal> INGRESO_PROM_ANUAL { get; set; }
@@ -58,7 +54,10 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
         public string DIA_LABORAL_HASTA { get; set; }
         public string NOMBRE_JORNADA_LABORAL { get; set; }
         public string NOMBRE_TIPO_SALARIO { get; set; }
+        public Nullable<int> COD_DIA_LABORAL_HASTA { get; set; }
+        public Nullable<int> COD_DIA_LABORAL_DESDE { get; set; }
         public string NOMBRE_CATEGORIA_ED { get; set; }
+        public Nullable<int> COD_TIPO_SALARIO { get; set; }
     
         public virtual ESTADO ESTADO { get; set; }
         public virtual REQUISICION REQUISICION { get; set; }

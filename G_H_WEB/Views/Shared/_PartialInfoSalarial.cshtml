@@ -147,7 +147,7 @@
         <div class="form-group col-md-12 col-sm-12">
             @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA, new { htmlAttributes = new { @class = "form-control" } })
             @Html.DropDownListFor(model => model.COD_CATEGORIA, Model.LIST_NOMBRE_CATEGORIA, "-- Seleccione --", new { @class = "form-control" })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('COD_CATEGORIA')">  <i class="fa fa-check btn_centar"></i></span>
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('CATRGORIA')">  <i class="fa fa-check btn_centar"></i></span>
             @Html.ValidationMessageFor(model => model.COD_CATEGORIA)
         </div>
     </div>

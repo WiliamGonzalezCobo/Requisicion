@@ -14,12 +14,6 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
     
     public partial class TIPO_NECESIDAD
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TIPO_NECESIDAD()
-        {
-            this.REQUISICION = new HashSet<REQUISICION>();
-        }
-    
         public int COD_TIPO_NECESIDAD { get; set; }
         public string NOMBRE_NECESIDAD { get; set; }
         public Nullable<bool> ESTADO { get; set; }
@@ -27,8 +21,5 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
         public Nullable<System.DateTime> FECHA_CREACION { get; set; }
         public string USUARIO_MODIFICACION { get; set; }
         public Nullable<System.DateTime> FECHA_MODIFICACION { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<REQUISICION> REQUISICION { get; set; }
     }
 }

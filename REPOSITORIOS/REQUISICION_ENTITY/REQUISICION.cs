@@ -103,12 +103,8 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<COMENTARIO> COMENTARIO { get; set; }
-        public virtual DIAS_LABORALES DIAS_LABORALES { get; set; }
-        public virtual DIAS_LABORALES DIAS_LABORALES1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HISTORICO> HISTORICO { get; set; }
         public virtual TIPO TIPO { get; set; }
-        public virtual TIPO_DOCUMENTO TIPO_DOCUMENTO { get; set; }
-        public virtual TIPO_NECESIDAD TIPO_NECESIDAD { get; set; }
     }
 }

@@ -76,7 +76,6 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     NOMBRE_ESTADO_REQUISICION=x.NOMBRE_ESTADO,
                     NUMERO_DOCUMENTO_EMPLEADO = x.NUMERO_DOCUMENTO_EMPLEADO,
                     NOMBRE_EMPLEADO = x.NOMBRE_EMPLEADO,
-                    COLORES_ESTADOS=x.Color
                     COLORES_ESTADOS=x.Color,
                     ES_MODIFICACION=x.ES_MODIFICACION??false
                 }).ToList();
