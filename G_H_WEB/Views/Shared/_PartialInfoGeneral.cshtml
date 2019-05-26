@@ -80,7 +80,8 @@
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "control-label" })
             <div class="checkbox">
-                @Html.EditorFor(model => model.CARGO_CRITICO, new { @class = "form-control", disabled = deshabilitar })
+                @*@Html.EditorFor(model => model.CARGO_CRITICO, new { @class = "form-control", disabled = deshabilitar })*@
+                @Html.CheckBoxFor(model => model.CARGO_CRITICO, new { @disabled = deshabilitar })
                 @Html.HiddenFor(model => model.CARGO_CRITICO)
             </div>
         </div>

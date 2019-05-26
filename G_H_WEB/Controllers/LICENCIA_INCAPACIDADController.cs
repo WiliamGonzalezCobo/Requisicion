@@ -18,16 +18,32 @@ namespace G_H_WEB.Controllers
         // GET: REQUISICION_NOPRESUPUESTADA
         public ActionResult Index(int? _idReq)
         {
-            ViewBag.RequisicionNombre = "Requisicion Licencia";
+            if (Session["requisicion"] != null)
+            {
+                if (SettingsManager.CodTipoReqLicencia.Equals(Convert.ToInt32(Session["requisicion"])))
+                {
+                    ViewBag.RequisicionNombre = "Requisicion Licencia";
+                }
+                else if (SettingsManager.CodTipoReqIncapacidad.Equals(Convert.ToInt32(Session["requisicion"])))
+                {
+                    ViewBag.RequisicionNombre = "Requisicion Incapacidad";
+                }
+            }
+            else {
+                return RedirectToAction("Index", "REQUISICION");
+            }
+            
             REQUISICIONViewModel model = new REQUISICIONViewModel();
+
             if (_idReq.HasValue)
             {
                 model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value) ?? new REQUISICIONViewModel();
 
-                if (User.IsInRole(SettingsManager.PerfilBp))
-                {
-                    model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONESBP(model) ?? new REQUISICIONViewModel();
-                }
+                /*En licencia y incapacidad no se consume el api ya que esto lo hace el jefe apenas la crea*/
+                //if (User.IsInRole(SettingsManager.PerfilBp))
+                //{
+                //    model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONESBP(model) ?? new REQUISICIONViewModel();
+                //}
             }
             model.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqLicencia;
             model = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(model, Session["objetoListas"] as REQUISICIONViewModel);
@@ -51,8 +67,24 @@ namespace G_H_WEB.Controllers
         {
             try
             {
+                if (Session["requisicion"] != null)
+                {
+                    if (SettingsManager.CodTipoReqLicencia.Equals(Convert.ToInt32(Session["requisicion"])))
+                    {
+                        modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqLicencia;
+                    }
+                    else if (SettingsManager.CodTipoReqIncapacidad.Equals(Convert.ToInt32(Session["requisicion"])))
+                    {
+                        modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqIncapacidad;
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Index", "REQUISICION");
+                }
+
                 int _resultadoIdReguisicion = 0;
-                modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqLicencia;
+                
                 modelDatos.USUARIO_CREACION = User.Identity.Name;
                 modelDatos.USUARIO_MODIFICACION = User.Identity.Name;//      martinezluir esto es para test toca hacer la logica
                 REQUISICIONViewModel listas = new REQUISICIONViewModel();
@@ -76,7 +108,15 @@ namespace G_H_WEB.Controllers
 
                         break;
                     case "Aprobar":
-                        _resultadoIdReguisicion = new LOGICA_REQUISICION().APROBAR_REQUISICION_LOGICA(modelDatos.COD_REQUISICION, User.Identity.GetUserId(), modelDatos.OBSERVACION);
+                        if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
+                        {
+                            Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos));
+                            _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
+                        }
+                        else
+                        {
+                            _resultadoIdReguisicion = new LOGICA_REQUISICION().APROBAR_REQUISICION_LOGICA(modelDatos.COD_REQUISICION, User.Identity.GetUserId(), modelDatos.OBSERVACION);
+                        }
                         npc.METODO = "Aprobar";
                         break;
                     case "Rechazar":

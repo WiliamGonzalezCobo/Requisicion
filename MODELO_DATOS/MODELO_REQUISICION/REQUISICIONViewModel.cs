@@ -53,6 +53,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// cod tipo de documento,(martinezluir)  el valor no se guarda en base de datos
         /// </summary>
+        [Required(ErrorMessage = "Tipo de Documento es requerido")]
         public int? COD_TIPO_DOCUMENTO { get; set; }
         public string NOMBRE_TIPO_DOCUMENTO { get; set; }
         [DisplayName("Tipo Documento")]
@@ -84,6 +85,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// </summary>
         [DisplayName("Fecha Inicio")]
         [DataType(DataType.Text, ErrorMessage = "El campo Fecha Inicio tiene un formato incorrecto")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FECHA_INICIO { get; set; }
 
         /// <summary>
@@ -91,6 +93,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// </summary>
         [DisplayName("Fecha Fin")]
         [DataType(DataType.Text, ErrorMessage = "El campo Fecha Fin tiene un formato incorrecto")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FECHA_FIN { get; set; }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿<html>
+﻿<html lang="es-co">
 <head>
     <meta charset="utf-8">
     <title>Gestión Humana</title>
@@ -65,12 +65,20 @@
             return this.optional(element) || /^[0-9]+(\,[0-9]+)?$/.test(value);
         }
 
+        $.validator.methods.date = function (value, element) {
+            var miDate = value.split('/');
+            var iMes = parseInt(miDate[1]) - 1;
+            return this.optional(element) ||
+                !/Invalid|NaN/.test(new Date(miDate[2], iMes.toString(), miDate[0]));
+        }
+
 
 
     </script>
 
  
 </body>
+</html>
 
 
 

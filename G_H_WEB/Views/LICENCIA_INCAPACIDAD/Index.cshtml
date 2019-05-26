@@ -2,7 +2,14 @@
 @using MODELO_DATOS.MODELO_REQUISICION;
 @using UTILS.Settings
 @{
-    ViewBag.Title = "Crear Requisición Licencia";
+    if (ViewBag.RequisicionNombre != null)
+    {
+        ViewBag.Title = "Crear " + ViewBag.RequisicionNombre;
+    }
+    else {
+        ViewBag.Title = "Crear Requisicion ";
+    }
+
     Layout = "~/Views/Shared/_Layout.cshtml";
     RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
 }
@@ -169,7 +176,7 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        
+        //$("#CARGO_CRITICO").attr("disabled", true);
         $('#COD_CARGO').change(function () {
             var id = $(this).val();
             //$('#loading').loading({
@@ -289,7 +296,9 @@
     };
 
     $(function () {
-        $('.datepicker').datepicker();
+        $('.datepicker').datepicker({
+            format: 'dd/mm/yyyy'
+        });
     });
 
     //Método consume el api segun el valor del cargo
@@ -321,71 +330,135 @@
         console.log(API.COD_CARGO);
         debugger;
         $("#COD_CARGO").val(API.COD_CARGO);
-        //$("#NOMBRE_CARGO").val(API.NOMBRE_CARGO);
+        $("#hdCOD_CARGO").val(API.COD_CARGO);
+
         $("#COD_CECO").val(API.COD_CENTRO_COSTO);
-        //$("#NOMBRE_CECO").val(API.NOMBRE_CENTRO_COSTO);
+        $("#hdCOD_CECO").val(API.COD_CENTRO_COSTO);
+
         $("#COD_GERENCIA").val(API.COD_GERENCIA);
         $("#hdCOD_GERENCIA").val(API.COD_GERENCIA);
-        //$("#NOMBRE_GERENCIA").val(API.NOMBRE_GERENCIA);
+
         $("#COD_TIPO_CONTRATO").val(API.COD_TIPO_CONTRATO);
-        //$("#NOMBRE_TIPO_CONTRATO").val(API.NOMBRE_TIPO_CONTRATO);
+        $("#hdCOD_TIPO_CONTRATO").val(API.COD_TIPO_CONTRATO);
+
         $("#JEFE_INMEDIATO").val(API.NOMBRE_JEFE);
-        $("#COD_CECO").val(API.COD_CENTRO_COSTO);
-        //$("#NOMBRE_CECO").val(API.NOMBRE_CENTRO_COSTO);
+        $("#hdJEFE_INMEDIATO").val(API.NOMBRE_JEFE);
+
+        //$("#COD_CECO").val(API.COD_CENTRO_COSTO);
+
         $("#COD_SOCIEDAD").val(API.COD_SOCIEDAD);
-        //$("#NOMBRE_SOCIEDAD").val(API.NOMBRE_SOCIEDAD);
+        $("#hdCOD_SOCIEDAD").val(API.COD_SOCIEDAD);
+
         $("#COD_EQUIPO_VENTAS").val(API.COD_EQUIPO_VENTA);
-        //$("#NOMBRE_EQIPO_VENTAS").val(API.NOMBRE_EQUIPO_VENTA);
+        $("#hdCOD_EQUIPO_VENTAS").val(API.COD_EQUIPO_VENTA);
+
         $("#COD_CIUDAD_TRABAJO").val(API.COD_DANE_CIUDAD);
-        //$("#NOMBRE_CIUDAD_TRABAJO").val(API.NOMBRE_CIUDAD);
+        $("#hdCOD_CIUDAD_TRABAJO").val(API.COD_DANE_CIUDAD);
+
         $("#COD_UBICACION_FISICA").val(API.COD_UBICACION_FISICA);
-        //$("#NOMBRE_UBICACION_FISICA").val(API.NOMBRE_UBICACION_FIFICA);
+        $("#hdCOD_UBICACION_FISICA").val(API.COD_UBICACION_FISICA);
+
         $("#COD_NIVEL_RIESGO_ARL").val(API.COD_NIVEL_RIESGO);
-        //$("#NIVEL_RIESGO_ARL").val(API.NIVEL_RIESGO);
+        $("#hdCOD_NIVEL_RIESGO_ARL").val(API.COD_NIVEL_RIESGO);
+
         $("#COD_CATEGORIA_ED").val(API.COD_CATEGORIA_EVALUACION_DESEMPENO);
-        //$("#NOMBRE_CATEGORIA_ED").val(API.NOMBRE_CATEGORIA_EVALUACION_DESEMPENO);
-        debugger; if (API.CARGO_CRITICO == "1") {
+        $("#hdCOD_CATEGORIA_ED").val(API.COD_CATEGORIA_EVALUACION_DESEMPENO);
+
+        
+        if (API.CARGO_CRITICO == "1") {
+            $('#CARGO_CRITICO')[0].checked = true;
             $("#CARGO_CRITICO").val(true);
+            $("#hdCARGO_CRITICO").val(true);
         }
         else {
+            $('#CARGO_CRITICO')[0].checked = false;
             $("CARGO_CRITICO").val(false);
+            $("hdCARGO_CRITICO").val(false);
         }
+
         $("#COD_JORNADA_LABORAL").val(API.COD_JORNADA_TRABAJO);
-        //$("#NOMBRE_JORNADA_LABORAL").val(API.NOMBRE_JORNADA_TRABAJO);
+        $("#hdCOD_JORNADA_LABORAL").val(API.COD_JORNADA_TRABAJO);
+
         $("#COD_HORARIO_LABORAL_DESDE").val(API.COD_HORARIO_TRABAJO);
-        //$("#HORARIO_LABORAL_DESDE").val(API.NOMBRE_HORARIO_TRABAJO);
+        $("#hdCOD_HORARIO_LABORAL_DESDE").val(API.COD_HORARIO_TRABAJO);
+
         $("#COD_HORARIO_LABORAL_HASTA").val(API.COD_HORARIO_TRABAJO);
-        //$("#HORARIO_LABORAL_HASTA").val(API.NOMBRE_HORARIO_TRABAJO);
+        $("#hdCOD_HORARIO_LABORAL_HASTA").val(API.COD_HORARIO_TRABAJO);
+
         $("#COD_DIA_LABORAL_DESDE").val(API.COD_DIA_LABORAL);
-        //$("#DIA_LABORAL_DESDE").val(API.NOMBRE_DIA_LABORAL);
+        $("#hdCOD_DIA_LABORAL_DESDE").val(API.COD_DIA_LABORAL);
+
         $("#COD_DIA_LABORAL_HASTA").val(API.COD_DIA_LABORAL);
-        //$("#DIA_LABORAL_HASTA").val(API.NOMBRE_DIA_LABORAL);
+        $("#hdCOD_DIA_LABORAL_HASTA").val(API.COD_DIA_LABORAL);
+
         $("#SALARIO_FIJO").val(API.SALARIO_FIJO);
+        $("#hdSALARIO_FIJO").val(API.SALARIO_FIJO);
+
         $("#PORCENTAJE_SALARIO_FIJO").val(API.PORCENTAJE_SALARIO_FIJO);
+        $("#hdPORCENTAJE_SALARIO_FIJO").val(API.PORCENTAJE_SALARIO_FIJO);
+        
         $("#SALARIO_VARIABLE").val(API.SALARIO_VARIABLE);
+        $("#hdSALARIO_VARIABLE").val(API.SALARIO_VARIABLE);
+
         $("#PORCENTAJE_SALARIO_VARIABLE").val(API.PORCENTAJE_SALARIO_VARIABLE);
+        $("#hdPORCENTAJE_SALARIO_VARIABLE").val(API.PORCENTAJE_SALARIO_VARIABLE);
+
         $("#SOBREREMUNERACION").val(API.SOBREREMUNERACION);
+        $("#hdSOBREREMUNERACION").val(API.SOBREREMUNERACION);
+
         $("#PORCENTAJE_SOBREREMUNERACION").val(API.PORCENTAJE_SOBREREMUNERACION);
+        $("#hdSOBREREMUNERACION").val(API.SOBREREMUNERACION);
+
         $("#EXTRA_FIJA").val(API.EXTRA_FIJA);
+        $("#hdEXTRA_FIJA").val(API.EXTRA_FIJA);
+
         $("#RECARGO_NOCTURNO").val(API.RECARGO_NOCTURNO_FIJO);
+        $("#hdRECARGO_NOCTURNO").val(API.RECARGO_NOCTURNO_FIJO);
+
         $("#MEDIO_TRANSPORTE").val(API.MEDIOS_TRANSPORTE);
+        $("#hdMEDIO_TRANSPORTE").val(API.MEDIOS_TRANSPORTE);
+
         $("#SALARIO_TOTAL").val(API.SALARIO_TOTAL);
+        $("#hdSALARIO_TOTAL").val(API.SALARIO_TOTAL);
+
         $("#BONO_ANUAL").val(API.BONO_ANUAL);
+        $("#hdBONO_ANUAL").val(API.BONO_ANUAL);
+
         $("#NUMERO_SALARIOS").val(API.NUMERO_SALARIO);
+        $("#hdNUMERO_SALARIOS").val(API.NUMERO_SALARIO);
+
         $("#MESES_GARANTIZADOS").val(API.MESES_GARANTIZADO);
+        $("#hdMESES_GARANTIZADOS").val(API.MESES_GARANTIZADO);
+
         $("#COD_TIPO_SALARIO").val(API.COD_TIPO_SALARIO);
-        //$("#NOMBRE_TIPO_SALARIO").val(API.NOMBRE_TIPO_SALARIO);
+        $("#hdCOD_TIPO_SALARIO").val(API.COD_TIPO_SALARIO);
+
         $("#FACTOR_PRESTACIONAL").val(API.FP);
+        $("#hdFACTOR_PRESTACIONAL").val(API.FP);
+
         $("#INGRESO_PROM_MENSUAL").val(API.PROMEDIO_MES);
+        $("#hdINGRESO_PROM_MENSUAL").val(API.PROMEDIO_MES);
+
         $("#INGRESO_PROM_ANUAL").val(API.PROMEDIO_ANO);
+        $("#hdINGRESO_PROM_ANUAL").val(API.PROMEDIO_ANO);
+
         $("#COD_MERCADO").val(API.COD_MERCADO);
-        //$("#MERCADO").val(API.NOMBRE_MERCADO);
+        $("#hdCOD_MERCADO").val(API.COD_MERCADO);
+
         $("#COD_CATEGORIA").val(API.COD_CATEGORIA_SALARIALES);
-        //$("#NOMBRE_CATEGORIA").val(API.NOMBRE_CATEGORIA_SALARIO);
+        $("#hdCOD_CATEGORIA").val(API.COD_CATEGORIA_SALARIALES);
+
         $("#PUNTO_MEDIO_80").val(API.PUNTO_MEDIO_80_PORCIENTO);
+        $("#hdPUNTO_MEDIO_80").val(API.PUNTO_MEDIO_80_PORCIENTO);
+
         $("#PUNTO_MEDIO_100").val(API.PUNTO_MEDIO_100_PORCIENTO);
+        $("#hdPUNTO_MEDIO_100").val(API.PUNTO_MEDIO_100_PORCIENTO);
+
         $("#PUNTO_MEDIO_120").val(API.PUNTO_MEDIO_120_PORCIENTO);
+        $("#hdPUNTO_MEDIO_120").val(API.PUNTO_MEDIO_120_PORCIENTO);
+
         $("#POSICIONAMIENTO").val(API.POSICIONAMIENTO);
+        $("#hdPOSICIONAMIENTO").val(API.POSICIONAMIENTO);
     }
 
 
