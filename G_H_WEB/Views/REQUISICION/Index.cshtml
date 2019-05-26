@@ -95,12 +95,13 @@
                             <td class="td">
                                 @if (!User.IsInRole(SettingsManager.PerfilJefe) && !User.IsInRole(SettingsManager.PerfilBp))
                                 {
-                                <a class="alineas" href="@Url.Action("Detalle", "REQUISICION", new { _idRequisicion = item.COD_REQUISICION, _tipoRequisicion = item.COD_TIPO_REQUISICION })">
-                                    <row style="color: blue;font-weight: bold;">@Html.DisplayFor(modelItem => item.NOMBRES_USUARIO)</row>
-                                    <span class="td-email">
-                                        @Html.DisplayFor(modelItem => item.USUARIO_CREACION) </span>
+                                    <a class="alineas" href="@Url.Action("Detalle", "REQUISICION", new { _idRequisicion = item.COD_REQUISICION, _tipoRequisicion = item.COD_TIPO_REQUISICION })">
+                                        <row style="color: blue;font-weight: bold;">@Html.DisplayFor(modelItem => item.NOMBRES_USUARIO)</row>
+                                        <span class="td-email">
+                                            @Html.DisplayFor(modelItem => item.USUARIO_CREACION)
+                                        </span>
                                         <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span>
-                                </a>
+                                    </a>
                                 }
                                 else if (User.IsInRole(SettingsManager.PerfilBp))
                                 {
@@ -109,9 +110,10 @@
                                         <a class="alineas" href="@Url.Action("Detalle", "REQUISICION", new { _idRequisicion = item.COD_REQUISICION, _tipoRequisicion = item.COD_TIPO_REQUISICION })">
                                             <row style="color: blue;font-weight: bold;">@Html.DisplayFor(modelItem => item.NOMBRES_USUARIO)</row>
                                             <span class="td-email">
-                                                @Html.DisplayFor(modelItem => item.USUARIO_CREACION)</span>
-                                                                                        <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span>
-</a>
+                                                @Html.DisplayFor(modelItem => item.USUARIO_CREACION)
+                                            </span>
+                                            <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span>
+                                        </a>
                                     }
                                     else
                                     {
@@ -119,26 +121,16 @@
                                             @Html.DisplayFor(modelItem => item.NOMBRES_USUARIO)
                                         </row>
                                         <span class="td-email">
-                                            @Html.DisplayFor(modelItem => item.USUARIO_CREACION)</span>
-                                            <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span>
-                                        }
+                                            @Html.DisplayFor(modelItem => item.USUARIO_CREACION)
+                                        </span>
+                                        <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span>
                                     }
-                                    else
+                                }
+                                else
+                                {
+                                    if (item.COD_ESTADO_REQUISICION == SettingsManager.EstadoDevueltaController)
                                     {
-                                        if (item.COD_ESTADO_REQUISICION == SettingsManager.EstadoDevueltaController)
-                                        {
-                                            <a class="alineas" href="@Url.Action("Detalle", "REQUISICION", new { _idRequisicion = item.COD_REQUISICION, _tipoRequisicion = item.COD_TIPO_REQUISICION })">
-                                                <row style="color: blue;font-weight: bold;">
-                                                    @Html.DisplayFor(modelItem => item.NOMBRES_USUARIO)
-                                                </row>
-                                                <span class="td-email">
-                                                    @Html.DisplayFor(modelItem => item.USUARIO_CREACION)
-                                                </span>
-                                                <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span>
-                                            </a>
-                                        }
-                                        else
-                                        {
+                                        <a class="alineas" href="@Url.Action("Detalle", "REQUISICION", new { _idRequisicion = item.COD_REQUISICION, _tipoRequisicion = item.COD_TIPO_REQUISICION })">
                                             <row style="color: blue;font-weight: bold;">
                                                 @Html.DisplayFor(modelItem => item.NOMBRES_USUARIO)
                                             </row>
@@ -146,12 +138,23 @@
                                                 @Html.DisplayFor(modelItem => item.USUARIO_CREACION)
                                             </span>
                                             <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span>
-                                        }
+                                        </a>
                                     }
+                                    else
+                                    {
+                                        <row style="color: blue;font-weight: bold;">
+                                            @Html.DisplayFor(modelItem => item.NOMBRES_USUARIO)
+                                        </row>
+                                        <span class="td-email">
+                                            @Html.DisplayFor(modelItem => item.USUARIO_CREACION)
+                                        </span>
+                                        <span class="td-email">@Html.DisplayFor(mItem => item.EMAIL_USUARIO_CREACION)</span>
+                                    }
+                                }
 
-</td>
+                            </td>
                             <td class="td-causal">@Html.DisplayFor(modelItem => item.NOMBRE_CARGO)<span class="td-email">@Html.DisplayFor(mItem => item.COD_CARGO)</span></td>
-                            
+
                             <td class="td-causal">
                                 <row style="color: blue;font-weight: bold;">
                                     @Html.DisplayFor(modelItem => item.NOMBRE_EMPLEADO)
@@ -168,27 +171,27 @@
                 }
                 else
                 {
-                        <tr>
-                            <td>
-                                No existe información
-                            </td>
-                            <td>
-                                No existe información
-                            </td>
-                            <td>
-                                No existe información
-                            </td>
-                            <td>
-                                No existe información
-                            </td>
-                            <td>
-                                No existe información
-                            </td>
-                            <td>
-                                No existe información
-                            </td>
+                    <tr>
+                        <td>
+                            No existe información
+                        </td>
+                        <td>
+                            No existe información
+                        </td>
+                        <td>
+                            No existe información
+                        </td>
+                        <td>
+                            No existe información
+                        </td>
+                        <td>
+                            No existe información
+                        </td>
+                        <td>
+                            No existe información
+                        </td>
 
-                        </tr>
+                    </tr>
                 }
 
             </tbody>
@@ -236,10 +239,13 @@
         var table = $('#tblRequisiciones').DataTable({
             paging: false,
             orderCellsTop: false,
-            fixedHeader: false
+            fixedHeader: false,
+            language: {
+                "sZeroRecords": "No se encontraron resultados"
+            }
         });
 
-       
+
         $('#filtroPorUsuario').on('click', function () {
             table.column(2).search($('#filtroPorUsuarioValor').val()).draw();
         });
@@ -257,10 +263,15 @@
 
 
         $('#filtroTipo').on('change', function () {
-            table.column(3).search($('#filtroTipo option:selected').text(), false).draw();
+            if ($('#filtroTipo option:selected').val() == "") {
+                table.column(3).search("").draw();
+            }
+            else {
+                table.column(3).search("^" + $('#filtroTipo option:selected').text() + "$", true, false, true).draw();
+            }
         });
 
-        
+
 
 
         //$('#filtroTipo').change(function () {
