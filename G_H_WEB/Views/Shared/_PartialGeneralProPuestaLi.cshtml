@@ -20,7 +20,8 @@
     <div class="row">
         <div class="form-group col-md-12 col-sm-12">
             @Html.LabelFor(model => model.LIST_NIVEL_RIESGO_ARL, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, Model.LIST_NIVEL_RIESGO_ARL, "-- Seleccione --", new { @class = "form-control"})
+            @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, Model.LIST_NIVEL_RIESGO_ARL, "-- Seleccione --", new { @class = "form-control" })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_ARL')">  <i class="fa fa-check btn_centar"></i></span>
             @*@Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL)*@
             @Html.ValidationMessageFor(model => model.COD_NIVEL_RIESGO_ARL)
         </div>

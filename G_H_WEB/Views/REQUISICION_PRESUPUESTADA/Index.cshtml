@@ -155,6 +155,39 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade ModalTraza" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h7 class="modal-title" id="ModalLabelTraza"></h7>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="row modal-body">
+                    <div class="col-md-12 col-lg-12 col-xl-12 table-responsive">
+                        Modificaciones
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Cod Requisicion</th>
+                                    <th class="nombre_traza"></th>
+                                    <th>Usuario Registro</th>
+                                    <th>Fecha Registro</th>
+                                    <th>Cod Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bodytraza"></tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 @*<script src="~/Scripts/REQUISICIONES_PRESUPUESTADAS.js"></script>*@
 <script type="text/javascript">
@@ -259,6 +292,34 @@
     $(function () {
         $('.datepicker').datepicker();
     });
+
+     function ConsultaTraza(CAMPO_REQUISICION) {
+        debugger;
+        $(".bodytraza").empty();
+        $(".nombre_traza").text("");
+        $("#ModalLabelTraza").text("TRAZA " + CAMPO_REQUISICION.replace(/_/g, " "))
+        $(".nombre_traza").text(CAMPO_REQUISICION.replace(/_/g," "));
+        var COD_REQUISICION = @Model.COD_REQUISICION;
+            $('body').loading({
+                message: 'Cargando...'
+            });
+            $.ajax({
+                url: "@Url.Action("ConsultarTraza", "REQUISICION")",
+                type: 'POST',
+                data: { COD_REQUISICION: COD_REQUISICION, CAMPO_REQUISICION: CAMPO_REQUISICION},
+                success: function (respuesta) {
+                    $.each(respuesta, function (key, value) {
+                        $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION +"</td > </tr > ");  
+                    });
+                    debugger;
+                    $('body').loading('stop');
+                    $('.ModalTraza').modal("show");
+                },
+                error: function (er){
+                    $('body').loading('stop');
+                }
+            });
+        }
 </script>
 
 

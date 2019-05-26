@@ -50,13 +50,10 @@
           <Property Name="COD_REQUISICION" Type="int" Nullable="false" />
           <Property Name="COD_ROL" Type="varchar" MaxLength="256" />
           <Property Name="COD_NIVEL_RIESGO_ARL" Type="int" />
-          <Property Name="COD_CATEGORIA_ED" Type="int" />
           <Property Name="CARGO_CRITICO" Type="bit" />
           <Property Name="COD_JORNADA_LABORAL" Type="int" />
           <Property Name="HORARIO_LABORAL_DESDE" Type="varchar" MaxLength="50" />
           <Property Name="HORARIO_LABORAL_HASTA" Type="varchar" MaxLength="50" />
-          <Property Name="COD_DIA_LABORAL_DESDE" Type="int" />
-          <Property Name="COD_DIA_LABORAL_HASTA" Type="int" />
           <Property Name="SALARIO_FIJO" Type="numeric" Precision="18" Scale="2" />
           <Property Name="PORCENTAJE_SALARIO_FIJO" Type="numeric" Precision="18" Scale="2" />
           <Property Name="SALARIO_VARIABLE" Type="numeric" Precision="18" Scale="2" />
@@ -90,6 +87,9 @@
           <Property Name="DIA_LABORAL_HASTA" Type="varchar" MaxLength="50" />
           <Property Name="NOMBRE_JORNADA_LABORAL" Type="varchar" MaxLength="50" />
           <Property Name="NOMBRE_TIPO_SALARIO" Type="varchar" MaxLength="50" />
+          <Property Name="COD_DIA_LABORAL_HASTA" Type="int" />
+          <Property Name="COD_DIA_LABORAL_DESDE" Type="int" />
+          <Property Name="NOMBRE_CATEGORIA_ED" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="MENU_ROL">
           <Key>
@@ -503,6 +503,10 @@
           <Parameter Name="USUARIO" Type="varchar" Mode="In" />
           <Parameter Name="OBSERVACIONES" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="TRAZA_BOTONES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION">
+          <Parameter Name="COD_REQUISICION" Type="int" Mode="In" />
+          <Parameter Name="CAMPO_REQUISICION" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="GESTION_HUMANA_HITSSModel2StoreContainer">
           <EntitySet Name="COMENTARIO" EntityType="Self.COMENTARIO" Schema="REQUISICION" store:Type="Tables" />
           <EntitySet Name="DIAS_LABORALES" EntityType="Self.DIAS_LABORALES" Schema="REQUISICION" store:Type="Tables" />
@@ -821,6 +825,10 @@
             <Parameter Name="Usuario" Mode="In" Type="String" />
             <Parameter Name="COD_ESTADO_REQUISICION" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="TRAZA_BOTONES" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.TRAZA_BOTONES_Result)">
+            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
+            <Parameter Name="CAMPO_REQUISICION" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="CONSULTAR_COMENTARIO_Result">
           <Property Type="Int32" Name="COD_COMENTARIO" Nullable="false" />
@@ -984,6 +992,7 @@
           <Property Name="NOMBRE_TIPO_SALARIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ESTADO" Relationship="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_HISTORICO_REQUISICION_ESTADO" FromRole="HISTORICO" ToRole="ESTADO" />
           <NavigationProperty Name="REQUISICION" Relationship="GESTION_HUMANA_HITSSModel2.FK_REQUISICION_HISTORICO_REQUISICION_REQUISICION" FromRole="HISTORICO" ToRole="REQUISICION" />
+          <Property Name="NOMBRE_CATEGORIA_ED" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="MENU_ROL">
           <Key>
@@ -1375,6 +1384,52 @@
           <Property Type="String" Name="Color" Nullable="true" MaxLength="50" />
           <Property Type="Boolean" Name="ES_MODIFICACION" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="TRAZA_BOTONES_Result">
+          <Property Type="Int32" Name="COD_HISTORICO_REQUISICION" Nullable="false" />
+          <Property Type="Int32" Name="COD_REQUISICION" Nullable="false" />
+          <Property Type="String" Name="COD_ROL" Nullable="true" MaxLength="256" />
+          <Property Type="Int32" Name="COD_NIVEL_RIESGO_ARL" Nullable="true" />
+          <Property Type="String" Name="NOMBRE_CATEGORIA_ED" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="CARGO_CRITICO" Nullable="true" />
+          <Property Type="Int32" Name="COD_JORNADA_LABORAL" Nullable="true" />
+          <Property Type="String" Name="HORARIO_LABORAL_DESDE" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="HORARIO_LABORAL_HASTA" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="COD_DIA_LABORAL_DESDE" Nullable="true" />
+          <Property Type="Int32" Name="COD_DIA_LABORAL_HASTA" Nullable="true" />
+          <Property Type="Decimal" Name="SALARIO_FIJO" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PORCENTAJE_SALARIO_FIJO" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SALARIO_VARIABLE" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PORCENTAJE_SALARIO_VARIABLE" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SOBREREMUNERACION" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PORCENTAJE_SOBREREMUNERACION" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="EXTRA_FIJA" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="RECARGO_NOCTURNO" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="MEDIO_TRANSPORTE" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="SALARIO_TOTAL" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="BONO_ANUAL" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="NUMERO_SALARIOS" Nullable="true" />
+          <Property Type="Int32" Name="MESES_GARANTIZADOS" Nullable="true" />
+          <Property Type="Int32" Name="COD_TIPO_SALARIO" Nullable="true" />
+          <Property Type="String" Name="FACTOR_PRESTACIONAL" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="INGRESO_PROM_MENSUAL" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="INGRESO_PROM_ANUAL" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="MERCADO" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="COD_CATEGORIA" Nullable="true" />
+          <Property Type="Decimal" Name="PUNTO_MEDIO_80" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PUNTO_MEDIO_100" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PUNTO_MEDIO_120" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="POSICIONAMIENTO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="USUARIO_REGISTRO" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="FECHA_REGISTRO" Nullable="false" />
+          <Property Type="Int32" Name="COD_ESTADO" Nullable="false" />
+          <Property Type="Int32" Name="COD_HORARIO_LABORAL_DESDE" Nullable="true" />
+          <Property Type="Int32" Name="COD_HORARIO_LABORAL_HASTA" Nullable="true" />
+          <Property Type="Int32" Name="COD_MERCADO" Nullable="true" />
+          <Property Type="String" Name="DIA_LABORAL_DESDE" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIA_LABORAL_HASTA" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NOMBRE_JORNADA_LABORAL" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NOMBRE_TIPO_SALARIO" Nullable="true" MaxLength="50" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1464,6 +1519,7 @@
           <EntitySetMapping Name="HISTORICO">
             <EntityTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.HISTORICO">
               <MappingFragment StoreEntitySet="HISTORICO">
+                <ScalarProperty Name="NOMBRE_CATEGORIA_ED" ColumnName="NOMBRE_CATEGORIA_ED" />
                 <ScalarProperty Name="NOMBRE_TIPO_SALARIO" ColumnName="NOMBRE_TIPO_SALARIO" />
                 <ScalarProperty Name="NOMBRE_JORNADA_LABORAL" ColumnName="NOMBRE_JORNADA_LABORAL" />
                 <ScalarProperty Name="DIA_LABORAL_HASTA" ColumnName="DIA_LABORAL_HASTA" />
@@ -1503,7 +1559,6 @@
                 <ScalarProperty Name="HORARIO_LABORAL_DESDE" ColumnName="HORARIO_LABORAL_DESDE" />
                 <ScalarProperty Name="COD_JORNADA_LABORAL" ColumnName="COD_JORNADA_LABORAL" />
                 <ScalarProperty Name="CARGO_CRITICO" ColumnName="CARGO_CRITICO" />
-                <ScalarProperty Name="COD_CATEGORIA_ED" ColumnName="COD_CATEGORIA_ED" />
                 <ScalarProperty Name="COD_NIVEL_RIESGO_ARL" ColumnName="COD_NIVEL_RIESGO_ARL" />
                 <ScalarProperty Name="COD_ROL" ColumnName="COD_ROL" />
                 <ScalarProperty Name="COD_REQUISICION" ColumnName="COD_REQUISICION" />
@@ -1781,6 +1836,56 @@
                 <ScalarProperty Name="NOMBRE_ESTADO" ColumnName="NOMBRE_ESTADO" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
                 <ScalarProperty Name="ES_MODIFICACION" ColumnName="ES_MODIFICACION" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TRAZA_BOTONES" FunctionName="GESTION_HUMANA_HITSSModel2.Store.TRAZA_BOTONES">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.TRAZA_BOTONES_Result">
+                <ScalarProperty Name="COD_HISTORICO_REQUISICION" ColumnName="COD_HISTORICO_REQUISICION" />
+                <ScalarProperty Name="COD_REQUISICION" ColumnName="COD_REQUISICION" />
+                <ScalarProperty Name="COD_ROL" ColumnName="COD_ROL" />
+                <ScalarProperty Name="COD_NIVEL_RIESGO_ARL" ColumnName="COD_NIVEL_RIESGO_ARL" />
+                <ScalarProperty Name="NOMBRE_CATEGORIA_ED" ColumnName="NOMBRE_CATEGORIA_ED" />
+                <ScalarProperty Name="CARGO_CRITICO" ColumnName="CARGO_CRITICO" />
+                <ScalarProperty Name="COD_JORNADA_LABORAL" ColumnName="COD_JORNADA_LABORAL" />
+                <ScalarProperty Name="HORARIO_LABORAL_DESDE" ColumnName="HORARIO_LABORAL_DESDE" />
+                <ScalarProperty Name="HORARIO_LABORAL_HASTA" ColumnName="HORARIO_LABORAL_HASTA" />
+                <ScalarProperty Name="COD_DIA_LABORAL_DESDE" ColumnName="COD_DIA_LABORAL_DESDE" />
+                <ScalarProperty Name="COD_DIA_LABORAL_HASTA" ColumnName="COD_DIA_LABORAL_HASTA" />
+                <ScalarProperty Name="SALARIO_FIJO" ColumnName="SALARIO_FIJO" />
+                <ScalarProperty Name="PORCENTAJE_SALARIO_FIJO" ColumnName="PORCENTAJE_SALARIO_FIJO" />
+                <ScalarProperty Name="SALARIO_VARIABLE" ColumnName="SALARIO_VARIABLE" />
+                <ScalarProperty Name="PORCENTAJE_SALARIO_VARIABLE" ColumnName="PORCENTAJE_SALARIO_VARIABLE" />
+                <ScalarProperty Name="SOBREREMUNERACION" ColumnName="SOBREREMUNERACION" />
+                <ScalarProperty Name="PORCENTAJE_SOBREREMUNERACION" ColumnName="PORCENTAJE_SOBREREMUNERACION" />
+                <ScalarProperty Name="EXTRA_FIJA" ColumnName="EXTRA_FIJA" />
+                <ScalarProperty Name="RECARGO_NOCTURNO" ColumnName="RECARGO_NOCTURNO" />
+                <ScalarProperty Name="MEDIO_TRANSPORTE" ColumnName="MEDIO_TRANSPORTE" />
+                <ScalarProperty Name="SALARIO_TOTAL" ColumnName="SALARIO_TOTAL" />
+                <ScalarProperty Name="BONO_ANUAL" ColumnName="BONO_ANUAL" />
+                <ScalarProperty Name="NUMERO_SALARIOS" ColumnName="NUMERO_SALARIOS" />
+                <ScalarProperty Name="MESES_GARANTIZADOS" ColumnName="MESES_GARANTIZADOS" />
+                <ScalarProperty Name="COD_TIPO_SALARIO" ColumnName="COD_TIPO_SALARIO" />
+                <ScalarProperty Name="FACTOR_PRESTACIONAL" ColumnName="FACTOR_PRESTACIONAL" />
+                <ScalarProperty Name="INGRESO_PROM_MENSUAL" ColumnName="INGRESO_PROM_MENSUAL" />
+                <ScalarProperty Name="INGRESO_PROM_ANUAL" ColumnName="INGRESO_PROM_ANUAL" />
+                <ScalarProperty Name="MERCADO" ColumnName="MERCADO" />
+                <ScalarProperty Name="COD_CATEGORIA" ColumnName="COD_CATEGORIA" />
+                <ScalarProperty Name="PUNTO_MEDIO_80" ColumnName="PUNTO_MEDIO_80" />
+                <ScalarProperty Name="PUNTO_MEDIO_100" ColumnName="PUNTO_MEDIO_100" />
+                <ScalarProperty Name="PUNTO_MEDIO_120" ColumnName="PUNTO_MEDIO_120" />
+                <ScalarProperty Name="POSICIONAMIENTO" ColumnName="POSICIONAMIENTO" />
+                <ScalarProperty Name="USUARIO_REGISTRO" ColumnName="USUARIO_REGISTRO" />
+                <ScalarProperty Name="FECHA_REGISTRO" ColumnName="FECHA_REGISTRO" />
+                <ScalarProperty Name="COD_ESTADO" ColumnName="COD_ESTADO" />
+                <ScalarProperty Name="COD_HORARIO_LABORAL_DESDE" ColumnName="COD_HORARIO_LABORAL_DESDE" />
+                <ScalarProperty Name="COD_HORARIO_LABORAL_HASTA" ColumnName="COD_HORARIO_LABORAL_HASTA" />
+                <ScalarProperty Name="COD_MERCADO" ColumnName="COD_MERCADO" />
+                <ScalarProperty Name="DIA_LABORAL_DESDE" ColumnName="DIA_LABORAL_DESDE" />
+                <ScalarProperty Name="DIA_LABORAL_HASTA" ColumnName="DIA_LABORAL_HASTA" />
+                <ScalarProperty Name="NOMBRE_JORNADA_LABORAL" ColumnName="NOMBRE_JORNADA_LABORAL" />
+                <ScalarProperty Name="NOMBRE_TIPO_SALARIO" ColumnName="NOMBRE_TIPO_SALARIO" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

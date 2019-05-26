@@ -313,29 +313,53 @@ namespace LOGICA.REQUISICION_LOGICA
             List<SelectListItem> DIAS_LABORAL = new List<SelectListItem>();
             DIAS_LABORAL.Add(new SelectListItem() {Text="00:00",Value="00:00"});
             DIAS_LABORAL.Add(new SelectListItem() { Text = "1:00", Value = "1:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "1:30", Value = "1:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "2:00", Value = "2:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "2:30", Value = "2:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "3:00", Value = "3:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "3:30", Value = "3:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "4:00", Value = "4:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "4:30", Value = "4:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "5:00", Value = "5:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "5:30", Value = "5:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "6:00", Value = "6:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "6:30", Value = "6:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "7:00", Value = "7:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "7:30", Value = "7:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "8:00", Value = "8:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "8:30", Value = "8:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "9:00", Value = "9:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "9:30", Value = "9:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "10:00", Value = "10:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "10:30", Value = "10:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "11:00", Value = "11:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "11:30", Value = "11:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "12:00", Value = "12:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "12:30", Value = "12:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "13:00", Value = "13:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "13:30", Value = "13:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "14:00", Value = "14:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "14:30", Value = "14:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "15:00", Value = "15:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "15:30", Value = "15:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "16:00", Value = "16:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "16:30", Value = "16:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "17:00", Value = "17:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "17:30", Value = "17:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "18:00", Value = "18:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "18:30", Value = "18:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "19:00", Value = "19:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "19:30", Value = "19:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "20:00", Value = "20:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "20:30", Value = "20:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "21:00", Value = "21:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "21:30", Value = "21:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "22:00", Value = "22:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "22:30", Value = "22:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "23:00", Value = "23:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "23:30", Value = "23:30" });
             DIAS_LABORAL.Add(new SelectListItem() { Text = "24:00", Value = "24:00" });
+            DIAS_LABORAL.Add(new SelectListItem() { Text = "24:30", Value = "24:30" });
 
 
             return DIAS_LABORAL;
@@ -759,6 +783,15 @@ namespace LOGICA.REQUISICION_LOGICA
                 Text = x.NOMBRES,
                 Value = x.DOCUMENTO_NUMERO.ToString()
             }).ToList();
+        }
+
+        public List<TRAZA_BOTONES_ENTIDAD> TRAZA_BOTONES_LOGICA(int COD_REQUISICION, string CAMPO_REQUISICION, List<SelectListItem> LISTA_ARL, List<SelectListItem> LISTA_ESTADOS) {
+            List <TRAZA_BOTONES_ENTIDAD> OBJETO_TRAZA = new ACCES_REQUISICION().TRAZA_BOTONES_ACESS(COD_REQUISICION, CAMPO_REQUISICION);
+            foreach (TRAZA_BOTONES_ENTIDAD ITEM in OBJETO_TRAZA) {
+                ITEM.NOMBRE_ARL = LISTA_ARL.Where(x => x.Value == ITEM.COD_NIVEL_RIESGO_ARL.ToString()).First().Text;
+                ITEM.NOMBRE_ESTADOS_REQUISICION = LISTA_ESTADOS.Where(x => x.Value == ITEM.COD_ESTADO.ToString()).First().Text;
+            }
+            return OBJETO_TRAZA;
         }
     }
 }

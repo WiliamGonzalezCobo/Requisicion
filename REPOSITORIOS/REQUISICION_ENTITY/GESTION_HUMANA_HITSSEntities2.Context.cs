@@ -909,5 +909,18 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result>("CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION", cOD_USUARIOParameter, usuarioParameter, cOD_ESTADO_REQUISICIONParameter);
         }
+    
+        public virtual ObjectResult<TRAZA_BOTONES_Result> TRAZA_BOTONES(Nullable<int> cOD_REQUISICION, string cAMPO_REQUISICION)
+        {
+            var cOD_REQUISICIONParameter = cOD_REQUISICION.HasValue ?
+                new ObjectParameter("COD_REQUISICION", cOD_REQUISICION) :
+                new ObjectParameter("COD_REQUISICION", typeof(int));
+    
+            var cAMPO_REQUISICIONParameter = cAMPO_REQUISICION != null ?
+                new ObjectParameter("CAMPO_REQUISICION", cAMPO_REQUISICION) :
+                new ObjectParameter("CAMPO_REQUISICION", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TRAZA_BOTONES_Result>("TRAZA_BOTONES", cOD_REQUISICIONParameter, cAMPO_REQUISICIONParameter);
+        }
     }
 }

@@ -181,6 +181,9 @@
     <Compile Include="REQUISICION_ENTITY\TIPO_NECESIDAD.cs">
       <DependentUpon>GESTION_HUMANA_HITSSEntities2.tt</DependentUpon>
     </Compile>
+    <Compile Include="REQUISICION_ENTITY\TRAZA_BOTONES_Result.cs">
+      <DependentUpon>GESTION_HUMANA_HITSSEntities2.tt</DependentUpon>
+    </Compile>
     <Compile Include="TIPO_SOPORTES_REP.cs" />
     <Compile Include="CONTEXTO.cs" />
     <Compile Include="MAPEOS\MAPEOS_SOPORTES.cs" />
@@ -207,6 +210,10 @@
     <ProjectReference Include="..\MODELO_DATOS\MODELO_DATOS.csproj">
       <Project>{a410b374-ca26-4c1c-b964-3374282bc812}</Project>
       <Name>MODELO_DATOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UTILS\UTILS.csproj">
+      <Project>{99f08c2b-3228-4511-8ece-eff09372e990}</Project>
+      <Name>UTILS</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -72,6 +72,7 @@ namespace G_H_WEB.Controllers
 
         public ActionResult Detalle(int _idRequisicion, int _tipoRequisicion)
         {
+            Session["requisicion"] = _tipoRequisicion;
 
             if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqPresupuestada))
             {
@@ -94,7 +95,14 @@ namespace G_H_WEB.Controllers
             return RedirectToAction("Index");
         }
 
-
+        [HttpPost]
+        public JsonResult ConsultarTraza(int COD_REQUISICION, string CAMPO_REQUISICION) {
+            REQUISICIONViewModel _sesion = Session["objetoListas"] as REQUISICIONViewModel;
+            List<SelectListItem> LISTA_ARL = _sesion.LIST_NIVEL_RIESGO_ARL;
+            List<SelectListItem> LISTA_ESTADOS = _sesion.LIST_NOMBRE_ESTADO_REQUISICION;
+            List<TRAZA_BOTONES_ENTIDAD> datosTraza= new LOGICA_REQUISICION().TRAZA_BOTONES_LOGICA(COD_REQUISICION, CAMPO_REQUISICION, LISTA_ARL, LISTA_ESTADOS);
+            return Json(datosTraza, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }

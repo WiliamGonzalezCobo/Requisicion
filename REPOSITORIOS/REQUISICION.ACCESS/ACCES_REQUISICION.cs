@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UTILS;
 
 namespace REPOSITORIOS.REQUISICION.ACCESS
 {
@@ -384,6 +385,57 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     USUARIO,
                     oBSERVACIONES
                        ).First().Value;
+            }
+        }
+
+        public List<TRAZA_BOTONES_ENTIDAD> TRAZA_BOTONES_ACESS(int COD_REQUISICION, string CAMPO_REQUISICION)
+        {
+            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            {
+                ObjectResult<TRAZA_BOTONES_Result> RHISTORICO = db.TRAZA_BOTONES(COD_REQUISICION, CAMPO_REQUISICION);
+                List<TRAZA_BOTONES_ENTIDAD> retorno = RHISTORICO.Select(x => new TRAZA_BOTONES_ENTIDAD()
+                {
+                    COD_REQUISICION = x.COD_REQUISICION,
+                    COD_ROL=x.COD_ROL,
+                    COD_NIVEL_RIESGO_ARL=x.COD_NIVEL_RIESGO_ARL,
+                    NOMBRE_CATEGORIA_ED=x.NOMBRE_CATEGORIA_ED,
+                    CARGO_CRITICO=x.CARGO_CRITICO,
+                    COD_JORNADA_LABORAL=x.COD_JORNADA_LABORAL,
+                    HORARIO_LABORAL_DESDE=x.HORARIO_LABORAL_DESDE,
+                    HORARIO_LABORAL_HASTA=x.HORARIO_LABORAL_HASTA,
+                    COD_DIA_LABORAL_DESDE=x.COD_DIA_LABORAL_DESDE,
+                    COD_DIA_LABORAL_HASTA=x.COD_DIA_LABORAL_HASTA,
+                    SALARIO_FIJO =x.SALARIO_FIJO,
+                    PORCENTAJE_SALARIO_FIJO=x.PORCENTAJE_SALARIO_FIJO,
+                    SALARIO_VARIABLE=x.SALARIO_VARIABLE,
+                    PORCENTAJE_SALARIO_VARIABLE=x.PORCENTAJE_SALARIO_VARIABLE,
+                    SOBREREMUNERACION=x.SOBREREMUNERACION,
+                    PORCENTAJE_SOBREREMUNERACION=x.PORCENTAJE_SOBREREMUNERACION,
+                    EXTRA_FIJA = x.EXTRA_FIJA,
+                    RECARGO_NOCTURNO=x.RECARGO_NOCTURNO,
+                    MEDIO_TRANSPORTE=x.MEDIO_TRANSPORTE,
+                    SALARIO_TOTAL=x.SALARIO_TOTAL,
+                    BONO_ANUAL=x.BONO_ANUAL,
+                    NUMERO_SALARIOS=x.NUMERO_SALARIOS,
+                    MESES_GARANTIZADOS=x.MESES_GARANTIZADOS,
+                    COD_TIPO_SALARIO=x.COD_TIPO_SALARIO,
+                    FACTOR_PRESTACIONAL=x.FACTOR_PRESTACIONAL,
+                    INGRESO_PROM_MENSUAL=x.INGRESO_PROM_MENSUAL,
+                    MERCADO=x.MERCADO,
+                    COD_CATEGORIA=x.COD_CATEGORIA,
+                    PUNTO_MEDIO_80=x.PUNTO_MEDIO_80,
+                    PUNTO_MEDIO_100=x.PUNTO_MEDIO_100,
+                    PUNTO_MEDIO_120=x.PUNTO_MEDIO_120,
+                    POSICIONAMIENTO=x.POSICIONAMIENTO,
+                    USUARIO_REGISTRO =x.USUARIO_REGISTRO,
+                    FECHA_REGISTRO=x.FECHA_REGISTRO.ToShortDateString(),
+                    COD_ESTADO=x.COD_ESTADO,
+                    DIA_LABORAL_DESDE=x.DIA_LABORAL_DESDE,
+                    DIA_LABORAL_HASTA=x.DIA_LABORAL_HASTA,
+                    NOMBRE_JORNADA_LABORAL=x.NOMBRE_JORNADA_LABORAL,
+                    NOMBRE_TIPO_SALARIO=x.NOMBRE_TIPO_SALARIO
+                }).ToList();
+                return retorno;
             }
         }
     }
