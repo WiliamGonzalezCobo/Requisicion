@@ -63,6 +63,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                 ObjectResult<CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result> resultadoSP = 
                     db.CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION(_FILTRO.idUsuario, _FILTRO.porUsuario,_FILTRO.cod_estado_requisicion);
                 List<REQUISICIONViewModel> retorno = resultadoSP.ToList().Select(x => new REQUISICIONViewModel() {
+                    NOMBRES_USUARIO = x.Nombres,
                     COD_REQUISICION=x.COD_REQUISICION,
                     COD_ESTADO_REQUISICION=x.COD_ESTADO_REQUISICION??0,
                     USUARIO_CREACION=x.USUARIO_CREACION,
@@ -73,6 +74,9 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     NOMBRE_TIPO_REQUISICION=x.NOMBRE_REQUISICION,
                     FECHA_CREACION=x.FECHA_CREACION.Value.ToShortDateString(),
                     NOMBRE_ESTADO_REQUISICION=x.NOMBRE_ESTADO,
+                    NUMERO_DOCUMENTO_EMPLEADO = x.NUMERO_DOCUMENTO_EMPLEADO,
+                    NOMBRE_EMPLEADO = x.NOMBRE_EMPLEADO,
+                    COLORES_ESTADOS=x.Color
                     COLORES_ESTADOS=x.Color,
                     ES_MODIFICACION=x.ES_MODIFICACION??false
                 }).ToList();
