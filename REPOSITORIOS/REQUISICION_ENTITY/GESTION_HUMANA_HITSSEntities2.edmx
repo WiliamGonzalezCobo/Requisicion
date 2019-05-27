@@ -405,6 +405,9 @@
           <Parameter Name="ID_USUARIO" Type="varchar" Mode="In" />
           <Parameter Name="OBSERVACION" Type="varchar(max)" Mode="In" />
         </Function>
+        <Function Name="CONSULTA_NOTIFICACIONES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION">
+          <Parameter Name="COD_USUARIO" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICION">
           <Parameter Name="COD_USUARIO" Type="varchar" Mode="In" />
           <Parameter Name="Usuario" Type="varchar" Mode="In" />
@@ -813,6 +816,9 @@
             <End Role="TIPO" EntitySet="TIPO" />
             <End Role="REQUISICION" EntitySet="REQUISICION" />
           </AssociationSet>
+          <FunctionImport Name="CONSULTA_NOTIFICACIONES" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTA_NOTIFICACIONES_Result)">
+            <Parameter Name="COD_USUARIO" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="CONSULTAR_COMENTARIO_Result">
           <Property Type="Int32" Name="COD_COMENTARIO" Nullable="false" />
@@ -1360,6 +1366,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="CONSULTA_NOTIFICACIONES_Result">
+          <Property Type="String" Name="NOMBRE_REQUISICION" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="CANTIDAD" Nullable="true" />
+          <Property Type="Int32" Name="TOTAL" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1822,6 +1833,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CONSULTA_NOTIFICACIONES" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTA_NOTIFICACIONES">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTA_NOTIFICACIONES_Result">
+                <ScalarProperty Name="NOMBRE_REQUISICION" ColumnName="NOMBRE_REQUISICION" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -801,5 +801,9 @@ namespace LOGICA.REQUISICION_LOGICA
             }
             return OBJETO_TRAZA;
         }
+
+        public List<CONSULTA_NOTIFICACIONES_ENTIDAD> CONSULTA_NOTIFICACIONES_LOGICA(string COD_USUARIO) {
+            return new ACCES_REQUISICION().CONSULTA_NOTIFICACIONES_ACCESS(COD_USUARIO);
+        }
     }
 }

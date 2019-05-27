@@ -105,5 +105,9 @@ namespace G_H_WEB.Controllers
             return Json(datosTraza, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ConsultarModificaciones(string COD_USUARIO) {
+            List<CONSULTA_NOTIFICACIONES_ENTIDAD> datosmodificacion = new LOGICA_REQUISICION().CONSULTA_NOTIFICACIONES_LOGICA(COD_USUARIO);
+            return Json(datosmodificacion, JsonRequestBehavior.AllowGet);
+        }
     }
 }

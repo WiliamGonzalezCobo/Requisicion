@@ -1,9 +1,11 @@
 ﻿@model IEnumerable<MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel>
 @using UTILS.Settings
-
+@using MODELO_DATOS.MODELO_REQUISICION;
 @{
     //ViewBag.Title = "retiros_buscar";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+      ViewBag.LISTA_PRINCIPAL = Model as List<REQUISICIONViewModel>;
 }
 
 <script src="~/Scripts/jquery.dataTables.min.js"></script>
@@ -244,9 +246,10 @@
 
 <script type="text/javascript">
 
-
     $(document).ready(function () {
-
+        @*var InfoNotificaciones = JsonConvert.SerializeObject(@LISTA_PRINCIPAL);*@
+        @*var xxx= JSON.parse('@Html.Raw(Json.Encode(@ViewBag.LISTA_PRINCIPAL))');
+        console.log(xxx);*@
 
         var table = $('#tblRequisiciones').DataTable({
             paging: false,
@@ -264,9 +267,9 @@
 
 
         $('#txtFiltroFecha').change(function () {
-            if (table.column(3).search() !== this.value) {
+            if (table.column(4).search() !== this.value) {
                 table
-                    .column(3)
+                    .column(4)
                     .search(this.value.split('-').reverse().join('/'))
                     .draw();
             }
@@ -283,36 +286,20 @@
             }
         });
 
-
-
-
-        //$('#filtroTipo').change(function () {
-        //    var buscar = $('#filtroTipo option:selected').text();
-        //    if (this.selectedIndex == 0) { buscar = ""; }
-        //        if (table.column(2).search() !== this.value) {
-        //            table
-        //                .column(2)
-        //                .search(buscar)
-        //                .draw();
-        //        }
-        //    $('.dataTables_empty').css("display", "none");
-        //});
-
-
-
-
-        $('#filtroEstados').change(function () {
+        $('#filtroEstados').on('change', function () {
             debugger;
+            if ($('#filtroEstados option:selected').val() == "") {
+                table.column(5).search("").draw();
+            }
+            else {
+                table.column(5).search($('#filtroEstados option:selected').text()).draw();
+            }
+            @*debugger;
             var buscar = $('#filtroEstados').val();
             var url = '@Url.Action("filtros", "REQUISICION", new { filtro = "valor_filtro" })';
-            window.location.href = url.replace('valor_filtro', buscar);
+            window.location.href = url.replace('valor_filtro', buscar);*@
         });
 
-        @*$("#filtroPorUsuario").on("click", function () {
-            var buscar = $("#filtroPorUsuarioValor").val();
-            var url = '@Url.Action("buscarPorUsuario", "REQUISICION", new { filtro = "valor_filtro" })';
-            window.location.href = url.replace('valor_filtro', buscar);
-        });*@
 
         $('.dataTables_filter').css("display", "none");
         $('.dataTables_info').css("display", "none");
