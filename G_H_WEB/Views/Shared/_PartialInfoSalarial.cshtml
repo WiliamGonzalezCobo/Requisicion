@@ -6,12 +6,14 @@
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.SALARIO_FIJO, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.SALARIO_FIJO, new { htmlAttributes = new { @class = "form-control E_SALARIO_FIJO CALCULO_TOTAL" } })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('SALARIO_FIJO')">  <i class="fa fa-check btn_centar"></i></span>
             @Html.ValidationMessageFor(model => model.SALARIO_FIJO)
         </div>
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.PORCENTAJE_SALARIO_FIJO, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.PORCENTAJE_SALARIO_FIJO, new { htmlAttributes = new { @class = "form-control P_SALARIO_FIJO", disabled = deshabilitar } })
-            @Html.HiddenFor(model => model.PORCENTAJE_SALARIO_FIJO, new { @class = "P_SALARIO_FIJO" } )
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('PORCENTAJE_SALARIO_FIJO')">  <i class="fa fa-check btn_centar"></i></span>
+            @Html.HiddenFor(model => model.PORCENTAJE_SALARIO_FIJO, new { @class = "P_SALARIO_FIJO" })
             @Html.ValidationMessageFor(model => model.PORCENTAJE_SALARIO_FIJO)
         </div>
     </div>
@@ -20,11 +22,13 @@
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.SALARIO_VARIABLE, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.SALARIO_VARIABLE, new { htmlAttributes = new { @class = "form-control S_VARIABLE CALCULO_TOTAL" } })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('SALARIO_VARIABLE')">  <i class="fa fa-check btn_centar"></i></span>
             @Html.ValidationMessageFor(model => model.SALARIO_VARIABLE)
         </div>
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.PORCENTAJE_SALARIO_VARIABLE, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.PORCENTAJE_SALARIO_VARIABLE, new { htmlAttributes = new { @class = "form-control P_VARIABLE CALCULO_TOTAL", disabled = deshabilitar } })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('PORCENTAJE_SALARIO_VARIABLE')">  <i class="fa fa-check btn_centar"></i></span>
             @Html.HiddenFor(model => model.PORCENTAJE_SALARIO_VARIABLE, new { @class = "P_VARIABLE" })
             @Html.ValidationMessageFor(model => model.PORCENTAJE_SALARIO_VARIABLE)
         </div>
@@ -34,11 +38,13 @@
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.SOBREREMUNERACION, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.SOBREREMUNERACION, new { htmlAttributes = new { @class = "form-control E_SOBREREMUNERACION CALCULO_TOTAL" } })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('SOBREREMUNERACION')">  <i class="fa fa-check btn_centar"></i></span>
             @Html.ValidationMessageFor(model => model.SOBREREMUNERACION)
         </div>
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.PORCENTAJE_SOBREREMUNERACION, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.PORCENTAJE_SOBREREMUNERACION, new { htmlAttributes = new { @class = "form-control P_SOBREREMUNERACION" } })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('PORCENTAJE_SOBREREMUNERACION')">  <i class="fa fa-check btn_centar"></i></span>
             @Html.ValidationMessageFor(model => model.PORCENTAJE_SOBREREMUNERACION)
         </div>
     </div>
@@ -47,11 +53,13 @@
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.EXTRA_FIJA, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.EXTRA_FIJA, new { htmlAttributes = new { @class = "form-control E_EXTRA_FIJA CALCULO_TOTAL" } })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('EXTRA_FIJA')">  <i class="fa fa-check btn_centar"></i></span>
             @Html.ValidationMessageFor(model => model.EXTRA_FIJA)
         </div>
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.RECARGO_NOCTURNO, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.RECARGO_NOCTURNO, new { htmlAttributes = new { @class = "form-control E_RECARGO_NOCTURNO CALCULO_TOTAL" } })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('RECARGO_NOCTURNO')">  <i class="fa fa-check btn_centar"></i></span>
             @Html.ValidationMessageFor(model => model.RECARGO_NOCTURNO)
         </div>
     </div>
@@ -65,6 +73,7 @@
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.SALARIO_TOTAL, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.SALARIO_TOTAL, new { htmlAttributes = new { @class = "form-control S_TOTAL", disabled = deshabilitar } })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('SALARIO_TOTAL')">  <i class="fa fa-check btn_centar"></i></span>
             @Html.HiddenFor(model => model.SALARIO_TOTAL, new { @class = "S_TOTAL" })
             @Html.ValidationMessageFor(model => model.SALARIO_TOTAL)
         </div>
@@ -74,12 +83,14 @@
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.BONO_ANUAL, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.BONO_ANUAL, new { htmlAttributes = new { @class = "form-control E_BONO_ANUAL", disabled = deshabilitar } })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('BONO_ANUAL')">  <i class="fa fa-check btn_centar"></i></span>
             @Html.HiddenFor(model => model.BONO_ANUAL)
             @Html.ValidationMessageFor(model => model.BONO_ANUAL)
         </div>
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.NUMERO_SALARIOS, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.NUMERO_SALARIOS, new { htmlAttributes = new { @class = "form-control" } })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('NUMERO_SALARIOS')">  <i class="fa fa-check btn_centar"></i></span>
             @Html.ValidationMessageFor(model => model.NUMERO_SALARIOS)
         </div>
     </div>
@@ -88,11 +99,13 @@
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.MESES_GARANTIZADOS, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.MESES_GARANTIZADOS, new { htmlAttributes = new { @class = "form-control" } })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('MESES_GARANTIZADOS')">  <i class="fa fa-check btn_centar"></i></span>
             @Html.ValidationMessageFor(model => model.MESES_GARANTIZADOS)
         </div>
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.LIST_NOMBRE_TIPO_SALARIO, new { htmlAttributes = new { @class = "form-control" } })
             @Html.DropDownListFor(model => model.COD_TIPO_SALARIO, Model.LIST_NOMBRE_TIPO_SALARIO, "-- Seleccione --", new { @class = "form-control" })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_TIPO_SALARIO')">  <i class="fa fa-check btn_centar"></i></span>
             @Html.ValidationMessageFor(model => model.COD_TIPO_SALARIO)
         </div>
     </div>
@@ -101,12 +114,14 @@
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.FACTOR_PRESTACIONAL, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.FACTOR_PRESTACIONAL, new { htmlAttributes = new { @class = "form-control E_FACTOR_PRESTACIONAL", disabled = deshabilitar } })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('FACTOR_PRESTACIONAL')">  <i class="fa fa-check btn_centar"></i></span>
             @Html.HiddenFor(model => model.FACTOR_PRESTACIONAL)
             @Html.ValidationMessageFor(model => model.FACTOR_PRESTACIONAL)
         </div>
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.INGRESO_PROM_MENSUAL, htmlAttributes: new { @class = "control-label" })
-            @Html.EditorFor(model => model.INGRESO_PROM_MENSUAL, new { htmlAttributes = new { @class = "form-control E_INGRESO_PROM_MENSUAL", disabled = deshabilitar} })
+            @Html.EditorFor(model => model.INGRESO_PROM_MENSUAL, new { htmlAttributes = new { @class = "form-control E_INGRESO_PROM_MENSUAL", disabled = deshabilitar } })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('INGRESO_PROM_MENSUAL')">  <i class="fa fa-check btn_centar"></i></span>
             @Html.HiddenFor(model => model.INGRESO_PROM_MENSUAL, new { @class = "E_INGRESO_PROM_MENSUAL" })
             @Html.ValidationMessageFor(model => model.INGRESO_PROM_MENSUAL)
         </div>
@@ -116,12 +131,14 @@
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.INGRESO_PROM_ANUAL, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.INGRESO_PROM_ANUAL, new { htmlAttributes = new { @class = "form-control E_INGRESO_PROM_ANUAL", disabled = deshabilitar } })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('INGRESO_PROM_ANUAL')">  <i class="fa fa-check btn_centar"></i></span>
             @Html.HiddenFor(model => model.INGRESO_PROM_ANUAL, new { @class = "E_INGRESO_PROM_ANUAL" })
             @Html.ValidationMessageFor(model => model.INGRESO_PROM_ANUAL)
         </div>
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.MERCADO, new { htmlAttributes = new { @class = "form-control" } })
             @Html.DropDownListFor(model => model.COD_MERCADO, Model.LIST_MERCADO, "-- Seleccione --", new { @class = "form-control" })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('MERCADO')">  <i class="fa fa-check btn_centar"></i></span>
             @Html.ValidationMessageFor(model => model.COD_MERCADO)
         </div>
     </div>
@@ -130,6 +147,7 @@
         <div class="form-group col-md-12 col-sm-12">
             @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA, new { htmlAttributes = new { @class = "form-control" } })
             @Html.DropDownListFor(model => model.COD_CATEGORIA, Model.LIST_NOMBRE_CATEGORIA, "-- Seleccione --", new { @class = "form-control" })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('CATRGORIA')">  <i class="fa fa-check btn_centar"></i></span>
             @Html.ValidationMessageFor(model => model.COD_CATEGORIA)
         </div>
     </div>
@@ -176,6 +194,7 @@
         <div class="form-group col-md-12 col-sm-12">
             @Html.LabelFor(model => model.POSICIONAMIENTO, htmlAttributes: new { @class = "control-label col-md-12" })
             @Html.EditorFor(model => model.POSICIONAMIENTO, new { htmlAttributes = new { @class = "form-control", disabled = deshabilitar } })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('POSICIONAMIENTO')">  <i class="fa fa-check btn_centar"></i></span>
             @Html.HiddenFor(model => model.POSICIONAMIENTO)
             @Html.ValidationMessageFor(model => model.POSICIONAMIENTO)
         </div>
@@ -183,3 +202,9 @@
 </section>
 
 <script src="~/js/CALCULOS_SALARIOS.js"></script>
+<style>
+    .trazaCentrar {
+        position:absolute !important;
+        top:32px !important;
+    }
+</style>

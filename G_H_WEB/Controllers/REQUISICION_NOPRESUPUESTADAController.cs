@@ -37,7 +37,7 @@ namespace G_H_WEB.Controllers
             ViewBag.resultadoPopUpNoJefe = fromPost;
 
             //FIN POP UP
-
+            ViewBag.Busca_USUARIOS = new LOGICA_REQUISICION().CONSULTAR_EMPLEADOS_LOGICA();
             return View(model);
         }
         [HttpPost]
@@ -73,8 +73,7 @@ namespace G_H_WEB.Controllers
                             Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos));
                             _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
                         }
-                        else
-                        {
+                        else {
                             _resultadoIdReguisicion = new LOGICA_REQUISICION().APROBAR_REQUISICION_LOGICA(modelDatos.COD_REQUISICION, User.Identity.GetUserId(), modelDatos.OBSERVACION);
                         }
                         npc.METODO = "Aprobar";
@@ -84,7 +83,8 @@ namespace G_H_WEB.Controllers
                         npc.METODO = "Rechazar";
                         break;
                     case "Enviar":
-                         Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos));
+
+                        Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos));
                         _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
                         npc.METODO = "Enviar";
                         break;
@@ -112,6 +112,7 @@ namespace G_H_WEB.Controllers
                 return RedirectToAction("Index");
             }
         }
-
+  
+          
     }
 }

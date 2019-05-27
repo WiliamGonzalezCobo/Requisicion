@@ -72,5 +72,9 @@ namespace MODELO_DATOS.MODELO_REQUISICION.LISTAS_API
         public decimal? PUNTO_MEDIO_100_PORCIENTO { get; set; }
         public decimal? PUNTO_MEDIO_120_PORCIENTO { get; set; }
         public decimal? POSICIONAMIENTO { get; set; }
+        public String diaS_LABORALES_DESDE { get; set; }
+        public String diaS_LABORALES_HASTA { get; set; }
+        public String horariO_DESDE { get; set; }
+        public String horariO_HASTA { get; set; }
     }
 }

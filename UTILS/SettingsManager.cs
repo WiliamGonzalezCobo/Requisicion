@@ -66,6 +66,10 @@ namespace UTILS.Settings
         {
             get { return Convert.ToInt32(GetSettings("CodTipoReqLicencia")); }
         }
+        public static int CodTipoReqModificacion
+        {
+            get { return Convert.ToInt32(GetSettings("CodTipoReqModificacion")); }
+        }
 
         public static int EstadoAporbadoController
         {

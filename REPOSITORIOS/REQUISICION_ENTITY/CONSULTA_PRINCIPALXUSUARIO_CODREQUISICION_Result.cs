@@ -13,6 +13,7 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
     
     public partial class CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result
     {
+        public string Nombres { get; set; }
         public int COD_REQUISICION { get; set; }
         public Nullable<int> COD_ESTADO_REQUISICION { get; set; }
         public string USUARIO_CREACION { get; set; }
@@ -24,5 +25,8 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
         public Nullable<System.DateTime> FECHA_CREACION { get; set; }
         public string NOMBRE_ESTADO { get; set; }
         public string Color { get; set; }
+        public Nullable<bool> ES_MODIFICACION { get; set; }
+        public string NOMBRE_EMPLEADO { get; set; }
+        public string NUMERO_DOCUMENTO_EMPLEADO { get; set; }
     }
 }

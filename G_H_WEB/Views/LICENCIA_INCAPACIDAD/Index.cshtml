@@ -6,7 +6,8 @@
     {
         ViewBag.Title = "Crear " + ViewBag.RequisicionNombre;
     }
-    else {
+    else
+    {
         ViewBag.Title = "Crear Requisicion ";
     }
 
@@ -63,6 +64,7 @@
                                 @Html.Partial("_PartialGeneralProPuestaLi", Model)
                                 @Html.Partial("_PartialInfoSalarialLi", Model)
                                 @Html.Partial("_PartialInfoSalarialLi2", Model)
+                                @Html.Partial("_PartialAutorizacion", Model)
 
                             }
                             if (User.IsInRole(SettingsManager.PerfilRRHH))
@@ -117,61 +119,96 @@
                 </div>
             </div>
         </div>
-        </div>
-        <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title _metodoDefecto" id="ModalLabel">Se ha presentado un error</h5>
-                        <h5 class="modal-title _metodoCrear" id="ModalLabel">Requisición Creada Con éxito</h5>
-                        <h5 class="modal-title __metodoAprobar" id="ModalLabel">Requisición Aprobada Con éxito</h5>
-                        <h5 class="modal-title __metodoModificar" id="ModalLabel">Requisición Modificada Con éxito</h5>
-                        <h5 class="modal-title __metodoRechazar" id="ModalLabel">Requisición Rechazada Con éxito</h5>
-                        <h5 class="modal-title __metodoEnviar" id="ModalLabel">Requisición Enviada Con éxito</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <br />
-                        <h2 class="_metodoCrear">Se créo la requisicion para el cargo de  <span id="mensaje1"></span> con ID <span id="mensaje2"></span></h2>
-                        <h2 class="__metodoAprobar">Se aprobó la requisicion con ID <span id="mensaje_aprobar"></span></h2>
-                        <h2 class="__metodoModificar">Se modifico la requisicion con ID <span id="mensaje_modificar"></span></h2>
-                        <h2 class="__metodoRechazar">Se Rechazado la requisicion con ID <span id="mensaje_rechazar"></span></h2>
-                        <h2 class="_metodoDefecto">Por favor contacte al <span id="mensaje_rechazar">administrador</span> del sistema</h2>
-                        <h2 class="__metodoEnviar">Se Envio la requisicion con ID <span id="mensaje_Enviar"></span></h2>
-                    </div>
+    </div>
+    <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title _metodoDefecto" id="ModalLabel">Se ha presentado un error</h5>
+                    <h5 class="modal-title _metodoCrear" id="ModalLabel">Requisición Creada Con éxito</h5>
+                    <h5 class="modal-title __metodoAprobar" id="ModalLabel">Requisición Aprobada Con éxito</h5>
+                    <h5 class="modal-title __metodoModificar" id="ModalLabel">Requisición Modificada Con éxito</h5>
+                    <h5 class="modal-title __metodoRechazar" id="ModalLabel">Requisición Rechazada Con éxito</h5>
+                    <h5 class="modal-title __metodoEnviar" id="ModalLabel">Requisición Enviada Con éxito</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="ModalCancelNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="ModalLabel">Esta a punto de cancelar la requisición</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-
-                    </div>
-                    <div class="retiros-detalle modal-body">
-                        <br />
-                        <h4>¿Esta Seguro de Cancelarla?</h4>
-
-                        <button type="button" class="filtroPorUsuario btn-cancelar-retriro" data-dismiss="modal" aria-label="Aceptar" onclick="NoCancelarJefe()" style="cursor:pointer;">
-                            No
-
-                        </button>
-                        <button type="button" class="filtroPorUsuario btn-confirmar-retiro" data-dismiss="modal" aria-label="Cancelar" onclick="SiCancelarJefe()" style="cursor:pointer;">
-                            Si
-
-                        </button>
-                    </div>
+                <div class="modal-body">
+                    <br />
+                    <h2 class="_metodoCrear">Se créo la requisicion para el cargo de  <span id="mensaje1"></span> con ID <span id="mensaje2"></span></h2>
+                    <h2 class="__metodoAprobar">Se aprobó la requisicion con ID <span id="mensaje_aprobar"></span></h2>
+                    <h2 class="__metodoModificar">Se modifico la requisicion con ID <span id="mensaje_modificar"></span></h2>
+                    <h2 class="__metodoRechazar">Se Rechazado la requisicion con ID <span id="mensaje_rechazar"></span></h2>
+                    <h2 class="_metodoDefecto">Por favor contacte al <span id="mensaje_rechazar">administrador</span> del sistema</h2>
+                    <h2 class="__metodoEnviar">Se Envio la requisicion con ID <span id="mensaje_Enviar"></span></h2>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="ModalCancelNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Esta a punto de cancelar la requisición</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+                <div class="retiros-detalle modal-body">
+                    <br />
+                    <h4>¿Esta Seguro de Cancelarla?</h4>
+
+                    <button type="button" class="filtroPorUsuario btn-cancelar-retriro" data-dismiss="modal" aria-label="Aceptar" onclick="NoCancelarJefe()" style="cursor:pointer;">
+                        No
+
+                    </button>
+                    <button type="button" class="filtroPorUsuario btn-confirmar-retiro" data-dismiss="modal" aria-label="Cancelar" onclick="SiCancelarJefe()" style="cursor:pointer;">
+                        Si
+
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade ModalTraza" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h7 class="modal-title" id="ModalLabelTraza"></h7>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="row modal-body">
+                <div class="col-md-12 col-lg-12 col-xl-12 table-responsive">
+                    Modificaciones
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Cod Requisicion</th>
+                                <th class="nombre_traza"></th>
+                                <th>Usuario Registro</th>
+                                <th>Fecha Registro</th>
+                                <th>Cod Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bodytraza">
+
+                        </tbody>
+                    </table>
+                </div>
+              
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script type="text/javascript">
 
@@ -179,9 +216,6 @@
         //$("#CARGO_CRITICO").attr("disabled", true);
         $('#COD_CARGO').change(function () {
             var id = $(this).val();
-            //$('#loading').loading({
-            //    message: 'Cargando...'
-            //});
             $('body').loading({
                 message: 'Cargando...'
             });
@@ -364,7 +398,7 @@
         $("#COD_CATEGORIA_ED").val(API.COD_CATEGORIA_EVALUACION_DESEMPENO);
         $("#hdCOD_CATEGORIA_ED").val(API.COD_CATEGORIA_EVALUACION_DESEMPENO);
 
-        
+
         if (API.CARGO_CRITICO == "1") {
             $('#CARGO_CRITICO')[0].checked = true;
             $("#CARGO_CRITICO").val(true);
@@ -396,7 +430,7 @@
 
         $("#PORCENTAJE_SALARIO_FIJO").val(API.PORCENTAJE_SALARIO_FIJO);
         $("#hdPORCENTAJE_SALARIO_FIJO").val(API.PORCENTAJE_SALARIO_FIJO);
-        
+
         $("#SALARIO_VARIABLE").val(API.SALARIO_VARIABLE);
         $("#hdSALARIO_VARIABLE").val(API.SALARIO_VARIABLE);
 
@@ -461,7 +495,33 @@
         $("#hdPOSICIONAMIENTO").val(API.POSICIONAMIENTO);
     }
 
-
+    function ConsultaTraza(CAMPO_REQUISICION) {
+        debugger;
+        $(".bodytraza").empty();
+        $(".nombre_traza").text("");
+        $("#ModalLabelTraza").text("TRAZA " + CAMPO_REQUISICION.replace(/_/g, " "))
+        $(".nombre_traza").text(CAMPO_REQUISICION.replace(/_/g," "));
+        var COD_REQUISICION = @Model.COD_REQUISICION;
+            $('body').loading({
+                message: 'Cargando...'
+            });
+            $.ajax({
+                url: "@Url.Action("ConsultarTraza", "REQUISICION")",
+                type: 'POST',
+                data: { COD_REQUISICION: COD_REQUISICION, CAMPO_REQUISICION: CAMPO_REQUISICION},
+                success: function (respuesta) {
+                    $.each(respuesta, function (key, value) {
+                        $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION +"</td > </tr > ");  
+                    });
+                    debugger;
+                    $('body').loading('stop');
+                    $('.ModalTraza').modal("show");
+                },
+                error: function (er){
+                    $('body').loading('stop');
+                }
+            });
+        }
 
 </script>
 

@@ -37,8 +37,9 @@ namespace G_H_WEB.Controllers
                 //Logica para el POP UP
                 ViewBag.resultadoInsertExitosoOno = fromPost != null ? !fromPost.RESULTADO.Equals(0) : false;
                 ViewBag.resultadoPopUpNoJefe = fromPost;
-
-            }catch (Exception ex){
+                ViewBag.Busca_USUARIOS = new LOGICA_REQUISICION().CONSULTAR_EMPLEADOS_LOGICA();
+            }
+            catch (Exception ex){
                 ViewBag.Error = ex.Message;
             }
 
@@ -51,6 +52,7 @@ namespace G_H_WEB.Controllers
             {
                 int _resultadoIdReguisicion = 0;
                 modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqPresupuestada;
+               
                 modelDatos.USUARIO_CREACION = User.Identity.Name;
                 modelDatos.USUARIO_MODIFICACION = User.Identity.Name;//      martinezluir esto es para test toca hacer la logica
                 REQUISICIONViewModel listas = new REQUISICIONViewModel();

@@ -151,7 +151,8 @@ namespace REPOSITORIOS.LICENCIA_INCAPACIDAD.ACCESS
                                         , model.PUNTO_MEDIO_120
                                         , model.POSICIONAMIENTO.ToString() ?? ""
                                         , model.USUARIO_CREACION ?? ""
-                                        , model.COD_ESTADO_REQUISICION);
+                                        , model.COD_ESTADO_REQUISICION
+                                        ,model.ES_MODIFICACION);
 
             }
             return "Exitoso";

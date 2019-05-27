@@ -113,6 +113,22 @@ namespace LOGICA.LOGICA_REQUISICION
             List<PUNTOS_MEDIO>respuesta = new BASE_PROXY(urlApi + "PUESTOS").Get<List<PUNTOS_MEDIO>>(out status, parameters);
             return respuesta;
         }
+
+        public List<EMPLEADOS> CONSULTAR_EMPLEADOS_API() {
+            HttpStatusCode status;
+            List<EMPLEADOS> respuesta = new BASE_PROXY(urlApi + "EMPLEADOS").Get<List<EMPLEADOS>>(out status, null);
+            return respuesta;
+        }
+
+        public PUNTOS_MEDIO CONSULTAR_PUESTOS_POR_CEDULA_API(string DOCUMENTO_NUMERO)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("DOCUMENTO_NUMERO", DOCUMENTO_NUMERO);
+            HttpStatusCode status;
+            PUNTOS_MEDIO respuesta = new BASE_PROXY(urlApi + "PUESTOS").Get<PUNTOS_MEDIO>(out status, parameters);
+            return respuesta;
+        }
+
     }
 
 
