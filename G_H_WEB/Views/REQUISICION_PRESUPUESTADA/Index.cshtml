@@ -160,7 +160,11 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        debugger;
+        $('.close').click(function () {
+            console.log('entro al close')
+             window.location.href = '@Url.Action("Index", "REQUISICION")';
+        });
+
         if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {
             if (@Model.COD_REQUISICION!= 0) {
                 $("#submitButtonCrear").text("Modificar Requisición");
