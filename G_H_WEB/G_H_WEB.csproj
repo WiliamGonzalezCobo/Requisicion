@@ -610,6 +610,7 @@
     <Content Include="Scripts\loading.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\REQUISICIONES_PRESUPUESTADAS.js" />
+    <Content Include="Scripts\transversal.js" />
     <Content Include="Scripts\ValidacionDecimalesMVC.js" />
     <Content Include="Views\components\documentos-relacionados.html" />
     <Content Include="Views\components\head.html" />

@@ -71,7 +71,9 @@
             return this.optional(element) ||
                 !/Invalid|NaN/.test(new Date(miDate[2], iMes.toString(), miDate[0]));
         }
-
+        $('#ModalCreacionNoJefe').click(function () {
+             window.location.href = '@Url.Action("Index", "REQUISICION")';
+        });
 
 
     </script>
