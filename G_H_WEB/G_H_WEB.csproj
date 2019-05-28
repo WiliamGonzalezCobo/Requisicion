@@ -521,6 +521,7 @@
     <Content Include="Content\loading.css" />
     <Content Include="css\gestion-humana.css" />
     <Content Include="css\modal-retiros.css" />
+    <Content Include="css\notifications.css" />
     <Content Include="css\RADIOBUTTON_CHECK.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -610,7 +611,7 @@
     <Content Include="Scripts\loading.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\REQUISICIONES_PRESUPUESTADAS.js" />
-    <Content Include="Scripts\transversal.js" />
+    <!-- <Content Include="Scripts\transversal.js" /> -->
     <Content Include="Scripts\ValidacionDecimalesMVC.js" />
     <Content Include="Views\components\documentos-relacionados.html" />
     <Content Include="Views\components\head.html" />

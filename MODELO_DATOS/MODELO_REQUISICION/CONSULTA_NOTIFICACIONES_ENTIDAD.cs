@@ -10,6 +10,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         public string NOMBRE_REQUISICION { get; set; }
         public string CANTIDAD { get; set; }
         public string TOTAL { get; set; }
+        public Boolean ES_MODIFICACION { get; set; }
 
     }
 }

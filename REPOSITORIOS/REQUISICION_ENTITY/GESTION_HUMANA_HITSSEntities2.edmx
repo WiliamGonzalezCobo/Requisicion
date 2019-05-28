@@ -1368,6 +1368,7 @@
         </Association>
         <ComplexType Name="CONSULTA_NOTIFICACIONES_Result">
           <Property Type="String" Name="NOMBRE_REQUISICION" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="ES_MODIFICACION" Nullable="true" />
           <Property Type="Int32" Name="CANTIDAD" Nullable="true" />
           <Property Type="Int32" Name="TOTAL" Nullable="true" />
         </ComplexType>
@@ -1837,6 +1838,7 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTA_NOTIFICACIONES_Result">
                 <ScalarProperty Name="NOMBRE_REQUISICION" ColumnName="NOMBRE_REQUISICION" />
+                <ScalarProperty Name="ES_MODIFICACION" ColumnName="ES_MODIFICACION" />
                 <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
                 <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
               </ComplexTypeMapping>

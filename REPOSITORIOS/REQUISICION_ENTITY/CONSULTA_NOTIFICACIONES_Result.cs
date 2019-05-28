@@ -14,6 +14,7 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
     public partial class CONSULTA_NOTIFICACIONES_Result
     {
         public string NOMBRE_REQUISICION { get; set; }
+        public Nullable<bool> ES_MODIFICACION { get; set; }
         public Nullable<int> CANTIDAD { get; set; }
         public Nullable<int> TOTAL { get; set; }
     }

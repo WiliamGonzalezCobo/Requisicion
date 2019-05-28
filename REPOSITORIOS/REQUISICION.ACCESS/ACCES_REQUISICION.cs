@@ -449,7 +449,8 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                 List<CONSULTA_NOTIFICACIONES_ENTIDAD> _ENTIDAD_RETONO = _NOTIFICACIONES.Select(x => new CONSULTA_NOTIFICACIONES_ENTIDAD() {
                     NOMBRE_REQUISICION=x.NOMBRE_REQUISICION,
                     CANTIDAD=x.CANTIDAD.ToString(),
-                    TOTAL=x.TOTAL.ToString()
+                    TOTAL=x.TOTAL.ToString(),
+                    ES_MODIFICACION=x.ES_MODIFICACION??false
 
                 }).ToList();
 
