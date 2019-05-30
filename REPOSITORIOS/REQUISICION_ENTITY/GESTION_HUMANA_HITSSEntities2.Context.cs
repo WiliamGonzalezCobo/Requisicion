@@ -922,5 +922,14 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result>("CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION", cOD_USUARIOParameter, usuarioParameter, cOD_ESTADO_REQUISICIONParameter);
         }
+    
+        public virtual ObjectResult<CONSULTA_NOTIFICACIONES_Result> CONSULTA_NOTIFICACIONES(string cOD_USUARIO)
+        {
+            var cOD_USUARIOParameter = cOD_USUARIO != null ?
+                new ObjectParameter("COD_USUARIO", cOD_USUARIO) :
+                new ObjectParameter("COD_USUARIO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_NOTIFICACIONES_Result>("CONSULTA_NOTIFICACIONES", cOD_USUARIOParameter);
+        }
     }
 }

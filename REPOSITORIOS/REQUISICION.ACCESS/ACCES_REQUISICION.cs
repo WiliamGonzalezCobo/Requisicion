@@ -441,5 +441,21 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                 return retorno;
             }
         }
+
+        public List<CONSULTA_NOTIFICACIONES_ENTIDAD> CONSULTA_NOTIFICACIONES_ACCESS( string COD_USUARIO) {
+            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            {
+                ObjectResult<CONSULTA_NOTIFICACIONES_Result> _NOTIFICACIONES = db.CONSULTA_NOTIFICACIONES( COD_USUARIO );
+                List<CONSULTA_NOTIFICACIONES_ENTIDAD> _ENTIDAD_RETONO = _NOTIFICACIONES.Select(x => new CONSULTA_NOTIFICACIONES_ENTIDAD() {
+                    NOMBRE_REQUISICION=x.NOMBRE_REQUISICION,
+                    CANTIDAD=x.CANTIDAD.ToString(),
+                    TOTAL=x.TOTAL.ToString(),
+                    ES_MODIFICACION=x.ES_MODIFICACION??false
+
+                }).ToList();
+
+                return _ENTIDAD_RETONO;
+            }
+        }
     }
 }
