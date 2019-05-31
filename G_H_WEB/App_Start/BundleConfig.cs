@@ -17,14 +17,17 @@ namespace G_H_WEB
         "~/Scripts/dropzone/css/basic.css",
         "~/Scripts/dropzone/dropzone.css",
          "~/css/modal-retiros.css",
-         "~/Content/loading.css"));
+         "~/Content/loading.css",
+         "~/Content/dataTables.bootstrap4.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/scriptsGH").Include(
                         "~/assets/lib/jquery/jquery-3.3.1.min.js",
                         "~/assets/lib/popper/popper.min.js",
                         "~/assets/lib/bootstrap-4.1.3-dist/bootstrap.min.js",
                         "~/assets/lib/bootstrap-datepicker-1.6.4-dist/js/bootstrap-datepicker.min.js",
-                        "~/Scripts/loading.js"));
+                        "~/Scripts/loading.js", 
+                        "~/Scripts/jquery.dataTables.min.js",
+                        "~/Scripts/dataTables.bootstrap4.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/scriptsGHasset").Include(
                    "~/assets/js/scripts.js"));
