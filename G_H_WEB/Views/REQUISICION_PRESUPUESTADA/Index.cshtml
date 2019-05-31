@@ -10,7 +10,8 @@
     <h4>@ViewBag.Title</h4>
     <div id="IconosRequisicion" class="LSubtitulos col-md-12 col-lg-12 col-xl-12 row" style="margin-bottom:10px;">
 
-        <div class="col-md-3 col-lg-3 col-xl-3">
+
+        @*<div class="col-md-3 col-lg-3 col-xl-3">
             <img src="../../assets/img/presupuestada.png" class="img-responsive maxImagenMenu" />
         </div>
         <div class="col-md-3 col-lg-3 col-xl-3">
@@ -21,9 +22,24 @@
         </div>
         <div class="col-md-3 col-lg-3 col-xl-3">
             <img src="../../assets/img/Licencia.png" class="img-responsive maxImagenMenu" />
-        </div>
+        </div>*@
 
-    </div>
+        <div class="caja_imagenes">
+            <div class="imagen-central">
+                <img src="~/assets/img/signo_presupuestada.png" class="img_presupuestada" /><span class="presupuestada-texto">Presupuestada</span>
+           </div>
+        </div>
+            <div class="col-md-3 col-lg-3 col-xl-3">
+                <img src="~/assets/img/signo_nopresupuestada.png" class="img-responsive maxImagenMenu" />
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-3">
+                <img src="~/assets/img/signo_licencia.png" class="img-responsive maxImagenMenu" />
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-3">
+                <img src="~/assets/img/signo_incapacidad.png" class="img-responsive maxImagenMenu" />
+            </div>
+
+        </div>
 
     <div id="SeccionRequisicionParciales" class="col">
         <div id="CNform">
@@ -68,31 +84,32 @@
                         //Botones
                         <div class="form-group">
                             <div class="col-md-12">
-                                @Html.ActionLink("Cancelar", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "btn-cancelar-retriro col-md-3 " })
+                                @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
                                 @if (User.IsInRole(SettingsManager.PerfilJefe))
                                 {
-                                    <input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="btn-confirmar-retiro col-md-3" />
+                                    <button  name="submitButton" id="submitButtonCrear" class="crear-requisicion"> <span class="crear-requisicion-texto">CREAR REQUISICIÓN</span></button>
+                                    @*<input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="crear-requisicion col-md-3" />*@
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilController))
                                 {
-                                    <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="button" value="Aprobar" class="aprobar-requisicion col-md-3" />
+                                    <input name="submitButton" type="button" value="Modificar" class="aprobar-requisicion col-md-3" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilBp))
                                 {
-                                    <input name="submitButton" type="submit" value="Enviar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="button" value="Enviar" class="aprobar-requisicion col-md-3" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilRRHH))
                                 {
-                                    <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="button" value="Aprobar" class="aprobar-requisicion col-md-3" />
+                                    <input name="submitButton" type="button" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="button" value="Modificar" class="btn-confirmar-retiro col-md-3" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilUSC))
                                 {
-                                    <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="button" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="button" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="button" value="Modificar" class="btn-confirmar-retiro col-md-3" />
                                 }
                             </div>
                         </div>
@@ -193,7 +210,6 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        
 
         if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {
             if (@Model.COD_REQUISICION!= 0) {
@@ -240,7 +256,10 @@
             $('#ModalCreacionNoJefe').modal("show");
         }
 
-
+        $(document).on('submit', 'form', function () {
+            $(this).attr("disabled", true);
+          
+        })
     });
 
 
@@ -320,7 +339,9 @@
                     $('body').loading('stop');
                 }
             });
-        }
+    }
+
+
 </script>
 
 

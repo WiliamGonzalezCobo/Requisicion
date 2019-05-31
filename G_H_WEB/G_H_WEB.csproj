@@ -298,6 +298,10 @@
     <Content Include="assets\img\logo-et.png" />
     <Content Include="assets\img\NoPresupuestada.png" />
     <Content Include="assets\img\presupuestada.png" />
+    <Content Include="assets\img\signo_incapacidad.png" />
+    <Content Include="assets\img\signo_licencia.png" />
+    <Content Include="assets\img\signo_nopresupuestada.png" />
+    <Content Include="assets\img\signo_presupuestada.png" />
     <Content Include="assets\js\scripts.js" />
     <Content Include="assets\lib\bootstrap-4.1.3-dist\bootstrap.min.css" />
     <Content Include="assets\lib\bootstrap-4.1.3-dist\bootstrap.min.js" />
