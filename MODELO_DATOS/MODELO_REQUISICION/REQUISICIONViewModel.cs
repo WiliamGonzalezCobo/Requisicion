@@ -12,7 +12,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
     {
    
         /// <summary>
-        /// codigo unico de la requisicion
+        /// codigo unico de la Requisición
         /// </summary>
         public int COD_REQUISICION { get; set; }
 
@@ -42,11 +42,11 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         public string ORDEN { get; set; }
 
         /// <summary>
-        /// codigo del tipo de la requisicion,(martinezluir)  no se mapea porque es de el filtro
+        /// codigo del tipo de la Requisición,(martinezluir)  no se mapea porque es de el filtro
         /// </summary>
         [Required]
         public int COD_TIPO_REQUISICION { get; set; }
-        [DisplayName("Tipo Requisicion")]
+        [DisplayName("Tipo Requisición")]
         public string NOMBRE_TIPO_REQUISICION { get; set; }
         public List<SelectListItem> LIST_NOMBRE_TIPO_REQUISICION { get; set; }
 
@@ -97,7 +97,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         public DateTime FECHA_FIN { get; set; }
 
         /// <summary>
-        /// indica si se esta modificando la requisicion
+        /// indica si se esta modificando la Requisición
         /// </summary>
         [Required]
         [DisplayName("Es Modificación")]
@@ -124,7 +124,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         public string OBSERVACION_CREACION { get; set; }
 
         /// <summary>
-        /// COD ESTADO DE LA REQUISICION (martinezluir) no se una el text en la base de datos
+        /// COD ESTADO DE LA Requisición (martinezluir) no se una el text en la base de datos
         /// </summary>
         public int COD_ESTADO_REQUISICION { get; set; }
         [DisplayName("Estado")]
@@ -134,14 +134,14 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         public List<SelectListItem> LIST_NOMBRE_ESTADO_REQUISICION { get; set; }
 
         /// <summary>
-        /// USUARIO QUE CREA LA REQUISICION
+        /// USUARIO QUE CREA LA Requisición
         /// </summary>
         [Required]
         [DisplayName("Creado Por")]
         public string USUARIO_CREACION { get; set; }
 
         /// <summary>
-        /// EMAIL DEL USUARIO QUE CREA LA REQUISICION
+        /// EMAIL DEL USUARIO QUE CREA LA Requisición
         /// </summary>
         public string EMAIL_USUARIO_CREACION { get; set; }
 
@@ -153,7 +153,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         public string FECHA_CREACION { get; set; }
 
         /// <summary>
-        /// USUARIO QUE MODIFICA LA REQUISICION
+        /// USUARIO QUE MODIFICA LA Requisición
         /// </summary>
         public string USUARIO_MODIFICACION { get; set; }
 
@@ -195,7 +195,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// CODIGO DE CENTRO DE COSTO
         /// </summary>
         [DisplayName("Ceco")]
-        [RegularExpression("^[0-9]*$", ErrorMessage = "Solo permite numeros")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Solo permite números")]
         public int COD_CECO { get; set; }
         [Required(ErrorMessage = "Centro de costo es requerido")]
         [DisplayName("CeCo")]
@@ -252,17 +252,17 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         public List<SelectListItem> LIST_NIVEL_RIESGO_ARL { get; set; }
         public string NIVEL_RIESGO_ARL { get; set; }
         /// <summary>
-        /// CODIGO CATEGORIA ED
+        /// CODIGO Categoría ED
         /// </summary>
-        [Required(ErrorMessage = "Categoria ED es requerida")]
+        [Required(ErrorMessage = "Categoría ED es requerida")]
         public int COD_CATEGORIA_ED { get; set; }
-        [DisplayName("Categoria ED*")]
+        [DisplayName("Categoría ED*")]
         public List<SelectListItem> LIST_NOMBRE_CATEGORIA_ED { get; set; }
         public string NOMBRE_CATEGORIA_ED { get; set; }
         /// <summary>
-        /// CARGO CRITICO TRUE O FALSE
+        /// CARGO Crítico TRUE O FALSE
         /// </summary>
-        [DisplayName("Cargo Critico")]
+        [DisplayName("Cargo Crítico")]
         public bool CARGO_CRITICO { get; set; }
 
         /// <summary>
@@ -298,17 +298,17 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// cod dia laboral desde
         /// </summary>
-        [Required(ErrorMessage ="Dia laboral desde es requerida")]
+        [Required(ErrorMessage ="Día laboral desde es requerida")]
         public int COD_DIA_LABORAL_DESDE { get; set; }
-        [DisplayName("Dia laboral desde")]
+        [DisplayName("Día laboral desde")]
         public List<SelectListItem> LIST_DIA_LABORAL_DESDE { get; set; }
         public string DIA_LABORAL_DESDE { get; set; }
         /// <summary>
         /// COD DIA LABORAL HASTA
         /// </summary>
-        [Required(ErrorMessage = "Dia laboral hasta es requerida")]
+        [Required(ErrorMessage = "Día laboral hasta es requerida")]
         public int COD_DIA_LABORAL_HASTA { get; set; }
-        [DisplayName("Dia laboral hasta")]
+        [DisplayName("Día laboral hasta")]
         public List<SelectListItem> LIST_DIA_LABORAL_HASTA { get; set; }
         public string DIA_LABORAL_HASTA { get; set; }
 
@@ -447,11 +447,11 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         public string MERCADO { get; set; }
 
         /// <summary>
-        /// cod categoria
+        /// cod Categoría
         /// </summary>
-        [Required(ErrorMessage = "Categoria es requerida")]
+        [Required(ErrorMessage = "Categoría es requerida")]
         public int COD_CATEGORIA { get; set; }
-        [DisplayName("Categoria")]
+        [DisplayName("Categoría")]
         public List<SelectListItem> LIST_NOMBRE_CATEGORIA { get; set; }
         public string NOMBRE_CATEGORIA { get; set; }
         /// <summary>

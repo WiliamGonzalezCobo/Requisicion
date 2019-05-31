@@ -49,7 +49,7 @@
     color: red;
     font-weight: bold;
 }
-}
+
 .polig {
     height: 200px;
     border: 1px solid Black;
@@ -67,4 +67,64 @@
 }
 .Ne {
     font-weight: bold;
+}
+
+.rectangle {
+    height: 125px;
+    width: 125px;
+    border: 1px solid #DDDDDD;
+    background-color: #F4F4F4;
+    box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.1);
+    padding-top: 22px;
+    text-align: center;
+    text-align: -webkit-center;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+.presupuestada {
+    height: 18px;
+    width: 91px;
+    color: #4F6785;
+    font-family: "source-regular";
+    font-size: 14px;
+    line-height: 18px;
+    padding-top: 6px;
+}
+.no-presupuestada {
+    height: 18px;
+    width: 110px;
+    color: #D14469;
+    font-family: "source-regular";
+    font-size: 14px;
+    line-height: 18px;
+    padding-top: 6px;
+}
+
+.incapacidad {
+    height: 18px;
+    width: 81px;
+    color: #E6A708;
+    font-family: "source-regular";
+    font-size: 14px;
+    line-height: 18px;
+    padding-top: 6px;
+}
+.licencia {
+    height: 18px;
+    width: 50px;
+    color: #36A1BE;
+    font-family: "source-regular";
+    font-size: 14px;
+    line-height: 18px;
+    padding-top: 6px;
+}
+.modificacion {
+    height: 18px;
+    width: 78px;
+    color: #98B035;
+    font-family: "source-regular";
+    font-size: 14px;
+    line-height: 18px;
+    padding-top: 6px;
 }

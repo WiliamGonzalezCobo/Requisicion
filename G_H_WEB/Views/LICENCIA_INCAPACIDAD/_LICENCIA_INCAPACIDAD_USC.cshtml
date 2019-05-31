@@ -4,7 +4,7 @@
 @using (Html.BeginForm("Index", "LICENCIA_INCAPACIDAD", FormMethod.Post, new { id = "formLicenciaIncapacidadBP", @class = "col-md-12 row" }))
 {
 
-    <h4 class="LSubtitulos col-md-12">Información Basica</h4>
+    <h4 class="LSubtitulos col-md-12">Información Básica</h4>
     <div class="form-group col-md-12 row">
         @Html.LabelFor(model => model.TIPO_DOCUMENTO, htmlAttributes: new { @class = "control-label col-md-12" })
         <div class="col-md-12">
@@ -394,7 +394,7 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h6 class="modal-title" id="exampleModalLabel">Va a cancelar el retiro para:<br /><br /><label> </label></h6>
             </div>
-            <div class="modal-body">Esta seguro de cancelar el retiro para ?</div>
+            <div class="modal-body">Está seguro de cancelar el retiro para ?</div>
             <div class="modal-footer">
                 <button class="cancelar-modal" type="button" data-dismiss="modal">  No  </button>
                 <button onclick="CancelarRetiro()" class="btn-principal" type="button"> Si </button>
@@ -442,7 +442,7 @@
             debugger;
             var resltado = "@ViewBag.resultado";
             if (resltado=="True") {
-                $(".modal-body").text("Esta seguro de crear la Requisición de Licencia/Incapacidad para " + $("#nombreEmpleado").val());
+                $(".modal-body").text("Está seguro de crear la Requisición de Licencia/Incapacidad para " + $("#nombreEmpleado").val());
                 $('#modalCrearRetiro').modal("show");
             }
         });
