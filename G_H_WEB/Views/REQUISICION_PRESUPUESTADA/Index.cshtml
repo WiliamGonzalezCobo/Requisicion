@@ -8,40 +8,37 @@
 }
 <div class="col">
     <h4>@ViewBag.Title</h4>
-    <div id="IconosRequisicion" class="LSubtitulos col-md-12 col-lg-12 col-xl-12 row" style="margin-bottom:10px;">
 
-
-        @*<div class="col-md-3 col-lg-3 col-xl-3">
-            <img src="../../assets/img/presupuestada.png" class="img-responsive maxImagenMenu" />
-        </div>
-        <div class="col-md-3 col-lg-3 col-xl-3">
-            <img src="../../assets/img/NoPresupuestada.png" class="img-responsive maxImagenMenu" />
-        </div>
-        <div class="col-md-3 col-lg-3 col-xl-3">
-            <img src="../../assets/img/Incapacidad.png" class="img-responsive maxImagenMenu" />
-        </div>
-        <div class="col-md-3 col-lg-3 col-xl-3">
-            <img src="../../assets/img/Licencia.png" class="img-responsive maxImagenMenu" />
-        </div>*@
-
-        <div class="caja_imagenes">
-            <div class="imagen-central">
-                <img src="~/assets/img/signo_presupuestada.png" class="img_presupuestada" /><span class="presupuestada-texto">Presupuestada</span>
-           </div>
-        </div>
-            <div class="col-md-3 col-lg-3 col-xl-3">
-                <img src="~/assets/img/signo_nopresupuestada.png" class="img-responsive maxImagenMenu" />
-            </div>
-            <div class="col-md-3 col-lg-3 col-xl-3">
-                <img src="~/assets/img/signo_licencia.png" class="img-responsive maxImagenMenu" />
-            </div>
-            <div class="col-md-3 col-lg-3 col-xl-3">
-                <img src="~/assets/img/signo_incapacidad.png" class="img-responsive maxImagenMenu" />
-            </div>
-
-        </div>
-
+ 
     <div id="SeccionRequisicionParciales" class="col">
+
+        <div class="row" style="margin: 20px;">
+            <div class="col-md-3 col-lg-3 col-xl-3">
+                    <div class="col-12 rectangle_Pop_UP ImagenActiva">
+                        <img src="../../assets/img/imgPresupuestada.png" class="img-responsive maxImagen" />
+                        <div class="presupuestada">Presupuestada</div>
+                    </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-3">
+                    <div class="col-12 rectangle_Pop_UP">
+                        <img src="../../assets/img/imgNoPresupuestada.png" class="img-responsive maxImagen" />
+                        <div class="no-presupuestada">No presupuestada</div>
+                    </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-3">
+                    <div class="col-12 rectangle_Pop_UP">
+                        <img src="../../assets/img/imgIncapacidad.png" class="img-responsive maxImagen" />
+                        <div class="incapacidad">Incapacidad</div>
+                    </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-3">
+                    <div class="col-12 rectangle_Pop_UP">
+                        <img src="../../assets/img/imgLicencia.png" class="img-responsive maxImagen" />
+                        <div class="licencia">Licencia</div>
+                    </div>
+            </div>
+        </div>
+
         <div id="CNform">
             <div class="retiros-detalle">
                 <div class="form-group col-md-12">
@@ -87,29 +84,29 @@
                                 @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
                                 @if (User.IsInRole(SettingsManager.PerfilJefe))
                                 {
-                                    <button  name="submitButton" id="submitButtonCrear" class="crear-requisicion"> <span class="crear-requisicion-texto">CREAR REQUISICIÓN</span></button>
+                                    <button name="submitButton" id="submitButtonCrear" class="crear-requisicion"> <span class="crear-requisicion-texto">CREAR REQUISICIÓN</span></button>
                                     @*<input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="crear-requisicion col-md-3" />*@
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilController))
                                 {
-                                    <input name="submitButton" type="button" value="Aprobar" class="aprobar-requisicion col-md-3" />
-                                    <input name="submitButton" type="button" value="Modificar" class="aprobar-requisicion col-md-3" />
+                                    <input name="submitButton" type="submit" value="Aprobar" class="aprobar-requisicion col-md-3" />
+                                    <input name="submitButton" type="submit" value="Modificar" class="aprobar-requisicion col-md-3" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilBp))
                                 {
-                                    <input name="submitButton" type="button" value="Enviar" class="aprobar-requisicion col-md-3" />
+                                    <input name="submitButton" type="submit" value="Enviar" class="aprobar-requisicion col-md-3" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilRRHH))
                                 {
-                                    <input name="submitButton" type="button" value="Aprobar" class="aprobar-requisicion col-md-3" />
-                                    <input name="submitButton" type="button" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="button" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="Aprobar" class="aprobar-requisicion col-md-3" />
+                                    <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilUSC))
                                 {
-                                    <input name="submitButton" type="button" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="button" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="button" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
                                 }
                             </div>
                         </div>

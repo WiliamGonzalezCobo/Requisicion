@@ -155,9 +155,9 @@
     width: 10.68px;
     box-shadow: 1px 2px 1px 0 rgba(0,0,0,0.5);
 }
-}
 
-.rectangle {
+
+.rectangle_Pop_UP {
     height: 125px;
     width: 125px;
     border: 1px solid #DDDDDD;
@@ -215,4 +215,13 @@
     font-size: 14px;
     line-height: 18px;
     padding-top: 6px;
+}
+.ImagenActiva {
+background-color: #FFFFFF;
+}
+.letrasFormulario {
+    color: #000000;
+    font-family: "Source Sans Pro";
+    font-size: 14px;
+    line-height: 18px;
 }
