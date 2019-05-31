@@ -13,6 +13,7 @@ using UTILS.Settings;
 
 namespace G_H_WEB.Controllers
 {
+    [CustAuthFilter]
     public class LICENCIA_INCAPACIDADController : Controller
     {
         // GET: REQUISICION_NOPRESUPUESTADA

@@ -686,16 +686,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_PieDePagina.cshtml" />
     <Content Include="Views\RETIRO\ERROR_ARCHIVO.cshtml" />
-    <Content Include="Views\LICENCIA_INCAPACIDAD\Licencia_Incapacidad.cshtml" />
-    <Content Include="Views\LICENCIA_INCAPACIDAD\_LICENCIA_INCAPACIDAD_JEFE.cshtml" />
-    <Content Include="Views\LICENCIA_INCAPACIDAD\_LICENCIA_INCAPACIDAD_BP.cshtml" />
     <Content Include="Views\REQUISICION\No_Presupuestada.cshtml" />
     <Content Include="Views\REQUISICION\No_Presupuestada_General.cshtml" />
     <Content Include="Views\REQUISICION_PRESUPUESTADA\Index.cshtml" />
     <Content Include="Views\REQUISICION\Create.cshtml" />
     <Content Include="Views\LICENCIA_INCAPACIDAD\Index.cshtml" />
-    <Content Include="Views\LICENCIA_INCAPACIDAD\_LICENCIA_INCAPACIDAD_RRHH.cshtml" />
-    <Content Include="Views\LICENCIA_INCAPACIDAD\_LICENCIA_INCAPACIDAD_USC.cshtml" />
     <Content Include="Views\REQUISICION_NOPRESUPUESTADA\Index.cshtml" />
     <Content Include="Views\REQUISICION\_SelectRequisicion.cshtml" />
     <Content Include="Views\Shared\_PartialInfoRequisicion.cshtml" />
