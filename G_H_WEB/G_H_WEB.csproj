@@ -617,6 +617,7 @@
     <Content Include="Scripts\REQUISICIONES_PRESUPUESTADAS.js" />
     <!-- <Content Include="Scripts\transversal.js" /> -->
     <Content Include="Scripts\ValidacionDecimalesMVC.js" />
+    <Content Include="Scripts\_actionDetails.js" />
     <Content Include="Views\components\documentos-relacionados.html" />
     <Content Include="Views\components\head.html" />
     <Content Include="Views\components\header.html" />

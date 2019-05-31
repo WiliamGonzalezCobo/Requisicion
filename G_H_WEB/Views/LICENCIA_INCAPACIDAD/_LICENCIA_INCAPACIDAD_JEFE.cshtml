@@ -255,14 +255,14 @@
         debugger;
         var resltado = "@ViewBag.resultado";
         if (resltado=="True") {
-            $(".modal-body").text("La Requisición de Licencia/Incapacidad para " + $("#nombreEmpleado").val() + ". Se creo correctamente.");
+            $(".modal-body").text("La Requisición de Licencia/Incapacidad para " + $("#nombreEmpleado").val() + ". Se creó correctamente.");
             $('#modalCrearRetiro').modal("show");
         }
     });
 
     function registrar() {           
 
-        $(".modal-body").text("Esta seguro de crear la Requisición de Licencia/Incapacidad para " + $("#nombreEmpleado").val());
+        $(".modal-body").text("Está seguro de crear la Requisición de Licencia/Incapacidad para " + $("#nombreEmpleado").val());
         $('#modalCrearRetiro').modal("show");
     }
 
