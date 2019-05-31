@@ -8,24 +8,37 @@
 }
 <div class="col">
     <h4>@ViewBag.Title</h4>
-    <div id="IconosRequisicion" class="LSubtitulos col-md-12 col-lg-12 col-xl-12 row" style="margin-bottom:10px;">
 
-        <div class="col-md-3 col-lg-3 col-xl-3">
-            <img src="../../assets/img/presupuestada.png" class="img-responsive maxImagenMenu" />
-        </div>
-        <div class="col-md-3 col-lg-3 col-xl-3">
-            <img src="../../assets/img/NoPresupuestada.png" class="img-responsive maxImagenMenu" />
-        </div>
-        <div class="col-md-3 col-lg-3 col-xl-3">
-            <img src="../../assets/img/Incapacidad.png" class="img-responsive maxImagenMenu" />
-        </div>
-        <div class="col-md-3 col-lg-3 col-xl-3">
-            <img src="../../assets/img/Licencia.png" class="img-responsive maxImagenMenu" />
-        </div>
-
-    </div>
-
+ 
     <div id="SeccionRequisicionParciales" class="col">
+
+        <div class="row" style="margin: 20px;">
+            <div class="col-md-3 col-lg-3 col-xl-3">
+                    <div class="col-12 rectangle_Pop_UP ImagenActiva">
+                        <img src="../../assets/img/imgPresupuestada.png" class="img-responsive maxImagen" />
+                        <div class="presupuestada">Presupuestada</div>
+                    </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-3">
+                    <div class="col-12 rectangle_Pop_UP">
+                        <img src="../../assets/img/imgNoPresupuestada.png" class="img-responsive maxImagen" />
+                        <div class="no-presupuestada">No presupuestada</div>
+                    </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-3">
+                    <div class="col-12 rectangle_Pop_UP">
+                        <img src="../../assets/img/imgIncapacidad.png" class="img-responsive maxImagen" />
+                        <div class="incapacidad">Incapacidad</div>
+                    </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-3">
+                    <div class="col-12 rectangle_Pop_UP">
+                        <img src="../../assets/img/imgLicencia.png" class="img-responsive maxImagen" />
+                        <div class="licencia">Licencia</div>
+                    </div>
+            </div>
+        </div>
+
         <div id="CNform">
             <div class="retiros-detalle">
                 <div class="form-group col-md-12">
@@ -68,23 +81,24 @@
                         //Botones
                         <div class="form-group">
                             <div class="col-md-12">
-                                @Html.ActionLink("Cancelar", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "btn-cancelar-retriro col-md-3 " })
+                                @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
                                 @if (User.IsInRole(SettingsManager.PerfilJefe))
                                 {
-                                    <input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="btn-confirmar-retiro col-md-3" />
+                                    <button name="submitButton" id="submitButtonCrear" class="crear-requisicion"> <span class="crear-requisicion-texto">CREAR REQUISICIÓN</span></button>
+                                    @*<input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="crear-requisicion col-md-3" />*@
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilController))
                                 {
-                                    <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="Aprobar" class="aprobar-requisicion col-md-3" />
+                                    <input name="submitButton" type="submit" value="Modificar" class="aprobar-requisicion col-md-3" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilBp))
                                 {
-                                    <input name="submitButton" type="submit" value="Enviar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="Enviar" class="aprobar-requisicion col-md-3" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilRRHH))
                                 {
-                                    <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="Aprobar" class="aprobar-requisicion col-md-3" />
                                     <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
                                     <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
                                 }
@@ -118,12 +132,12 @@
                 </div>
                 <div class="modal-body">
                     <br />
-                    <h2 class="_metodoCrear">Se créo la requisicion para el cargo de  <span id="mensaje1"></span> con ID <span id="mensaje2"></span></h2>
-                    <h2 class="__metodoAprobar">Se aprobó la requisicion con ID <span id="mensaje_aprobar"></span></h2>
-                    <h2 class="__metodoModificar">Se modifico la requisicion con ID <span id="mensaje_modificar"></span></h2>
-                    <h2 class="__metodoRechazar">Se Rechazado la requisicion con ID <span id="mensaje_rechazar"></span></h2>
+                    <h2 class="_metodoCrear">Se créo la requisición para el cargo de  <span id="mensaje1"></span> con ID <span id="mensaje2"></span></h2>
+                    <h2 class="__metodoAprobar">Se aprobó la requisición con ID <span id="mensaje_aprobar"></span></h2>
+                    <h2 class="__metodoModificar">Se modificó la requisición con ID <span id="mensaje_modificar"></span></h2>
+                    <h2 class="__metodoRechazar">Se Rechazó la requisición con ID <span id="mensaje_rechazar"></span></h2>
                     <h2 class="_metodoDefecto">Por favor contacte al <span id="mensaje_rechazar">administrador</span> del sistema</h2>
-                    <h2 class="__metodoEnviar">Se Envio la requisicion con ID <span id="mensaje_Enviar"></span></h2>
+                    <h2 class="__metodoEnviar">Se Envío la requisición con ID <span id="mensaje_Enviar"></span></h2>
                 </div>
             </div>
         </div>
@@ -133,7 +147,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="ModalLabel">Esta a punto de cancelar la requisición</h5>
+                    <h5 class="modal-title" id="ModalLabel">Está a punto de cancelar la requisición</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -141,7 +155,7 @@
                 </div>
                 <div class="retiros-detalle modal-body">
                     <br />
-                    <h4>¿Esta Seguro de Cancelarla?</h4>
+                    <h4>¿Está Seguro de Cancelarla?</h4>
 
                     <button type="button" class="filtroPorUsuario btn-cancelar-retriro" data-dismiss="modal" aria-label="Aceptar" onclick="NoCancelarJefe()" style="cursor:pointer;">
                         No
@@ -172,7 +186,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Cod Requisicion</th>
+                                    <th>Cod Requisición</th>
                                     <th class="nombre_traza"></th>
                                     <th>Usuario Registro</th>
                                     <th>Fecha Registro</th>
@@ -193,7 +207,6 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        
 
         if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {
             if (@Model.COD_REQUISICION!= 0) {
@@ -240,7 +253,10 @@
             $('#ModalCreacionNoJefe').modal("show");
         }
 
-
+        $(document).on('submit', 'form', function () {
+            $(this).attr("disabled", true);
+          
+        })
     });
 
 
@@ -320,7 +336,9 @@
                     $('body').loading('stop');
                 }
             });
-        }
+    }
+
+
 </script>
 
 

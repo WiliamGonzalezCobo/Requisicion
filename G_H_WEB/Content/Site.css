@@ -49,7 +49,7 @@
     color: red;
     font-weight: bold;
 }
-}
+
 .polig {
     height: 200px;
     border: 1px solid Black;
@@ -67,4 +67,161 @@
 }
 .Ne {
     font-weight: bold;
+}
+
+.deplegablesIniciales {
+    height: 48px;
+    width: 361px;
+    border: 1px solid #979797;
+    background-color: #FFFFFF;
+}
+
+.TexboxIncicial {
+    height: 48px;
+    width: 361px;
+    border: 1px solid #979797;
+    background-color: #FFFFFF;
+}
+
+.aprobar-requisicion {
+    height: 22px;
+    width: 199.88px;
+    color: #FFFFFF;
+    font-family: "Source Sans Pro";
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 22px;
+    text-align: center;
+}
+
+.crear-requisicion {
+    height: 48px;
+    width: 200px;
+    border: 1px solid #FFFFFF;
+    background-color: #F15300;
+    cursor:pointer;
+}
+
+.radioButton {
+    height: 18px;
+    width: 18px;
+    border: 2px solid #9B9B9B;
+    border-radius: 1px;
+    background-color: #FFFFFF;
+}
+
+.crear-requisicion-texto {
+    height: 22px;
+    width: 199.88px;
+    color: #FFFFFF;
+    font-family: "Source Sans Pro";
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 22px;
+    text-align: center;
+}
+
+.cancelar-requisicion {
+    height: 20px;
+    width: 156px;
+    color: #F15300;
+    font-family: "Source Sans Pro";
+    font-size: 17px;
+    line-height: 20px;
+    margin-right:40px;
+}
+
+.caja_imagenes {
+    height: 98px;
+    width: 98px;
+}
+
+.presupuestada-texto {
+    height: 14px;
+    width: 93px;
+    color: #4F6785;
+    font-family: "Source Sans Pro SemiBold";
+    font-size: 11px;
+    line-height: 14px;
+    text-align: center;
+}
+
+.imagen-central {
+    height: 39px;
+    width: 40px;
+}
+.img_presupuestada {
+    height: 20.43px;
+    width: 10.68px;
+    box-shadow: 1px 2px 1px 0 rgba(0,0,0,0.5);
+}
+
+
+.rectangle_Pop_UP {
+    height: 125px;
+    width: 125px;
+    border: 1px solid #DDDDDD;
+    background-color: #F4F4F4;
+    box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.1);
+    padding-top: 22px;
+    text-align: center;
+    text-align: -webkit-center;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+.presupuestada {
+    height: 18px;
+    width: 91px;
+    color: #4F6785;
+    font-family: "source-regular";
+    font-size: 14px;
+    line-height: 18px;
+    padding-top: 6px;
+}
+.no-presupuestada {
+    height: 18px;
+    width: 110px;
+    color: #D14469;
+    font-family: "source-regular";
+    font-size: 14px;
+    line-height: 18px;
+    padding-top: 6px;
+}
+
+.incapacidad {
+    height: 18px;
+    width: 81px;
+    color: #E6A708;
+    font-family: "source-regular";
+    font-size: 14px;
+    line-height: 18px;
+    padding-top: 6px;
+}
+.licencia {
+    height: 18px;
+    width: 50px;
+    color: #36A1BE;
+    font-family: "source-regular";
+    font-size: 14px;
+    line-height: 18px;
+    padding-top: 6px;
+}
+.modificacion {
+    height: 18px;
+    width: 78px;
+    color: #98B035;
+    font-family: "source-regular";
+    font-size: 14px;
+    line-height: 18px;
+    padding-top: 6px;
+}
+.ImagenActiva {
+background-color: #FFFFFF;
+}
+.letrasFormulario {
+    color: #000000;
+    font-family: "Source Sans Pro";
+    font-size: 14px;
+    line-height: 18px;
 }

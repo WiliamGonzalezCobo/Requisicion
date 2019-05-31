@@ -1,23 +1,35 @@
 ﻿@using UTILS.Settings
 <div class="col-md-3 col-lg-3 col-xl-3">
     <a class="alineas" href='@Url.Action("Create","REQUISICION",new { @idTipo = SettingsManager.CodTipoReqPresupuestada})'>
-        <img src="../../assets/img/presupuestada.png" class="img-responsive maxImagen" />
+        <div class="col-12 rectangle_Pop_UP">
+            <img src="../../assets/img/imgPresupuestada.png" class="img-responsive maxImagen" />
+            <div class="presupuestada">Presupuestada</div>
+        </div>       
     </a>
 </div>
 <div class="col-md-3 col-lg-3 col-xl-3">
 
     <a class="alineas" href='@Url.Action("Create","REQUISICION",new { @idTipo = SettingsManager.CodTipoReqNoPresupuestada})'>
-        <img src="../../assets/img/NoPresupuestada.png" class="img-responsive maxImagen" />
+        <div class="col-12 rectangle_Pop_UP">
+            <img src="../../assets/img/imgNoPresupuestada.png" class="img-responsive maxImagen" />
+            <div class="no-presupuestada">No presupuestada</div>
+        </div>
     </a>
 </div>
 <div class="col-md-3 col-lg-3 col-xl-3">
     <a class="alineas" href='@Url.Action("Create","REQUISICION",new { @idTipo = SettingsManager.CodTipoReqIncapacidad})'>
-        <img src="../../assets/img/Incapacidad.png" class="img-responsive maxImagen" />
+        <div class="col-12 rectangle_Pop_UP">
+            <img src="../../assets/img/imgIncapacidad.png" class="img-responsive maxImagen" />
+            <div class="incapacidad">Incapacidad</div>
+        </div>
     </a>
 </div>
 <div class="col-md-3 col-lg-3 col-xl-3">
     <a class="alineas" href='@Url.Action("Create","REQUISICION",new { @idTipo = SettingsManager.CodTipoReqLicencia})'>
-        <img src="../../assets/img/Licencia.png" class="img-responsive maxImagen" />
+        <div class="col-12 rectangle_Pop_UP">
+            <img src="../../assets/img/imgLicencia.png" class="img-responsive maxImagen" />
+            <div class="licencia">Licencia</div>
+        </div>
     </a>
 </div>
 

@@ -64,15 +64,15 @@
     <div class="row">
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.LIST_NIVEL_RIESGO_ARL, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, Model.LIST_NIVEL_RIESGO_ARL, "-- Seleccione --", new { @class = "form-control", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_ARL')">  <i class="fa fa-check btn_centar"></i></span>
+            @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, Model.LIST_NIVEL_RIESGO_ARL, "-- Seleccione --", new { @class = "form-control col-md-11", disabled = deshabilitar })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_ARL')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <i class="fa fa-book btn_centar"></i></span>
             @Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL)
             @Html.ValidationMessageFor(model => model.COD_NIVEL_RIESGO_ARL)
         </div>
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA_ED, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, Model.LIST_NOMBRE_CATEGORIA_ED, "-- Seleccione --", new { @class = "form-control", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')">  <i class="fa fa-check btn_centar"></i></span>
+            @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, Model.LIST_NOMBRE_CATEGORIA_ED, "-- Seleccione --", new { @class = "form-control col-md-11", disabled = deshabilitar })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <i class="fa fa-clipboard-list btn_centar"></i></span>
             @Html.HiddenFor(model => model.COD_CATEGORIA_ED)
             @Html.ValidationMessageFor(model => model.COD_CATEGORIA_ED)
         </div>
@@ -112,15 +112,15 @@
     <div class="row">
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.HORARIO_LABORAL_DESDE, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.DropDownListFor(model => model.HORARIO_LABORAL_DESDE, Model.LIST_HORARIO_LABORAL_DESDE, "-- Seleccione --", new { @class = "form-control", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('HORARIO_LABORAL_DESDE')">  <i class="fa fa-check btn_centar"></i></span>
+            @Html.DropDownListFor(model => model.HORARIO_LABORAL_DESDE, Model.LIST_HORARIO_LABORAL_DESDE, "-- Seleccione --", new { @class = "form-control col-md-11", disabled = deshabilitar })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('HORARIO_LABORAL_DESDE')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <i class="fa fa-clipboard-list btn_centar"></i></span>
             @Html.HiddenFor(model => model.HORARIO_LABORAL_DESDE)
             @Html.ValidationMessageFor(model => model.HORARIO_LABORAL_DESDE)
         </div>
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.HORARIO_LABORAL_HASTA, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.DropDownListFor(model => model.HORARIO_LABORAL_HASTA, Model.LIST_HORARIO_LABORAL_HASTA, "-- Seleccione --", new { @class = "form-control", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('HORARIO_LABORAL_HASTA')">  <i class="fa fa-check btn_centar"></i></span>
+            @Html.DropDownListFor(model => model.HORARIO_LABORAL_HASTA, Model.LIST_HORARIO_LABORAL_HASTA, "-- Seleccione --", new { @class = "form-control col-md-11", disabled = deshabilitar })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('HORARIO_LABORAL_HASTA')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <i class="fa fa-clipboard-list btn_centar"></i></span>
             @Html.HiddenFor(model => model.HORARIO_LABORAL_HASTA)
             @Html.ValidationMessageFor(model => model.HORARIO_LABORAL_HASTA)
         </div>
@@ -134,15 +134,15 @@
     <div class="row">
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.LIST_DIA_LABORAL_DESDE, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.DropDownListFor(model => model.DIA_LABORAL_DESDE, Model.LIST_DIA_LABORAL_DESDE, "-- Seleccione --", new { @class = "form-control", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('DIA_LABORAL_DESDE')">  <i class="fa fa-check btn_centar"></i></span>
+            @Html.DropDownListFor(model => model.DIA_LABORAL_DESDE, Model.LIST_DIA_LABORAL_DESDE, "-- Seleccione --", new { @class = "form-control col-md-11", disabled = deshabilitar })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('DIA_LABORAL_DESDE')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <i class="fa fa-clipboard-list btn_centar"></i></span>
             @Html.HiddenFor(model => model.DIA_LABORAL_DESDE)
             @Html.ValidationMessageFor(model => model.DIA_LABORAL_DESDE)
         </div>
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.LIST_DIA_LABORAL_HASTA, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.DropDownListFor(model => model.DIA_LABORAL_HASTA, Model.LIST_DIA_LABORAL_HASTA, "-- Seleccione --", new { @class = "form-control", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('DIA_LABORAL_HASTA')">  <i class="fa fa-check btn_centar"></i></span>
+            @Html.DropDownListFor(model => model.DIA_LABORAL_HASTA, Model.LIST_DIA_LABORAL_HASTA, "-- Seleccione --", new { @class = "form-control col-md-11", disabled = deshabilitar })
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('DIA_LABORAL_HASTA')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <i class="fa fa-clipboard-list btn_centar"></i></span>
             @Html.HiddenFor(model => model.DIA_LABORAL_HASTA)
             @Html.ValidationMessageFor(model => model.DIA_LABORAL_HASTA)
         </div>
