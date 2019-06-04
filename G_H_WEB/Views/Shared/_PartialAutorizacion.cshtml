@@ -2,17 +2,17 @@
 <section id="autorizacion">
     <div class="row">
         <div class="form-group col-md-12 col-sm-12">
-            @Html.LabelFor(model => model.OBSERVACIONES, htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.OBSERVACIONES, new { @class = "letrasFormulario" })
             <div class="table-responsive">
                 <table class="table">
                     <thead>
-                        <tr>
+                        <tr class="letrasFormulario">
                             <th>Fecha</th>
                             <th>Usuario</th>
                             <th>Observación</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="Obsevaciones_requisicion">
                         @Html.Raw(Model.OBSERVACIONES)
                     </tbody>
                 </table>
@@ -20,7 +20,7 @@
 
         </div>
         <div class="form-group col-md-12 col-sm-12">
-            @Html.LabelFor(model => model.OBSERVACION, htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.OBSERVACION, htmlAttributes: new { @class = "letrasFormulario" })
             @Html.TextAreaFor(model => model.OBSERVACION, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.OBSERVACION)
         </div>

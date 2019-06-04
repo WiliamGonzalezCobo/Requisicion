@@ -259,3 +259,5 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/G_H_WEB/js/select2.js
+/G_H_WEB/css/select2

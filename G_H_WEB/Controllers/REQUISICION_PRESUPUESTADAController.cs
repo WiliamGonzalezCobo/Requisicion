@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using G_H_WEB.Logica_Session;
 using LOGICA.REQUISICION_LOGICA;
 using Microsoft.AspNet.Identity;
 using MODELO_DATOS.MODELO_REQUISICION;
@@ -10,7 +11,7 @@ using UTILS.Settings;
 
 namespace G_H_WEB.Controllers
 {
-    [Authorize]
+    [CustAuthFilter]
     public class REQUISICION_PRESUPUESTADAController : Controller
     {
         // GET: REQUISICION_PRESUPUESTADA

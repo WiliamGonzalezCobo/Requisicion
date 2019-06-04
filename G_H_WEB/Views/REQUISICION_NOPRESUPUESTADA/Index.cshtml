@@ -78,19 +78,22 @@
                         //Botones
                         <div class="form-group">
                             <div class="col-md-12">
-                                @Html.ActionLink("Cancelar", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "btn-cancelar-retriro col-md-3 " })
+
                                 @if (User.IsInRole(SettingsManager.PerfilJefe))
                                 {
+                                    @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
                                     <input name="submitButton" id="submitButtonCrear" type="submit" value="CREAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilController))
                                 {
+                                    @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
                                     <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
                                     <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilBp))
                                 {
-                                    <input name="submitButton" type="submit" value="Enviar" class="btn-confirmar-retiro col-md-3" />
+                                    @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
+                                    <input name="submitButton" type="submit" value="Enviar" class="crear-requisicion crear-requisicion-texto" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilRRHH))
                                 {
