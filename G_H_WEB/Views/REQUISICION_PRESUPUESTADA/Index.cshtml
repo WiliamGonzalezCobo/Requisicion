@@ -84,13 +84,13 @@
                                 @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
                                 @if (User.IsInRole(SettingsManager.PerfilJefe))
                                 {
-                                    <button name="submitButton" id="submitButtonCrear" class="crear-requisicion"> <span class="crear-requisicion-texto">CREAR REQUISICIÓN</span></button>
-                                    @*<input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="crear-requisicion col-md-3" />*@
+                                    @*<button name="submitButton" id="submitButtonCrear" class="crear-requisicion"> <span class="crear-requisicion-texto">CREAR REQUISICIÓN</span></button>*@
+                                    <input name="submitButton" id="submitButtonCrear" type="submit" value="CREAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilController))
                                 {
-                                    <input name="submitButton" type="submit" value="Aprobar" class="aprobar-requisicion col-md-3" />
-                                    <input name="submitButton" type="submit" value="Modificar" class="aprobar-requisicion col-md-3" />
+                                    <input name="submitButton" type="submit" value="Aprobar" class="crear-requisicion crear-requisicion-texto" />
+                                    <input name="submitButton" type="submit" value="Modificar" class="crear-requisicion crear-requisicion-texto" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilBp))
                                 {

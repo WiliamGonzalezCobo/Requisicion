@@ -59,7 +59,7 @@ namespace G_H_WEB.Controllers
 
                 switch (submitButton)
                 {
-                    case "Crear Requisición":
+                    case "CREAR REQUISICIÓN":
                         _resultadoIdReguisicion = new LOGICA_REQUISICION().INSERTAR_REQUISICION_LOGICA(modelDatos);
                         if (modelDatos.COD_REQUISICION == 0)
                             npc.METODO = "Crear";
