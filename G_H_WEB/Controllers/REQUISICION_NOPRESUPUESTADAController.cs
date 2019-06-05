@@ -67,7 +67,7 @@ namespace G_H_WEB.Controllers
                             npc.METODO = "Modificar";
 
                         break;
-                    case "Aprobar":
+                    case "APROBAR REQUISICIÓN":
                         if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
                         {
                             Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos));
@@ -78,7 +78,7 @@ namespace G_H_WEB.Controllers
                         }
                         npc.METODO = "Aprobar";
                         break;
-                    case "Rechazar":
+                    case "Rechazar requisicion":
                         _resultadoIdReguisicion = new LOGICA_REQUISICION().REQUISICION_RECHAZAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.Name);
                         npc.METODO = "Rechazar";
                         break;
@@ -88,7 +88,7 @@ namespace G_H_WEB.Controllers
                         _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
                         npc.METODO = "Enviar";
                         break;
-                    case "Modificar":
+                    case "DEVOLVER REQUISICIÓN":
                         _resultadoIdReguisicion = Convert.ToInt32(new LOGICA_REQUISICION().REQUISICION_MODIFICAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.GetUserId()));
                         npc.METODO = "Modificar";
                         break;

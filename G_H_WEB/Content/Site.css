@@ -244,13 +244,23 @@ background-color: #FFFFFF;
     width: 500px;
     border: 1px solid #979797;
     background-color: #FFFFFF;
+    padding-left:10px;
 }
 
 .buscador_modificaciones_deplegable {
     overflow-y: scroll;
-    max-height: 220px;
+    max-height: 190px;
     width: 500px;
     border: 1px solid #979797;
+    background-color: #FFFFFF;
+    margin-bottom: 30px;
+}
+
+.buscador_modificaciones_deplegable_esconder {
+    overflow-y: scroll;
+    max-height: 0px;
+    width: 500px;
+    border:none;
     background-color: #FFFFFF;
     margin-bottom: 30px;
 }
@@ -292,7 +302,7 @@ span.search-btn {
     top: 2px;
     margin-left: 10px;
 }
-}
+
 
 .Titulo-Popup {
     margin-top: 39px;
@@ -335,4 +345,88 @@ span.search-btn {
 .Content-Popup-Creacion {
     padding-top: 15px;
     /*padding-bottom: 50px;*/
+}
+
+.BtnDevolver {
+    height: 48px;
+    width: 230px;
+    border: 1.5px solid #F15300;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+    margin-right: 40px;
+    cursor:pointer;
+}
+.TextoBtnDevolver {
+    color: #F15300;
+    font-family: "Source Sans Pro";
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 22px;
+    text-align: center;
+}
+.SubtitulosNivel2 {
+    color: #000000;
+    font-family: "Source Sans Pro";
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 23px;
+    margin:10px;
+}
+
+.combosGrandes {
+    height: 48px;
+    width: 500px;
+    border: 1px solid #979797;
+    background-color: #FFFFFF;
+}
+
+.comboArl {
+    height: 48px;
+    width: 160px;
+    border: 1px solid #979797;
+    background-color: #FFFFFF;
+}
+
+.combosDesdeHasta {
+    height: 48px;
+    width: 160px;
+    border: 1px solid #979797;
+    background-color: #FFFFFF;
+}
+
+.spanCombosDesdeHasta {
+    left: 173px;
+}
+.salarioTotalEstilos {
+    height: 48px;
+    width: 100%;
+    background-color: #EAEAEA;
+    padding:10px;
+}
+.valorSalarioTotal {
+    height: 23px;
+    width: 91px;
+    color: #000000;
+    font-family: "Source Sans Pro";
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 23px;
+    margin-left: 391px;
+}
+
+.letrasSalarioTotal {
+    height: 18px;
+    width: 197px;
+    color: #000000;
+    font-family: "source-medium";
+    font-size: 14px;
+    line-height: 18px;
+    text-align: right;
+}
+.separadorPuntosMedio {
+    box-sizing: border-box;
+    height: 3px;
+    width: 100%;
+    border: 1px solid #2F2F2F;
+    margin:10px;
 }
