@@ -1261,10 +1261,10 @@ body.retiros {
 }
 
 .btn_traza {
-    width: 35px;
+    width: 41px;
     height: 38px;
     margin: 0;
-    padding: 18px 0 0 0;
+    padding: 0 0 0 0;
     font-size: 14px;
     font-size: 0.875rem;
     font-family: "Font Awesome 5 Free";
@@ -1274,7 +1274,7 @@ body.retiros {
     position: absolute;
     top: 0;
     right: 0;
-    background: #080015;
+    /*background: #080015;*/
     cursor: pointer;
 }
 

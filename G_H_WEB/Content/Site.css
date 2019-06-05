@@ -430,3 +430,52 @@ span.search-btn {
     border: 1px solid #2F2F2F;
     margin:10px;
 }
+
+.imgModificar{
+    width: 66px;
+}
+
+.rectangle_Jornada {
+    height: 120px;
+    width: 132px;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    background-color: transparent;
+    box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.1);
+    padding: 0px;
+}
+
+    .rectangle_Jornada .RB {
+        padding: 0px;
+        text-align: right;
+    }
+
+    .rectangle_Jornada .RB:checked{
+        box-sizing: border-box;
+        height: 18px;
+        width: 18px;
+        border: 6px solid #1A9BB2;
+        background-color: #FFFFFF;
+    }
+
+    .rectangle_Jornada .RB:active {
+        box-sizing: border-box;
+        height: 18px;
+        width: 18px;
+        border: 6px solid #1A9BB2;
+        background-color: transparent;
+    }
+
+
+    .rectangle_Jornada .Img {
+        text-align: center;
+        padding: 0px
+    }
+
+        .rectangle_Jornada .Img .text {           
+            color: #000000;
+            font-family: "source-light";
+            font-size: 14px;
+            line-height: 18px;
+            padding: 11px;
+        }
