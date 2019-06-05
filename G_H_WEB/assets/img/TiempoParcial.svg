@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="39px" height="39px" viewBox="0 0 39 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>A40F254D-7F00-4B44-8A0F-23182A5568F7</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Guia-de-estilos" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="guia-de-estilos---Íconos" transform="translate(-536.000000, -351.000000)" fill-rule="nonzero" stroke-width="4">
+            <g id="Group-3" transform="translate(490.000000, 314.000000)">
+                <g id="Group-5">
+                    <g id="icono-reloj" transform="translate(48.000000, 39.000000)">
+                        <circle id="Oval-Copy-3" stroke="#CCCCCC" cx="17.5" cy="17.5" r="17.5"></circle>
+                        <path d="M17.5,17.5 C17.5,7.83501688 9.66498312,-1.77635684e-15 0,-1.77635684e-15" id="Oval-Copy-4" stroke="#40C7FF" transform="translate(8.750000, 8.750000) rotate(-90.000000) translate(-8.750000, -8.750000) "></path>
+                        <polyline id="Path-10-Copy-2" stroke="#717171" points="17.5 8.36956522 17.5 19.0217391 26.6304348 19.0217391"></polyline>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

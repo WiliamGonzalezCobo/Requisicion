@@ -65,14 +65,14 @@
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.LIST_NIVEL_RIESGO_ARL, new { htmlAttributes = new { @class = "form-control" } })
             @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, Model.LIST_NIVEL_RIESGO_ARL, "-- Seleccione --", new { @class = "form-control col-md-11", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_ARL')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <i class="fa fa-book btn_centar"></i></span>
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_ARL')" data-toggle="tooltip" data-placement="top" >  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
             @Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL)
             @Html.ValidationMessageFor(model => model.COD_NIVEL_RIESGO_ARL)
         </div>
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA_ED, new { htmlAttributes = new { @class = "form-control" } })
             @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, Model.LIST_NOMBRE_CATEGORIA_ED, "-- Seleccione --", new { @class = "form-control col-md-11", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <i class="fa fa-clipboard-list btn_centar"></i></span>
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')" data-toggle="tooltip" data-placement="top" >  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
             @Html.HiddenFor(model => model.COD_CATEGORIA_ED)
             @Html.ValidationMessageFor(model => model.COD_CATEGORIA_ED)
         </div>
@@ -93,11 +93,63 @@
     <div class="row">
         <div class="form-group col-md-12 col-sm-12">
             @Html.LabelFor(model => model.NOMBRE_JORNADA_LABORAL, htmlAttributes: new { @class = "control-label" })
-            <div class="col-md-12">
+            <div class="row col-md-12">
                 @foreach (var jornada in Model.LIST_NOMBRE_JORNADA_LABORAL)
                 {
-                    @Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) @jornada.Text
-                    @Html.HiddenFor(m => m.COD_JORNADA_LABORAL)
+                    if (jornada.Text == "TIEMPO PARCIAL")
+                    {
+                        <div class="col-md-3 col-lg-3 col-xl-3">
+                            <a class="alineas">
+                                <div class="col-12 rectangle_Jornada">
+                                    <div class="col-12 RB">
+                                        @Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) <br />
+                                    </div>
+                                    <div class="col-12 Img">
+                                        <img src="../../assets/img/TiempoParcial.svg" class="img-responsive maxImagen" />
+                                        <div class="text">Tiempo parcial</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                    if (jornada.Text == "MEDIO TIEMPO")
+                    {
+                        <div class="col-md-3 col-lg-3 col-xl-3">
+                            <a class="alineas">
+                                <div class="col-12 rectangle_Jornada">
+                                    <div class="col-12 RB">
+                                        @Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) <br />
+                                    </div>
+                                    <div class="col-12 Img">
+                                        <img src="../../assets/img/TiempoMedio.png" class="img-responsive maxImagen" />
+                                        <div class="text">Medio tiempo</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                    if (jornada.Text == "TIEMPO COMPLETO")
+                    {
+                        <div class="col-md-3 col-lg-3 col-xl-3">
+                            <a class="alineas">
+                                <div class="col-12 rectangle_Jornada">
+                                    <div class="col-12 RB">
+                                        @Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) <br />
+                                    </div>
+                                    <div class="col-12 Img">
+                                        <img src="../../assets/img/TiempoCompleto.png" class="img-responsive maxImagen" />
+                                        <div class="text">Tiempo completo</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+
+
+
+
+                    @*@Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) @jornada.Text
+            @Html.HiddenFor(m => m.COD_JORNADA_LABORAL)*@
                 }
             </div>
             @Html.ValidationMessageFor(model => model.COD_JORNADA_LABORAL)
@@ -113,14 +165,14 @@
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.HORARIO_LABORAL_DESDE, new { htmlAttributes = new { @class = "form-control" } })
             @Html.DropDownListFor(model => model.HORARIO_LABORAL_DESDE, Model.LIST_HORARIO_LABORAL_DESDE, "-- Seleccione --", new { @class = "form-control col-md-11", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('HORARIO_LABORAL_DESDE')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <i class="fa fa-clipboard-list btn_centar"></i></span>
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('HORARIO_LABORAL_DESDE')" data-toggle="tooltip" data-placement="top" >  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
             @Html.HiddenFor(model => model.HORARIO_LABORAL_DESDE)
             @Html.ValidationMessageFor(model => model.HORARIO_LABORAL_DESDE)
         </div>
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.HORARIO_LABORAL_HASTA, new { htmlAttributes = new { @class = "form-control" } })
             @Html.DropDownListFor(model => model.HORARIO_LABORAL_HASTA, Model.LIST_HORARIO_LABORAL_HASTA, "-- Seleccione --", new { @class = "form-control col-md-11", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('HORARIO_LABORAL_HASTA')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <i class="fa fa-clipboard-list btn_centar"></i></span>
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('HORARIO_LABORAL_HASTA')" data-toggle="tooltip" data-placement="top" >  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
             @Html.HiddenFor(model => model.HORARIO_LABORAL_HASTA)
             @Html.ValidationMessageFor(model => model.HORARIO_LABORAL_HASTA)
         </div>
@@ -135,14 +187,14 @@
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.LIST_DIA_LABORAL_DESDE, new { htmlAttributes = new { @class = "form-control" } })
             @Html.DropDownListFor(model => model.DIA_LABORAL_DESDE, Model.LIST_DIA_LABORAL_DESDE, "-- Seleccione --", new { @class = "form-control col-md-11", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('DIA_LABORAL_DESDE')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <i class="fa fa-clipboard-list btn_centar"></i></span>
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('DIA_LABORAL_DESDE')" data-toggle="tooltip" data-placement="top" >  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
             @Html.HiddenFor(model => model.DIA_LABORAL_DESDE)
             @Html.ValidationMessageFor(model => model.DIA_LABORAL_DESDE)
         </div>
         <div class="form-group col-md-6 col-sm-12">
             @Html.LabelFor(model => model.LIST_DIA_LABORAL_HASTA, new { htmlAttributes = new { @class = "form-control" } })
             @Html.DropDownListFor(model => model.DIA_LABORAL_HASTA, Model.LIST_DIA_LABORAL_HASTA, "-- Seleccione --", new { @class = "form-control col-md-11", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('DIA_LABORAL_HASTA')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <i class="fa fa-clipboard-list btn_centar"></i></span>
+            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('DIA_LABORAL_HASTA')" data-toggle="tooltip" data-placement="top" >  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
             @Html.HiddenFor(model => model.DIA_LABORAL_HASTA)
             @Html.ValidationMessageFor(model => model.DIA_LABORAL_HASTA)
         </div>
