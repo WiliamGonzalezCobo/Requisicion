@@ -123,11 +123,17 @@
             </div>
             <div class="col-md-12 col-sm-12">
                 <div class="salarioTotalEstilos">
-                @Html.LabelFor(model => model.INGRESO_PROM_MENSUAL, htmlAttributes: new { @class = "letrasSalarioTotal col-md-6", @style = "text-align:left;" })
-                <span class="E_INGRESO_PROM_MENSUAL valorSalarioTotal col-md-6">@Model.INGRESO_PROM_ANUAL</span>
-                <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('INGRESO_PROM_MENSUAL')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="top: 5px !important;right: 0px;">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-                @Html.HiddenFor(model => model.INGRESO_PROM_MENSUAL, new { @class = "E_INGRESO_PROM_MENSUAL" })
-                @Html.ValidationMessageFor(model => model.INGRESO_PROM_MENSUAL)
+                    <div class="row justify-content-between">
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.INGRESO_PROM_MENSUAL, htmlAttributes: new { @class = "letrasSalarioTotal" })
+                        </div>
+                        <div class="col-md-6">
+                            <span class="E_INGRESO_PROM_MENSUAL valorSalarioTotal">@Model.INGRESO_PROM_ANUAL</span>
+                            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('INGRESO_PROM_MENSUAL')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="top: 5px !important;right: 0px;">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                            @Html.HiddenFor(model => model.INGRESO_PROM_MENSUAL, new { @class = "E_INGRESO_PROM_MENSUAL" })
+                            @Html.ValidationMessageFor(model => model.INGRESO_PROM_MENSUAL)
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -135,11 +141,17 @@
         <div class="row">
             <div class="col-md-12 col-sm-12">
                 <div class="salarioTotalEstilos">
-                    @Html.LabelFor(model => model.INGRESO_PROM_ANUAL, htmlAttributes: new { @class = "letrasSalarioTotal col-md-6", @style = "text-align:left;" })
-                    <span class="E_INGRESO_PROM_ANUAL valorSalarioTotal col-md-6">@Model.INGRESO_PROM_ANUAL</span>
-                    <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('INGRESO_PROM_ANUAL')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="top: 5px !important;right: 0px;">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-                    @Html.HiddenFor(model => model.INGRESO_PROM_ANUAL, new { @class = "E_INGRESO_PROM_ANUAL" })
-                    @Html.ValidationMessageFor(model => model.INGRESO_PROM_ANUAL)
+                    <div class="row justify-content-between">
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.INGRESO_PROM_ANUAL, htmlAttributes: new { @class = "letrasSalarioTotal" })
+                        </div>
+                        <div class="col-md-6">
+                            <span class="E_INGRESO_PROM_ANUAL valorSalarioTotal">@Model.INGRESO_PROM_ANUAL</span>
+                            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('INGRESO_PROM_ANUAL')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="top: 5px !important;right: 0px;">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                            @Html.HiddenFor(model => model.INGRESO_PROM_ANUAL, new { @class = "E_INGRESO_PROM_ANUAL" })
+                            @Html.ValidationMessageFor(model => model.INGRESO_PROM_ANUAL)
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -195,11 +207,13 @@
         <div class="row">
             <div class="form-group col-md-12 col-sm-12">
                 <div class="salarioTotalEstilos">
-                    @Html.LabelFor(model => model.POSICIONAMIENTO, htmlAttributes: new { @class = "letrasSalarioTotal col-md-6", @style = "text-align:left;" })
-                    <span class="valorSalarioTotal col-md-11">@Model.POSICIONAMIENTO</span>
-                    <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('POSICIONAMIENTO')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="top: 5px !important;right: 0px;">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-                    @Html.HiddenFor(model => model.POSICIONAMIENTO)
-                    @Html.ValidationMessageFor(model => model.POSICIONAMIENTO)
+                    <div class="row justify-content-between">
+                        @Html.LabelFor(model => model.POSICIONAMIENTO, htmlAttributes: new { @class = "letrasSalarioTotal col-6" })
+                        <span class="valorSalarioTotal col-6">@Model.POSICIONAMIENTO</span>
+                        <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('POSICIONAMIENTO')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="top: 5px !important;right: 0px;">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                        @Html.HiddenFor(model => model.POSICIONAMIENTO)
+                        @Html.ValidationMessageFor(model => model.POSICIONAMIENTO)
+                    </div>
                 </div>
             </div>
         </div>
