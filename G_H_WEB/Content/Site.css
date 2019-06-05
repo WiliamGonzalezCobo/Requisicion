@@ -87,7 +87,7 @@
     height: 22px;
     width: 199.88px;
     color: #FFFFFF;
-    font-family: "Source Sans Pro";
+    font-family: "Source-Sans-Pro";
     font-size: 17px;
     font-weight: bold;
     line-height: 22px;
@@ -108,12 +108,13 @@
     border: 2px solid #9B9B9B;
     border-radius: 1px;
     background-color: #FFFFFF;
+    cursor:pointer;
 }
 
 .crear-requisicion-texto {
     width: 199.88px;
     color: #FFFFFF;
-    font-family: "Source Sans Pro";
+    font-family: "Source-Sans-Pro";
     font-size: 17px;
     font-weight: bold;
     line-height: 22px;
@@ -124,11 +125,24 @@
     height: 20px;
     width: 156px;
     color: #F15300;
-    font-family: "Source Sans Pro";
+    font-family: "Source-Sans-Pro";
     font-size: 17px;
     line-height: 20px;
-    margin-right:40px;
+    margin-right: 40px;
+    text-decoration: underline;
 }
+.cancelar-requisicion:hover {
+    height: 20px;
+    width: 156px;
+    color: #F15300;
+    font-family: "Source-Sans-Pro";
+    font-size: 17px;
+    line-height: 20px;
+    margin-right: 40px;
+    text-decoration: underline;
+}
+
+
 
 .caja_imagenes {
     height: 98px;
@@ -218,9 +232,249 @@
 .ImagenActiva {
 background-color: #FFFFFF;
 }
+
 .letrasFormulario {
     color: #000000;
-    font-family: "Source Sans Pro";
+    font-family: "Source-Sans-Pro";
     font-size: 14px;
     line-height: 18px;
 }
+.buscador_modificaciones {
+    height: 48px;
+    width: 500px;
+    border: 1px solid #979797;
+    background-color: #FFFFFF;
+    padding-left:10px;
+}
+
+.buscador_modificaciones_deplegable {
+    overflow-y: scroll;
+    max-height: 190px;
+    width: 500px;
+    border: 1px solid #979797;
+    background-color: #FFFFFF;
+    margin-bottom: 30px;
+}
+
+.buscador_modificaciones_deplegable_esconder {
+    overflow-y: scroll;
+    max-height: 0px;
+    width: 500px;
+    border:none;
+    background-color: #FFFFFF;
+    margin-bottom: 30px;
+}
+span.search-btn {
+    width: 48px;
+    height: 48px;
+    margin: 0;
+    padding: 18px 0 0 0;
+    font-size: 14px;
+    font-size: 0.875rem;
+    font-family: "Font Awesome 5 Free";
+    line-height: 1;
+    color: #f1f1f1;
+    text-align: center;
+    position: absolute;
+    left: 515px;
+    background: #080015;
+    cursor:pointer;
+}
+
+.Obsevaciones_requisicion {
+    color: #7B7B7B;
+    font-family: "Source-Sans-Pro";
+    font-size: 14px;
+    line-height: 22px;
+}
+.TituloRequisiciones {
+    color: #1B2129;
+    font-family: "Source-Sans-Pro";
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 33px;
+}
+.item_lista_modificar:hover {
+    background-color: #EEEEEE;
+}
+.posicionCheck {
+    position: absolute;
+    top: 2px;
+    margin-left: 10px;
+}
+
+
+.Titulo-Popup {
+    margin-top: 39px;
+    font-family: Oswald !important;
+}
+
+.Texto-Popup {
+    width: 100%;
+    color: #000000;
+    font-family: "source-regular";
+    font-size: 22px;
+    line-height: 30px;
+    text-align: center;
+    margin-bottom: 34px;
+}
+.Content-Popup {
+    margin-top: -19px !important;
+    margin-bottom: 25px;
+    text-align: -webkit-center!important;
+}
+.Titulo-Popup-Creacion {
+    margin-top: 55px;
+    font-family: "oswald-bold";
+    font-size: 30px;
+}
+.Texto-Popup-Creacion {
+    width: 85%;
+    color: #000000;
+    font-family: source-regular;
+    font-size: 22px;
+    line-height: 30px;
+    text-align: center;
+    margin-bottom: 34px;
+}
+.Texto-Popup-Creacion-Negrilla {
+    font-family: "source-bold";
+    font-size: 22px;
+}
+
+.Content-Popup-Creacion {
+    padding-top: 15px;
+    /*padding-bottom: 50px;*/
+}
+
+.BtnDevolver {
+    height: 48px;
+    width: 230px;
+    border: 1.5px solid #F15300;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+    margin-right: 40px;
+    cursor:pointer;
+}
+.TextoBtnDevolver {
+    color: #F15300;
+    font-family: "Source Sans Pro";
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 22px;
+    text-align: center;
+}
+.SubtitulosNivel2 {
+    color: #000000;
+    font-family: "Source Sans Pro";
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 23px;
+    margin:10px;
+}
+
+.combosGrandes {
+    height: 48px;
+    width: 500px;
+    border: 1px solid #979797;
+    background-color: #FFFFFF;
+}
+
+.comboArl {
+    height: 48px;
+    width: 160px;
+    border: 1px solid #979797;
+    background-color: #FFFFFF;
+}
+
+.combosDesdeHasta {
+    height: 48px;
+    width: 160px;
+    border: 1px solid #979797;
+    background-color: #FFFFFF;
+}
+
+.spanCombosDesdeHasta {
+    left: 173px;
+}
+.salarioTotalEstilos {
+    /*height: 48px;
+    width: 100%;*/
+    background-color: #EAEAEA;
+    padding:10px;
+}
+.valorSalarioTotal {
+    height: 23px;
+    width: 91px;
+    color: #000000;
+    font-family: "source-medium";
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 23px;
+}
+
+.letrasSalarioTotal {
+    height: 18px;
+    width: 197px;
+    color: #000000;
+    font-family: "source-medium";
+    font-size: 14px;
+    line-height: 18px;
+    text-align: right;
+}
+.separadorPuntosMedio {
+    box-sizing: border-box;
+    height: 3px;
+    width: 100%;
+    border: 1px solid #2F2F2F;
+    margin:10px;
+}
+
+.imgModificar{
+    width: 100%;
+}
+
+.rectangle_Jornada {
+    height: 120px;
+    width: 132px;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    background-color: transparent;
+    box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.1);
+    padding: 0px;
+}
+
+    .rectangle_Jornada .RB {
+        padding: 0px;
+        text-align: right;
+    }
+
+    .rectangle_Jornada .RB:checked{
+        box-sizing: border-box;
+        height: 18px;
+        width: 18px;
+        border: 6px solid #1A9BB2;
+        background-color: #FFFFFF;
+    }
+
+    .rectangle_Jornada .RB:active {
+        box-sizing: border-box;
+        height: 18px;
+        width: 18px;
+        border: 6px solid #1A9BB2;
+        background-color: transparent;
+    }
+
+
+    .rectangle_Jornada .Img {
+        text-align: center;
+        padding: 0px
+    }
+
+        .rectangle_Jornada .Img .text {           
+            color: #000000;
+            font-family: "source-light";
+            font-size: 14px;
+            line-height: 18px;
+            padding: 11px;
+        }

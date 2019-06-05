@@ -1,7 +1,7 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 @{string deshabilitar = "true";}
 <section id="infoGeneral">
-    <h3>Imformación General</h3>
+    <h3>Información General</h3>
     <div class="row">
         <div class="form-group col-md-6 col-xs-12">
             @Html.LabelFor(model => model.NOMBRE_CARGO, htmlAttributes: new { @class = "control-label col-md-12" })
@@ -49,7 +49,7 @@
             @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA_ED, htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-12">
                 @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, Model.LIST_NOMBRE_CATEGORIA_ED, "Seleccione ", new { @class = "form-control col-md-11", disabled = deshabilitar })
-                <span class="btn_traza" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <i class="fa fa-clipboard-list btn_centar"></i></span>
+                <span class="btn_traza" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')" data-toggle="tooltip" data-placement="top" >  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.HiddenFor(model => model.COD_CATEGORIA_ED, new { @Id = "hdCOD_CATEGORIA_ED" })
                 @Html.ValidationMessageFor(model => model.COD_CATEGORIA_ED, "", new { @class = "text-danger" })
             </div>

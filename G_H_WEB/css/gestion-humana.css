@@ -30,11 +30,17 @@
     src: url("/assets/fonts/Oswald-Bold.woff2") format("woff2"), url("/assets/fonts/Oswald-Bold.woff") format("woff"), url("/assets/fonts/Oswald-Bold.ttf") format("truetype"), url("/assets/fonts/Oswald-Bold.svg") format("svg");
 }
 
-/* SOURCE SANS PRO */
+
 @font-face {
     font-family: 'source-light';
     src: url("/assets/fonts/SourceSansPro-Light.eot");
     src: url("/assets/fonts/SourceSansPro-Light.woff2") format("woff2"), url("/assets/fonts/SourceSansPro-Light.woff") format("woff"), url("/assets/fonts/SourceSansPro-Light.ttf") format("truetype"), url("/assets/fonts/SourceSansPro-Light.svg") format("svg");
+}
+/* SOURCE SANS PRO */
+@font-face {
+    font-family: 'Source-Sans-Pro';
+    src: url("../assets/fonts/SourceSansPro-Regular.eot");
+    src: url("../assets/fonts/SourceSansPro-Regular.woff2") format("woff2"), url("../assets/fonts/SourceSansPro-Regular.woff") format("woff"), url("../assets/fonts/SourceSansPro-Regular.ttf") format("truetype"), url("../assets/fonts/SourceSansPro-Regular.svg") format("svg");
 }
 
 @font-face {
@@ -51,8 +57,8 @@
 
 @font-face {
     font-family: 'source-bold';
-    src: url("/assets/fonts/SourceSansPro-Bold.eot");
-    src: url("/assets/fonts/SourceSansPro-Bold.woff2") format("woff2"), url("/assets/fonts/SourceSansPro-Bold.woff") format("woff"), url("/assets/fonts/SourceSansPro-Bold.ttf") format("truetype"), url("/assets/fonts/SourceSansPro-Bold.svg") format("svg");
+    src: url("../assets/fonts/SourceSansPro-Bold.eot");
+    src: url("../assets/fonts/SourceSansPro-Bold.woff2") format("woff2"), url("../assets/fonts/SourceSansPro-Bold.woff") format("woff"), url("../assets/fonts/SourceSansPro-Bold.ttf") format("truetype"), url("../assets/fonts/SourceSansPro-Bold.svg") format("svg");
 }
 
 .navbar.menu-superior {
@@ -306,6 +312,7 @@ form.buscador a.search-btn {
     right: 0;
     background: #080015;
 }
+
 
     .buscador span.search-btn:hover {
         color: #ffffff;
@@ -1254,10 +1261,10 @@ body.retiros {
 }
 
 .btn_traza {
-    width: 35px;
+    width: 41px;
     height: 38px;
     margin: 0;
-    padding: 18px 0 0 0;
+    padding: 0 0 0 0;
     font-size: 14px;
     font-size: 0.875rem;
     font-family: "Font Awesome 5 Free";
@@ -1267,7 +1274,7 @@ body.retiros {
     position: absolute;
     top: 0;
     right: 0;
-    background: #080015;
+    /*background: #080015;*/
     cursor: pointer;
 }
 
@@ -1355,6 +1362,8 @@ body .requisicion .form-control{
 .page-link {
     color: #F15300;
 }
+
+/*Fin custom datatable */
 
 /*Fin custom datatable */
 
