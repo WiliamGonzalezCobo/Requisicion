@@ -60,7 +60,6 @@
 //});
 
 
-$(document).ready(function () {
     $(".E_SALARIO_FIJO").focusout(function () {
         debugger;
         var VALOR_SALARIO_FIJO = parseFloat($(".E_SALARIO_FIJO").val().replace(",", "."));
@@ -122,4 +121,3 @@ $(document).ready(function () {
         $(".E_INGRESO_PROM_ANUAL").text(parseFloat(calculo_pro_anual).toFixed(2));
     });
 
-});
