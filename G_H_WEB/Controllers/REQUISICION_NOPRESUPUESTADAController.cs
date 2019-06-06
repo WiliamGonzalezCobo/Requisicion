@@ -15,7 +15,7 @@ namespace G_H_WEB.Controllers
     public class REQUISICION_NOPRESUPUESTADAController : Controller
     {
         // GET: REQUISICION_NOPRESUPUESTADA
-        public ActionResult Index(int? _idReq)
+        public ActionResult Consultar(int? _idReq)
         {
             REQUISICIONViewModel model = new REQUISICIONViewModel();
             if (_idReq.HasValue){
@@ -41,7 +41,7 @@ namespace G_H_WEB.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Index(REQUISICIONViewModel modelDatos, string submitButton) {
+        public ActionResult Procesar(REQUISICIONViewModel modelDatos, string submitButton) {
             try {
                 int _resultadoIdReguisicion = 0;
                 modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqNoPresupuestada;
@@ -102,14 +102,14 @@ namespace G_H_WEB.Controllers
                 TempData["resultado"] = npc;
                 //FIN Esta logica es para el POP UP----------
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Consultar");
             }
             catch (Exception ex)
             {
                 RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
                 npc.RESULTADO = false;
                 TempData["resultado"] = npc;
-                return RedirectToAction("Index");
+                return RedirectToAction("Consultar");
             }
         }
   

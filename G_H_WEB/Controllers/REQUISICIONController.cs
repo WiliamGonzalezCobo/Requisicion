@@ -53,18 +53,18 @@ namespace G_H_WEB.Controllers
             Session["requisicion"] = idTipo;
             if (idTipo == SettingsManager.CodTipoReqPresupuestada)
             {
-                return RedirectToAction("Index", "REQUISICION_PRESUPUESTADA");
+                return RedirectToAction("Consultar", "REQUISICION_PRESUPUESTADA");
             }
             if (idTipo == SettingsManager.CodTipoReqNoPresupuestada) {
-                return RedirectToAction("Index", "REQUISICION_NOPRESUPUESTADA");
+                return RedirectToAction("Consultar", "REQUISICION_NOPRESUPUESTADA");
             }
             if (idTipo.Equals(SettingsManager.CodTipoReqIncapacidad))
             {
-                return RedirectToAction("Index", "LICENCIA_INCAPACIDAD");
+                return RedirectToAction("Consultar", "LICENCIA_INCAPACIDAD");
             }
             if (idTipo.Equals(SettingsManager.CodTipoReqLicencia))
             {
-                return RedirectToAction("Index", "LICENCIA_INCAPACIDAD");
+                return RedirectToAction("Consultar", "LICENCIA_INCAPACIDAD");
             }
             return View();
         }
@@ -76,19 +76,19 @@ namespace G_H_WEB.Controllers
 
             if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqPresupuestada))
             {
-                return RedirectToAction("Index", "REQUISICION_PRESUPUESTADA", new { _idReq = _idRequisicion });
+                return RedirectToAction("Consultar", "REQUISICION_PRESUPUESTADA", new { _idReq = _idRequisicion });
             }
             if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqNoPresupuestada))
             {
-                return RedirectToAction("Index", "REQUISICION_NOPRESUPUESTADA", new { _idReq = _idRequisicion });
+                return RedirectToAction("Consultar", "REQUISICION_NOPRESUPUESTADA", new { _idReq = _idRequisicion });
             }
             if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqIncapacidad))
             {
-                return RedirectToAction("Index", "LICENCIA_INCAPACIDAD", new { _idReq = _idRequisicion });
+                return RedirectToAction("Consultar", "LICENCIA_INCAPACIDAD", new { _idReq = _idRequisicion });
             }
             if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqLicencia))
             {
-                return RedirectToAction("Index", "LICENCIA_INCAPACIDAD", new { _idReq = _idRequisicion });
+                return RedirectToAction("Consultar", "LICENCIA_INCAPACIDAD", new { _idReq = _idRequisicion });
             }
 
 

@@ -15,7 +15,7 @@ namespace G_H_WEB.Controllers
     public class REQUISICION_PRESUPUESTADAController : Controller
     {
         // GET: REQUISICION_PRESUPUESTADA
-        public ActionResult Index(int? _idReq)
+        public ActionResult Consultar(int? _idReq)
         {
             REQUISICIONViewModel model = new REQUISICIONViewModel();
             try
@@ -47,7 +47,7 @@ namespace G_H_WEB.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Index(REQUISICIONViewModel modelDatos, string submitButton)
+        public ActionResult Procesar(REQUISICIONViewModel modelDatos, string submitButton)
         {
             try
             {
@@ -111,7 +111,7 @@ namespace G_H_WEB.Controllers
                 TempData["resultado"] = npc;
                 //FIN Esta logica es para el POP UP----------
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Consultar");
             }
             catch
             {

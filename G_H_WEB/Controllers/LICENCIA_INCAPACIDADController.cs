@@ -16,8 +16,7 @@ namespace G_H_WEB.Controllers
     [CustAuthFilter]
     public class LICENCIA_INCAPACIDADController : Controller
     {
-        // GET: REQUISICION_NOPRESUPUESTADA
-        public ActionResult Index(int? _idReq)
+        public ActionResult Consultar(int? _idReq)
         {
             if (Session["requisicion"] != null)
             {
@@ -64,7 +63,7 @@ namespace G_H_WEB.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Index(REQUISICIONViewModel modelDatos, string submitButton)
+        public ActionResult Procesar(REQUISICIONViewModel modelDatos, string submitButton)
         {
             try
             {
@@ -143,7 +142,7 @@ namespace G_H_WEB.Controllers
                 TempData["resultado"] = npc;
                 //FIN Esta logica es para el POP UP----------
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Consultar");
             }
             catch (Exception ex)
             {
@@ -154,13 +153,13 @@ namespace G_H_WEB.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         public JsonResult ConsultarCargo(string idCargo)
         {
             if (!string.IsNullOrEmpty(idCargo) && !idCargo.Equals(0))
             {
                 PUESTO datosCargo = new LOGICA_REQUISICION().BUSCAR_PUESTO_X_CARGO_API(idCargo);
-
+                    
                 return Json(datosCargo, JsonRequestBehavior.AllowGet);
             }
 
