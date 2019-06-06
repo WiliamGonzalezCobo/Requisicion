@@ -36,7 +36,7 @@ namespace UTILS.Settings
 
         public static string Urlapi
         {
-            get { return GetSettings("Urlapi"); }
+            get { return GetSettings("URL_WEB_API"); }
         }
         public static string ApiUsuario
         {

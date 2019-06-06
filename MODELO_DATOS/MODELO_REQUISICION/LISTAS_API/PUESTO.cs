@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MODELO_DATOS.MODELO_REQUISICION.LISTAS_API
 {
 
-  public  class PUNTOS_MEDIO
+  public  class PUESTO
     {
 
         public string DOCUMENTO_NUMERO { get; set; }

@@ -101,7 +101,7 @@ namespace G_H_WEB.Controllers
                 switch (submitButton)
                 {
                     case "Crear Requisición":
-                        _resultadoIdReguisicion = new LOGICA_REQUISICION().INSERTAR_REQUISICION_LOGICA(modelDatos);
+                        _resultadoIdReguisicion = new LOGICA_REQUISICION().INSERTAR_REQUISICION(modelDatos);
                         if (modelDatos.COD_REQUISICION == 0)
                             npc.METODO = "Crear";
                         else
@@ -111,7 +111,7 @@ namespace G_H_WEB.Controllers
                     case "Aprobar":
                         if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
                         {
-                            Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos));
+                            Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZAR_REQUISICION(modelDatos));
                             _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
                         }
                         else
@@ -125,7 +125,7 @@ namespace G_H_WEB.Controllers
                         npc.METODO = "Rechazar";
                         break;
                     case "Enviar":
-                        Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos));
+                        Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZAR_REQUISICION(modelDatos));
                         _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
                         npc.METODO = "Enviar";
                         break;
@@ -159,7 +159,7 @@ namespace G_H_WEB.Controllers
         {
             if (!string.IsNullOrEmpty(idCargo) && !idCargo.Equals(0))
             {
-                PUNTOS_MEDIO datosCargo = new LOGICA_REQUISICION().BUSCAR_CARGO_API(idCargo);
+                PUESTO datosCargo = new LOGICA_REQUISICION().BUSCAR_PUESTO_X_CARGO_API(idCargo);
 
                 return Json(datosCargo, JsonRequestBehavior.AllowGet);
             }

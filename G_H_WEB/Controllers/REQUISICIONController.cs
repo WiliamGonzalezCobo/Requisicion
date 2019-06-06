@@ -101,13 +101,13 @@ namespace G_H_WEB.Controllers
             List<SelectListItem> LISTA_ARL = _sesion.LIST_NIVEL_RIESGO_ARL;
             List<SelectListItem> LISTA_ESTADOS = _sesion.LIST_NOMBRE_ESTADO_REQUISICION;
             List<SelectListItem> LISTA_CATEGORIA = _sesion.LIST_NOMBRE_CATEGORIA;
-            List<TRAZA_BOTONES_ENTIDAD> datosTraza= new LOGICA_REQUISICION().TRAZA_BOTONES_LOGICA(COD_REQUISICION, CAMPO_REQUISICION, LISTA_ARL, LISTA_ESTADOS, LISTA_CATEGORIA);
+            List<TRAZA_BOTONES_ENTIDAD> datosTraza= new LOGICA_REQUISICION().CONSULTAR_TRAZA_CAMPOS(COD_REQUISICION, CAMPO_REQUISICION, LISTA_ARL, LISTA_ESTADOS, LISTA_CATEGORIA);
             return Json(datosTraza, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult ConsultarModificaciones() {
             string COD_USUARIO = User.Identity.GetUserId();
-            List<CONSULTA_NOTIFICACIONES_ENTIDAD> datosmodificacion = new LOGICA_REQUISICION().CONSULTA_NOTIFICACIONES_LOGICA(COD_USUARIO);
+            List<CONSULTA_NOTIFICACIONES_ENTIDAD> datosmodificacion = new LOGICA_REQUISICION().CONSULTA_NOTIFICACIONES(COD_USUARIO);
             return Json(datosmodificacion, JsonRequestBehavior.AllowGet);
         }
     }
