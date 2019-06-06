@@ -11,6 +11,7 @@ using System.Dynamic;
 using log4net;
 using System.Threading;
 using REPOSITORIOS.TRAZA_LOG;
+using MODELO_DATOS.MODELO_REQUISICION.LISTAS_API;
 
 namespace LOGICA
 {
@@ -96,7 +97,42 @@ namespace LOGICA
                 throw ex;
             }
         }
-         
+
+        public List<EMPLEADOS> CONSULTAR_EMPLEADOS()
+        {
+            try
+            {
+                string INFO = ("Iniciando Método CONSULTAR_EMPLEADOS");
+                log.Info("CODIGO : EM2," + INFO);
+
+                CLIENTEAPI API = new CLIENTEAPI();
+
+                HttpResponseMessage respueta = API.client.GetAsync("EMPLEADOS").Result;
+
+                respueta.EnsureSuccessStatusCode();
+                if (respueta.IsSuccessStatusCode)
+                {
+                    string contenido = respueta.Content.ReadAsStringAsync().Result;
+                    List<EMPLEADOS> CAUSA_OBJ = JsonConvert.DeserializeObject<List<EMPLEADOS>>(contenido);
+                    return CAUSA_OBJ;
+                }
+                else
+                {//valor_buscado
+                    return null;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                log.ErrorFormat("CODIGO : EM2  recuperando CONSULTAR_EMPLEADOS: {0}", ex.StackTrace);
+                ex.HelpLink = "EM2";
+                Thread HILO = new Thread(() => ERROR.ERROR_TRAZA(ex.HelpLink, log.Logger.Name, ex.TargetSite.Name, ex.StackTrace));
+                HILO.Start();
+
+                throw ex;
+            }
+        }
+
 
 
 

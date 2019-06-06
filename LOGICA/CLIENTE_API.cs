@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-using LOGICA.MODELO_LOGICA; 
+using LOGICA.MODELO_LOGICA;
+using UTILS.Settings;
 
 namespace LOGICA
 {
@@ -18,9 +19,9 @@ namespace LOGICA
         {
             client = new HttpClient()
             {
-                BaseAddress = new Uri(System.Configuration.ConfigurationManager.AppSettings["URL_WEB_API"].ToString())
+                BaseAddress = new Uri(SettingsManager.Urlapi)
             };
-            client.SetBasicAuthentication("1", "1");
+            client.SetBasicAuthentication(SettingsManager.ApiUsuario,SettingsManager.ApiPassword);
             var CLIENT = client;
         }
 

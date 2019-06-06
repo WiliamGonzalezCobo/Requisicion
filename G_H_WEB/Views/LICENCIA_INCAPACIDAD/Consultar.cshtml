@@ -72,7 +72,7 @@
             <div id="CNform">
                 <div class="retiros-detalle">
                     <div class="form-group col-md-12">
-                        @using (Html.BeginForm("Index", "LICENCIA_INCAPACIDAD"))
+                        @using (Html.BeginForm("Procesar", "LICENCIA_INCAPACIDAD"))
                         {
 
                             if (User.IsInRole(SettingsManager.PerfilJefe))
@@ -254,7 +254,7 @@
             });
             $.ajax({
                 url: "@Url.Action("ConsultarCargo", "LICENCIA_INCAPACIDAD")",
-                type: 'POST',
+                type: 'GET',
                 data: { idCargo: id },
                 success: function (respuesta) {
                     mapeoObjCargoApi(respuesta)
