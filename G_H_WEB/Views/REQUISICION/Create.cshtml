@@ -149,7 +149,7 @@
     <script type="text/javascript">
         @ViewBag.scripCall
         $(document).ready(function () {
-            var variable1 = '@Session["requisicion"]';
+            var variable1 = '@ViewBag.idTipo';
             if (variable1 == 1) {
                 $("#pnlPresupuestada").show();
             }
@@ -167,7 +167,7 @@
 
             }
             else {
-                var tipoReq = '@Session["requisicion"]';
+                var tipoReq = '@ViewBag.idTipo';
                 if (tipoReq == 1) {
                     if (document.getElementById('COD_TIPO_NECESIDAD').value != "" && document.getElementById('COD_CARGO').value != ""
                         && document.getElementById('ORDEN').value != "" && document.getElementById('COD_CECO').value != ""

@@ -2,47 +2,44 @@
 @using MODELO_DATOS.MODELO_REQUISICION;
 @using UTILS.Settings
 @{
-    ViewBag.Title = "Crear Requisición Presupuestada";
+    ViewBag.Title = "Crear Requisición No Presupuestada";
     Layout = "~/Views/Shared/_Layout.cshtml";
     RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
 }
 <div class="col">
-    <div class="TituloRequisiciones">@ViewBag.Title</div>
+    <h4>@ViewBag.Title</h4>
 
- 
     <div id="SeccionRequisicionParciales" class="col">
-
         <div class="row" style="margin: 20px;">
             <div class="col-md-3 col-lg-3 col-xl-3">
-                    <div class="col-12 rectangle_Pop_UP ImagenActiva">
-                        <img src="../../assets/img/imgPresupuestada.png" class="img-responsive maxImagen" />
-                        <div class="presupuestada">Presupuestada</div>
-                    </div>
+                <div class="col-12 rectangle_Pop_UP">
+                    <img src="../../assets/img/imgPresupuestada.png" class="img-responsive maxImagen" />
+                    <div class="presupuestada">Presupuestada</div>
+                </div>
             </div>
             <div class="col-md-3 col-lg-3 col-xl-3">
-                    <div class="col-12 rectangle_Pop_UP">
-                        <img src="../../assets/img/imgNoPresupuestada.png" class="img-responsive maxImagen" />
-                        <div class="no-presupuestada">No presupuestada</div>
-                    </div>
+                <div class="col-12 rectangle_Pop_UP ImagenActiva">
+                    <img src="../../assets/img/imgNoPresupuestada.png" class="img-responsive maxImagen" />
+                    <div class="no-presupuestada">No presupuestada</div>
+                </div>
             </div>
             <div class="col-md-3 col-lg-3 col-xl-3">
-                    <div class="col-12 rectangle_Pop_UP">
-                        <img src="../../assets/img/imgIncapacidad.png" class="img-responsive maxImagen" />
-                        <div class="incapacidad">Incapacidad</div>
-                    </div>
+                <div class="col-12 rectangle_Pop_UP">
+                    <img src="../../assets/img/imgIncapacidad.png" class="img-responsive maxImagen" />
+                    <div class="incapacidad">Incapacidad</div>
+                </div>
             </div>
             <div class="col-md-3 col-lg-3 col-xl-3">
-                    <div class="col-12 rectangle_Pop_UP">
-                        <img src="../../assets/img/imgLicencia.png" class="img-responsive maxImagen" />
-                        <div class="licencia">Licencia</div>
-                    </div>
+                <div class="col-12 rectangle_Pop_UP">
+                    <img src="../../assets/img/imgLicencia.png" class="img-responsive maxImagen" />
+                    <div class="licencia">Licencia</div>
+                </div>
             </div>
         </div>
-
         <div id="CNform">
             <div class="retiros-detalle">
                 <div class="form-group col-md-12">
-                    @using (Html.BeginForm("Index", "REQUISICION_PRESUPUESTADA"))
+                    @using (Html.BeginForm("Procesar", "REQUISICION_NOPRESUPUESTADA"))
                     {
 
                         if (User.IsInRole(SettingsManager.PerfilJefe))
@@ -85,13 +82,13 @@
                                 @if (User.IsInRole(SettingsManager.PerfilJefe))
                                 {
                                     @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
-                                    <input name="submitButton" id="submitButtonCrear" type="submit" value="CREAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto" />
+                                    <input name="submitButton" id="submitButtonCrear" type="submit" value="CREAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilController))
                                 {
+
                                     <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver" />
                                     <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto" />
-
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilBp))
                                 {
@@ -100,9 +97,9 @@
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilRRHH))
                                 {
-                                    <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="aprobar-requisicion" />
-                                    <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro" />
-                                    <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="btn-confirmar-retiro" />
+                                    <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilUSC))
                                 {
@@ -134,7 +131,7 @@
                 </div>
                 <div class="modal-body Content-Popup">
                     <br />
-                    <h2 class="_metodoCrear Texto-Popup-Creacion">Se créo la requisición para el cargo de  <span class="Texto-Popup-Creacion-Negrilla" id="mensaje1"></span> con ID <span class="Texto-Popup-Creacion-Negrilla" id="mensaje2"></span></h2>
+                    <h2 class="_metodoCrear Texto-Popup-Creacion">Se créo la requisicion para el cargo de  <span class="Texto-Popup-Creacion-Negrilla" id="mensaje1"></span> con ID <span class="Texto-Popup-Creacion-Negrilla" id="mensaje2"></span></h2>
                     <h2 class="__metodoAprobar Texto-Popup-Creacion">Se aprobó la requisición con ID <span class="Texto-Popup-Creacion-Negrilla" id="mensaje_aprobar"></span></h2>
                     <h2 class="__metodoModificar Texto-Popup-Creacion">Se modificó la requisición con ID <span class="Texto-Popup-Creacion-Negrilla" id="mensaje_modificar"></span></h2>
                     <h2 class="__metodoRechazar Texto-Popup-Creacion">Se Rechazó la requisición con ID <span class="Texto-Popup-Creacion-Negrilla" id="mensaje_rechazar"></span></h2>
@@ -203,116 +200,113 @@
             </div>
         </div>
     </div>
-
 </div>
-@*<script src="~/Scripts/REQUISICIONES_PRESUPUESTADAS.js"></script>*@
+
+
 <script type="text/javascript">
 
     $(document).ready(function () {
-
-        if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {
-            if (@Model.COD_REQUISICION!= 0) {
-                $("#submitButtonCrear").text("Modificar Requisición");
-            }
+    debugger;
+    if ("@User.IsInRole(SettingsManager.PerfilJefe)" == "True") {
+        if (@Model.COD_REQUISICION!= 0) {
+    $("#submitButtonCrear").text("Modificar Requisición");
+}
         }
-        $("._metodoCrear").css("display", "none");
-        $(".__metodoAprobar").css("display", "none");
-        $(".__metodoModificar").css("display", "none");
-        $(".__metodoRechazar").css("display", "none");
-        $(".__metodoEnviar").css("display", "none");
+$("._metodoCrear").css("display", "none");
+$(".__metodoAprobar").css("display", "none");
+$(".__metodoModificar").css("display", "none");
+$(".__metodoRechazar").css("display", "none");
+$(".__metodoEnviar").css("display", "none");
 
 
 
-        var resultado = "@ViewBag.resultadoInsertExitosoOno";
+var resultado = "@ViewBag.resultadoInsertExitosoOno";
 
 
-        if (resultado == "True") {
-            debugger;
-            var _metodo = "@paraModel.METODO";
-            if (_metodo == "Crear") {
-                CREAR_REQUISICION();
-                $("._metodoDefecto").css("display", "none");
+if (resultado == "True") {
+    debugger;
+    var _metodo = "@paraModel.METODO";
+    if (_metodo == "Crear") {
+        CREAR_REQUISICION();
+        $("._metodoDefecto").css("display", "none");
 
-            }
-            else if (_metodo == "Aprobar") {
-                APROBAR_REQUISICION();
-                $("._metodoDefecto").css("display", "none");
-            }
-            else if (_metodo == "Modificar") {
-                MODIFICAR_REQUISICION();
-                $("._metodoDefecto").css("display", "none");
-            }
+    }
+    else if (_metodo == "Aprobar") {
+        APROBAR_REQUISICION();
+        $("._metodoDefecto").css("display", "none");
+    }
+    else if (_metodo == "Modificar") {
+        MODIFICAR_REQUISICION();
+        $("._metodoDefecto").css("display", "none");
+    }
 
-            else if (_metodo == "Rechazar") {
-                RECHAZAR_REQUISICION();
-                $("._metodoDefecto").css("display", "none");
-            }
-            else if (_metodo == "Enviar") {
-                ENVIAR_REQUISICION();
-                $("._metodoDefecto").css("display", "none");
-            }
+    else if (_metodo == "Rechazar") {
+        RECHAZAR_REQUISICION();
+        $("._metodoDefecto").css("display", "none");
+    }
+    else if (_metodo == "Enviar") {
+        ENVIAR_REQUISICION();
+        $("._metodoDefecto").css("display", "none");
+    }
 
-            $('#ModalCreacionNoJefe').modal("show");
-        }
+    $('#ModalCreacionNoJefe').modal("show");
+}
 
-        $(document).on('submit', 'form', function () {
-            $(this).attr("disabled", true);
-          
-        })
+       
     });
 
 
-    function CREAR_REQUISICION() {
-         var CargoText = "@paraModel.NOMBRE_COD_CARGO";
-            var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-            $("#mensaje1").text(CargoText);
-            $("#mensaje2").text(CargoCod);
-        $("._metodoCrear").css("display", "block");
-    }
+function CREAR_REQUISICION() {
+    var CargoText = "@paraModel.NOMBRE_COD_CARGO";
+    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+    $("#mensaje1").text(CargoText);
+    $("#mensaje2").text(CargoCod);
+    $("._metodoCrear").css("display", "block");
+}
 
 
-    function APROBAR_REQUISICION() {
-        var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-        $(".__metodoAprobar").css("display", "block");
-        $("#mensaje_aprobar").text(CargoCod);
+function APROBAR_REQUISICION() {
+    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+    $(".__metodoAprobar").css("display", "block");
+    $("#mensaje_aprobar").text(CargoCod);
 
-    }
-    function MODIFICAR_REQUISICION() {
-          var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-        $(".__metodoModificar").css("display", "block");
-        $("#mensaje_modificar").text(CargoCod);
-    }
+}
+function MODIFICAR_REQUISICION() {
+    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+    $(".__metodoModificar").css("display", "block");
+    $("#mensaje_modificar").text(CargoCod);
+}
 
-      function RECHAZAR_REQUISICION() {
-          var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-          $(".__metodoRechazar").css("display", "block");
-          $("#mensaje_rechazar").text(CargoCod);
-    }
+function RECHAZAR_REQUISICION() {
+    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+    $(".__metodoRechazar").css("display", "block");
+    $("#mensaje_rechazar").text(CargoCod);
+}
 
-          function ENVIAR_REQUISICION() {
-          var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-          $(".__metodoEnviar").css("display", "block");
-          $("#mensaje_Enviar").text(CargoCod);
-    }
+function ENVIAR_REQUISICION() {
+    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+    $(".__metodoEnviar").css("display", "block");
+    $("#mensaje_Enviar").text(CargoCod);
+}
 
 
-    $("#btnCancelarNoJefe").on("click", function () {
-        $('#ModalCancelNoJefe').modal('show');
-    });
+$("#btnCancelarNoJefe").on("click", function () {
+    $('#ModalCancelNoJefe').modal('show');
+});
 
-    function SiCancelarJefe() {
-            $('#ModalCancel').modal('hide');
-            window.location.href = '@Url.Action("Index", "REQUISICION")';
-        };
-    function NoCancelarJefe() {
-            $('#ModalCancel').modal('hide');
-    };
+function SiCancelarJefe() {
+    $('#ModalCancel').modal('hide');
+    window.location.href = '@Url.Action("Index", "REQUISICION")';
+};
+function NoCancelarJefe() {
+    $('#ModalCancel').modal('hide');
+};
 
-    $(function () {
-        $('.datepicker').datepicker();
-    });
+$(function () {
+    $('.datepicker').datepicker();
+});
 
-     function ConsultaTraza(CAMPO_REQUISICION) {
+  function ConsultaTraza(CAMPO_REQUISICION) {
         debugger;
         $(".bodytraza").empty();
         $(".nombre_traza").text("");
@@ -338,9 +332,7 @@
                     $('body').loading('stop');
                 }
             });
-    }
-
-
+        }
 </script>
 
 

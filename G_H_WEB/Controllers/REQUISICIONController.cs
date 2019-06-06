@@ -28,9 +28,7 @@ namespace G_H_WEB.Controllers
             ViewBag.valorSeleccionado = _filtro.cod_estado_requisicion == null ? "": _filtro.cod_estado_requisicion.ToString();
             // seccion ViewBag fin
 
-            REQUISICIONViewModel MODEL_SESSION = new REQUISICIONViewModel();
-            if (Session["objetoListas"]==null)
-                Session["objetoListas"] = new LOGICA_REQUISICION().LLENAR_CONTROLES(MODEL_SESSION);
+            
             return View(modelo);
         }
 
@@ -50,57 +48,59 @@ namespace G_H_WEB.Controllers
         // GET: REQUISICION/Create
         public ActionResult Create(int? idTipo)
         {
-            Session["requisicion"] = idTipo;
+            ViewBag.idTipo = idTipo;
+            //Session["requisicion"] = idTipo;
             if (idTipo == SettingsManager.CodTipoReqPresupuestada)
             {
-                return RedirectToAction("Index", "REQUISICION_PRESUPUESTADA");
+                return RedirectToAction("Consultar", "REQUISICION_PRESUPUESTADA", new { _idTipo = idTipo });
             }
             if (idTipo == SettingsManager.CodTipoReqNoPresupuestada) {
-                return RedirectToAction("Index", "REQUISICION_NOPRESUPUESTADA");
+                return RedirectToAction("Consultar", "REQUISICION_NOPRESUPUESTADA", new { _idTipo = idTipo });
             }
             if (idTipo.Equals(SettingsManager.CodTipoReqIncapacidad))
             {
-                return RedirectToAction("Index", "LICENCIA_INCAPACIDAD");
+                return RedirectToAction("Consultar", "LICENCIA_INCAPACIDAD", new { _idTipo = idTipo });
             }
             if (idTipo.Equals(SettingsManager.CodTipoReqLicencia))
             {
-                return RedirectToAction("Index", "LICENCIA_INCAPACIDAD");
-            }
+                return RedirectToAction("Consultar", "LICENCIA_INCAPACIDAD", new { _idTipo = idTipo });
+            }            
             return View();
         }
 
 
         public ActionResult Detalle(int _idRequisicion, int _tipoRequisicion)
         {
-            Session["requisicion"] = _tipoRequisicion;
-
+            //Session["requisicion"] = _tipoRequisicion;
+            ViewBag.idTipo = _tipoRequisicion;
             if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqPresupuestada))
             {
-                return RedirectToAction("Index", "REQUISICION_PRESUPUESTADA", new { _idReq = _idRequisicion });
+                return RedirectToAction("Consultar", "REQUISICION_PRESUPUESTADA", new { _idReq = _idRequisicion, _idTipo = _tipoRequisicion });
             }
             if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqNoPresupuestada))
             {
-                return RedirectToAction("Index", "REQUISICION_NOPRESUPUESTADA", new { _idReq = _idRequisicion });
+                return RedirectToAction("Consultar", "REQUISICION_NOPRESUPUESTADA", new { _idReq = _idRequisicion, _idTipo = _tipoRequisicion });
             }
             if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqIncapacidad))
             {
-                return RedirectToAction("Index", "LICENCIA_INCAPACIDAD", new { _idReq = _idRequisicion });
+                return RedirectToAction("Consultar", "LICENCIA_INCAPACIDAD", new { _idReq = _idRequisicion, _idTipo = _tipoRequisicion });
             }
             if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqLicencia))
             {
-                return RedirectToAction("Index", "LICENCIA_INCAPACIDAD", new { _idReq = _idRequisicion });
+                return RedirectToAction("Consultar", "LICENCIA_INCAPACIDAD", new { _idReq = _idRequisicion, _idTipo = _tipoRequisicion });
             }
 
-
+            
             return RedirectToAction("Index");
         }
 
 
         public JsonResult ConsultarTraza(int COD_REQUISICION, string CAMPO_REQUISICION) {
-            REQUISICIONViewModel _sesion = Session["objetoListas"] as REQUISICIONViewModel;
-            List<SelectListItem> LISTA_ARL = _sesion.LIST_NIVEL_RIESGO_ARL;
-            List<SelectListItem> LISTA_ESTADOS = _sesion.LIST_NOMBRE_ESTADO_REQUISICION;
-            List<SelectListItem> LISTA_CATEGORIA = _sesion.LIST_NOMBRE_CATEGORIA;
+            REQUISICIONViewModel modelDatos = new REQUISICIONViewModel();
+            modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES(modelDatos); 
+            List<SelectListItem> LISTA_ARL = modelDatos.LIST_NIVEL_RIESGO_ARL;
+            List<SelectListItem> LISTA_ESTADOS = modelDatos.LIST_NOMBRE_ESTADO_REQUISICION;
+            List<SelectListItem> LISTA_CATEGORIA = modelDatos.LIST_NOMBRE_CATEGORIA;
             List<TRAZA_BOTONES_ENTIDAD> datosTraza= new LOGICA_REQUISICION().CONSULTAR_TRAZA_CAMPOS(COD_REQUISICION, CAMPO_REQUISICION, LISTA_ARL, LISTA_ESTADOS, LISTA_CATEGORIA);
             return Json(datosTraza, JsonRequestBehavior.AllowGet);
         }
