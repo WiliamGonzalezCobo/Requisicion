@@ -15,7 +15,7 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
     {
         public int COD_COMENTARIO { get; set; }
         public Nullable<int> COD_ESTADO_REQUISICION { get; set; }
-        public Nullable<int> COD_ROL { get; set; }
+        public string COD_ROL { get; set; }
         public Nullable<int> COD_USUARIO { get; set; }
         public string COMENTARIO_AUTORIZACION { get; set; }
     }

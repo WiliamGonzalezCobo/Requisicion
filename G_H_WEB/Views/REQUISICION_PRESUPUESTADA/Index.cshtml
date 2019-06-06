@@ -324,7 +324,7 @@
             });
             $.ajax({
                 url: "@Url.Action("ConsultarTraza", "REQUISICION")",
-                type: 'POST',
+                type: 'GET',
                 data: { COD_REQUISICION: COD_REQUISICION, CAMPO_REQUISICION: CAMPO_REQUISICION},
                 success: function (respuesta) {
                     $.each(respuesta, function (key, value) {

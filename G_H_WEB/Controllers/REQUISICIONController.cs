@@ -95,7 +95,7 @@ namespace G_H_WEB.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+
         public JsonResult ConsultarTraza(int COD_REQUISICION, string CAMPO_REQUISICION) {
             REQUISICIONViewModel _sesion = Session["objetoListas"] as REQUISICIONViewModel;
             List<SelectListItem> LISTA_ARL = _sesion.LIST_NIVEL_RIESGO_ARL;

@@ -9,6 +9,8 @@
         @Html.HiddenFor(model => model.COD_REQUISICION)
         @Html.HiddenFor(model => model.COD_ESTADO_REQUISICION)
 
+
+
         @if (User.IsInRole(SettingsManager.PerfilJefe))
         {
             <div class="form-group col-md-6 col-sm-12">
@@ -26,19 +28,21 @@
         }
         else
         {
-    <div class="form-group col-md-6 col-sm-12">
-        @Html.LabelFor(model => model.LIST_NOMBRE_TIPO_NECESIDAD, new { @class = "letrasFormulario" })
-        @Html.DropDownListFor(model => model.COD_TIPO_NECESIDAD, new SelectList(Model.LIST_NOMBRE_TIPO_NECESIDAD, "Value", "Text", Model.COD_TIPO_NECESIDAD), "-- Seleccione --", new { @class = "form-control deplegablesIniciales letrasFormulario", disabled = deshabilitar })
-        @Html.ValidationMessageFor(model => model.COD_TIPO_NECESIDAD)
-    </div>
+            <div class="form-group col-md-6 col-sm-12">
+                @Html.LabelFor(model => model.LIST_NOMBRE_TIPO_NECESIDAD, new { @class = "letrasFormulario" })
+                @Html.DropDownListFor(model => model.COD_TIPO_NECESIDAD, new SelectList(Model.LIST_NOMBRE_TIPO_NECESIDAD, "Value", "Text", Model.COD_TIPO_NECESIDAD), "-- Seleccione --", new { @class = "form-control deplegablesIniciales letrasFormulario", disabled = deshabilitar })
+                @Html.HiddenFor(model => model.COD_TIPO_NECESIDAD)
+                @Html.ValidationMessageFor(model => model.COD_TIPO_NECESIDAD)
+            </div>
 
-    <div class="form-group col-md-6 col-sm-12">
-        @Html.LabelFor(model => model.LIST_NOMBRE_CARGO, new { @class = "letrasFormulario" })
-        @Html.DropDownListFor(model => model.COD_CARGO, new SelectList(Model.LIST_NOMBRE_CARGO, "Value", "Text", Model.COD_CARGO), "-- Seleccione --", new { @class = "form-control deplegablesIniciales letrasFormulario", disabled = deshabilitar })
-        @Html.ValidationMessageFor(model => model.COD_CARGO)
-    </div>
+            <div class="form-group col-md-6 col-sm-12">
+                @Html.LabelFor(model => model.LIST_NOMBRE_CARGO, new { @class = "letrasFormulario" })
+                @Html.DropDownListFor(model => model.COD_CARGO, new SelectList(Model.LIST_NOMBRE_CARGO, "Value", "Text", Model.COD_CARGO), "-- Seleccione --", new { @class = "form-control deplegablesIniciales letrasFormulario", disabled = deshabilitar })
+                @Html.HiddenFor(model => model.COD_CARGO)
+                @Html.ValidationMessageFor(model => model.COD_CARGO)
+            </div>
 
-}
+        }
 
     </div>
 
@@ -63,12 +67,14 @@
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.ORDEN, new { @class = "letrasFormulario" })
                 @Html.TextBoxFor(model => model.ORDEN, new { @class = "form-control TexboxIncicial", disabled = deshabilitar })
+                @Html.HiddenFor(model => model.ORDEN)
                 @Html.ValidationMessageFor(model => model.ORDEN)
             </div>
 
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.COD_CECO, new { @class = "letrasFormulario" })
                 @Html.DropDownListFor(model => model.COD_CECO, new SelectList(Model.LIST_NOMBRE_CECO, "Value", "Text", Model.COD_CECO), "-- Seleccione --", new { @class = "form-control deplegablesIniciales letrasFormulario", disabled = deshabilitar })
+                @Html.HiddenFor(model => model.COD_CECO)
                 @Html.ValidationMessageFor(model => model.COD_CECO)
             </div>
         }
