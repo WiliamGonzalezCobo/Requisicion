@@ -200,7 +200,7 @@
     .menuEmpleados .titulo-menuEmpleados {
         font-size: 26px;
         font-size: 1.625rem;
-        font-family: "oswald-extralight", sans-serif;
+        font-family: "oswald-light" !important;
         line-height: 36px;
         color: #080015;
         text-align: left;
@@ -269,7 +269,7 @@ form.buscador {
     margin: 0 0 50px 0;
     padding: 0;
     background: #ffffff;
-    float: right;
+    float: left;
     position: relative;
 }
 
@@ -309,7 +309,8 @@ form.buscador a.search-btn {
     text-align: center;
     position: absolute;
     top: 0;
-    right: 0;
+    right: 0 !important;
+    left: initial;
     background: #080015;
 }
 
@@ -1365,8 +1366,6 @@ body .requisicion .form-control{
 
 /*Fin custom datatable */
 
-/*Fin custom datatable */
-
 /* Ajustes Menu Lateral*/
 .nav-item-special {
     font-family: "oswald-extralight";
@@ -1395,4 +1394,29 @@ body .requisicion .form-control{
 span#notificationsBadgePrimary.badge.badge-secondary {
     padding: 0.25em 1em;
     border-radius: 1.25rem;
+}
+
+/*Fin ajustes menu lateral*/
+
+select {
+    background: url(../assets/img/iconfinder_arrow-down.png) no-repeat;
+    -webkit-appearance: none;
+    background-position-x: 244px;
+    background-position-x: 97%;
+    background-position-y: 10px;
+    background-size: 24px;
+}
+
+label {
+    font-family: "Source-Sans-Pro" !important
+}
+
+titulo-retiros, h2, h3, h4 {
+    font-family: "Source-Sans-Pro" !important;
+    line-height: 25px;
+    font-size: 26px !important
+}
+
+.no-padding-right {
+    padding-right: 0px !important;
 }
