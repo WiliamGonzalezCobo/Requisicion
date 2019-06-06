@@ -53,7 +53,8 @@ namespace G_H_WEB.Controllers
                 //}
             }
             model.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqLicencia;
-            model = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(model, Session["objetoListas"] as REQUISICIONViewModel);
+
+            model = new LOGICA_REQUISICION().LLENAR_CONTROLES(model);
 
             // Esto es para el POP UP
             List<SelectListItem> listacargos = model.LIST_NOMBRE_CARGO;
@@ -98,9 +99,8 @@ namespace G_H_WEB.Controllers
                 
                 modelDatos.USUARIO_CREACION = User.Identity.Name;
                 modelDatos.USUARIO_MODIFICACION = User.Identity.Name;//      martinezluir esto es para test toca hacer la logica
-                REQUISICIONViewModel listas = new REQUISICIONViewModel();
                 // llena los combos
-                modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(modelDatos, Session["objetoListas"] as REQUISICIONViewModel);
+                modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES(modelDatos);
                 // saca los valores de los combos
                 modelDatos = new LOGICA_REQUISICION().CONSULTAR_VALORES_LISTAS_POR_CODIGO(modelDatos);
 
@@ -160,7 +160,7 @@ namespace G_H_WEB.Controllers
                 RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
                 npc.RESULTADO = false;
                 TempData["resultado"] = npc;
-                return RedirectToAction("Index");
+                return RedirectToAction("Procesar");
             }
         }
 
