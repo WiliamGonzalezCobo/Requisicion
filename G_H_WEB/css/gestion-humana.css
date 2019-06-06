@@ -1365,3 +1365,34 @@ body .requisicion .form-control{
 
 /*Fin custom datatable */
 
+/*Fin custom datatable */
+
+/* Ajustes Menu Lateral*/
+.nav-item-special {
+    font-family: "oswald-extralight";
+    font-size: 16px
+}
+
+.container {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+.card {
+    border: none;
+    border-radius: initial;
+}
+
+.nav-active {
+    font-weight: bold;
+}
+
+.nav-icon {
+    padding: 4px !important;
+    border-radius: 1.25rem !important;
+}
+
+span#notificationsBadgePrimary.badge.badge-secondary {
+    padding: 0.25em 1em;
+    border-radius: 1.25rem;
+}
