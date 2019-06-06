@@ -17,23 +17,29 @@ namespace G_H_WEB.Controllers
     public class LICENCIA_INCAPACIDADController : Controller
     {
         // GET: REQUISICION_NOPRESUPUESTADA
-        public ActionResult Index(int? _idReq)
+        public ActionResult Index(int? _idReq, int? _idTipo)
         {
-            if (Session["requisicion"] != null)
+            ViewBag._idTipo = _idTipo;
+            if (TempData["_idTipo"] != null)
             {
-                if (SettingsManager.CodTipoReqLicencia.Equals(Convert.ToInt32(Session["requisicion"])))
+                _idTipo = Convert.ToInt32(TempData["_idTipo"]);
+            }
+            if (_idTipo != null)
+            {
+                if (SettingsManager.CodTipoReqLicencia.Equals(_idTipo))
                 {
                     ViewBag.RequisicionNombre = "Requisicion Licencia";
                 }
-                else if (SettingsManager.CodTipoReqIncapacidad.Equals(Convert.ToInt32(Session["requisicion"])))
+                else if (SettingsManager.CodTipoReqIncapacidad.Equals(_idTipo))
                 {
                     ViewBag.RequisicionNombre = "Requisicion Incapacidad";
                 }
             }
-            else {
+            else
+            {
                 return RedirectToAction("Index", "REQUISICION");
             }
-            
+
             REQUISICIONViewModel model = new REQUISICIONViewModel();
 
             if (_idReq.HasValue)
@@ -64,17 +70,21 @@ namespace G_H_WEB.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Index(REQUISICIONViewModel modelDatos, string submitButton)
+        public ActionResult Index(REQUISICIONViewModel modelDatos, string submitButton, int? _idTipo)
         {
             try
             {
-                if (Session["requisicion"] != null)
+                if (TempData["_idTipo"] != null)
                 {
-                    if (SettingsManager.CodTipoReqLicencia.Equals(Convert.ToInt32(Session["requisicion"])))
+                    _idTipo = Convert.ToInt32(TempData["_idTipo"]);
+                }
+                if (_idTipo != null)
+                {
+                    if (SettingsManager.CodTipoReqLicencia.Equals(_idTipo))
                     {
                         modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqLicencia;
                     }
-                    else if (SettingsManager.CodTipoReqIncapacidad.Equals(Convert.ToInt32(Session["requisicion"])))
+                    else if (SettingsManager.CodTipoReqIncapacidad.Equals(_idTipo))
                     {
                         modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqIncapacidad;
                     }

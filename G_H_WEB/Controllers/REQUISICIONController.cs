@@ -50,48 +50,49 @@ namespace G_H_WEB.Controllers
         // GET: REQUISICION/Create
         public ActionResult Create(int? idTipo)
         {
-            Session["requisicion"] = idTipo;
+            ViewBag.idTipo = idTipo;
+            //Session["requisicion"] = idTipo;
             if (idTipo == SettingsManager.CodTipoReqPresupuestada)
             {
-                return RedirectToAction("Index", "REQUISICION_PRESUPUESTADA");
+                return RedirectToAction("Index", "REQUISICION_PRESUPUESTADA", new { _idTipo = idTipo });
             }
             if (idTipo == SettingsManager.CodTipoReqNoPresupuestada) {
-                return RedirectToAction("Index", "REQUISICION_NOPRESUPUESTADA");
+                return RedirectToAction("Index", "REQUISICION_NOPRESUPUESTADA", new { _idTipo = idTipo });
             }
             if (idTipo.Equals(SettingsManager.CodTipoReqIncapacidad))
             {
-                return RedirectToAction("Index", "LICENCIA_INCAPACIDAD");
+                return RedirectToAction("Index", "LICENCIA_INCAPACIDAD", new { _idTipo = idTipo });
             }
             if (idTipo.Equals(SettingsManager.CodTipoReqLicencia))
             {
-                return RedirectToAction("Index", "LICENCIA_INCAPACIDAD");
-            }
+                return RedirectToAction("Index", "LICENCIA_INCAPACIDAD", new { _idTipo = idTipo });
+            }            
             return View();
         }
 
 
         public ActionResult Detalle(int _idRequisicion, int _tipoRequisicion)
         {
-            Session["requisicion"] = _tipoRequisicion;
-
+            //Session["requisicion"] = _tipoRequisicion;
+            ViewBag.idTipo = _tipoRequisicion;
             if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqPresupuestada))
             {
-                return RedirectToAction("Index", "REQUISICION_PRESUPUESTADA", new { _idReq = _idRequisicion });
+                return RedirectToAction("Index", "REQUISICION_PRESUPUESTADA", new { _idReq = _idRequisicion, _idTipo = _tipoRequisicion });
             }
             if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqNoPresupuestada))
             {
-                return RedirectToAction("Index", "REQUISICION_NOPRESUPUESTADA", new { _idReq = _idRequisicion });
+                return RedirectToAction("Index", "REQUISICION_NOPRESUPUESTADA", new { _idReq = _idRequisicion, _idTipo = _tipoRequisicion });
             }
             if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqIncapacidad))
             {
-                return RedirectToAction("Index", "LICENCIA_INCAPACIDAD", new { _idReq = _idRequisicion });
+                return RedirectToAction("Index", "LICENCIA_INCAPACIDAD", new { _idReq = _idRequisicion, _idTipo = _tipoRequisicion });
             }
             if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqLicencia))
             {
-                return RedirectToAction("Index", "LICENCIA_INCAPACIDAD", new { _idReq = _idRequisicion });
+                return RedirectToAction("Index", "LICENCIA_INCAPACIDAD", new { _idReq = _idRequisicion, _idTipo = _tipoRequisicion });
             }
 
-
+            
             return RedirectToAction("Index");
         }
 

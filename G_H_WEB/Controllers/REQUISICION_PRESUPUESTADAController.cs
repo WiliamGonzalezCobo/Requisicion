@@ -15,7 +15,7 @@ namespace G_H_WEB.Controllers
     public class REQUISICION_PRESUPUESTADAController : Controller
     {
         // GET: REQUISICION_PRESUPUESTADA
-        public ActionResult Index(int? _idReq)
+        public ActionResult Index(int? _idReq, int? _idTipo)
         {
             REQUISICIONViewModel model = new REQUISICIONViewModel();
             try
@@ -47,7 +47,7 @@ namespace G_H_WEB.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Index(REQUISICIONViewModel modelDatos, string submitButton)
+        public ActionResult Index(REQUISICIONViewModel modelDatos, string submitButton, int? _idTipo)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace G_H_WEB.Controllers
                         }
                         npc.METODO = "Aprobar";
                         break;
-                    case "Rechazar requisicion":
+                    case "RECHAZAR REQUISICIÓN":
                         _resultadoIdReguisicion = new LOGICA_REQUISICION().REQUISICION_RECHAZAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.Name);
                         npc.METODO = "Rechazar";
                         break;

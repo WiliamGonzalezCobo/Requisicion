@@ -5,6 +5,7 @@
     if (ViewBag.RequisicionNombre != null)
     {
         ViewBag.Title = "Crear " + ViewBag.RequisicionNombre;
+        TempData["_idTipo"] = ViewBag._idTipo;
     }
     else
     {
@@ -85,10 +86,10 @@
 
                             }
                             @*if (User.IsInRole(SettingsManager.PerfilController))
-                        {
-                            @Html.Partial("_PartialInfoRequisicionLi", Model)
-                            @Html.Partial("_PartialAutorizacion", Model)
-                        }*@
+                                {
+                                    @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                    @Html.Partial("_PartialAutorizacion", Model)
+                                }*@
                             if (User.IsInRole(SettingsManager.PerfilBp))
                             {
                                 @Html.Partial("_PartialInfoRequisicionLi", Model)
@@ -130,10 +131,10 @@
                                         <input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="btn-confirmar-retiro col-md-3" />
                                     }
                                     @*@if (User.IsInRole(SettingsManager.PerfilController))
-                                {
-                                    <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
-                                }*@
+                                        {
+                                            <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                            <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                        }*@
                                     @if (User.IsInRole(SettingsManager.PerfilBp))
                                     {
                                         <input name="submitButton" type="submit" value="Enviar" class="crear-requisicion crear-requisicion-texto" />
@@ -174,7 +175,6 @@
                     <h2 class="__metodoModificar Texto-Popup-Creacion">Se modificó la requisición con ID <span id="mensaje_modificar"></span></h2>
                     <h2 class="__metodoRechazar Texto-Popup-Creacion">Se Rechazó la requisición con ID <span id="mensaje_rechazar"></span></h2>
                     <h2 class="_metodoDefecto Texto-Popup-Creacion">Por favor contacte al <span id="mensaje_rechazar">administrador</span> del sistema</h2>
-                    <h2 class="__metodoEnviar Texto-Popup-Creacion">Se Envío la requisicion con ID <span id="mensaje_Enviar"></span></h2>
                     <h2 class="__metodoEnviar Texto-Popup-Creacion">Se Envío la requisicion con ID <span id="mensaje_Enviar"></span></h2>
                 </div>
             </div>
