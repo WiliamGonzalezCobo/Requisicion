@@ -105,27 +105,21 @@ namespace LOGICA.LOGICA_REQUISICION
             return respuesta;
         }
 
-        public List<PUNTOS_MEDIO> CONSULTAR_PUNTOS_MEDIO_API(string _COD_CARGO)
+        public List<PUESTO> CONSULTAR_PUESTO_X_COD_CARGO_API(string _COD_CARGO)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Add("_COD_CARGO",_COD_CARGO);
             HttpStatusCode status;
-            List<PUNTOS_MEDIO>respuesta = new BASE_PROXY(urlApi + "PUESTOS").Get<List<PUNTOS_MEDIO>>(out status, parameters);
+            List<PUESTO>respuesta = new BASE_PROXY(urlApi + "PUESTOS").Get<List<PUESTO>>(out status, parameters);
             return respuesta;
         }
 
-        public List<EMPLEADOS> CONSULTAR_EMPLEADOS_API() {
-            HttpStatusCode status;
-            List<EMPLEADOS> respuesta = new BASE_PROXY(urlApi + "EMPLEADOS").Get<List<EMPLEADOS>>(out status, null);
-            return respuesta;
-        }
-
-        public PUNTOS_MEDIO CONSULTAR_PUESTOS_POR_CEDULA_API(string DOCUMENTO_NUMERO)
+        public PUESTO CONSULTAR_PUESTOS_X_CEDULA_API(string DOCUMENTO_NUMERO)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Add("DOCUMENTO_NUMERO", DOCUMENTO_NUMERO);
             HttpStatusCode status;
-            PUNTOS_MEDIO respuesta = new BASE_PROXY(urlApi + "PUESTOS").Get<PUNTOS_MEDIO>(out status, parameters);
+            PUESTO respuesta = new BASE_PROXY(urlApi + "PUESTOS").Get<PUESTO>(out status, parameters);
             return respuesta;
         }
 

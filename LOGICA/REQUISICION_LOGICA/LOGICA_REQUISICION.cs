@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LOGICA.LOGICA_REQUISICION;
+using LOGICA.MODELO_LOGICA;
 using MODELO_DATOS.MODELO_REQUISICION;
 using MODELO_DATOS.MODELO_REQUISICION.LISTAS_API;
 using Newtonsoft.Json.Linq;
@@ -14,68 +15,67 @@ namespace LOGICA.REQUISICION_LOGICA
     public class LOGICA_REQUISICION
     {
 
-        public REQUISICIONViewModel LLENAR_CONTROLES(REQUISICIONViewModel MODEL_RETURN) {
+        public REQUISICIONViewModel LLENAR_CONTROLES(REQUISICIONViewModel _modelReturn) {
 
-            MODEL_RETURN.LIST_NOMBRE_TIPO_NECESIDAD = CONSULTAR_TIPOS_NECESIDAD();
-            MODEL_RETURN.LIST_NOMBRE_ESTADO_REQUISICION = CONSULTAR_ESTADOS();
-            MODEL_RETURN.LIST_NOMBRE_CECO = CONSULTAR_CECOS();
-            MODEL_RETURN.LIST_NOMBRE_EQIPO_VENTAS = CONSULTAR_EQUIPOS_VENTAS();
-            MODEL_RETURN.LIST_NIVEL_RIESGO_ARL = CONSULTAR_RIESGOS_ARL();
-            MODEL_RETURN.LIST_NOMBRE_CATEGORIA_ED = CONSULTAR_CATEGORIAS_ED();
-            MODEL_RETURN.LIST_NOMBRE_SOCIEDAD  = CONSULTAR_SOCIEDADES();
-            MODEL_RETURN.LIST_NOMBRE_TIPO_CONTRATO = CONSULTAR_CONTRATOS();
-            MODEL_RETURN.LIST_NOMBRE_GERENCIA = CONSULTAR_GERENCIAS();
-            MODEL_RETURN.LIST_NOMBRE_UBICACION_FISICA = CONSULTAR_UBICACIONES_FISICAS();
-            MODEL_RETURN.LIST_NOMBRE_JORNADA_LABORAL = CONSULTAR_JORNADAS_LABORALES();
-            MODEL_RETURN.LIST_NOMBRE_CIUDAD_TRABAJO = CONSULTAR_CIUDADES_TRABAJO();
-            MODEL_RETURN.LIST_NOMBRE_CATEGORIA = CONSULTAR_CATEGORIAS();
-            MODEL_RETURN.LIST_NOMBRE_TIPO_SALARIO = CONSULTAR_TIPOS_SALARIOS();
-            MODEL_RETURN.LIST_NOMBRE_CARGO = CONSULTAR_CARGOS();
-            MODEL_RETURN.LIST_NOMBRE_TIPO_REQUISICION = CONSULTAR_TIPOS_REQUISICION();
-            MODEL_RETURN.LIST_DIA_LABORAL_DESDE = CONSULTAR_DIAS_LABORALES();
-            MODEL_RETURN.LIST_DIA_LABORAL_HASTA = CONSULTAR_DIAS_LABORALES();
-            MODEL_RETURN.LIST_HORARIO_LABORAL_DESDE = CONSULTAR_HORARIO_LABORAL();
-            MODEL_RETURN.LIST_HORARIO_LABORAL_HASTA = CONSULTAR_HORARIO_LABORAL();
-            MODEL_RETURN.LIST_NOMBRE_JORNADA_LABORAL = CONSULTAR_JORNADAS_LABORALES();
-            MODEL_RETURN.LIST_MERCADO = CONSULTAR_MERCADO();
-            MODEL_RETURN.LIST_TIPO_DOCUMENTO = CONSULTAR_TIPO_DOCUMENTO();
+            _modelReturn.LIST_NOMBRE_TIPO_NECESIDAD = CONSULTAR_TIPOS_NECESIDAD();
+            _modelReturn.LIST_NOMBRE_ESTADO_REQUISICION = CONSULTAR_ESTADOS();
+            _modelReturn.LIST_NOMBRE_CECO = CONSULTAR_CECOS();
+            _modelReturn.LIST_NOMBRE_EQIPO_VENTAS = CONSULTAR_EQUIPOS_VENTAS();
+            _modelReturn.LIST_NIVEL_RIESGO_ARL = CONSULTAR_RIESGOS_ARL();
+            _modelReturn.LIST_NOMBRE_CATEGORIA_ED = CONSULTAR_CATEGORIAS_ED();
+            _modelReturn.LIST_NOMBRE_SOCIEDAD  = CONSULTAR_SOCIEDADES();
+            _modelReturn.LIST_NOMBRE_TIPO_CONTRATO = CONSULTAR_CONTRATOS();
+            _modelReturn.LIST_NOMBRE_GERENCIA = CONSULTAR_GERENCIAS();
+            _modelReturn.LIST_NOMBRE_UBICACION_FISICA = CONSULTAR_UBICACIONES_FISICAS();
+            _modelReturn.LIST_NOMBRE_JORNADA_LABORAL = CONSULTAR_JORNADAS_LABORALES();
+            _modelReturn.LIST_NOMBRE_CIUDAD_TRABAJO = CONSULTAR_CIUDADES_TRABAJO();
+            _modelReturn.LIST_NOMBRE_CATEGORIA = CONSULTAR_CATEGORIAS();
+            _modelReturn.LIST_NOMBRE_TIPO_SALARIO = CONSULTAR_TIPOS_SALARIOS();
+            _modelReturn.LIST_NOMBRE_CARGO = CONSULTAR_CARGOS();
+            _modelReturn.LIST_NOMBRE_TIPO_REQUISICION = CONSULTAR_TIPOS_REQUISICION();
+            _modelReturn.LIST_DIA_LABORAL_DESDE = CONSULTAR_DIAS_LABORALES();
+            _modelReturn.LIST_DIA_LABORAL_HASTA = CONSULTAR_DIAS_LABORALES();
+            _modelReturn.LIST_HORARIO_LABORAL_DESDE = CONSULTAR_HORARIO_LABORAL();
+            _modelReturn.LIST_HORARIO_LABORAL_HASTA = CONSULTAR_HORARIO_LABORAL();
+            _modelReturn.LIST_NOMBRE_JORNADA_LABORAL = CONSULTAR_JORNADAS_LABORALES();
+            _modelReturn.LIST_MERCADO = CONSULTAR_MERCADO();
+            _modelReturn.LIST_TIPO_DOCUMENTO = CONSULTAR_TIPO_DOCUMENTO();
 
 
 
-            return MODEL_RETURN;
+            return _modelReturn;
         }
 
-        public REQUISICIONViewModel LLENAR_CONTROLES_SESSSION(REQUISICIONViewModel MODEL_RETURN, REQUISICIONViewModel MODEL_ENTRADA)
+        public REQUISICIONViewModel LLENAR_CONTROLES_SESSSION(REQUISICIONViewModel _modelReturn, REQUISICIONViewModel _modelEntrada)
         {
 
-            MODEL_RETURN.LIST_NOMBRE_TIPO_NECESIDAD = MODEL_ENTRADA.LIST_NOMBRE_TIPO_NECESIDAD;
-            MODEL_RETURN.LIST_NOMBRE_ESTADO_REQUISICION = MODEL_ENTRADA.LIST_NOMBRE_ESTADO_REQUISICION;
-            MODEL_RETURN.LIST_NOMBRE_CECO = MODEL_ENTRADA.LIST_NOMBRE_CECO;
-            MODEL_RETURN.LIST_NOMBRE_EQIPO_VENTAS = MODEL_ENTRADA.LIST_NOMBRE_EQIPO_VENTAS;
-            MODEL_RETURN.LIST_NIVEL_RIESGO_ARL = MODEL_ENTRADA.LIST_NIVEL_RIESGO_ARL;
-            MODEL_RETURN.LIST_NOMBRE_CATEGORIA_ED = MODEL_ENTRADA.LIST_NOMBRE_CATEGORIA_ED;
-            MODEL_RETURN.LIST_NOMBRE_SOCIEDAD = MODEL_ENTRADA.LIST_NOMBRE_SOCIEDAD;
-            MODEL_RETURN.LIST_NOMBRE_TIPO_CONTRATO = MODEL_ENTRADA.LIST_NOMBRE_TIPO_CONTRATO;
-            MODEL_RETURN.LIST_NOMBRE_GERENCIA = MODEL_ENTRADA.LIST_NOMBRE_GERENCIA;
-            MODEL_RETURN.LIST_NOMBRE_UBICACION_FISICA = MODEL_ENTRADA.LIST_NOMBRE_UBICACION_FISICA;
-            MODEL_RETURN.LIST_NOMBRE_JORNADA_LABORAL = MODEL_ENTRADA.LIST_NOMBRE_JORNADA_LABORAL;
-            MODEL_RETURN.LIST_NOMBRE_CIUDAD_TRABAJO = MODEL_ENTRADA.LIST_NOMBRE_CIUDAD_TRABAJO;
-            MODEL_RETURN.LIST_NOMBRE_CATEGORIA = MODEL_ENTRADA.LIST_NOMBRE_CATEGORIA;
-            MODEL_RETURN.LIST_NOMBRE_TIPO_SALARIO = MODEL_ENTRADA.LIST_NOMBRE_TIPO_SALARIO;
-            MODEL_RETURN.LIST_NOMBRE_CARGO = MODEL_ENTRADA.LIST_NOMBRE_CARGO;
-            MODEL_RETURN.LIST_NOMBRE_TIPO_REQUISICION = MODEL_ENTRADA.LIST_NOMBRE_TIPO_REQUISICION;
-            MODEL_RETURN.LIST_DIA_LABORAL_DESDE = MODEL_ENTRADA.LIST_DIA_LABORAL_DESDE;
-            MODEL_RETURN.LIST_DIA_LABORAL_HASTA = MODEL_ENTRADA.LIST_DIA_LABORAL_HASTA;
-            MODEL_RETURN.LIST_HORARIO_LABORAL_DESDE = MODEL_ENTRADA.LIST_HORARIO_LABORAL_DESDE;
-            MODEL_RETURN.LIST_HORARIO_LABORAL_HASTA = MODEL_ENTRADA.LIST_HORARIO_LABORAL_HASTA;
-            MODEL_RETURN.LIST_NOMBRE_JORNADA_LABORAL = MODEL_ENTRADA.LIST_NOMBRE_JORNADA_LABORAL;
-            MODEL_RETURN.LIST_MERCADO = MODEL_ENTRADA.LIST_MERCADO;
-            MODEL_RETURN.LIST_TIPO_DOCUMENTO = MODEL_ENTRADA.LIST_TIPO_DOCUMENTO; 
+            _modelReturn.LIST_NOMBRE_TIPO_NECESIDAD = _modelEntrada.LIST_NOMBRE_TIPO_NECESIDAD;
+            _modelReturn.LIST_NOMBRE_ESTADO_REQUISICION = _modelEntrada.LIST_NOMBRE_ESTADO_REQUISICION;
+            _modelReturn.LIST_NOMBRE_CECO = _modelEntrada.LIST_NOMBRE_CECO;
+            _modelReturn.LIST_NOMBRE_EQIPO_VENTAS = _modelEntrada.LIST_NOMBRE_EQIPO_VENTAS;
+            _modelReturn.LIST_NIVEL_RIESGO_ARL = _modelEntrada.LIST_NIVEL_RIESGO_ARL;
+            _modelReturn.LIST_NOMBRE_CATEGORIA_ED = _modelEntrada.LIST_NOMBRE_CATEGORIA_ED;
+            _modelReturn.LIST_NOMBRE_SOCIEDAD = _modelEntrada.LIST_NOMBRE_SOCIEDAD;
+            _modelReturn.LIST_NOMBRE_TIPO_CONTRATO = _modelEntrada.LIST_NOMBRE_TIPO_CONTRATO;
+            _modelReturn.LIST_NOMBRE_GERENCIA = _modelEntrada.LIST_NOMBRE_GERENCIA;
+            _modelReturn.LIST_NOMBRE_UBICACION_FISICA = _modelEntrada.LIST_NOMBRE_UBICACION_FISICA;
+            _modelReturn.LIST_NOMBRE_JORNADA_LABORAL = _modelEntrada.LIST_NOMBRE_JORNADA_LABORAL;
+            _modelReturn.LIST_NOMBRE_CIUDAD_TRABAJO = _modelEntrada.LIST_NOMBRE_CIUDAD_TRABAJO;
+            _modelReturn.LIST_NOMBRE_CATEGORIA = _modelEntrada.LIST_NOMBRE_CATEGORIA;
+            _modelReturn.LIST_NOMBRE_TIPO_SALARIO = _modelEntrada.LIST_NOMBRE_TIPO_SALARIO;
+            _modelReturn.LIST_NOMBRE_CARGO = _modelEntrada.LIST_NOMBRE_CARGO;
+            _modelReturn.LIST_NOMBRE_TIPO_REQUISICION = _modelEntrada.LIST_NOMBRE_TIPO_REQUISICION;
+            _modelReturn.LIST_DIA_LABORAL_DESDE = _modelEntrada.LIST_DIA_LABORAL_DESDE;
+            _modelReturn.LIST_DIA_LABORAL_HASTA = _modelEntrada.LIST_DIA_LABORAL_HASTA;
+            _modelReturn.LIST_HORARIO_LABORAL_DESDE = _modelEntrada.LIST_HORARIO_LABORAL_DESDE;
+            _modelReturn.LIST_HORARIO_LABORAL_HASTA = _modelEntrada.LIST_HORARIO_LABORAL_HASTA;
+            _modelReturn.LIST_NOMBRE_JORNADA_LABORAL = _modelEntrada.LIST_NOMBRE_JORNADA_LABORAL;
+            _modelReturn.LIST_MERCADO = _modelEntrada.LIST_MERCADO;
+            _modelReturn.LIST_TIPO_DOCUMENTO = _modelEntrada.LIST_TIPO_DOCUMENTO; 
 
 
-            return MODEL_RETURN;
+            return _modelReturn;
         }
-
 
         /// <summary>
         /// desde base de datos
@@ -83,22 +83,24 @@ namespace LOGICA.REQUISICION_LOGICA
         /// </summary>
         /// <returns></returns>
         private List<SelectListItem> CONSULTAR_TIPOS_NECESIDAD(){
-            return new ACCES_REQUISICION().CONSULTAR_TIPOS_NECESIDAD_ACCESS().Select(x => new SelectListItem(){
+            return new ACCES_REQUISICION().CONSULTAR_TIPOS_NECESIDAD().Select(x => new SelectListItem(){
                 Text = x.NOMBRE_NECESIDAD,
                 Value = x.COD_TIPO_NECESIDAD.ToString()
             }).ToList();
         }
+
         /// <summary>
         /// desde base de datos
         /// mapeada
         /// </summary>
         /// <returns></returns>
         public List<SelectListItem> CONSULTAR_ESTADOS(){
-            return new ACCES_REQUISICION().CONSULTAR_ESTADOS_ACCESS().Select(x => new SelectListItem(){
+            return new ACCES_REQUISICION().CONSULTAR_ESTADOS().Select(x => new SelectListItem(){
                 Text = x.NOMBRE_ESTADO,
                 Value = x.COD_ESTADO_REQUISICION.ToString()
             }).ToList();
         }
+
         /// <summary>
         /// desde la api
         /// MAPEADO
@@ -146,6 +148,7 @@ namespace LOGICA.REQUISICION_LOGICA
                 Value = x.COD_CATEGORIA_EVALUACION_DESEMPENO.ToString()
             }).ToList();
         }
+
         /// <summary>
         /// DESDE LA API
         /// MAPEADO
@@ -157,6 +160,7 @@ namespace LOGICA.REQUISICION_LOGICA
                 Value = x.COD_SOCIEDAD.ToString()
             }).ToList();
         }
+
         /// <summary>
         /// DESDE LA API
         /// MAPEADO
@@ -168,6 +172,7 @@ namespace LOGICA.REQUISICION_LOGICA
                 Value = x.COD_TIPO_CONTRATO.ToString()
             }).ToList();
         }
+
         /// <summary>
         /// DESDE LA API
         /// MAPEDO
@@ -179,6 +184,7 @@ namespace LOGICA.REQUISICION_LOGICA
                 Value = x.COD_GERENCIA.ToString()
             }).ToList();
         }
+
         /// <summary>
         /// DESDE LA API
         /// </summary>
@@ -215,8 +221,6 @@ namespace LOGICA.REQUISICION_LOGICA
                 Value = x.coD_TIPO_DOCUMENTO.ToString()
             }).ToList();
         }
-        
-
 
         /// <summary>
         /// DESDE LA API
@@ -229,6 +233,7 @@ namespace LOGICA.REQUISICION_LOGICA
                 Value = x.COD_CIUDAD.ToString()
             }).ToList();
         }
+
         /// <summary>
         /// DESDE LA API
         /// MAPEADO
@@ -240,6 +245,7 @@ namespace LOGICA.REQUISICION_LOGICA
                 Value = x.COD_CATEGORIAS_SALARIAL.ToString()
             }).ToList();
         }
+
         /// <summary>
         /// DESDE LA API
         /// MAPEDO
@@ -251,6 +257,7 @@ namespace LOGICA.REQUISICION_LOGICA
                 Value = x.COD_TIPO_SALARIO.ToString()
             }).ToList();
         }
+
         /// <summary>
         /// DESDE LA API
         /// MAPEDO
@@ -262,6 +269,7 @@ namespace LOGICA.REQUISICION_LOGICA
                Value =Convert.ToInt32(x.COD_CARGO).ToString()
            }).ToList(); ;
         }
+
         /// <summary>
         /// DESDE BASE DE DATOS, para la pantalla principal
         /// MAPEDO
@@ -269,7 +277,7 @@ namespace LOGICA.REQUISICION_LOGICA
         /// <returns></returns>
         public List<SelectListItem> CONSULTAR_TIPOS_REQUISICION()
         {
-            return new ACCES_REQUISICION().CONSULTAR_TIPOS_REQUISICION_ACCESS().Select(x => new SelectListItem()
+            return new ACCES_REQUISICION().CONSULTAR_TIPOS_REQUISICION().Select(x => new SelectListItem()
             {
                 Text = x.NOMBRE_REQUISICION,
                 Value = x.COD_TIPO_REQUISICION.ToString()
@@ -366,123 +374,123 @@ namespace LOGICA.REQUISICION_LOGICA
         }
 
         public List<REQUISICIONViewModel> SOLICITAR_REQUISICIONES(FILTROREQUISICION _filtro) {
-            return new ACCES_REQUISICION().CONSULTAR_REQUISICION_PANTALLA_INICIO(_filtro);
+            return new ACCES_REQUISICION().CONSULTAR_REQUISICION_X_FILTRO(_filtro);
         }
 
-        private REQUISICIONViewModel CARGAR_MODELO_DEL_API(REQUISICIONViewModel MODELO_REQUISICION, PUNTOS_MEDIO API)
+        private REQUISICIONViewModel CARGAR_MODELO_DEL_API(REQUISICIONViewModel _modeloRequisicion, PUESTO _puesto)
         {
             //INFORMACION REQUISICION
             //TIPO NECESIDAD
-            MODELO_REQUISICION.COD_CARGO = Convert.ToInt32(API.COD_CARGO);
-            MODELO_REQUISICION.NOMBRE_CARGO = API.NOMBRE_CARGO;
+            _modeloRequisicion.COD_CARGO = Convert.ToInt32(_puesto.COD_CARGO);
+            _modeloRequisicion.NOMBRE_CARGO = _puesto.NOMBRE_CARGO;
             //ORDEN
-            MODELO_REQUISICION.COD_CECO = Convert.ToInt32(API.COD_CENTRO_COSTO);
-            MODELO_REQUISICION.NOMBRE_CECO = API.NOMBRE_CENTRO_COSTO;
+            _modeloRequisicion.COD_CECO = Convert.ToInt32(_puesto.COD_CENTRO_COSTO);
+            _modeloRequisicion.NOMBRE_CECO = _puesto.NOMBRE_CENTRO_COSTO;
             
             //INFROMACION GENERAL
-            MODELO_REQUISICION.COD_GERENCIA = Convert.ToInt32(API.COD_GERENCIA);
-            MODELO_REQUISICION.NOMBRE_GERENCIA = API.NOMBRE_GERENCIA;
-            MODELO_REQUISICION.COD_TIPO_CONTRATO = Convert.ToInt32(API.COD_TIPO_CONTRATO);
-            MODELO_REQUISICION.NOMBRE_TIPO_CONTRATO = API.NOMBRE_TIPO_CONTRATO;
-            MODELO_REQUISICION.JEFE_INMEDIATO = API.NOMBRE_JEFE;
+            _modeloRequisicion.COD_GERENCIA = Convert.ToInt32(_puesto.COD_GERENCIA);
+            _modeloRequisicion.NOMBRE_GERENCIA = _puesto.NOMBRE_GERENCIA;
+            _modeloRequisicion.COD_TIPO_CONTRATO = Convert.ToInt32(_puesto.COD_TIPO_CONTRATO);
+            _modeloRequisicion.NOMBRE_TIPO_CONTRATO = _puesto.NOMBRE_TIPO_CONTRATO;
+            _modeloRequisicion.JEFE_INMEDIATO = _puesto.NOMBRE_JEFE;
             //MODELO_REQUISICION.COD_CECO = Convert.ToInt32(API.COD_CENTRO_COSTO); comentado para que no cambie el valor guardado
             //MODELO_REQUISICION.NOMBRE_CECO = API.NOMBRE_CENTRO_COSTO; comentado para que no cambie el valor guardado
-            MODELO_REQUISICION.COD_SOCIEDAD = Convert.ToInt32(API.COD_SOCIEDAD);
-            MODELO_REQUISICION.NOMBRE_SOCIEDAD = API.NOMBRE_SOCIEDAD;
-            MODELO_REQUISICION.COD_EQUIPO_VENTAS = Convert.ToInt32(API.COD_EQUIPO_VENTA);
-            MODELO_REQUISICION.NOMBRE_EQIPO_VENTAS = API.NOMBRE_EQUIPO_VENTA;
-            MODELO_REQUISICION.COD_CIUDAD_TRABAJO = Convert.ToInt32(API.COD_DANE_CIUDAD);
-            MODELO_REQUISICION.NOMBRE_CIUDAD_TRABAJO = API.NOMBRE_CIUDAD;
-            MODELO_REQUISICION.COD_UBICACION_FISICA = Convert.ToInt32(API.COD_UBICACION_FISICA);
-            MODELO_REQUISICION.NOMBRE_UBICACION_FISICA = API.NOMBRE_UBICACION_FIFICA;
-            MODELO_REQUISICION.COD_NIVEL_RIESGO_ARL = Convert.ToInt32(API.COD_NIVEL_RIESGO);
-            MODELO_REQUISICION.NIVEL_RIESGO_ARL = Convert.ToString(API.NIVEL_RIESGO);
-            MODELO_REQUISICION.COD_CATEGORIA_ED = Convert.ToInt32(API.COD_CATEGORIA_EVALUACION_DESEMPENO);
-            MODELO_REQUISICION.NOMBRE_CATEGORIA_ED = API.NOMBRE_CATEGORIA_EVALUACION_DESEMPENO;
-            if (API.CARGO_CRITICO == "1")
+            _modeloRequisicion.COD_SOCIEDAD = Convert.ToInt32(_puesto.COD_SOCIEDAD);
+            _modeloRequisicion.NOMBRE_SOCIEDAD = _puesto.NOMBRE_SOCIEDAD;
+            _modeloRequisicion.COD_EQUIPO_VENTAS = Convert.ToInt32(_puesto.COD_EQUIPO_VENTA);
+            _modeloRequisicion.NOMBRE_EQIPO_VENTAS = _puesto.NOMBRE_EQUIPO_VENTA;
+            _modeloRequisicion.COD_CIUDAD_TRABAJO = Convert.ToInt32(_puesto.COD_DANE_CIUDAD);
+            _modeloRequisicion.NOMBRE_CIUDAD_TRABAJO = _puesto.NOMBRE_CIUDAD;
+            _modeloRequisicion.COD_UBICACION_FISICA = Convert.ToInt32(_puesto.COD_UBICACION_FISICA);
+            _modeloRequisicion.NOMBRE_UBICACION_FISICA = _puesto.NOMBRE_UBICACION_FIFICA;
+            _modeloRequisicion.COD_NIVEL_RIESGO_ARL = Convert.ToInt32(_puesto.COD_NIVEL_RIESGO);
+            _modeloRequisicion.NIVEL_RIESGO_ARL = Convert.ToString(_puesto.NIVEL_RIESGO);
+            _modeloRequisicion.COD_CATEGORIA_ED = Convert.ToInt32(_puesto.COD_CATEGORIA_EVALUACION_DESEMPENO);
+            _modeloRequisicion.NOMBRE_CATEGORIA_ED = _puesto.NOMBRE_CATEGORIA_EVALUACION_DESEMPENO;
+            if (_puesto.CARGO_CRITICO == "1")
             {
-                MODELO_REQUISICION.CARGO_CRITICO = true;
+                _modeloRequisicion.CARGO_CRITICO = true;
             }
             else
             {
-                MODELO_REQUISICION.CARGO_CRITICO = false;
+                _modeloRequisicion.CARGO_CRITICO = false;
             }               
-            MODELO_REQUISICION.COD_JORNADA_LABORAL = Convert.ToInt32(API.COD_JORNADA_TRABAJO);
-            MODELO_REQUISICION.NOMBRE_JORNADA_LABORAL = API.NOMBRE_JORNADA_TRABAJO;
-            MODELO_REQUISICION.COD_HORARIO_LABORAL_DESDE = Convert.ToInt32(API.COD_HORARIO_TRABAJO);
-            MODELO_REQUISICION.HORARIO_LABORAL_DESDE = API.horariO_DESDE;
-            MODELO_REQUISICION.COD_HORARIO_LABORAL_HASTA = Convert.ToInt32(API.COD_HORARIO_TRABAJO);
-            MODELO_REQUISICION.HORARIO_LABORAL_HASTA = API.horariO_HASTA;
-            MODELO_REQUISICION.COD_DIA_LABORAL_DESDE = Convert.ToInt32(API.COD_DIA_LABORAL);
-            MODELO_REQUISICION.DIA_LABORAL_DESDE = API.diaS_LABORALES_DESDE;
-            MODELO_REQUISICION.COD_DIA_LABORAL_HASTA = Convert.ToInt32(API.COD_DIA_LABORAL);
-            MODELO_REQUISICION.DIA_LABORAL_HASTA = API.diaS_LABORALES_HASTA;
+            _modeloRequisicion.COD_JORNADA_LABORAL = Convert.ToInt32(_puesto.COD_JORNADA_TRABAJO);
+            _modeloRequisicion.NOMBRE_JORNADA_LABORAL = _puesto.NOMBRE_JORNADA_TRABAJO;
+            _modeloRequisicion.COD_HORARIO_LABORAL_DESDE = Convert.ToInt32(_puesto.COD_HORARIO_TRABAJO);
+            _modeloRequisicion.HORARIO_LABORAL_DESDE = _puesto.horariO_DESDE;
+            _modeloRequisicion.COD_HORARIO_LABORAL_HASTA = Convert.ToInt32(_puesto.COD_HORARIO_TRABAJO);
+            _modeloRequisicion.HORARIO_LABORAL_HASTA = _puesto.horariO_HASTA;
+            _modeloRequisicion.COD_DIA_LABORAL_DESDE = Convert.ToInt32(_puesto.COD_DIA_LABORAL);
+            _modeloRequisicion.DIA_LABORAL_DESDE = _puesto.diaS_LABORALES_DESDE;
+            _modeloRequisicion.COD_DIA_LABORAL_HASTA = Convert.ToInt32(_puesto.COD_DIA_LABORAL);
+            _modeloRequisicion.DIA_LABORAL_HASTA = _puesto.diaS_LABORALES_HASTA;
 
             //INFROMACION SALARIAL
-            MODELO_REQUISICION.SALARIO_FIJO = Convert.ToDecimal(API.SALARIO_FIJO);
-            MODELO_REQUISICION.PORCENTAJE_SALARIO_FIJO = Convert.ToDecimal(API.PORCENTAJE_SALARIO_FIJO);
-            MODELO_REQUISICION.SALARIO_VARIABLE = Convert.ToDecimal(API.SALARIO_VARIABLE);
-            MODELO_REQUISICION.PORCENTAJE_SALARIO_VARIABLE = Convert.ToDecimal(API.PORCENTAJE_SALARIO_VARIABLE);
-            MODELO_REQUISICION.SOBREREMUNERACION = Convert.ToDecimal(API.SOBREREMUNERACION);
-            MODELO_REQUISICION.PORCENTAJE_SOBREREMUNERACION = Convert.ToDecimal(API.PORCENTAJE_SOBREREMUNERACION);
-            MODELO_REQUISICION.EXTRA_FIJA = Convert.ToDecimal(API.EXTRA_FIJA);
-            MODELO_REQUISICION.RECARGO_NOCTURNO = Convert.ToDecimal(API.RECARGO_NOCTURNO_FIJO);
-            MODELO_REQUISICION.MEDIO_TRANSPORTE = Convert.ToDecimal(API.MEDIOS_TRANSPORTE);
-            MODELO_REQUISICION.SALARIO_TOTAL = Convert.ToDecimal(API.SALARIO_TOTAL);
-            MODELO_REQUISICION.BONO_ANUAL = Convert.ToDecimal(API.BONO_ANUAL);
-            MODELO_REQUISICION.NUMERO_SALARIOS = Convert.ToInt32(API.NUMERO_SALARIO);
-            MODELO_REQUISICION.MESES_GARANTIZADOS = Convert.ToInt32(API.MESES_GARANTIZADO);
-            MODELO_REQUISICION.COD_TIPO_SALARIO = Convert.ToInt32(API.COD_TIPO_SALARIO);
-            MODELO_REQUISICION.NOMBRE_TIPO_SALARIO = API.NOMBRE_TIPO_SALARIO;
-            MODELO_REQUISICION.FACTOR_PRESTACIONAL = API.FP.Value;
-            MODELO_REQUISICION.INGRESO_PROM_MENSUAL = Convert.ToDecimal(API.PROMEDIO_MES);
-            MODELO_REQUISICION.INGRESO_PROM_ANUAL = Convert.ToDecimal(API.PROMEDIO_ANO);
-            MODELO_REQUISICION.COD_MERCADO = Convert.ToInt32(API.COD_MERCADO);
-            MODELO_REQUISICION.MERCADO = API.NOMBRE_MERCADO;
-            MODELO_REQUISICION.COD_CATEGORIA = Convert.ToInt32(API.COD_CATEGORIA_SALARIALES);
-            MODELO_REQUISICION.NOMBRE_CATEGORIA = API.NOMBRE_CATEGORIA_SALARIO;
+            _modeloRequisicion.SALARIO_FIJO = Convert.ToDecimal(_puesto.SALARIO_FIJO);
+            _modeloRequisicion.PORCENTAJE_SALARIO_FIJO = Convert.ToDecimal(_puesto.PORCENTAJE_SALARIO_FIJO);
+            _modeloRequisicion.SALARIO_VARIABLE = Convert.ToDecimal(_puesto.SALARIO_VARIABLE);
+            _modeloRequisicion.PORCENTAJE_SALARIO_VARIABLE = Convert.ToDecimal(_puesto.PORCENTAJE_SALARIO_VARIABLE);
+            _modeloRequisicion.SOBREREMUNERACION = Convert.ToDecimal(_puesto.SOBREREMUNERACION);
+            _modeloRequisicion.PORCENTAJE_SOBREREMUNERACION = Convert.ToDecimal(_puesto.PORCENTAJE_SOBREREMUNERACION);
+            _modeloRequisicion.EXTRA_FIJA = Convert.ToDecimal(_puesto.EXTRA_FIJA);
+            _modeloRequisicion.RECARGO_NOCTURNO = Convert.ToDecimal(_puesto.RECARGO_NOCTURNO_FIJO);
+            _modeloRequisicion.MEDIO_TRANSPORTE = Convert.ToDecimal(_puesto.MEDIOS_TRANSPORTE);
+            _modeloRequisicion.SALARIO_TOTAL = Convert.ToDecimal(_puesto.SALARIO_TOTAL);
+            _modeloRequisicion.BONO_ANUAL = Convert.ToDecimal(_puesto.BONO_ANUAL);
+            _modeloRequisicion.NUMERO_SALARIOS = Convert.ToInt32(_puesto.NUMERO_SALARIO);
+            _modeloRequisicion.MESES_GARANTIZADOS = Convert.ToInt32(_puesto.MESES_GARANTIZADO);
+            _modeloRequisicion.COD_TIPO_SALARIO = Convert.ToInt32(_puesto.COD_TIPO_SALARIO);
+            _modeloRequisicion.NOMBRE_TIPO_SALARIO = _puesto.NOMBRE_TIPO_SALARIO;
+            _modeloRequisicion.FACTOR_PRESTACIONAL = _puesto.FP.Value;
+            _modeloRequisicion.INGRESO_PROM_MENSUAL = Convert.ToDecimal(_puesto.PROMEDIO_MES);
+            _modeloRequisicion.INGRESO_PROM_ANUAL = Convert.ToDecimal(_puesto.PROMEDIO_ANO);
+            _modeloRequisicion.COD_MERCADO = Convert.ToInt32(_puesto.COD_MERCADO);
+            _modeloRequisicion.MERCADO = _puesto.NOMBRE_MERCADO;
+            _modeloRequisicion.COD_CATEGORIA = Convert.ToInt32(_puesto.COD_CATEGORIA_SALARIALES);
+            _modeloRequisicion.NOMBRE_CATEGORIA = _puesto.NOMBRE_CATEGORIA_SALARIO;
 
             //PUNTO MEDIO
-            MODELO_REQUISICION.PUNTO_MEDIO_80 = Convert.ToDecimal(API.PUNTO_MEDIO_80_PORCIENTO);
-            MODELO_REQUISICION.PUNTO_MEDIO_100 = Convert.ToDecimal(API.PUNTO_MEDIO_100_PORCIENTO);
-            MODELO_REQUISICION.PUNTO_MEDIO_120 = Convert.ToDecimal(API.PUNTO_MEDIO_120_PORCIENTO);
+            _modeloRequisicion.PUNTO_MEDIO_80 = Convert.ToDecimal(_puesto.PUNTO_MEDIO_80_PORCIENTO);
+            _modeloRequisicion.PUNTO_MEDIO_100 = Convert.ToDecimal(_puesto.PUNTO_MEDIO_100_PORCIENTO);
+            _modeloRequisicion.PUNTO_MEDIO_120 = Convert.ToDecimal(_puesto.PUNTO_MEDIO_120_PORCIENTO);
 
-            MODELO_REQUISICION.POSICIONAMIENTO = API.POSICIONAMIENTO.Value;
+            _modeloRequisicion.POSICIONAMIENTO = _puesto.POSICIONAMIENTO.Value;
 
-            return MODELO_REQUISICION;
+            return _modeloRequisicion;
         }
 
-        public REQUISICIONViewModel BUSCAR_REQUISICIONESBP(REQUISICIONViewModel model)
+        public REQUISICIONViewModel BUSCAR_REQUISICIONES_BP(REQUISICIONViewModel _modeloRequisicion)
         {
             try
             {
-                if (model.ES_MODIFICACION) {
-                    PUNTOS_MEDIO PUESTO_EMPLEADO = new PROXY().CONSULTAR_PUESTOS_POR_CEDULA_API(model.NUMERO_DOCUMENTO_EMPLEADO);
-                    model = CARGAR_MODELO_DEL_API(model, PUESTO_EMPLEADO);
+                if (_modeloRequisicion.ES_MODIFICACION) {
+                    PUESTO puestoEmpleado = new PROXY().CONSULTAR_PUESTOS_X_CEDULA_API(_modeloRequisicion.NUMERO_DOCUMENTO_EMPLEADO);
+                    _modeloRequisicion = CARGAR_MODELO_DEL_API(_modeloRequisicion, puestoEmpleado);
                 }
-                else if (model.COD_CARGO != 0){
-                    PUNTOS_MEDIO _puntosMedio = new PROXY().CONSULTAR_PUNTOS_MEDIO_API(model.COD_CARGO.ToString()).First();
-                    model = CARGAR_MODELO_DEL_API(model, _puntosMedio);
+                else if (_modeloRequisicion.COD_CARGO != 0){
+                    PUESTO puesto = new PROXY().CONSULTAR_PUESTO_X_COD_CARGO_API(_modeloRequisicion.COD_CARGO.ToString()).First();
+                    _modeloRequisicion = CARGAR_MODELO_DEL_API(_modeloRequisicion, puesto);
                 }
             }
             catch (Exception ex)
             {
                 throw ex;                
             }
-            return model;
+            return _modeloRequisicion;
         }
 
-        public PUNTOS_MEDIO BUSCAR_CARGO_API(string idCargo)
+        public PUESTO BUSCAR_PUESTO_X_CARGO_API(string _idCargo)
         {
-            PUNTOS_MEDIO _puntosMedio = new PUNTOS_MEDIO();
+            PUESTO puesto = new PUESTO();
             try
             {
-                if (!idCargo.Equals("0"))
+                if (!_idCargo.Equals("0"))
                 {
-                    List<PUNTOS_MEDIO> listPuntosMedio = new PROXY().CONSULTAR_PUNTOS_MEDIO_API(idCargo);
-                    if (listPuntosMedio.Count() > 0)
+                    List<PUESTO> listPuestos = new PROXY().CONSULTAR_PUESTO_X_COD_CARGO_API(_idCargo);
+                    if (listPuestos.Count() > 0)
                     {
-                        _puntosMedio = listPuntosMedio.First();
+                        puesto = listPuestos.First();
                     }
 
                     //Objeto de prueba cuando fallal el api
@@ -524,13 +532,13 @@ namespace LOGICA.REQUISICION_LOGICA
             {
                 throw ex;          
             }
-            return _puntosMedio;
+            return puesto;
         }
 
-        public REQUISICIONViewModel BUSCAR_REQUISICIONES(int idRequsicion){
+        public REQUISICIONViewModel BUSCAR_REQUISICIONES(int _idRequsicion){
             REQUISICIONViewModel objReqModel = null;
             try {
-                objReqModel = new ACCES_REQUISICION().CONSULTAR_REQUISICION_X_ID_ACCES(idRequsicion);
+                objReqModel = new ACCES_REQUISICION().CONSULTAR_REQUISICION_X_ID(_idRequsicion);
             }
             catch (Exception ex) {
                 throw ex;
@@ -538,272 +546,287 @@ namespace LOGICA.REQUISICION_LOGICA
             return objReqModel;
         }
 
-        public int INSERTAR_REQUISICION_LOGICA(REQUISICIONViewModel _modelo) {
-            if (_modelo.COD_REQUISICION != 0){
-                if (new ACCES_REQUISICION().ACTUALIZARREQUISICION_ACESS(_modelo)) {
-                    return _modelo.COD_REQUISICION;
+        public int INSERTAR_REQUISICION(REQUISICIONViewModel _modeloRequisicion) {
+            if (_modeloRequisicion.COD_REQUISICION != 0){
+                if (new ACCES_REQUISICION().ACTUALIZAR_REQUISICION(_modeloRequisicion)) {
+                    return _modeloRequisicion.COD_REQUISICION;
                 } else {
                     return 0;
                 }
             }
             else { 
-            return new ACCES_REQUISICION().INSERTAR_REQUISICION(_modelo);
+            return new ACCES_REQUISICION().INSERTAR_REQUISICION(_modeloRequisicion);
             }
         }
-        public Boolean ACTUALIZARREQUISICION(REQUISICIONViewModel _modelo){
-            return new ACCES_REQUISICION().ACTUALIZARREQUISICION_ACESS(_modelo);
+
+        public Boolean ACTUALIZAR_REQUISICION(REQUISICIONViewModel _modeloRequisicion){
+            return new ACCES_REQUISICION().ACTUALIZAR_REQUISICION(_modeloRequisicion);
         }
-        // LO LLENO PARA LAS LISTAS
-        public REQUISICIONViewModel CONSULTAR_VALORES_LISTAS_POR_CODIGO(REQUISICIONViewModel _MODEL_CODIGOS) {
+
+        public REQUISICIONViewModel CONSULTAR_VALORES_LISTAS_POR_CODIGO(REQUISICIONViewModel _modeloRequisicion) {
 
 
-            if (_MODEL_CODIGOS.COD_CARGO != 0) {
-                List<SelectListItem> LISTA_CARGO = _MODEL_CODIGOS.LIST_NOMBRE_CARGO.Where(x => x.Value == _MODEL_CODIGOS.COD_CARGO.ToString()).ToList();
+            if (_modeloRequisicion.COD_CARGO != 0) {
+                List<SelectListItem> LISTA_CARGO = _modeloRequisicion.LIST_NOMBRE_CARGO.Where(x => x.Value == _modeloRequisicion.COD_CARGO.ToString()).ToList();
                 if (LISTA_CARGO.Count > 0){
-                    _MODEL_CODIGOS.NOMBRE_CARGO = LISTA_CARGO.First().Text;
+                    _modeloRequisicion.NOMBRE_CARGO = LISTA_CARGO.First().Text;
                 } else {
-                    _MODEL_CODIGOS.COD_CARGO = 0;
+                    _modeloRequisicion.COD_CARGO = 0;
                 }
             }
-            if (_MODEL_CODIGOS.COD_GERENCIA != 0){
-                List<SelectListItem> LISTA_GERENCIA = _MODEL_CODIGOS.LIST_NOMBRE_GERENCIA.Where(x => x.Value == _MODEL_CODIGOS.COD_GERENCIA.ToString()).ToList();
+            if (_modeloRequisicion.COD_GERENCIA != 0){
+                List<SelectListItem> LISTA_GERENCIA = _modeloRequisicion.LIST_NOMBRE_GERENCIA.Where(x => x.Value == _modeloRequisicion.COD_GERENCIA.ToString()).ToList();
                 if (LISTA_GERENCIA.Count() > 0)
                 {
-                    _MODEL_CODIGOS.NOMBRE_GERENCIA = LISTA_GERENCIA.First().Text;
+                    _modeloRequisicion.NOMBRE_GERENCIA = LISTA_GERENCIA.First().Text;
                 }
                 else {
-                    _MODEL_CODIGOS.COD_GERENCIA = 0;
+                    _modeloRequisicion.COD_GERENCIA = 0;
                 }
             }
-            if (_MODEL_CODIGOS.COD_TIPO_CONTRATO != 0) {
-                List<SelectListItem> LISTA_CONTRATO = _MODEL_CODIGOS.LIST_NOMBRE_TIPO_CONTRATO.Where(x => x.Value == _MODEL_CODIGOS.COD_TIPO_CONTRATO.ToString()).ToList();
+            if (_modeloRequisicion.COD_TIPO_CONTRATO != 0) {
+                List<SelectListItem> LISTA_CONTRATO = _modeloRequisicion.LIST_NOMBRE_TIPO_CONTRATO.Where(x => x.Value == _modeloRequisicion.COD_TIPO_CONTRATO.ToString()).ToList();
                 if (LISTA_CONTRATO.Count > 0)
                 {
-                    _MODEL_CODIGOS.NOMBRE_TIPO_CONTRATO = LISTA_CONTRATO.First().Text;
+                    _modeloRequisicion.NOMBRE_TIPO_CONTRATO = LISTA_CONTRATO.First().Text;
                 }
                 else {
-                    _MODEL_CODIGOS.COD_TIPO_CONTRATO = 0;
+                    _modeloRequisicion.COD_TIPO_CONTRATO = 0;
                 }
             }
-            if (_MODEL_CODIGOS.COD_CECO != 0) {
-                List<SelectListItem> LISTA_CECO = _MODEL_CODIGOS.LIST_NOMBRE_CECO.Where(x => x.Value == _MODEL_CODIGOS.COD_CECO.ToString()).ToList();
+            if (_modeloRequisicion.COD_CECO != 0) {
+                List<SelectListItem> LISTA_CECO = _modeloRequisicion.LIST_NOMBRE_CECO.Where(x => x.Value == _modeloRequisicion.COD_CECO.ToString()).ToList();
                 if (LISTA_CECO.Count > 0) {
-                    _MODEL_CODIGOS.NOMBRE_CECO = LISTA_CECO.First().Text;
+                    _modeloRequisicion.NOMBRE_CECO = LISTA_CECO.First().Text;
                 }else {
-                    _MODEL_CODIGOS.COD_CECO = 0;
+                    _modeloRequisicion.COD_CECO = 0;
                 }
                 
             }
-            if (_MODEL_CODIGOS.COD_SOCIEDAD != 0) {
-                List<SelectListItem> LISTA_SOCIEDAD = _MODEL_CODIGOS.LIST_NOMBRE_SOCIEDAD.Where(x => x.Value == _MODEL_CODIGOS.COD_SOCIEDAD.ToString()).ToList();
+            if (_modeloRequisicion.COD_SOCIEDAD != 0) {
+                List<SelectListItem> LISTA_SOCIEDAD = _modeloRequisicion.LIST_NOMBRE_SOCIEDAD.Where(x => x.Value == _modeloRequisicion.COD_SOCIEDAD.ToString()).ToList();
                 if (LISTA_SOCIEDAD.Count > 0) {
-                    _MODEL_CODIGOS.NOMBRE_SOCIEDAD = LISTA_SOCIEDAD.First().Text;
+                    _modeloRequisicion.NOMBRE_SOCIEDAD = LISTA_SOCIEDAD.First().Text;
                 }else {
-                    _MODEL_CODIGOS.COD_SOCIEDAD = 0;
+                    _modeloRequisicion.COD_SOCIEDAD = 0;
                 }
                 
             }
-            if (_MODEL_CODIGOS.COD_EQUIPO_VENTAS != 0) {
-                List<SelectListItem> LISTA_VENTAS = _MODEL_CODIGOS.LIST_NOMBRE_EQIPO_VENTAS.Where(x => x.Value == _MODEL_CODIGOS.COD_EQUIPO_VENTAS.ToString()).ToList();
+            if (_modeloRequisicion.COD_EQUIPO_VENTAS != 0) {
+                List<SelectListItem> LISTA_VENTAS = _modeloRequisicion.LIST_NOMBRE_EQIPO_VENTAS.Where(x => x.Value == _modeloRequisicion.COD_EQUIPO_VENTAS.ToString()).ToList();
                 if (LISTA_VENTAS.Count > 0)
                 {
-                    _MODEL_CODIGOS.NOMBRE_EQIPO_VENTAS = LISTA_VENTAS.First().Text;
+                    _modeloRequisicion.NOMBRE_EQIPO_VENTAS = LISTA_VENTAS.First().Text;
                 }
                 else {
-                    _MODEL_CODIGOS.COD_EQUIPO_VENTAS = 0;
+                    _modeloRequisicion.COD_EQUIPO_VENTAS = 0;
                 }
             }
-            if (_MODEL_CODIGOS.COD_CIUDAD_TRABAJO != 0)
+            if (_modeloRequisicion.COD_CIUDAD_TRABAJO != 0)
             {
-                List<SelectListItem> LISTA_CIUDAD_TRABAJO = _MODEL_CODIGOS.LIST_NOMBRE_CIUDAD_TRABAJO.Where(x => x.Value == _MODEL_CODIGOS.COD_CIUDAD_TRABAJO.ToString()).ToList();
+                List<SelectListItem> LISTA_CIUDAD_TRABAJO = _modeloRequisicion.LIST_NOMBRE_CIUDAD_TRABAJO.Where(x => x.Value == _modeloRequisicion.COD_CIUDAD_TRABAJO.ToString()).ToList();
                 if (LISTA_CIUDAD_TRABAJO.Count > 0){
-                    _MODEL_CODIGOS.NOMBRE_CIUDAD_TRABAJO = LISTA_CIUDAD_TRABAJO.First().Text;
+                    _modeloRequisicion.NOMBRE_CIUDAD_TRABAJO = LISTA_CIUDAD_TRABAJO.First().Text;
                 }else {
-                    _MODEL_CODIGOS.COD_CIUDAD_TRABAJO = 0;
+                    _modeloRequisicion.COD_CIUDAD_TRABAJO = 0;
                 }
             }
-            if (_MODEL_CODIGOS.COD_UBICACION_FISICA != 0) {
-                List<SelectListItem> LISTA_UBICACION_FISICA = _MODEL_CODIGOS.LIST_NOMBRE_UBICACION_FISICA.Where(x => x.Value == _MODEL_CODIGOS.COD_UBICACION_FISICA.ToString()).ToList();
+            if (_modeloRequisicion.COD_UBICACION_FISICA != 0) {
+                List<SelectListItem> LISTA_UBICACION_FISICA = _modeloRequisicion.LIST_NOMBRE_UBICACION_FISICA.Where(x => x.Value == _modeloRequisicion.COD_UBICACION_FISICA.ToString()).ToList();
                 if (LISTA_UBICACION_FISICA.Count > 0){
-                    _MODEL_CODIGOS.NOMBRE_UBICACION_FISICA = LISTA_UBICACION_FISICA.First().Text;
+                    _modeloRequisicion.NOMBRE_UBICACION_FISICA = LISTA_UBICACION_FISICA.First().Text;
                 } else {
-                    _MODEL_CODIGOS.COD_UBICACION_FISICA = 0;
+                    _modeloRequisicion.COD_UBICACION_FISICA = 0;
                 }
                 
             }
-            if (_MODEL_CODIGOS.COD_NIVEL_RIESGO_ARL != 0) {
-                List<SelectListItem> LISTA_RIESGO_ARL = _MODEL_CODIGOS.LIST_NIVEL_RIESGO_ARL.Where(x => x.Value == _MODEL_CODIGOS.COD_NIVEL_RIESGO_ARL.ToString()).ToList();
+            if (_modeloRequisicion.COD_NIVEL_RIESGO_ARL != 0) {
+                List<SelectListItem> LISTA_RIESGO_ARL = _modeloRequisicion.LIST_NIVEL_RIESGO_ARL.Where(x => x.Value == _modeloRequisicion.COD_NIVEL_RIESGO_ARL.ToString()).ToList();
                 if (LISTA_RIESGO_ARL.Count > 0) {
-                    _MODEL_CODIGOS.NIVEL_RIESGO_ARL = LISTA_RIESGO_ARL.First().Text;
+                    _modeloRequisicion.NIVEL_RIESGO_ARL = LISTA_RIESGO_ARL.First().Text;
                 } 
             }
-            if (_MODEL_CODIGOS.COD_CATEGORIA_ED != 0) {
-                List<SelectListItem> LISTA_CATEGORIA_ED = _MODEL_CODIGOS.LIST_NOMBRE_CATEGORIA_ED.Where(x => x.Value == _MODEL_CODIGOS.COD_CATEGORIA_ED.ToString()).ToList();
+            if (_modeloRequisicion.COD_CATEGORIA_ED != 0) {
+                List<SelectListItem> LISTA_CATEGORIA_ED = _modeloRequisicion.LIST_NOMBRE_CATEGORIA_ED.Where(x => x.Value == _modeloRequisicion.COD_CATEGORIA_ED.ToString()).ToList();
                 if (LISTA_CATEGORIA_ED.Count > 0){
-                    _MODEL_CODIGOS.NOMBRE_CATEGORIA_ED = LISTA_CATEGORIA_ED.First().Text;
+                    _modeloRequisicion.NOMBRE_CATEGORIA_ED = LISTA_CATEGORIA_ED.First().Text;
                 }
-                else { _MODEL_CODIGOS.COD_CATEGORIA_ED = 0;
+                else { _modeloRequisicion.COD_CATEGORIA_ED = 0;
                 }
                 
             }
-            if (_MODEL_CODIGOS.COD_JORNADA_LABORAL != 0) {
-                List<SelectListItem> LISTA_JORNADA_LABORAL = _MODEL_CODIGOS.LIST_NOMBRE_JORNADA_LABORAL.Where(x => x.Value == _MODEL_CODIGOS.COD_JORNADA_LABORAL.ToString()).ToList();
+            if (_modeloRequisicion.COD_JORNADA_LABORAL != 0) {
+                List<SelectListItem> LISTA_JORNADA_LABORAL = _modeloRequisicion.LIST_NOMBRE_JORNADA_LABORAL.Where(x => x.Value == _modeloRequisicion.COD_JORNADA_LABORAL.ToString()).ToList();
                 if (LISTA_JORNADA_LABORAL.Count > 0)
                 {
-                    _MODEL_CODIGOS.NOMBRE_JORNADA_LABORAL = LISTA_JORNADA_LABORAL.First().Text;
+                    _modeloRequisicion.NOMBRE_JORNADA_LABORAL = LISTA_JORNADA_LABORAL.First().Text;
                 }
                 else {
-                    _MODEL_CODIGOS.COD_JORNADA_LABORAL = 0;
+                    _modeloRequisicion.COD_JORNADA_LABORAL = 0;
                 }
                
             }
-            if (_MODEL_CODIGOS.COD_DIA_LABORAL_DESDE !=0) {
-                List<SelectListItem> LISTA_LABORAL_DESDE = _MODEL_CODIGOS.LIST_DIA_LABORAL_DESDE.Where(x => x.Value == _MODEL_CODIGOS.COD_DIA_LABORAL_DESDE.ToString()).ToList();
+            if (_modeloRequisicion.COD_DIA_LABORAL_DESDE !=0) {
+                List<SelectListItem> LISTA_LABORAL_DESDE = _modeloRequisicion.LIST_DIA_LABORAL_DESDE.Where(x => x.Value == _modeloRequisicion.COD_DIA_LABORAL_DESDE.ToString()).ToList();
                 if (LISTA_LABORAL_DESDE.Count > 0)
                 {
-                    _MODEL_CODIGOS.DIA_LABORAL_DESDE = LISTA_LABORAL_DESDE.First().Text;
+                    _modeloRequisicion.DIA_LABORAL_DESDE = LISTA_LABORAL_DESDE.First().Text;
                 }
                 else {
-                    _MODEL_CODIGOS.COD_DIA_LABORAL_DESDE = 0;
+                    _modeloRequisicion.COD_DIA_LABORAL_DESDE = 0;
                 }
                 
             }
-            if (_MODEL_CODIGOS.COD_DIA_LABORAL_HASTA != 0) {
-                List<SelectListItem> LISTA_LABORAL_HASTA = _MODEL_CODIGOS.LIST_DIA_LABORAL_HASTA.Where(x => x.Value == _MODEL_CODIGOS.COD_DIA_LABORAL_HASTA.ToString()).ToList();
+            if (_modeloRequisicion.COD_DIA_LABORAL_HASTA != 0) {
+                List<SelectListItem> LISTA_LABORAL_HASTA = _modeloRequisicion.LIST_DIA_LABORAL_HASTA.Where(x => x.Value == _modeloRequisicion.COD_DIA_LABORAL_HASTA.ToString()).ToList();
                 if (LISTA_LABORAL_HASTA.Count > 0)
                 {
-                    _MODEL_CODIGOS.DIA_LABORAL_HASTA = LISTA_LABORAL_HASTA.First().Text;
+                    _modeloRequisicion.DIA_LABORAL_HASTA = LISTA_LABORAL_HASTA.First().Text;
                 }
                 else {
-                    _MODEL_CODIGOS.COD_DIA_LABORAL_HASTA = 0;
+                    _modeloRequisicion.COD_DIA_LABORAL_HASTA = 0;
                 }
         
             }
-            if (_MODEL_CODIGOS.COD_TIPO_SALARIO != 0) {
-                List<SelectListItem> LISTA_TIPO_SALARIO = _MODEL_CODIGOS.LIST_NOMBRE_TIPO_SALARIO.Where(x => x.Value == _MODEL_CODIGOS.COD_TIPO_SALARIO.ToString()).ToList();
+            if (_modeloRequisicion.COD_TIPO_SALARIO != 0) {
+                List<SelectListItem> LISTA_TIPO_SALARIO = _modeloRequisicion.LIST_NOMBRE_TIPO_SALARIO.Where(x => x.Value == _modeloRequisicion.COD_TIPO_SALARIO.ToString()).ToList();
                 if (LISTA_TIPO_SALARIO.Count > 0)
                 {
-                    _MODEL_CODIGOS.NOMBRE_TIPO_SALARIO = LISTA_TIPO_SALARIO.First().Text;
+                    _modeloRequisicion.NOMBRE_TIPO_SALARIO = LISTA_TIPO_SALARIO.First().Text;
                 }
                 else {
-                    _MODEL_CODIGOS.COD_TIPO_SALARIO = 0;
+                    _modeloRequisicion.COD_TIPO_SALARIO = 0;
                 }
                
             }
-            if (_MODEL_CODIGOS.COD_CATEGORIA != 0) {
-                List<SelectListItem> LISTA_COD_CATEGORIA = _MODEL_CODIGOS.LIST_NOMBRE_CATEGORIA.Where(x => x.Value == _MODEL_CODIGOS.COD_CATEGORIA.ToString()).ToList();
+            if (_modeloRequisicion.COD_CATEGORIA != 0) {
+                List<SelectListItem> LISTA_COD_CATEGORIA = _modeloRequisicion.LIST_NOMBRE_CATEGORIA.Where(x => x.Value == _modeloRequisicion.COD_CATEGORIA.ToString()).ToList();
                 if (LISTA_COD_CATEGORIA.Count > 0)
                 {
-                    _MODEL_CODIGOS.NOMBRE_CATEGORIA = LISTA_COD_CATEGORIA.First().Text;
+                    _modeloRequisicion.NOMBRE_CATEGORIA = LISTA_COD_CATEGORIA.First().Text;
                 }
                 else {
-                    _MODEL_CODIGOS.COD_CATEGORIA = 0;
+                    _modeloRequisicion.COD_CATEGORIA = 0;
                 }
                 
             }
 
-            if (_MODEL_CODIGOS.COD_TIPO_SALARIO != 0) {
-                List<SelectListItem> LISTA_TIPO_SALARIO = _MODEL_CODIGOS.LIST_NOMBRE_TIPO_SALARIO.Where(x => x.Value == _MODEL_CODIGOS.COD_TIPO_SALARIO.ToString()).ToList();
+            if (_modeloRequisicion.COD_TIPO_SALARIO != 0) {
+                List<SelectListItem> LISTA_TIPO_SALARIO = _modeloRequisicion.LIST_NOMBRE_TIPO_SALARIO.Where(x => x.Value == _modeloRequisicion.COD_TIPO_SALARIO.ToString()).ToList();
                 if (LISTA_TIPO_SALARIO.Count > 0)
                 {
-                    _MODEL_CODIGOS.NOMBRE_TIPO_SALARIO = LISTA_TIPO_SALARIO.First().Text;
+                    _modeloRequisicion.NOMBRE_TIPO_SALARIO = LISTA_TIPO_SALARIO.First().Text;
                 }
                 else {
-                    _MODEL_CODIGOS.COD_TIPO_SALARIO = 0;
+                    _modeloRequisicion.COD_TIPO_SALARIO = 0;
                 }
             }
 
-            if (_MODEL_CODIGOS.COD_CARGO != 0) {
-                List<SelectListItem> LISTA_NOMBRE_CARGO = _MODEL_CODIGOS.LIST_NOMBRE_CARGO.Where(x => x.Value == _MODEL_CODIGOS.COD_CARGO.ToString()).ToList();
+            if (_modeloRequisicion.COD_CARGO != 0) {
+                List<SelectListItem> LISTA_NOMBRE_CARGO = _modeloRequisicion.LIST_NOMBRE_CARGO.Where(x => x.Value == _modeloRequisicion.COD_CARGO.ToString()).ToList();
                 if (LISTA_NOMBRE_CARGO.Count > 0)
                 {
-                    _MODEL_CODIGOS.NOMBRE_CARGO = LISTA_NOMBRE_CARGO.First().Text;
+                    _modeloRequisicion.NOMBRE_CARGO = LISTA_NOMBRE_CARGO.First().Text;
                 }
                 else {
-                    _MODEL_CODIGOS.COD_CARGO = 0;
+                    _modeloRequisicion.COD_CARGO = 0;
                 }
             }
 
-            if (_MODEL_CODIGOS.COD_JORNADA_LABORAL != 0) {
-                List<SelectListItem> LISTA_JORNADA_LABORAL = _MODEL_CODIGOS.LIST_NOMBRE_JORNADA_LABORAL.Where(X => X.Value == _MODEL_CODIGOS.COD_JORNADA_LABORAL.ToString()).ToList();
+            if (_modeloRequisicion.COD_JORNADA_LABORAL != 0) {
+                List<SelectListItem> LISTA_JORNADA_LABORAL = _modeloRequisicion.LIST_NOMBRE_JORNADA_LABORAL.Where(X => X.Value == _modeloRequisicion.COD_JORNADA_LABORAL.ToString()).ToList();
                 if (LISTA_JORNADA_LABORAL.Count > 0) {
-                    _MODEL_CODIGOS.NOMBRE_JORNADA_LABORAL = LISTA_JORNADA_LABORAL.First().Text;
+                    _modeloRequisicion.NOMBRE_JORNADA_LABORAL = LISTA_JORNADA_LABORAL.First().Text;
                 }
                 else
                 {
-                    _MODEL_CODIGOS.COD_JORNADA_LABORAL = 0;
+                    _modeloRequisicion.COD_JORNADA_LABORAL = 0;
                 }
             }
 
-            if (_MODEL_CODIGOS.COD_MERCADO != 0) {
-                List<SelectListItem> LISTA_MERCADO = _MODEL_CODIGOS.LIST_MERCADO.Where(x => x.Value == _MODEL_CODIGOS.COD_MERCADO.ToString()).ToList();
+            if (_modeloRequisicion.COD_MERCADO != 0) {
+                List<SelectListItem> LISTA_MERCADO = _modeloRequisicion.LIST_MERCADO.Where(x => x.Value == _modeloRequisicion.COD_MERCADO.ToString()).ToList();
                 if (LISTA_MERCADO.Count > 0)
                 {
-                    _MODEL_CODIGOS.MERCADO = LISTA_MERCADO.First().Text;
+                    _modeloRequisicion.MERCADO = LISTA_MERCADO.First().Text;
                 }
                 else {
-                    _MODEL_CODIGOS.COD_MERCADO = 0;
+                    _modeloRequisicion.COD_MERCADO = 0;
                 }
             }
 
-            if (_MODEL_CODIGOS.COD_TIPO_DOCUMENTO != 0)
+            if (_modeloRequisicion.COD_TIPO_DOCUMENTO != 0)
             {
-                List<SelectListItem> LISTA_TIPO_DOCUMENTO = _MODEL_CODIGOS.LIST_TIPO_DOCUMENTO.Where(X => X.Value == _MODEL_CODIGOS.COD_TIPO_DOCUMENTO.ToString()).ToList();
+                List<SelectListItem> LISTA_TIPO_DOCUMENTO = _modeloRequisicion.LIST_TIPO_DOCUMENTO.Where(X => X.Value == _modeloRequisicion.COD_TIPO_DOCUMENTO.ToString()).ToList();
                 if (LISTA_TIPO_DOCUMENTO.Count > 0)
                 {
-                    _MODEL_CODIGOS.NOMBRE_TIPO_DOCUMENTO = LISTA_TIPO_DOCUMENTO.First().Text;
+                    _modeloRequisicion.NOMBRE_TIPO_DOCUMENTO = LISTA_TIPO_DOCUMENTO.First().Text;
                 }
                 else
                 {
-                    _MODEL_CODIGOS.COD_TIPO_DOCUMENTO = 0;
+                    _modeloRequisicion.COD_TIPO_DOCUMENTO = 0;
                 }
             }
 
-            return _MODEL_CODIGOS;
+            return _modeloRequisicion;
         }
 
-        public int APROBAR_REQUISICION_LOGICA(int COD_REQUISICION, String ID_USUARIO, string observacion) {
-          return new ACCES_REQUISICION().APROBAR_REQUISICION_ACESS(COD_REQUISICION, ID_USUARIO, observacion);
+        public int APROBAR_REQUISICION_LOGICA(int _codRequisicion, string _idUsuario, string _observacion) {
+          return new ACCES_REQUISICION().APROBAR_REQUISICION(_codRequisicion, _idUsuario, _observacion);
         }
 
-        public int REQUISICION_MODIFICAR_LOGICA(int COD_REQUISICION, string oBSERVACIONES, String ID_USUARIO)
+        public int REQUISICION_MODIFICAR_LOGICA(int _codRequisicion, string _observacion, string _idUsuario)
         {
-            return new ACCES_REQUISICION().REQUISICION_MODIFICAR_ACESS(COD_REQUISICION, oBSERVACIONES, ID_USUARIO);
+            return new ACCES_REQUISICION().MODIFICAR_REQUISICION(_codRequisicion, _observacion, _idUsuario);
         }
 
-        public int REQUISICION_RECHAZAR_LOGICA(int COD_REQUISICION, string oBSERVACIONES, String USUARIO)
+        public int REQUISICION_RECHAZAR_LOGICA(int _codRequisicion, string _observacion, string _usuario)
         {
-            return new ACCES_REQUISICION().REQUISICION_RECHAZAR_ACESS(COD_REQUISICION, oBSERVACIONES, USUARIO);
+            return new ACCES_REQUISICION().RECHAZAR_REQUISICION(_codRequisicion, _observacion, _usuario);
         }
 
-        public List<SelectListItem> CONSULTAR_EMPLEADOS_LOGICA()
+        public List<SelectListItem> CONSULTAR_EMPLEADOS()
         {
-            return new PROXY().CONSULTAR_EMPLEADOS_API().Select(x => new SelectListItem()
+
+            EMPLEADO apiEmpleado = new EMPLEADO();
+            List<SelectListItem> listEmpleados = new List<SelectListItem>();
+            try
             {
-                Text = x.NOMBRES,
-                Value = x.DOCUMENTO_NUMERO.ToString()
-            }).ToList();
+                listEmpleados = apiEmpleado.CONSULTAR_EMPLEADOS().Select(x => new SelectListItem()
+                {
+                    Text = x.NOMBRES,
+                    Value = x.DOCUMENTO_NUMERO
+                }).ToList();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            return listEmpleados;
         }
 
-        public List<TRAZA_BOTONES_ENTIDAD> TRAZA_BOTONES_LOGICA(int COD_REQUISICION, string CAMPO_REQUISICION, List<SelectListItem> LISTA_ARL, List<SelectListItem> LISTA_ESTADOS, List<SelectListItem> LISTA_CATEGORIA) {
-            List <TRAZA_BOTONES_ENTIDAD> OBJETO_TRAZA = new ACCES_REQUISICION().TRAZA_BOTONES_ACESS(COD_REQUISICION, CAMPO_REQUISICION);
+        public List<TRAZA_BOTONES_ENTIDAD> CONSULTAR_TRAZA_CAMPOS(int _codRequisicion, string _campoRequisicion, List<SelectListItem> _listaArl, List<SelectListItem> _listaEstados, List<SelectListItem> _listaCategoria) {
+            List <TRAZA_BOTONES_ENTIDAD> OBJETO_TRAZA = new ACCES_REQUISICION().CONSULTAR_TRAZA_CAMPOS(_codRequisicion, _campoRequisicion);
             foreach (TRAZA_BOTONES_ENTIDAD ITEM in OBJETO_TRAZA) {
                 if (ITEM.COD_NIVEL_RIESGO_ARL != null && ITEM.COD_NIVEL_RIESGO_ARL!=0){
-                    ITEM.NOMBRE_ARL = LISTA_ARL.Where(x => x.Value == ITEM.COD_NIVEL_RIESGO_ARL.ToString()).First().Text;
+                    ITEM.NOMBRE_ARL = _listaArl.Where(x => x.Value == ITEM.COD_NIVEL_RIESGO_ARL.ToString()).First().Text;
                 }
                 if (ITEM.COD_ESTADO != 0){
-                    ITEM.NOMBRE_ESTADOS_REQUISICION = LISTA_ESTADOS.Where(x => x.Value == ITEM.COD_ESTADO.ToString()).First().Text;
+                    ITEM.NOMBRE_ESTADOS_REQUISICION = _listaEstados.Where(x => x.Value == ITEM.COD_ESTADO.ToString()).First().Text;
                 }
                 if (ITEM.COD_CATEGORIA != 0 && ITEM.COD_CATEGORIA!=null)
                 {
-                    ITEM.CATRGORIA = LISTA_CATEGORIA.Where(x => x.Value == ITEM.COD_CATEGORIA.ToString()).First().Text;
+                    ITEM.CATRGORIA = _listaCategoria.Where(x => x.Value == ITEM.COD_CATEGORIA.ToString()).First().Text;
                 }
             }
             return OBJETO_TRAZA;
         }
 
-        public List<CONSULTA_NOTIFICACIONES_ENTIDAD> CONSULTA_NOTIFICACIONES_LOGICA(string COD_USUARIO) {
-            List <CONSULTA_NOTIFICACIONES_ENTIDAD> LISTA_NOTIFICACIONES= new ACCES_REQUISICION().CONSULTA_NOTIFICACIONES_ACCESS(COD_USUARIO);
+        public List<CONSULTA_NOTIFICACIONES_ENTIDAD> CONSULTA_NOTIFICACIONES(string _codUsuario) {
+            List <CONSULTA_NOTIFICACIONES_ENTIDAD> LISTA_NOTIFICACIONES= new ACCES_REQUISICION().CONSULTAR_NOTIFICACIONES(_codUsuario);
             foreach (CONSULTA_NOTIFICACIONES_ENTIDAD ITEM in LISTA_NOTIFICACIONES) {
                 if (ITEM.ES_MODIFICACION)
                     ITEM.NOMBRE_REQUISICION = "Modificacion";

@@ -15,13 +15,13 @@ namespace G_H_WEB.Controllers
     public class REQUISICION_NOPRESUPUESTADAController : Controller
     {
         // GET: REQUISICION_NOPRESUPUESTADA
-        public ActionResult Index(int? _idReq)
+        public ActionResult Consultar(int? _idReq)
         {
             REQUISICIONViewModel model = new REQUISICIONViewModel();
             if (_idReq.HasValue){
                 model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value) ?? new REQUISICIONViewModel();
                 if (User.IsInRole(SettingsManager.PerfilBp)){
-                    model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONESBP(model) ?? new REQUISICIONViewModel();
+                    model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES_BP(model) ?? new REQUISICIONViewModel();
                 }
             }
            model = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(model, Session["objetoListas"] as REQUISICIONViewModel);
@@ -37,11 +37,11 @@ namespace G_H_WEB.Controllers
             ViewBag.resultadoPopUpNoJefe = fromPost;
 
             //FIN POP UP
-            ViewBag.Busca_USUARIOS = new LOGICA_REQUISICION().CONSULTAR_EMPLEADOS_LOGICA();
+            ViewBag.Busca_USUARIOS = new LOGICA_REQUISICION().CONSULTAR_EMPLEADOS();
             return View(model);
         }
         [HttpPost]
-        public ActionResult Index(REQUISICIONViewModel modelDatos, string submitButton) {
+        public ActionResult Procesar(REQUISICIONViewModel modelDatos, string submitButton) {
             try {
                 int _resultadoIdReguisicion = 0;
                 modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqNoPresupuestada;
@@ -60,7 +60,7 @@ namespace G_H_WEB.Controllers
                 switch (submitButton)
                 {
                     case "CREAR REQUISICIÓN":
-                        _resultadoIdReguisicion = new LOGICA_REQUISICION().INSERTAR_REQUISICION_LOGICA(modelDatos);
+                        _resultadoIdReguisicion = new LOGICA_REQUISICION().INSERTAR_REQUISICION(modelDatos);
                         if (modelDatos.COD_REQUISICION == 0)
                             npc.METODO = "Crear";
                         else
@@ -70,7 +70,7 @@ namespace G_H_WEB.Controllers
                     case "APROBAR REQUISICIÓN":
                         if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
                         {
-                            Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos));
+                            Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZAR_REQUISICION(modelDatos));
                             _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
                         }
                         else {
@@ -84,7 +84,7 @@ namespace G_H_WEB.Controllers
                         break;
                     case "Enviar":
 
-                        Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZARREQUISICION(modelDatos));
+                        Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZAR_REQUISICION(modelDatos));
                         _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
                         npc.METODO = "Enviar";
                         break;
@@ -102,14 +102,14 @@ namespace G_H_WEB.Controllers
                 TempData["resultado"] = npc;
                 //FIN Esta logica es para el POP UP----------
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Consultar");
             }
             catch (Exception ex)
             {
                 RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
                 npc.RESULTADO = false;
                 TempData["resultado"] = npc;
-                return RedirectToAction("Index");
+                return RedirectToAction("Consultar");
             }
         }
   
