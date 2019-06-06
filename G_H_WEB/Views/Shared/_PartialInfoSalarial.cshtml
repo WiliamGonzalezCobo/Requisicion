@@ -113,7 +113,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row FactorPrestacional">
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.FACTOR_PRESTACIONAL, htmlAttributes: new { @class = "letrasFormulario" })
                 @Html.EditorFor(model => model.FACTOR_PRESTACIONAL, new { htmlAttributes = new { @class = "form-control E_FACTOR_PRESTACIONAL col-md-11 TexboxIncicial letrasFormulario", disabled = deshabilitar } })
@@ -138,7 +138,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row FactorPrestacional">
             <div class="col-md-12 col-sm-12">
                 <div class="salarioTotalEstilos">
                     <div class="row justify-content-between">
@@ -176,7 +176,7 @@
 
 
                 <div class="row">
-                    <div class="form-group col-md-12 col-sm-12">
+                    <div class="form-group col-md-12 col-sm-12 porcentajeSalarial">
                         <div class="salarioTotalEstilos">
                             @Html.LabelFor(model => model.PUNTO_MEDIO_80, htmlAttributes: new { @class = "letrasSalarioTotal col-md-6", @style = "text-align:left;" })
                             <span class="valorSalarioTotal col-md-6">@Model.PUNTO_MEDIO_80</span>
@@ -184,7 +184,7 @@
                             @Html.ValidationMessageFor(model => model.PUNTO_MEDIO_80)
                         </div>
                     </div>
-                    <div class="form-group col-md-12 col-sm-12">
+                    <div class="form-group col-md-12 col-sm-12 porcentajeSalarial">
                         <div class="salarioTotalEstilos">
                             @Html.LabelFor(model => model.PUNTO_MEDIO_100, htmlAttributes: new { @class = "letrasSalarioTotal col-md-6", @style = "text-align:left;" })
                             <span class="valorSalarioTotal col-md-6">@Model.PUNTO_MEDIO_100</span>
@@ -192,7 +192,7 @@
                             @Html.ValidationMessageFor(model => model.PUNTO_MEDIO_100)
                         </div>
                     </div>
-                    <div class="form-group col-md-12 col-sm-12">
+                    <div class="form-group col-md-12 col-sm-12 porcentajeSalarial">
                         <div class="salarioTotalEstilos">
                             @Html.LabelFor(model => model.PUNTO_MEDIO_120, htmlAttributes: new { @class = "letrasSalarioTotal col-md-6", @style = "text-align:left;" })
                             <span class="valorSalarioTotal col-md-6">@Model.PUNTO_MEDIO_120</span>
