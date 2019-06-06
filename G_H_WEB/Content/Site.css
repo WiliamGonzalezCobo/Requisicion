@@ -393,6 +393,15 @@ span.search-btn {
     border: 1px solid #979797;
     background-color: #FFFFFF;
 }
+.porcentajeSalarial{
+    margin:5px;
+    margin-left:0px;
+}
+
+.FactorPrestacional {
+    margin: 10px;
+    margin-left: -15px;
+}
 
 .spanCombosDesdeHasta {
     left: 173px;
@@ -415,12 +424,13 @@ span.search-btn {
 
 .letrasSalarioTotal {
     height: 18px;
-    width: 197px;
+    /*width: 197px;*/
     color: #000000;
     font-family: "source-medium";
     font-size: 14px;
     line-height: 18px;
-    text-align: right;
+    /*text-align: right;*/
+    padding-left: 25px;
 }
 .separadorPuntosMedio {
     box-sizing: border-box;
