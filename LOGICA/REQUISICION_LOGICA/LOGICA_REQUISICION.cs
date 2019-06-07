@@ -792,5 +792,11 @@ namespace LOGICA.REQUISICION_LOGICA
             }
             return LISTA_NOTIFICACIONES;
         }
+
+        public List<CAMPOS_TRAZAS> CONSULTAR_CAMPOS_TRAZAS_VISIBLES(int _codRequisicion)
+        {
+
+            return "";
+        }
     }
 }

@@ -463,5 +463,16 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                 return _ENTIDAD_RETONO;
             }
         }
+
+        public List<CAMPOS_TRAZA_Result> CONSULTAR_CAMPOS_TRAZAS_VISIBLES(int _codRequisicion)
+        {
+            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            {
+                List<CAMPOS_TRAZA_Result> _LIST_CAMPOS = new List<CAMPOS_TRAZA_Result>();
+                _LIST_CAMPOS = db.CAMPOS_TRAZA(_codRequisicion).ToList();
+                return _LIST_CAMPOS;
+            }            
+        }
+
     }
 }
