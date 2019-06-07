@@ -1,5 +1,6 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 @using MODELO_DATOS.MODELO_REQUISICION.LISTAS_API
+@using UTILS.Settings
 @{
     List<EMPLEADOS> _BUSCAR_USUARIOS = ViewBag.Busca_USUARIOS;
     string deshabilitar = "true";
@@ -10,10 +11,13 @@
     @Html.HiddenFor(model => model.COD_REQUISICION)
     @Html.HiddenFor(model => model.COD_ESTADO_REQUISICION)
 
- 
+
 
     <div class="form-group col-md-12 col-sm-12 buscadorR">
-        <input class="buscador_modificaciones letrasFormulario" id="buscador_modificaciones" type="text" placeholder="  N° de documento o nombre del empleado">
+
+        @if (User.IsInRole(SettingsManager.PerfilJefe))
+        {
+            <input class="buscador_modificaciones letrasFormulario" id="buscador_modificaciones" type="text" placeholder="  N° de documento o nombre del empleado">
         <span id="BuscadorUsuario" class="search-btn fas fa-search"></span>
         <br>
         <ul class="list-group buscador_modificaciones_deplegable_esconder" id="myList">
@@ -23,13 +27,13 @@
             }
 
         </ul>
-
+        }
         <div class="row">
 
             <div class="form-group col-md-6 col-sm-6">
                 @Html.LabelFor(model => model.NOMBRE_TIPO_DOCUMENTO, new { @class = "letrasFormulario" })
                 @Html.TextBoxFor(model => model.NOMBRE_TIPO_DOCUMENTO, new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar })
-                @Html.HiddenFor(model => model.COD_TIPO_DOCUMENTO , new { @id= "hdCOD_TIPO_DOCUMENTO" })
+                @Html.HiddenFor(model => model.COD_TIPO_DOCUMENTO, new { @id = "hdCOD_TIPO_DOCUMENTO" })
                 @Html.ValidationMessageFor(model => model.NOMBRE_TIPO_DOCUMENTO)
             </div>
 
