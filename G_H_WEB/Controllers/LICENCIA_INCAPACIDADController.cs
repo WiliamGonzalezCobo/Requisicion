@@ -17,23 +17,29 @@ namespace G_H_WEB.Controllers
     public class LICENCIA_INCAPACIDADController : Controller
     {
         // GET: REQUISICION_NOPRESUPUESTADA
-        public ActionResult Index(int? _idReq)
+        public ActionResult Consultar(int? _idReq, int? _idTipo)
         {
-            if (Session["requisicion"] != null)
+            ViewBag._idTipo = _idTipo;
+            if (TempData["_idTipo"] != null)
             {
-                if (SettingsManager.CodTipoReqLicencia.Equals(Convert.ToInt32(Session["requisicion"])))
+                _idTipo = Convert.ToInt32(TempData["_idTipo"]);
+            }
+            if (_idTipo != null)
+            {
+                if (SettingsManager.CodTipoReqLicencia.Equals(_idTipo))
                 {
                     ViewBag.RequisicionNombre = "Requisicion Licencia";
                 }
-                else if (SettingsManager.CodTipoReqIncapacidad.Equals(Convert.ToInt32(Session["requisicion"])))
+                else if (SettingsManager.CodTipoReqIncapacidad.Equals(_idTipo))
                 {
                     ViewBag.RequisicionNombre = "Requisicion Incapacidad";
                 }
             }
-            else {
+            else
+            {
                 return RedirectToAction("Index", "REQUISICION");
             }
-            
+
             REQUISICIONViewModel model = new REQUISICIONViewModel();
 
             if (_idReq.HasValue)
@@ -47,7 +53,8 @@ namespace G_H_WEB.Controllers
                 //}
             }
             model.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqLicencia;
-            model = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(model, Session["objetoListas"] as REQUISICIONViewModel);
+
+            model = new LOGICA_REQUISICION().LLENAR_CONTROLES(model);
 
             // Esto es para el POP UP
             List<SelectListItem> listacargos = model.LIST_NOMBRE_CARGO;
@@ -64,17 +71,21 @@ namespace G_H_WEB.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Index(REQUISICIONViewModel modelDatos, string submitButton)
+        public ActionResult Procesar(REQUISICIONViewModel modelDatos, string submitButton, int? _idTipo)
         {
             try
             {
-                if (Session["requisicion"] != null)
+                if (TempData["_idTipo"] != null)
                 {
-                    if (SettingsManager.CodTipoReqLicencia.Equals(Convert.ToInt32(Session["requisicion"])))
+                    _idTipo = Convert.ToInt32(TempData["_idTipo"]);
+                }
+                if (_idTipo != null)
+                {
+                    if (SettingsManager.CodTipoReqLicencia.Equals(_idTipo))
                     {
                         modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqLicencia;
                     }
-                    else if (SettingsManager.CodTipoReqIncapacidad.Equals(Convert.ToInt32(Session["requisicion"])))
+                    else if (SettingsManager.CodTipoReqIncapacidad.Equals(_idTipo))
                     {
                         modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqIncapacidad;
                     }
@@ -88,9 +99,8 @@ namespace G_H_WEB.Controllers
                 
                 modelDatos.USUARIO_CREACION = User.Identity.Name;
                 modelDatos.USUARIO_MODIFICACION = User.Identity.Name;//      martinezluir esto es para test toca hacer la logica
-                REQUISICIONViewModel listas = new REQUISICIONViewModel();
                 // llena los combos
-                modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(modelDatos, Session["objetoListas"] as REQUISICIONViewModel);
+                modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES(modelDatos);
                 // saca los valores de los combos
                 modelDatos = new LOGICA_REQUISICION().CONSULTAR_VALORES_LISTAS_POR_CODIGO(modelDatos);
 
@@ -143,24 +153,24 @@ namespace G_H_WEB.Controllers
                 TempData["resultado"] = npc;
                 //FIN Esta logica es para el POP UP----------
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Consultar");
             }
             catch (Exception ex)
             {
                 RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
                 npc.RESULTADO = false;
                 TempData["resultado"] = npc;
-                return RedirectToAction("Index");
+                return RedirectToAction("Procesar");
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         public JsonResult ConsultarCargo(string idCargo)
         {
             if (!string.IsNullOrEmpty(idCargo) && !idCargo.Equals(0))
             {
                 PUESTO datosCargo = new LOGICA_REQUISICION().BUSCAR_PUESTO_X_CARGO_API(idCargo);
-
+                    
                 return Json(datosCargo, JsonRequestBehavior.AllowGet);
             }
 

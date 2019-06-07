@@ -45,38 +45,6 @@ namespace LOGICA.REQUISICION_LOGICA
 
             return _modelReturn;
         }
-
-        public REQUISICIONViewModel LLENAR_CONTROLES_SESSSION(REQUISICIONViewModel _modelReturn, REQUISICIONViewModel _modelEntrada)
-        {
-
-            _modelReturn.LIST_NOMBRE_TIPO_NECESIDAD = _modelEntrada.LIST_NOMBRE_TIPO_NECESIDAD;
-            _modelReturn.LIST_NOMBRE_ESTADO_REQUISICION = _modelEntrada.LIST_NOMBRE_ESTADO_REQUISICION;
-            _modelReturn.LIST_NOMBRE_CECO = _modelEntrada.LIST_NOMBRE_CECO;
-            _modelReturn.LIST_NOMBRE_EQIPO_VENTAS = _modelEntrada.LIST_NOMBRE_EQIPO_VENTAS;
-            _modelReturn.LIST_NIVEL_RIESGO_ARL = _modelEntrada.LIST_NIVEL_RIESGO_ARL;
-            _modelReturn.LIST_NOMBRE_CATEGORIA_ED = _modelEntrada.LIST_NOMBRE_CATEGORIA_ED;
-            _modelReturn.LIST_NOMBRE_SOCIEDAD = _modelEntrada.LIST_NOMBRE_SOCIEDAD;
-            _modelReturn.LIST_NOMBRE_TIPO_CONTRATO = _modelEntrada.LIST_NOMBRE_TIPO_CONTRATO;
-            _modelReturn.LIST_NOMBRE_GERENCIA = _modelEntrada.LIST_NOMBRE_GERENCIA;
-            _modelReturn.LIST_NOMBRE_UBICACION_FISICA = _modelEntrada.LIST_NOMBRE_UBICACION_FISICA;
-            _modelReturn.LIST_NOMBRE_JORNADA_LABORAL = _modelEntrada.LIST_NOMBRE_JORNADA_LABORAL;
-            _modelReturn.LIST_NOMBRE_CIUDAD_TRABAJO = _modelEntrada.LIST_NOMBRE_CIUDAD_TRABAJO;
-            _modelReturn.LIST_NOMBRE_CATEGORIA = _modelEntrada.LIST_NOMBRE_CATEGORIA;
-            _modelReturn.LIST_NOMBRE_TIPO_SALARIO = _modelEntrada.LIST_NOMBRE_TIPO_SALARIO;
-            _modelReturn.LIST_NOMBRE_CARGO = _modelEntrada.LIST_NOMBRE_CARGO;
-            _modelReturn.LIST_NOMBRE_TIPO_REQUISICION = _modelEntrada.LIST_NOMBRE_TIPO_REQUISICION;
-            _modelReturn.LIST_DIA_LABORAL_DESDE = _modelEntrada.LIST_DIA_LABORAL_DESDE;
-            _modelReturn.LIST_DIA_LABORAL_HASTA = _modelEntrada.LIST_DIA_LABORAL_HASTA;
-            _modelReturn.LIST_HORARIO_LABORAL_DESDE = _modelEntrada.LIST_HORARIO_LABORAL_DESDE;
-            _modelReturn.LIST_HORARIO_LABORAL_HASTA = _modelEntrada.LIST_HORARIO_LABORAL_HASTA;
-            _modelReturn.LIST_NOMBRE_JORNADA_LABORAL = _modelEntrada.LIST_NOMBRE_JORNADA_LABORAL;
-            _modelReturn.LIST_MERCADO = _modelEntrada.LIST_MERCADO;
-            _modelReturn.LIST_TIPO_DOCUMENTO = _modelEntrada.LIST_TIPO_DOCUMENTO; 
-
-
-            return _modelReturn;
-        }
-
         /// <summary>
         /// desde base de datos
         /// mapeada
@@ -379,22 +347,13 @@ namespace LOGICA.REQUISICION_LOGICA
 
         private REQUISICIONViewModel CARGAR_MODELO_DEL_API(REQUISICIONViewModel _modeloRequisicion, PUESTO _puesto)
         {
-            //INFORMACION REQUISICION
-            //TIPO NECESIDAD
-            _modeloRequisicion.COD_CARGO = Convert.ToInt32(_puesto.COD_CARGO);
-            _modeloRequisicion.NOMBRE_CARGO = _puesto.NOMBRE_CARGO;
-            //ORDEN
-            _modeloRequisicion.COD_CECO = Convert.ToInt32(_puesto.COD_CENTRO_COSTO);
-            _modeloRequisicion.NOMBRE_CECO = _puesto.NOMBRE_CENTRO_COSTO;
-            
+
             //INFROMACION GENERAL
             _modeloRequisicion.COD_GERENCIA = Convert.ToInt32(_puesto.COD_GERENCIA);
             _modeloRequisicion.NOMBRE_GERENCIA = _puesto.NOMBRE_GERENCIA;
             _modeloRequisicion.COD_TIPO_CONTRATO = Convert.ToInt32(_puesto.COD_TIPO_CONTRATO);
             _modeloRequisicion.NOMBRE_TIPO_CONTRATO = _puesto.NOMBRE_TIPO_CONTRATO;
             _modeloRequisicion.JEFE_INMEDIATO = _puesto.NOMBRE_JEFE;
-            //MODELO_REQUISICION.COD_CECO = Convert.ToInt32(API.COD_CENTRO_COSTO); comentado para que no cambie el valor guardado
-            //MODELO_REQUISICION.NOMBRE_CECO = API.NOMBRE_CENTRO_COSTO; comentado para que no cambie el valor guardado
             _modeloRequisicion.COD_SOCIEDAD = Convert.ToInt32(_puesto.COD_SOCIEDAD);
             _modeloRequisicion.NOMBRE_SOCIEDAD = _puesto.NOMBRE_SOCIEDAD;
             _modeloRequisicion.COD_EQUIPO_VENTAS = Convert.ToInt32(_puesto.COD_EQUIPO_VENTA);

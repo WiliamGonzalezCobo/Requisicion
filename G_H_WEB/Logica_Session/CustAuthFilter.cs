@@ -10,8 +10,6 @@ namespace G_H_WEB.Logica_Session
         {
             if (filterContext.HttpContext.User.Identity.Name == "") {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "CUENTA", action = "VALIDAR" }));
-            }else if (filterContext.HttpContext.Session["objetoListas"] == null) {
-                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "REQUISICION", action = "Index" }));
             }
         }
     }

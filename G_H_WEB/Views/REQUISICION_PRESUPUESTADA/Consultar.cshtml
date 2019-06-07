@@ -42,7 +42,7 @@
         <div id="CNform">
             <div class="retiros-detalle">
                 <div class="form-group col-md-12">
-                    @using (Html.BeginForm("Index", "REQUISICION_PRESUPUESTADA"))
+                    @using (Html.BeginForm("Procesar", "REQUISICION_PRESUPUESTADA"))
                     {
 
                         if (User.IsInRole(SettingsManager.PerfilJefe))
@@ -101,13 +101,13 @@
                                 @if (User.IsInRole(SettingsManager.PerfilRRHH))
                                 {
                                     <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="aprobar-requisicion" />
-                                    <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro" />
+                                    <input name="submitButton" type="submit" value="RECHAZAR REQUISICIÓN" class="btn-confirmar-retiro" />
                                     <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="btn-confirmar-retiro" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilUSC))
                                 {
                                     <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="RECHAZAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
                                     <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
                                 }
                             </div>
@@ -324,7 +324,7 @@
             });
             $.ajax({
                 url: "@Url.Action("ConsultarTraza", "REQUISICION")",
-                type: 'POST',
+                type: 'GET',
                 data: { COD_REQUISICION: COD_REQUISICION, CAMPO_REQUISICION: CAMPO_REQUISICION},
                 success: function (respuesta) {
                     $.each(respuesta, function (key, value) {

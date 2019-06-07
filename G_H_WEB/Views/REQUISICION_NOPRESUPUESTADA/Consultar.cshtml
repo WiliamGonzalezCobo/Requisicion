@@ -39,7 +39,7 @@
         <div id="CNform">
             <div class="retiros-detalle">
                 <div class="form-group col-md-12">
-                    @using (Html.BeginForm("Index", "REQUISICION_NOPRESUPUESTADA"))
+                    @using (Html.BeginForm("Procesar", "REQUISICION_NOPRESUPUESTADA"))
                     {
 
                         if (User.IsInRole(SettingsManager.PerfilJefe))
@@ -318,7 +318,7 @@ $(function () {
             });
             $.ajax({
                 url: "@Url.Action("ConsultarTraza", "REQUISICION")",
-                type: 'POST',
+                type: 'GET',
                 data: { COD_REQUISICION: COD_REQUISICION, CAMPO_REQUISICION: CAMPO_REQUISICION},
                 success: function (respuesta) {
                     $.each(respuesta, function (key, value) {
