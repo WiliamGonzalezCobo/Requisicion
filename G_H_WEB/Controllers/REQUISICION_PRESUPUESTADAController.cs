@@ -15,7 +15,7 @@ namespace G_H_WEB.Controllers
     public class REQUISICION_PRESUPUESTADAController : Controller
     {
         // GET: REQUISICION_PRESUPUESTADA
-        public ActionResult Consultar(int? _idReq)
+        public ActionResult Consultar(int? _idReq, int? _idTipo)
         {
             REQUISICIONViewModel model = new REQUISICIONViewModel();
             try
@@ -27,7 +27,7 @@ namespace G_H_WEB.Controllers
                         model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES_BP(model) ?? new REQUISICIONViewModel();
                     }
                 }
-                model = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(model, Session["objetoListas"] as REQUISICIONViewModel);
+                model = new LOGICA_REQUISICION().LLENAR_CONTROLES(model);
 
                 // Esto es para el POP UP
                 List<SelectListItem> listacargos = model.LIST_NOMBRE_CARGO;
@@ -47,7 +47,7 @@ namespace G_H_WEB.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Procesar(REQUISICIONViewModel modelDatos, string submitButton)
+        public ActionResult Procesar(REQUISICIONViewModel modelDatos, string submitButton, int? _idTipo)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace G_H_WEB.Controllers
                 modelDatos.USUARIO_MODIFICACION = User.Identity.Name;//      martinezluir esto es para test toca hacer la logica
                 REQUISICIONViewModel listas = new REQUISICIONViewModel();
                 // llena los combos
-                modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(modelDatos, Session["objetoListas"] as REQUISICIONViewModel);
+                modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES(modelDatos);
                 // saca los valores de los combos
                 modelDatos = new LOGICA_REQUISICION().CONSULTAR_VALORES_LISTAS_POR_CODIGO(modelDatos);
 
@@ -88,7 +88,7 @@ namespace G_H_WEB.Controllers
                         }
                         npc.METODO = "Aprobar";
                         break;
-                    case "Rechazar requisicion":
+                    case "Rechazar requisición":
                         _resultadoIdReguisicion = new LOGICA_REQUISICION().REQUISICION_RECHAZAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.Name);
                         npc.METODO = "Rechazar";
                         break;

@@ -16,38 +16,30 @@ namespace G_H_WEB.Controllers
     [CustAuthFilter]
     public class LICENCIA_INCAPACIDADController : Controller
     {
-        public ActionResult Consultar(int? _idReq)
+        // GET: REQUISICION_NOPRESUPUESTADA
+        public ActionResult Consultar(int? _idReq, int? _idTipo)
         {
-            if (Session["requisicion"] != null)
-            {
-                if (SettingsManager.CodTipoReqLicencia.Equals(Convert.ToInt32(Session["requisicion"])))
-                {
+            ViewBag._idTipo = _idTipo;
+            if (TempData["_idTipo"] != null) {
+                _idTipo = Convert.ToInt32(TempData["_idTipo"]);
+            }
+            if (_idTipo != null){
+                if (SettingsManager.CodTipoReqLicencia.Equals(_idTipo)) {
                     ViewBag.RequisicionNombre = "Requisicion Licencia";
                 }
-                else if (SettingsManager.CodTipoReqIncapacidad.Equals(Convert.ToInt32(Session["requisicion"])))
-                {
+                else if (SettingsManager.CodTipoReqIncapacidad.Equals(_idTipo)){
                     ViewBag.RequisicionNombre = "Requisicion Incapacidad";
                 }
             }
             else {
                 return RedirectToAction("Index", "REQUISICION");
             }
-            
             REQUISICIONViewModel model = new REQUISICIONViewModel();
-
-            if (_idReq.HasValue)
-            {
+            if (_idReq.HasValue){
                 model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value) ?? new REQUISICIONViewModel();
-
-                /*En licencia y incapacidad no se consume el api ya que esto lo hace el jefe apenas la crea*/
-                //if (User.IsInRole(SettingsManager.PerfilBp))
-                //{
-                //    model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONESBP(model) ?? new REQUISICIONViewModel();
-                //}
             }
             model.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqLicencia;
-            model = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(model, Session["objetoListas"] as REQUISICIONViewModel);
-
+            model = new LOGICA_REQUISICION().LLENAR_CONTROLES(model);
             // Esto es para el POP UP
             List<SelectListItem> listacargos = model.LIST_NOMBRE_CARGO;
             RESPUESTA_POP_UP fromPost = TempData["resultado"] as RESPUESTA_POP_UP;
@@ -57,23 +49,26 @@ namespace G_H_WEB.Controllers
             //Logica para el POP UP
             ViewBag.resultadoInsertExitosoOno = fromPost != null ? !fromPost.RESULTADO.Equals(0) : false;
             ViewBag.resultadoPopUpNoJefe = fromPost;
-
             //FIN POP UP
-
+            ViewBag.Busca_USUARIOS =new LOGICA_REQUISICION().CONSULTAR_EMPLEADOS_LICENCIA_INCAPACIDADES();
             return View(model);
         }
         [HttpPost]
-        public ActionResult Procesar(REQUISICIONViewModel modelDatos, string submitButton)
+        public ActionResult Procesar(REQUISICIONViewModel modelDatos, string submitButton, int? _idTipo)
         {
             try
             {
-                if (Session["requisicion"] != null)
+                if (TempData["_idTipo"] != null)
                 {
-                    if (SettingsManager.CodTipoReqLicencia.Equals(Convert.ToInt32(Session["requisicion"])))
+                    _idTipo = Convert.ToInt32(TempData["_idTipo"]);
+                }
+                if (_idTipo != null)
+                {
+                    if (SettingsManager.CodTipoReqLicencia.Equals(_idTipo))
                     {
                         modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqLicencia;
                     }
-                    else if (SettingsManager.CodTipoReqIncapacidad.Equals(Convert.ToInt32(Session["requisicion"])))
+                    else if (SettingsManager.CodTipoReqIncapacidad.Equals(_idTipo))
                     {
                         modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqIncapacidad;
                     }
@@ -87,9 +82,8 @@ namespace G_H_WEB.Controllers
                 
                 modelDatos.USUARIO_CREACION = User.Identity.Name;
                 modelDatos.USUARIO_MODIFICACION = User.Identity.Name;//      martinezluir esto es para test toca hacer la logica
-                REQUISICIONViewModel listas = new REQUISICIONViewModel();
                 // llena los combos
-                modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(modelDatos, Session["objetoListas"] as REQUISICIONViewModel);
+                modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES(modelDatos);
                 // saca los valores de los combos
                 modelDatos = new LOGICA_REQUISICION().CONSULTAR_VALORES_LISTAS_POR_CODIGO(modelDatos);
 
@@ -149,16 +143,16 @@ namespace G_H_WEB.Controllers
                 RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
                 npc.RESULTADO = false;
                 TempData["resultado"] = npc;
-                return RedirectToAction("Index");
+                return RedirectToAction("Procesar");
             }
         }
 
         [HttpGet]
-        public JsonResult ConsultarCargo(string idCargo)
+        public JsonResult ConsultarCargo(string NUMERO_DOCUMENTO_EMPLEADO)
         {
-            if (!string.IsNullOrEmpty(idCargo) && !idCargo.Equals(0))
+            if (!string.IsNullOrEmpty(NUMERO_DOCUMENTO_EMPLEADO) && !NUMERO_DOCUMENTO_EMPLEADO.Equals(0))
             {
-                PUESTO datosCargo = new LOGICA_REQUISICION().BUSCAR_PUESTO_X_CARGO_API(idCargo);
+                PUESTO datosCargo = new LOGICA_REQUISICION().BUSCAR_PUESTO_X_CARGO_API(NUMERO_DOCUMENTO_EMPLEADO);
                     
                 return Json(datosCargo, JsonRequestBehavior.AllowGet);
             }

@@ -45,38 +45,6 @@ namespace LOGICA.REQUISICION_LOGICA
 
             return _modelReturn;
         }
-
-        public REQUISICIONViewModel LLENAR_CONTROLES_SESSSION(REQUISICIONViewModel _modelReturn, REQUISICIONViewModel _modelEntrada)
-        {
-
-            _modelReturn.LIST_NOMBRE_TIPO_NECESIDAD = _modelEntrada.LIST_NOMBRE_TIPO_NECESIDAD;
-            _modelReturn.LIST_NOMBRE_ESTADO_REQUISICION = _modelEntrada.LIST_NOMBRE_ESTADO_REQUISICION;
-            _modelReturn.LIST_NOMBRE_CECO = _modelEntrada.LIST_NOMBRE_CECO;
-            _modelReturn.LIST_NOMBRE_EQIPO_VENTAS = _modelEntrada.LIST_NOMBRE_EQIPO_VENTAS;
-            _modelReturn.LIST_NIVEL_RIESGO_ARL = _modelEntrada.LIST_NIVEL_RIESGO_ARL;
-            _modelReturn.LIST_NOMBRE_CATEGORIA_ED = _modelEntrada.LIST_NOMBRE_CATEGORIA_ED;
-            _modelReturn.LIST_NOMBRE_SOCIEDAD = _modelEntrada.LIST_NOMBRE_SOCIEDAD;
-            _modelReturn.LIST_NOMBRE_TIPO_CONTRATO = _modelEntrada.LIST_NOMBRE_TIPO_CONTRATO;
-            _modelReturn.LIST_NOMBRE_GERENCIA = _modelEntrada.LIST_NOMBRE_GERENCIA;
-            _modelReturn.LIST_NOMBRE_UBICACION_FISICA = _modelEntrada.LIST_NOMBRE_UBICACION_FISICA;
-            _modelReturn.LIST_NOMBRE_JORNADA_LABORAL = _modelEntrada.LIST_NOMBRE_JORNADA_LABORAL;
-            _modelReturn.LIST_NOMBRE_CIUDAD_TRABAJO = _modelEntrada.LIST_NOMBRE_CIUDAD_TRABAJO;
-            _modelReturn.LIST_NOMBRE_CATEGORIA = _modelEntrada.LIST_NOMBRE_CATEGORIA;
-            _modelReturn.LIST_NOMBRE_TIPO_SALARIO = _modelEntrada.LIST_NOMBRE_TIPO_SALARIO;
-            _modelReturn.LIST_NOMBRE_CARGO = _modelEntrada.LIST_NOMBRE_CARGO;
-            _modelReturn.LIST_NOMBRE_TIPO_REQUISICION = _modelEntrada.LIST_NOMBRE_TIPO_REQUISICION;
-            _modelReturn.LIST_DIA_LABORAL_DESDE = _modelEntrada.LIST_DIA_LABORAL_DESDE;
-            _modelReturn.LIST_DIA_LABORAL_HASTA = _modelEntrada.LIST_DIA_LABORAL_HASTA;
-            _modelReturn.LIST_HORARIO_LABORAL_DESDE = _modelEntrada.LIST_HORARIO_LABORAL_DESDE;
-            _modelReturn.LIST_HORARIO_LABORAL_HASTA = _modelEntrada.LIST_HORARIO_LABORAL_HASTA;
-            _modelReturn.LIST_NOMBRE_JORNADA_LABORAL = _modelEntrada.LIST_NOMBRE_JORNADA_LABORAL;
-            _modelReturn.LIST_MERCADO = _modelEntrada.LIST_MERCADO;
-            _modelReturn.LIST_TIPO_DOCUMENTO = _modelEntrada.LIST_TIPO_DOCUMENTO; 
-
-
-            return _modelReturn;
-        }
-
         /// <summary>
         /// desde base de datos
         /// mapeada
@@ -379,22 +347,13 @@ namespace LOGICA.REQUISICION_LOGICA
 
         private REQUISICIONViewModel CARGAR_MODELO_DEL_API(REQUISICIONViewModel _modeloRequisicion, PUESTO _puesto)
         {
-            //INFORMACION REQUISICION
-            //TIPO NECESIDAD
-            _modeloRequisicion.COD_CARGO = Convert.ToInt32(_puesto.COD_CARGO);
-            _modeloRequisicion.NOMBRE_CARGO = _puesto.NOMBRE_CARGO;
-            //ORDEN
-            _modeloRequisicion.COD_CECO = Convert.ToInt32(_puesto.COD_CENTRO_COSTO);
-            _modeloRequisicion.NOMBRE_CECO = _puesto.NOMBRE_CENTRO_COSTO;
-            
+
             //INFROMACION GENERAL
             _modeloRequisicion.COD_GERENCIA = Convert.ToInt32(_puesto.COD_GERENCIA);
             _modeloRequisicion.NOMBRE_GERENCIA = _puesto.NOMBRE_GERENCIA;
             _modeloRequisicion.COD_TIPO_CONTRATO = Convert.ToInt32(_puesto.COD_TIPO_CONTRATO);
             _modeloRequisicion.NOMBRE_TIPO_CONTRATO = _puesto.NOMBRE_TIPO_CONTRATO;
             _modeloRequisicion.JEFE_INMEDIATO = _puesto.NOMBRE_JEFE;
-            //MODELO_REQUISICION.COD_CECO = Convert.ToInt32(API.COD_CENTRO_COSTO); comentado para que no cambie el valor guardado
-            //MODELO_REQUISICION.NOMBRE_CECO = API.NOMBRE_CENTRO_COSTO; comentado para que no cambie el valor guardado
             _modeloRequisicion.COD_SOCIEDAD = Convert.ToInt32(_puesto.COD_SOCIEDAD);
             _modeloRequisicion.NOMBRE_SOCIEDAD = _puesto.NOMBRE_SOCIEDAD;
             _modeloRequisicion.COD_EQUIPO_VENTAS = Convert.ToInt32(_puesto.COD_EQUIPO_VENTA);
@@ -492,40 +451,6 @@ namespace LOGICA.REQUISICION_LOGICA
                     {
                         puesto = listPuestos.First();
                     }
-
-                    //Objeto de prueba cuando fallal el api
-                    //_puntosMedio = new PUNTOS_MEDIO()
-                    //{
-                    //    COD_CARGO = 1,
-                    //    COD_CENTRO_COSTO = 1,
-                    //    COD_GERENCIA = 1,
-                    //    COD_TIPO_CONTRATO = 1,
-                    //    NOMBRE_JEFE = "prueba cargue",
-                    //    COD_SOCIEDAD = 1,
-                    //    COD_EQUIPO_VENTA = 1,
-                    //    COD_DANE_CIUDAD = "1",
-                    //    COD_UBICACION_FISICA = 1,
-                    //    COD_NIVEL_RIESGO = 1,
-                    //    COD_CATEGORIA_EVALUACION_DESEMPENO = 1,
-                    //    CARGO_CRITICO = "1",
-                    //    COD_JORNADA_TRABAJO = 1,
-                    //    COD_HORARIO_TRABAJO = 1,
-                    //    COD_DIA_LABORAL = 1,
-                    //    SALARIO_FIJO = 1000,
-                    //    PORCENTAJE_SALARIO_FIJO = 11,
-                    //    SALARIO_VARIABLE = 22,
-                    //    PORCENTAJE_SALARIO_VARIABLE = 33,
-                    //    SOBREREMUNERACION = 44,
-                    //    PORCENTAJE_SOBREREMUNERACION = 55,
-                    //    EXTRA_FIJA = 66,
-                    //    RECARGO_NOCTURNO_FIJO = 77,
-                    //    MEDIOS_TRANSPORTE = 88,
-                    //    SALARIO_TOTAL = 99,
-                    //    BONO_ANUAL = 111,
-                    //    NUMERO_SALARIO = 222,
-                    //    MESES_GARANTIZADO = 333,
-                    //    COD_TIPO_SALARIO = 444
-                    //};
                 }
             }
             catch (Exception ex)
@@ -535,10 +460,28 @@ namespace LOGICA.REQUISICION_LOGICA
             return puesto;
         }
 
+        public PUESTO BUSCAR_PUESTO_X_CEDULA_API(string NUMERO_DOCUMENTO_EMPLEADO)
+        {
+            PUESTO puesto = new PUESTO();
+            try
+            {
+                if (!NUMERO_DOCUMENTO_EMPLEADO.Equals("0")){
+                    PUESTO listPuestos = new PROXY().CONSULTAR_PUESTOS_X_CEDULA_API(NUMERO_DOCUMENTO_EMPLEADO);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return puesto;
+        }
+
         public REQUISICIONViewModel BUSCAR_REQUISICIONES(int _idRequsicion){
             REQUISICIONViewModel objReqModel = null;
             try {
+                List<DOCUMENTO> listaDocumentos = new PROXY().CONSULTAR_TIPO_DOCUMENTO_API();
                 objReqModel = new ACCES_REQUISICION().CONSULTAR_REQUISICION_X_ID(_idRequsicion);
+                objReqModel.NOMBRE_TIPO_DOCUMENTO = listaDocumentos.Where(x => x.coD_TIPO_DOCUMENTO == objReqModel.COD_TIPO_DOCUMENTO).FirstOrDefault().coD_TIPO_DOCUMENTO_ALTERNO_SAP;
             }
             catch (Exception ex) {
                 throw ex;
@@ -805,6 +748,26 @@ namespace LOGICA.REQUISICION_LOGICA
                 throw ex;
             }
 
+            return listEmpleados;
+        }
+
+        public List<EMPLEADOS> CONSULTAR_EMPLEADOS_LICENCIA_INCAPACIDADES()
+        {
+            List<EMPLEADOS> listEmpleados = new List<EMPLEADOS>();
+            List<DOCUMENTO> listaDocumentos = new PROXY().CONSULTAR_TIPO_DOCUMENTO_API();
+            try
+            {
+                listEmpleados = new EMPLEADO().CONSULTAR_EMPLEADOS().Select(x => new EMPLEADOS() {
+                    COD_TIPO_DOCUMENTO =Convert.ToInt32(x.COD_TIPO_DOCUMENTO),
+                    DOCUMENTO_NUMERO = x.DOCUMENTO_NUMERO,
+                    NOMBRES = x.NOMBRES ,
+                  TIPO_DOCUMENTO = listaDocumentos.Where(y => y.coD_TIPO_DOCUMENTO == x.COD_TIPO_DOCUMENTO).First().coD_TIPO_DOCUMENTO_ALTERNO_SAP
+                }).ToList();
+
+            }
+            catch (Exception ex) {
+                throw ex;
+            }
             return listEmpleados;
         }
 

@@ -1,77 +1,109 @@
-﻿
-@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
+﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
+@using MODELO_DATOS.MODELO_REQUISICION.LISTAS_API
+@using UTILS.Settings
+@{
+    List<EMPLEADOS> _BUSCAR_USUARIOS = ViewBag.Busca_USUARIOS;
+    string deshabilitar = "true";
+}
+
 <section id="Requisicion">
-    @*<h3>Imformación Requisición</h3>*@
-    <div class="panel-heading">
-        <a class="a-collapse" data-toggle="collapse" href="#collapseInfoGeneralLic">
-            <h2>Información Empleado</h2>
-        </a>
-    </div>
-    <div id="collapseInfoGeneralLic" class="panel-collapse collapse">
+
+    @Html.HiddenFor(model => model.COD_REQUISICION)
+    @Html.HiddenFor(model => model.COD_ESTADO_REQUISICION)
+
+
+
+    <div class="form-group col-md-12 col-sm-12 buscadorR">
+
+        @if (User.IsInRole(SettingsManager.PerfilJefe))
+        {
+            <input class="buscador_modificaciones letrasFormulario" id="buscador_modificaciones" type="text" placeholder="  N° de documento o nombre del empleado">
+        <span id="BuscadorUsuario" class="search-btn fas fa-search"></span>
+        <br>
+        <ul class="list-group buscador_modificaciones_deplegable_esconder" id="myList">
+            @foreach (EMPLEADOS item in _BUSCAR_USUARIOS)
+            {
+                <li class="list-group-item item_lista_modificar letrasFormulario" onclick="AgarrarValorFiltro('@item.NOMBRES','@item.TIPO_DOCUMENTO','@item.DOCUMENTO_NUMERO', '@item.COD_TIPO_DOCUMENTO')">@item.NOMBRES<br /> @item.TIPO_DOCUMENTO . @item.DOCUMENTO_NUMERO</li>
+            }
+
+        </ul>
+        }
         <div class="row">
-            @Html.HiddenFor(model => model.COD_REQUISICION)
-            @Html.HiddenFor(model => model.COD_ESTADO_REQUISICION)
-            <div class="form-group col-md-6 col-sm-12">
-                @Html.LabelFor(model => model.LIST_TIPO_DOCUMENTO, new { @class = "letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_TIPO_DOCUMENTO, new SelectList(Model.LIST_TIPO_DOCUMENTO, "Value", "Text", Model.COD_TIPO_DOCUMENTO), "-- Seleccione --", new { @class = "form-control deplegablesIniciales letrasFormulario" })
-                @Html.ValidationMessageFor(model => model.COD_TIPO_DOCUMENTO)
+
+            <div class="form-group col-md-6 col-sm-6">
+                @Html.LabelFor(model => model.NOMBRE_TIPO_DOCUMENTO, new { @class = "letrasFormulario" })
+                @Html.TextBoxFor(model => model.NOMBRE_TIPO_DOCUMENTO, new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar })
+                @Html.HiddenFor(model => model.COD_TIPO_DOCUMENTO, new { @id = "hdCOD_TIPO_DOCUMENTO" })
+                @Html.ValidationMessageFor(model => model.NOMBRE_TIPO_DOCUMENTO)
             </div>
 
-            <div class="form-group col-md-6 col-sm-12">
+            <div class="form-group col-md-6 col-sm-6">
                 @Html.LabelFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, new { @class = "letrasFormulario" })
-                @Html.EditorFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario" } })
+                @Html.TextBoxFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar })
+                @Html.HiddenFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, new { @id = "hdNUMERO_DOCUMENTO_EMPLEADO" })
                 @Html.ValidationMessageFor(model => model.NUMERO_DOCUMENTO_EMPLEADO)
             </div>
-        </div>
 
-        <div class="row">
-            <div class="form-group col-md-12 col-sm-12">
+            <div class="form-group col-md-6 col-sm-6">
                 @Html.LabelFor(model => model.NOMBRE_EMPLEADO, new { @class = "letrasFormulario" })
-                @Html.EditorFor(model => model.NOMBRE_EMPLEADO, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario", @id = "nombreEmpleado" } })
+                @Html.TextBoxFor(model => model.NOMBRE_EMPLEADO, new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar })
+                @Html.HiddenFor(model => model.NOMBRE_EMPLEADO, new { @id = "hdNOMBRE_EMPLEADO" })
                 @Html.ValidationMessageFor(model => model.NOMBRE_EMPLEADO)
             </div>
         </div>
+    </div>
 
-        <div class="row">
-            <div class="form-group col-md-6 col-sm-12">
-                @Html.LabelFor(model => model.FECHA_INICIO, new { @class = "letrasFormulario" })
-                <div class="input-group date datepicker-retiro">
-                    @Html.EditorFor(model => model.FECHA_INICIO, new { htmlAttributes = new { @class = "form-control datepicker letrasFormulario", placeholder = "Desde", @Value = Model.FECHA_INICIO.Year.Equals(1) ? DateTime.Now.ToShortDateString() : Model.FECHA_INICIO.ToShortDateString() } })
-                    <span class="input-group-addon">
-                        <span class="fas fa-calendar-alt" style="pointer-events:none">
-                        </span>
+    <div class="row">
+        <div class="form-group col-md-6 col-sm-12">
+            @Html.LabelFor(model => model.FECHA_INICIO, new { @class = "letrasFormulario" })
+            <div class="input-group date datepicker-retiro">
+                @Html.EditorFor(model => model.FECHA_INICIO, new { htmlAttributes = new { @class = "form-control datepicker letrasFormulario", placeholder = "Desde", @Value = Model.FECHA_INICIO.Year.Equals(1) ? DateTime.Now.ToShortDateString() : Model.FECHA_INICIO.ToShortDateString() } })
+                <span class="input-group-addon">
+                    <span class="fas fa-calendar-alt" style="pointer-events:none">
                     </span>
-                </div>
-                @Html.ValidationMessageFor(model => model.FECHA_INICIO)
+                </span>
             </div>
-            <div class="form-group col-md-6 col-sm-12">
-                @Html.LabelFor(model => model.FECHA_FIN, new { @class = "letrasFormulario" })
-                <div class="input-group date datepicker-retiro">
-                    @Html.EditorFor(model => model.FECHA_FIN, new { htmlAttributes = new { @class = "form-control datepicker letrasFormulario", placeholder = "Hasta", @Value = Model.FECHA_FIN.Year.Equals(1) ? DateTime.Now.ToShortDateString() : Model.FECHA_FIN.ToShortDateString() } })
-                    <span class="input-group-addon">
-                        <span class="fas fa-calendar-alt" style="pointer-events:none">
-                        </span>
+            @Html.ValidationMessageFor(model => model.FECHA_INICIO)
+        </div>
+        <div class="form-group col-md-6 col-sm-12">
+            @Html.LabelFor(model => model.FECHA_FIN, new { @class = "letrasFormulario" })
+            <div class="input-group date datepicker-retiro">
+                @Html.EditorFor(model => model.FECHA_FIN, new { htmlAttributes = new { @class = "form-control datepicker letrasFormulario", placeholder = "Hasta", @Value = Model.FECHA_FIN.Year.Equals(1) ? DateTime.Now.ToShortDateString() : Model.FECHA_FIN.ToShortDateString() } })
+                <span class="input-group-addon">
+                    <span class="fas fa-calendar-alt" style="pointer-events:none">
                     </span>
-                </div>
-                @Html.ValidationMessageFor(model => model.FECHA_FIN)
+                </span>
             </div>
+            @Html.ValidationMessageFor(model => model.FECHA_FIN)
         </div>
     </div>
 </section>
-
-<script>
-    var validateReqInfoGenLic = true;
-    var validateFormInfoGeneralLic = function () {
-        if ($('#COD_TIPO_DOCUMENTO').val() == "" && 
-            $('#NUMERO_DOCUMENTO_EMPLEADO').val() == "" &&
-            $('#nombreEmpleado').val() == "" ||
-            $('#FECHA_INICIO').val() == "" ||
-            $('#FECHA_FIN').val() == "") {
-            validateReqInfoGenLic = false;
-        } else {
-            validateReqInfoGenLic = true;
-        }
-        console.log('validateReqInfoGenLic ', validateReqInfoGenLic);
-        return validateReqInfoGenLic;
+<style>
+    .list-group-item {
+        cursor: pointer;
     }
+</style>
+<script>
+
+    $(".buscador_modificaciones").keyup(function () {
+        var value = $("#buscador_modificaciones").val().toLowerCase();
+        $("#myList li").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+    function AgarrarValorFiltro(NOMBRES, TIPO_DOCUMENTO, DOCUMENTO_NUMERO, COD_TIPO_DOCUMENTO) {
+        $("#NOMBRE_EMPLEADO").val(NOMBRES);
+        $("#NUMERO_DOCUMENTO_EMPLEADO").val(DOCUMENTO_NUMERO);
+        $("#NOMBRE_TIPO_DOCUMENTO").val(TIPO_DOCUMENTO);
+        $("#hdCOD_TIPO_DOCUMENTO").val(COD_TIPO_DOCUMENTO);
+        $("#hdNUMERO_DOCUMENTO_EMPLEADO").val(DOCUMENTO_NUMERO);
+        $("#hdNOMBRE_EMPLEADO").val(NOMBRES);
+        $("#myList").removeClass("buscador_modificaciones_deplegable").addClass("buscador_modificaciones_deplegable_esconder");
+        CONSULTA_PUESTO_POR_CEDULA(DOCUMENTO_NUMERO);
+    }
+
+    $(".buscadorR").focusin(function () {
+        $("#myList").removeClass("buscador_modificaciones_deplegable_esconder").addClass("buscador_modificaciones_deplegable");
+    });
+
 </script>

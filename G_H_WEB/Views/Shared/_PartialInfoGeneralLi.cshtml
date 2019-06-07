@@ -1,90 +1,69 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 @{string deshabilitar = "true";}
-<section id="infoGeneral">
-    <div class="SubtitulosNivel2"></div>    
-    <div class="panel-heading">
-        <a class="a-collapse" data-toggle="collapse" href="#collapseInfoGeneral">
-            <h2>Información General</h2>
-        </a>
+<sec|ction id="infoGeneral">
+    <div class="SubtitulosNivel2">Información General</div>
+    <div class="row">
+        <div class="form-group col-md-12 col-xs-12">
+            @Html.LabelFor(model => model.NOMBRE_CARGO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+            @Html.DropDownListFor(model => model.COD_CARGO, Model.LIST_NOMBRE_CARGO, "Seleccione", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+            @Html.HiddenFor(model => model.COD_CARGO, new { @id= "hdCOD_CARGO" })
+            @Html.ValidationMessageFor(model => model.COD_CARGO, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-12 col-xs-12">
+            @Html.LabelFor(model => model.LIST_NOMBRE_GERENCIA, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+            @Html.DropDownListFor(model => model.COD_GERENCIA, Model.LIST_NOMBRE_GERENCIA, "Seleccione ", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+            @Html.HiddenFor(model => model.COD_GERENCIA, new { @Id="hdCOD_GERENCIA"})
+            @Html.ValidationMessageFor(model => model.LIST_NOMBRE_GERENCIA, "", new { @class = "text-danger" })
+        </div>
     </div>
-    <div id="collapseInfoGeneral" class="panel-collapse collapse">
-        <div class="row">
-            <div class="form-group col-md-12 col-xs-12">
-                @Html.LabelFor(model => model.NOMBRE_CARGO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_CARGO, Model.LIST_NOMBRE_CARGO, "Seleccione", new { @class = "form-control combosGrandes letrasFormulario" })
-                @Html.ValidationMessageFor(model => model.COD_CARGO, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-md-12 col-xs-12">
-                @Html.LabelFor(model => model.LIST_NOMBRE_GERENCIA, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_GERENCIA, Model.LIST_NOMBRE_GERENCIA, "Seleccione ", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
-                @Html.HiddenFor(model => model.COD_GERENCIA, new { @Id = "hdCOD_GERENCIA" })
-                @Html.ValidationMessageFor(model => model.LIST_NOMBRE_GERENCIA, "", new { @class = "text-danger" })
-            </div>
+    <div class="row">
+        <div class="form-group col-md-12 col-xs-12 ">
+            @Html.LabelFor(model => model.LIST_NOMBRE_CECO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+            @Html.DropDownListFor(model => model.COD_CECO, Model.LIST_NOMBRE_CECO, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario" })
+            @Html.ValidationMessageFor(model => model.COD_CECO, "", new { @class = "text-danger" })
         </div>
-        <div class="row">
-            <div class="form-group col-md-12 col-xs-12 ">
-                @Html.LabelFor(model => model.LIST_NOMBRE_CECO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_CECO, Model.LIST_NOMBRE_CECO, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario" })
-                @Html.ValidationMessageFor(model => model.COD_CECO, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-md-12 col-xs-12 ">
-                @Html.LabelFor(model => model.LIST_NOMBRE_SOCIEDAD, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_SOCIEDAD, Model.LIST_NOMBRE_SOCIEDAD, "Selecione ", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
-                @Html.HiddenFor(model => model.COD_SOCIEDAD, new { @Id = "hdCOD_SOCIEDAD" })
-                @Html.ValidationMessageFor(model => model.COD_SOCIEDAD, "", new { @class = "text-danger" })
-            </div>
+        <div class="form-group col-md-12 col-xs-12 ">
+            @Html.LabelFor(model => model.LIST_NOMBRE_SOCIEDAD, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+            @Html.DropDownListFor(model => model.COD_SOCIEDAD, Model.LIST_NOMBRE_SOCIEDAD, "Selecione ", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+            @Html.HiddenFor(model => model.COD_SOCIEDAD, new { @Id = "hdCOD_SOCIEDAD" })
+            @Html.ValidationMessageFor(model => model.COD_SOCIEDAD, "", new { @class = "text-danger" })
         </div>
-        <div class="row">
-            <div class="form-group col-md-12 col-xs-12 ">
-                @Html.LabelFor(model => model.LIST_NOMBRE_EQIPO_VENTAS, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_EQUIPO_VENTAS, Model.LIST_NOMBRE_EQIPO_VENTAS, "Seleccione ", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
-                @Html.HiddenFor(model => model.COD_EQUIPO_VENTAS, new { @Id = "hdCOD_EQUIPO_VENTAS" })
-                @Html.ValidationMessageFor(model => model.COD_EQUIPO_VENTAS, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-md-12 col-xs-12 ">
-                @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA_ED, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, Model.LIST_NOMBRE_CATEGORIA_ED, "Seleccione ", new { @class = "form-control col-md-11 combosGrandes letrasFormulario", disabled = deshabilitar })
-                <span class="btn_traza" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')" data-toggle="tooltip" data-placement="top">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-                @Html.HiddenFor(model => model.COD_CATEGORIA_ED, new { @Id = "hdCOD_CATEGORIA_ED" })
-                @Html.ValidationMessageFor(model => model.COD_CATEGORIA_ED, "", new { @class = "text-danger" })
-            </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-12 col-xs-12 ">
+            @Html.LabelFor(model => model.LIST_NOMBRE_EQIPO_VENTAS, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+            @Html.DropDownListFor(model => model.COD_EQUIPO_VENTAS, Model.LIST_NOMBRE_EQIPO_VENTAS, "Seleccione ", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+            @Html.HiddenFor(model => model.COD_EQUIPO_VENTAS, new { @Id = "hdCOD_EQUIPO_VENTAS" })
+            @Html.ValidationMessageFor(model => model.COD_EQUIPO_VENTAS, "", new { @class = "text-danger" })
         </div>
-        <div class="row">
-            <div class="form-group col-md-12 col-xs-12 ">
-                @*@Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.EditorFor(model => model.CARGO_CRITICO, new { @class = "form-control", disabled = deshabilitar })
-                    @Html.CheckBoxFor(model => model.CARGO_CRITICO, new { @disabled = deshabilitar })
-                    @Html.HiddenFor(model => model.CARGO_CRITICO, new { @Id = "hdCARGO_CRITICO" })
-                    @Html.ValidationMessageFor(model => model.CARGO_CRITICO, "", new { @class = "text-danger" })*@
+        <div class="form-group col-md-12 col-xs-12 ">
+            @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA_ED, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+            @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, Model.LIST_NOMBRE_CATEGORIA_ED, "Seleccione ", new { @class = "form-control col-md-11 combosGrandes letrasFormulario", disabled = deshabilitar })
+            <span class="btn_traza" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')" data-toggle="tooltip" data-placement="top" >  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+            @Html.HiddenFor(model => model.COD_CATEGORIA_ED, new { @Id = "hdCOD_CATEGORIA_ED" })
+            @Html.ValidationMessageFor(model => model.COD_CATEGORIA_ED, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-12 col-xs-12 ">
+            @*@Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.CARGO_CRITICO, new { @class = "form-control", disabled = deshabilitar })
+            @Html.CheckBoxFor(model => model.CARGO_CRITICO, new { @disabled = deshabilitar })
+            @Html.HiddenFor(model => model.CARGO_CRITICO, new { @Id = "hdCARGO_CRITICO" })
+            @Html.ValidationMessageFor(model => model.CARGO_CRITICO, "", new { @class = "text-danger" })*@
 
-                @Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.CARGO_CRITICO, new { @class = "form-control col-md-11 combosGrandes letrasFormulario" })
-                    @Html.ValidationMessageFor(model => model.CARGO_CRITICO, "", new { @class = "text-danger" })
-                </div>
-                @Html.HiddenFor(model => model.CARGO_CRITICO, new { @Id = "hdCARGO_CRITICO" })
+            @Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+            <div class="checkbox">
+                @Html.EditorFor(model => model.CARGO_CRITICO, new { @class = "form-control col-md-11 combosGrandes letrasFormulario" })
+                @Html.ValidationMessageFor(model => model.CARGO_CRITICO, "", new { @class = "text-danger" })
             </div>
-            <div class="form-group col-md-12 col-xs-12 ">
-                @Html.LabelFor(model => model.POSICION, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                @Html.EditorFor(model => model.POSICION, new { htmlAttributes = new { @class = "form-control combosGrandes letrasFormulario" } })
-                @Html.ValidationMessageFor(model => model.POSICION, "", new { @class = "text-danger" })
-            </div>
+            @Html.HiddenFor(model => model.CARGO_CRITICO, new { @Id = "hdCARGO_CRITICO" })
+        </div>
+        <div class="form-group col-md-12 col-xs-12 ">
+            @Html.LabelFor(model => model.POSICION, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+            @Html.EditorFor(model => model.POSICION, new { htmlAttributes = new { @class = "form-control combosGrandes letrasFormulario" } })
+            @Html.HiddenFor(model => model.POSICION, new { @Id = "hdPOSICION" })
+            @Html.ValidationMessageFor(model => model.POSICION, "", new { @class = "text-danger" })
         </div>
     </div>
-</section>
-<script>
-    var validateReqInfoGen = true;
-    var validateFormInfoGeneral = function () {
-        if ($('#COD_CARGO').val() == "" &&
-            $('#COD_CECO').val() == "" &&
-            $('#SALARIO_FIJO').val() == "" || $('#SALARIO_FIJO').val() 
-            $('#FECHA_INICIO').val() == "" ||
-            $('#FECHA_FIN').val() == "") {
-            validateReqInfoGen = false;
-        } else {
-            validateReqInfoGen = true;
-        }
-        console.log('validateReqInfoGen ', validateReqInfoGen);
-        return validateReqInfoGen;
-    }
-</script>
+</sec|ction>
