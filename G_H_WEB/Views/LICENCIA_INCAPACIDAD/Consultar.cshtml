@@ -85,11 +85,13 @@
 
 
                             }
-                            @*if (User.IsInRole(SettingsManager.PerfilController))
-                                {
-                                    @Html.Partial("_PartialInfoRequisicionLi", Model)
-                                    @Html.Partial("_PartialAutorizacion", Model)
-                                }*@
+                            if (User.IsInRole(SettingsManager.PerfilController))
+                            {
+                                @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                @Html.Partial("_PartialInfoGeneralLi", Model)
+                                @Html.Partial("_PartialInfoSalarialLi", Model)
+                                @Html.Partial("_PartialAutorizacion", Model)
+                            }
                             if (User.IsInRole(SettingsManager.PerfilBp))
                             {
                                 @Html.Partial("_PartialInfoRequisicionLi", Model)
@@ -130,11 +132,11 @@
                                     {
                                         <input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="btn-confirmar-retiro col-md-3" />
                                     }
-                                    @*@if (User.IsInRole(SettingsManager.PerfilController))
-                                        {
-                                            <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                            <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
-                                        }*@
+                                    @if (User.IsInRole(SettingsManager.PerfilController))
+                                    {
+                                        <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                        <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                    }
                                     @if (User.IsInRole(SettingsManager.PerfilBp))
                                     {
                                         <input name="submitButton" type="submit" value="Enviar" class="crear-requisicion crear-requisicion-texto" />
