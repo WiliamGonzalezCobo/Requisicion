@@ -15,7 +15,7 @@ namespace G_H_WEB.Controllers
     public class REQUISICION_PRESUPUESTADAController : Controller
     {
         // GET: REQUISICION_PRESUPUESTADA
-        public ActionResult Index(int? _idReq, int? _idTipo)
+        public ActionResult Consultar(int? _idReq, int? _idTipo)
         {
             REQUISICIONViewModel model = new REQUISICIONViewModel();
             try
@@ -28,7 +28,6 @@ namespace G_H_WEB.Controllers
                     }
                 }
                 model = new LOGICA_REQUISICION().LLENAR_CONTROLES(model);
-                model = new LOGICA_REQUISICION().LLENAR_CONTROLES_SESSSION(model, model);
 
                 // Esto es para el POP UP
                 List<SelectListItem> listacargos = model.LIST_NOMBRE_CARGO;
