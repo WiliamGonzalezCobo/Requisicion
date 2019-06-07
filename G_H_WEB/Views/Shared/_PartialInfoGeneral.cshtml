@@ -24,9 +24,9 @@
             @Html.HiddenFor(model => model.JEFE_INMEDIATO)
             @Html.ValidationMessageFor(model => model.JEFE_INMEDIATO)
         </div>
-        <div class="form-group col-md-12 col-sm-12">
+        <div class="form-group col-md-12 col-sm-12">        
             @Html.LabelFor(model => model.LIST_NOMBRE_CECO, new { @class = "letrasFormulario" })
-            @Html.DropDownListFor(model => model.COD_CECO, Model.LIST_NOMBRE_CECO, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario" })
+            @Html.DropDownListFor(model => model.COD_CECO, new SelectList(Model.LIST_NOMBRE_CECO, "Value", "Text", Model.COD_CECO), "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
             @Html.ValidationMessageFor(model => model.COD_CECO)
         </div>
     </div>

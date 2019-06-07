@@ -2,6 +2,7 @@
 @{
     List<SelectListItem> _BUSCAR_USUARIOS = ViewBag.Busca_USUARIOS;
     string deshabilitar = "true";
+    List<SelectListItem> _BUSCAR_NOMBRE_CECO = Model.LIST_NOMBRE_CECO;
 }
 @model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 <section id="Requisicion">
@@ -52,10 +53,20 @@
                 @Html.ValidationMessageFor(model => model.ORDEN)
             </div>
 
-            <div class="form-group col-md-6 col-sm-12">
+            <div class="form-group col-md-6 col-sm-12 buscadorC">
                 @Html.LabelFor(model => model.COD_CECO, new { @class = "letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_CECO, new SelectList(Model.LIST_NOMBRE_CECO, "Value", "Text", Model.COD_CECO), "-- Seleccione --", new { @class = "form-control deplegablesIniciales letrasFormulario" })
+                <br />
+                <input class="buscador_ceco letrasFormulario" id="input_ceco" name="input_ceco" type="text" placeholder="  Nombre CECO  ">
                 @Html.ValidationMessageFor(model => model.COD_CECO)
+                <input id="COD_CECO" name="COD_CECO" type="hidden">
+                <span id="BuscadorCeco" class="ceco-btn fas fa-search"></span>
+                <br>
+                <ul class="list-group buscador_modificaciones_deplegable_esconder" id="myListCeco">
+                    @foreach (SelectListItem item in _BUSCAR_NOMBRE_CECO)
+                    {
+                        <li class="list-group-item item_lista_modificar letrasFormulario" onclick="AgarrarValorFiltroCeco('@item.Text','@item.Value')">@item.Text<br /> @item.Value</li>
+                    }
+                </ul>
             </div>
         }
         else
@@ -176,6 +187,13 @@
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
+
+        $("#BuscadorCeco").on("click", function () {
+            var value = $("#input_ceco").val().toLowerCase();
+            $("#myListCeco li").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
     });
 
     function AgarrarValorFiltro(texto, valor) {
@@ -184,8 +202,19 @@
         $("#myList").removeClass("buscador_modificaciones_deplegable").addClass("buscador_modificaciones_deplegable_esconder");
     }
 
+    function AgarrarValorFiltroCeco(texto, valor) {
+        $("#input_ceco").val(texto + '  ' + valor);
+        $("#COD_CECO").val(valor);
+        $("#myListCeco").removeClass("buscador_modificaciones_deplegable_ceco").addClass("buscador_modificaciones_deplegable_esconder");
+    }
+
     $(".buscadorR").focusin(function () {
         $("#myList").removeClass("buscador_modificaciones_deplegable_esconder").addClass("buscador_modificaciones_deplegable");
     });
+    
+    $(".buscadorC").focusin(function () {
+        $("#myListCeco").removeClass("buscador_modificaciones_deplegable_esconder").addClass("buscador_modificaciones_deplegable_ceco");
+    });
+
 
 </script>
