@@ -1,11 +1,14 @@
-﻿using MODELO_DATOS.MODELO_REQUISICION;
+﻿using log4net;
+using MODELO_DATOS.MODELO_REQUISICION;
 using REPOSITORIOS.REQUISICION_ENTITY;
+using REPOSITORIOS.TRAZA_LOG;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using UTILS;
 
@@ -13,18 +16,40 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
 {
     public class ACCES_REQUISICION
     {
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public List<TIPO_NECESIDADViewModel> CONSULTAR_TIPOS_NECESIDAD()
         {
             List<TIPO_NECESIDADViewModel> lst = null;
-            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            try
             {
-                ObjectResult<CONSULTAR_TIPOS_NECESIDAD_Result> consulta = db.CONSULTAR_TIPOS_NECESIDAD();
-                lst = consulta.Select(x => new TIPO_NECESIDADViewModel()
+                string INFO = ("Iniciando Método  CONSULTAR_TIPOS_NECESIDAD");
+                log.Info("CODIGO : REPREQ1, " + INFO);
+
+                Thread HILO = new Thread(() => TRAZA.DEPURAR_TRAZA("REPREQ1", log.Logger.Name, "CONSULTAR_TIPOS_NECESIDAD", INFO));
+                HILO.Start();
+
+                using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
-                    COD_TIPO_NECESIDAD = x.COD_TIPO_NECESIDAD,
-                    NOMBRE_NECESIDAD = x.NOMBRE_NECESIDAD
-                }).ToList();
+                    ObjectResult<CONSULTAR_TIPOS_NECESIDAD_Result> consulta = db.CONSULTAR_TIPOS_NECESIDAD();
+                    lst = consulta.Select(x => new TIPO_NECESIDADViewModel()
+                    {
+                        COD_TIPO_NECESIDAD = x.COD_TIPO_NECESIDAD,
+                        NOMBRE_NECESIDAD = x.NOMBRE_NECESIDAD
+                    }).ToList();
+                }
+                log.Info("CODIGO : REPREQ1, Finalizado con éxito Método CONSULTAR_TIPOS_NECESIDAD");
             }
+            catch (Exception ex)
+            {
+                log.ErrorFormat("CODIGO : REPREQ2,  Método CONSULTAR_TIPOS_NECESIDAD, {0}  ", ex.StackTrace);
+                ex.HelpLink = "REPREQ2";
+                Thread HILOERROR = new Thread(() => ERROR.ERROR_TRAZA(ex.HelpLink, log.Logger.Name, ex.TargetSite.Name, ex.StackTrace));
+                HILOERROR.Start();
+
+                throw ex;
+            }
+
             return lst;
         }
 
@@ -280,12 +305,17 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
 
         public int INSERTAR_REQUISICION(REQUISICIONViewModel _modelRequisicion)
         {
+            int resultado = 0;
             try
             {
+                string INFO = ("Iniciando Método  INSERTAR_REQUISICION");
+                log.Info("CODIGO : REPREQ7, " + INFO);
+                Thread HILO = new Thread(() => TRAZA.DEPURAR_TRAZA("REPREQ7", log.Logger.Name, "INSERTAR_REQUISICION", INFO));
+                HILO.Start();
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
 
-                    return db.INSERTAR_REQUISICION(
+                    resultado = db.INSERTAR_REQUISICION(
                          _modelRequisicion.COD_TIPO_NECESIDAD,
                          _modelRequisicion.COD_TIPO_REQUISICION,
                          _modelRequisicion.COD_CARGO,
@@ -350,14 +380,17 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                        _modelRequisicion.ES_MODIFICACION
                    ).FirstOrDefault().Value;
                 }
-
+                log.Info("CODIGO : REPREQ7, Finalizado con éxito Método INSERTAR_REQUISICION");
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                var error = ex;
-                return 0;
+                log.ErrorFormat("CODIGO : REPREQ7,  Método INSERTAR_REQUISICION, {0}  ", ex.StackTrace);
+                ex.HelpLink = "REPREQ7";
+                Thread HILOERROR = new Thread(() => ERROR.ERROR_TRAZA(ex.HelpLink, log.Logger.Name, ex.TargetSite.Name, ex.StackTrace));
+                HILOERROR.Start();
+                throw ex;
             }
-
+            return resultado;
         }
 
         public int APROBAR_REQUISICION(int _codRequisicion, string _codUsuario, string _observacion)
