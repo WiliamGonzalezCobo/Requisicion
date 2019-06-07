@@ -96,7 +96,7 @@
 
 <script>
     $(".E_SALARIO_FIJO").focusout(function () {
-        debugger;
+        //debugger;
         var VALOR_SALARIO_FIJO = parseFloat($(".E_SALARIO_FIJO").val().replace(",", "."));
         var SALARIO_TOTAL = parseFloat($(".S_TOTAL").val().replace(",", "."));
         var calculo = ((VALOR_SALARIO_FIJO * 100) / SALARIO_TOTAL).toString().replace(".", ",");
@@ -112,7 +112,7 @@
     });
 
     $(".CALCULO_TOTAL").focusout(function () {
-        debugger;
+        //debugger;
         var VALOR_SALARIO_FIJO = parseFloat($(".E_SALARIO_FIJO").val().replace(",", "."));
         var VALOR_SALARIO_VARIABLE = parseFloat($(".S_VARIABLE").val().replace(",", "."));
         var VALOR_SOBREREMUNERACION = parseFloat($(".E_SOBREREMUNERACION").val().replace(",", "."));

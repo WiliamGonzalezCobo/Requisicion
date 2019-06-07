@@ -1241,11 +1241,11 @@ body.retiros {
 
 .alineas {
     text-decoration: none !important;
+    color: #4A90E2
 }
 
-    .alineas :hover {
-        font-family: verdana;
-        color: #BFA62B;
+    .alineas:hover {
+        color: #2466B2 !important;
         text-decoration: none !important;
     }
 
@@ -1297,7 +1297,7 @@ body table.tabla-requisicion {
     }
 
     body table.tabla-requisicion tbody td.td-nombre {
-        font-family: "source-bold";
+        font-family: "Source-Sans-Pro";
         color: #2466B2;
         font-size: 14px;
         font-weight: bold;
@@ -1309,6 +1309,7 @@ body table.tabla-requisicion {
             font-size: 14px;
             line-height: 18px;
             display: block;
+            font-weight: normal !important
         }
 
     body table.tabla-requisicion tbody td span.td-cargo {
@@ -1408,7 +1409,8 @@ select {
 }
 
 label {
-    font-family: "Source-Sans-Pro" !important
+    font-family: "Source-Sans-Pro" !important;
+    font-size: 14px
 }
 
 titulo-retiros, h2, h3, h4 {
@@ -1420,3 +1422,41 @@ titulo-retiros, h2, h3, h4 {
 .no-padding-right {
     padding-right: 0px !important;
 }
+
+thead, tbody, th {
+    font-family: "Source-Sans-Pro" !important;
+    font-size: 14px;
+    font-weight: normal !important
+}
+
+.notification-read {
+    padding-left: 15px;
+}
+
+.notification-dropdown-menu {
+    border-bottom-color: #F15300 !important;
+    border-bottom-width: medium !important;
+}
+
+.hr-requisition {
+    margin-top: initial;
+    margin-bottom: initial;
+    border: 0;
+    border-top: 1px dashed #F15300;
+}
+
+.btn .badge {
+    top: -10px !important;
+}
+
+#btnGroupDrop1.dropdown-toggle::after {
+    display: none;
+}
+
+.a-collapse {
+    font-family: "Source-Sans-Pro" !important;
+    color: black
+}
+    .a-collapse:hover {
+        color: black
+    }

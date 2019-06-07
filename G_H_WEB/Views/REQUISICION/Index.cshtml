@@ -340,7 +340,12 @@
                 success: function (respuesta) {
                     $.each(respuesta, function (key, value) {
                         $("#notificationsBadgePrimary").text(value.TOTAL);
-                        $("#AddNotificaciones").append('<a class="dropdown-item dropdown-notification" href="#"><div class="notification-read"><span class="badge badge-secondary">' + value.CANTIDAD + '</span></div><div class="notifications-body"><p class="notification-texte">Tienes ' + value.CANTIDAD + ' Requisiciones ' + value.NOMBRE_REQUISICION +' para tramitar </p></div></a>')
+                        $("#AddNotificaciones").append('<a class="dropdown-item dropdown-notification" href="#">' +
+                                                       '<div class="notification-read"><span class="badge badge-secondary">' + value.CANTIDAD +
+                                                       '</span></div><div class="notifications-body"><p class="notification-texte">Tienes ' + value.CANTIDAD +
+                                                       ' Requisiciones ' + value.NOMBRE_REQUISICION + ' para tramitar </p>' +
+                                                       ((key + 1).toString() === value.TOTAL ? '' : '<hr class="hr-requisition"/>') +
+                                                       '</div></a>')
                     });
                     $('body').loading('stop');
                     $('.ModalTraza').modal("show");
