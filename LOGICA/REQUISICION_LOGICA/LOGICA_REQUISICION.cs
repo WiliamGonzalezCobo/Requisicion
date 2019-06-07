@@ -451,45 +451,27 @@ namespace LOGICA.REQUISICION_LOGICA
                     {
                         puesto = listPuestos.First();
                     }
-
-                    //Objeto de prueba cuando fallal el api
-                    //_puntosMedio = new PUNTOS_MEDIO()
-                    //{
-                    //    COD_CARGO = 1,
-                    //    COD_CENTRO_COSTO = 1,
-                    //    COD_GERENCIA = 1,
-                    //    COD_TIPO_CONTRATO = 1,
-                    //    NOMBRE_JEFE = "prueba cargue",
-                    //    COD_SOCIEDAD = 1,
-                    //    COD_EQUIPO_VENTA = 1,
-                    //    COD_DANE_CIUDAD = "1",
-                    //    COD_UBICACION_FISICA = 1,
-                    //    COD_NIVEL_RIESGO = 1,
-                    //    COD_CATEGORIA_EVALUACION_DESEMPENO = 1,
-                    //    CARGO_CRITICO = "1",
-                    //    COD_JORNADA_TRABAJO = 1,
-                    //    COD_HORARIO_TRABAJO = 1,
-                    //    COD_DIA_LABORAL = 1,
-                    //    SALARIO_FIJO = 1000,
-                    //    PORCENTAJE_SALARIO_FIJO = 11,
-                    //    SALARIO_VARIABLE = 22,
-                    //    PORCENTAJE_SALARIO_VARIABLE = 33,
-                    //    SOBREREMUNERACION = 44,
-                    //    PORCENTAJE_SOBREREMUNERACION = 55,
-                    //    EXTRA_FIJA = 66,
-                    //    RECARGO_NOCTURNO_FIJO = 77,
-                    //    MEDIOS_TRANSPORTE = 88,
-                    //    SALARIO_TOTAL = 99,
-                    //    BONO_ANUAL = 111,
-                    //    NUMERO_SALARIO = 222,
-                    //    MESES_GARANTIZADO = 333,
-                    //    COD_TIPO_SALARIO = 444
-                    //};
                 }
             }
             catch (Exception ex)
             {
                 throw ex;          
+            }
+            return puesto;
+        }
+
+        public PUESTO BUSCAR_PUESTO_X_CEDULA_API(string NUMERO_DOCUMENTO_EMPLEADO)
+        {
+            PUESTO puesto = new PUESTO();
+            try
+            {
+                if (!NUMERO_DOCUMENTO_EMPLEADO.Equals("0")){
+                    PUESTO listPuestos = new PROXY().CONSULTAR_PUESTOS_X_CEDULA_API(NUMERO_DOCUMENTO_EMPLEADO);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             return puesto;
         }
@@ -764,6 +746,26 @@ namespace LOGICA.REQUISICION_LOGICA
                 throw ex;
             }
 
+            return listEmpleados;
+        }
+
+        public List<EMPLEADOS> CONSULTAR_EMPLEADOS_LICENCIA_INCAPACIDADES()
+        {
+            List<EMPLEADOS> listEmpleados = new List<EMPLEADOS>();
+            List<DOCUMENTO> listaDocumentos = new PROXY().CONSULTAR_TIPO_DOCUMENTO_API();
+            try
+            {
+                listEmpleados = new EMPLEADO().CONSULTAR_EMPLEADOS().Select(x => new EMPLEADOS() {
+                    COD_TIPO_DOCUMENTO =Convert.ToInt32(x.COD_TIPO_DOCUMENTO),
+                    DOCUMENTO_NUMERO = x.DOCUMENTO_NUMERO,
+                    NOMBRES = x.NOMBRES ,
+                  TIPO_DOCUMENTO = listaDocumentos.Where(y => y.coD_TIPO_DOCUMENTO == x.COD_TIPO_DOCUMENTO).First().coD_TIPO_DOCUMENTO_ALTERNO_SAP
+                }).ToList();
+
+            }
+            catch (Exception ex) {
+                throw ex;
+            }
             return listEmpleados;
         }
 
