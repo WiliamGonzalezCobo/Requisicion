@@ -479,7 +479,9 @@ namespace LOGICA.REQUISICION_LOGICA
         public REQUISICIONViewModel BUSCAR_REQUISICIONES(int _idRequsicion){
             REQUISICIONViewModel objReqModel = null;
             try {
+                List<DOCUMENTO> listaDocumentos = new PROXY().CONSULTAR_TIPO_DOCUMENTO_API();
                 objReqModel = new ACCES_REQUISICION().CONSULTAR_REQUISICION_X_ID(_idRequsicion);
+                objReqModel.NOMBRE_TIPO_DOCUMENTO = listaDocumentos.Where(x => x.coD_TIPO_DOCUMENTO == objReqModel.COD_TIPO_DOCUMENTO).FirstOrDefault().coD_TIPO_DOCUMENTO_ALTERNO_SAP;
             }
             catch (Exception ex) {
                 throw ex;
