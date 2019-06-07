@@ -181,7 +181,7 @@
                 </div>
                 <div class="row modal-body">
                     <div class="col-md-12 col-lg-12 col-xl-12 table-responsive">
-                        Modificaciones
+                        <h3>Modificaciones</h3>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -332,7 +332,17 @@ $(function () {
                     $('body').loading('stop');
                 }
             });
+    }
+
+    $('#submitButtonCrear').on('click', function () {
+        console.log('di click !!', validate);
+        if (!validateForm()) {
+            $("#collapse2").collapse('show');
         }
+        if (!validateFormAutorizacion()) {
+            $('#collapseAutorizacion').collapse('show');
+        }
+    });
 </script>
 
 
