@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="col-md-9 col-lg-9 col-xl-9 requisicion">
+<div class="col-md-9 col-lg-9 col-xl-9 requisicion no-padding-right">
 
     <div class="col-lg-12 col-md-12 col-sm-12 row">
         <h2 class="titulo-retiros col-md-12">Requisiciones</h2>
@@ -14,12 +14,12 @@
         {
             <div class="margenbottton col-lg-12 col-md-12 col-sm-12">
                 <div class="col-md-12">
-                    <a href="" data-toggle="modal" data-target="#Modal" style="font-size:small; font-weight:bold">+ CREAR NUEVA REQUISICIÓN</a>
+                    <a href="" data-toggle="modal" data-target="#Modal" style="font-family:'source-medium'; font-size:14px; font-weight:bold">+ CREAR NUEVA REQUISICIÓN</a>
                 </div>
             </div>
         }
         <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="buscador" style="width:100%;">
+            <div class="buscador" style="width:750px;">
                 <input class="search-input" id="filtroPorUsuarioValor" type="text" placeholder=" Nombre o cédula" style="width:100%; height:  100%;">
                 <span id="filtroPorUsuario" class="search-btn fas fa-search"></span>
             </div>
@@ -340,7 +340,12 @@
                 success: function (respuesta) {
                     $.each(respuesta, function (key, value) {
                         $("#notificationsBadgePrimary").text(value.TOTAL);
-                        $("#AddNotificaciones").append('<a class="dropdown-item dropdown-notification" href="#"><div class="notification-read"><span class="badge badge-secondary">' + value.CANTIDAD + '</span></div><div class="notifications-body"><p class="notification-texte">Tienes ' + value.CANTIDAD + ' Requisiciones ' + value.NOMBRE_REQUISICION +' para tramitar </p></div></a>')
+                        $("#AddNotificaciones").append('<a class="dropdown-item dropdown-notification" href="#">' +
+                                                       '<div class="notification-read"><span class="badge badge-secondary">' + value.CANTIDAD +
+                                                       '</span></div><div class="notifications-body"><p class="notification-texte">Tienes ' + value.CANTIDAD +
+                                                       ' Requisiciones ' + value.NOMBRE_REQUISICION + ' para tramitar </p>' +
+                                                       ((key + 1).toString() === value.TOTAL ? '' : '<hr class="hr-requisition"/>') +
+                                                       '</div></a>')
                     });
                     $('body').loading('stop');
                     $('.ModalTraza').modal("show");

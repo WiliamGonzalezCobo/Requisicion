@@ -5,7 +5,8 @@
     <div class="row">
         <div class="form-group col-md-12 col-xs-12">
             @Html.LabelFor(model => model.NOMBRE_CARGO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-            @Html.DropDownListFor(model => model.COD_CARGO, Model.LIST_NOMBRE_CARGO, "Seleccione", new { @class = "form-control combosGrandes letrasFormulario" })
+            @Html.DropDownListFor(model => model.COD_CARGO, Model.LIST_NOMBRE_CARGO, "Seleccione", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+            @Html.HiddenFor(model => model.COD_CARGO, new { @id= "hdCOD_CARGO" })
             @Html.ValidationMessageFor(model => model.COD_CARGO, "", new { @class = "text-danger" })
         </div>
         <div class="form-group col-md-12 col-xs-12">
@@ -61,6 +62,7 @@
         <div class="form-group col-md-12 col-xs-12 ">
             @Html.LabelFor(model => model.POSICION, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
             @Html.EditorFor(model => model.POSICION, new { htmlAttributes = new { @class = "form-control combosGrandes letrasFormulario" } })
+            @Html.HiddenFor(model => model.POSICION, new { @Id = "hdPOSICION" })
             @Html.ValidationMessageFor(model => model.POSICION, "", new { @class = "text-danger" })
         </div>
     </div>

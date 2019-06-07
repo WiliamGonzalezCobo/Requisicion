@@ -290,6 +290,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\img\bg-login.jpg" />
+    <Content Include="assets\img\iconfinder_arrow-down.png" />
     <Content Include="assets\img\Incapacidad.png" />
     <Content Include="assets\img\Licencia.png" />
     <Content Include="assets\img\logo-blanco.png" />

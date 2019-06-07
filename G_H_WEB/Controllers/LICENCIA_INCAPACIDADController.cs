@@ -20,42 +20,26 @@ namespace G_H_WEB.Controllers
         public ActionResult Consultar(int? _idReq, int? _idTipo)
         {
             ViewBag._idTipo = _idTipo;
-            if (TempData["_idTipo"] != null)
-            {
+            if (TempData["_idTipo"] != null) {
                 _idTipo = Convert.ToInt32(TempData["_idTipo"]);
             }
-            if (_idTipo != null)
-            {
-                if (SettingsManager.CodTipoReqLicencia.Equals(_idTipo))
-                {
+            if (_idTipo != null){
+                if (SettingsManager.CodTipoReqLicencia.Equals(_idTipo)) {
                     ViewBag.RequisicionNombre = "Requisicion Licencia";
                 }
-                else if (SettingsManager.CodTipoReqIncapacidad.Equals(_idTipo))
-                {
+                else if (SettingsManager.CodTipoReqIncapacidad.Equals(_idTipo)){
                     ViewBag.RequisicionNombre = "Requisicion Incapacidad";
                 }
             }
-            else
-            {
+            else {
                 return RedirectToAction("Index", "REQUISICION");
             }
-
             REQUISICIONViewModel model = new REQUISICIONViewModel();
-
-            if (_idReq.HasValue)
-            {
+            if (_idReq.HasValue){
                 model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value) ?? new REQUISICIONViewModel();
-
-                /*En licencia y incapacidad no se consume el api ya que esto lo hace el jefe apenas la crea*/
-                //if (User.IsInRole(SettingsManager.PerfilBp))
-                //{
-                //    model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONESBP(model) ?? new REQUISICIONViewModel();
-                //}
             }
             model.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqLicencia;
-
             model = new LOGICA_REQUISICION().LLENAR_CONTROLES(model);
-
             // Esto es para el POP UP
             List<SelectListItem> listacargos = model.LIST_NOMBRE_CARGO;
             RESPUESTA_POP_UP fromPost = TempData["resultado"] as RESPUESTA_POP_UP;
@@ -65,9 +49,8 @@ namespace G_H_WEB.Controllers
             //Logica para el POP UP
             ViewBag.resultadoInsertExitosoOno = fromPost != null ? !fromPost.RESULTADO.Equals(0) : false;
             ViewBag.resultadoPopUpNoJefe = fromPost;
-
             //FIN POP UP
-
+            ViewBag.Busca_USUARIOS =new LOGICA_REQUISICION().CONSULTAR_EMPLEADOS_LICENCIA_INCAPACIDADES();
             return View(model);
         }
         [HttpPost]
@@ -165,11 +148,11 @@ namespace G_H_WEB.Controllers
         }
 
         [HttpGet]
-        public JsonResult ConsultarCargo(string idCargo)
+        public JsonResult ConsultarCargo(string NUMERO_DOCUMENTO_EMPLEADO)
         {
-            if (!string.IsNullOrEmpty(idCargo) && !idCargo.Equals(0))
+            if (!string.IsNullOrEmpty(NUMERO_DOCUMENTO_EMPLEADO) && !NUMERO_DOCUMENTO_EMPLEADO.Equals(0))
             {
-                PUESTO datosCargo = new LOGICA_REQUISICION().BUSCAR_PUESTO_X_CARGO_API(idCargo);
+                PUESTO datosCargo = new LOGICA_REQUISICION().BUSCAR_PUESTO_X_CARGO_API(NUMERO_DOCUMENTO_EMPLEADO);
                     
                 return Json(datosCargo, JsonRequestBehavior.AllowGet);
             }
