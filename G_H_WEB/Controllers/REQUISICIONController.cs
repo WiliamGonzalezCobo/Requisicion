@@ -1,13 +1,16 @@
-﻿using LOGICA.REQUISICION_LOGICA;
+﻿using G_H_WEB.Logica_Session;
+using LOGICA.REQUISICION_LOGICA;
 using Microsoft.AspNet.Identity;
 using MODELO_DATOS.MODELO_REQUISICION;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Security;
 using UTILS.Settings;
 namespace G_H_WEB.Controllers
 {
+    [CustAuthFilter]
     public class REQUISICIONController : Controller
     {
 

@@ -3,7 +3,13 @@
 @using UTILS.Settings
 @{
     ViewBag.Title = "Crear Requisición No Presupuestada";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (ViewBag.PERMISOS_CONTROLLER != ""){
+        Layout = "~/Views/Shared/_LayoutController.cshtml";
+    }
+    else {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
     RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
 }
 <div class="col">
@@ -74,7 +80,11 @@
                             @Html.Partial("_PartialInfoSalarial", Model)
                             @Html.Partial("_PartialAutorizacion", Model)
                         }
-
+                        if (ViewBag.PERMISOS_CONTROLLER != "")
+                        {
+                            @Html.Partial("_PartialInfoRequisicion", Model)
+                            @Html.Partial("_PartialAutorizacion", Model)
+                        }
                         //Botones
                         <div class="form-group">
                             <div class="col-md-12">
@@ -106,6 +116,12 @@
                                     <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
                                     <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
                                     <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
+                                }
+
+                                @if (ViewBag.PERMISOS_CONTROLLER != "")
+                                {
+                                    <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver" />
+                                    <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto" />
                                 }
                             </div>
                         </div>
@@ -206,6 +222,9 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
+        $(document).on('submit', 'form', function () {
+            //$('[name="' + submitButton + '"]').prop("type", "button");
+        })
     debugger;
     if ("@User.IsInRole(SettingsManager.PerfilJefe)" == "True") {
         if (@Model.COD_REQUISICION!= 0) {

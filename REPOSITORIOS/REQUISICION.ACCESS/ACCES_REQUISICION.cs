@@ -167,7 +167,8 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     _modelRequisicion.PUNTO_MEDIO_80,
                     _modelRequisicion.PUNTO_MEDIO_100,
                     _modelRequisicion.PUNTO_MEDIO_120,
-                    _modelRequisicion.POSICIONAMIENTO
+                    _modelRequisicion.POSICIONAMIENTO,
+                    _modelRequisicion.COD_CORREO_CONTROLLER
                     );
                 }
                 return true;
@@ -268,6 +269,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     requicisionModel.FECHA_FIN = respuesta.FECHA_FIN ?? DateTime.Now;
                     requicisionModel.DIA_LABORAL_DESDE = respuesta.DIA_LABORAL_DESDE;
                     requicisionModel.DIA_LABORAL_HASTA = respuesta.DIA_LABORAL_HASTA;
+                    requicisionModel.COD_CORREO_CONTROLLER = respuesta.COD_CORREO_CONTROLLER;
 
                 }
             }
@@ -347,7 +349,8 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                        Convert.ToString(_modelRequisicion.POSICIONAMIENTO.ToString()), // EN BASE DE DATOS ES VARCHAR
                        _modelRequisicion.USUARIO_CREACION ?? "",
                        _modelRequisicion.COD_ESTADO_REQUISICION,
-                       _modelRequisicion.ES_MODIFICACION
+                       _modelRequisicion.ES_MODIFICACION,
+                       _modelRequisicion.COD_CORREO_CONTROLLER
                    ).FirstOrDefault().Value;
                 }
 

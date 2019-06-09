@@ -9,6 +9,7 @@ using MODELO_DATOS.MODELO_REQUISICION;
 using MODELO_DATOS.MODELO_REQUISICION.LISTAS_API;
 using Newtonsoft.Json.Linq;
 using REPOSITORIOS.REQUISICION.ACCESS;
+using UTILS.Settings;
 
 namespace LOGICA.REQUISICION_LOGICA
 {
@@ -476,31 +477,51 @@ namespace LOGICA.REQUISICION_LOGICA
             return puesto;
         }
 
-        public REQUISICIONViewModel BUSCAR_REQUISICIONES(int _idRequsicion){
+        public REQUISICIONViewModel BUSCAR_REQUISICIONES(int _idRequsicion, string link_controller){
             REQUISICIONViewModel objReqModel = null;
             try {
-                List<DOCUMENTO> listaDocumentos = new PROXY().CONSULTAR_TIPO_DOCUMENTO_API();
+
                 objReqModel = new ACCES_REQUISICION().CONSULTAR_REQUISICION_X_ID(_idRequsicion);
-                objReqModel.NOMBRE_TIPO_DOCUMENTO = listaDocumentos.Where(x => x.coD_TIPO_DOCUMENTO == objReqModel.COD_TIPO_DOCUMENTO).FirstOrDefault().coD_TIPO_DOCUMENTO_ALTERNO_SAP;
-            }
-            catch (Exception ex) {
+                if (!string.IsNullOrWhiteSpace(link_controller)){
+                    if (objReqModel.COD_CORREO_CONTROLLER != link_controller) {
+                        objReqModel = new REQUISICIONViewModel();
+                    }
+                }
+
+                if (SettingsManager.CodTipoReqLicencia == objReqModel.COD_TIPO_REQUISICION || SettingsManager.CodTipoReqIncapacidad == objReqModel.COD_TIPO_REQUISICION){
+                    List<DOCUMENTO> listaDocumentos = new PROXY().CONSULTAR_TIPO_DOCUMENTO_API();
+                    objReqModel.NOMBRE_TIPO_DOCUMENTO = listaDocumentos.Where(x => x.coD_TIPO_DOCUMENTO == objReqModel.COD_TIPO_DOCUMENTO).FirstOrDefault().coD_TIPO_DOCUMENTO_ALTERNO_SAP;
+                }
+           }catch (Exception ex) {
                 throw ex;
             }
             return objReqModel;
         }
 
-        public int INSERTAR_REQUISICION(REQUISICIONViewModel _modeloRequisicion) {
+        public int INSERTAR_REQUISICION(REQUISICIONViewModel _modeloRequisicion, String USER_ID) {
+            Guid objGuid = Guid.NewGuid();
+            _modeloRequisicion.COD_CORREO_CONTROLLER = objGuid.ToString();
+
             if (_modeloRequisicion.COD_REQUISICION != 0){
                 if (new ACCES_REQUISICION().ACTUALIZAR_REQUISICION(_modeloRequisicion)) {
+                    string _LINK_CONTREOLLER = LINK_CONTROLLER(_modeloRequisicion.COD_TIPO_REQUISICION, _modeloRequisicion.COD_REQUISICION, objGuid.ToString());
+                    Boolean resutado_correo = new NOTIFICACION().NOFICICACION_REQUISICIONES(_modeloRequisicion, _LINK_CONTREOLLER, USER_ID);
                     return _modeloRequisicion.COD_REQUISICION;
                 } else {
                     return 0;
                 }
             }
-            else { 
-            return new ACCES_REQUISICION().INSERTAR_REQUISICION(_modeloRequisicion);
+            else {
+               
+                int CODIGO_REQUISICION= new ACCES_REQUISICION().INSERTAR_REQUISICION(_modeloRequisicion);
+                if (CODIGO_REQUISICION != 0) {
+                    string _LINK_CONTREOLLER = LINK_CONTROLLER(_modeloRequisicion.COD_TIPO_REQUISICION, CODIGO_REQUISICION, objGuid.ToString());
+                 Boolean resutado_correo =new NOTIFICACION().NOFICICACION_REQUISICIONES(_modeloRequisicion, _LINK_CONTREOLLER, USER_ID);
+                }
+                return CODIGO_REQUISICION;
             }
         }
+
 
         public Boolean ACTUALIZAR_REQUISICION(REQUISICIONViewModel _modeloRequisicion){
             return new ACCES_REQUISICION().ACTUALIZAR_REQUISICION(_modeloRequisicion);
@@ -795,6 +816,24 @@ namespace LOGICA.REQUISICION_LOGICA
                     ITEM.NOMBRE_REQUISICION = "Modificacion";
             }
             return LISTA_NOTIFICACIONES;
+        }
+
+        public string LINK_CONTROLLER(int COD_TIPO_REQUISICION,int _idReq, string _link_controler)
+        {
+            string DominioParaController = SettingsManager.DominioParaController;
+            string TIPO_REQUISICION = "";
+            if (SettingsManager.CodTipoReqIncapacidad == COD_TIPO_REQUISICION)
+                TIPO_REQUISICION = "LICENCIA_INCAPACIDAD/Consultar";
+            if (SettingsManager.CodTipoReqLicencia == COD_TIPO_REQUISICION)
+                TIPO_REQUISICION = "LICENCIA_INCAPACIDAD/Consultar";
+            if (SettingsManager.CodTipoReqPresupuestada == COD_TIPO_REQUISICION)
+                TIPO_REQUISICION = "REQUISICION_PRESUPUESTADA/Consultar";
+            if (SettingsManager.CodTipoReqNoPresupuestada == COD_TIPO_REQUISICION)
+                TIPO_REQUISICION = "REQUISICION_NOPRESUPUESTADA/Consultar";
+
+            DominioParaController = DominioParaController + TIPO_REQUISICION + "?" + "_idReq=" + _idReq.ToString() + "&_idTipo=" + COD_TIPO_REQUISICION.ToString()+ "&link_controler="+ _link_controler;
+
+            return DominioParaController;
         }
     }
 }

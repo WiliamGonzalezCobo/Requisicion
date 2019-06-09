@@ -244,7 +244,10 @@ namespace REPOSITORIOS
                         COD_USUARIO_CREA = x.COD_USUARIO_CREA,
                         FECHA_CREA = x.FECHA_CREA,
                         COD_USUARIO_MODIFICA = x.COD_USUARIO_MODIFICA,
-                        FECHA_MODIFICA = x.FECHA_MODIFICA
+                        FECHA_MODIFICA = x.FECHA_MODIFICA,
+                        // martinezluir agregado
+                        COD_ASPNETUSER_JEFE = x.COD_ASPNETUSER_JEFE,
+                        COD_ASPNETUSER_CONTROLLER=x.COD_ASPNETUSER_CONTROLLER
                     });
 
             }

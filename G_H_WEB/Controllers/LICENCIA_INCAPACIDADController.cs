@@ -17,8 +17,9 @@ namespace G_H_WEB.Controllers
     public class LICENCIA_INCAPACIDADController : Controller
     {
         // GET: REQUISICION_NOPRESUPUESTADA
-        public ActionResult Consultar(int? _idReq, int? _idTipo)
+        public ActionResult Consultar(int? _idReq, int? _idTipo, string link_controler = "", string COD_ASPNETUSER_CONTROLLER = "")
         {
+            if (COD_ASPNETUSER_CONTROLLER != "") { Session["COD_ASPNETUSER_CONTROLLER"] = COD_ASPNETUSER_CONTROLLER; }
             ViewBag._idTipo = _idTipo;
             if (TempData["_idTipo"] != null) {
                 _idTipo = Convert.ToInt32(TempData["_idTipo"]);
@@ -36,7 +37,7 @@ namespace G_H_WEB.Controllers
             }
             REQUISICIONViewModel model = new REQUISICIONViewModel();
             if (_idReq.HasValue){
-                model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value) ?? new REQUISICIONViewModel();
+                model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value, link_controler) ?? new REQUISICIONViewModel();
             }
             model.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqLicencia;
             model = new LOGICA_REQUISICION().LLENAR_CONTROLES(model);
@@ -51,6 +52,7 @@ namespace G_H_WEB.Controllers
             ViewBag.resultadoPopUpNoJefe = fromPost;
             //FIN POP UP
             ViewBag.Busca_USUARIOS =new LOGICA_REQUISICION().CONSULTAR_EMPLEADOS_LICENCIA_INCAPACIDADES();
+            ViewBag.PERMISOS_CONTROLLER = link_controler;
             return View(model);
         }
         [HttpPost]
@@ -58,6 +60,7 @@ namespace G_H_WEB.Controllers
         {
             try
             {
+                string _User = "";
                 if (TempData["_idTipo"] != null)
                 {
                     _idTipo = Convert.ToInt32(TempData["_idTipo"]);
@@ -94,7 +97,7 @@ namespace G_H_WEB.Controllers
                 switch (submitButton)
                 {
                     case "Crear Requisición":
-                        _resultadoIdReguisicion = new LOGICA_REQUISICION().INSERTAR_REQUISICION(modelDatos);
+                        _resultadoIdReguisicion = new LOGICA_REQUISICION().INSERTAR_REQUISICION(modelDatos, User.Identity.GetUserId());
                         if (modelDatos.COD_REQUISICION == 0)
                             npc.METODO = "Crear";
                         else
@@ -109,7 +112,8 @@ namespace G_H_WEB.Controllers
                         }
                         else
                         {
-                            _resultadoIdReguisicion = new LOGICA_REQUISICION().APROBAR_REQUISICION_LOGICA(modelDatos.COD_REQUISICION, User.Identity.GetUserId(), modelDatos.OBSERVACION);
+                            _User = User.Identity.GetUserId() ?? Session["COD_ASPNETUSER_CONTROLLER"].ToString();
+                            _resultadoIdReguisicion = new LOGICA_REQUISICION().APROBAR_REQUISICION_LOGICA(modelDatos.COD_REQUISICION, _User, modelDatos.OBSERVACION);
                         }
                         npc.METODO = "Aprobar";
                         break;
@@ -123,7 +127,8 @@ namespace G_H_WEB.Controllers
                         npc.METODO = "Enviar";
                         break;
                     case "Modificar":
-                        _resultadoIdReguisicion = Convert.ToInt32(new LOGICA_REQUISICION().REQUISICION_MODIFICAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.GetUserId()));
+                        _User = User.Identity.GetUserId() ?? Session["COD_ASPNETUSER_CONTROLLER"].ToString();
+                        _resultadoIdReguisicion = Convert.ToInt32(new LOGICA_REQUISICION().REQUISICION_MODIFICAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, _User));
                         npc.METODO = "Modificar";
                         break;
                 }
@@ -135,6 +140,11 @@ namespace G_H_WEB.Controllers
                 npc.RESULTADO = !_resultadoIdReguisicion.Equals(0);
                 TempData["resultado"] = npc;
                 //FIN Esta logica es para el POP UP----------
+
+                if (Session["COD_ASPNETUSER_CONTROLLER"] != null){
+                    Session.Remove("COD_ASPNETUSER_CONTROLLER");
+                    return RedirectToAction("Consultar", "REQUISICION_PRESUPUESTADA", new { link_controler = "mostrar resultado" });
+                }
 
                 return RedirectToAction("Consultar");
             }

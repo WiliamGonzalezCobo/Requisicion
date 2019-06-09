@@ -482,6 +482,8 @@ namespace MODELO_DATOS.MODELO_REQUISICION
 
         public string NOMBRES_USUARIO { get; set; }
 
+        public string COD_CORREO_CONTROLLER { get; set; }
+
 
     }
 }

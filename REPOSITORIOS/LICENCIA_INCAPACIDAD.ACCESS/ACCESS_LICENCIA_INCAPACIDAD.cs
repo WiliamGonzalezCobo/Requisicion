@@ -83,7 +83,8 @@ namespace REPOSITORIOS.LICENCIA_INCAPACIDAD.ACCESS
                                         , model.POSICIONAMIENTO.ToString() ?? ""
                                         , model.USUARIO_CREACION ?? ""
                                         , model.COD_ESTADO_REQUISICION
-                                        ,model.ES_MODIFICACION);
+                                        ,model.ES_MODIFICACION
+                                        ,model.COD_CORREO_CONTROLLER);
 
             }
             return "Exitoso";

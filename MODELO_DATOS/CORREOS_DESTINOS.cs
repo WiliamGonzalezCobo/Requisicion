@@ -35,6 +35,9 @@ namespace MODELO_DATOS
         public string COD_USUARIO_MODIFICA { get; set; }
 
         public DateTime FECHA_MODIFICA { get; set; }
+        // martinezluir agregado
+        public string COD_ASPNETUSER_JEFE { get; set; }
+        public string COD_ASPNETUSER_CONTROLLER { get; set; }
 
         public virtual CORREOS CORREOS { get; set; }
     }
