@@ -1,94 +1,100 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 @{string deshabilitar = "true";}
 <section id="infoSalarial">
-    <div class="SubtitulosNivel2">Información Salarial Propuesta</div>
-    <div class="row">
-        <div class="form-group col-md-6 col-xs-12">
-            @Html.LabelFor(model => model.SALARIO_FIJO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-            @Html.EditorFor(model => model.SALARIO_FIJO, new { htmlAttributes = new { @class = "form-control E_SALARIO_FIJO CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario" } })
-            <span class="btn_traza" onclick="ConsultaTraza('SALARIO_FIJO')" data-toggle="tooltip" data-placement="top" >  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.ValidationMessageFor(model => model.SALARIO_FIJO, "", new { @class = "text-danger" })
+    <div class="panel-heading">
+        <a class="a-collapse" data-toggle="collapse" href="#collapseInfoSalarialIncap">
+            <h2>Información Salarial Propuesta</h2>
+        </a>
+    </div>
+    <div id="collapseInfoSalarialIncap" class="panel-collapse collapse">
+        <div class="row">
+            <div class="form-group col-md-6 col-xs-12">
+                @Html.LabelFor(model => model.SALARIO_FIJO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+                @Html.EditorFor(model => model.SALARIO_FIJO, new { htmlAttributes = new { @class = "form-control E_SALARIO_FIJO CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario" } })
+                <span id="SALARIO_FIJO_S" class="btn_traza" onclick="ConsultaTraza('SALARIO_FIJO')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.ValidationMessageFor(model => model.SALARIO_FIJO, "", new { @class = "text-danger" })
             </div>
-        <div class="form-group col-md-6 col-xs-12">
-            @Html.LabelFor(model => model.PORCENTAJE_SALARIO_FIJO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-            @Html.EditorFor(model => model.PORCENTAJE_SALARIO_FIJO, new { htmlAttributes = new { @class = "form-control P_SALARIO_FIJO col-md-11 TexboxIncicial letrasFormulario" }, disabled = deshabilitar })
-            @Html.HiddenFor(model => model.PORCENTAJE_SALARIO_FIJO, new { @class = "P_SALARIO_FIJO", id = "hdPORCENTAJE_SALARIO_FIJO" })
-            <span class="btn_traza" onclick="ConsultaTraza('PORCENTAJE_SALARIO_FIJO')" data-toggle="tooltip" data-placement="top" >  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.ValidationMessageFor(model => model.PORCENTAJE_SALARIO_FIJO, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group col-md-6 col-xs-12">
-            @Html.LabelFor(model => model.SALARIO_VARIABLE, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-            @Html.EditorFor(model => model.SALARIO_VARIABLE, new { htmlAttributes = new { @class = "form-control S_VARIABLE CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario" } })
-            <span class="btn_traza" onclick="ConsultaTraza('SALARIO_VARIABLE')" data-toggle="tooltip" data-placement="top" >  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.ValidationMessageFor(model => model.SALARIO_VARIABLE, "", new { @class = "text-danger" })
-        </div>
-        <div class="form-group col-md-6 col-xs-12">
-            @Html.LabelFor(model => model.PORCENTAJE_SALARIO_VARIABLE, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-            @Html.EditorFor(model => model.PORCENTAJE_SALARIO_VARIABLE, new { htmlAttributes = new { @class = "form-control P_VARIABLE CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario", disabled = deshabilitar } })
-            <span class="btn_traza" onclick="ConsultaTraza('PORCENTAJE_SALARIO_VARIABLE')" data-toggle="tooltip" data-placement="top" >  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.HiddenFor(model => model.PORCENTAJE_SALARIO_VARIABLE, new { @class = "P_VARIABLE", id = "hdPORCENTAJE_SALARIO_VARIABLE" })
-            @Html.ValidationMessageFor(model => model.PORCENTAJE_SALARIO_VARIABLE, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group col-md-6 col-xs-12">
-            @Html.LabelFor(model => model.SOBREREMUNERACION, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-            @Html.EditorFor(model => model.SOBREREMUNERACION, new { htmlAttributes = new { @class = "form-control E_SOBREREMUNERACION CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario" } })
-            <span class="btn_traza" onclick="ConsultaTraza('SOBREREMUNERACION')" data-toggle="tooltip" data-placement="top" >  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.ValidationMessageFor(model => model.SOBREREMUNERACION, "", new { @class = "text-danger" })
-        </div>
-        <div class="form-group col-md-6 col-xs-12">
-            @Html.LabelFor(model => model.EXTRA_FIJA, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-            @Html.EditorFor(model => model.EXTRA_FIJA, new { htmlAttributes = new { @class = "form-control E_EXTRA_FIJA CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario" } })
-            <span class="btn_traza" onclick="ConsultaTraza('EXTRA_FIJA')" data-toggle="tooltip" data-placement="top" >  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.ValidationMessageFor(model => model.EXTRA_FIJA, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group col-md-6 col-xs-12">
-            @Html.LabelFor(model => model.RECARGO_NOCTURNO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-            @Html.EditorFor(model => model.RECARGO_NOCTURNO, new { htmlAttributes = new { @class = "form-control  E_RECARGO_NOCTURNO CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario" } })
-            <span class="btn_traza" onclick="ConsultaTraza('RECARGO_NOCTURNO')" data-toggle="tooltip" data-placement="top" >  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.ValidationMessageFor(model => model.RECARGO_NOCTURNO, "", new { @class = "text-danger" })
-        </div>
-        <div class="form-group col-md-6 col-xs-12">
-            @Html.LabelFor(model => model.MEDIO_TRANSPORTE, htmlAttributes: new { @class = "control-label col-md-12" })
-            <div class="col-md-12">
-                @Html.EditorFor(model => model.MEDIO_TRANSPORTE, new { htmlAttributes = new { @class = "form-control col-md-11" } })
-                <span class="btn_traza" onclick="ConsultaTraza('MEDIO_TRANSPORTE')" data-toggle="tooltip" data-placement="top" >  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-                @Html.ValidationMessageFor(model => model.MEDIO_TRANSPORTE, "", new { @class = "text-danger" })
+            <div class="form-group col-md-6 col-xs-12">
+                @Html.LabelFor(model => model.PORCENTAJE_SALARIO_FIJO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+                @Html.EditorFor(model => model.PORCENTAJE_SALARIO_FIJO, new { htmlAttributes = new { @class = "form-control P_SALARIO_FIJO col-md-11 TexboxIncicial letrasFormulario" }, disabled = deshabilitar })
+                @Html.HiddenFor(model => model.PORCENTAJE_SALARIO_FIJO, new { @class = "P_SALARIO_FIJO", id = "hdPORCENTAJE_SALARIO_FIJO" })
+                <span id="PORCENTAJE_SALARIO_FIJO_S" class="btn_traza" onclick="ConsultaTraza('PORCENTAJE_SALARIO_FIJO')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.ValidationMessageFor(model => model.PORCENTAJE_SALARIO_FIJO, "", new { @class = "text-danger" })
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="form-group col-md-6 col-xs-12">
-            @Html.LabelFor(model => model.SALARIO_TOTAL, htmlAttributes: new { @class = "control-label col-md-12" })
-            <div class="col-md-12">
-                @Html.EditorFor(model => model.SALARIO_TOTAL, new { htmlAttributes = new { @class = "form-control S_TOTAL col-md-11", disabled = deshabilitar } })
-                <span class="btn_traza" onclick="ConsultaTraza('SALARIO_TOTAL')" data-toggle="tooltip" data-placement="top" >  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-                @Html.ValidationMessageFor(model => model.SALARIO_TOTAL, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.SALARIO_TOTAL, new { @class = "S_TOTAL", id = "hdSALARIO_TOTAL" })
+        <div class="row">
+            <div class="form-group col-md-6 col-xs-12">
+                @Html.LabelFor(model => model.SALARIO_VARIABLE, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+                @Html.EditorFor(model => model.SALARIO_VARIABLE, new { htmlAttributes = new { @class = "form-control S_VARIABLE CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario" } })
+                <span id="SALARIO_VARIABLE_S" class="btn_traza" onclick="ConsultaTraza('SALARIO_VARIABLE')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.ValidationMessageFor(model => model.SALARIO_VARIABLE, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-6 col-xs-12">
+                @Html.LabelFor(model => model.PORCENTAJE_SALARIO_VARIABLE, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+                @Html.EditorFor(model => model.PORCENTAJE_SALARIO_VARIABLE, new { htmlAttributes = new { @class = "form-control P_VARIABLE CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario", disabled = deshabilitar } })
+                <span id="PORCENTAJE_SALARIO_VARIABLE_S" class="btn_traza" onclick="ConsultaTraza('PORCENTAJE_SALARIO_VARIABLE')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.HiddenFor(model => model.PORCENTAJE_SALARIO_VARIABLE, new { @class = "P_VARIABLE", id = "hdPORCENTAJE_SALARIO_VARIABLE" })
+                @Html.ValidationMessageFor(model => model.PORCENTAJE_SALARIO_VARIABLE, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="form-group col-md-6 col-xs-12">
-            @Html.LabelFor(model => model.BONO_ANUAL, htmlAttributes: new { @class = "control-label col-md-12" })
-            <div class="col-md-12">
-                @Html.EditorFor(model => model.BONO_ANUAL, new { htmlAttributes = new { @class = "form-control E_BONO_ANUAL col-md-11", disabled = deshabilitar } })
-                <span class="btn_traza" onclick="ConsultaTraza('BONO_ANUAL')" data-toggle="tooltip" data-placement="top" >  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-                @Html.HiddenFor(model => model.BONO_ANUAL, new { @id = "hdBONO_ANUAL" })
-                @Html.ValidationMessageFor(model => model.BONO_ANUAL, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group col-md-6 col-xs-12">
+                @Html.LabelFor(model => model.SOBREREMUNERACION, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+                @Html.EditorFor(model => model.SOBREREMUNERACION, new { htmlAttributes = new { @class = "form-control E_SOBREREMUNERACION CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario" } })
+                <span id="SOBREREMUNERACION_S" class="btn_traza" onclick="ConsultaTraza('SOBREREMUNERACION')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.ValidationMessageFor(model => model.SOBREREMUNERACION, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-6 col-xs-12">
+                @Html.LabelFor(model => model.EXTRA_FIJA, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+                @Html.EditorFor(model => model.EXTRA_FIJA, new { htmlAttributes = new { @class = "form-control E_EXTRA_FIJA CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario" } })
+                <span id="EXTRA_FIJA_S" class="btn_traza" onclick="ConsultaTraza('EXTRA_FIJA')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.ValidationMessageFor(model => model.EXTRA_FIJA, "", new { @class = "text-danger" })
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="form-group col-md-6 col-xs-12">
-            @Html.LabelFor(model => model.NUMERO_SALARIOS, htmlAttributes: new { @class = "control-label col-md-12" })
-            <div class="col-md-12">
-                @Html.EditorFor(model => model.NUMERO_SALARIOS, new { htmlAttributes = new { @class = "form-control col-md-11" } })
-                <span class="btn_traza" onclick="ConsultaTraza('NUMERO_SALARIOS')" data-toggle="tooltip" data-placement="top" >  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-                @Html.ValidationMessageFor(model => model.NUMERO_SALARIOS, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group col-md-6 col-xs-12">
+                @Html.LabelFor(model => model.RECARGO_NOCTURNO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+                @Html.EditorFor(model => model.RECARGO_NOCTURNO, new { htmlAttributes = new { @class = "form-control  E_RECARGO_NOCTURNO CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario" } })
+                <span id="RECARGO_NOCTURNO_S" class="btn_traza" onclick="ConsultaTraza('RECARGO_NOCTURNO')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.ValidationMessageFor(model => model.RECARGO_NOCTURNO, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-6 col-xs-12">
+                @Html.LabelFor(model => model.MEDIO_TRANSPORTE, htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.MEDIO_TRANSPORTE, new { htmlAttributes = new { @class = "form-control col-md-11" } })
+                    <span id="MEDIO_TRANSPORTE_S" class="btn_traza" onclick="ConsultaTraza('MEDIO_TRANSPORTE')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                    @Html.ValidationMessageFor(model => model.MEDIO_TRANSPORTE, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 col-xs-12">
+                @Html.LabelFor(model => model.SALARIO_TOTAL, htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.SALARIO_TOTAL, new { htmlAttributes = new { @class = "form-control S_TOTAL col-md-11", disabled = deshabilitar } })
+                    <span id="SALARIO_TOTAL_S" class="btn_traza" onclick="ConsultaTraza('SALARIO_TOTAL')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                    @Html.ValidationMessageFor(model => model.SALARIO_TOTAL, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.SALARIO_TOTAL, new { @class = "S_TOTAL", id = "hdSALARIO_TOTAL" })
+                </div>
+            </div>
+            <div class="form-group col-md-6 col-xs-12">
+                @Html.LabelFor(model => model.BONO_ANUAL, htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.BONO_ANUAL, new { htmlAttributes = new { @class = "form-control E_BONO_ANUAL col-md-11", disabled = deshabilitar } })
+                    <span id="BONO_ANUAL_S" class="btn_traza" onclick="ConsultaTraza('BONO_ANUAL')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                    @Html.HiddenFor(model => model.BONO_ANUAL, new { @id = "hdBONO_ANUAL" })
+                    @Html.ValidationMessageFor(model => model.BONO_ANUAL, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 col-xs-12">
+                @Html.LabelFor(model => model.NUMERO_SALARIOS, htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.NUMERO_SALARIOS, new { htmlAttributes = new { @class = "form-control col-md-11" } })
+                    <span id="NUMERO_SALARIOS_S" class="btn_traza" onclick="ConsultaTraza('NUMERO_SALARIOS')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                    @Html.ValidationMessageFor(model => model.NUMERO_SALARIOS, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
     </div>
@@ -96,7 +102,7 @@
 
 <script>
     $(".E_SALARIO_FIJO").focusout(function () {
-        debugger;
+        //debugger;
         var VALOR_SALARIO_FIJO = parseFloat($(".E_SALARIO_FIJO").val().replace(",", "."));
         var SALARIO_TOTAL = parseFloat($(".S_TOTAL").val().replace(",", "."));
         var calculo = ((VALOR_SALARIO_FIJO * 100) / SALARIO_TOTAL).toString().replace(".", ",");
@@ -112,7 +118,7 @@
     });
 
     $(".CALCULO_TOTAL").focusout(function () {
-        debugger;
+        //debugger;
         var VALOR_SALARIO_FIJO = parseFloat($(".E_SALARIO_FIJO").val().replace(",", "."));
         var VALOR_SALARIO_VARIABLE = parseFloat($(".S_VARIABLE").val().replace(",", "."));
         var VALOR_SOBREREMUNERACION = parseFloat($(".E_SOBREREMUNERACION").val().replace(",", "."));
@@ -133,5 +139,23 @@
         var calculo = ((VALOR_SALARIO_VARIABLE * 100) / SALARIO_TOTAL).toString().replace(".", ",");
         $(".P_VARIABLE").val(calculo);
     });
+
+    var validateReqInfoSalarialLic = true;
+    var validateFormInfoSalarialLic = function () {
+        if ($('#SALARIO_FIJO').val() == "" &&
+            $('#PORCENTAJE_SALARIO_FIJO').val() == "" &&
+            $('#SALARIO_VARIABLE').val() == "" || !isNaN($('#SALARIO_VARIABLE').val()) ||
+            $('#SOBREREMUNERACION').val() == "" || !isNaN($('#SOBREREMUNERACION').val()) ||
+            $('#EXTRA_FIJA').val() == "" || !isNaN($('#EXTRA_FIJA').val()) ||
+            $('#RECARGO_NOCTURNO').val() == "" || !isNaN($('#RECARGO_NOCTURNO').val()) ||
+            $('#MEDIO_TRANSPORTE').val() == "" || !isNaN($('#MEDIO_TRANSPORTE').val())) {
+            validateReqInfoSalarialLic = false;
+        } else {
+            validateReqInfoSalarialLic = true;
+        }
+        console.log('validateReqInfoSalarialLic ', validateReqInfoSalarialLic);
+        return validateReqInfoSalarialLic;
+    }
+
 </script>
 

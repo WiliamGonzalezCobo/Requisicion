@@ -1,28 +1,48 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 <section id="autorizacion">
-    <div class="row">
-        <div class="form-group col-md-12 col-sm-12">
-            @Html.LabelFor(model => model.OBSERVACIONES, new { @class = "letrasFormulario" })
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr class="letrasFormulario">
-                            <th>Fecha</th>
-                            <th>Usuario</th>
-                            <th>Observación</th>
-                        </tr>
-                    </thead>
-                    <tbody class="Obsevaciones_requisicion">
-                        @Html.Raw(Model.OBSERVACIONES)
-                    </tbody>
-                </table>
-            </div>
+    <div class="panel-heading">
+        <a class="a-collapse" data-toggle="collapse" href="#collapseAutorizacion">
+            <h2>Autorización</h2>
+        </a>
+    </div>
+    <div id="collapseAutorizacion" class="panel-collapse collapse">
+        <div class="row">
+            <div class="form-group col-md-12 col-sm-12">
+                @Html.LabelFor(model => model.OBSERVACIONES, new { @class = "letrasFormulario" })
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr class="letrasFormulario">
+                                <th>Fecha</th>
+                                <th>Usuario</th>
+                                <th>Observación</th>
+                            </tr>
+                        </thead>
+                        <tbody class="Obsevaciones_requisicion">
+                            @Html.Raw(Model.OBSERVACIONES)
+                        </tbody>
+                    </table>
+                </div>
 
-        </div>
-        <div class="form-group col-md-12 col-sm-12">
-            @Html.LabelFor(model => model.OBSERVACION, htmlAttributes: new { @class = "letrasFormulario" })
-            @Html.TextAreaFor(model => model.OBSERVACION, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.OBSERVACION)
+            </div>
+            <div class="form-group col-md-12 col-sm-12">
+                @Html.LabelFor(model => model.OBSERVACION, htmlAttributes: new { @class = "letrasFormulario" })
+                @Html.TextAreaFor(model => model.OBSERVACION, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.OBSERVACION)
+            </div>
         </div>
     </div>
 </section>
+
+<script>
+    var validateAut = true;
+    var validateFormAutorizacion = function () {
+        if ($('#OBSERVACION').val() == "") {
+            validateAut = false;
+        } else {
+            validateAut = true;
+        }
+        console.log('validateAut ', validateAut);
+        return validateAut;
+    }
+</script>

@@ -1,6 +1,7 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 @using MODELO_DATOS.MODELO_REQUISICION;
-@using UTILS.Settings
+@using UTILS.Settings;
+@using G_H_WEB.Models;
 @{
     if (ViewBag.RequisicionNombre != null)
     {
@@ -156,6 +157,12 @@
             </div>
         </div>
     </div>
+    @if (ViewBag.Error != null)
+    {
+        <div>
+            @Html.Partial("_Error", (ERROR_GENERAL_ViewModel)ViewBag.Error);
+        </div>
+    }
     <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content Content-Popup-Creacion">
@@ -223,7 +230,7 @@
             </div>
             <div class="row modal-body">
                 <div class="col-md-12 col-lg-12 col-xl-12 table-responsive">
-                    Modificaciones
+                    <h3>Modificaciones</h3>
                     <table class="table">
                         <thead>
                             <tr>
@@ -249,25 +256,6 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        $('#COD_CARGO').change(function () {
-            var id = $(this).val();
-            $('body').loading({
-                message: 'Cargando...'
-            });
-            $.ajax({
-                url: "@Url.Action("ConsultarCargo", "LICENCIA_INCAPACIDAD")",
-                type: 'GET',
-                data: { idCargo: id },
-                success: function (respuesta) {
-                    mapeoObjCargoApi(respuesta)
-                    debugger; $('body').loading('stop');
-                },
-                error: function (er){
-                    $('body').loading('stop');
-                }
-            });
-        });
-
 
         if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {
             if (@Model.COD_REQUISICION!= 0) {
@@ -279,8 +267,8 @@
         $(".__metodoModificar").css("display", "none");
         $(".__metodoRechazar").css("display", "none");
         $(".__metodoEnviar").css("display", "none");
-
-
+        debugger;
+        VALIDACION_TRAZA();
 
         var resultado = "@ViewBag.resultadoInsertExitosoOno";
 
@@ -317,7 +305,41 @@
 
     });
 
+    function VALIDACION_TRAZA() {
+        var jsonObj = @Html.Raw(Json.Encode(ViewBag.traza));
+        if (jsonObj) {
+            debugger;
+            for (i = 0; i < jsonObj.length; i++) {
+                if (jsonObj[i].TRAZA == "true") {
+                    var campo = "#" + jsonObj[i].CAMPOS + "_S";
+                    if ($(campo).length) {
+                        debugger;
+                        $(campo).removeAttr("style");
+                        var traza = jsonObj[i].TRAZA;
+                    }
+                }
+            }
+        }
+    }
 
+    function CONSULTA_PUESTO_POR_CEDULA(DOCUMENTO_NUMERO) {
+            $('body').loading({
+                message: 'Cargando...'
+            });
+            $.ajax({
+                url: "@Url.Action("ConsultarCargo", "LICENCIA_INCAPACIDAD")",
+                type: 'GET',
+                data: { NUMERO_DOCUMENTO_EMPLEADO: DOCUMENTO_NUMERO },
+                success: function (respuesta) {
+                    mapeoObjCargoApi(respuesta)
+                    debugger; $('body').loading('stop');
+                },
+                error: function (er){
+                    $('body').loading('stop');
+                }
+            });
+
+    }
     function CREAR_REQUISICION() {
          var CargoText = "@paraModel.NOMBRE_COD_CARGO";
             var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
@@ -396,8 +418,6 @@
     };
 
     function mapeoObjCargoApi(API) {
-        console.log(API.COD_CARGO);
-        debugger;
         $("#COD_CARGO").val(API.COD_CARGO);
         $("#hdCOD_CARGO").val(API.COD_CARGO);
 
@@ -526,8 +546,8 @@
         $("#PUNTO_MEDIO_120").val(API.PUNTO_MEDIO_120_PORCIENTO);
         $("#hdPUNTO_MEDIO_120").val(API.PUNTO_MEDIO_120_PORCIENTO);
 
-        $("#POSICIONAMIENTO").val(API.POSICIONAMIENTO);
-        $("#hdPOSICIONAMIENTO").val(API.POSICIONAMIENTO);
+        $("#POSICION").val(API.POSICIONAMIENTO);
+        $("#hdPOSICION").val(API.POSICIONAMIENTO);
     }
 
     function ConsultaTraza(CAMPO_REQUISICION) {
@@ -546,7 +566,7 @@
                 data: { COD_REQUISICION: COD_REQUISICION, CAMPO_REQUISICION: CAMPO_REQUISICION},
                 success: function (respuesta) {
                     $.each(respuesta, function (key, value) {
-                        $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION +"</td > </tr > ");  
+                        $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION +"</td > </tr > ");
                     });
                     debugger;
                     $('body').loading('stop');
@@ -556,7 +576,23 @@
                     $('body').loading('stop');
                 }
             });
+    }
+
+    $('#submitButtonCrear').on('click', function () {
+        //console.log('di click !!', validate);
+        if (!validateFormAutorizacion()) {
+            $('#collapseAutorizacion').collapse('show');
         }
+        if (!validateFormInfoGeneralIncap()) {
+            $('#collapseInfoGeneralIncap').collapse('show');
+        }
+        if (!validateFormInfoSalarialLic()) {
+            $('#collapseInfoSalarialIncap').collapse('show');
+        }
+        if (!validateFormInfoSalarialIncap2()) {
+            $('#collapseInfoSalarialIncap2').collapse('show');
+        }
+    });
 
 </script>
 

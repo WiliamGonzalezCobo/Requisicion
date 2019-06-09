@@ -1,12 +1,14 @@
 ﻿@model IEnumerable<MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel>
 @using UTILS.Settings
-@using MODELO_DATOS.MODELO_REQUISICION;
+@using G_H_WEB.Models;
 @{
+    /**/
+
     //ViewBag.Title = "retiros_buscar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="col-md-9 col-lg-9 col-xl-9 requisicion">
+<div class="col-md-9 col-lg-9 col-xl-9 requisicion no-padding-right">
 
     <div class="col-lg-12 col-md-12 col-sm-12 row">
         <h2 class="titulo-retiros col-md-12">Requisiciones</h2>
@@ -14,12 +16,12 @@
         {
             <div class="margenbottton col-lg-12 col-md-12 col-sm-12">
                 <div class="col-md-12">
-                    <a href="" data-toggle="modal" data-target="#Modal" style="font-size:small; font-weight:bold">+ CREAR NUEVA REQUISICIÓN</a>
+                    <a href="" data-toggle="modal" data-target="#Modal" style="font-family:'source-medium'; font-size:14px; font-weight:bold">+ CREAR NUEVA REQUISICIÓN</a>
                 </div>
             </div>
         }
         <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="buscador" style="width:100%;">
+            <div class="buscador" style="width:750px;">
                 <input class="search-input" id="filtroPorUsuarioValor" type="text" placeholder=" Nombre o cédula" style="width:100%; height:  100%;">
                 <span id="filtroPorUsuario" class="search-btn fas fa-search"></span>
             </div>
@@ -37,9 +39,9 @@
 
         <div class="form-group col-md-4">
             <label>Filtre Por Fecha</label>
-            
+
             <div class="input-group date datepicker-requisicion">
-                <input type="text" id="txtFiltroFecha" class = "form-control datepicker" />
+                <input type="text" id="txtFiltroFecha" class="form-control datepicker" />
                 <span class="input-group-addon">
                     <span class="fas fa-calendar-alt" style="pointer-events:none">
                     </span>
@@ -180,24 +182,12 @@
                     else
                     {
                         <tr>
-                            <td>
-                               
-                            </td>
-                            <td>
-                              
-                            </td>
-                            <td>
-                              
-                            </td>
-                            <td>
-                               
-                            </td>
-                            <td>
-                              
-                            </td>
-                            <td>
-                              
-                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
 
                         </tr>
                     }
@@ -212,12 +202,12 @@
 
 </div>
 
-<div>
-
-</div>
-
-
-
+@if (ViewBag.Error != null)
+{
+    <div>
+        @Html.Partial("_Error", (ERROR_GENERAL_ViewModel)ViewBag.Error);
+    </div>
+}
 <!-- Modal -->
 <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -250,6 +240,7 @@
             });
         });
 
+        VALIDACION_TRAZA();
         
         var table = $('#tblRequisiciones').DataTable({
             lengthChange: false,
@@ -321,11 +312,26 @@
         });
 
 
-       
+
 
     });
 
-
+    function VALIDACION_TRAZA() {
+        var jsonObj = @Html.Raw(Json.Encode(ViewBag.traza));
+        if (jsonObj) {
+            debugger;
+            for (i = 0; i < jsonObj.length; i++) {
+                if (jsonObj[i].TRAZA == "true") {
+                    var campo = "#" + jsonObj[i].CAMPOS + "_S";
+                    if ($(campo).length) {
+                        debugger;
+                        $(campo).removeAttr("style");
+                        var traza = jsonObj[i].TRAZA;
+                    }
+                }
+            }
+        }
+    }
 
     function ConsultaModificaciones() {
         $("#notificationsBadgePrimary").text("");
@@ -340,7 +346,12 @@
                 success: function (respuesta) {
                     $.each(respuesta, function (key, value) {
                         $("#notificationsBadgePrimary").text(value.TOTAL);
-                        $("#AddNotificaciones").append('<a class="dropdown-item dropdown-notification" href="#"><div class="notification-read"><span class="badge badge-secondary">' + value.CANTIDAD + '</span></div><div class="notifications-body"><p class="notification-texte">Tienes ' + value.CANTIDAD + ' Requisiciones ' + value.NOMBRE_REQUISICION +' para tramitar </p></div></a>')
+                        $("#AddNotificaciones").append('<a class="dropdown-item dropdown-notification" href="#">' +
+                                                       '<div class="notification-read"><span class="badge badge-secondary">' + value.CANTIDAD +
+                                                       '</span></div><div class="notifications-body"><p class="notification-texte">Tienes ' + value.CANTIDAD +
+                                                       ' Requisiciones ' + value.NOMBRE_REQUISICION + ' para tramitar </p></div>' +
+                                                       ((key + 1).toString() === value.TOTAL ? '' : '<hr class="hr-requisition"/>') +
+                                                       '</a>')
                     });
                     $('body').loading('stop');
                     $('.ModalTraza').modal("show");

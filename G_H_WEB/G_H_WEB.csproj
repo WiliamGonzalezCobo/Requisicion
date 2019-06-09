@@ -278,6 +278,7 @@
     <Compile Include="Logica_Session\CustAuthFilter.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CUENTAViewModel.cs" />
+    <Compile Include="Models\ERROR_ViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RETIROViewModel.cs" />
     <Compile Include="Models\SOLICITUDViewModel.cs" />
@@ -290,6 +291,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\img\bg-login.jpg" />
+    <Content Include="assets\img\iconfinder_arrow-down.png" />
     <Content Include="assets\img\Incapacidad.png" />
     <Content Include="assets\img\Licencia.png" />
     <Content Include="assets\img\logo-blanco.png" />
@@ -690,8 +692,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_PieDePagina.cshtml" />
     <Content Include="Views\RETIRO\ERROR_ARCHIVO.cshtml" />
-    <Content Include="Views\REQUISICION\No_Presupuestada.cshtml" />
-    <Content Include="Views\REQUISICION\No_Presupuestada_General.cshtml" />
     <Content Include="Views\REQUISICION_PRESUPUESTADA\Consultar.cshtml" />
     <Content Include="Views\REQUISICION\Create.cshtml" />
     <Content Include="Views\LICENCIA_INCAPACIDAD\Consultar.cshtml" />
@@ -708,6 +708,7 @@
     <Content Include="Views\Shared\_PartialGeneralProPuestaLi.cshtml" />
     <Content Include="Views\Shared\_PartialInfoSalarialLi2.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\_Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
