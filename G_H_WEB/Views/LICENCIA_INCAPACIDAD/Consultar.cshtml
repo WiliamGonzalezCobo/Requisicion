@@ -1,6 +1,7 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 @using MODELO_DATOS.MODELO_REQUISICION;
-@using UTILS.Settings
+@using UTILS.Settings;
+@using G_H_WEB.Models;
 @{
     if (ViewBag.RequisicionNombre != null)
     {
@@ -156,6 +157,12 @@
             </div>
         </div>
     </div>
+    @if (ViewBag.Error != null)
+    {
+        <div>
+            @Html.Partial("_Error", (ERROR_GENERAL_ViewModel)ViewBag.Error);
+        </div>
+    }
     <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content Content-Popup-Creacion">

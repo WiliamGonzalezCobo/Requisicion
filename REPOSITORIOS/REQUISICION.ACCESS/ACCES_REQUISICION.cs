@@ -11,18 +11,14 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
 {
     public class ACCES_REQUISICION
     {
-        public static  ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
-        public ACCES_REQUISICION() {
-            LOG_CENTRALIZADO.log = log;
-        }
+        private LOG_CENTRALIZADO logCentralizado = new LOG_CENTRALIZADO(LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType));
 
         public List<TIPO_NECESIDADViewModel> CONSULTAR_TIPOS_NECESIDAD()
         {
             List<TIPO_NECESIDADViewModel> lst = null;
             try
             {
-                LOG_CENTRALIZADO.INICIANDO_LOG("REPREQ1", "CONSULTAR_TIPOS_NECESIDAD");
+                logCentralizado.INICIANDO_LOG("REPREQ1", "CONSULTAR_TIPOS_NECESIDAD");
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
                     ObjectResult<CONSULTAR_TIPOS_NECESIDAD_Result> consulta = db.CONSULTAR_TIPOS_NECESIDAD();
@@ -32,11 +28,11 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                         NOMBRE_NECESIDAD = x.NOMBRE_NECESIDAD
                     }).ToList();
                 }
-                LOG_CENTRALIZADO.FINALIZANDO_LOG("REPREQ1", "CONSULTAR_TIPOS_NECESIDAD");
+                logCentralizado.FINALIZANDO_LOG("REPREQ1", "CONSULTAR_TIPOS_NECESIDAD");
             }
             catch (Exception ex)
             {
-                LOG_CENTRALIZADO.CAPTURA_EXCEPCION("REPREQ1", "CONSULTAR_TIPOS_NECESIDAD", ex);
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ1", "CONSULTAR_TIPOS_NECESIDAD", ex);
                 throw ex;
             }
 
@@ -48,7 +44,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             List<ESTADOViewModel> lst = null;
             try
             {
-                LOG_CENTRALIZADO.INICIANDO_LOG("REPREQ2", "CONSULTAR_ESTADOS");
+                logCentralizado.INICIANDO_LOG("REPREQ2", "CONSULTAR_ESTADOS");
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
                     ObjectResult<CONSULTAR_ESTADOS_Result> consulta = db.CONSULTAR_ESTADOS();
@@ -58,11 +54,11 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                         NOMBRE_ESTADO = x.NOMBRE_ESTADO
                     }).ToList();
                 }
-                LOG_CENTRALIZADO.FINALIZANDO_LOG("REPREQ2", "CONSULTAR_ESTADOS");
+                logCentralizado.FINALIZANDO_LOG("REPREQ2", "CONSULTAR_ESTADOS");
             }
             catch (Exception ex)
             {
-                LOG_CENTRALIZADO.CAPTURA_EXCEPCION("REPREQ2", "CONSULTAR_ESTADOS", ex);
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ2", "CONSULTAR_ESTADOS", ex);
 
                 throw ex;
             }
@@ -75,7 +71,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             List<TIPOViewModel> lst = null;
             try
             {
-                LOG_CENTRALIZADO.INICIANDO_LOG("REPREQ3", "CONSULTAR_TIPOS_REQUISICION");
+                logCentralizado.INICIANDO_LOG("REPREQ3", "CONSULTAR_TIPOS_REQUISICION");
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
                     ObjectResult<CONSULTAR_TIPOS_REQUISICION_Result> consulta = db.CONSULTAR_TIPOS_REQUISICION();
@@ -85,11 +81,11 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                         NOMBRE_REQUISICION = x.NOMBRE_REQUISICION
                     }).ToList();
                 }
-                LOG_CENTRALIZADO.FINALIZANDO_LOG("REPREQ3", "CONSULTAR_TIPOS_REQUISICION");
+                logCentralizado.FINALIZANDO_LOG("REPREQ3", "CONSULTAR_TIPOS_REQUISICION");
             }
             catch (Exception ex)
             {
-                LOG_CENTRALIZADO.CAPTURA_EXCEPCION("REPREQ3", "CONSULTAR_TIPOS_REQUISICION", ex);
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ3", "CONSULTAR_TIPOS_REQUISICION", ex);
                 throw ex;
             }
             return lst;
@@ -102,7 +98,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             {
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
-                    LOG_CENTRALIZADO.INICIANDO_LOG("REPREQ4", "CONSULTAR_REQUISICION_X_FILTRO");
+                    logCentralizado.INICIANDO_LOG("REPREQ4", "CONSULTAR_REQUISICION_X_FILTRO");
                     ObjectResult<CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result> resultadoSP =
                         db.CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION(_filtro.idUsuario, _filtro.porUsuario, _filtro.cod_estado_requisicion);
                     retorno = resultadoSP.ToList().Select(x => new REQUISICIONViewModel()
@@ -124,12 +120,12 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                         ES_MODIFICACION = x.ES_MODIFICACION ?? false
                     }).ToList();
 
-                    LOG_CENTRALIZADO.FINALIZANDO_LOG("REPREQ4", "CONSULTAR_REQUISICION_X_FILTRO");
+                    logCentralizado.FINALIZANDO_LOG("REPREQ4", "CONSULTAR_REQUISICION_X_FILTRO");
                 }
             }
             catch (Exception ex)
             {
-                LOG_CENTRALIZADO.CAPTURA_EXCEPCION("REPREQ4", "CONSULTAR_REQUISICION_X_FILTRO", ex);
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ4", "CONSULTAR_REQUISICION_X_FILTRO", ex);
                 throw ex;
             }
             return retorno;
@@ -139,7 +135,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
         {
             try
             {
-                LOG_CENTRALIZADO.INICIANDO_LOG("REPREQ5", "ACTUALIZAR_REQUISICION");
+                logCentralizado.INICIANDO_LOG("REPREQ5", "ACTUALIZAR_REQUISICION");
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
                     db.ACTUALIZAR_REQUISICION(
@@ -219,12 +215,12 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     _modelRequisicion.POSICIONAMIENTO
                     );
                 }
-                LOG_CENTRALIZADO.FINALIZANDO_LOG("REPREQ5", "ACTUALIZAR_REQUISICION");
+                logCentralizado.FINALIZANDO_LOG("REPREQ5", "ACTUALIZAR_REQUISICION");
                 return true;
             }
             catch (Exception ex)
             {
-                LOG_CENTRALIZADO.CAPTURA_EXCEPCION("REPREQ5", "ACTUALIZAR_REQUISICION", ex);
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ5", "ACTUALIZAR_REQUISICION", ex);
                 return false;
             }
         }
@@ -234,7 +230,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             REQUISICIONViewModel requicisionModel = new REQUISICIONViewModel();
             try
             {
-                LOG_CENTRALIZADO.INICIANDO_LOG("REPREQ6", "CONSULTAR_REQUISICION_X_ID");
+                logCentralizado.INICIANDO_LOG("REPREQ6", "CONSULTAR_REQUISICION_X_ID");
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
                     CONSULTAR_REQUISICIONXID_Result respuesta = db.CONSULTAR_REQUISICIONXID(_idRequisicion).First();
@@ -320,11 +316,11 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     requicisionModel.DIA_LABORAL_HASTA = respuesta.DIA_LABORAL_HASTA;
 
                 }
-                LOG_CENTRALIZADO.FINALIZANDO_LOG("REPREQ6", "CONSULTAR_REQUISICION_X_ID");
+                logCentralizado.FINALIZANDO_LOG("REPREQ6", "CONSULTAR_REQUISICION_X_ID");
             }
             catch (Exception ex)
             {
-                LOG_CENTRALIZADO.CAPTURA_EXCEPCION("REPREQ6", "CONSULTAR_REQUISICION_X_ID", ex);
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ6", "CONSULTAR_REQUISICION_X_ID", ex);
                 throw ex;
             }
             return requicisionModel;
@@ -335,7 +331,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             int resultado = 0;
             try
             {
-                LOG_CENTRALIZADO.INICIANDO_LOG("REPREQ7", "INSERTAR_REQUISICION");
+                logCentralizado.INICIANDO_LOG("REPREQ7", "INSERTAR_REQUISICION");
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
 
@@ -404,11 +400,11 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                        _modelRequisicion.ES_MODIFICACION
                    ).FirstOrDefault().Value;
                 }
-                LOG_CENTRALIZADO.FINALIZANDO_LOG("REPREQ7", "INSERTAR_REQUISICION");
+                logCentralizado.FINALIZANDO_LOG("REPREQ7", "INSERTAR_REQUISICION");
             }
             catch (Exception ex)
             {
-                LOG_CENTRALIZADO.CAPTURA_EXCEPCION("REPREQ7", "INSERTAR_REQUISICION", ex);
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ7", "INSERTAR_REQUISICION", ex);
                 throw ex;
             }
             return resultado;
@@ -419,7 +415,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             int idRequisicionAprobada = 0;
             try
             {
-                LOG_CENTRALIZADO.INICIANDO_LOG("REPREQ8", "APROBAR_REQUISICION");
+                logCentralizado.INICIANDO_LOG("REPREQ8", "APROBAR_REQUISICION");
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
                     idRequisicionAprobada = db.APROBAR_REQUISICION(
@@ -428,11 +424,11 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                           _observacion
                           ).First().Value;
                 }
-                LOG_CENTRALIZADO.FINALIZANDO_LOG("REPREQ8", "APROBAR_REQUISICION");
+                logCentralizado.FINALIZANDO_LOG("REPREQ8", "APROBAR_REQUISICION");
             }
             catch (Exception ex)
             {
-                LOG_CENTRALIZADO.CAPTURA_EXCEPCION("REPREQ8", "APROBAR_REQUISICION", ex);
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ8", "APROBAR_REQUISICION", ex);
                 throw ex;
             }
             return idRequisicionAprobada;
@@ -445,7 +441,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             int idRequisicionModificada = 0;
             try
             {
-                LOG_CENTRALIZADO.INICIANDO_LOG("REPREQ9", "MODIFICAR_REQUISICION");
+                logCentralizado.INICIANDO_LOG("REPREQ9", "MODIFICAR_REQUISICION");
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
                     idRequisicionModificada = db.MODIFICACIONES(
@@ -454,11 +450,11 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                            _codUsuario).First().Value;
                 }
 
-                LOG_CENTRALIZADO.FINALIZANDO_LOG("REPREQ9", "MODIFICAR_REQUISICION");
+                logCentralizado.FINALIZANDO_LOG("REPREQ9", "MODIFICAR_REQUISICION");
             }
             catch (Exception ex)
             {
-                LOG_CENTRALIZADO.CAPTURA_EXCEPCION("REPREQ9", "MODIFICAR_REQUISICION", ex);
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ9", "MODIFICAR_REQUISICION", ex);
                 throw ex;
             }
             return idRequisicionModificada;
@@ -469,7 +465,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             int idRequisicionRechazada = 0;
             try
             {
-                LOG_CENTRALIZADO.INICIANDO_LOG("REPREQ10", "RECHAZAR_REQUISICION");
+                logCentralizado.INICIANDO_LOG("REPREQ10", "RECHAZAR_REQUISICION");
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
                     idRequisicionRechazada = db.RECHAZAR_REQUISICION(
@@ -479,11 +475,11 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                            ).First().Value;
                 }
 
-                LOG_CENTRALIZADO.FINALIZANDO_LOG("REPREQ10", "RECHAZAR_REQUISICION");
+                logCentralizado.FINALIZANDO_LOG("REPREQ10", "RECHAZAR_REQUISICION");
             }
             catch (Exception ex)
             {
-                LOG_CENTRALIZADO.CAPTURA_EXCEPCION("REPREQ10", "RECHAZAR_REQUISICION", ex);
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ10", "RECHAZAR_REQUISICION", ex);
                 throw ex;
             }
             return idRequisicionRechazada;
@@ -495,7 +491,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             List<TRAZA_BOTONES_ENTIDAD> retorno = null;
             try
             {
-                LOG_CENTRALIZADO.INICIANDO_LOG("REPREQ11", "CONSULTAR_TRAZA_CAMPOS");
+                logCentralizado.INICIANDO_LOG("REPREQ11", "CONSULTAR_TRAZA_CAMPOS");
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
                     ObjectResult<TRAZA_BOTONES_Result> RHISTORICO = db.TRAZA_BOTONES(_codRequisicion, _campoRequisicion);
@@ -542,11 +538,11 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                         NOMBRE_TIPO_SALARIO = x.NOMBRE_TIPO_SALARIO
                     }).ToList();
                 }
-                LOG_CENTRALIZADO.FINALIZANDO_LOG("REPREQ11", "CONSULTAR_TRAZA_CAMPOS");
+                logCentralizado.FINALIZANDO_LOG("REPREQ11", "CONSULTAR_TRAZA_CAMPOS");
             }
             catch (Exception ex)
             {
-                LOG_CENTRALIZADO.CAPTURA_EXCEPCION("REPREQ11", "CONSULTAR_TRAZA_CAMPOS", ex);
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ11", "CONSULTAR_TRAZA_CAMPOS", ex);
                 throw ex;
             }
 
@@ -558,7 +554,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             List<CONSULTA_NOTIFICACIONES_ENTIDAD> _ENTIDAD_RETONO = null;
             try
             {
-                LOG_CENTRALIZADO.INICIANDO_LOG("REPREQ12", "CONSULTAR_NOTIFICACIONES");
+                logCentralizado.INICIANDO_LOG("REPREQ12", "CONSULTAR_NOTIFICACIONES");
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
                     ObjectResult<CONSULTA_NOTIFICACIONES_Result> _NOTIFICACIONES = db.CONSULTA_NOTIFICACIONES(_codUsuario);
@@ -572,11 +568,11 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     }).ToList();
                 }
 
-                LOG_CENTRALIZADO.FINALIZANDO_LOG("REPREQ12", "CONSULTAR_NOTIFICACIONES");
+                logCentralizado.FINALIZANDO_LOG("REPREQ12", "CONSULTAR_NOTIFICACIONES");
             }
             catch (Exception ex)
             {
-                LOG_CENTRALIZADO.CAPTURA_EXCEPCION("REPREQ12", "CONSULTAR_NOTIFICACIONES", ex);
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ12", "CONSULTAR_NOTIFICACIONES", ex);
                 throw ex;
             }
             return _ENTIDAD_RETONO;
