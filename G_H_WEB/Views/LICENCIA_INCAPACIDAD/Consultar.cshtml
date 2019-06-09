@@ -1,6 +1,7 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 @using MODELO_DATOS.MODELO_REQUISICION;
-@using UTILS.Settings
+@using UTILS.Settings;
+@using G_H_WEB.Models;
 @{
     if (ViewBag.RequisicionNombre != null)
     {
@@ -156,6 +157,12 @@
             </div>
         </div>
     </div>
+    @if (ViewBag.Error != null)
+    {
+        <div>
+            @Html.Partial("_Error", (ERROR_GENERAL_ViewModel)ViewBag.Error);
+        </div>
+    }
     <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content Content-Popup-Creacion">
@@ -260,8 +267,8 @@
         $(".__metodoModificar").css("display", "none");
         $(".__metodoRechazar").css("display", "none");
         $(".__metodoEnviar").css("display", "none");
-
-
+        debugger;
+        VALIDACION_TRAZA();
 
         var resultado = "@ViewBag.resultadoInsertExitosoOno";
 
@@ -297,6 +304,23 @@
 
 
     });
+
+    function VALIDACION_TRAZA() {
+        var jsonObj = @Html.Raw(Json.Encode(ViewBag.traza));
+        if (jsonObj) {
+            debugger;
+            for (i = 0; i < jsonObj.length; i++) {
+                if (jsonObj[i].TRAZA == "true") {
+                    var campo = "#" + jsonObj[i].CAMPOS + "_S";
+                    if ($(campo).length) {
+                        debugger;
+                        $(campo).removeAttr("style");
+                        var traza = jsonObj[i].TRAZA;
+                    }
+                }
+            }
+        }
+    }
 
     function CONSULTA_PUESTO_POR_CEDULA(DOCUMENTO_NUMERO) {
             $('body').loading({

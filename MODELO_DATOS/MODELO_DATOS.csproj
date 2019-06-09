@@ -105,6 +105,7 @@
     <Compile Include="MODELO_REQUISICION\TIPOViewModel.cs" />
     <Compile Include="MODELO_REQUISICION\TIPO_NECESIDADViewModel.cs" />
     <Compile Include="MODELO_REQUISICION\TRAZA_BOTONES_ENTIDAD.cs" />
+    <Compile Include="MODELO_REQUISICION\TRAZA_BOTONES_VISIBLES.cs" />
     <Compile Include="MODIFICACIONES.cs" />
     <Compile Include="PLANTILLAS_CORREOS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

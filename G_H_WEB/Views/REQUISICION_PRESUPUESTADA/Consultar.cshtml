@@ -1,41 +1,43 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 @using MODELO_DATOS.MODELO_REQUISICION;
-@using UTILS.Settings
+@using UTILS.Settings;
+@using G_H_WEB.Models;
 @{
     ViewBag.Title = "Crear Requisición Presupuestada";
     Layout = "~/Views/Shared/_Layout.cshtml";
     RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
+    ERROR_GENERAL_ViewModel error = @ViewBag.Error ?? new ERROR_GENERAL_ViewModel();
 }
 <div class="col">
     <div class="TituloRequisiciones">@ViewBag.Title</div>
 
- 
+
     <div id="SeccionRequisicionParciales" class="col">
 
         <div class="row" style="margin: 20px;">
             <div class="col-md-3 col-lg-3 col-xl-3">
-                    <div class="col-12 rectangle_Pop_UP ImagenActiva">
-                        <img src="../../assets/img/imgPresupuestada.png" class="img-responsive maxImagen" />
-                        <div class="presupuestada">Presupuestada</div>
-                    </div>
+                <div class="col-12 rectangle_Pop_UP ImagenActiva">
+                    <img src="../../assets/img/imgPresupuestada.png" class="img-responsive maxImagen" />
+                    <div class="presupuestada">Presupuestada</div>
+                </div>
             </div>
             <div class="col-md-3 col-lg-3 col-xl-3">
-                    <div class="col-12 rectangle_Pop_UP">
-                        <img src="../../assets/img/imgNoPresupuestada.png" class="img-responsive maxImagen" />
-                        <div class="no-presupuestada">No presupuestada</div>
-                    </div>
+                <div class="col-12 rectangle_Pop_UP">
+                    <img src="../../assets/img/imgNoPresupuestada.png" class="img-responsive maxImagen" />
+                    <div class="no-presupuestada">No presupuestada</div>
+                </div>
             </div>
             <div class="col-md-3 col-lg-3 col-xl-3">
-                    <div class="col-12 rectangle_Pop_UP">
-                        <img src="../../assets/img/imgIncapacidad.png" class="img-responsive maxImagen" />
-                        <div class="incapacidad">Incapacidad</div>
-                    </div>
+                <div class="col-12 rectangle_Pop_UP">
+                    <img src="../../assets/img/imgIncapacidad.png" class="img-responsive maxImagen" />
+                    <div class="incapacidad">Incapacidad</div>
+                </div>
             </div>
             <div class="col-md-3 col-lg-3 col-xl-3">
-                    <div class="col-12 rectangle_Pop_UP">
-                        <img src="../../assets/img/imgLicencia.png" class="img-responsive maxImagen" />
-                        <div class="licencia">Licencia</div>
-                    </div>
+                <div class="col-12 rectangle_Pop_UP">
+                    <img src="../../assets/img/imgLicencia.png" class="img-responsive maxImagen" />
+                    <div class="licencia">Licencia</div>
+                </div>
             </div>
         </div>
 
@@ -117,7 +119,6 @@
             </div>
         </div>
     </div>
-
     <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content Content-Popup-Creacion">
@@ -205,6 +206,13 @@
     </div>
 
 </div>
+<div>
+    @if (!string.IsNullOrEmpty(error.COD_ERROR))
+    {
+        @Html.Partial("_Error", error);
+    }
+</div>
+
 @*<script src="~/Scripts/REQUISICIONES_PRESUPUESTADAS.js"></script>*@
 <script type="text/javascript">
 
@@ -220,8 +228,8 @@
         $(".__metodoModificar").css("display", "none");
         $(".__metodoRechazar").css("display", "none");
         $(".__metodoEnviar").css("display", "none");
-
-
+        debugger;
+        VALIDACION_TRAZA();
 
         var resultado = "@ViewBag.resultadoInsertExitosoOno";
 
@@ -257,10 +265,26 @@
 
         $(document).on('submit', 'form', function () {
             $(this).attr("disabled", true);
-          
+
         })
     });
 
+    function VALIDACION_TRAZA() {
+        var jsonObj = @Html.Raw(Json.Encode(ViewBag.traza));
+        if (jsonObj) {
+            debugger;
+            for (i = 0; i < jsonObj.length; i++) {
+                if (jsonObj[i].TRAZA == "true") {
+                    var campo = "#" + jsonObj[i].CAMPOS + "_S";
+                    if ($(campo).length) {
+                        debugger;
+                        $(campo).removeAttr("style");
+                        var traza = jsonObj[i].TRAZA;
+                    }
+                }
+            }
+        }
+    }
 
     function CREAR_REQUISICION() {
          var CargoText = "@paraModel.NOMBRE_COD_CARGO";
@@ -328,7 +352,7 @@
                 data: { COD_REQUISICION: COD_REQUISICION, CAMPO_REQUISICION: CAMPO_REQUISICION},
                 success: function (respuesta) {
                     $.each(respuesta, function (key, value) {
-                        $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION +"</td > </tr > ");  
+                        $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION +"</td > </tr > ");
                     });
                     debugger;
                     $('body').loading('stop');

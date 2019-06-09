@@ -34,7 +34,7 @@ namespace REPOSITORIOS.TRAZA_LOG
             {
                 if (VALIDA_LOG)
                 {
-                    string INFO = ("Iniciando Método DEPURAR_TRAZA por COD_RETIRO  " + CODIGO_ERROR);
+                    string INFO = ("Iniciando Método DEPURAR_TRAZA por CODIGO_ERROR " + CODIGO_ERROR);
                     log.Info("CODIGO : DPTR1," + INFO);
                     _DEPURAR.COD_ERROR = 1;//SI
                     _DEPURAR.CODIGO_ERROR = CODIGO_ERROR;//SI

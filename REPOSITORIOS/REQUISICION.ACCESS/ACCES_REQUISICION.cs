@@ -1,96 +1,141 @@
-﻿using MODELO_DATOS.MODELO_REQUISICION;
+﻿using log4net;
+using MODELO_DATOS.MODELO_REQUISICION;
 using REPOSITORIOS.REQUISICION_ENTITY;
+using REPOSITORIOS.TRAZA_LOG;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UTILS;
 
 namespace REPOSITORIOS.REQUISICION.ACCESS
 {
     public class ACCES_REQUISICION
     {
+        private LOG_CENTRALIZADO logCentralizado = new LOG_CENTRALIZADO(LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType));
+
         public List<TIPO_NECESIDADViewModel> CONSULTAR_TIPOS_NECESIDAD()
         {
             List<TIPO_NECESIDADViewModel> lst = null;
-            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            try
             {
-                ObjectResult<CONSULTAR_TIPOS_NECESIDAD_Result> consulta = db.CONSULTAR_TIPOS_NECESIDAD();
-                lst = consulta.Select(x => new TIPO_NECESIDADViewModel()
+                logCentralizado.INICIANDO_LOG("REPREQ1", "CONSULTAR_TIPOS_NECESIDAD");
+                using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
-                    COD_TIPO_NECESIDAD = x.COD_TIPO_NECESIDAD,
-                    NOMBRE_NECESIDAD = x.NOMBRE_NECESIDAD
-                }).ToList();
+                    ObjectResult<CONSULTAR_TIPOS_NECESIDAD_Result> consulta = db.CONSULTAR_TIPOS_NECESIDAD();
+                    lst = consulta.Select(x => new TIPO_NECESIDADViewModel()
+                    {
+                        COD_TIPO_NECESIDAD = x.COD_TIPO_NECESIDAD,
+                        NOMBRE_NECESIDAD = x.NOMBRE_NECESIDAD
+                    }).ToList();
+                }
+                logCentralizado.FINALIZANDO_LOG("REPREQ1", "CONSULTAR_TIPOS_NECESIDAD");
             }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ1", "CONSULTAR_TIPOS_NECESIDAD", ex);
+                throw ex;
+            }
+
             return lst;
         }
 
         public List<ESTADOViewModel> CONSULTAR_ESTADOS()
         {
             List<ESTADOViewModel> lst = null;
-            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            try
             {
-                ObjectResult<CONSULTAR_ESTADOS_Result> consulta = db.CONSULTAR_ESTADOS();
-                lst = consulta.Select(x => new ESTADOViewModel()
+                logCentralizado.INICIANDO_LOG("REPREQ2", "CONSULTAR_ESTADOS");
+                using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
-                    COD_ESTADO_REQUISICION = x.COD_ESTADO_REQUISICION,
-                    NOMBRE_ESTADO = x.NOMBRE_ESTADO
-                }).ToList();
+                    ObjectResult<CONSULTAR_ESTADOS_Result> consulta = db.CONSULTAR_ESTADOS();
+                    lst = consulta.Select(x => new ESTADOViewModel()
+                    {
+                        COD_ESTADO_REQUISICION = x.COD_ESTADO_REQUISICION,
+                        NOMBRE_ESTADO = x.NOMBRE_ESTADO
+                    }).ToList();
+                }
+                logCentralizado.FINALIZANDO_LOG("REPREQ2", "CONSULTAR_ESTADOS");
             }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ2", "CONSULTAR_ESTADOS", ex);
+
+                throw ex;
+            }
+
             return lst;
         }
 
         public List<TIPOViewModel> CONSULTAR_TIPOS_REQUISICION()
         {
             List<TIPOViewModel> lst = null;
-            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            try
             {
-                ObjectResult<CONSULTAR_TIPOS_REQUISICION_Result> consulta = db.CONSULTAR_TIPOS_REQUISICION();
-                lst = consulta.Select(x => new TIPOViewModel()
+                logCentralizado.INICIANDO_LOG("REPREQ3", "CONSULTAR_TIPOS_REQUISICION");
+                using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
-                    COD_TIPO_REQUISICION = x.COD_TIPO_REQUISICION,
-                    NOMBRE_REQUISICION = x.NOMBRE_REQUISICION
-                }).ToList();
+                    ObjectResult<CONSULTAR_TIPOS_REQUISICION_Result> consulta = db.CONSULTAR_TIPOS_REQUISICION();
+                    lst = consulta.Select(x => new TIPOViewModel()
+                    {
+                        COD_TIPO_REQUISICION = x.COD_TIPO_REQUISICION,
+                        NOMBRE_REQUISICION = x.NOMBRE_REQUISICION
+                    }).ToList();
+                }
+                logCentralizado.FINALIZANDO_LOG("REPREQ3", "CONSULTAR_TIPOS_REQUISICION");
             }
-
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ3", "CONSULTAR_TIPOS_REQUISICION", ex);
+                throw ex;
+            }
             return lst;
         }
 
         public List<REQUISICIONViewModel> CONSULTAR_REQUISICION_X_FILTRO(FILTROREQUISICION _filtro)
         {
-            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            List<REQUISICIONViewModel> retorno = null;
+            try
             {
-                ObjectResult<CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result> resultadoSP =
-                    db.CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION(_filtro.idUsuario, _filtro.porUsuario, _filtro.cod_estado_requisicion);
-                List<REQUISICIONViewModel> retorno = resultadoSP.ToList().Select(x => new REQUISICIONViewModel()
+                using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
-                    NOMBRES_USUARIO = x.Nombres,
-                    COD_REQUISICION = x.COD_REQUISICION,
-                    COD_ESTADO_REQUISICION = x.COD_ESTADO_REQUISICION ?? 0,
-                    USUARIO_CREACION = x.USUARIO_CREACION,
-                    EMAIL_USUARIO_CREACION = x.EMAIL_USUARIO_CREACION,
-                    COD_CARGO = x.COD_CARGO ?? 0,
-                    NOMBRE_CARGO = x.NOMBRE_CARGO,
-                    COD_TIPO_REQUISICION = x.COD_TIPO_REQUISICION ?? 0,
-                    NOMBRE_TIPO_REQUISICION = x.NOMBRE_REQUISICION,
-                    FECHA_CREACION = x.FECHA_CREACION.Value.ToShortDateString(),
-                    NOMBRE_ESTADO_REQUISICION = x.NOMBRE_ESTADO,
-                    NUMERO_DOCUMENTO_EMPLEADO = x.NUMERO_DOCUMENTO_EMPLEADO,
-                    NOMBRE_EMPLEADO = x.NOMBRE_EMPLEADO,
-                    COLORES_ESTADOS = x.Color,
-                    ES_MODIFICACION = x.ES_MODIFICACION ?? false
-                }).ToList();
-                return retorno;
+                    logCentralizado.INICIANDO_LOG("REPREQ4", "CONSULTAR_REQUISICION_X_FILTRO");
+                    ObjectResult<CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result> resultadoSP =
+                        db.CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION(_filtro.idUsuario, _filtro.porUsuario, _filtro.cod_estado_requisicion);
+                    retorno = resultadoSP.ToList().Select(x => new REQUISICIONViewModel()
+                    {
+                        NOMBRES_USUARIO = x.Nombres,
+                        COD_REQUISICION = x.COD_REQUISICION,
+                        COD_ESTADO_REQUISICION = x.COD_ESTADO_REQUISICION ?? 0,
+                        USUARIO_CREACION = x.USUARIO_CREACION,
+                        EMAIL_USUARIO_CREACION = x.EMAIL_USUARIO_CREACION,
+                        COD_CARGO = x.COD_CARGO ?? 0,
+                        NOMBRE_CARGO = x.NOMBRE_CARGO,
+                        COD_TIPO_REQUISICION = x.COD_TIPO_REQUISICION ?? 0,
+                        NOMBRE_TIPO_REQUISICION = x.NOMBRE_REQUISICION,
+                        FECHA_CREACION = x.FECHA_CREACION.Value.ToShortDateString(),
+                        NOMBRE_ESTADO_REQUISICION = x.NOMBRE_ESTADO,
+                        NUMERO_DOCUMENTO_EMPLEADO = x.NUMERO_DOCUMENTO_EMPLEADO,
+                        NOMBRE_EMPLEADO = x.NOMBRE_EMPLEADO,
+                        COLORES_ESTADOS = x.Color,
+                        ES_MODIFICACION = x.ES_MODIFICACION ?? false
+                    }).ToList();
+
+                    logCentralizado.FINALIZANDO_LOG("REPREQ4", "CONSULTAR_REQUISICION_X_FILTRO");
+                }
             }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ4", "CONSULTAR_REQUISICION_X_FILTRO", ex);
+                throw ex;
+            }
+            return retorno;
         }
 
         public Boolean ACTUALIZAR_REQUISICION(REQUISICIONViewModel _modelRequisicion)
         {
             try
             {
+                logCentralizado.INICIANDO_LOG("REPREQ5", "ACTUALIZAR_REQUISICION");
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
                     db.ACTUALIZAR_REQUISICION(
@@ -170,14 +215,14 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     _modelRequisicion.POSICIONAMIENTO
                     );
                 }
+                logCentralizado.FINALIZANDO_LOG("REPREQ5", "ACTUALIZAR_REQUISICION");
                 return true;
             }
             catch (Exception ex)
             {
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ5", "ACTUALIZAR_REQUISICION", ex);
                 return false;
             }
-
-
         }
 
         public REQUISICIONViewModel CONSULTAR_REQUISICION_X_ID(int _idRequisicion)
@@ -185,6 +230,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             REQUISICIONViewModel requicisionModel = new REQUISICIONViewModel();
             try
             {
+                logCentralizado.INICIANDO_LOG("REPREQ6", "CONSULTAR_REQUISICION_X_ID");
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
                     CONSULTAR_REQUISICIONXID_Result respuesta = db.CONSULTAR_REQUISICIONXID(_idRequisicion).First();
@@ -270,9 +316,11 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     requicisionModel.DIA_LABORAL_HASTA = respuesta.DIA_LABORAL_HASTA;
 
                 }
+                logCentralizado.FINALIZANDO_LOG("REPREQ6", "CONSULTAR_REQUISICION_X_ID");
             }
             catch (Exception ex)
             {
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ6", "CONSULTAR_REQUISICION_X_ID", ex);
                 throw ex;
             }
             return requicisionModel;
@@ -280,12 +328,14 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
 
         public int INSERTAR_REQUISICION(REQUISICIONViewModel _modelRequisicion)
         {
+            int resultado = 0;
             try
             {
+                logCentralizado.INICIANDO_LOG("REPREQ7", "INSERTAR_REQUISICION");
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
 
-                    return db.INSERTAR_REQUISICION(
+                    resultado = db.INSERTAR_REQUISICION(
                          _modelRequisicion.COD_TIPO_NECESIDAD,
                          _modelRequisicion.COD_TIPO_REQUISICION,
                          _modelRequisicion.COD_CARGO,
@@ -350,118 +400,211 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                        _modelRequisicion.ES_MODIFICACION
                    ).FirstOrDefault().Value;
                 }
-
+                logCentralizado.FINALIZANDO_LOG("REPREQ7", "INSERTAR_REQUISICION");
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                var error = ex;
-                return 0;
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ7", "INSERTAR_REQUISICION", ex);
+                throw ex;
             }
-
+            return resultado;
         }
 
         public int APROBAR_REQUISICION(int _codRequisicion, string _codUsuario, string _observacion)
         {
-            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            int idRequisicionAprobada = 0;
+            try
             {
-                return db.APROBAR_REQUISICION(
-                     _codRequisicion,
-                       _codUsuario,
-                      _observacion
-                      ).First().Value;
+                logCentralizado.INICIANDO_LOG("REPREQ8", "APROBAR_REQUISICION");
+                using (var db = new GESTION_HUMANA_HITSSEntities2())
+                {
+                    idRequisicionAprobada = db.APROBAR_REQUISICION(
+                         _codRequisicion,
+                           _codUsuario,
+                          _observacion
+                          ).First().Value;
+                }
+                logCentralizado.FINALIZANDO_LOG("REPREQ8", "APROBAR_REQUISICION");
             }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ8", "APROBAR_REQUISICION", ex);
+                throw ex;
+            }
+            return idRequisicionAprobada;
+
+
         }
 
         public int MODIFICAR_REQUISICION(int _codRequisicion, string _observacion, string _codUsuario)
         {
-            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            int idRequisicionModificada = 0;
+            try
             {
-                return db.MODIFICACIONES(
-                    _codRequisicion,
-                    _observacion,
-                       _codUsuario).First().Value;
+                logCentralizado.INICIANDO_LOG("REPREQ9", "MODIFICAR_REQUISICION");
+                using (var db = new GESTION_HUMANA_HITSSEntities2())
+                {
+                    idRequisicionModificada = db.MODIFICACIONES(
+                        _codRequisicion,
+                        _observacion,
+                           _codUsuario).First().Value;
+                }
+
+                logCentralizado.FINALIZANDO_LOG("REPREQ9", "MODIFICAR_REQUISICION");
             }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ9", "MODIFICAR_REQUISICION", ex);
+                throw ex;
+            }
+            return idRequisicionModificada;
         }
 
         public int RECHAZAR_REQUISICION(int _codRequisicion, string _observacion, string _usuario)
         {
-            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            int idRequisicionRechazada = 0;
+            try
             {
-                return db.RECHAZAR_REQUISICION(
-                    _codRequisicion,
-                    _usuario,
-                    _observacion
-                       ).First().Value;
+                logCentralizado.INICIANDO_LOG("REPREQ10", "RECHAZAR_REQUISICION");
+                using (var db = new GESTION_HUMANA_HITSSEntities2())
+                {
+                    idRequisicionRechazada = db.RECHAZAR_REQUISICION(
+                        _codRequisicion,
+                        _usuario,
+                        _observacion
+                           ).First().Value;
+                }
+
+                logCentralizado.FINALIZANDO_LOG("REPREQ10", "RECHAZAR_REQUISICION");
             }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ10", "RECHAZAR_REQUISICION", ex);
+                throw ex;
+            }
+            return idRequisicionRechazada;
+
         }
 
         public List<TRAZA_BOTONES_ENTIDAD> CONSULTAR_TRAZA_CAMPOS(int _codRequisicion, string _campoRequisicion)
         {
-            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            List<TRAZA_BOTONES_ENTIDAD> retorno = null;
+            try
             {
-                ObjectResult<TRAZA_BOTONES_Result> RHISTORICO = db.TRAZA_BOTONES(_codRequisicion, _campoRequisicion);
-                List<TRAZA_BOTONES_ENTIDAD> retorno = RHISTORICO.Select(x => new TRAZA_BOTONES_ENTIDAD()
+                logCentralizado.INICIANDO_LOG("REPREQ11", "CONSULTAR_TRAZA_CAMPOS");
+                using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
-                    COD_REQUISICION = x.COD_REQUISICION,
-                    COD_ROL = x.COD_ROL,
-                    COD_NIVEL_RIESGO_ARL = x.COD_NIVEL_RIESGO_ARL,
-                    NOMBRE_CATEGORIA_ED = x.NOMBRE_CATEGORIA_ED,
-                    CARGO_CRITICO = x.CARGO_CRITICO,
-                    COD_JORNADA_LABORAL = x.COD_JORNADA_LABORAL,
-                    HORARIO_LABORAL_DESDE = x.HORARIO_LABORAL_DESDE,
-                    HORARIO_LABORAL_HASTA = x.HORARIO_LABORAL_HASTA,
-                    COD_DIA_LABORAL_DESDE = x.COD_DIA_LABORAL_DESDE,
-                    COD_DIA_LABORAL_HASTA = x.COD_DIA_LABORAL_HASTA,
-                    SALARIO_FIJO = x.SALARIO_FIJO,
-                    PORCENTAJE_SALARIO_FIJO = x.PORCENTAJE_SALARIO_FIJO,
-                    SALARIO_VARIABLE = x.SALARIO_VARIABLE,
-                    PORCENTAJE_SALARIO_VARIABLE = x.PORCENTAJE_SALARIO_VARIABLE,
-                    SOBREREMUNERACION = x.SOBREREMUNERACION,
-                    PORCENTAJE_SOBREREMUNERACION = x.PORCENTAJE_SOBREREMUNERACION,
-                    EXTRA_FIJA = x.EXTRA_FIJA,
-                    RECARGO_NOCTURNO = x.RECARGO_NOCTURNO,
-                    MEDIO_TRANSPORTE = x.MEDIO_TRANSPORTE,
-                    SALARIO_TOTAL = x.SALARIO_TOTAL,
-                    BONO_ANUAL = x.BONO_ANUAL,
-                    NUMERO_SALARIOS = x.NUMERO_SALARIOS,
-                    MESES_GARANTIZADOS = x.MESES_GARANTIZADOS,
-                    COD_TIPO_SALARIO = x.COD_TIPO_SALARIO,
-                    FACTOR_PRESTACIONAL = x.FACTOR_PRESTACIONAL,
-                    INGRESO_PROM_MENSUAL = x.INGRESO_PROM_MENSUAL,
-                    MERCADO = x.MERCADO,
-                    COD_CATEGORIA = x.COD_CATEGORIA,
-                    PUNTO_MEDIO_80 = x.PUNTO_MEDIO_80,
-                    PUNTO_MEDIO_100 = x.PUNTO_MEDIO_100,
-                    PUNTO_MEDIO_120 = x.PUNTO_MEDIO_120,
-                    POSICIONAMIENTO = x.POSICIONAMIENTO,
-                    USUARIO_REGISTRO = x.USUARIO_REGISTRO,
-                    FECHA_REGISTRO = x.FECHA_REGISTRO.ToShortDateString(),
-                    COD_ESTADO = x.COD_ESTADO,
-                    DIA_LABORAL_DESDE = x.DIA_LABORAL_DESDE,
-                    DIA_LABORAL_HASTA = x.DIA_LABORAL_HASTA,
-                    NOMBRE_JORNADA_LABORAL = x.NOMBRE_JORNADA_LABORAL,
-                    NOMBRE_TIPO_SALARIO = x.NOMBRE_TIPO_SALARIO
-                }).ToList();
-                return retorno;
+                    ObjectResult<TRAZA_BOTONES_Result> RHISTORICO = db.TRAZA_BOTONES(_codRequisicion, _campoRequisicion);
+                    retorno = RHISTORICO.Select(x => new TRAZA_BOTONES_ENTIDAD()
+                    {
+                        COD_REQUISICION = x.COD_REQUISICION,
+                        COD_ROL = x.COD_ROL,
+                        COD_NIVEL_RIESGO_ARL = x.COD_NIVEL_RIESGO_ARL,
+                        NOMBRE_CATEGORIA_ED = x.NOMBRE_CATEGORIA_ED,
+                        CARGO_CRITICO = x.CARGO_CRITICO,
+                        COD_JORNADA_LABORAL = x.COD_JORNADA_LABORAL,
+                        HORARIO_LABORAL_DESDE = x.HORARIO_LABORAL_DESDE,
+                        HORARIO_LABORAL_HASTA = x.HORARIO_LABORAL_HASTA,
+                        COD_DIA_LABORAL_DESDE = x.COD_DIA_LABORAL_DESDE,
+                        COD_DIA_LABORAL_HASTA = x.COD_DIA_LABORAL_HASTA,
+                        SALARIO_FIJO = x.SALARIO_FIJO,
+                        PORCENTAJE_SALARIO_FIJO = x.PORCENTAJE_SALARIO_FIJO,
+                        SALARIO_VARIABLE = x.SALARIO_VARIABLE,
+                        PORCENTAJE_SALARIO_VARIABLE = x.PORCENTAJE_SALARIO_VARIABLE,
+                        SOBREREMUNERACION = x.SOBREREMUNERACION,
+                        PORCENTAJE_SOBREREMUNERACION = x.PORCENTAJE_SOBREREMUNERACION,
+                        EXTRA_FIJA = x.EXTRA_FIJA,
+                        RECARGO_NOCTURNO = x.RECARGO_NOCTURNO,
+                        MEDIO_TRANSPORTE = x.MEDIO_TRANSPORTE,
+                        SALARIO_TOTAL = x.SALARIO_TOTAL,
+                        BONO_ANUAL = x.BONO_ANUAL,
+                        NUMERO_SALARIOS = x.NUMERO_SALARIOS,
+                        MESES_GARANTIZADOS = x.MESES_GARANTIZADOS,
+                        COD_TIPO_SALARIO = x.COD_TIPO_SALARIO,
+                        FACTOR_PRESTACIONAL = x.FACTOR_PRESTACIONAL,
+                        INGRESO_PROM_MENSUAL = x.INGRESO_PROM_MENSUAL,
+                        MERCADO = x.MERCADO,
+                        COD_CATEGORIA = x.COD_CATEGORIA,
+                        PUNTO_MEDIO_80 = x.PUNTO_MEDIO_80,
+                        PUNTO_MEDIO_100 = x.PUNTO_MEDIO_100,
+                        PUNTO_MEDIO_120 = x.PUNTO_MEDIO_120,
+                        POSICIONAMIENTO = x.POSICIONAMIENTO,
+                        USUARIO_REGISTRO = x.USUARIO_REGISTRO,
+                        FECHA_REGISTRO = x.FECHA_REGISTRO.ToShortDateString(),
+                        COD_ESTADO = x.COD_ESTADO,
+                        DIA_LABORAL_DESDE = x.DIA_LABORAL_DESDE,
+                        DIA_LABORAL_HASTA = x.DIA_LABORAL_HASTA,
+                        NOMBRE_JORNADA_LABORAL = x.NOMBRE_JORNADA_LABORAL,
+                        NOMBRE_TIPO_SALARIO = x.NOMBRE_TIPO_SALARIO
+                    }).ToList();
+                }
+                logCentralizado.FINALIZANDO_LOG("REPREQ11", "CONSULTAR_TRAZA_CAMPOS");
             }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ11", "CONSULTAR_TRAZA_CAMPOS", ex);
+                throw ex;
+            }
+
+            return retorno;
         }
 
         public List<CONSULTA_NOTIFICACIONES_ENTIDAD> CONSULTAR_NOTIFICACIONES(string _codUsuario)
         {
+            List<CONSULTA_NOTIFICACIONES_ENTIDAD> _ENTIDAD_RETONO = null;
+            try
+            {
+                logCentralizado.INICIANDO_LOG("REPREQ12", "CONSULTAR_NOTIFICACIONES");
+                using (var db = new GESTION_HUMANA_HITSSEntities2())
+                {
+                    ObjectResult<CONSULTA_NOTIFICACIONES_Result> _NOTIFICACIONES = db.CONSULTA_NOTIFICACIONES(_codUsuario);
+                    _ENTIDAD_RETONO = _NOTIFICACIONES.Select(x => new CONSULTA_NOTIFICACIONES_ENTIDAD()
+                    {
+                        NOMBRE_REQUISICION = x.NOMBRE_REQUISICION,
+                        CANTIDAD = x.CANTIDAD.ToString(),
+                        TOTAL = x.TOTAL.ToString(),
+                        ES_MODIFICACION = x.ES_MODIFICACION ?? false
+
+                    }).ToList();
+                }
+
+                logCentralizado.FINALIZANDO_LOG("REPREQ12", "CONSULTAR_NOTIFICACIONES");
+            }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ12", "CONSULTAR_NOTIFICACIONES", ex);
+                throw ex;
+            }
+            return _ENTIDAD_RETONO;
+
+        }
+
+        public List<TRAZA_BOTONES_VISIBLES> CONSULTAR_CAMPOS_TRAZAS_VISIBLES(int _codRequisicion)
+        {
             using (var db = new GESTION_HUMANA_HITSSEntities2())
             {
-                ObjectResult<CONSULTA_NOTIFICACIONES_Result> _NOTIFICACIONES = db.CONSULTA_NOTIFICACIONES(_codUsuario);
-                List<CONSULTA_NOTIFICACIONES_ENTIDAD> _ENTIDAD_RETONO = _NOTIFICACIONES.Select(x => new CONSULTA_NOTIFICACIONES_ENTIDAD()
-                {
-                    NOMBRE_REQUISICION = x.NOMBRE_REQUISICION,
-                    CANTIDAD = x.CANTIDAD.ToString(),
-                    TOTAL = x.TOTAL.ToString(),
-                    ES_MODIFICACION = x.ES_MODIFICACION ?? false
-
+                List<CONSULTAR_CAMPOS_TRAZA_Result> _listaCam = db.CONSULTAR_CAMPOS_TRAZA(_codRequisicion).ToList();
+                List<TRAZA_BOTONES_VISIBLES> _LIST_CAMPOS = _listaCam.Select(x => new TRAZA_BOTONES_VISIBLES()
+                {   
+                    COD_REQUISICION = x.COD_REQUISICION.Value,
+                    CAMPOS = x.NOMBRE_CAMPO,
+                    TRAZA = x.TRAZA
                 }).ToList();
+                
+                return _LIST_CAMPOS;
+            }            
+        }
 
-                return _ENTIDAD_RETONO;
+        public void INSERTAR_CAMPOS_TRAZAS_VISIBLES(List<TRAZA_BOTONES_VISIBLES> _traza)
+        {
+            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            {
+                foreach (var item in _traza)
+                {
+                    db.INSERTAR_TRAZAS(item.COD_REQUISICION, item.CAMPOS, item.TRAZA);
+                }                
             }
         }
+
     }
 }

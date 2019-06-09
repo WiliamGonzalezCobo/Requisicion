@@ -1,6 +1,7 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 @using MODELO_DATOS.MODELO_REQUISICION;
-@using UTILS.Settings
+@using UTILS.Settings;
+@using G_H_WEB.Models;
 @{
     ViewBag.Title = "Crear Requisición No Presupuestada";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -115,6 +116,13 @@
         </div>
     </div>
 
+    @if (ViewBag.Error != null)
+    {
+        <div>
+            @Html.Partial("_Error", (ERROR_GENERAL_ViewModel)ViewBag.Error);
+        </div>
+    }
+
     <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content Content-Popup-Creacion">
@@ -206,55 +214,71 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-    debugger;
-    if ("@User.IsInRole(SettingsManager.PerfilJefe)" == "True") {
-        if (@Model.COD_REQUISICION!= 0) {
-    $("#submitButtonCrear").text("Modificar Requisición");
-}
+        debugger;
+        if ("@User.IsInRole(SettingsManager.PerfilJefe)" == "True") {
+            if (@Model.COD_REQUISICION!= 0) {
+                $("#submitButtonCrear").text("Modificar Requisición");
+            }
         }
-$("._metodoCrear").css("display", "none");
-$(".__metodoAprobar").css("display", "none");
-$(".__metodoModificar").css("display", "none");
-$(".__metodoRechazar").css("display", "none");
-$(".__metodoEnviar").css("display", "none");
+        $("._metodoCrear").css("display", "none");
+        $(".__metodoAprobar").css("display", "none");
+        $(".__metodoModificar").css("display", "none");
+        $(".__metodoRechazar").css("display", "none");
+        $(".__metodoEnviar").css("display", "none");
+
+        VALIDACION_TRAZA();
+
+        var resultado = "@ViewBag.resultadoInsertExitosoOno";
 
 
+        if (resultado == "True") {
+            debugger;
+            var _metodo = "@paraModel.METODO";
+            if (_metodo == "Crear") {
+                CREAR_REQUISICION();
+                $("._metodoDefecto").css("display", "none");
 
-var resultado = "@ViewBag.resultadoInsertExitosoOno";
+            }
+            else if (_metodo == "Aprobar") {
+                APROBAR_REQUISICION();
+                $("._metodoDefecto").css("display", "none");
+            }
+            else if (_metodo == "Modificar") {
+                MODIFICAR_REQUISICION();
+                $("._metodoDefecto").css("display", "none");
+            }
+
+            else if (_metodo == "Rechazar") {
+                RECHAZAR_REQUISICION();
+                $("._metodoDefecto").css("display", "none");
+            }
+            else if (_metodo == "Enviar") {
+                ENVIAR_REQUISICION();
+                $("._metodoDefecto").css("display", "none");
+            }
+
+            $('#ModalCreacionNoJefe').modal("show");
+        }
 
 
-if (resultado == "True") {
-    debugger;
-    var _metodo = "@paraModel.METODO";
-    if (_metodo == "Crear") {
-        CREAR_REQUISICION();
-        $("._metodoDefecto").css("display", "none");
-
-    }
-    else if (_metodo == "Aprobar") {
-        APROBAR_REQUISICION();
-        $("._metodoDefecto").css("display", "none");
-    }
-    else if (_metodo == "Modificar") {
-        MODIFICAR_REQUISICION();
-        $("._metodoDefecto").css("display", "none");
-    }
-
-    else if (_metodo == "Rechazar") {
-        RECHAZAR_REQUISICION();
-        $("._metodoDefecto").css("display", "none");
-    }
-    else if (_metodo == "Enviar") {
-        ENVIAR_REQUISICION();
-        $("._metodoDefecto").css("display", "none");
-    }
-
-    $('#ModalCreacionNoJefe').modal("show");
-}
-
-       
     });
 
+    function VALIDACION_TRAZA() {
+        var jsonObj = @Html.Raw(Json.Encode(ViewBag.traza));
+        if (jsonObj) {
+            debugger;
+            for (i = 0; i < jsonObj.length; i++) {
+                if (jsonObj[i].TRAZA == "true") {
+                    var campo = "#" + jsonObj[i].CAMPOS + "_S";
+                    if ($(campo).length) {
+                        debugger;
+                        $(campo).removeAttr("style");
+                        var traza = jsonObj[i].TRAZA;
+                    }
+                }
+            }
+        }
+    }
 
 function CREAR_REQUISICION() {
     var CargoText = "@paraModel.NOMBRE_COD_CARGO";
