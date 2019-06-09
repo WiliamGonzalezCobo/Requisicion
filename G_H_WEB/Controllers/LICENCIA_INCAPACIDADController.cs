@@ -33,7 +33,15 @@ namespace G_H_WEB.Controllers
             }
             else {
                 return RedirectToAction("Index", "REQUISICION");
+            }           
+
+            if(_idReq != null)
+            {
+                List<TRAZA_BOTONES_VISIBLES> _listaCampos = new LOGICA_REQUISICION().CONSULTAR_CAMPOS_TRAZAS_VISIBLES(_idReq.Value);
+                ViewBag.traza = _listaCampos;
             }
+
+
             REQUISICIONViewModel model = new REQUISICIONViewModel();
             if (_idReq.HasValue){
                 model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value) ?? new REQUISICIONViewModel();
@@ -77,7 +85,7 @@ namespace G_H_WEB.Controllers
                 {
                     return RedirectToAction("Index", "REQUISICION");
                 }
-
+                               
                 int _resultadoIdReguisicion = 0;
                 
                 modelDatos.USUARIO_CREACION = User.Identity.Name;
@@ -99,7 +107,7 @@ namespace G_H_WEB.Controllers
                             npc.METODO = "Crear";
                         else
                             npc.METODO = "Modificar";
-
+                        Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         break;
                     case "Aprobar":
                         if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
@@ -158,6 +166,280 @@ namespace G_H_WEB.Controllers
             }
 
             return Json(string.Empty, JsonRequestBehavior.AllowGet);
+        }
+
+        private void Cambios_campos(REQUISICIONViewModel aGuardar, int _cod_requisicion)
+        {
+            Boolean _cambio = false;
+            TRAZA_BOTONES_VISIBLES traza = new TRAZA_BOTONES_VISIBLES();
+            List<TRAZA_BOTONES_VISIBLES> trazas = new List<TRAZA_BOTONES_VISIBLES>();
+            PUESTO datosCargo = new LOGICA_REQUISICION().BUSCAR_PUESTO_X_CARGO_API(aGuardar.NUMERO_DOCUMENTO_EMPLEADO);            
+            if (datosCargo.NOMBRE_CATEGORIA_EVALUACION_DESEMPENO != aGuardar.NOMBRE_CATEGORIA_ED)
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "NOMBRE_CATEGORIA_EVALUACION_DESEMPENO";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.SALARIO_FIJO != Convert.ToDouble(aGuardar.SALARIO_FIJO))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "SALARIO_FIJO";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.PORCENTAJE_SALARIO_FIJO != Convert.ToDouble(aGuardar.PORCENTAJE_SALARIO_FIJO))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "PORCENTAJE_SALARIO_FIJO";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.SALARIO_VARIABLE != Convert.ToDouble(aGuardar.SALARIO_VARIABLE))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "SALARIO_VARIABLE";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.PORCENTAJE_SALARIO_VARIABLE != Convert.ToDouble(aGuardar.PORCENTAJE_SALARIO_VARIABLE))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "PORCENTAJE_SALARIO_VARIABLE";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.SOBREREMUNERACION != Convert.ToDouble(aGuardar.SOBREREMUNERACION))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "SOBREREMUNERACION";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.EXTRA_FIJA != Convert.ToDouble(aGuardar.EXTRA_FIJA))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "EXTRA_FIJA";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.RECARGO_NOCTURNO_FIJO != Convert.ToDouble(aGuardar.RECARGO_NOCTURNO))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "RECARGO_NOCTURNO";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.MEDIOS_TRANSPORTE != Convert.ToDouble(aGuardar.MEDIO_TRANSPORTE))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "MEDIO_TRANSPORTE";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.SALARIO_TOTAL != Convert.ToDouble(aGuardar.SALARIO_TOTAL))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "SALARIO_TOTAL";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.BONO_ANUAL != Convert.ToDouble(aGuardar.BONO_ANUAL)){
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "BONO_ANUAL";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }        
+            /*aqui*/
+            if (datosCargo.NUMERO_SALARIO != Convert.ToInt32(aGuardar.NUMERO_SALARIOS))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "NUMERO_SALARIO";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.COD_NIVEL_RIESGO != Convert.ToDecimal(aGuardar.COD_NIVEL_RIESGO_ARL))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "COD_NIVEL_RIESGO";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.horariO_DESDE != aGuardar.HORARIO_LABORAL_DESDE)
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "HORARIO_LABORAL_DESDE";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.horariO_HASTA != aGuardar.HORARIO_LABORAL_HASTA)
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "HORARIO_LABORAL_HASTA";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.diaS_LABORALES_DESDE != aGuardar.DIA_LABORAL_DESDE)
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "DIA_LABORAL_DESDE";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+
+            if (datosCargo.diaS_LABORALES_HASTA != Convert.ToString(aGuardar.DIA_LABORAL_HASTA))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "DIA_LABORAL_HASTA";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.PORCENTAJE_SOBREREMUNERACION != Convert.ToDouble(aGuardar.PORCENTAJE_SOBREREMUNERACION))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "PORCENTAJE_SOBREREMUNERACION";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.MESES_GARANTIZADO != Convert.ToInt32(aGuardar.MESES_GARANTIZADOS))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "MESES_GARANTIZADOS";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.FP != Convert.ToDecimal(aGuardar.FACTOR_PRESTACIONAL))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "FACTOR_PRESTACIONAL";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.COD_TIPO_SALARIO != Convert.ToDecimal(aGuardar.COD_TIPO_SALARIO))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "COD_TIPO_SALARIO";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+
+
+            if (datosCargo.NOMBRE_TIPO_SALARIO != aGuardar.NOMBRE_TIPO_SALARIO)
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "NOMBRE_TIPO_SALARIO";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.PROMEDIO_MES != Convert.ToDecimal(aGuardar.INGRESO_PROM_MENSUAL))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "INGRESO_PROM_MENSUAL";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.PROMEDIO_ANO != Convert.ToDecimal(aGuardar.INGRESO_PROM_ANUAL))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "INGRESO_PROM_ANUAL";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.NOMBRE_MERCADO != aGuardar.MERCADO)
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "MERCADO";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.NOMBRE_CATEGORIA_SALARIO != aGuardar.NOMBRE_CATEGORIA)
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "NOMBRE_CATEGORIA";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (_cambio == true)
+            {                
+                new LOGICA_REQUISICION().INSERTAR_CAMPOS_TRAZAS_VISIBLES(trazas);
+            }
         }
     }
 }

@@ -464,14 +464,31 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             }
         }
 
-        public List<CAMPOS_TRAZA_Result> CONSULTAR_CAMPOS_TRAZAS_VISIBLES(int _codRequisicion)
+        public List<TRAZA_BOTONES_VISIBLES> CONSULTAR_CAMPOS_TRAZAS_VISIBLES(int _codRequisicion)
         {
             using (var db = new GESTION_HUMANA_HITSSEntities2())
             {
-                List<CAMPOS_TRAZA_Result> _LIST_CAMPOS = new List<CAMPOS_TRAZA_Result>();
-                _LIST_CAMPOS = db.CAMPOS_TRAZA(_codRequisicion).ToList();
+                List<CONSULTAR_CAMPOS_TRAZA_Result> _listaCam = db.CONSULTAR_CAMPOS_TRAZA(_codRequisicion).ToList();
+                List<TRAZA_BOTONES_VISIBLES> _LIST_CAMPOS = _listaCam.Select(x => new TRAZA_BOTONES_VISIBLES()
+                {   
+                    COD_REQUISICION = x.COD_REQUISICION.Value,
+                    CAMPOS = x.NOMBRE_CAMPO,
+                    TRAZA = x.TRAZA
+                }).ToList();
+                
                 return _LIST_CAMPOS;
             }            
+        }
+
+        public void INSERTAR_CAMPOS_TRAZAS_VISIBLES(List<TRAZA_BOTONES_VISIBLES> _traza)
+        {
+            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            {
+                foreach (var item in _traza)
+                {
+                    db.INSERTAR_TRAZAS(item.COD_REQUISICION, item.CAMPOS, item.TRAZA);
+                }                
+            }
         }
 
     }

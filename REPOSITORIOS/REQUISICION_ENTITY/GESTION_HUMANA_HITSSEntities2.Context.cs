@@ -713,5 +713,31 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CAMPOS_TRAZA_Result>("CAMPOS_TRAZA", cOD_REQUISICIONParameter);
         }
+    
+        public virtual int INSERTAR_TRAZAS(Nullable<int> cOD_REQUISICION, string nOMBRE_CAMPO, string tRAZA)
+        {
+            var cOD_REQUISICIONParameter = cOD_REQUISICION.HasValue ?
+                new ObjectParameter("COD_REQUISICION", cOD_REQUISICION) :
+                new ObjectParameter("COD_REQUISICION", typeof(int));
+    
+            var nOMBRE_CAMPOParameter = nOMBRE_CAMPO != null ?
+                new ObjectParameter("NOMBRE_CAMPO", nOMBRE_CAMPO) :
+                new ObjectParameter("NOMBRE_CAMPO", typeof(string));
+    
+            var tRAZAParameter = tRAZA != null ?
+                new ObjectParameter("TRAZA", tRAZA) :
+                new ObjectParameter("TRAZA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTAR_TRAZAS", cOD_REQUISICIONParameter, nOMBRE_CAMPOParameter, tRAZAParameter);
+        }
+    
+        public virtual ObjectResult<CONSULTAR_CAMPOS_TRAZA_Result> CONSULTAR_CAMPOS_TRAZA(Nullable<int> cOD_REQUISICION)
+        {
+            var cOD_REQUISICIONParameter = cOD_REQUISICION.HasValue ?
+                new ObjectParameter("COD_REQUISICION", cOD_REQUISICION) :
+                new ObjectParameter("COD_REQUISICION", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTAR_CAMPOS_TRAZA_Result>("CONSULTAR_CAMPOS_TRAZA", cOD_REQUISICIONParameter);
+        }
     }
 }

@@ -100,6 +100,9 @@
     <Compile Include="REQUISICION_ENTITY\CAMPOS_TRAZA_Result.cs">
       <DependentUpon>GESTION_HUMANA_HITSSEntities2.tt</DependentUpon>
     </Compile>
+    <Compile Include="REQUISICION_ENTITY\CONSULTAR_CAMPOS_TRAZA_Result.cs">
+      <DependentUpon>GESTION_HUMANA_HITSSEntities2.tt</DependentUpon>
+    </Compile>
     <Compile Include="REQUISICION_ENTITY\CONSULTAR_COMENTARIO_Result.cs">
       <DependentUpon>GESTION_HUMANA_HITSSEntities2.tt</DependentUpon>
     </Compile>

@@ -261,7 +261,7 @@
         $(".__metodoRechazar").css("display", "none");
         $(".__metodoEnviar").css("display", "none");
 
-
+        VALIDACION_TRAZA();
 
         var resultado = "@ViewBag.resultadoInsertExitosoOno";
 
@@ -297,6 +297,23 @@
 
 
     });
+
+    function VALIDACION_TRAZA() {
+        var jsonObj = @Html.Raw(Json.Encode(ViewBag.traza));
+        if (jsonObj) {
+            debugger;
+            for (i = 0; i < jsonObj.length; i++) {
+                if (jsonObj[i].TRAZA == "true") {
+                    var campo = "#" + jsonObj[i].CAMPOS + "_S";
+                    if ($(campo).length) {
+                        debugger;
+                        $(campo).removeAttr("style");
+                        var traza = jsonObj[i].TRAZA;
+                    }
+                }
+            }
+        }
+    }
 
     function CONSULTA_PUESTO_POR_CEDULA(DOCUMENTO_NUMERO) {
             $('body').loading({

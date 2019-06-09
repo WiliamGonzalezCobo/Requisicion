@@ -206,55 +206,71 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-    debugger;
-    if ("@User.IsInRole(SettingsManager.PerfilJefe)" == "True") {
-        if (@Model.COD_REQUISICION!= 0) {
-    $("#submitButtonCrear").text("Modificar Requisición");
-}
+        debugger;
+        if ("@User.IsInRole(SettingsManager.PerfilJefe)" == "True") {
+            if (@Model.COD_REQUISICION!= 0) {
+                $("#submitButtonCrear").text("Modificar Requisición");
+            }
         }
-$("._metodoCrear").css("display", "none");
-$(".__metodoAprobar").css("display", "none");
-$(".__metodoModificar").css("display", "none");
-$(".__metodoRechazar").css("display", "none");
-$(".__metodoEnviar").css("display", "none");
+        $("._metodoCrear").css("display", "none");
+        $(".__metodoAprobar").css("display", "none");
+        $(".__metodoModificar").css("display", "none");
+        $(".__metodoRechazar").css("display", "none");
+        $(".__metodoEnviar").css("display", "none");
+
+        VALIDACION_TRAZA();
+
+        var resultado = "@ViewBag.resultadoInsertExitosoOno";
 
 
+        if (resultado == "True") {
+            debugger;
+            var _metodo = "@paraModel.METODO";
+            if (_metodo == "Crear") {
+                CREAR_REQUISICION();
+                $("._metodoDefecto").css("display", "none");
 
-var resultado = "@ViewBag.resultadoInsertExitosoOno";
+            }
+            else if (_metodo == "Aprobar") {
+                APROBAR_REQUISICION();
+                $("._metodoDefecto").css("display", "none");
+            }
+            else if (_metodo == "Modificar") {
+                MODIFICAR_REQUISICION();
+                $("._metodoDefecto").css("display", "none");
+            }
+
+            else if (_metodo == "Rechazar") {
+                RECHAZAR_REQUISICION();
+                $("._metodoDefecto").css("display", "none");
+            }
+            else if (_metodo == "Enviar") {
+                ENVIAR_REQUISICION();
+                $("._metodoDefecto").css("display", "none");
+            }
+
+            $('#ModalCreacionNoJefe').modal("show");
+        }
 
 
-if (resultado == "True") {
-    debugger;
-    var _metodo = "@paraModel.METODO";
-    if (_metodo == "Crear") {
-        CREAR_REQUISICION();
-        $("._metodoDefecto").css("display", "none");
-
-    }
-    else if (_metodo == "Aprobar") {
-        APROBAR_REQUISICION();
-        $("._metodoDefecto").css("display", "none");
-    }
-    else if (_metodo == "Modificar") {
-        MODIFICAR_REQUISICION();
-        $("._metodoDefecto").css("display", "none");
-    }
-
-    else if (_metodo == "Rechazar") {
-        RECHAZAR_REQUISICION();
-        $("._metodoDefecto").css("display", "none");
-    }
-    else if (_metodo == "Enviar") {
-        ENVIAR_REQUISICION();
-        $("._metodoDefecto").css("display", "none");
-    }
-
-    $('#ModalCreacionNoJefe').modal("show");
-}
-
-       
     });
 
+    function VALIDACION_TRAZA() {
+        var jsonObj = @Html.Raw(Json.Encode(ViewBag.traza));
+        if (jsonObj) {
+            debugger;
+            for (i = 0; i < jsonObj.length; i++) {
+                if (jsonObj[i].TRAZA == "true") {
+                    var campo = "#" + jsonObj[i].CAMPOS + "_S";
+                    if ($(campo).length) {
+                        debugger;
+                        $(campo).removeAttr("style");
+                        var traza = jsonObj[i].TRAZA;
+                    }
+                }
+            }
+        }
+    }
 
 function CREAR_REQUISICION() {
     var CargoText = "@paraModel.NOMBRE_COD_CARGO";

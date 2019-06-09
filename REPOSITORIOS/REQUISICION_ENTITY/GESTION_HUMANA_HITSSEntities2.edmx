@@ -86,9 +86,6 @@
           <Parameter Name="ID_USUARIO" Type="varchar" Mode="In" />
           <Parameter Name="OBSERVACION" Type="varchar(max)" Mode="In" />
         </Function>
-        <Function Name="CAMPOS_TRAZA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICIONES">
-          <Parameter Name="COD_REQUISICION" Type="int" Mode="In" />
-        </Function>
         <Function Name="CONSULTA_NOTIFICACIONES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICIONES">
           <Parameter Name="COD_USUARIO" Type="varchar" Mode="In" />
         </Function>
@@ -96,6 +93,9 @@
           <Parameter Name="COD_USUARIO" Type="varchar" Mode="In" />
           <Parameter Name="Usuario" Type="varchar" Mode="In" />
           <Parameter Name="COD_ESTADO_REQUISICION" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CONSULTAR_CAMPOS_TRAZA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICIONES">
+          <Parameter Name="COD_REQUISICION" Type="int" Mode="In" />
         </Function>
         <Function Name="CONSULTAR_COMENTARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICIONES">
           <Parameter Name="COD_REQUISICION" Type="int" Mode="In" />
@@ -169,6 +169,11 @@
           <Parameter Name="USUARIO" Type="varchar" Mode="In" />
           <Parameter Name="COD_ESTADO" Type="int" Mode="In" />
           <Parameter Name="ES_MODIFICACION" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="INSERTAR_TRAZAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICIONES">
+          <Parameter Name="COD_REQUISICION" Type="int" Mode="In" />
+          <Parameter Name="NOMBRE_CAMPO" Type="varchar" Mode="In" />
+          <Parameter Name="TRAZA" Type="varchar" Mode="In" />
         </Function>
         <Function Name="MODIFICACIONES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICIONES">
           <Parameter Name="COD_REQUISICION" Type="int" Mode="In" />
@@ -369,6 +374,14 @@
           <FunctionImport Name="CAMPOS_TRAZA" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CAMPOS_TRAZA_Result)">
           <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="INSERTAR_TRAZAS">
+            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
+            <Parameter Name="NOMBRE_CAMPO" Mode="In" Type="String" />
+            <Parameter Name="TRAZA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CONSULTAR_CAMPOS_TRAZA" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_CAMPOS_TRAZA_Result)">
+            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="CONSULTA_NOTIFICACIONES_Result">
           <Property Type="String" Name="NOMBRE_REQUISICION" Nullable="true" MaxLength="50" />
@@ -542,6 +555,11 @@
         <ComplexType Name="CAMPOS_TRAZA_Result">
           <Property Type="String" Name="CAMPO" Nullable="false" MaxLength="28" />
           <Property Type="String" Name="TRAZA" Nullable="false" MaxLength="5" />
+        </ComplexType>
+        <ComplexType Name="CONSULTAR_CAMPOS_TRAZA_Result">
+          <Property Type="Int32" Name="COD_REQUISICION" Nullable="true" />
+          <Property Type="String" Name="NOMBRE_CAMPO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TRAZA" Nullable="true" MaxLength="10" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -755,10 +773,12 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CAMPOS_TRAZA" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CAMPOS_TRAZA">
+          <FunctionImportMapping FunctionImportName="INSERTAR_TRAZAS" FunctionName="GESTION_HUMANA_HITSSModel2.Store.INSERTAR_TRAZAS" />
+          <FunctionImportMapping FunctionImportName="CONSULTAR_CAMPOS_TRAZA" FunctionName="GESTION_HUMANA_HITSSModel2.Store.CONSULTAR_CAMPOS_TRAZA">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CAMPOS_TRAZA_Result">
-                <ScalarProperty Name="CAMPO" ColumnName="CAMPO" />
+              <ComplexTypeMapping TypeName="GESTION_HUMANA_HITSSModel2.CONSULTAR_CAMPOS_TRAZA_Result">
+                <ScalarProperty Name="COD_REQUISICION" ColumnName="COD_REQUISICION" />
+                <ScalarProperty Name="NOMBRE_CAMPO" ColumnName="NOMBRE_CAMPO" />
                 <ScalarProperty Name="TRAZA" ColumnName="TRAZA" />
               </ComplexTypeMapping>
             </ResultMapping>

@@ -65,14 +65,14 @@
         <div class="form-group col-md-12 col-sm-12">
             @Html.LabelFor(model => model.LIST_NIVEL_RIESGO_ARL, new { @class = "letrasFormulario" })
             @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, Model.LIST_NIVEL_RIESGO_ARL, "-- Seleccione --", new { @class = "form-control col-md-11 comboArl letrasFormulario", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_ARL')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="position:absolute; left:180px;">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+            <span id="NOMBRE_ARL_S" class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_ARL')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="position:absolute; left:180px;">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
             @Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL)
             @Html.ValidationMessageFor(model => model.COD_NIVEL_RIESGO_ARL)
         </div>
         <div class="form-group col-md-12 col-sm-12">
             @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA_ED, new { @class = "letrasFormulario" })
             @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, Model.LIST_NOMBRE_CATEGORIA_ED, "-- Seleccione --", new { @class = "form-control col-md-11 combosGrandes letrasFormulario", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="left: 520px;">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+            <span id="NOMBRE_CATEGORIA_ED_S" class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
             @Html.HiddenFor(model => model.COD_CATEGORIA_ED)
             @Html.ValidationMessageFor(model => model.COD_CATEGORIA_ED)
         </div>
@@ -186,14 +186,14 @@
         <div class="form-group col-md-3 col-sm-12">
             @Html.LabelFor(model => model.HORARIO_LABORAL_DESDE, new { @class = "letrasFormulario" })
             @Html.DropDownListFor(model => model.HORARIO_LABORAL_DESDE, Model.LIST_HORARIO_LABORAL_DESDE, "-- Seleccione --", new { @class = "form-control col-md-11 combosDesdeHasta letrasFormulario", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar spanCombosDesdeHasta" onclick="ConsultaTraza('HORARIO_LABORAL_DESDE')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+            <span id="HORARIO_LABORAL_DESDE_S" class="btn_traza trazaCentrar spanCombosDesdeHasta" onclick="ConsultaTraza('HORARIO_LABORAL_DESDE')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
             @Html.HiddenFor(model => model.HORARIO_LABORAL_DESDE)
             @Html.ValidationMessageFor(model => model.HORARIO_LABORAL_DESDE)
         </div>
         <div class="form-group col-md-3 col-sm-12">
             @Html.LabelFor(model => model.HORARIO_LABORAL_HASTA, new { @class = "letrasFormulario" })
             @Html.DropDownListFor(model => model.HORARIO_LABORAL_HASTA, Model.LIST_HORARIO_LABORAL_HASTA, "-- Seleccione --", new { @class = "form-control col-md-11 combosDesdeHasta letrasFormulario", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar spanCombosDesdeHasta" onclick="ConsultaTraza('HORARIO_LABORAL_HASTA')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+            <span id="HORARIO_LABORAL_HASTA_S" class="btn_traza trazaCentrar spanCombosDesdeHasta" onclick="ConsultaTraza('HORARIO_LABORAL_HASTA')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
             @Html.HiddenFor(model => model.HORARIO_LABORAL_HASTA)
             @Html.ValidationMessageFor(model => model.HORARIO_LABORAL_HASTA)
         </div>
@@ -201,14 +201,14 @@
         <div class="form-group col-md-3 col-sm-12">
             @Html.LabelFor(model => model.LIST_DIA_LABORAL_DESDE, new { @class = "letrasFormulario" })
             @Html.DropDownListFor(model => model.DIA_LABORAL_DESDE, Model.LIST_DIA_LABORAL_DESDE, "-- Seleccione --", new { @class = "form-control col-md-11 combosDesdeHasta letrasFormulario", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar spanCombosDesdeHasta" onclick="ConsultaTraza('DIA_LABORAL_DESDE')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+            <span id="DIA_LABORAL_DESDE_S" class="btn_traza trazaCentrar spanCombosDesdeHasta" onclick="ConsultaTraza('DIA_LABORAL_DESDE')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
             @Html.HiddenFor(model => model.DIA_LABORAL_DESDE)
             @Html.ValidationMessageFor(model => model.DIA_LABORAL_DESDE)
         </div>
         <div class="form-group col-md-3 col-sm-12">
             @Html.LabelFor(model => model.LIST_DIA_LABORAL_HASTA, new { @class = "letrasFormulario" })
             @Html.DropDownListFor(model => model.DIA_LABORAL_HASTA, Model.LIST_DIA_LABORAL_HASTA, "-- Seleccione --", new { @class = "form-control col-md-11 combosDesdeHasta letrasFormulario", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar spanCombosDesdeHasta" onclick="ConsultaTraza('DIA_LABORAL_HASTA')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+            <span id="DIA_LABORAL_HASTA_S" class="btn_traza trazaCentrar spanCombosDesdeHasta" onclick="ConsultaTraza('DIA_LABORAL_HASTA')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
             @Html.HiddenFor(model => model.DIA_LABORAL_HASTA)
             @Html.ValidationMessageFor(model => model.DIA_LABORAL_HASTA)
         </div>
