@@ -11,6 +11,7 @@ using MODELO_DATOS.MODELO_REQUISICION.LISTAS_API;
 using Newtonsoft.Json.Linq;
 using REPOSITORIOS.REQUISICION.ACCESS;
 using REPOSITORIOS.TRAZA_LOG;
+using UTILS.Settings;
 
 namespace LOGICA.REQUISICION_LOGICA
 {
@@ -806,7 +807,10 @@ namespace LOGICA.REQUISICION_LOGICA
                 logCentralizado.INICIANDO_LOG("LGREQ26", "BUSCAR_REQUISICIONES");
                 List<DOCUMENTO> listaDocumentos = new PROXY().CONSULTAR_TIPO_DOCUMENTO_API();
                 objReqModel = new ACCES_REQUISICION().CONSULTAR_REQUISICION_X_ID(_idRequsicion);
-                objReqModel.NOMBRE_TIPO_DOCUMENTO = listaDocumentos.Where(x => x.coD_TIPO_DOCUMENTO == objReqModel.COD_TIPO_DOCUMENTO).FirstOrDefault().coD_TIPO_DOCUMENTO_ALTERNO_SAP;
+                if (SettingsManager.CodTipoReqLicencia == objReqModel.COD_TIPO_REQUISICION || SettingsManager.CodTipoReqIncapacidad == objReqModel.COD_TIPO_REQUISICION)
+                {
+                    objReqModel.NOMBRE_TIPO_DOCUMENTO = listaDocumentos.Where(x => x.coD_TIPO_DOCUMENTO == objReqModel.COD_TIPO_DOCUMENTO).FirstOrDefault().coD_TIPO_DOCUMENTO_ALTERNO_SAP;
+                }
                 logCentralizado.FINALIZANDO_LOG("LGREQ26", "BUSCAR_REQUISICIONES");
             }
             catch (Exception ex)
