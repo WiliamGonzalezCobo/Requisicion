@@ -100,7 +100,7 @@
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilRRHH))
                                 {
-                                    <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="aprobar-requisicion" />
+                                    <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="aprobar-requisicion btn-confirmar-retiro" />
                                     <input name="submitButton" type="submit" value="RECHAZAR REQUISICIÓN" class="btn-confirmar-retiro" />
                                     <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="btn-confirmar-retiro" />
                                 }
@@ -340,6 +340,18 @@
             });
     }
 
+    $('#submitButtonCrear').on('click', function () {
+        //console.log('di click !!', validate);
+        if (!validateForm()) {
+            $("#collapse2").collapse('show');
+        }
+        if (!validateFormAutorizacion()) {
+            $('#collapseAutorizacion').collapse('show');
+        }
+        if (!validateFormInfoGeneralPresu()) {
+            $('#collapseInfoGeneralPresu').collapse('show');
+        }
+    });
 
 </script>
 

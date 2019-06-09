@@ -343,9 +343,9 @@
                         $("#AddNotificaciones").append('<a class="dropdown-item dropdown-notification" href="#">' +
                                                        '<div class="notification-read"><span class="badge badge-secondary">' + value.CANTIDAD +
                                                        '</span></div><div class="notifications-body"><p class="notification-texte">Tienes ' + value.CANTIDAD +
-                                                       ' Requisiciones ' + value.NOMBRE_REQUISICION + ' para tramitar </p>' +
+                                                       ' Requisiciones ' + value.NOMBRE_REQUISICION + ' para tramitar </p></div>' +
                                                        ((key + 1).toString() === value.TOTAL ? '' : '<hr class="hr-requisition"/>') +
-                                                       '</div></a>')
+                                                       '</a>')
                     });
                     $('body').loading('stop');
                     $('.ModalTraza').modal("show");

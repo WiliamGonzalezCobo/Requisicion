@@ -1,86 +1,91 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 @{string deshabilitar = "true";}
 <section id="infoSalarial">
-    <div  class="SubtitulosNivel2">Información Salarial</div>
-    <div class="row">
-        <div class="form-group col-md-6 col-sm-12">
-            @Html.LabelFor(model => model.SALARIO_FIJO, htmlAttributes: new { @class = "letrasFormulario" })
-            @Html.EditorFor(model => model.SALARIO_FIJO, new { htmlAttributes = new { @class = "form-control E_SALARIO_FIJO CALCULO_TOTAL col-md-11 deplegablesIniciales letrasFormulario" } })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('SALARIO_FIJO')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.ValidationMessageFor(model => model.SALARIO_FIJO)
-        </div>
-        <div class="form-group col-md-6 col-sm-12">
-            @Html.LabelFor(model => model.PORCENTAJE_SALARIO_FIJO, htmlAttributes: new { @class = "letrasFormulario" })
-            @Html.EditorFor(model => model.PORCENTAJE_SALARIO_FIJO, new { htmlAttributes = new { @class = "form-control P_SALARIO_FIJO col-md-11 deplegablesIniciales letrasFormulario", disabled = deshabilitar } })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('PORCENTAJE_SALARIO_FIJO')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.HiddenFor(model => model.PORCENTAJE_SALARIO_FIJO, new { @class = "P_SALARIO_FIJO" })
-            @Html.ValidationMessageFor(model => model.PORCENTAJE_SALARIO_FIJO)
-        </div>
+    <div class="panel-heading">
+        <a class="a-collapse" data-toggle="collapse" href="#collapseInfoSalarialPresu">
+            <h3>Información Salarial</h3>
+        </a>
     </div>
-
-    <div class="row">
-        <div class="form-group col-md-6 col-sm-12">
-            @Html.LabelFor(model => model.SALARIO_VARIABLE, htmlAttributes: new { @class = "letrasFormulario" })
-            @Html.EditorFor(model => model.SALARIO_VARIABLE, new { htmlAttributes = new { @class = "form-control S_VARIABLE CALCULO_TOTAL col-md-11 deplegablesIniciales letrasFormulario" } })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('SALARIO_VARIABLE')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.ValidationMessageFor(model => model.SALARIO_VARIABLE)
-        </div>
-        <div class="form-group col-md-6 col-sm-12">
-            @Html.LabelFor(model => model.PORCENTAJE_SALARIO_VARIABLE, htmlAttributes: new { @class = "letrasFormulario" })
-            @Html.EditorFor(model => model.PORCENTAJE_SALARIO_VARIABLE, new { htmlAttributes = new { @class = "form-control P_VARIABLE CALCULO_TOTAL col-md-11 deplegablesIniciales letrasFormulario", disabled = deshabilitar } })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('PORCENTAJE_SALARIO_VARIABLE')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.HiddenFor(model => model.PORCENTAJE_SALARIO_VARIABLE, new { @class = "P_VARIABLE" })
-            @Html.ValidationMessageFor(model => model.PORCENTAJE_SALARIO_VARIABLE)
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="form-group col-md-6 col-sm-12">
-            @Html.LabelFor(model => model.SOBREREMUNERACION, htmlAttributes: new { @class = "letrasFormulario" })
-            @Html.EditorFor(model => model.SOBREREMUNERACION, new { htmlAttributes = new { @class = "form-control E_SOBREREMUNERACION CALCULO_TOTAL col-md-11 deplegablesIniciales letrasFormulario" } })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('SOBREREMUNERACION')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.ValidationMessageFor(model => model.SOBREREMUNERACION)
-        </div>
-        <div class="form-group col-md-6 col-sm-12">
-            @Html.LabelFor(model => model.PORCENTAJE_SOBREREMUNERACION, htmlAttributes: new { @class = "letrasFormulario" })
-            @Html.EditorFor(model => model.PORCENTAJE_SOBREREMUNERACION, new { htmlAttributes = new { @class = "form-control P_SOBREREMUNERACION col-md-11 deplegablesIniciales letrasFormulario" } })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('PORCENTAJE_SOBREREMUNERACION')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.ValidationMessageFor(model => model.PORCENTAJE_SOBREREMUNERACION)
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="form-group col-md-6 col-sm-12">
-            @Html.LabelFor(model => model.EXTRA_FIJA, htmlAttributes: new { @class = "letrasFormulario" })
-            @Html.EditorFor(model => model.EXTRA_FIJA, new { htmlAttributes = new { @class = "form-control E_EXTRA_FIJA CALCULO_TOTAL col-md-11 deplegablesIniciales letrasFormulario" } })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('EXTRA_FIJA')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.ValidationMessageFor(model => model.EXTRA_FIJA)
-        </div>
-        <div class="form-group col-md-6 col-sm-12">
-            @Html.LabelFor(model => model.RECARGO_NOCTURNO, htmlAttributes: new { @class = "letrasFormulario" })
-            @Html.EditorFor(model => model.RECARGO_NOCTURNO, new { htmlAttributes = new { @class = "form-control E_RECARGO_NOCTURNO CALCULO_TOTAL col-md-11 deplegablesIniciales letrasFormulario" } })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('RECARGO_NOCTURNO')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.ValidationMessageFor(model => model.RECARGO_NOCTURNO)
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="form-group col-md-6 col-sm-12">
-            @Html.LabelFor(model => model.MEDIO_TRANSPORTE, htmlAttributes: new { @class = "letrasFormulario" })
-            @Html.EditorFor(model => model.MEDIO_TRANSPORTE, new { htmlAttributes = new { @class = "form-control deplegablesIniciales letrasFormulario" } })
-            @Html.ValidationMessageFor(model => model.MEDIO_TRANSPORTE)
-        </div>
-        <div class="col-md-12 col-sm-12">
-        <div class="salarioTotalEstilos">
-            @Html.LabelFor(model => model.SALARIO_TOTAL, htmlAttributes: new { @class = "letrasSalarioTotal col-md-6", @style= "text-align:left;" })
-            <span class = "S_TOTAL S_TOTAL_UNICO valorSalarioTotal col-md-6">@Model.SALARIO_TOTAL</span>
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('SALARIO_TOTAL')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="top: 5px !important;right: 0px;">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.HiddenFor(model => model.SALARIO_TOTAL, new { @class = "S_TOTAL" })
-            @Html.ValidationMessageFor(model => model.SALARIO_TOTAL)
+    <div id="collapseInfoSalarialPresu" class="panel-collapse collapse">
+        <div class="row">
+            <div class="form-group col-md-6 col-sm-12">
+                @Html.LabelFor(model => model.SALARIO_FIJO, htmlAttributes: new { @class = "letrasFormulario" })
+                @Html.EditorFor(model => model.SALARIO_FIJO, new { htmlAttributes = new { @class = "form-control E_SALARIO_FIJO CALCULO_TOTAL col-md-11 deplegablesIniciales letrasFormulario" } })
+                <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('SALARIO_FIJO')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.ValidationMessageFor(model => model.SALARIO_FIJO)
+            </div>
+            <div class="form-group col-md-6 col-sm-12">
+                @Html.LabelFor(model => model.PORCENTAJE_SALARIO_FIJO, htmlAttributes: new { @class = "letrasFormulario" })
+                @Html.EditorFor(model => model.PORCENTAJE_SALARIO_FIJO, new { htmlAttributes = new { @class = "form-control P_SALARIO_FIJO col-md-11 deplegablesIniciales letrasFormulario", disabled = deshabilitar } })
+                <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('PORCENTAJE_SALARIO_FIJO')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.HiddenFor(model => model.PORCENTAJE_SALARIO_FIJO, new { @class = "P_SALARIO_FIJO" })
+                @Html.ValidationMessageFor(model => model.PORCENTAJE_SALARIO_FIJO)
+            </div>
         </div>
 
+        <div class="row">
+            <div class="form-group col-md-6 col-sm-12">
+                @Html.LabelFor(model => model.SALARIO_VARIABLE, htmlAttributes: new { @class = "letrasFormulario" })
+                @Html.EditorFor(model => model.SALARIO_VARIABLE, new { htmlAttributes = new { @class = "form-control S_VARIABLE CALCULO_TOTAL col-md-11 deplegablesIniciales letrasFormulario" } })
+                <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('SALARIO_VARIABLE')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.ValidationMessageFor(model => model.SALARIO_VARIABLE)
+            </div>
+            <div class="form-group col-md-6 col-sm-12">
+                @Html.LabelFor(model => model.PORCENTAJE_SALARIO_VARIABLE, htmlAttributes: new { @class = "letrasFormulario" })
+                @Html.EditorFor(model => model.PORCENTAJE_SALARIO_VARIABLE, new { htmlAttributes = new { @class = "form-control P_VARIABLE CALCULO_TOTAL col-md-11 deplegablesIniciales letrasFormulario", disabled = deshabilitar } })
+                <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('PORCENTAJE_SALARIO_VARIABLE')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.HiddenFor(model => model.PORCENTAJE_SALARIO_VARIABLE, new { @class = "P_VARIABLE" })
+                @Html.ValidationMessageFor(model => model.PORCENTAJE_SALARIO_VARIABLE)
+            </div>
         </div>
-    </div>
+
+        <div class="row">
+            <div class="form-group col-md-6 col-sm-12">
+                @Html.LabelFor(model => model.SOBREREMUNERACION, htmlAttributes: new { @class = "letrasFormulario" })
+                @Html.EditorFor(model => model.SOBREREMUNERACION, new { htmlAttributes = new { @class = "form-control E_SOBREREMUNERACION CALCULO_TOTAL col-md-11 deplegablesIniciales letrasFormulario" } })
+                <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('SOBREREMUNERACION')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.ValidationMessageFor(model => model.SOBREREMUNERACION)
+            </div>
+            <div class="form-group col-md-6 col-sm-12">
+                @Html.LabelFor(model => model.PORCENTAJE_SOBREREMUNERACION, htmlAttributes: new { @class = "letrasFormulario" })
+                @Html.EditorFor(model => model.PORCENTAJE_SOBREREMUNERACION, new { htmlAttributes = new { @class = "form-control P_SOBREREMUNERACION col-md-11 deplegablesIniciales letrasFormulario" } })
+                <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('PORCENTAJE_SOBREREMUNERACION')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.ValidationMessageFor(model => model.PORCENTAJE_SOBREREMUNERACION)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6 col-sm-12">
+                @Html.LabelFor(model => model.EXTRA_FIJA, htmlAttributes: new { @class = "letrasFormulario" })
+                @Html.EditorFor(model => model.EXTRA_FIJA, new { htmlAttributes = new { @class = "form-control E_EXTRA_FIJA CALCULO_TOTAL col-md-11 deplegablesIniciales letrasFormulario" } })
+                <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('EXTRA_FIJA')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.ValidationMessageFor(model => model.EXTRA_FIJA)
+            </div>
+            <div class="form-group col-md-6 col-sm-12">
+                @Html.LabelFor(model => model.RECARGO_NOCTURNO, htmlAttributes: new { @class = "letrasFormulario" })
+                @Html.EditorFor(model => model.RECARGO_NOCTURNO, new { htmlAttributes = new { @class = "form-control E_RECARGO_NOCTURNO CALCULO_TOTAL col-md-11 deplegablesIniciales letrasFormulario" } })
+                <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('RECARGO_NOCTURNO')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.ValidationMessageFor(model => model.RECARGO_NOCTURNO)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6 col-sm-12">
+                @Html.LabelFor(model => model.MEDIO_TRANSPORTE, htmlAttributes: new { @class = "letrasFormulario" })
+                @Html.EditorFor(model => model.MEDIO_TRANSPORTE, new { htmlAttributes = new { @class = "form-control deplegablesIniciales letrasFormulario" } })
+                @Html.ValidationMessageFor(model => model.MEDIO_TRANSPORTE)
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="salarioTotalEstilos">
+                    @Html.LabelFor(model => model.SALARIO_TOTAL, htmlAttributes: new { @class = "letrasSalarioTotal col-md-6", @style = "text-align:left;" })
+                    <span class="S_TOTAL S_TOTAL_UNICO valorSalarioTotal col-md-6">@Model.SALARIO_TOTAL</span>
+                    <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('SALARIO_TOTAL')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="top: 5px !important;right: 0px;">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                    @Html.HiddenFor(model => model.SALARIO_TOTAL, new { @class = "S_TOTAL" })
+                    @Html.ValidationMessageFor(model => model.SALARIO_TOTAL)
+                </div>
+
+            </div>
+        </div>
 
         <div class="row">
             <div class="form-group col-md-6 col-sm-12">
@@ -217,6 +222,7 @@
                 </div>
             </div>
         </div>
+    </div>
 </section>
 
 <script src="~/js/CALCULOS_SALARIOS.js"></script>
@@ -226,3 +232,28 @@
         top:32px !important;
     }
 </style>
+<script>
+
+    var validateInfoSalarialPresu = true;
+    var validateFormInfoSalarialPresu = function () {
+        if ($('#SALARIO_FIJO').val() == "" &&
+            $('#PORCENTAJE_SALARIO_FIJO').val() == "" &&
+            $('#SALARIO_VARIABLE').val() == "" || !isNaN($('#SALARIO_VARIABLE').val()) ||
+            $('#SOBREREMUNERACION').val() == "" || !isNaN($('#SOBREREMUNERACION').val()) ||
+            $('#PORCENTAJE_SOBREREMUNERACION').val() == "" || !isNaN($('#PORCENTAJE_SOBREREMUNERACION').val()) ||
+            $('#EXTRA_FIJA').val() == "" || !isNaN($('#EXTRA_FIJA').val()) ||
+            $('#RECARGO_NOCTURNO').val() == "" || !isNaN($('#RECARGO_NOCTURNO').val()) ||
+            $('#MEDIO_TRANSPORTE').val() == "" || !isNaN($('#MEDIO_TRANSPORTE').val()) ||
+            $('#NUMERO_SALARIOS').val() == "" || !isNaN($('#NUMERO_SALARIOS').val()) ||
+            $('#MESES_GARANTIZADOS').val() == "" || !isNaN($('#MESES_GARANTIZADOS').val()) ||
+            $('#COD_TIPO_SALARIO').val() == "" &&
+            $('#COD_MERCADO').val() == "" &&
+            $('#COD_CATEGORIA').val() == "") {
+            validateInfoSalarialPresu = false;
+        } else {
+            validateInfoSalarialPresu = true;
+        }
+        console.log('validateInfoSalarialPresu ', validateInfoSalarialPresu);
+        return validateInfoSalarialPresu;
+    }
+</script>
