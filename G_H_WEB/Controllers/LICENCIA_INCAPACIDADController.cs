@@ -51,7 +51,12 @@ namespace G_H_WEB.Controllers
                 {
                     return RedirectToAction("Index", "REQUISICION");
                 }
-                
+                if (_idReq != null)
+                {
+                    List<TRAZA_BOTONES_VISIBLES> _listaCampos = new LOGICA_REQUISICION().CONSULTAR_CAMPOS_TRAZAS_VISIBLES(_idReq.Value);
+                    ViewBag.traza = _listaCampos;
+                }
+
                 if (_idReq.HasValue)
                 {
                     model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value) ?? new REQUISICIONViewModel();
@@ -142,19 +147,23 @@ namespace G_H_WEB.Controllers
                         {
                             _resultadoIdReguisicion = new LOGICA_REQUISICION().APROBAR_REQUISICION_LOGICA(modelDatos.COD_REQUISICION, User.Identity.GetUserId(), modelDatos.OBSERVACION);
                         }
+                        Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         npc.METODO = "Aprobar";
                         break;
                     case "Rechazar":
                         _resultadoIdReguisicion = new LOGICA_REQUISICION().REQUISICION_RECHAZAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.Name);
+                        Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         npc.METODO = "Rechazar";
                         break;
                     case "Enviar":
                         Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZAR_REQUISICION(modelDatos));
                         _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
+                        Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         npc.METODO = "Enviar";
                         break;
                     case "Modificar":
                         _resultadoIdReguisicion = Convert.ToInt32(new LOGICA_REQUISICION().REQUISICION_MODIFICAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.GetUserId()));
+                        Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         npc.METODO = "Modificar";
                         break;
                 }
