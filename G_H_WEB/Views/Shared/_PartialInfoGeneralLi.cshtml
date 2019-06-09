@@ -1,4 +1,5 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
+@using UTILS.Settings
 @{
     string deshabilitar = "true";
     List<SelectListItem> _BUSCAR_NOMBRE_CECO = Model.LIST_NOMBRE_CECO;
@@ -19,21 +20,43 @@
         </div>
     </div>
     <div class="row">
+        @if (User.IsInRole(SettingsManager.PerfilJefe))
+        {
         <div class="form-group col-md-12 col-xs-12 buscadorC">
             @Html.LabelFor(model => model.COD_CECO, new { @class = "control-label col-md-12 letrasFormulario" })
             <br />
-            <input class="buscador_ceco_gene letrasFormulario" id="input_ceco" name="input_ceco" type="text" placeholder="  Nombre CECO  ">
-            @Html.ValidationMessageFor(model => model.COD_CECO, "", new { @class = "text-danger" })
-            <input id="COD_CECO" name="COD_CECO" type="hidden">
+            @if (Model.NOMBRE_CECO == null && Model.COD_CECO == 0)
+            {
+                <input class="buscador_ceco_gene letrasFormulario" id="input_ceco" name="input_ceco" type="text" placeholder="  Nombre CECO">
+                @Html.ValidationMessageFor(model => model.COD_CECO, "", new { @class = "text-danger" })
+                <input id="COD_CECO" name="COD_CECO" type="hidden">
+            }
+            else
+            {
+                <input class="buscador_ceco_gene letrasFormulario" id="input_ceco" name="input_ceco" type="text" placeholder="  Nombre CECO" value="@Model.NOMBRE_CECO">
+                @Html.ValidationMessageFor(model => model.COD_CECO, "", new { @class = "text-danger" })
+                <input id="COD_CECO" name="COD_CECO" type="hidden" value="@Model.COD_CECO">
+            }
             <span id="BuscadorCeco" class="cecogen-btn fas fa-search"></span>
             <br>
             <ul class="list-group buscador_modificaciones_deplegable_esconder" id="myListCeco" style="margin-bottom: 0px !important">
                 @foreach (SelectListItem item in _BUSCAR_NOMBRE_CECO)
                 {
-                    <li class="list-group-item item_lista_modificar letrasFormulario" onclick="AgarrarValorFiltroCeco('@item.Text','@item.Value')">@item.Text<br /> @item.Value</li>
+                    <li class="list-group-item item_lista_modificar letrasFormulario" onclick="AgarrarValorFiltroCeco('@item.Text','@item.Value')">@item.Text</li>
                 }
             </ul>
         </div>
+        }
+        else
+        {
+            <div class="form-group col-md-12 col-sm-12">
+                @Html.LabelFor(model => model.COD_CECO, new { @class = "letrasFormulario" })
+                @Html.DropDownListFor(model => model.COD_CECO, new SelectList(Model.LIST_NOMBRE_CECO, "Value", "Text", Model.COD_CECO), "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                @Html.HiddenFor(model => model.COD_CECO)
+                @Html.ValidationMessageFor(model => model.COD_CECO)
+            </div>
+        }
+
         <div class="form-group col-md-12 col-xs-12 ">
             @Html.LabelFor(model => model.LIST_NOMBRE_SOCIEDAD, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
             @Html.DropDownListFor(model => model.COD_SOCIEDAD, Model.LIST_NOMBRE_SOCIEDAD, "Selecione ", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
@@ -84,9 +107,8 @@
     }
 </style>
 <script>
+
     $(document).ready(function () {
-   
-       
         $("#BuscadorCeco").on("click", function () {
             var value = $("#input_ceco").val().toLowerCase();
             $("#myListCeco li").filter(function () {
@@ -94,16 +116,15 @@
             });
         });
     });
-   
+
     function AgarrarValorFiltroCeco(texto, valor) {
-        $("#input_ceco").val(texto + '  ' + valor);
+        $("#input_ceco").val(texto);
         $("#COD_CECO").val(valor);
         $("#myListCeco").removeClass("buscador_modificaciones_deplegable").addClass("buscador_modificaciones_deplegable_esconder");
     }
-   
+
     $(".buscadorC").focusin(function () {
         $("#myListCeco").removeClass("buscador_modificaciones_deplegable_esconder").addClass("buscador_modificaciones_deplegable");
     });
-
 
 </script>

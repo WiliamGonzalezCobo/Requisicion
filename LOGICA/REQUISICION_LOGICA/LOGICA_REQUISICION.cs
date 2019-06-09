@@ -76,8 +76,8 @@ namespace LOGICA.REQUISICION_LOGICA
         /// <returns></returns>
         private List<SelectListItem> CONSULTAR_CECOS() {
             return new PROXY().CONSULTAR_CECO_API().Select(x => new SelectListItem() {
-                Value=x.coD_ALTERNO,
-                Text=x.NOMBRE
+                Value = x.coD_CENTRO_COSTO.ToString(),
+                Text = x.NOMBRE + ' ' + x.coD_ALTERNO
             }).ToList();
         }
 

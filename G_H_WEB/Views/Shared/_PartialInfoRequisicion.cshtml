@@ -60,15 +60,24 @@
             <div class="form-group col-md-6 col-sm-12 buscadorC">
                 @Html.LabelFor(model => model.COD_CECO, new { @class = "letrasFormulario" })
                 <br />
-                <input class="buscador_ceco letrasFormulario" id="input_ceco" name="input_ceco" type="text" placeholder="  Nombre CECO  ">
-                @Html.ValidationMessageFor(model => model.COD_CECO)
-                <input id="COD_CECO" name="COD_CECO" type="hidden">
+                @if (Model.NOMBRE_CECO == null && Model.COD_CECO == 0)
+                {
+                    <input class="buscador_ceco letrasFormulario" id="input_ceco" name="input_ceco" type="text" placeholder="  Nombre CECO">
+                    @Html.ValidationMessageFor(model => model.COD_CECO, "", new { @class = "text-danger" })
+                    <input id="COD_CECO" name="COD_CECO" type="hidden">
+                }
+                else
+                {
+                    <input class="buscador_ceco letrasFormulario" id="input_ceco" name="input_ceco" type="text" placeholder="  Nombre CECO" value="@Model.NOMBRE_CECO">
+                    @Html.ValidationMessageFor(model => model.COD_CECO, "", new { @class = "text-danger" })
+                    <input id="COD_CECO" name="COD_CECO" type="hidden" value="@Model.COD_CECO">
+                }
                 <span id="BuscadorCeco" class="ceco-btn fas fa-search"></span>
                 <br>
                 <ul class="list-group buscador_modificaciones_deplegable_esconder" id="myListCeco">
                     @foreach (SelectListItem item in _BUSCAR_NOMBRE_CECO)
                     {
-                        <li class="list-group-item item_lista_modificar letrasFormulario" onclick="AgarrarValorFiltroCeco('@item.Text','@item.Value')">@item.Text<br /> @item.Value</li>
+                        <li class="list-group-item item_lista_modificar letrasFormulario" onclick="AgarrarValorFiltroCeco('@item.Text','@item.Value')">@item.Text</li>
                     }
                 </ul>
             </div>
@@ -209,7 +218,7 @@
     }
 
     function AgarrarValorFiltroCeco(texto, valor) {
-        $("#input_ceco").val(texto + '  ' + valor);
+        $("#input_ceco").val(texto);
         $("#COD_CECO").val(valor);
         $("#myListCeco").removeClass("buscador_modificaciones_deplegable_ceco").addClass("buscador_modificaciones_deplegable_esconder");
     }
