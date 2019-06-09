@@ -1,7 +1,10 @@
 ﻿using G_H_WEB.Logica_Session;
+using G_H_WEB.Models;
+using log4net;
 using LOGICA.REQUISICION_LOGICA;
 using Microsoft.AspNet.Identity;
 using MODELO_DATOS.MODELO_REQUISICION;
+using REPOSITORIOS.TRAZA_LOG;
 using MODELO_DATOS.MODELO_REQUISICION.LISTAS_API;
 using System;
 using System.Collections.Generic;
@@ -15,35 +18,60 @@ namespace G_H_WEB.Controllers
     [CustAuthFilter]
     public class REQUISICION_NOPRESUPUESTADAController : Controller
     {
+        private LOG_CENTRALIZADO logCentralizado = new LOG_CENTRALIZADO(LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType));
         // GET: REQUISICION_NOPRESUPUESTADA
         public ActionResult Consultar(int? _idReq, int? _idTipo)
         {
-            REQUISICIONViewModel model = new REQUISICIONViewModel();
-            if (_idReq.HasValue){
-                model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value) ?? new REQUISICIONViewModel();
-                if (User.IsInRole(SettingsManager.PerfilBp)){
-                    model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES_BP(model) ?? new REQUISICIONViewModel();
-                }
+            if (TempData["ErrorPost"] != null)
+            {
+                ViewBag.Error = (ERROR_GENERAL_ViewModel)TempData["ErrorPost"];
             }
-            model = new LOGICA_REQUISICION().LLENAR_CONTROLES(model);
+            REQUISICIONViewModel model = new REQUISICIONViewModel();
+            try
+            {
+                logCentralizado.INICIANDO_LOG("CTR_REQ_NO_PRE1", "Consultar");
+                
+                if (_idReq.HasValue)
+                {
+                    model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value) ?? new REQUISICIONViewModel();
+                    if (User.IsInRole(SettingsManager.PerfilBp))
+                    {
+                        model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES_BP(model) ?? new REQUISICIONViewModel();
+                    }
+                }
+                model = new LOGICA_REQUISICION().LLENAR_CONTROLES(model);
 
-            // Esto es para el POP UP
-            List<SelectListItem> listacargos = model.LIST_NOMBRE_CARGO;
-            RESPUESTA_POP_UP fromPost = TempData["resultado"] as RESPUESTA_POP_UP;
-            // este filtro se debe hacer sobre la lista NOMBRE_CARGO y no sobre necesidad 
-            if (fromPost != null && fromPost.RESULTADO == true && fromPost.COD_CARGO != 0)
-                fromPost.NOMBRE_COD_CARGO = listacargos.Where(x => x.Value == fromPost.COD_CARGO.ToString()).First().Text;
-            //Logica para el POP UP
-            ViewBag.resultadoInsertExitosoOno = fromPost != null ? !fromPost.RESULTADO.Equals(0) : false;
-            ViewBag.resultadoPopUpNoJefe = fromPost;
+                // Esto es para el POP UP
+                List<SelectListItem> listacargos = model.LIST_NOMBRE_CARGO;
+                RESPUESTA_POP_UP fromPost = TempData["resultado"] as RESPUESTA_POP_UP;
+                // este filtro se debe hacer sobre la lista NOMBRE_CARGO y no sobre necesidad 
+                if (fromPost != null && fromPost.RESULTADO == true && fromPost.COD_CARGO != 0)
+                    fromPost.NOMBRE_COD_CARGO = listacargos.Where(x => x.Value == fromPost.COD_CARGO.ToString()).First().Text;
+                //Logica para el POP UP
+                ViewBag.resultadoInsertExitosoOno = fromPost != null ? !fromPost.RESULTADO.Equals(0) : false;
+                ViewBag.resultadoPopUpNoJefe = fromPost;
 
-            //FIN POP UP
-            ViewBag.Busca_USUARIOS = new LOGICA_REQUISICION().CONSULTAR_EMPLEADOS();
+                //FIN POP UP
+                ViewBag.Busca_USUARIOS = new LOGICA_REQUISICION().CONSULTAR_EMPLEADOS();
+
+                logCentralizado.FINALIZANDO_LOG("CTR_REQ_NO_PRE1", "Consultar");
+
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = new ERROR_GENERAL_ViewModel()
+                {
+                    COD_ERROR = logCentralizado.CAPTURA_EXCEPCION("CTR_REQ_NO_PRE1", "Consultar", ex),
+                    DETALLE = "error al consultar la requisicion"
+                };
+            }
+
             return View(model);
         }
         [HttpPost]
         public ActionResult Procesar(REQUISICIONViewModel modelDatos, string submitButton, int? _idTipo) {
             try {
+                logCentralizado.INICIANDO_LOG("CTR_REQ_NO_PRE2", "Procesar");
                 int _resultadoIdReguisicion = 0;
                 modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqNoPresupuestada;
                 modelDatos.USUARIO_CREACION = User.Identity.Name;
@@ -102,14 +130,16 @@ namespace G_H_WEB.Controllers
                 npc.RESULTADO = !_resultadoIdReguisicion.Equals(0);
                 TempData["resultado"] = npc;
                 //FIN Esta logica es para el POP UP----------
-
+                logCentralizado.FINALIZANDO_LOG("CTR_REQ_NO_PRE2", "Procesar");
                 return RedirectToAction("Consultar");
             }
             catch (Exception ex)
             {
-                RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
-                npc.RESULTADO = false;
-                TempData["resultado"] = npc;
+                TempData["ErrorPost"] = new ERROR_GENERAL_ViewModel()
+                {
+                    COD_ERROR = logCentralizado.CAPTURA_EXCEPCION("CTR_REQ_NO_PRE2", "Procesar", ex),
+                    DETALLE = "error al procesar la requisicion"
+                };
                 return RedirectToAction("Consultar");
             }
         }

@@ -92,7 +92,6 @@
     <Compile Include="CONFIGURACION_CORREOS_REP.cs" />
     <Compile Include="DEPURACION_REP.cs" />
     <Compile Include="ERRORES_REP.cs" />
-    <Compile Include="LICENCIA_INCAPACIDAD.ACCESS\ACCESS_LICENCIA_INCAPACIDAD.cs" />
     <Compile Include="MAPEOS\MAPEOS_CORREOS.cs" />
     <Compile Include="MAPEOS\MAPEO_DEPURACION.cs" />
     <Compile Include="MAPEOS\MAPEO_ERRORES.cs" />
@@ -151,6 +150,7 @@
     <Compile Include="SEGURIDAD\CUENTAS_REP.cs" />
     <Compile Include="SOPORTES_REP.cs" />
     <Compile Include="TRAZA_LOG\ERROR.cs" />
+    <Compile Include="TRAZA_LOG\LOG_CENTRALIZADO.cs" />
     <Compile Include="TRAZA_LOG\TRAZA.cs" />
   </ItemGroup>
   <ItemGroup>

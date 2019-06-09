@@ -4,10 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using G_H_WEB.Logica_Session;
+using G_H_WEB.Models;
+using log4net;
 using LOGICA.REQUISICION_LOGICA;
 using Microsoft.AspNet.Identity;
 using MODELO_DATOS.MODELO_REQUISICION;
 using MODELO_DATOS.MODELO_REQUISICION.LISTAS_API;
+using REPOSITORIOS.TRAZA_LOG;
 using UTILS.Settings;
 
 namespace G_H_WEB.Controllers
@@ -15,16 +18,25 @@ namespace G_H_WEB.Controllers
     [CustAuthFilter]
     public class REQUISICION_PRESUPUESTADAController : Controller
     {
+        private LOG_CENTRALIZADO logCentralizado = new LOG_CENTRALIZADO(LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType));
         // GET: REQUISICION_PRESUPUESTADA
         public ActionResult Consultar(int? _idReq, int? _idTipo)
         {
+            if (TempData["ErrorPost"] != null) {
+                ViewBag.Error = (ERROR_GENERAL_ViewModel)TempData["ErrorPost"];
+            }
+            
+
+
             REQUISICIONViewModel model = new REQUISICIONViewModel();
             try
             {
-               
-                if (_idReq.HasValue){
+                logCentralizado.INICIANDO_LOG("CTR_REQ_PRE1", "Consultar");
+                if (_idReq.HasValue)
+                {
                     model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value) ?? new REQUISICIONViewModel();
-                    if (User.IsInRole(SettingsManager.PerfilBp)){
+                    if (User.IsInRole(SettingsManager.PerfilBp))
+                    {
                         model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES_BP(model) ?? new REQUISICIONViewModel();
                     }
                 }
@@ -40,9 +52,15 @@ namespace G_H_WEB.Controllers
                 ViewBag.resultadoInsertExitosoOno = fromPost != null ? !fromPost.RESULTADO.Equals(0) : false;
                 ViewBag.resultadoPopUpNoJefe = fromPost;
                 ViewBag.Busca_USUARIOS = new LOGICA_REQUISICION().CONSULTAR_EMPLEADOS();
+                logCentralizado.FINALIZANDO_LOG("CTR_REQ_PRE1", "Consultar");
             }
-            catch (Exception ex){
-                ViewBag.Error = ex.Message;
+            catch (Exception ex)
+            {
+                ViewBag.Error = new ERROR_GENERAL_ViewModel()
+                {
+                    COD_ERROR = logCentralizado.CAPTURA_EXCEPCION("CTR_REQ_PRE1", "Consultar", ex),
+                    DETALLE = "error al cargar requisicion presupuestada"
+                };
             }
 
             return View(model);
@@ -52,9 +70,10 @@ namespace G_H_WEB.Controllers
         {
             try
             {
+                logCentralizado.INICIANDO_LOG("CTR_REQ_PRE2", "Procesar");
                 int _resultadoIdReguisicion = 0;
                 modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqPresupuestada;
-               
+
                 modelDatos.USUARIO_CREACION = User.Identity.Name;
                 modelDatos.USUARIO_MODIFICACION = User.Identity.Name;//      martinezluir esto es para test toca hacer la logica
                 REQUISICIONViewModel listas = new REQUISICIONViewModel();
@@ -78,13 +97,14 @@ namespace G_H_WEB.Controllers
 
                         break;
                     case "APROBAR REQUISICIÓN":
-                        
+
                         if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
                         {
                             Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZAR_REQUISICION(modelDatos));
                             _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
                         }
-                        else {
+                        else
+                        {
                             _resultadoIdReguisicion = new LOGICA_REQUISICION().APROBAR_REQUISICION_LOGICA(modelDatos.COD_REQUISICION, User.Identity.GetUserId(), modelDatos.OBSERVACION);
                         }
                         npc.METODO = "Aprobar";
@@ -111,12 +131,17 @@ namespace G_H_WEB.Controllers
                 npc.RESULTADO = !_resultadoIdReguisicion.Equals(0);
                 TempData["resultado"] = npc;
                 //FIN Esta logica es para el POP UP----------
-
+                logCentralizado.FINALIZANDO_LOG("CTR_REQ_PRE2", "Procesar");
                 return RedirectToAction("Consultar");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                TempData["ErrorPost"] = new ERROR_GENERAL_ViewModel()
+                {
+                    COD_ERROR = logCentralizado.CAPTURA_EXCEPCION("CTR_REQ_PRE2", "Procesar", ex),
+                    DETALLE = "error al procesar la requisicion"
+                };
+                return RedirectToAction("Consultar");
             }
         }
 
