@@ -74,27 +74,27 @@
                                     @Html.Partial("_PartialInfoSalarial", Model)
                                     @Html.Partial("_PartialAutorizacion", Model)
 
-                        }
-                        if (User.IsInRole(SettingsManager.PerfilRRHH))
-                        {
+                                }
+                                if (User.IsInRole(SettingsManager.PerfilRRHH))
+                                {
                             @Html.Partial("_PartialInfoRequisicion", Model)
                             @Html.Partial("_PartialInfoGeneral", Model)
                             @Html.Partial("_PartialInfoSalarial", Model)
                             @Html.Partial("_PartialAutorizacion", Model)
-                        }
-                        if (User.IsInRole(SettingsManager.PerfilUSC))
-                        {
+                                }
+                                if (User.IsInRole(SettingsManager.PerfilUSC))
+                                {
                             @Html.Partial("_PartialInfoRequisicion", Model)
                             @Html.Partial("_PartialInfoGeneral", Model)
                             @Html.Partial("_PartialInfoSalarial", Model)
                             @Html.Partial("_PartialAutorizacion", Model)
-                        }
-                        if (ViewBag.PERMISOS_CONTROLLER != "")
-                        {
+                                }
+                                if (ViewBag.PERMISOS_CONTROLLER != "")
+                                {
                             @Html.Partial("_PartialInfoRequisicion", Model)
                             @Html.Partial("_PartialAutorizacion", Model)
-                        }
-                        //Botones
+                                }
+                                //Botones
                         <div class="form-group">
                             <div class="col-md-12">
 
@@ -108,7 +108,7 @@
 
                                     <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver" />
                                     <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto" />
-                                }
+                                        }
                                 @if (User.IsInRole(SettingsManager.PerfilBp))
                                 {
                                     @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
@@ -134,10 +134,11 @@
                                 }
                             </div>
                         </div>
-                    }
+                            }
                 </div>
             </div>
-        </div>
+              </div>
+            }
     </div>
 
 

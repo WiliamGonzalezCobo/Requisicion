@@ -45,95 +45,102 @@
                 </div>
             </div>
         </div>
-
-        <div id="CNform">
-            <div class="retiros-detalle">
-                <div class="form-group col-md-12">
-                    @using (Html.BeginForm("Procesar", "REQUISICION_PRESUPUESTADA"))
-                    {
-
-                        if (User.IsInRole(SettingsManager.PerfilJefe))
+        @if (ViewBag.Error != null)
+        {
+            @Html.Partial("_Error", (ERROR_GENERAL_ViewModel)ViewBag.Error);
+        }
+        else
+        {
+            <div id="CNform">
+                <div class="retiros-detalle">
+                    <div class="form-group col-md-12">
+                        @using (Html.BeginForm("Procesar", "REQUISICION_PRESUPUESTADA"))
                         {
-                            @Html.Partial("_PartialInfoRequisicion", Model)
-                            @Html.Partial("_PartialAutorizacion", Model)
-                        }
-                        if (User.IsInRole(SettingsManager.PerfilController))
-                        {
-                            @Html.Partial("_PartialInfoRequisicion", Model)
-                            @Html.Partial("_PartialAutorizacion", Model)
-                        }
-                        if (User.IsInRole(SettingsManager.PerfilBp))
-                        {
-                            @Html.Partial("_PartialInfoRequisicion", Model)
-                            @Html.Partial("_PartialInfoGeneral", Model)
-                            @Html.Partial("_PartialInfoSalarial", Model)
-                            @Html.Partial("_PartialAutorizacion", Model)
 
-                        }
-                        if (User.IsInRole(SettingsManager.PerfilRRHH))
-                        {
-                            @Html.Partial("_PartialInfoRequisicion", Model)
-                            @Html.Partial("_PartialInfoGeneral", Model)
-                            @Html.Partial("_PartialInfoSalarial", Model)
-                            @Html.Partial("_PartialAutorizacion", Model)
-                        }
-                        if (User.IsInRole(SettingsManager.PerfilUSC))
-                        {
-                            @Html.Partial("_PartialInfoRequisicion", Model)
-                            @Html.Partial("_PartialInfoGeneral", Model)
-                            @Html.Partial("_PartialInfoSalarial", Model)
-                            @Html.Partial("_PartialAutorizacion", Model)
-                        }
-                        if (ViewBag.PERMISOS_CONTROLLER != "")
-                        {
-                            @Html.Partial("_PartialInfoRequisicion", Model)
-                            @Html.Partial("_PartialAutorizacion", Model)
-                        }
-                        //Botones
-                        <div class="form-group">
-                            <div class="col-md-12">
+                            if (User.IsInRole(SettingsManager.PerfilJefe))
+                            {
+                                @Html.Partial("_PartialInfoRequisicion", Model)
+                                @Html.Partial("_PartialAutorizacion", Model)
+                            }
+                            if (User.IsInRole(SettingsManager.PerfilController))
+                            {
+                                @Html.Partial("_PartialInfoRequisicion", Model)
+                                @Html.Partial("_PartialAutorizacion", Model)
+                            }
+                            if (User.IsInRole(SettingsManager.PerfilBp))
+                            {
+                                @Html.Partial("_PartialInfoRequisicion", Model)
+                                @Html.Partial("_PartialInfoGeneral", Model)
+                                @Html.Partial("_PartialInfoSalarial", Model)
+                                @Html.Partial("_PartialAutorizacion", Model)
 
-                                @if (User.IsInRole(SettingsManager.PerfilJefe))
-                                {
-                                    @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
-                                    <input name="submitButton" id="submitButtonCrear" type="submit" value="CREAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto" />
-                                }
-                                @if (User.IsInRole(SettingsManager.PerfilController))
-                                {
-                                    <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver" />
-                                    <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto" />
+                            }
+                            if (User.IsInRole(SettingsManager.PerfilRRHH))
+                            {
+                                @Html.Partial("_PartialInfoRequisicion", Model)
+                                @Html.Partial("_PartialInfoGeneral", Model)
+                                @Html.Partial("_PartialInfoSalarial", Model)
+                                @Html.Partial("_PartialAutorizacion", Model)
+                            }
+                            if (User.IsInRole(SettingsManager.PerfilUSC))
+                            {
+                                @Html.Partial("_PartialInfoRequisicion", Model)
+                                @Html.Partial("_PartialInfoGeneral", Model)
+                                @Html.Partial("_PartialInfoSalarial", Model)
+                                @Html.Partial("_PartialAutorizacion", Model)
+                            }
+                            if (ViewBag.PERMISOS_CONTROLLER != "")
+                            {
+                                @Html.Partial("_PartialInfoRequisicion", Model)
+                                @Html.Partial("_PartialAutorizacion", Model)
+                            }
+                            //Botones
+                            <div class="form-group">
+                                <div class="col-md-12">
 
-                                }
-                                @if (User.IsInRole(SettingsManager.PerfilBp))
-                                {
-                                    @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
-                                    <input name="submitButton" type="submit" value="Enviar" class="crear-requisicion crear-requisicion-texto" />
-                                }
-                                @if (User.IsInRole(SettingsManager.PerfilRRHH))
-                                {
-                                    <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="aprobar-requisicion btn-confirmar-retiro" />
-                                    <input name="submitButton" type="submit" value="RECHAZAR REQUISICIÓN" class="btn-confirmar-retiro" />
-                                    <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="btn-confirmar-retiro" />
-                                }
-                                @if (User.IsInRole(SettingsManager.PerfilUSC))
-                                {
-                                    <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="submit" value="RECHAZAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
-                                }
+                                    @if (User.IsInRole(SettingsManager.PerfilJefe))
+                                    {
+                                        @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
+                                        <input name="submitButton" id="submitButtonCrear" type="submit" value="CREAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto" />
+                                    }
+                                    @if (User.IsInRole(SettingsManager.PerfilController))
+                                    {
+                                        <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver" />
+                                        <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto" />
 
-                                @if (ViewBag.PERMISOS_CONTROLLER != "")
-                                {
-                                    <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver" />
-                                    <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto" />
-                                }
+                                    }
+                                    @if (User.IsInRole(SettingsManager.PerfilBp))
+                                    {
+                                        @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
+                                        <input name="submitButton" type="submit" value="Enviar" class="crear-requisicion crear-requisicion-texto" />
+                                    }
+                                    @if (User.IsInRole(SettingsManager.PerfilRRHH))
+                                    {
+                                        <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="aprobar-requisicion btn-confirmar-retiro" />
+                                        <input name="submitButton" type="submit" value="RECHAZAR REQUISICIÓN" class="btn-confirmar-retiro" />
+                                        <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="btn-confirmar-retiro" />
+                                    }
+                                    @if (User.IsInRole(SettingsManager.PerfilUSC))
+                                    {
+                                        <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
+                                        <input name="submitButton" type="submit" value="RECHAZAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
+                                        <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
+                                    }
+
+                                    @if (ViewBag.PERMISOS_CONTROLLER != "")
+                                    {
+                                        <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver" />
+                                        <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto" />
+                                    }
+                                </div>
                             </div>
-                        </div>
-                    }
+                        }
+                    </div>
                 </div>
             </div>
+
+        }
         </div>
-    </div>
     <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content Content-Popup-Creacion">
