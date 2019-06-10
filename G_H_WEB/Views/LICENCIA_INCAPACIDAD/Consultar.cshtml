@@ -70,99 +70,103 @@
 
             </div>
 
-            <div id="CNform">
-                <div class="retiros-detalle">
-                    <div class="form-group col-md-12">
-                        @using (Html.BeginForm("Procesar", "LICENCIA_INCAPACIDAD"))
-                        {
+            <div>
+                @if (ViewBag.Error != null)
+                {
+                    @Html.Partial("_Error", (ERROR_GENERAL_ViewModel)ViewBag.Error);
+                }
+                else
+                {
+                    <div id="CNform">
+                        <div class="retiros-detalle">
+                            <div class="form-group col-md-12">
+                                @using (Html.BeginForm("Procesar", "LICENCIA_INCAPACIDAD"))
+                                {
 
-                            if (User.IsInRole(SettingsManager.PerfilJefe))
-                            {
-
-                                @Html.Partial("_PartialInfoRequisicionLi", Model)
-                                @Html.Partial("_PartialInfoGeneralLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi", Model)
-                                @Html.Partial("_PartialAutorizacion", Model)
-
-
-                            }
-                            if (User.IsInRole(SettingsManager.PerfilController))
-                            {
-                                @Html.Partial("_PartialInfoRequisicionLi", Model)
-                                @Html.Partial("_PartialInfoGeneralLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi", Model)
-                                @Html.Partial("_PartialAutorizacion", Model)
-                            }
-                            if (User.IsInRole(SettingsManager.PerfilBp))
-                            {
-                                @Html.Partial("_PartialInfoRequisicionLi", Model)
-                                @Html.Partial("_PartialInfoGeneralLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLiLectura", Model)
-                                @Html.Partial("_PartialGeneralProPuestaLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi2", Model)
-                                @Html.Partial("_PartialAutorizacion", Model)
-
-                            }
-                            if (User.IsInRole(SettingsManager.PerfilRRHH))
-                            {
-                                @Html.Partial("_PartialInfoRequisicionLi", Model)
-                                @Html.Partial("_PartialInfoGeneralLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLiLectura", Model)
-                                @Html.Partial("_PartialGeneralProPuestaLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi2", Model)
-                                @Html.Partial("_PartialAutorizacion", Model)
-                            }
-                            if (User.IsInRole(SettingsManager.PerfilUSC))
-                            {
-                                @Html.Partial("_PartialInfoRequisicionLi", Model)
-                                @Html.Partial("_PartialInfoGeneralLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLiLectura", Model)
-                                @Html.Partial("_PartialGeneralProPuestaLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi2", Model)
-                                @Html.Partial("_PartialAutorizacion", Model)
-                            }
-
-                            //Botones
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
-                                    @if (User.IsInRole(SettingsManager.PerfilJefe))
+                                    if (User.IsInRole(SettingsManager.PerfilJefe))
                                     {
-                                        <input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="btn-confirmar-retiro col-md-3" />
+
+                                        @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                        @Html.Partial("_PartialInfoGeneralLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi", Model)
+                                        @Html.Partial("_PartialAutorizacion", Model)
+
+
                                     }
-                                    @if (User.IsInRole(SettingsManager.PerfilController))
+                                    if (User.IsInRole(SettingsManager.PerfilController))
                                     {
-                                        <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                        <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                        @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                        @Html.Partial("_PartialInfoGeneralLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi", Model)
+                                        @Html.Partial("_PartialAutorizacion", Model)
                                     }
-                                    @if (User.IsInRole(SettingsManager.PerfilBp))
+                                    if (User.IsInRole(SettingsManager.PerfilBp))
                                     {
-                                        <input name="submitButton" type="submit" value="Enviar" class="crear-requisicion crear-requisicion-texto" />
+                                        @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                        @Html.Partial("_PartialInfoGeneralLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLiLectura", Model)
+                                        @Html.Partial("_PartialGeneralProPuestaLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi2", Model)
+                                        @Html.Partial("_PartialAutorizacion", Model)
+
                                     }
-                                    @if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
+                                    if (User.IsInRole(SettingsManager.PerfilRRHH))
                                     {
-                                        <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                        <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
-                                        <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                        @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                        @Html.Partial("_PartialInfoGeneralLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLiLectura", Model)
+                                        @Html.Partial("_PartialGeneralProPuestaLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi2", Model)
+                                        @Html.Partial("_PartialAutorizacion", Model)
+                                    }
+                                    if (User.IsInRole(SettingsManager.PerfilUSC))
+                                    {
+                                        @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                        @Html.Partial("_PartialInfoGeneralLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLiLectura", Model)
+                                        @Html.Partial("_PartialGeneralProPuestaLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi2", Model)
+                                        @Html.Partial("_PartialAutorizacion", Model)
                                     }
 
-                                </div>
+                                    //Botones
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
+                                            @if (User.IsInRole(SettingsManager.PerfilJefe))
+                                            {
+                                                <input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="btn-confirmar-retiro col-md-3" />
+                                            }
+                                            @if (User.IsInRole(SettingsManager.PerfilController))
+                                            {
+                                                <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                                <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                            }
+                                            @if (User.IsInRole(SettingsManager.PerfilBp))
+                                            {
+                                                <input name="submitButton" type="submit" value="Enviar" class="crear-requisicion crear-requisicion-texto" />
+                                            }
+                                            @if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
+                                            {
+                                                <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                                <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
+                                                <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                            }
+
+                                        </div>
+                                    </div>
+                                }
                             </div>
-                        }
+                        </div>
                     </div>
-                </div>
+                }
             </div>
         </div>
     </div>
-    @if (ViewBag.Error != null)
-    {
-        <div>
-            @Html.Partial("_Error", (ERROR_GENERAL_ViewModel)ViewBag.Error);
-        </div>
-    }
+
     <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content Content-Popup-Creacion">
@@ -241,12 +245,10 @@
                                 <th>Cod Estado</th>
                             </tr>
                         </thead>
-                        <tbody class="bodytraza">
-
-                        </tbody>
+                        <tbody class="bodytraza"></tbody>
                     </table>
                 </div>
-              
+
             </div>
         </div>
     </div>

@@ -101,7 +101,7 @@ namespace G_H_WEB.Controllers
                             npc.METODO = "Crear";
                         else
                             npc.METODO = "Modificar";
-                        //Cambios_campos(modelDatos, _resultadoIdReguisicion);
+                        Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         break;
                     case "APROBAR REQUISICIÓN":
 
