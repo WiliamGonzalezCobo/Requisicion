@@ -17,11 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PRUEBAS", "PRUEBAS\PRUEBAS.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts_DB", "Scripts_DB", "{99C467A0-8623-4876-96F9-83B55FB8B6D6}"
 	ProjectSection(SolutionItems) = preProject
-		data.sql = data.sql
-		Esquemas.sql = Esquemas.sql
-		Roles.sql = Roles.sql
-		StoreProcedures.sql = StoreProcedures.sql
-		Tablas.sql = Tablas.sql
+		DB.sql = DB.sql
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UTILS", "UTILS\UTILS.csproj", "{99F08C2B-3228-4511-8ECE-EFF09372E990}"
