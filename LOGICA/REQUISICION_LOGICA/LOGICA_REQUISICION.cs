@@ -1300,6 +1300,12 @@ namespace LOGICA.REQUISICION_LOGICA
             return _listaCampos;
         }
 
+        public List<TRAZA_BOTONES_VISIBLES> CAMPOS_TRAZAS_VISIBLES(int _codRequisicion)
+        {
+            List<TRAZA_BOTONES_VISIBLES> _listaCampos = new ACCES_REQUISICION().CAMPOS_TRAZAS_VISIBLES(_codRequisicion);
+            return _listaCampos;
+        }
+
         public void INSERTAR_CAMPOS_TRAZAS_VISIBLES(List<TRAZA_BOTONES_VISIBLES> _traza)
         {
             new ACCES_REQUISICION().INSERTAR_CAMPOS_TRAZAS_VISIBLES(_traza);

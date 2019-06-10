@@ -101,7 +101,7 @@ namespace G_H_WEB.Controllers
                             npc.METODO = "Crear";
                         else
                             npc.METODO = "Modificar";
-                        Cambios_campos(modelDatos, _resultadoIdReguisicion);
+                        //Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         break;
                     case "APROBAR REQUISICIÓN":
                         if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
@@ -112,24 +112,24 @@ namespace G_H_WEB.Controllers
                         else {
                             _resultadoIdReguisicion = new LOGICA_REQUISICION().APROBAR_REQUISICION_LOGICA(modelDatos.COD_REQUISICION, User.Identity.GetUserId(), modelDatos.OBSERVACION);
                         }
-                        Cambios_campos(modelDatos, _resultadoIdReguisicion);
+                        //Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         npc.METODO = "Aprobar";
                         break;
                     case "Rechazar requisicion":
                         _resultadoIdReguisicion = new LOGICA_REQUISICION().REQUISICION_RECHAZAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.Name);
-                        Cambios_campos(modelDatos, _resultadoIdReguisicion);
+                        //Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         npc.METODO = "Rechazar";                        
                         break;
                     case "Enviar":
 
                         Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZAR_REQUISICION(modelDatos));
                         _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
-                        Cambios_campos(modelDatos, _resultadoIdReguisicion);
+                        //Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         npc.METODO = "Enviar";
                         break;
                     case "DEVOLVER REQUISICIÓN":
                         _resultadoIdReguisicion = Convert.ToInt32(new LOGICA_REQUISICION().REQUISICION_MODIFICAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.GetUserId()));
-                        Cambios_campos(modelDatos, _resultadoIdReguisicion);
+                        //Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         npc.METODO = "Modificar";
                         break;
                 }
@@ -165,7 +165,7 @@ namespace G_H_WEB.Controllers
             {
                 traza = new TRAZA_BOTONES_VISIBLES();
                 traza.COD_REQUISICION = _cod_requisicion;
-                traza.CAMPOS = "NOMBRE_CATEGORIA_EVALUACION_DESEMPENO";
+                traza.CAMPOS = "NOMBRE_CATEGORIA_ED";
                 traza.TRAZA = "true";
                 _cambio = true;
                 trazas.Add(traza);
@@ -419,6 +419,16 @@ namespace G_H_WEB.Controllers
                 traza = new TRAZA_BOTONES_VISIBLES();
                 traza.COD_REQUISICION = _cod_requisicion;
                 traza.CAMPOS = "NOMBRE_CATEGORIA";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.NIVEL_RIESGO != Convert.ToDouble(aGuardar.NIVEL_RIESGO_ARL))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "NOMBRE_ARL";
                 traza.TRAZA = "true";
                 _cambio = true;
                 trazas.Add(traza);

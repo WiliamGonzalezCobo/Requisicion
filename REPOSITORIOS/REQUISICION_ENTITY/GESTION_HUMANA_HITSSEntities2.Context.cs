@@ -739,5 +739,14 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTAR_CAMPOS_TRAZA_Result>("CONSULTAR_CAMPOS_TRAZA", cOD_REQUISICIONParameter);
         }
+    
+        public virtual ObjectResult<CAMPOS_TRAZA1_Result> CAMPOS_TRAZA1(Nullable<int> cOD_REQUISICION)
+        {
+            var cOD_REQUISICIONParameter = cOD_REQUISICION.HasValue ?
+                new ObjectParameter("COD_REQUISICION", cOD_REQUISICION) :
+                new ObjectParameter("COD_REQUISICION", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CAMPOS_TRAZA1_Result>("CAMPOS_TRAZA1", cOD_REQUISICIONParameter);
+        }
     }
 }
