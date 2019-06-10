@@ -18,6 +18,10 @@
     border-radius: .25rem;
 }
 
+.dropdown-menu-rol {
+    left: 33%
+}
+
 .dropdown-item.dropdown-notification:active, .dropdown-item.dropdown-notification.active {
     text-decoration: none;
     background-color: #f7f7f9;
@@ -99,3 +103,13 @@
 .dropdown-toggle:focus {
     box-shadow: none !important;
 }
+
+.btn-group-menu-rol {
+    background-color: #575758 !important;
+    border-color: #575758 !important
+}
+
+    .btn-group-menu-rol:hover {
+        background-color: #575758 !important;
+        border-color: #575758 !important
+    }

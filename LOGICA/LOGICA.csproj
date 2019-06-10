@@ -130,7 +130,6 @@
     <Compile Include="EMPLEADO.cs" />
     <Compile Include="BASE_REQUISICION\BASE_PROXY.cs" />
     <Compile Include="BASE_REQUISICION\PROXY.cs" />
-    <Compile Include="LICENCIA_INCAPACIDAD_LOGICA\LOGICA_LICENCIA_INCAPACIDAD.cs" />
     <Compile Include="MODELO_LOGICA\AUTENTICA_DIRECTORIO_MODELO.cs" />
     <Compile Include="MODELO_LOGICA\AUTENTICAR_MODELO.cs" />
     <Compile Include="MODELO_LOGICA\AUTENTICAR_USUARIO_MODELO.cs" />

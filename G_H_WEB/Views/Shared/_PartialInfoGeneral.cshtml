@@ -1,21 +1,26 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 @{string deshabilitar = "true";}
 <section id="infoGeneral">
-    <div class="SubtitulosNivel2">Información General</div>
-    <div class="row">
-        <div class="form-group col-md-12 col-sm-12">
-            @Html.LabelFor(model => model.LIST_NOMBRE_GERENCIA, new { @class = "letrasFormulario" } )
-            @Html.DropDownListFor(model => model.COD_GERENCIA, Model.LIST_NOMBRE_GERENCIA, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
-            @Html.HiddenFor(model => model.COD_GERENCIA)
-            @Html.ValidationMessageFor(model => model.COD_GERENCIA)
-        </div>
-        <div class="form-group col-md-12 col-sm-12">
-            @Html.LabelFor(model => model.LIST_NOMBRE_TIPO_CONTRATO, new { @class = "letrasFormulario" })
-            @Html.DropDownListFor(model => model.COD_TIPO_CONTRATO, Model.LIST_NOMBRE_TIPO_CONTRATO, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
-            @Html.HiddenFor(model => model.COD_TIPO_CONTRATO)
-            @Html.ValidationMessageFor(model => model.COD_TIPO_CONTRATO)
-        </div>
+    <div class="panel-heading">
+        <a class="a-collapse" data-toggle="collapse" href="#collapseInfoGeneralPresu">
+            <h2>Información General</h2>
+        </a>
     </div>
+    <div id="collapseInfoGeneralPresu" class="panel-collapse collapse">
+        <div class="row">
+            <div class="form-group col-md-12 col-sm-12">
+                @Html.LabelFor(model => model.LIST_NOMBRE_GERENCIA, new { @class = "letrasFormulario" })
+                @Html.DropDownListFor(model => model.COD_GERENCIA, Model.LIST_NOMBRE_GERENCIA, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                @Html.HiddenFor(model => model.COD_GERENCIA)
+                @Html.ValidationMessageFor(model => model.COD_GERENCIA)
+            </div>
+            <div class="form-group col-md-12 col-sm-12">
+                @Html.LabelFor(model => model.LIST_NOMBRE_TIPO_CONTRATO, new { @class = "letrasFormulario" })
+                @Html.DropDownListFor(model => model.COD_TIPO_CONTRATO, Model.LIST_NOMBRE_TIPO_CONTRATO, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                @Html.HiddenFor(model => model.COD_TIPO_CONTRATO)
+                @Html.ValidationMessageFor(model => model.COD_TIPO_CONTRATO)
+            </div>
+        </div>
 
     <div class="row">
         <div class="form-group col-md-12 col-sm-12">
@@ -24,195 +29,207 @@
             @Html.HiddenFor(model => model.JEFE_INMEDIATO)
             @Html.ValidationMessageFor(model => model.JEFE_INMEDIATO)
         </div>
-        <div class="form-group col-md-12 col-sm-12">
+        <div class="form-group col-md-12 col-sm-12">        
             @Html.LabelFor(model => model.LIST_NOMBRE_CECO, new { @class = "letrasFormulario" })
-            @Html.DropDownListFor(model => model.COD_CECO, Model.LIST_NOMBRE_CECO, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario" })
+            @Html.DropDownListFor(model => model.COD_CECO, new SelectList(Model.LIST_NOMBRE_CECO, "Value", "Text", Model.COD_CECO), "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
             @Html.ValidationMessageFor(model => model.COD_CECO)
         </div>
     </div>
 
-    <div class="row">
-        <div class="form-group col-md-12 col-sm-12">
-            @Html.LabelFor(model => model.LIST_NOMBRE_SOCIEDAD, new { @class = "letrasFormulario" })
-            @Html.DropDownListFor(model => model.COD_SOCIEDAD, Model.LIST_NOMBRE_SOCIEDAD, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
-            @Html.HiddenFor(model => model.COD_SOCIEDAD)
-            @Html.ValidationMessageFor(model => model.COD_SOCIEDAD)
+        <div class="row">
+            <div class="form-group col-md-12 col-sm-12">
+                @Html.LabelFor(model => model.LIST_NOMBRE_SOCIEDAD, new { @class = "letrasFormulario" })
+                @Html.DropDownListFor(model => model.COD_SOCIEDAD, Model.LIST_NOMBRE_SOCIEDAD, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                @Html.HiddenFor(model => model.COD_SOCIEDAD)
+                @Html.ValidationMessageFor(model => model.COD_SOCIEDAD)
+            </div>
+            <div class="form-group col-md-12 col-sm-12">
+                @Html.LabelFor(model => model.LIST_NOMBRE_EQIPO_VENTAS, new { @class = "letrasFormulario" })
+                @Html.DropDownListFor(model => model.COD_EQUIPO_VENTAS, Model.LIST_NOMBRE_EQIPO_VENTAS, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                @Html.HiddenFor(model => model.COD_EQUIPO_VENTAS)
+                @Html.ValidationMessageFor(model => model.COD_EQUIPO_VENTAS)
+            </div>
         </div>
-        <div class="form-group col-md-12 col-sm-12">
-            @Html.LabelFor(model => model.LIST_NOMBRE_EQIPO_VENTAS, new { @class = "letrasFormulario" })
-            @Html.DropDownListFor(model => model.COD_EQUIPO_VENTAS, Model.LIST_NOMBRE_EQIPO_VENTAS, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
-            @Html.HiddenFor(model => model.COD_EQUIPO_VENTAS)
-            @Html.ValidationMessageFor(model => model.COD_EQUIPO_VENTAS)
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="form-group col-md-12 col-sm-12">
-            @Html.LabelFor(model => model.LIST_NOMBRE_CIUDAD_TRABAJO, new { @class = "letrasFormulario" })
-            @Html.DropDownListFor(model => model.COD_CIUDAD_TRABAJO, Model.LIST_NOMBRE_CIUDAD_TRABAJO, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
-            @Html.HiddenFor(model => model.COD_CIUDAD_TRABAJO)
-            @Html.ValidationMessageFor(model => model.COD_CIUDAD_TRABAJO)
+        <div class="row">
+            <div class="form-group col-md-12 col-sm-12">
+                @Html.LabelFor(model => model.LIST_NOMBRE_CIUDAD_TRABAJO, new { @class = "letrasFormulario" })
+                @Html.DropDownListFor(model => model.COD_CIUDAD_TRABAJO, Model.LIST_NOMBRE_CIUDAD_TRABAJO, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                @Html.HiddenFor(model => model.COD_CIUDAD_TRABAJO)
+                @Html.ValidationMessageFor(model => model.COD_CIUDAD_TRABAJO)
+            </div>
+            <div class="form-group col-md-12 col-sm-12">
+                @Html.LabelFor(model => model.LIST_NOMBRE_UBICACION_FISICA, new { @class = "letrasFormulario" })
+                @Html.DropDownListFor(model => model.COD_UBICACION_FISICA, Model.LIST_NOMBRE_UBICACION_FISICA, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                @Html.HiddenFor(model => model.COD_UBICACION_FISICA)
+                @Html.ValidationMessageFor(model => model.COD_UBICACION_FISICA)
+            </div>
         </div>
-        <div class="form-group col-md-12 col-sm-12">
-            @Html.LabelFor(model => model.LIST_NOMBRE_UBICACION_FISICA, new { @class = "letrasFormulario" })
-            @Html.DropDownListFor(model => model.COD_UBICACION_FISICA, Model.LIST_NOMBRE_UBICACION_FISICA, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
-            @Html.HiddenFor(model => model.COD_UBICACION_FISICA)
-            @Html.ValidationMessageFor(model => model.COD_UBICACION_FISICA)
+
+        <div class="row">
+            <div class="form-group col-md-12 col-sm-12">
+                @Html.LabelFor(model => model.LIST_NIVEL_RIESGO_ARL, new { @class = "letrasFormulario" })
+                @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, Model.LIST_NIVEL_RIESGO_ARL, "-- Seleccione --", new { @class = "form-control col-md-11 comboArl letrasFormulario", disabled = deshabilitar })
+                <span id="NOMBRE_ARL_S" class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_ARL')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="position:absolute; left:180px;">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL)
+                @Html.ValidationMessageFor(model => model.COD_NIVEL_RIESGO_ARL)
+            </div>
+            <div class="form-group col-md-12 col-sm-12">
+                @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA_ED, new { @class = "letrasFormulario" })
+                @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, Model.LIST_NOMBRE_CATEGORIA_ED, "-- Seleccione --", new { @class = "form-control col-md-11 combosGrandes letrasFormulario", disabled = deshabilitar })
+                <span id="NOMBRE_CATEGORIA_ED_S" class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.HiddenFor(model => model.COD_CATEGORIA_ED)
+                @Html.ValidationMessageFor(model => model.COD_CATEGORIA_ED)
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="form-group col-md-12 col-sm-12">
-            @Html.LabelFor(model => model.LIST_NIVEL_RIESGO_ARL, new { @class = "letrasFormulario" })
-            @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, Model.LIST_NIVEL_RIESGO_ARL, "-- Seleccione --", new { @class = "form-control col-md-11 comboArl letrasFormulario", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_ARL')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="position:absolute; left:180px;">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL)
-            @Html.ValidationMessageFor(model => model.COD_NIVEL_RIESGO_ARL)
-        </div>
-        <div class="form-group col-md-12 col-sm-12">
-            @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA_ED, new { @class = "letrasFormulario" })
-            @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, Model.LIST_NOMBRE_CATEGORIA_ED, "-- Seleccione --", new { @class = "form-control col-md-11 combosGrandes letrasFormulario", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="left: 520px;">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.HiddenFor(model => model.COD_CATEGORIA_ED)
-            @Html.ValidationMessageFor(model => model.COD_CATEGORIA_ED)
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="form-group col-md-6 col-sm-12">
-            @Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "letrasFormulario" })
-            @if (Model.CARGO_CRITICO == true)
-            {
-                <spam class="CheckboxPadding">
-                    <input type="checkbox" checked="checked" disabled="disabled" />
-                    <label class="letrasFormulario" for="radio1">Si</label>
-                </spam>
-                <spam class="CheckboxPadding">
-                    <input type="checkbox" disabled="disabled" />
-                    <label class="letrasFormulario" for="radio2">No</label>
-                </spam>
-            }
-            else
-            {
-                <spam class="CheckboxPadding">
-                    <input type="checkbox" disabled="disabled" />
-                    <label class="letrasFormulario" for="radio1">Si</label>
-                </spam>
-                <spam class="CheckboxPadding">
-                    <input type="checkbox" checked="checked" disabled="disabled" />
-                    <label class="letrasFormulario" for="radio2">No</label>
-                </spam>
-            }
-
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="form-group col-md-12 col-sm-12">
-            @Html.LabelFor(model => model.NOMBRE_JORNADA_LABORAL, htmlAttributes: new { @class = "letrasFormulario" })
-            <div class="col-md-12 row">
-                @foreach (var jornada in Model.LIST_NOMBRE_JORNADA_LABORAL)
+        <div class="row">
+            <div class="form-group col-md-6 col-sm-12">
+                @Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "letrasFormulario" })
+                @if (Model.CARGO_CRITICO == true)
                 {
+                <spam class="CheckboxPadding">
+                    <input type="checkbox" checked="checked" disabled="disabled" />
+                    <label class="letrasFormulario" for="radio1">Si</label>
+                </spam>
+                <spam class="CheckboxPadding">
+                    <input type="checkbox" disabled="disabled" />
+                    <label class="letrasFormulario" for="radio2">No</label>
+                </spam>
+                }
+                else
+                {
+                <spam class="CheckboxPadding">
+                    <input type="checkbox" disabled="disabled" />
+                    <label class="letrasFormulario" for="radio1">Si</label>
+                </spam>
+                <spam class="CheckboxPadding">
+                    <input type="checkbox" checked="checked" disabled="disabled" />
+                    <label class="letrasFormulario" for="radio2">No</label>
+                </spam>
+                }
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="form-group col-md-12 col-sm-12">
+                @Html.LabelFor(model => model.NOMBRE_JORNADA_LABORAL, htmlAttributes: new { @class = "letrasFormulario" })
+                <div class="col-md-12 row">
+                    @foreach (var jornada in Model.LIST_NOMBRE_JORNADA_LABORAL)
+                    {
                     if (jornada.Text == "TIEMPO PARCIAL")
                     {
-                        <div class="col-md-3 col-lg-3 col-xl-3">
-                            <a class="alineas">
-                                <div class="col-12 rectangle_Jornada">
-                                    <div class="col-12 RB">
-                                        @Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) <br />
-                                    </div>
-                                    <div class="col-12 Img">
-                                        <img src="../../assets/img/TiempoParcial.svg" class="img-responsive maxImagen" />
-                                        <div class="text">Tiempo parcial</div>
-                                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3">
+                        <a class="alineas">
+                            <div class="col-12 rectangle_Jornada">
+                                <div class="col-12 RB">
+                                    @Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) <br />
                                 </div>
-                            </a>
-                        </div>
+                                <div class="col-12 Img">
+                                    <img src="../../assets/img/TiempoParcial.svg" class="img-responsive maxImagen" />
+                                    <div class="text">Tiempo parcial</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                     }
                     if (jornada.Text == "MEDIO TIEMPO")
                     {
-                        <div class="col-md-3 col-lg-3 col-xl-3">
-                            <a class="alineas">
-                                <div class="col-12 rectangle_Jornada">
-                                    <div class="col-12 RB">
-                                        @Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) <br />
-                                    </div>
-                                    <div class="col-12 Img">
-                                        <img src="../../assets/img/TiempoMedio.png" class="img-responsive maxImagen" />
-                                        <div class="text">Medio tiempo</div>
-                                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3">
+                        <a class="alineas">
+                            <div class="col-12 rectangle_Jornada">
+                                <div class="col-12 RB">
+                                    @Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) <br />
                                 </div>
-                            </a>
-                        </div>
+                                <div class="col-12 Img">
+                                    <img src="../../assets/img/TiempoMedio.png" class="img-responsive maxImagen" />
+                                    <div class="text">Medio tiempo</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                     }
                     if (jornada.Text == "TIEMPO COMPLETO")
                     {
-                        <div class="col-md-3 col-lg-3 col-xl-3">
-                            <a class="alineas">
-                                <div class="col-12 rectangle_Jornada">
-                                    <div class="col-12 RB">
-                                        @Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) <br />
-                                    </div>
-                                    <div class="col-12 Img">
-                                        <img src="../../assets/img/TiempoCompleto.png" class="img-responsive maxImagen" />
-                                        <div class="text">Tiempo completo</div>
-                                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3">
+                        <a class="alineas">
+                            <div class="col-12 rectangle_Jornada">
+                                <div class="col-12 RB">
+                                    @Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) <br />
                                 </div>
-                            </a>
-                        </div>
+                                <div class="col-12 Img">
+                                    <img src="../../assets/img/TiempoCompleto.png" class="img-responsive maxImagen" />
+                                    <div class="text">Tiempo completo</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                     }
 
 
 
 
                     @*@Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) @jornada.Text
-            @Html.HiddenFor(m => m.COD_JORNADA_LABORAL)*@
-                }
+                    @Html.HiddenFor(m => m.COD_JORNADA_LABORAL)*@
+                    }
+                </div>
+                @Html.ValidationMessageFor(model => model.COD_JORNADA_LABORAL)
             </div>
-            @Html.ValidationMessageFor(model => model.COD_JORNADA_LABORAL)
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6 col-sm-12">
+                <label>Horario Laboral</label>
+            </div>
+            <div class="form-group col-md-6 col-sm-12">
+                <label>Dias Laborales</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3 col-sm-12">
+                @Html.LabelFor(model => model.HORARIO_LABORAL_DESDE, new { @class = "letrasFormulario" })
+                @Html.DropDownListFor(model => model.HORARIO_LABORAL_DESDE, Model.LIST_HORARIO_LABORAL_DESDE, "-- Seleccione --", new { @class = "form-control col-md-11 combosDesdeHasta letrasFormulario", disabled = deshabilitar })
+                <span id="HORARIO_LABORAL_DESDE_S" class="btn_traza trazaCentrar spanCombosDesdeHasta" onclick="ConsultaTraza('HORARIO_LABORAL_DESDE')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.HiddenFor(model => model.HORARIO_LABORAL_DESDE)
+                @Html.ValidationMessageFor(model => model.HORARIO_LABORAL_DESDE)
+            </div>
+            <div class="form-group col-md-3 col-sm-12">
+                @Html.LabelFor(model => model.HORARIO_LABORAL_HASTA, new { @class = "letrasFormulario" })
+                @Html.DropDownListFor(model => model.HORARIO_LABORAL_HASTA, Model.LIST_HORARIO_LABORAL_HASTA, "-- Seleccione --", new { @class = "form-control col-md-11 combosDesdeHasta letrasFormulario", disabled = deshabilitar })
+                <span id="HORARIO_LABORAL_HASTA_S" class="btn_traza trazaCentrar spanCombosDesdeHasta" onclick="ConsultaTraza('HORARIO_LABORAL_HASTA')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.HiddenFor(model => model.HORARIO_LABORAL_HASTA)
+                @Html.ValidationMessageFor(model => model.HORARIO_LABORAL_HASTA)
+            </div>
+
+            <div class="form-group col-md-3 col-sm-12">
+                @Html.LabelFor(model => model.LIST_DIA_LABORAL_DESDE, new { @class = "letrasFormulario" })
+                @Html.DropDownListFor(model => model.DIA_LABORAL_DESDE, Model.LIST_DIA_LABORAL_DESDE, "-- Seleccione --", new { @class = "form-control col-md-11 combosDesdeHasta letrasFormulario", disabled = deshabilitar })
+                <span id="DIA_LABORAL_DESDE_S" class="btn_traza trazaCentrar spanCombosDesdeHasta" onclick="ConsultaTraza('DIA_LABORAL_DESDE')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.HiddenFor(model => model.DIA_LABORAL_DESDE)
+                @Html.ValidationMessageFor(model => model.DIA_LABORAL_DESDE)
+            </div>
+            <div class="form-group col-md-3 col-sm-12">
+                @Html.LabelFor(model => model.LIST_DIA_LABORAL_HASTA, new { @class = "letrasFormulario" })
+                @Html.DropDownListFor(model => model.DIA_LABORAL_HASTA, Model.LIST_DIA_LABORAL_HASTA, "-- Seleccione --", new { @class = "form-control col-md-11 combosDesdeHasta letrasFormulario", disabled = deshabilitar })
+                <span id="DIA_LABORAL_HASTA_S" class="btn_traza trazaCentrar spanCombosDesdeHasta" onclick="ConsultaTraza('DIA_LABORAL_HASTA')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                @Html.HiddenFor(model => model.DIA_LABORAL_HASTA)
+                @Html.ValidationMessageFor(model => model.DIA_LABORAL_HASTA)
+            </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="form-group col-md-6 col-sm-12">
-            <label>Horario Laboral</label>
-        </div>
-        <div class="form-group col-md-6 col-sm-12">
-            <label>Dias Laborales</label>
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group col-md-3 col-sm-12">
-            @Html.LabelFor(model => model.HORARIO_LABORAL_DESDE, new { @class = "letrasFormulario" })
-            @Html.DropDownListFor(model => model.HORARIO_LABORAL_DESDE, Model.LIST_HORARIO_LABORAL_DESDE, "-- Seleccione --", new { @class = "form-control col-md-11 combosDesdeHasta letrasFormulario", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar spanCombosDesdeHasta" onclick="ConsultaTraza('HORARIO_LABORAL_DESDE')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.HiddenFor(model => model.HORARIO_LABORAL_DESDE)
-            @Html.ValidationMessageFor(model => model.HORARIO_LABORAL_DESDE)
-        </div>
-        <div class="form-group col-md-3 col-sm-12">
-            @Html.LabelFor(model => model.HORARIO_LABORAL_HASTA, new { @class = "letrasFormulario" })
-            @Html.DropDownListFor(model => model.HORARIO_LABORAL_HASTA, Model.LIST_HORARIO_LABORAL_HASTA, "-- Seleccione --", new { @class = "form-control col-md-11 combosDesdeHasta letrasFormulario", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar spanCombosDesdeHasta" onclick="ConsultaTraza('HORARIO_LABORAL_HASTA')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.HiddenFor(model => model.HORARIO_LABORAL_HASTA)
-            @Html.ValidationMessageFor(model => model.HORARIO_LABORAL_HASTA)
-        </div>
-
-        <div class="form-group col-md-3 col-sm-12">
-            @Html.LabelFor(model => model.LIST_DIA_LABORAL_DESDE, new { @class = "letrasFormulario" })
-            @Html.DropDownListFor(model => model.DIA_LABORAL_DESDE, Model.LIST_DIA_LABORAL_DESDE, "-- Seleccione --", new { @class = "form-control col-md-11 combosDesdeHasta letrasFormulario", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar spanCombosDesdeHasta" onclick="ConsultaTraza('DIA_LABORAL_DESDE')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.HiddenFor(model => model.DIA_LABORAL_DESDE)
-            @Html.ValidationMessageFor(model => model.DIA_LABORAL_DESDE)
-        </div>
-        <div class="form-group col-md-3 col-sm-12">
-            @Html.LabelFor(model => model.LIST_DIA_LABORAL_HASTA, new { @class = "letrasFormulario" })
-            @Html.DropDownListFor(model => model.DIA_LABORAL_HASTA, Model.LIST_DIA_LABORAL_HASTA, "-- Seleccione --", new { @class = "form-control col-md-11 combosDesdeHasta letrasFormulario", disabled = deshabilitar })
-            <span class="btn_traza trazaCentrar spanCombosDesdeHasta" onclick="ConsultaTraza('DIA_LABORAL_HASTA')" data-toggle="tooltip" data-placement="top" title="Ver detalles">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-            @Html.HiddenFor(model => model.DIA_LABORAL_HASTA)
-            @Html.ValidationMessageFor(model => model.DIA_LABORAL_HASTA)
-        </div>
-    </div>
-
-
 </section>
+<script>
+    
+    var validateInfoGeneralPresu = true;
+    var validateFormInfoGeneralPresu = function () {
+        if ($('#COD_CECO').val() == "") {
+            validateInfoGeneralPresu = false;
+        } else {
+            validateInfoGeneralPresu = true;
+        }
+        console.log('validateInfoGeneralPresu ', validateInfoGeneralPresu);
+        return validateInfoGeneralPresu;
+    }
+</script>

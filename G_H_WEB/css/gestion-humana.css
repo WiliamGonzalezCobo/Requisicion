@@ -1439,7 +1439,7 @@ thead, tbody, th {
 }
 
 .hr-requisition {
-    margin-top: initial;
+    margin-top: 12px;
     margin-bottom: initial;
     border: 0;
     border-top: 1px dashed #F15300;
