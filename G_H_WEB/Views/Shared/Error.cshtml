@@ -3,12 +3,24 @@
 @{
     ViewBag.Title = "Error";
 }
+<div class="col-md-8">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-danger">Error.</h1>
+        </div>
+        
+    </div>
 
-<h1 class="text-danger">Error.</h1>
-<div>
-    <p> <strong>acción: </strong>  @Model.ActionName</p>
-    <p> <strong>controlador: </strong>  @Model.ControllerName</p>
-    <p> <strong>excepción: </strong>  @Model.Exception.GetType().Name</p>
-    <p> <strong>mensaje: </strong>  @Model.Exception.InnerException</p>
+    <div class="row">
+        <div class="col-12">
+            <p> <strong>acción: </strong>  @Model.ActionName</p>
+            <p> <strong>controlador: </strong>  @Model.ControllerName</p>
+            <p> <strong>excepción: </strong>  @Model.Exception.GetType().Name</p>
+            <p> <strong>mensaje: </strong>  @Model.Exception.Message</p>
+        </div>
+        
+    </div>
+
+
 </div>
 

@@ -77,38 +77,45 @@
 
             </div>
 
-            <div id="CNform">
-                <div class="retiros-detalle">
-                    <div class="form-group col-md-12">
-                        @using (Html.BeginForm("Procesar", "LICENCIA_INCAPACIDAD"))
-                        {
+            <div>
+                @if (ViewBag.Error != null)
+                {
+                    @Html.Partial("_Error", (ERROR_GENERAL_ViewModel)ViewBag.Error);
+                }
+                else
+                {
+                    <div id="CNform">
+                        <div class="retiros-detalle">
+                            <div class="form-group col-md-12">
+                                @using (Html.BeginForm("Procesar", "LICENCIA_INCAPACIDAD"))
+                                {
 
-                            if (User.IsInRole(SettingsManager.PerfilJefe))
-                            {
+                                    if (User.IsInRole(SettingsManager.PerfilJefe))
+                                    {
 
-                                @Html.Partial("_PartialInfoRequisicionLi", Model)
-                                @Html.Partial("_PartialInfoGeneralLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi", Model)
-                                @Html.Partial("_PartialAutorizacion", Model)
+                                        @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                        @Html.Partial("_PartialInfoGeneralLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi", Model)
+                                        @Html.Partial("_PartialAutorizacion", Model)
 
 
-                            }
-                            if (User.IsInRole(SettingsManager.PerfilController))
-                            {
-                                @Html.Partial("_PartialInfoRequisicionLi", Model)
-                                @Html.Partial("_PartialInfoGeneralLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi", Model)
-                                @Html.Partial("_PartialAutorizacion", Model)
-                            }
-                            if (User.IsInRole(SettingsManager.PerfilBp))
-                            {
-                                @Html.Partial("_PartialInfoRequisicionLi", Model)
-                                @Html.Partial("_PartialInfoGeneralLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLiLectura", Model)
-                                @Html.Partial("_PartialGeneralProPuestaLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi2", Model)
-                                @Html.Partial("_PartialAutorizacion", Model)
+                                    }
+                                    if (User.IsInRole(SettingsManager.PerfilController))
+                                    {
+                                        @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                        @Html.Partial("_PartialInfoGeneralLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi", Model)
+                                        @Html.Partial("_PartialAutorizacion", Model)
+                                    }
+                                    if (User.IsInRole(SettingsManager.PerfilBp))
+                                    {
+                                        @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                        @Html.Partial("_PartialInfoGeneralLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLiLectura", Model)
+                                        @Html.Partial("_PartialGeneralProPuestaLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi2", Model)
+                                        @Html.Partial("_PartialAutorizacion", Model)
 
                             }
                             if (User.IsInRole(SettingsManager.PerfilRRHH))
@@ -260,12 +267,10 @@
                                 <th>Cod Estado</th>
                             </tr>
                         </thead>
-                        <tbody class="bodytraza">
-
-                        </tbody>
+                        <tbody class="bodytraza"></tbody>
                     </table>
                 </div>
-              
+
             </div>
         </div>
     </div>
