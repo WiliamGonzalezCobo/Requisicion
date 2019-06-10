@@ -4,10 +4,12 @@
 @using G_H_WEB.Models;
 @{
     ViewBag.Title = "Crear Requisición No Presupuestada";
-    if (ViewBag.PERMISOS_CONTROLLER != ""){
+    if (ViewBag.PERMISOS_CONTROLLER != "")
+    {
         Layout = "~/Views/Shared/_LayoutController.cshtml";
     }
-    else {
+    else
+    {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
 
@@ -226,34 +228,25 @@
     </div>
 </div>
 
-
 <script type="text/javascript">
 
     $(document).ready(function () {
 
-        $(document).on('submit', 'form', function () {
-            //$('[name="' + submitButton + '"]').prop("type", "button");
-        })
-    debugger;
-        if ("@User.IsInRole(SettingsManager.PerfilJefe)" == "True") {
+        @*if ($("#COD_TIPO_NECESIDAD").val() == "" && $("#COD_CARGO").val() == "" && "@User.IsInRole(SettingsManager.PerfilJefe)"== "False") {
+              $('#ModalRequisicionProcesada').modal('show'); 
+        }*@
+
+        if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {
             if (@Model.COD_REQUISICION!= 0) {
                 $("#submitButtonCrear").text("Modificar Requisición");
             }
-        $(document).on('submit', 'form', function () {
-            //$('[name="' + submitButton + '"]').prop("type", "button");
-        })
-    debugger;
-    if ("@User.IsInRole(SettingsManager.PerfilJefe)" == "True") {
-        if (@Model.COD_REQUISICION!= 0) {
-    $("#submitButtonCrear").text("Modificar Requisición");
-}
         }
         $("._metodoCrear").css("display", "none");
         $(".__metodoAprobar").css("display", "none");
         $(".__metodoModificar").css("display", "none");
         $(".__metodoRechazar").css("display", "none");
         $(".__metodoEnviar").css("display", "none");
-
+        debugger;
         VALIDACION_TRAZA();
 
         var resultado = "@ViewBag.resultadoInsertExitosoOno";
@@ -288,7 +281,12 @@
             $('#ModalCreacionNoJefe').modal("show");
         }
 
+        $(document).on('submit', 'form', function () {
+            $(this).attr("disabled", true);
 
+
+            //$('[name="submitButton"]').prop("type", "button");
+        })
     });
 
     function VALIDACION_TRAZA() {
@@ -308,57 +306,57 @@
         }
     }
 
-function CREAR_REQUISICION() {
-    var CargoText = "@paraModel.NOMBRE_COD_CARGO";
-    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-    $("#mensaje1").text(CargoText);
-    $("#mensaje2").text(CargoCod);
-    $("._metodoCrear").css("display", "block");
-}
+    function CREAR_REQUISICION() {
+         var CargoText = "@paraModel.NOMBRE_COD_CARGO";
+            var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+            $("#mensaje1").text(CargoText);
+            $("#mensaje2").text(CargoCod);
+        $("._metodoCrear").css("display", "block");
+    }
 
 
-function APROBAR_REQUISICION() {
-    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-    $(".__metodoAprobar").css("display", "block");
-    $("#mensaje_aprobar").text(CargoCod);
+    function APROBAR_REQUISICION() {
+        var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+        $(".__metodoAprobar").css("display", "block");
+        $("#mensaje_aprobar").text(CargoCod);
 
-}
-function MODIFICAR_REQUISICION() {
-    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-    $(".__metodoModificar").css("display", "block");
-    $("#mensaje_modificar").text(CargoCod);
-}
+    }
+    function MODIFICAR_REQUISICION() {
+          var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+        $(".__metodoModificar").css("display", "block");
+        $("#mensaje_modificar").text(CargoCod);
+    }
 
-function RECHAZAR_REQUISICION() {
-    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-    $(".__metodoRechazar").css("display", "block");
-    $("#mensaje_rechazar").text(CargoCod);
-}
+      function RECHAZAR_REQUISICION() {
+          var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+          $(".__metodoRechazar").css("display", "block");
+          $("#mensaje_rechazar").text(CargoCod);
+    }
 
-function ENVIAR_REQUISICION() {
-    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-    $(".__metodoEnviar").css("display", "block");
-    $("#mensaje_Enviar").text(CargoCod);
-}
+          function ENVIAR_REQUISICION() {
+          var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+          $(".__metodoEnviar").css("display", "block");
+          $("#mensaje_Enviar").text(CargoCod);
+    }
 
 
-$("#btnCancelarNoJefe").on("click", function () {
-    $('#ModalCancelNoJefe').modal('show');
-});
+    $("#btnCancelarNoJefe").on("click", function () {
+        $('#ModalCancelNoJefe').modal('show');
+    });
 
-function SiCancelarJefe() {
-    $('#ModalCancel').modal('hide');
-    window.location.href = '@Url.Action("Index", "REQUISICION")';
-};
-function NoCancelarJefe() {
-    $('#ModalCancel').modal('hide');
-};
+    function SiCancelarJefe() {
+            $('#ModalCancel').modal('hide');
+            window.location.href = '@Url.Action("Index", "REQUISICION")';
+        };
+    function NoCancelarJefe() {
+            $('#ModalCancel').modal('hide');
+    };
 
-$(function () {
-    $('.datepicker').datepicker();
-});
+    $(function () {
+        $('.datepicker').datepicker();
+    });
 
-  function ConsultaTraza(CAMPO_REQUISICION) {
+     function ConsultaTraza(CAMPO_REQUISICION) {
         debugger;
         $(".bodytraza").empty();
         $(".nombre_traza").text("");
@@ -394,7 +392,10 @@ $(function () {
         if (!validateFormAutorizacion()) {
             $('#collapseAutorizacion').collapse('show');
         }
+        if (!validateFormInfoGeneralPresu()) {
+            $('#collapseInfoGeneralPresu').collapse('show');
+        }
     });
-</script>
 
+</script>
 

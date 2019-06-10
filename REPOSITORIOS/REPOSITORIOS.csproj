@@ -96,9 +96,6 @@
     <Compile Include="MAPEOS\MAPEO_DEPURACION.cs" />
     <Compile Include="MAPEOS\MAPEO_ERRORES.cs" />
     <Compile Include="REQUISICION.ACCESS\ACCES_REQUISICION.cs" />
-    <Compile Include="REQUISICION_ENTITY\CAMPOS_TRAZA_Result.cs">
-      <DependentUpon>GESTION_HUMANA_HITSSEntities2.tt</DependentUpon>
-    </Compile>
     <Compile Include="REQUISICION_ENTITY\CONSULTAR_CAMPOS_TRAZA_Result.cs">
       <DependentUpon>GESTION_HUMANA_HITSSEntities2.tt</DependentUpon>
     </Compile>

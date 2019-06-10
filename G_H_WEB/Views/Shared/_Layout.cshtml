@@ -72,8 +72,13 @@
             return this.optional(element) ||
                 !/Invalid|NaN/.test(new Date(miDate[2], iMes.toString(), miDate[0]));
         }
-        $('#ModalCreacionNoJefe').click(function () {
+        $('#ModalCreacionNoJefe, #modalValidaError').click(function () {
              window.location.href = '@Url.Action("Index", "REQUISICION")';
+        });
+
+
+        $('#ModalRequisicionProcesada').click(function () {
+             window.location.href = '@Url.Action("VALIDAR", "CUENTA")';
         });
 
 

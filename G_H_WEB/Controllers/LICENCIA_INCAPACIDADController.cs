@@ -60,7 +60,7 @@ namespace G_H_WEB.Controllers
 
                 if (_idReq.HasValue)
                 {
-                    model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value) ?? new REQUISICIONViewModel();
+                    model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value, link_controler) ?? new REQUISICIONViewModel();
                 }
                 model.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqLicencia;
                 model = new LOGICA_REQUISICION().LLENAR_CONTROLES(model);

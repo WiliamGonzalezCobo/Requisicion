@@ -188,6 +188,24 @@
         </div>
     </div>
 
+
+    <div class="modal fade" id="ModalRequisicionProcesada" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title Texto-Popup-Creacion" id="ModalLabel">Requisición procesada</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                 <div class="modal-body Content-Popup">
+                    <br />
+                    <h2 class="Texto-Popup-Creacion">Esta requisición ha sido ya ha sido procesada</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal -->
     <div class="modal fade ModalTraza" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -227,11 +245,13 @@
         @Html.Partial("_Error", error);
     }
 </div>
-
-@*<script src="~/Scripts/REQUISICIONES_PRESUPUESTADAS.js"></script>*@
 <script type="text/javascript">
 
     $(document).ready(function () {
+
+        @*if ($("#COD_TIPO_NECESIDAD").val() == "" && $("#COD_CARGO").val() == "" && "@User.IsInRole(SettingsManager.PerfilJefe)"== "False") {
+              $('#ModalRequisicionProcesada').modal('show'); 
+        }*@
 
         if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {
             if (@Model.COD_REQUISICION!= 0) {

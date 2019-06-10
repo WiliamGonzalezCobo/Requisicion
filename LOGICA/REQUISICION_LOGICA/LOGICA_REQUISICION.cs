@@ -813,7 +813,6 @@ namespace LOGICA.REQUISICION_LOGICA
                 }
 
                 if (SettingsManager.CodTipoReqLicencia == objReqModel.COD_TIPO_REQUISICION || SettingsManager.CodTipoReqIncapacidad == objReqModel.COD_TIPO_REQUISICION){
-                    List<DOCUMENTO> listaDocumentos = new PROXY().CONSULTAR_TIPO_DOCUMENTO_API();
                     objReqModel.NOMBRE_TIPO_DOCUMENTO = listaDocumentos.Where(x => x.coD_TIPO_DOCUMENTO == objReqModel.COD_TIPO_DOCUMENTO).FirstOrDefault().coD_TIPO_DOCUMENTO_ALTERNO_SAP;
                 }
                 logCentralizado.FINALIZANDO_LOG("LGREQ26", "BUSCAR_REQUISICIONES");
@@ -826,7 +825,6 @@ namespace LOGICA.REQUISICION_LOGICA
         }
 
         public int INSERTAR_REQUISICION(REQUISICIONViewModel _modeloRequisicion, String USER_ID) {
-            int idRequisicion = 0;
             try
             {
                 logCentralizado.INICIANDO_LOG("LGREQ27", "INSERTAR_REQUISICION");
@@ -847,11 +845,14 @@ namespace LOGICA.REQUISICION_LOGICA
                 int CODIGO_REQUISICION= new ACCES_REQUISICION().INSERTAR_REQUISICION(_modeloRequisicion);
                 if (CODIGO_REQUISICION != 0) {
                     string _LINK_CONTREOLLER = LINK_CONTROLLER(_modeloRequisicion.COD_TIPO_REQUISICION, CODIGO_REQUISICION, objGuid.ToString());
-                 Boolean resutado_correo =new NOTIFICACION().NOFICICACION_REQUISICIONES(_modeloRequisicion, _LINK_CONTREOLLER, USER_ID);
+                    _modeloRequisicion.COD_REQUISICION = CODIGO_REQUISICION;
+                    Boolean resutado_correo =new NOTIFICACION().NOFICICACION_REQUISICIONES(_modeloRequisicion, _LINK_CONTREOLLER, USER_ID);
+                   _modeloRequisicion.COD_REQUISICION = 0;
                 }
-                return CODIGO_REQUISICION;
+                    logCentralizado.FINALIZANDO_LOG("LGREQ27", "INSERTAR_REQUISICION");
+                    return CODIGO_REQUISICION;
             }
-            logCentralizado.FINALIZANDO_LOG("LGREQ27", "INSERTAR_REQUISICION");
+           
         }
             catch (Exception ex)
             {
@@ -860,10 +861,6 @@ namespace LOGICA.REQUISICION_LOGICA
             }
 
 }
-
-        public Boolean ACTUALIZAR_REQUISICION(REQUISICIONViewModel _modeloRequisicion){
-            return new ACCES_REQUISICION().ACTUALIZAR_REQUISICION(_modeloRequisicion);
-        }
 
         public bool ACTUALIZAR_REQUISICION(REQUISICIONViewModel _modeloRequisicion)
         {

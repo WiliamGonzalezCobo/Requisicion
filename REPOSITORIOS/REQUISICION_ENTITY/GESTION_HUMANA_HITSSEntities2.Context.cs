@@ -376,6 +376,15 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION_Result>("CONSULTA_PRINCIPALXUSUARIO_CODREQUISICION", cOD_USUARIOParameter, usuarioParameter, cOD_ESTADO_REQUISICIONParameter);
         }
     
+        public virtual ObjectResult<CONSULTAR_CAMPOS_TRAZA_Result> CONSULTAR_CAMPOS_TRAZA(Nullable<int> cOD_REQUISICION)
+        {
+            var cOD_REQUISICIONParameter = cOD_REQUISICION.HasValue ?
+                new ObjectParameter("COD_REQUISICION", cOD_REQUISICION) :
+                new ObjectParameter("COD_REQUISICION", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTAR_CAMPOS_TRAZA_Result>("CONSULTAR_CAMPOS_TRAZA", cOD_REQUISICIONParameter);
+        }
+    
         public virtual ObjectResult<CONSULTAR_COMENTARIO_Result> CONSULTAR_COMENTARIO(Nullable<int> cOD_REQUISICION)
         {
             var cOD_REQUISICIONParameter = cOD_REQUISICION.HasValue ?
@@ -388,6 +397,15 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
         public virtual ObjectResult<CONSULTAR_ESTADOS_Result> CONSULTAR_ESTADOS()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTAR_ESTADOS_Result>("CONSULTAR_ESTADOS");
+        }
+    
+        public virtual ObjectResult<CONSULTAR_REQUISICIONXID_Result> CONSULTAR_REQUISICIONXID(Nullable<int> iDREQUISICION)
+        {
+            var iDREQUISICIONParameter = iDREQUISICION.HasValue ?
+                new ObjectParameter("IDREQUISICION", iDREQUISICION) :
+                new ObjectParameter("IDREQUISICION", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTAR_REQUISICIONXID_Result>("CONSULTAR_REQUISICIONXID", iDREQUISICIONParameter);
         }
     
         public virtual ObjectResult<CONSULTAR_TIPOS_NECESIDAD_Result> CONSULTAR_TIPOS_NECESIDAD()
@@ -657,6 +675,23 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("INSERTAR_REQUISICION", cOD_TIPO_NECESIDADParameter, cOD_TIPO_REQUISICIONParameter, cOD_CARGOParameter, nOMBRE_CARGOParameter, oRDENParameter, cOD_CECOParameter, nOMBRE_CECOParameter, oBSERVACIONParameter, cOD_TIPO_DOCUMENTOParameter, nUMERO_DOCUMENTO_EMPLEADOParameter, nOMBRE_EMPLEADOParameter, fECHA_INICIOParameter, fECHA_FINParameter, cOD_GERENCIAParameter, nOMBRE_GERENCIAParameter, cOD_SOCIEDADParameter, nOMBRE_SOCIEDADParameter, cOD_EQUIPO_VENTASParameter, nOMBRE_EQUIPO_VENTASParameter, cOD_CATEGORIA_EDParameter, nOMBRE_CATEGORIA_EDParameter, cARGO_CRITICOParameter, pOSICIONParameter, sALARIO_FIJOParameter, pORCENTAJE_SALARIO_FIJOParameter, sALARIO_VARIABLEParameter, pORCENTAJE_SALARIO_VARIABLEParameter, sOBREREMUNERACIONParameter, eXTRA_FIJAParameter, rECARGO_NOCTURNOParameter, mEDIO_TRANSPORTEParameter, sALARIO_TOTALParameter, bONO_ANUALParameter, nUMERO_SALARIOSParameter, cOD_NIVEL_RIESGO_ARLParameter, cOD_JORNADA_LABORALParameter, nOMBRE_JORNADA_LABORALParameter, cOD_HORARIO_LABORAL_DESDEParameter, hORARIO_LABORAL_DESDEParameter, cOD_HORARIO_LABORAL_HASTAParameter, hORARIO_LABORAL_HASTAParameter, cOD_DIA_LABORAL_DESDEParameter, dIA_LABORAL_DESDEParameter, cOD_DIA_LABORAL_HASTAParameter, dIA_LABORAL_HASTAParameter, pORCENTAJE_SOBREREMUNERACIONParameter, mESES_GARANTIZADOSParameter, cOD_TIPO_SALARIOParameter, nOMBRE_TIPO_SALARIOParameter, fACTOR_PRESTACIONALParameter, iNGRESO_PROM_MENSUALParameter, iNGRESO_PROM_ANUALParameter, cOD_MERCADOParameter, mERCADOParameter, cOD_CATEGORIAParameter, pUNTO_MEDIO_80Parameter, pUNTO_MEDIO_100Parameter, pUNTO_MEDIO_120Parameter, pOSICIONAMIENTOParameter, uSUARIOParameter, cOD_ESTADOParameter, eS_MODIFICACIONParameter, cOD_CORREO_CONTROLLERParameter);
         }
     
+        public virtual int INSERTAR_TRAZAS(Nullable<int> cOD_REQUISICION, string nOMBRE_CAMPO, string tRAZA)
+        {
+            var cOD_REQUISICIONParameter = cOD_REQUISICION.HasValue ?
+                new ObjectParameter("COD_REQUISICION", cOD_REQUISICION) :
+                new ObjectParameter("COD_REQUISICION", typeof(int));
+    
+            var nOMBRE_CAMPOParameter = nOMBRE_CAMPO != null ?
+                new ObjectParameter("NOMBRE_CAMPO", nOMBRE_CAMPO) :
+                new ObjectParameter("NOMBRE_CAMPO", typeof(string));
+    
+            var tRAZAParameter = tRAZA != null ?
+                new ObjectParameter("TRAZA", tRAZA) :
+                new ObjectParameter("TRAZA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTAR_TRAZAS", cOD_REQUISICIONParameter, nOMBRE_CAMPOParameter, tRAZAParameter);
+        }
+    
         public virtual ObjectResult<Nullable<int>> MODIFICACIONES(Nullable<int> cOD_REQUISICION, string oBSERVACIONES, string cOD_USUARIO)
         {
             var cOD_REQUISICIONParameter = cOD_REQUISICION.HasValue ?
@@ -702,15 +737,6 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
                 new ObjectParameter("CAMPO_REQUISICION", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TRAZA_BOTONES_Result>("TRAZA_BOTONES", cOD_REQUISICIONParameter, cAMPO_REQUISICIONParameter);
-        }
-    
-        public virtual ObjectResult<CONSULTAR_REQUISICIONXID_Result> CONSULTAR_REQUISICIONXID(Nullable<int> iDREQUISICION)
-        {
-            var iDREQUISICIONParameter = iDREQUISICION.HasValue ?
-                new ObjectParameter("IDREQUISICION", iDREQUISICION) :
-                new ObjectParameter("IDREQUISICION", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTAR_REQUISICIONXID_Result>("CONSULTAR_REQUISICIONXID", iDREQUISICIONParameter);
         }
     }
 }
