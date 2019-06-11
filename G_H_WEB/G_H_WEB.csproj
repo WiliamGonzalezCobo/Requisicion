@@ -726,10 +726,6 @@
       <Project>{a410b374-ca26-4c1c-b964-3374282bc812}</Project>
       <Name>MODELO_DATOS</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PRUEBA ACCESO A DATOS\PRUEBA ACCESO A DATOS.csproj">
-      <Project>{8cfa9e3d-dffc-4135-bfd6-cf4fa3a00ef3}</Project>
-      <Name>PRUEBA ACCESO A DATOS</Name>
-    </ProjectReference>
     <ProjectReference Include="..\REPOSITORIOS\REPOSITORIOS.csproj">
       <Project>{d75630f9-8bc8-4c79-bb27-8c68de2bf991}</Project>
       <Name>REPOSITORIOS</Name>

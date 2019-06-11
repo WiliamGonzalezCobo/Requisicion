@@ -412,7 +412,6 @@ span.cecogen-btn {
     width: 230px;
     border: 1.5px solid #F15300;
     background-color: #FFFFFF;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
     margin-right: 40px;
     cursor:pointer;
 }
@@ -587,4 +586,20 @@ input[type="checkbox"] {
 
 .CheckboxPadding {
    padding-left: 30px;
+}
+
+.btn-rechazar-requisicion {
+    background: none;
+    border: none;
+    font-family: "Source-Sans-Pro";
+    padding: 0 !important;
+    text-decoration: underline !important;
+    cursor: pointer;
+    width: 21%;
+    height: 20px;
+    color: #F15300 !important;
+    margin-right: 2%;
+}
+textarea {
+    resize: none;
 }

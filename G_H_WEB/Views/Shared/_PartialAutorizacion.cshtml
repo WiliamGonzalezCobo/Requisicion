@@ -1,6 +1,9 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 <section id="autorizacion">
-    <div class="panel-heading">
+    <div class="panel-heading row">
+        <div class="span-icon-arrow div-span-collapseAutorizacion">
+            <span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>
+        </div>
         <a class="a-collapse" data-toggle="collapse" href="#collapseAutorizacion">
             <h2>Autorización</h2>
         </a>
@@ -45,4 +48,11 @@
         console.log('validateAut ', validateAut);
         return validateAut;
     }
+
+    $("#collapseAutorizacion").on("hide.bs.collapse", function () {
+        $(".div-span-collapseAutorizacion").html('<span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>');
+    });
+    $("#collapseAutorizacion").on("show.bs.collapse", function () {
+        $(".div-span-collapseAutorizacion").html('<span class="span-collapse"><i class="fas fa-chevron-up arrow-collapse"></i></span>');
+    });
 </script>

@@ -497,7 +497,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                 logCentralizado.INICIANDO_LOG("REPREQ11", "CONSULTAR_TRAZA_CAMPOS");
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
-                    ObjectResult<TRAZA_BOTONES_Result> RHISTORICO = db.TRAZA_BOTONES(_codRequisicion, _campoRequisicion);
+                    ObjectResult<HISTORICOS> RHISTORICO = db.TRAZA_BOTONES(_codRequisicion, _campoRequisicion);
                     retorno = RHISTORICO.Select(x => new TRAZA_BOTONES_ENTIDAD()
                     {
                         COD_REQUISICION = x.COD_REQUISICION,

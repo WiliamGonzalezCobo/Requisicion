@@ -120,13 +120,13 @@ namespace G_H_WEB.Controllers
                         //Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         npc.METODO = "Aprobar";
                         break;
-                    case "Rechazar requisición":
-                        modelDatos.OBSERVACION = modelDatos.MOTIVO_RECHAZO;
+                    case "ENVIAR REPUESTA":
+                        modelDatos.OBSERVACION = string.Format("Observacion: {0}. Modito Rechazo: {1}", modelDatos.OBSERVACION, modelDatos.MOTIVO_RECHAZO);
                         _resultadoIdReguisicion = new LOGICA_REQUISICION().REQUISICION_RECHAZAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.Name);
                         npc.METODO = "Rechazar";
                         //Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         break;
-                    case "Enviar":
+                    case "Enviar Requisición":
                         Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZAR_REQUISICION(modelDatos));
                         _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
                         //Cambios_campos(modelDatos, _resultadoIdReguisicion);
@@ -176,7 +176,7 @@ namespace G_H_WEB.Controllers
             {
                 traza = new TRAZA_BOTONES_VISIBLES();
                 traza.COD_REQUISICION = _cod_requisicion;
-                traza.CAMPOS = "NOMBRE_CATEGORIA_EVALUACION_DESEMPENO";
+                traza.CAMPOS = "NOMBRE_CATEGORIA_ED";
                 traza.TRAZA = "true";
                 _cambio = true;
                 trazas.Add(traza);
@@ -430,6 +430,16 @@ namespace G_H_WEB.Controllers
                 traza = new TRAZA_BOTONES_VISIBLES();
                 traza.COD_REQUISICION = _cod_requisicion;
                 traza.CAMPOS = "NOMBRE_CATEGORIA";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.NIVEL_RIESGO != Convert.ToDouble(aGuardar.NIVEL_RIESGO_ARL))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "NOMBRE_ARL";
                 traza.TRAZA = "true";
                 _cambio = true;
                 trazas.Add(traza);

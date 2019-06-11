@@ -135,7 +135,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GESTION_HUMANA_HITSSEntities2.edmx</DependentUpon>
     </Compile>
-    <Compile Include="REQUISICION_ENTITY\TRAZA_BOTONES_Result.cs">
+    <Compile Include="REQUISICION_ENTITY\HISTORICOS.cs">
       <DependentUpon>GESTION_HUMANA_HITSSEntities2.tt</DependentUpon>
     </Compile>
     <Compile Include="TIPO_SOPORTES_REP.cs" />

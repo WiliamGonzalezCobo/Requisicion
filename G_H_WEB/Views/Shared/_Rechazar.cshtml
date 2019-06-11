@@ -12,13 +12,14 @@
                     </div>
                     <div class="modal-body">
                         <p>¿Porqué a rechazado la requisición?</p>
-                        @Html.TextAreaFor(model => model.MOTIVO_RECHAZO, new { @class = "form-control" , placeholder = "Describa el motivo de rechazo" })
+                        @Html.TextAreaFor(model => model.MOTIVO_RECHAZO, new { @class = "form-control textarea", placeholder = "Describa el motivo de rechazo" })
                         @Html.ValidationMessageFor(model => model.MOTIVO_RECHAZO)
 
                     </div>
                     <div class="modal-footer">
-                        @Html.ActionLink("Cancelar", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
-                        <input name="submitButton" type="submit" value="Rechazar requisición" class="btn-confirmar-retiro" />
+                        @*@Html.ActionLink("Cancelar", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })*@
+                        <a class="btn-rechazar-requisicion" data-dismiss="modal">Cancelar</a>
+                        <input name="submitButton" type="submit" value="ENVIAR REPUESTA" class="aprobar-requisicion btn-confirmar-retiro btn-collpse-valid" />
                     </div>
                 </div>
             </div>
