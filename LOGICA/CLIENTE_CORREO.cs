@@ -277,6 +277,70 @@ namespace LOGICA
         }
 
 
+        //martinezluir agregado
+
+        public void ENVIO_CORREO_REQUISICIONES(CORREO_CONFIGURACION_REQUISICION _DATO_CORREO)
+        {
+
+            try
+            {
+                string INFO = ("Iniciando Método ENVIO_CORREO ");
+                log.Info("CODIGO : LGCLC8," + INFO);
+
+                Thread HILO = new Thread(() => TRAZA.DEPURAR_TRAZA("LGCLC8", log.Logger.Name, "ENVIO_CORREO", INFO));
+                HILO.Start();
+
+                string DATOS_HTML = string.Empty;
+
+                foreach (PLANTILLAS_CORREOS_MODELO PLANTILLA in _DATO_CORREO.PLANTILLAS)
+                {
+                    DATOS_HTML = PLANTILLA.PLANTILLA;
+                }
+
+                DATOS_HTML = DATOS_HTML.Replace("{COD_REQUISICION}", _DATO_CORREO.COD_REQUISICION.ToString());
+                DATOS_HTML = DATOS_HTML.Replace("{TIPO_REQUISICION}", _DATO_CORREO.TIPO_REQUISICION);
+                DATOS_HTML = DATOS_HTML.Replace("{CARGO}", _DATO_CORREO.CARGO);
+                DATOS_HTML = DATOS_HTML.Replace("{CENTRO_COSTO}", (_DATO_CORREO.CENTRO_COSTO != null ? _DATO_CORREO.CENTRO_COSTO : ""));
+
+
+                string CORREO_DESTINO = string.Empty;
+                foreach (CORREOS_DESTINOS_MODELO DESTINOS in _DATO_CORREO.DESTINOS)
+                {
+                    CORREO_DESTINO = DESTINOS.CORREO;
+                    DATOS_HTML = DATOS_HTML.Replace("{LINK_TRAMITAR}", _DATO_CORREO.LINK_TRAMITAR+ "&COD_ASPNETUSER_CONTROLLER="+DESTINOS.COD_ASPNETUSER_CONTROLLER);
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient(_DATO_CORREO.SERVIDOR);
+                    mail.From = new MailAddress(_DATO_CORREO.CUENTA_CORREO);
+                    mail.Bcc.Add(CORREO_DESTINO);
+                    mail.Subject = _DATO_CORREO.ASUNTO;
+                    mail.Body = DATOS_HTML;// 
+                    mail.IsBodyHtml = _DATO_CORREO.ES_HTML;
+                    SmtpServer.Port = Convert.ToInt32(_DATO_CORREO.PUERTO);//  587; definir traer desde base de datos
+                    SmtpServer.Credentials = new System.Net.NetworkCredential(_DATO_CORREO.CUENTA_CORREO, _DATO_CORREO.CONTRASENA);//CREDENCIALES
+                                                                                                                                   // SmtpServer.EnableSsl = true;
+                    SmtpServer.EnableSsl = _DATO_CORREO.USA_SSL;
+                    //martinezluir comentado porque no se consique el servidor desde fuera de la red de el tiempo
+                    //SmtpServer.Send(mail);
+                }
+               
+
+             
+
+            }
+            catch (Exception ex)
+            {
+                log.ErrorFormat("CODIGO : LGCLC8  recuperando ENVIO_CORREO en la linea : {0}", ex.StackTrace);
+                ex.HelpLink = (ex.HelpLink == "" || ex.HelpLink == null ? "LGCLC8" : ex.HelpLink);
+                Thread HILO = new Thread(() => ERROR.ERROR_TRAZA(ex.HelpLink, log.Logger.Name, ex.TargetSite.Name, ex.StackTrace));
+                HILO.Start();
+
+                throw ex;
+            }
+
+
+        }
+
+
 
         //----------------------------------------------------------------------------------------------///
 

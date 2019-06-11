@@ -22,10 +22,10 @@ namespace LOGICA.MODELO_LOGICA
         public decimal ESTADO { get; set; }
         public string SOCIEDAD { get; set; }
         public string CENTRO_COSTO { get; set; }
-		public string NOMBRE_JEFE { get; set; }
+        public string NOMBRE_JEFE { get; set; }
 
-		//public string ASUNTO { get; set; }
-		public RETIRO_MODELO RETIRO { get; set; }
+        //public string ASUNTO { get; set; }
+        public RETIRO_MODELO RETIRO { get; set; }
         public IEnumerable<CORREOS_DESTINOS_MODELO> DESTINOS { get; set; }
         public IEnumerable<PLANTILLAS_CORREOS_MODELO> PLANTILLAS { get; set; }
 
@@ -52,7 +52,7 @@ namespace LOGICA.MODELO_LOGICA
         public string COD_USUARIO_MODIFICA { get; set; }
         public DateTime FECHA_MODIFICA { get; set; }
 
-	
+
     }
 
 
@@ -67,11 +67,13 @@ namespace LOGICA.MODELO_LOGICA
         public DateTime FECHA_CREA { get; set; }
         public string COD_USUARIO_MODIFICA { get; set; }
         public DateTime FECHA_MODIFICA { get; set; }
+        //martinezluir agregado
+        public string COD_ASPNETUSER_CONTROLLER { get; set; }
 
     }
 
 
-    public  class PLANTILLAS_CORREOS_MODELO
+    public class PLANTILLAS_CORREOS_MODELO
     {
         public decimal COD_PLANTILLA { get; set; }
         public decimal COD_CORREO { get; set; }
@@ -81,6 +83,32 @@ namespace LOGICA.MODELO_LOGICA
         public DateTime FECHA_CREA { get; set; }
         public string COD_USUARIO_MODIFICA { get; set; }
         public DateTime FECHA_MODIFICA { get; set; }
+    }
+
+    public class CORREO_CONFIGURACION_REQUISICION
+    {
+        public string DESTINO { get; set; }
+        public string ASUNTO { get; set; }
+        public string MESNSAJE { get; set; }
+        public string SERVIDOR { get; set; }
+        public string CUENTA_CORREO { get; set; }
+        public byte[] SALT { get; set; }
+        public byte[] TEXTO_SALTO { get; set; }
+        public string CONTRASENA { get; set; }
+        public decimal? PUERTO { get; set; }
+        public bool ES_HTML { get; set; }
+        public bool USA_SSL { get; set; }
+        public decimal ESTADO { get; set; }
+        public string CENTRO_COSTO { get; set; } 
+        public string CARGO { get; set; }
+        public string TIPO_REQUISICION { get; set; }
+        public string LINK_TRAMITAR { get; set; }
+        public int COD_REQUISICION { get; set; }
+
+
+
+        public IEnumerable<CORREOS_DESTINOS_MODELO> DESTINOS { get; set; }
+        public IEnumerable<PLANTILLAS_CORREOS_MODELO> PLANTILLAS { get; set; }
     }
 
 }

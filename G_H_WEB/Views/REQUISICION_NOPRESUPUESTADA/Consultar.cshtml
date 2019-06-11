@@ -4,7 +4,15 @@
 @using G_H_WEB.Models;
 @{
     ViewBag.Title = "Crear Requisición No Presupuestada";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (ViewBag.PERMISOS_CONTROLLER != "")
+    {
+        Layout = "~/Views/Shared/_LayoutController.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
     RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
 }
 <div class="col">
@@ -37,60 +45,70 @@
                 </div>
             </div>
         </div>
-        <div id="CNform">
-            <div class="retiros-detalle">
-                <div class="form-group col-md-12">
-                    @using (Html.BeginForm("Procesar", "REQUISICION_NOPRESUPUESTADA"))
-                    {
+        <div>
+            @if (ViewBag.Error != null)
+            {
+                @Html.Partial("_Error", (ERROR_GENERAL_ViewModel)ViewBag.Error);
+            }
+            else
+            { <div id="CNform">
+                    <div class="retiros-detalle">
+                        <div class="form-group col-md-12">
+                            @using (Html.BeginForm("Procesar", "REQUISICION_NOPRESUPUESTADA"))
+                            {
 
-                        if (User.IsInRole(SettingsManager.PerfilJefe))
-                        {
-                            @Html.Partial("_PartialInfoRequisicion", Model)
-                            @Html.Partial("_PartialAutorizacion", Model)
-                        }
-                        if (User.IsInRole(SettingsManager.PerfilController))
-                        {
-                            @Html.Partial("_PartialInfoRequisicion", Model)
-                            @Html.Partial("_PartialAutorizacion", Model)
-                        }
-                        if (User.IsInRole(SettingsManager.PerfilBp))
-                        {
+                                if (User.IsInRole(SettingsManager.PerfilJefe))
+                                {
+                                    @Html.Partial("_PartialInfoRequisicion", Model)
+                                    @Html.Partial("_PartialAutorizacion", Model)
+                                }
+                                if (User.IsInRole(SettingsManager.PerfilController))
+                                {
+                                    @Html.Partial("_PartialInfoRequisicion", Model)
+                                    @Html.Partial("_PartialAutorizacion", Model)
+                                }
+                                if (User.IsInRole(SettingsManager.PerfilBp))
+                                {
+                                    @Html.Partial("_PartialInfoRequisicion", Model)
+                                    @Html.Partial("_PartialInfoGeneral", Model)
+                                    @Html.Partial("_PartialInfoSalarial", Model)
+                                    @Html.Partial("_PartialAutorizacion", Model)
+
+                                }
+                                if (User.IsInRole(SettingsManager.PerfilRRHH))
+                                {
                             @Html.Partial("_PartialInfoRequisicion", Model)
                             @Html.Partial("_PartialInfoGeneral", Model)
                             @Html.Partial("_PartialInfoSalarial", Model)
                             @Html.Partial("_PartialAutorizacion", Model)
-
-                        }
-                        if (User.IsInRole(SettingsManager.PerfilRRHH))
-                        {
+                                }
+                                if (User.IsInRole(SettingsManager.PerfilUSC))
+                                {
                             @Html.Partial("_PartialInfoRequisicion", Model)
                             @Html.Partial("_PartialInfoGeneral", Model)
                             @Html.Partial("_PartialInfoSalarial", Model)
                             @Html.Partial("_PartialAutorizacion", Model)
-                        }
-                        if (User.IsInRole(SettingsManager.PerfilUSC))
-                        {
+                                }
+                                if (ViewBag.PERMISOS_CONTROLLER != "")
+                                {
                             @Html.Partial("_PartialInfoRequisicion", Model)
-                            @Html.Partial("_PartialInfoGeneral", Model)
-                            @Html.Partial("_PartialInfoSalarial", Model)
                             @Html.Partial("_PartialAutorizacion", Model)
-                        }
-
-                        //Botones
+                                }
+                                //Botones
                         <div class="form-group">
                             <div class="col-md-12">
 
-                                @if (User.IsInRole(SettingsManager.PerfilJefe))
-                                {
-                                    @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
-                                    <input name="submitButton" id="submitButtonCrear" type="submit" value="CREAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
-                                }
-                                @if (User.IsInRole(SettingsManager.PerfilController))
-                                {
+                                        @if (User.IsInRole(SettingsManager.PerfilJefe))
+                                        {
+                                            @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
+                                            <input name="submitButton" id="submitButtonCrear" type="submit" value="CREAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
+                                        }
+                                        @if (User.IsInRole(SettingsManager.PerfilController))
+                                        {
 
                                     <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver" />
                                     <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto" />
-                                }
+                                        }
                                 @if (User.IsInRole(SettingsManager.PerfilBp))
                                 {
                                     @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
@@ -108,20 +126,22 @@
                                     <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
                                     <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
                                 }
+
+                                @if (ViewBag.PERMISOS_CONTROLLER != "")
+                                {
+                                    <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver" />
+                                    <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto" />
+                                }
                             </div>
                         </div>
-                    }
+                            }
                 </div>
             </div>
-        </div>
+              </div>
+            }
     </div>
 
-    @if (ViewBag.Error != null)
-    {
-        <div>
-            @Html.Partial("_Error", (ERROR_GENERAL_ViewModel)ViewBag.Error);
-        </div>
-    }
+
 
     <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -210,12 +230,15 @@
     </div>
 </div>
 
-
 <script type="text/javascript">
 
     $(document).ready(function () {
-        debugger;
-        if ("@User.IsInRole(SettingsManager.PerfilJefe)" == "True") {
+
+        @*if ($("#COD_TIPO_NECESIDAD").val() == "" && $("#COD_CARGO").val() == "" && "@User.IsInRole(SettingsManager.PerfilJefe)"== "False") {
+              $('#ModalRequisicionProcesada').modal('show'); 
+        }*@
+
+        if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {
             if (@Model.COD_REQUISICION!= 0) {
                 $("#submitButtonCrear").text("Modificar Requisición");
             }
@@ -225,7 +248,7 @@
         $(".__metodoModificar").css("display", "none");
         $(".__metodoRechazar").css("display", "none");
         $(".__metodoEnviar").css("display", "none");
-
+        debugger;
         VALIDACION_TRAZA();
 
         var resultado = "@ViewBag.resultadoInsertExitosoOno";
@@ -260,7 +283,12 @@
             $('#ModalCreacionNoJefe').modal("show");
         }
 
+        $(document).on('submit', 'form', function () {
+            $(this).attr("disabled", true);
 
+
+            //$('[name="submitButton"]').prop("type", "button");
+        })
     });
 
     function VALIDACION_TRAZA() {
@@ -280,57 +308,57 @@
         }
     }
 
-function CREAR_REQUISICION() {
-    var CargoText = "@paraModel.NOMBRE_COD_CARGO";
-    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-    $("#mensaje1").text(CargoText);
-    $("#mensaje2").text(CargoCod);
-    $("._metodoCrear").css("display", "block");
-}
+    function CREAR_REQUISICION() {
+         var CargoText = "@paraModel.NOMBRE_COD_CARGO";
+            var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+            $("#mensaje1").text(CargoText);
+            $("#mensaje2").text(CargoCod);
+        $("._metodoCrear").css("display", "block");
+    }
 
 
-function APROBAR_REQUISICION() {
-    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-    $(".__metodoAprobar").css("display", "block");
-    $("#mensaje_aprobar").text(CargoCod);
+    function APROBAR_REQUISICION() {
+        var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+        $(".__metodoAprobar").css("display", "block");
+        $("#mensaje_aprobar").text(CargoCod);
 
-}
-function MODIFICAR_REQUISICION() {
-    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-    $(".__metodoModificar").css("display", "block");
-    $("#mensaje_modificar").text(CargoCod);
-}
+    }
+    function MODIFICAR_REQUISICION() {
+          var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+        $(".__metodoModificar").css("display", "block");
+        $("#mensaje_modificar").text(CargoCod);
+    }
 
-function RECHAZAR_REQUISICION() {
-    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-    $(".__metodoRechazar").css("display", "block");
-    $("#mensaje_rechazar").text(CargoCod);
-}
+      function RECHAZAR_REQUISICION() {
+          var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+          $(".__metodoRechazar").css("display", "block");
+          $("#mensaje_rechazar").text(CargoCod);
+    }
 
-function ENVIAR_REQUISICION() {
-    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-    $(".__metodoEnviar").css("display", "block");
-    $("#mensaje_Enviar").text(CargoCod);
-}
+          function ENVIAR_REQUISICION() {
+          var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+          $(".__metodoEnviar").css("display", "block");
+          $("#mensaje_Enviar").text(CargoCod);
+    }
 
 
-$("#btnCancelarNoJefe").on("click", function () {
-    $('#ModalCancelNoJefe').modal('show');
-});
+    $("#btnCancelarNoJefe").on("click", function () {
+        $('#ModalCancelNoJefe').modal('show');
+    });
 
-function SiCancelarJefe() {
-    $('#ModalCancel').modal('hide');
-    window.location.href = '@Url.Action("Index", "REQUISICION")';
-};
-function NoCancelarJefe() {
-    $('#ModalCancel').modal('hide');
-};
+    function SiCancelarJefe() {
+            $('#ModalCancel').modal('hide');
+            window.location.href = '@Url.Action("Index", "REQUISICION")';
+        };
+    function NoCancelarJefe() {
+            $('#ModalCancel').modal('hide');
+    };
 
-$(function () {
-    $('.datepicker').datepicker();
-});
+    $(function () {
+        $('.datepicker').datepicker();
+    });
 
-  function ConsultaTraza(CAMPO_REQUISICION) {
+     function ConsultaTraza(CAMPO_REQUISICION) {
         debugger;
         $(".bodytraza").empty();
         $(".nombre_traza").text("");
@@ -346,7 +374,7 @@ $(function () {
                 data: { COD_REQUISICION: COD_REQUISICION, CAMPO_REQUISICION: CAMPO_REQUISICION},
                 success: function (respuesta) {
                     $.each(respuesta, function (key, value) {
-                        $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION +"</td > </tr > ");  
+                        $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION +"</td > </tr > ");
                     });
                     debugger;
                     $('body').loading('stop');
@@ -366,7 +394,10 @@ $(function () {
         if (!validateFormAutorizacion()) {
             $('#collapseAutorizacion').collapse('show');
         }
+        if (!validateFormInfoGeneralPresu()) {
+            $('#collapseInfoGeneralPresu').collapse('show');
+        }
     });
-</script>
 
+</script>
 

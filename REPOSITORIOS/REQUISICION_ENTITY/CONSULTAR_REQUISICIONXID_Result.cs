@@ -92,5 +92,6 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
         public Nullable<System.DateTime> FECHA_FIN { get; set; }
         public string DIA_LABORAL_DESDE { get; set; }
         public string DIA_LABORAL_HASTA { get; set; }
+        public string COD_CORREO_CONTROLLER { get; set; }
     }
 }

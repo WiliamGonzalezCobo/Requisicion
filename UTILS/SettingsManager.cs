@@ -93,6 +93,14 @@ namespace UTILS.Settings
         {
             get { return Convert.ToInt32(GetSettings("EstadoAprobadoJefe")); }
         }
+
+        public static int CodigoCorreoPlantilla {
+            get { return Convert.ToInt32(GetSettings("CodigoCorreoPlantilla")); }
+        }
+
+        public static string DominioParaController {
+            get { return GetSettings("DominioParaController"); }
+        }
         #endregion
 
         #region Private Methods
