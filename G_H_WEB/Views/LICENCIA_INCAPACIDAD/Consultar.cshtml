@@ -128,25 +128,24 @@
                             //Botones
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
                                     @if (User.IsInRole(SettingsManager.PerfilJefe))
                                     {
-                                        <input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="btn-confirmar-retiro col-md-3" />
+                                        <input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="btn-confirmar-retiro text-uppercase col-md-3 btn-collpse-valid" />
                                     }
                                     @if (User.IsInRole(SettingsManager.PerfilController))
                                     {
-                                        <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                        <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                        <input name="submitButton" type="submit" value="Modificar Requisición" class="btn-rechazar-requisicion text-capitalize col-md-3 btn-collpse-valid" />
+                                        <input name="submitButton" type="submit" value="Aprobar Requisición" class="btn-confirmar-retiro text-uppercase col-md-3 btn-collpse-valid" />
                                     }
                                     @if (User.IsInRole(SettingsManager.PerfilBp))
                                     {
-                                        <input name="submitButton" type="submit" value="Enviar" class="crear-requisicion crear-requisicion-texto" />
+                                        <input name="submitButton" type="submit" value="Enviar Requisición" class="crear-requisicion crear-requisicion-texto btn-collpse-valid" />
                                     }
                                     @if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
                                     {
-                                        <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                        <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
-                                        <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                        <input name="submitButton" type="submit" value="Rechazar Requisición" class="btn-rechazar-requisicion text-capitalize col-md-3 btn-collpse-valid" />
+                                        <input name="submitButton" type="submit" value="Modificar Requisición" class="BtnDevolver text-uppercase TextoBtnDevolver col-md-3 btn-collpse-valid" />
+                                        <input name="submitButton" type="submit" value="Aprobar Requisición" class="btn-confirmar-retiro text-uppercase col-md-3 btn-collpse-valid" />
                                     }
 
                                 </div>
@@ -267,14 +266,12 @@
         $(".__metodoModificar").css("display", "none");
         $(".__metodoRechazar").css("display", "none");
         $(".__metodoEnviar").css("display", "none");
-        debugger;
         VALIDACION_TRAZA();
 
         var resultado = "@ViewBag.resultadoInsertExitosoOno";
 
 
         if (resultado == "True") {
-            debugger;
             var _metodo = "@paraModel.METODO";
             if (_metodo == "Crear") {
                 CREAR_REQUISICION();
@@ -308,12 +305,10 @@
     function VALIDACION_TRAZA() {
         var jsonObj = @Html.Raw(Json.Encode(ViewBag.traza));
         if (jsonObj) {
-            debugger;
             for (i = 0; i < jsonObj.length; i++) {
                 if (jsonObj[i].TRAZA == "true") {
                     var campo = "#" + jsonObj[i].CAMPOS + "_S";
                     if ($(campo).length) {
-                        debugger;
                         $(campo).removeAttr("style");
                         var traza = jsonObj[i].TRAZA;
                     }
@@ -332,7 +327,7 @@
                 data: { NUMERO_DOCUMENTO_EMPLEADO: DOCUMENTO_NUMERO },
                 success: function (respuesta) {
                     mapeoObjCargoApi(respuesta)
-                    debugger; $('body').loading('stop');
+                    $('body').loading('stop');
                 },
                 error: function (er){
                     $('body').loading('stop');
@@ -551,7 +546,6 @@
     }
 
     function ConsultaTraza(CAMPO_REQUISICION) {
-        debugger;
         $(".bodytraza").empty();
         $(".nombre_traza").text("");
         $("#ModalLabelTraza").text("TRAZA " + CAMPO_REQUISICION.replace(/_/g, " "))
@@ -568,7 +562,6 @@
                     $.each(respuesta, function (key, value) {
                         $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION +"</td > </tr > ");
                     });
-                    debugger;
                     $('body').loading('stop');
                     $('.ModalTraza').modal("show");
                 },
@@ -578,13 +571,16 @@
             });
     }
 
-    $('#submitButtonCrear').on('click', function () {
+    $('.btn-collpse-valid').on('click', function () {
         //console.log('di click !!', validate);
         if (!validateFormAutorizacion()) {
             $('#collapseAutorizacion').collapse('show');
         }
         if (!validateFormInfoGeneralIncap()) {
             $('#collapseInfoGeneralIncap').collapse('show');
+        }
+        if (!validateFormTipoContrato()) {
+            $('#collapseInfoGeneralPropLic').collapse('show');
         }
         if (!validateFormInfoSalarialLic()) {
             $('#collapseInfoSalarialIncap').collapse('show');

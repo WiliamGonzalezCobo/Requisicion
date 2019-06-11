@@ -117,12 +117,12 @@ namespace G_H_WEB.Controllers
                         //Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         npc.METODO = "Aprobar";
                         break;
-                    case "Rechazar requisición":
+                    case "RECHAZAR REQUISICIÓN":
                         _resultadoIdReguisicion = new LOGICA_REQUISICION().REQUISICION_RECHAZAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.Name);
                         npc.METODO = "Rechazar";
                         //Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         break;
-                    case "Enviar":
+                    case "Enviar Requisición":
                         Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZAR_REQUISICION(modelDatos));
                         _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
                         //Cambios_campos(modelDatos, _resultadoIdReguisicion);

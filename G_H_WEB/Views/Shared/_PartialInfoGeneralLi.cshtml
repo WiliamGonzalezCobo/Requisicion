@@ -2,7 +2,10 @@
 @{string deshabilitar = "true";}
 <section id="infoGeneral">
     <div class="SubtitulosNivel2"></div>
-    <div class="panel-heading">
+    <div class="panel-heading row">
+        <div class="span-icon-arrow div-span-collapseInfoGeneralIncap">
+            <span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>
+        </div>
         <a class="a-collapse" data-toggle="collapse" href="#collapseInfoGeneralIncap">
             <h2>Información Empleado</h2>
         </a>
@@ -86,4 +89,11 @@
         console.log('validateInfoIncap ', validateInfoIncap);
         return validateInfoIncap;
     }
+
+    $("#collapseInfoGeneralIncap").on("hide.bs.collapse", function () {
+        $(".div-span-collapseInfoGeneralIncap").html('<span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>');
+    });
+    $("#collapseInfoGeneralIncap").on("show.bs.collapse", function () {
+        $(".div-span-collapseInfoGeneralIncap").html('<span class="span-collapse"><i class="fas fa-chevron-up arrow-collapse"></i></span>');
+    });
 </script>

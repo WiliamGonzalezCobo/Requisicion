@@ -83,30 +83,30 @@
                                 @if (User.IsInRole(SettingsManager.PerfilJefe))
                                 {
                                     @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
-                                    <input name="submitButton" id="submitButtonCrear" type="submit" value="CREAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" id="submitButtonCrear" type="submit" value="CREAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3 btn-collpse-valid" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilController))
                                 {
 
-                                    <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver" />
-                                    <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto" />
+                                    <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="cancelar-requisicion text-capitalize btn-collpse-valid" />
+                                    <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto btn-collpse-valid" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilBp))
                                 {
                                     @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
-                                    <input name="submitButton" type="submit" value="Enviar" class="crear-requisicion crear-requisicion-texto" />
+                                    <input name="submitButton" type="submit" value="Enviar Requisición" class="crear-requisicion crear-requisicion-texto btn-collpse-valid" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilRRHH))
                                 {
-                                    <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="RECHAZAR REQUISICIÓN" class="btn-confirmar-retiro text-capitalize col-md-3 btn-collpse-valid" />
+                                    <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="btn-confirmar-retiro col-md-3 btn-collpse-valid" />
+                                    <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3 btn-collpse-valid" />
                                 }
                                 @if (User.IsInRole(SettingsManager.PerfilUSC))
                                 {
-                                    <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
-                                    <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="btn-confirmar-retiro col-md-3" />
+                                    <input name="submitButton" type="submit" value="RECHAZAR REQUISICIÓN" class="btn-confirmar-retiro text-capitalize col-md-3 btn-collpse-valid" />
+                                    <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="btn-confirmar-retiro col-md-3 btn-collpse-valid" />
+                                    <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3 btn-collpse-valid" />
                                 }
                             </div>
                         </div>
@@ -214,7 +214,6 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        debugger;
         if ("@User.IsInRole(SettingsManager.PerfilJefe)" == "True") {
             if (@Model.COD_REQUISICION!= 0) {
                 $("#submitButtonCrear").text("Modificar Requisición");
@@ -232,7 +231,6 @@
 
 
         if (resultado == "True") {
-            debugger;
             var _metodo = "@paraModel.METODO";
             if (_metodo == "Crear") {
                 CREAR_REQUISICION();
@@ -266,12 +264,10 @@
     function VALIDACION_TRAZA() {
         var jsonObj = @Html.Raw(Json.Encode(ViewBag.traza));
         if (jsonObj) {
-            debugger;
             for (i = 0; i < jsonObj.length; i++) {
                 if (jsonObj[i].TRAZA == "true") {
                     var campo = "#" + jsonObj[i].CAMPOS + "_S";
                     if ($(campo).length) {
-                        debugger;
                         $(campo).removeAttr("style");
                         var traza = jsonObj[i].TRAZA;
                     }
@@ -331,7 +327,6 @@ $(function () {
 });
 
   function ConsultaTraza(CAMPO_REQUISICION) {
-        debugger;
         $(".bodytraza").empty();
         $(".nombre_traza").text("");
         $("#ModalLabelTraza").text("TRAZA " + CAMPO_REQUISICION.replace(/_/g, " "))
@@ -348,7 +343,6 @@ $(function () {
                     $.each(respuesta, function (key, value) {
                         $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION +"</td > </tr > ");  
                     });
-                    debugger;
                     $('body').loading('stop');
                     $('.ModalTraza').modal("show");
                 },
@@ -358,7 +352,7 @@ $(function () {
             });
     }
 
-    $('#submitButtonCrear').on('click', function () {
+    $('.btn-collpse-valid').on('click', function () {
         //console.log('di click !!', validate);
         if (!validateForm()) {
             $("#collapse2").collapse('show');

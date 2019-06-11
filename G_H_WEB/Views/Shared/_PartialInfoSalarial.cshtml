@@ -1,7 +1,10 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 @{string deshabilitar = "true";}
 <section id="infoSalarial">
-    <div class="panel-heading">
+    <div class="panel-heading row">
+        <div class="span-icon-arrow div-span-collapseInfoSalarialPresu">
+            <span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>
+        </div>
         <a class="a-collapse" data-toggle="collapse" href="#collapseInfoSalarialPresu">
             <h3>Información Salarial</h3>
         </a>
@@ -164,13 +167,13 @@
         <div class="row">
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.MERCADO, new { @class = "letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_MERCADO, Model.LIST_MERCADO, "-- Seleccione --", new { @class = "form-control col-md-11 deplegablesIniciales letrasFormulario" })
+                @Html.DropDownListFor(model => model.COD_MERCADO, Model.LIST_MERCADO, "-- Seleccione --", new { @class = "form-control col-md-11 deplegablesIniciales letrasFormulario TexboxIncicial" })
                 <span id="MERCADO_S" class="btn_traza trazaCentrar" onclick="ConsultaTraza('MERCADO')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.COD_MERCADO)
             </div>
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA, new { @class = "letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_CATEGORIA, Model.LIST_NOMBRE_CATEGORIA, "-- Seleccione --", new { @class = "form-control col-md-11 deplegablesIniciales letrasFormulario" })
+                @Html.DropDownListFor(model => model.COD_CATEGORIA, Model.LIST_NOMBRE_CATEGORIA, "-- Seleccione --", new { @class = "form-control col-md-11 deplegablesIniciales letrasFormulario TexboxIncicial" })
                 <span id="CATEGORIA_S" class="btn_traza trazaCentrar" onclick="ConsultaTraza('CATRGORIA')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.COD_CATEGORIA)
             </div>
@@ -256,4 +259,11 @@
         console.log('validateInfoSalarialPresu ', validateInfoSalarialPresu);
         return validateInfoSalarialPresu;
     }
+
+    $("#collapseInfoSalarialPresu").on("hide.bs.collapse", function () {
+        $(".div-span-collapseInfoSalarialPresu").html('<span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>');
+    });
+    $("#collapseInfoSalarialPresu").on("show.bs.collapse", function () {
+        $(".div-span-collapseInfoSalarialPresu").html('<span class="span-collapse"><i class="fas fa-chevron-up arrow-collapse"></i></span>');
+    });
 </script>

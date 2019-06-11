@@ -1,7 +1,10 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 @{string deshabilitar = "true";}
 <section id="infoSalarial">
-    <div class="panel-heading">
+    <div class="panel-heading row">
+        <div class="span-icon-arrow div-span-collapseInfoSalarialLicLec">
+            <span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>
+        </div>
         <a class="a-collapse" data-toggle="collapse" href="#collapseInfoSalarialLicLec">
             <h3>Imformación Salarial</h3>
         </a>
@@ -70,4 +73,12 @@
         </div>
     </div>
 </section>
-
+<script>
+    
+    $("#collapseInfoSalarialLicLec").on("hide.bs.collapse", function () {
+        $(".div-span-collapseInfoSalarialLicLec").html('<span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>');
+    });
+    $("#collapseInfoSalarialLicLec").on("show.bs.collapse", function () {
+        $(".div-span-collapseInfoSalarialLicLec").html('<span class="span-collapse"><i class="fas fa-chevron-up arrow-collapse"></i></span>');
+    });
+</script>

@@ -5,7 +5,10 @@
 }
 @model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 <section id="Requisicion">
-    <div class="panel-heading">
+    <div class="panel-heading row">
+        <div class="span-icon-arrow div-span-collapse2">
+            <span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>
+        </div>
         <a class="a-collapse" data-toggle="collapse" href="#collapse2">
             <h2>Información Empleado</h2>
         </a>
@@ -188,6 +191,13 @@
             $("#myList li").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
+        });
+
+        $("#collapse2").on("hide.bs.collapse", function () {
+            $(".div-span-collapse2").html('<span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>');
+        });
+        $("#collapse2").on("show.bs.collapse", function () {
+            $(".div-span-collapse2").html('<span class="span-collapse"><i class="fas fa-chevron-up arrow-collapse"></i></span>');
         });
     });
 

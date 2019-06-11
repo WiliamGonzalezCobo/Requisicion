@@ -11,7 +11,10 @@
     @Html.HiddenFor(model => model.COD_REQUISICION)
     @Html.HiddenFor(model => model.COD_ESTADO_REQUISICION)
 
-    <div class="panel-heading">
+    <div class="panel-heading row">
+        <div class="span-icon-arrow div-span-collapseInfoGeneralLic">
+            <span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>
+        </div>
         <a class="a-collapse" data-toggle="collapse" href="#collapseInfoGeneralLic">
             <h2>Información Empleado</h2>
         </a>
@@ -110,5 +113,12 @@
 
     $(".buscadorR").focusin(function () {
         $("#myList").removeClass("buscador_modificaciones_deplegable_esconder").addClass("buscador_modificaciones_deplegable");
+    });
+
+    $("#collapseInfoGeneralLic").on("hide.bs.collapse", function () {
+        $(".div-span-collapseInfoGeneralLic").html('<span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>');
+    });
+    $("#collapseInfoGeneralLic").on("show.bs.collapse", function () {
+        $(".div-span-collapseInfoGeneralLic").html('<span class="span-collapse"><i class="fas fa-chevron-up arrow-collapse"></i></span>');
     });
 </script>
