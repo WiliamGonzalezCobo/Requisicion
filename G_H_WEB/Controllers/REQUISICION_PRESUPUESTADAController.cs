@@ -176,7 +176,7 @@ namespace G_H_WEB.Controllers
             {
                 traza = new TRAZA_BOTONES_VISIBLES();
                 traza.COD_REQUISICION = _cod_requisicion;
-                traza.CAMPOS = "NOMBRE_CATEGORIA_EVALUACION_DESEMPENO";
+                traza.CAMPOS = "NOMBRE_CATEGORIA_ED";
                 traza.TRAZA = "true";
                 _cambio = true;
                 trazas.Add(traza);
@@ -430,6 +430,16 @@ namespace G_H_WEB.Controllers
                 traza = new TRAZA_BOTONES_VISIBLES();
                 traza.COD_REQUISICION = _cod_requisicion;
                 traza.CAMPOS = "NOMBRE_CATEGORIA";
+                traza.TRAZA = "true";
+                _cambio = true;
+                trazas.Add(traza);
+            }
+
+            if (datosCargo.NIVEL_RIESGO != Convert.ToDouble(aGuardar.NIVEL_RIESGO_ARL))
+            {
+                traza = new TRAZA_BOTONES_VISIBLES();
+                traza.COD_REQUISICION = _cod_requisicion;
+                traza.CAMPOS = "NOMBRE_ARL";
                 traza.TRAZA = "true";
                 _cambio = true;
                 trazas.Add(traza);
