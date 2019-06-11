@@ -139,7 +139,7 @@ namespace G_H_WEB.Controllers
                             npc.METODO = "Modificar";
                         Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         break;
-                    case "Aprobar Requesición":
+                    case "Aprobar Requisición":
                         if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
                         {
                             Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZAR_REQUISICION(modelDatos));
@@ -153,18 +153,18 @@ namespace G_H_WEB.Controllers
                         //Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         npc.METODO = "Aprobar";
                         break;
-                    case "Rechazar Requesición":
+                    case "Rechazar Requisición":
                         _resultadoIdReguisicion = new LOGICA_REQUISICION().REQUISICION_RECHAZAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.Name);
                         //Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         npc.METODO = "Rechazar";
                         break;
-                    case "Enviar Requesición":
+                    case "Enviar Requisición":
                         Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZAR_REQUISICION(modelDatos));
                         _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
                         //Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         npc.METODO = "Enviar";
                         break;
-                    case "Modificar Requesición":
+                    case "Modificar Requisición":
                         _User = User.Identity.GetUserId() ?? Session["COD_ASPNETUSER_CONTROLLER"].ToString();
                         _resultadoIdReguisicion = Convert.ToInt32(new LOGICA_REQUISICION().REQUISICION_MODIFICAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, _User));
                        // Cambios_campos(modelDatos, _resultadoIdReguisicion);

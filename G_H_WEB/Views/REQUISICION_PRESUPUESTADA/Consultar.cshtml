@@ -13,6 +13,7 @@
     RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
     ERROR_GENERAL_ViewModel error = @ViewBag.Error ?? new ERROR_GENERAL_ViewModel();
 }
+<link href="~/css/gestion-humana-requisicion.css" rel="stylesheet" />
 <div class="col">
     <div class="TituloRequisiciones">@ViewBag.Title</div>
 
@@ -133,10 +134,11 @@
                                     }
                                 </div>
                         </div>
-                    }
+                        }
                 </div>
             </div>
         </div>
+        }
     </div>
     <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

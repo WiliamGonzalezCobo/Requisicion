@@ -587,16 +587,3 @@ input[type="checkbox"] {
 .CheckboxPadding {
    padding-left: 30px;
 }
-
-.btn-rechazar-requisicion {
-    background: none;
-    border: none;
-    font-family: "Source-Sans-Pro";
-    padding: 0 !important;
-    text-decoration: underline;
-    cursor: pointer;
-    width: 21%;
-    height: 20px;
-    color: #F15300;
-    margin-right: 2%;
-}

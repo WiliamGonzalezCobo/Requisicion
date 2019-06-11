@@ -63,14 +63,14 @@
             </div>
             <div class="form-group col-md-6 col-xs-12">
                 @Html.LabelFor(model => model.MEDIO_TRANSPORTE, htmlAttributes: new { @class = "control-label col-md-12" })
-                @Html.EditorFor(model => model.MEDIO_TRANSPORTE, new { htmlAttributes = new { @class = "form-control TexboxIncicial col-md-11" } })
+                @Html.EditorFor(model => model.MEDIO_TRANSPORTE, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario col-md-11" } })
                 <span id="MEDIO_TRANSPORTE_S" class="btn_traza" onclick="ConsultaTraza('MEDIO_TRANSPORTE')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.MEDIO_TRANSPORTE, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="salarioTotalEstilos">
+                <div class="salarioTotalEstilos" style="width: 809px;">
                     @Html.LabelFor(model => model.SALARIO_TOTAL, htmlAttributes : new { @class = "letrasSalarioTotal col-md-6", @style = "text-align:left;" })
                     <span class="S_TOTAL S_TOTAL_UNICO valorSalarioTotal col-md-6">@Model.SALARIO_TOTAL</span>
                     <span id="SALARIO_TOTAL_S" class="btn_traza" onclick="ConsultaTraza('SALARIO_TOTAL')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
@@ -79,10 +79,10 @@
                 </div>
             </div>
         </div>
-        <div class="row col-md-12">
-            <div class="col-md-6" style="padding-left:0px">
+        <div class="row">
+            <div class="form-group col-md-6 col-xs-12">
                 <br />
-                <div class="salarioTotalEstilos">
+                <div class="salarioTotalEstilos" style="width: 361px;">
                     @Html.LabelFor(model => model.BONO_ANUAL, htmlAttributes: new { @class = "letrasSalarioTotal col-md-6" })
                     <span class="E_BONO_ANUAL valorSalarioTotal col-md-6">@Model.BONO_ANUAL</span>
                     <span id="BONO_ANUAL_S" class="btn_traza" onclick="ConsultaTraza('BONO_ANUAL')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
@@ -92,7 +92,7 @@
             </div>
             <div class="form-group col-md-6 col-xs-12">
                 @Html.LabelFor(model => model.NUMERO_SALARIOS, htmlAttributes: new { @class = "control-label col-md-12" })
-                @Html.EditorFor(model => model.NUMERO_SALARIOS, new { htmlAttributes = new { @class = "form-control TexboxIncicial col-md-11" } })
+                @Html.EditorFor(model => model.NUMERO_SALARIOS, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario col-md-11" } })
                 <span id="NUMERO_SALARIOS_S" class="btn_traza" onclick="ConsultaTraza('NUMERO_SALARIOS')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.NUMERO_SALARIOS, "", new { @class = "text-danger" })
             </div>
