@@ -215,7 +215,7 @@
                     <div class="row justify-content-between">
                         @Html.LabelFor(model => model.POSICIONAMIENTO, htmlAttributes: new { @class = "letrasSalarioTotal col-6" })
                         <span class="valorSalarioTotal col-6">@Model.POSICIONAMIENTO</span>
-                        <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('POSICIONAMIENTO')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="top: 5px !important;right: 0px;">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                        <span id="POSICIONAMIENTO_S" class="btn_traza trazaCentrar" onclick="ConsultaTraza('POSICIONAMIENTO')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                         @Html.HiddenFor(model => model.POSICIONAMIENTO)
                         @Html.ValidationMessageFor(model => model.POSICIONAMIENTO)
                     </div>

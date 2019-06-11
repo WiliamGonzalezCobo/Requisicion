@@ -27,6 +27,7 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<HISTORICOS> HISTORICOS { get; set; }
     
         public virtual int ACTUALIZAR_REQUISICION(Nullable<int> cOD_REQUISICION, Nullable<int> cOD_TIPO_NECESIDAD, Nullable<int> cOD_CARGO, string nOMBRE_CARGO, string oRDEN, string cOD_CECO, string nOMBRE_CECO, Nullable<int> cOD_TIPO_REQUISICION, Nullable<System.DateTime> fECHA_INICIO, Nullable<System.DateTime> fECHA_FIN, Nullable<bool> eS_MODIFICACION, string oBSERVACION, Nullable<int> cOD_ESTADO_REQUISICION, string uSUARIO_MODIFICACION, Nullable<int> cOD_GERENCIA, string nOMBRE_GERENCIA, Nullable<int> cOD_TIPO_CONTRATO, string nOMBRE_TIPO_CONTRATO, Nullable<int> cOD_TIPO_DOCUMENTO, string nUMERO_DOCUMENTO_EMPLEADO, string nOMBRE_EMPLEADO, string jEFE_INMEDIATO, Nullable<int> cOD_SOCIEDAD, string nOMBRE_SOCIEDAD, Nullable<int> cOD_EQUIPO_VENTAS, string nOMBRE_EQUIPO_VENTAS, Nullable<int> cOD_CIUDAD_TRABAJO, string nOMBRE_CIUDAD_TRABAJO, Nullable<int> cOD_DANE_CIUDAD_TRABAJO, string cOD_UBICACION_FISICA, string nOMBRE_UBICACION_FISICA, Nullable<int> cOD_NIVEL_RIESGO_ARL, string nIVEL_RIESGO_ARL, Nullable<int> cOD_CATEGORIA_ED, string nOMBRE_CATEGORIA_ED, string cARGO_CRITICO, Nullable<int> cOD_JORNADA_LABORAL, string nOMBRE_JORNADA_LABORAL, Nullable<int> cOD_HORARIO_LABORAL_DESDE, string hORARIO_LABORAL_DESDE, Nullable<int> cOD_HORARIO_LABORAL_HASTA, string hORARIO_LABORAL_HASTA, Nullable<int> cOD_DIA_LABORAL_DESDE, string dIA_LABORAL_DESDE, Nullable<int> cOD_DIA_LABORAL_HASTA, string dIA_LABORAL_HASTA, string pOSICION, string eMPRESA_TEMPORAL, Nullable<decimal> sALARIO_FIJO, Nullable<decimal> pORCENTAJE_SALARIO_FIJO, Nullable<decimal> sALARIO_VARIABLE, Nullable<decimal> pORCENTAJE_SALARIO_VARIABLE, Nullable<decimal> sOBREREMUNERACION, Nullable<decimal> pORCENTAJE_SOBREREMUNERACION, Nullable<decimal> eXTRA_FIJA, Nullable<decimal> rECARGO_NOCTURNO, Nullable<decimal> mEDIO_TRANSPORTE, Nullable<decimal> sALARIO_TOTAL, Nullable<decimal> bONO_ANUAL, Nullable<int> nUMERO_SALARIOS, Nullable<int> mESES_GARANTIZADOS, Nullable<int> cOD_TIPO_SALARIO, string nOMBRE_TIPO_SALARIO, Nullable<decimal> fACTOR_PRESTACIONAL, Nullable<decimal> iNGRESO_PROM_MENSUAL, Nullable<decimal> iNGRESO_PROM_ANUAL, Nullable<int> cOD_MERCADO, string mERCADO, Nullable<int> cOD_CATEGORIA, string nOMBRE_CATEGORIA, Nullable<decimal> pUNTO_MEDIO_80, Nullable<decimal> pUNTO_MEDIO_100, Nullable<decimal> pUNTO_MEDIO_120, Nullable<decimal> pOSICIONAMIENTO, string cOD_CORREO_CONTROLLER)
         {
@@ -726,7 +727,7 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("RECHAZAR_REQUISICION", cOD_REQUISICIONParameter, uSUARIOParameter, oBSERVACIONESParameter);
         }
     
-        public virtual ObjectResult<TRAZA_BOTONES_Result> TRAZA_BOTONES(Nullable<int> cOD_REQUISICION, string cAMPO_REQUISICION)
+        public virtual ObjectResult<HISTORICOS> TRAZA_BOTONES(Nullable<int> cOD_REQUISICION, string cAMPO_REQUISICION)
         {
             var cOD_REQUISICIONParameter = cOD_REQUISICION.HasValue ?
                 new ObjectParameter("COD_REQUISICION", cOD_REQUISICION) :
@@ -736,51 +737,20 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
                 new ObjectParameter("CAMPO_REQUISICION", cAMPO_REQUISICION) :
                 new ObjectParameter("CAMPO_REQUISICION", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TRAZA_BOTONES_Result>("TRAZA_BOTONES", cOD_REQUISICIONParameter, cAMPO_REQUISICIONParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<HISTORICOS>("TRAZA_BOTONES", cOD_REQUISICIONParameter, cAMPO_REQUISICIONParameter);
         }
     
-        public virtual ObjectResult<CAMPOS_TRAZA_Result> CAMPOS_TRAZA(Nullable<int> cOD_REQUISICION)
+        public virtual ObjectResult<HISTORICOS> TRAZA_BOTONES(Nullable<int> cOD_REQUISICION, string cAMPO_REQUISICION, MergeOption mergeOption)
         {
             var cOD_REQUISICIONParameter = cOD_REQUISICION.HasValue ?
                 new ObjectParameter("COD_REQUISICION", cOD_REQUISICION) :
                 new ObjectParameter("COD_REQUISICION", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CAMPOS_TRAZA_Result>("CAMPOS_TRAZA", cOD_REQUISICIONParameter);
-        }
+            var cAMPO_REQUISICIONParameter = cAMPO_REQUISICION != null ?
+                new ObjectParameter("CAMPO_REQUISICION", cAMPO_REQUISICION) :
+                new ObjectParameter("CAMPO_REQUISICION", typeof(string));
     
-        public virtual int INSERTAR_TRAZAS(Nullable<int> cOD_REQUISICION, string nOMBRE_CAMPO, string tRAZA)
-        {
-            var cOD_REQUISICIONParameter = cOD_REQUISICION.HasValue ?
-                new ObjectParameter("COD_REQUISICION", cOD_REQUISICION) :
-                new ObjectParameter("COD_REQUISICION", typeof(int));
-    
-            var nOMBRE_CAMPOParameter = nOMBRE_CAMPO != null ?
-                new ObjectParameter("NOMBRE_CAMPO", nOMBRE_CAMPO) :
-                new ObjectParameter("NOMBRE_CAMPO", typeof(string));
-    
-            var tRAZAParameter = tRAZA != null ?
-                new ObjectParameter("TRAZA", tRAZA) :
-                new ObjectParameter("TRAZA", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTAR_TRAZAS", cOD_REQUISICIONParameter, nOMBRE_CAMPOParameter, tRAZAParameter);
-        }
-    
-        public virtual ObjectResult<CONSULTAR_CAMPOS_TRAZA_Result> CONSULTAR_CAMPOS_TRAZA(Nullable<int> cOD_REQUISICION)
-        {
-            var cOD_REQUISICIONParameter = cOD_REQUISICION.HasValue ?
-                new ObjectParameter("COD_REQUISICION", cOD_REQUISICION) :
-                new ObjectParameter("COD_REQUISICION", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTAR_CAMPOS_TRAZA_Result>("CONSULTAR_CAMPOS_TRAZA", cOD_REQUISICIONParameter);
-        }
-    
-        public virtual ObjectResult<CAMPOS_TRAZA1_Result> CAMPOS_TRAZA1(Nullable<int> cOD_REQUISICION)
-        {
-            var cOD_REQUISICIONParameter = cOD_REQUISICION.HasValue ?
-                new ObjectParameter("COD_REQUISICION", cOD_REQUISICION) :
-                new ObjectParameter("COD_REQUISICION", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CAMPOS_TRAZA1_Result>("CAMPOS_TRAZA1", cOD_REQUISICIONParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<HISTORICOS>("TRAZA_BOTONES", mergeOption, cOD_REQUISICIONParameter, cAMPO_REQUISICIONParameter);
         }
     }
 }

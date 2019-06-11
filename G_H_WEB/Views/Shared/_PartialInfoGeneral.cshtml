@@ -70,7 +70,7 @@
             <div class="form-group col-md-12 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NIVEL_RIESGO_ARL, new { @class = "letrasFormulario" })
                 @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, Model.LIST_NIVEL_RIESGO_ARL, "-- Seleccione --", new { @class = "form-control col-md-11 comboArl letrasFormulario", disabled = deshabilitar })
-                <span id="NOMBRE_ARL_S" class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_ARL')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="position:absolute; left:180px;">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                <span id="NOMBRE_ARL_S" class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_ARL')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL)
                 @Html.ValidationMessageFor(model => model.COD_NIVEL_RIESGO_ARL)
             </div>
