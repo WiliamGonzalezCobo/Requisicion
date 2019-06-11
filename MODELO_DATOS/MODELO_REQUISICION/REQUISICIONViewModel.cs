@@ -55,6 +55,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// </summary>
         [Required(ErrorMessage = "Tipo de Documento es requerido")]
         public int? COD_TIPO_DOCUMENTO { get; set; }
+        [DisplayName("Tipo Documento")]
         public string NOMBRE_TIPO_DOCUMENTO { get; set; }
         [DisplayName("Tipo Documento")]
         public List<SelectListItem> LIST_TIPO_DOCUMENTO { get; set; }

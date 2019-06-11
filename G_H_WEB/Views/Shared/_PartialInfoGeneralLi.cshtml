@@ -95,7 +95,7 @@
         </div>
         <div class="form-group col-md-12 col-xs-12 ">
             @Html.LabelFor(model => model.POSICION, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-            @Html.EditorFor(model => model.POSICION, new { htmlAttributes = new { @class = "form-control combosGrandes letrasFormulario" } })
+            @Html.EditorFor(model => model.POSICION, new { htmlAttributes = new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar } })
             @Html.HiddenFor(model => model.POSICION, new { @Id = "hdPOSICION" })
             @Html.ValidationMessageFor(model => model.POSICION, "", new { @class = "text-danger" })
         </div>
