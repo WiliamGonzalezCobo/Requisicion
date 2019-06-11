@@ -9,6 +9,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION.LISTAS_API
    public class CENTRO_TRABAJO {
         
         public int coD_CENTRO_COSTO { get; set; }
+        public string coD_ALTERNO { get; set; }
         public string NOMBRE { get; set; }
     }
 }

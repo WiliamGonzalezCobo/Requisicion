@@ -25,19 +25,19 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="form-group col-md-12 col-sm-12">
-                @Html.LabelFor(model => model.JEFE_INMEDIATO, new { @class = "letrasFormulario" })
-                @Html.TextBoxFor(model => model.JEFE_INMEDIATO, new { @class = "form-control combosGrandes", disabled = deshabilitar })
-                @Html.HiddenFor(model => model.JEFE_INMEDIATO)
-                @Html.ValidationMessageFor(model => model.JEFE_INMEDIATO)
-            </div>
-            <div class="form-group col-md-12 col-sm-12">
-                @Html.LabelFor(model => model.LIST_NOMBRE_CECO, new { @class = "letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_CECO, Model.LIST_NOMBRE_CECO, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario" })
-                @Html.ValidationMessageFor(model => model.COD_CECO)
-            </div>
+    <div class="row">
+        <div class="form-group col-md-12 col-sm-12">
+            @Html.LabelFor(model => model.JEFE_INMEDIATO, new { @class = "letrasFormulario" })
+            @Html.TextBoxFor(model => model.JEFE_INMEDIATO, new { @class = "form-control combosGrandes", disabled = deshabilitar })
+            @Html.HiddenFor(model => model.JEFE_INMEDIATO)
+            @Html.ValidationMessageFor(model => model.JEFE_INMEDIATO)
         </div>
+        <div class="form-group col-md-12 col-sm-12">        
+            @Html.LabelFor(model => model.LIST_NOMBRE_CECO, new { @class = "letrasFormulario" })
+            @Html.DropDownListFor(model => model.COD_CECO, new SelectList(Model.LIST_NOMBRE_CECO, "Value", "Text", Model.COD_CECO), "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+            @Html.ValidationMessageFor(model => model.COD_CECO)
+        </div>
+    </div>
 
         <div class="row">
             <div class="form-group col-md-12 col-sm-12">
@@ -80,7 +80,7 @@
             <div class="form-group col-md-12 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA_ED, new { @class = "letrasFormulario" })
                 @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, Model.LIST_NOMBRE_CATEGORIA_ED, "-- Seleccione --", new { @class = "form-control col-md-11 combosGrandes letrasFormulario", disabled = deshabilitar })
-                <span id="NOMBRE_CATEGORIA_ED_S" class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                <span id="NOMBRE_CATEGORIA_ED_S" class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.HiddenFor(model => model.COD_CATEGORIA_ED)
                 @Html.ValidationMessageFor(model => model.COD_CATEGORIA_ED)
             </div>

@@ -1,10 +1,12 @@
-﻿using LOGICA.REQUISICION_LOGICA;
+﻿using G_H_WEB.Logica_Session;
+using LOGICA.REQUISICION_LOGICA;
 using Microsoft.AspNet.Identity;
 using MODELO_DATOS.MODELO_REQUISICION;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Security;
 using UTILS.Settings;
 using log4net;
 using G_H_WEB.Models;
@@ -13,6 +15,7 @@ using REPOSITORIOS.TRAZA_LOG;
 
 namespace G_H_WEB.Controllers
 {
+    [CustAuthFilter]
     public class REQUISICIONController : Controller
     {
         private LOG_CENTRALIZADO logCentralizado = new LOG_CENTRALIZADO(LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType));

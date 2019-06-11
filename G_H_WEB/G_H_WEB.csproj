@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>true</Use64BitIISExpress>
+    <Use64BitIISExpress>false</Use64BitIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -709,6 +709,7 @@
     <Content Include="Views\Shared\_PartialInfoSalarialLi2.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\_Error.cshtml" />
+    <Content Include="Views\Shared\_LayoutController.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -723,10 +724,6 @@
     <ProjectReference Include="..\MODELO_DATOS\MODELO_DATOS.csproj">
       <Project>{a410b374-ca26-4c1c-b964-3374282bc812}</Project>
       <Name>MODELO_DATOS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PRUEBA ACCESO A DATOS\PRUEBA ACCESO A DATOS.csproj">
-      <Project>{8cfa9e3d-dffc-4135-bfd6-cf4fa3a00ef3}</Project>
-      <Name>PRUEBA ACCESO A DATOS</Name>
     </ProjectReference>
     <ProjectReference Include="..\REPOSITORIOS\REPOSITORIOS.csproj">
       <Project>{d75630f9-8bc8-4c79-bb27-8c68de2bf991}</Project>
