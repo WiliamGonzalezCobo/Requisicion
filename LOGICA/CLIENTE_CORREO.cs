@@ -320,7 +320,7 @@ namespace LOGICA
                                                                                                                                    // SmtpServer.EnableSsl = true;
                     SmtpServer.EnableSsl = _DATO_CORREO.USA_SSL;
                     //martinezluir comentado porque no se consique el servidor desde fuera de la red de el tiempo
-                    SmtpServer.Send(mail);
+                    //SmtpServer.Send(mail);
                 }
                
 

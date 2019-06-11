@@ -497,7 +497,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                 logCentralizado.INICIANDO_LOG("REPREQ11", "CONSULTAR_TRAZA_CAMPOS");
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
-                    ObjectResult<TRAZA_BOTONES_Result> RHISTORICO = db.TRAZA_BOTONES(_codRequisicion, _campoRequisicion);
+                    ObjectResult<HISTORICOS> RHISTORICO = db.TRAZA_BOTONES(_codRequisicion, _campoRequisicion);
                     retorno = RHISTORICO.Select(x => new TRAZA_BOTONES_ENTIDAD()
                     {
                         COD_REQUISICION = x.COD_REQUISICION,
@@ -596,22 +596,6 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                 
                 return _LIST_CAMPOS;
             }            
-        }
-
-        public List<TRAZA_BOTONES_VISIBLES> CAMPOS_TRAZAS_VISIBLES(int _codRequisicion)
-        {
-            using (var db = new GESTION_HUMANA_HITSSEntities2())
-            {
-                List<CAMPOS_TRAZA1_Result> _listaCam = db.CAMPOS_TRAZA1(_codRequisicion).ToList();
-                List<TRAZA_BOTONES_VISIBLES> _LIST_CAMPOS = _listaCam.Select(x => new TRAZA_BOTONES_VISIBLES()
-                {
-                    COD_REQUISICION = x.COD_REQUISICION,
-                    CAMPOS = x.NOMBRE_CAMPO,
-                    TRAZA = x.TRAZA
-                }).ToList();
-
-                return _LIST_CAMPOS;
-            }
         }
 
         public void INSERTAR_CAMPOS_TRAZAS_VISIBLES(List<TRAZA_BOTONES_VISIBLES> _traza)
