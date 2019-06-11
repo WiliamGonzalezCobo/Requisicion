@@ -485,5 +485,8 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         public string COD_CORREO_CONTROLLER { get; set; }
 
 
+        [Required(ErrorMessage = "El motivo de rechazo es requerido")]
+        [DisplayName("Motivo de rechazo")]
+        public string MOTIVO_RECHAZO { get; set; }
     }
 }

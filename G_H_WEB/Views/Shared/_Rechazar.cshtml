@@ -1,0 +1,27 @@
+﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
+
+@{
+    if (Model != null)
+    {
+        <div class="modal fade" id="modalValidaRechazo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h5 class="modal-title" id="exampleModalLabel">Requisición rechazada</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Porqué a rechazado la requisición?</p>
+                        @Html.TextAreaFor(model => model.MOTIVO_RECHAZO, new { @class = "form-control" , placeholder = "Describa el motivo de rechazo" })
+                        @Html.ValidationMessageFor(model => model.MOTIVO_RECHAZO)
+
+                    </div>
+                    <div class="modal-footer">
+                        @Html.ActionLink("Cancelar", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
+                        <input name="submitButton" type="submit" value="Rechazar requisición" class="btn-confirmar-retiro" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

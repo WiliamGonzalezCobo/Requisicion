@@ -120,65 +120,67 @@
                                     }
                                     if (User.IsInRole(SettingsManager.PerfilRRHH))
                                     {
-                                @Html.Partial("_PartialInfoRequisicionLi", Model)
-                                @Html.Partial("_PartialInfoGeneralLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLiLectura", Model)
-                                @Html.Partial("_PartialGeneralProPuestaLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi2", Model)
-                                @Html.Partial("_PartialAutorizacion", Model)
+                                        @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                        @Html.Partial("_PartialInfoGeneralLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLiLectura", Model)
+                                        @Html.Partial("_PartialGeneralProPuestaLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi2", Model)
+                                        @Html.Partial("_PartialAutorizacion", Model)
+                                        @Html.Partial("_Rechazar", Model);
                                     }
                                     if (User.IsInRole(SettingsManager.PerfilUSC))
                                     {
-                                @Html.Partial("_PartialInfoRequisicionLi", Model)
-                                @Html.Partial("_PartialInfoGeneralLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLiLectura", Model)
-                                @Html.Partial("_PartialGeneralProPuestaLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi2", Model)
-                                @Html.Partial("_PartialAutorizacion", Model)
+                                        @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                        @Html.Partial("_PartialInfoGeneralLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLiLectura", Model)
+                                        @Html.Partial("_PartialGeneralProPuestaLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi2", Model)
+                                        @Html.Partial("_PartialAutorizacion", Model)
+                                        @Html.Partial("_Rechazar", Model);
                                     }
                                     if (ViewBag.PERMISOS_CONTROLLER != "")
                                     {
-                                @Html.Partial("_PartialInfoRequisicionLi", Model)
-                                @Html.Partial("_PartialInfoGeneralLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi", Model)
-                                @Html.Partial("_PartialAutorizacion", Model)
+                                        @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                        @Html.Partial("_PartialInfoGeneralLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi", Model)
+                                        @Html.Partial("_PartialAutorizacion", Model)
                                     }
                                     //Botones
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
-                                    @if (User.IsInRole(SettingsManager.PerfilJefe))
-                                    {
-                                        <input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="btn-confirmar-retiro col-md-3" />
-                                    }
-                                    @if (User.IsInRole(SettingsManager.PerfilController))
-                                    {
-                                        <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                        <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
-                                    }
-                                    @if (User.IsInRole(SettingsManager.PerfilBp))
-                                    {
-                                        <input name="submitButton" type="submit" value="Enviar" class="crear-requisicion crear-requisicion-texto" />
-                                    }
-                                    @if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
-                                    {
-                                        <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                        <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
-                                        <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
-                                    }
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
+                                            @if (User.IsInRole(SettingsManager.PerfilJefe))
+                                            {
+                                                <input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="btn-confirmar-retiro col-md-3" />
+                                            }
+                                            @if (User.IsInRole(SettingsManager.PerfilController))
+                                            {
+                                                <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                                <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                            }
+                                            @if (User.IsInRole(SettingsManager.PerfilBp))
+                                            {
+                                                <input name="submitButton" type="submit" value="Enviar" class="crear-requisicion crear-requisicion-texto" />
+                                            }
+                                            @if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
+                                            {
+                                                <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                                <a id="rechazarReq" class="btn-confirmar-retiro">Rechazar requisición</a>
+                                                <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                            }
 
-                                    @if (ViewBag.PERMISOS_CONTROLLER != "")
-                                    {
-                                        <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                        <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
-                                    }
+                                            @if (ViewBag.PERMISOS_CONTROLLER != "")
+                                            {
+                                                <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
+                                                <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                            }
 
-                                </div>
-                            </div>
+                                        </div>
+                                    </div>
                                 }
-                    </div>
+                            </div>
                 </div>
             </div>
                 }

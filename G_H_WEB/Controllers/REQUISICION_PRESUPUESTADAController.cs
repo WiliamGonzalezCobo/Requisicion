@@ -104,7 +104,7 @@ namespace G_H_WEB.Controllers
                             npc.METODO = "Crear";
                         else
                             npc.METODO = "Modificar";
-                        Cambios_campos(modelDatos, _resultadoIdReguisicion);
+                        //Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         break;
                     case "APROBAR REQUISICIÓN":
 
@@ -121,7 +121,7 @@ namespace G_H_WEB.Controllers
                         npc.METODO = "Aprobar";
                         break;
                     case "Rechazar requisición":
-                       
+                        modelDatos.OBSERVACION = modelDatos.MOTIVO_RECHAZO;
                         _resultadoIdReguisicion = new LOGICA_REQUISICION().REQUISICION_RECHAZAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.Name);
                         npc.METODO = "Rechazar";
                         //Cambios_campos(modelDatos, _resultadoIdReguisicion);
