@@ -120,170 +120,193 @@
                                     }
                                     if (User.IsInRole(SettingsManager.PerfilRRHH))
                                     {
-                                @Html.Partial("_PartialInfoRequisicionLi", Model)
-                                @Html.Partial("_PartialInfoGeneralLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLiLectura", Model)
-                                @Html.Partial("_PartialGeneralProPuestaLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi2", Model)
-                                @Html.Partial("_PartialAutorizacion", Model)
+                                        @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                        @Html.Partial("_PartialInfoGeneralLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLiLectura", Model)
+                                        @Html.Partial("_PartialGeneralProPuestaLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi2", Model)
+                                        @Html.Partial("_PartialAutorizacion", Model)
+                                        @Html.Partial("_Rechazar", Model);
                                     }
                                     if (User.IsInRole(SettingsManager.PerfilUSC))
                                     {
-                                @Html.Partial("_PartialInfoRequisicionLi", Model)
-                                @Html.Partial("_PartialInfoGeneralLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLiLectura", Model)
-                                @Html.Partial("_PartialGeneralProPuestaLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi2", Model)
-                                @Html.Partial("_PartialAutorizacion", Model)
+                                        @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                        @Html.Partial("_PartialInfoGeneralLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLiLectura", Model)
+                                        @Html.Partial("_PartialGeneralProPuestaLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi2", Model)
+                                        @Html.Partial("_PartialAutorizacion", Model)
+                                        @Html.Partial("_Rechazar", Model);
                                     }
                                     if (ViewBag.PERMISOS_CONTROLLER != "")
                                     {
-                                @Html.Partial("_PartialInfoRequisicionLi", Model)
-                                @Html.Partial("_PartialInfoGeneralLi", Model)
-                                @Html.Partial("_PartialInfoSalarialLi", Model)
-                                @Html.Partial("_PartialAutorizacion", Model)
+                                        @Html.Partial("_PartialInfoRequisicionLi", Model)
+                                        @Html.Partial("_PartialInfoGeneralLi", Model)
+                                        @Html.Partial("_PartialInfoSalarialLi", Model)
+                                        @Html.Partial("_PartialAutorizacion", Model)
                                     }
                                     //Botones
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
-                                    @if (User.IsInRole(SettingsManager.PerfilJefe))
-                                    {
-                                        <input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="btn-confirmar-retiro col-md-3" />
-                                    }
-                                    @if (User.IsInRole(SettingsManager.PerfilController))
-                                    {
-                                        <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                        <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
-                                    }
-                                    @if (User.IsInRole(SettingsManager.PerfilBp))
-                                    {
-                                        <input name="submitButton" type="submit" value="Enviar" class="crear-requisicion crear-requisicion-texto" />
-                                    }
-                                    @if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
-                                    {
-                                        <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                        <input name="submitButton" type="submit" value="Rechazar" class="btn-confirmar-retiro col-md-3" />
-                                        <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
-                                    }
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
+                                            @if (User.IsInRole(SettingsManager.PerfilJefe))
+                                            {
+                                            <input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="btn-confirmar-retiro text-uppercase col-md-3 btn-collpse-valid" />
+                                            }
+                                            @if (User.IsInRole(SettingsManager.PerfilController))
+                                            {
+                                            <input name="submitButton" type="submit" value="Modificar Requisición" class="BtnDevolver text-uppercase TextoBtnDevolver col-md-3 btn-collpse-valid" />
+                                            <input name="submitButton" type="submit" value="Aprobar Requisición" class="btn-confirmar-retiro text-uppercase col-md-3 btn-collpse-valid" />
+                                            }
+                                            @if (User.IsInRole(SettingsManager.PerfilBp))
+                                            {
+                                            <input name="submitButton" type="submit" value="Enviar Requisición" class="crear-requisicion crear-requisicion-texto btn-collpse-valid" />
+                                            }
+                                            @if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
+                                            {
+                                            <a id="rechazarReq" class="btn-rechazar-requisicion">Recharzar requisición</a>
+                                            <input name="submitButton" type="submit" value="Modificar Requisición" class="BtnDevolver text-uppercase TextoBtnDevolver col-md-3 btn-collpse-valid" />
+                                            <input name="submitButton" type="submit" value="Aprobar Requisición" class="btn-confirmar-retiro text-uppercase col-md-3 btn-collpse-valid" />
+                                            }
 
-                                    @if (ViewBag.PERMISOS_CONTROLLER != "")
-                                    {
-                                        <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                        <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
-                                    }
 
-                                </div>
-                            </div>
+                                            @if (ViewBag.PERMISOS_CONTROLLER != "")
+                                            {
+                                            <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3 btn-collpse-valid" />
+                                            <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3 btn-collpse-valid"/>
+                                            }
+
+                                        </div>
+                                    </div>
                                 }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        @if (ViewBag.Error != null)
+        {
+            <div>
+                @Html.Partial("_Error", (ERROR_GENERAL_ViewModel)ViewBag.Error);
+            </div>
+        }
+        <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content Content-Popup-Creacion">
+                    <div class="modal-header">
+                        <h5 class="modal-title _metodoDefecto Titulo-Popup-Creacion" id="ModalLabel">Se ha presentado un error</h5>
+                        <h5 class="modal-title _metodoCrear Titulo-Popup-Creacion" id="ModalLabel">Requisición creada con éxito</h5>
+                        <h5 class="modal-title __metodoAprobar Titulo-Popup-Creacion" id="ModalLabel">Requisición aprobada con éxito</h5>
+                        <h5 class="modal-title __metodoModificar Titulo-Popup-Creacion" id="ModalLabel">Requisición modificada con éxito</h5>
+                        <h5 class="modal-title __metodoRechazar Titulo-Popup-Creacion" id="ModalLabel">Requisición rechazada con éxito</h5>
+                        <h5 class="modal-title __metodoEnviar Titulo-Popup-Creacion" id="ModalLabel">Requisición enviada con éxito</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body Content-Popup">
+                        <br />
+                        <h2 class="_metodoCrear Texto-Popup-Creacion">Se créo la requisición para el cargo de  <span class="Texto-Popup-Creacion-Negrilla" id="mensaje1"></span> con ID <span class="Texto-Popup-Creacion-Negrilla" id="mensaje2"></span></h2>
+                        <h2 class="__metodoAprobar Texto-Popup-Creacion">Se aprobó la requisición con ID <span id="mensaje_aprobar"></span></h2>
+                        <h2 class="__metodoModificar Texto-Popup-Creacion">Se modificó la requisición con ID <span id="mensaje_modificar"></span></h2>
+                        <h2 class="__metodoRechazar Texto-Popup-Creacion">Se Rechazó la requisición con ID <span id="mensaje_rechazar"></span></h2>
+                        <h2 class="_metodoDefecto Texto-Popup-Creacion">Por favor contacte al <span id="mensaje_rechazar">administrador</span> del sistema</h2>
+                        <h2 class="__metodoEnviar Texto-Popup-Creacion">Se Envío la requisicion con ID <span id="mensaje_Enviar"></span></h2>
                     </div>
                 </div>
             </div>
-                }
+        </div>
+
+        <div class="modal fade" id="ModalCancelNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title Titulo-Popup" id="ModalLabel">Está a punto de cancelar la requisición</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                    </div>
+                    <div class="retiros-detalle modal-body">
+                        <br />
+                        <h4>¿Está Seguro de Cancelarla?</h4>
+
+                        <button type="button" class="filtroPorUsuario btn-cancelar-retriro" data-dismiss="modal" aria-label="Aceptar" onclick="NoCancelarJefe()" style="cursor:pointer;">
+                            No
+
+                        </button>
+                        <button type="button" class="filtroPorUsuario btn-confirmar-retiro" data-dismiss="modal" aria-label="Cancelar" onclick="SiCancelarJefe()" style="cursor:pointer;">
+                            Si
+
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    @if (ViewBag.Error != null)
-    {
-        <div>
-            @Html.Partial("_Error", (ERROR_GENERAL_ViewModel)ViewBag.Error);
-        </div>
-    }
-    <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+
+    <!-- Modal -->
+    <div class="modal fade ModalTraza" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content Content-Popup-Creacion">
+            <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title _metodoDefecto Titulo-Popup-Creacion" id="ModalLabel">Se ha presentado un error</h5>
-                    <h5 class="modal-title _metodoCrear Titulo-Popup-Creacion" id="ModalLabel">Requisición creada con éxito</h5>
-                    <h5 class="modal-title __metodoAprobar Titulo-Popup-Creacion" id="ModalLabel">Requisición aprobada con éxito</h5>
-                    <h5 class="modal-title __metodoModificar Titulo-Popup-Creacion" id="ModalLabel">Requisición modificada con éxito</h5>
-                    <h5 class="modal-title __metodoRechazar Titulo-Popup-Creacion" id="ModalLabel">Requisición rechazada con éxito</h5>
-                    <h5 class="modal-title __metodoEnviar Titulo-Popup-Creacion" id="ModalLabel">Requisición enviada con éxito</h5>
+                    <h7 class="modal-title" id="ModalLabelTraza"></h7>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="row modal-body">
+                    <div class="col-md-12 col-lg-12 col-xl-12 table-responsive">
+                        <h3>Modificaciones</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Cod Requisición</th>
+                                    <th class="nombre_traza"></th>
+                                    <th>Usuario Registro</th>
+                                    <th>Fecha Registro</th>
+                                    <th>Cod Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bodytraza"></tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="ModalRequisicionProcesada" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title Texto-Popup-Creacion" id="ModalLabel">Requisición procesada</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body Content-Popup">
                     <br />
-                    <h2 class="_metodoCrear Texto-Popup-Creacion">Se créo la requisición para el cargo de  <span class="Texto-Popup-Creacion-Negrilla" id="mensaje1"></span> con ID <span class="Texto-Popup-Creacion-Negrilla" id="mensaje2"></span></h2>
-                    <h2 class="__metodoAprobar Texto-Popup-Creacion">Se aprobó la requisición con ID <span id="mensaje_aprobar"></span></h2>
-                    <h2 class="__metodoModificar Texto-Popup-Creacion">Se modificó la requisición con ID <span id="mensaje_modificar"></span></h2>
-                    <h2 class="__metodoRechazar Texto-Popup-Creacion">Se Rechazó la requisición con ID <span id="mensaje_rechazar"></span></h2>
-                    <h2 class="_metodoDefecto Texto-Popup-Creacion">Por favor contacte al <span id="mensaje_rechazar">administrador</span> del sistema</h2>
-                    <h2 class="__metodoEnviar Texto-Popup-Creacion">Se Envío la requisicion con ID <span id="mensaje_Enviar"></span></h2>
+                    <h2 class="Texto-Popup-Creacion">Esta requisición ha sido ya ha sido procesada</h2>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="ModalCancelNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title Titulo-Popup" id="ModalLabel">Está a punto de cancelar la requisición</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
 
-                </div>
-                <div class="retiros-detalle modal-body">
-                    <br />
-                    <h4>¿Está Seguro de Cancelarla?</h4>
-
-                    <button type="button" class="filtroPorUsuario btn-cancelar-retriro" data-dismiss="modal" aria-label="Aceptar" onclick="NoCancelarJefe()" style="cursor:pointer;">
-                        No
-
-                    </button>
-                    <button type="button" class="filtroPorUsuario btn-confirmar-retiro" data-dismiss="modal" aria-label="Cancelar" onclick="SiCancelarJefe()" style="cursor:pointer;">
-                        Si
-
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade ModalTraza" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h7 class="modal-title" id="ModalLabelTraza"></h7>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="row modal-body">
-                <div class="col-md-12 col-lg-12 col-xl-12 table-responsive">
-                    <h3>Modificaciones</h3>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Cod Requisición</th>
-                                <th class="nombre_traza"></th>
-                                <th>Usuario Registro</th>
-                                <th>Fecha Registro</th>
-                                <th>Cod Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bodytraza"></tbody>
-                    </table>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<script type="text/javascript">
+    <script type="text/javascript">
 
     $(document).ready(function () {
 
         $(document).on('submit', 'form', function () {
-            //$('[name="' + submitButton + '"]').prop("type", "button");
+            $('body').loading({
+                message: 'Cargando...'
+            });
         })
 
         if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {
@@ -296,14 +319,12 @@
         $(".__metodoModificar").css("display", "none");
         $(".__metodoRechazar").css("display", "none");
         $(".__metodoEnviar").css("display", "none");
-        debugger;
         VALIDACION_TRAZA();
 
         var resultado = "@ViewBag.resultadoInsertExitosoOno";
 
 
         if (resultado == "True") {
-            debugger;
             var _metodo = "@paraModel.METODO";
             if (_metodo == "Crear") {
                 CREAR_REQUISICION();
@@ -329,6 +350,8 @@
             }
 
             $('#ModalCreacionNoJefe').modal("show");
+        } else if ($("#NOMBRE_TIPO_DOCUMENTO").val() == "" && $("#NUMERO_DOCUMENTO_EMPLEADO").val() == "" && $("#NOMBRE_EMPLEADO").val() == "" && "@ViewBag.PERMISOS_CONTROLLER" != "") {
+            $('#ModalRequisicionProcesada').modal('show');
         }
 
 
@@ -337,12 +360,10 @@
     function VALIDACION_TRAZA() {
         var jsonObj = @Html.Raw(Json.Encode(ViewBag.traza));
         if (jsonObj) {
-            debugger;
             for (i = 0; i < jsonObj.length; i++) {
                 if (jsonObj[i].TRAZA == "true") {
                     var campo = "#" + jsonObj[i].CAMPOS + "_S";
                     if ($(campo).length) {
-                        debugger;
                         $(campo).removeAttr("style");
                         var traza = jsonObj[i].TRAZA;
                     }
@@ -361,7 +382,7 @@
                 data: { NUMERO_DOCUMENTO_EMPLEADO: DOCUMENTO_NUMERO },
                 success: function (respuesta) {
                     mapeoObjCargoApi(respuesta)
-                    debugger; $('body').loading('stop');
+                    $('body').loading('stop');
                 },
                 error: function (er){
                     $('body').loading('stop');
@@ -602,7 +623,6 @@
                         }        
                         campo_re = value[CAMPO_REQUISICION];
                     });
-                    debugger;
                     $('body').loading('stop');
                     $('.ModalTraza').modal("show");
                 },
@@ -612,13 +632,16 @@
             });
     }
 
-    $('#submitButtonCrear').on('click', function () {
+    $('.btn-collpse-valid').on('click', function () {
         //console.log('di click !!', validate);
         if (!validateFormAutorizacion()) {
             $('#collapseAutorizacion').collapse('show');
         }
         if (!validateFormInfoGeneralIncap()) {
             $('#collapseInfoGeneralIncap').collapse('show');
+        }
+        if (!validateFormTipoContrato()) {
+            $('#collapseInfoGeneralPropLic').collapse('show');
         }
         if (!validateFormInfoSalarialLic()) {
             $('#collapseInfoSalarialIncap').collapse('show');
@@ -628,6 +651,6 @@
         }
     });
 
-</script>
+    </script>
 
 

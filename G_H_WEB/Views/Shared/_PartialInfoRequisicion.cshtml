@@ -4,17 +4,20 @@
     string deshabilitar = "true";
     List<SelectListItem> _BUSCAR_NOMBRE_CECO = Model.LIST_NOMBRE_CECO;
 }
-        @model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
-        <section id="Requisicion">
-            <div class="panel-heading">
-                <a class="a-collapse" data-toggle="collapse" href="#collapse2">
-                    <h2>Información Empleado</h2>
-                </a>
-            </div>
-            <div id="collapse2" class="panel-collapse collapse">
-                <div class="row">
-                    @Html.HiddenFor(model => model.COD_REQUISICION)
-                    @Html.HiddenFor(model => model.COD_ESTADO_REQUISICION)
+@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
+<section id="Requisicion">
+    <div class="panel-heading row">
+        <div class="span-icon-arrow div-span-collapse2">
+            <span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>
+        </div>
+        <a class="a-collapse" data-toggle="collapse" href="#collapse2">
+            <h2>Información Empleado</h2>
+        </a>
+    </div>
+    <div id="collapse2" class="panel-collapse collapse">
+        <div class="row">
+            @Html.HiddenFor(model => model.COD_REQUISICION)
+            @Html.HiddenFor(model => model.COD_ESTADO_REQUISICION)
 
 
 
@@ -207,6 +210,13 @@
             $("#myList li").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
+        });
+
+        $("#collapse2").on("hide.bs.collapse", function () {
+            $(".div-span-collapse2").html('<span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>');
+        });
+        $("#collapse2").on("show.bs.collapse", function () {
+            $(".div-span-collapse2").html('<span class="span-collapse"><i class="fas fa-chevron-up arrow-collapse"></i></span>');
         });
 
         $("#BuscadorCeco").on("click", function () {

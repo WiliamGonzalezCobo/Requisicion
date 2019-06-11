@@ -103,7 +103,7 @@ namespace G_H_WEB.Controllers
                             npc.METODO = "Crear";
                         else
                             npc.METODO = "Modificar";
-                        //Cambios_campos(modelDatos, _resultadoIdReguisicion);
+                        
                         break;
                     case "APROBAR REQUISICIÓN":
                         if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
@@ -115,25 +115,26 @@ namespace G_H_WEB.Controllers
                             _User = User.Identity.GetUserId() ?? Session["COD_ASPNETUSER_CONTROLLER"].ToString();
                             _resultadoIdReguisicion = new LOGICA_REQUISICION().APROBAR_REQUISICION_LOGICA(modelDatos.COD_REQUISICION, _User, modelDatos.OBSERVACION);
                         }
-                        //Cambios_campos(modelDatos, _resultadoIdReguisicion);
+                        
                         npc.METODO = "Aprobar";
                         break;
-                    case "Rechazar":
+                    case "ENVIAR REPUESTA":
+                        modelDatos.OBSERVACION = string.Format("Observacion: {0}. Modito Rechazo: {1}", modelDatos.OBSERVACION, modelDatos.MOTIVO_RECHAZO);
                         _resultadoIdReguisicion = new LOGICA_REQUISICION().REQUISICION_RECHAZAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.Name);
-                        //Cambios_campos(modelDatos, _resultadoIdReguisicion);
+                       
                         npc.METODO = "Rechazar";                        
                         break;
-                    case "Enviar":
+                    case "Enviar Requisición":
                         Cambios_campos(modelDatos, modelDatos.COD_REQUISICION);
                         Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZAR_REQUISICION(modelDatos));
                         _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
-                        //Cambios_campos(modelDatos, _resultadoIdReguisicion);
+                       
                         npc.METODO = "Enviar";
                         break;
                     case "DEVOLVER REQUISICIÓN":
                         _User = User.Identity.GetUserId() ?? Session["COD_ASPNETUSER_CONTROLLER"].ToString();
                         _resultadoIdReguisicion = Convert.ToInt32(new LOGICA_REQUISICION().REQUISICION_MODIFICAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, _User));
-                        //Cambios_campos(modelDatos, _resultadoIdReguisicion);
+                        
                         npc.METODO = "Modificar";
                         break;
                 }

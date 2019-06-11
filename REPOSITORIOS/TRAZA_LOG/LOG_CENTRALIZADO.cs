@@ -31,9 +31,9 @@ namespace REPOSITORIOS.TRAZA_LOG
 
         public string CAPTURA_EXCEPCION(string _codigo, string _metodo, Exception ex)
         {
-            log.ErrorFormat("CODIGO : {0},  Método {1}, {2}  ", _codigo, _metodo, ex.StackTrace);
+            log.ErrorFormat("CODIGO : {0},  Método {1}, {2}  ", _codigo, _metodo, string.Format("{0}, {1}", string.IsNullOrEmpty(ex.StackTrace) ? "" : ex.StackTrace, string.IsNullOrEmpty(ex.Message) ? "" : ex.Message));
             ex.HelpLink = _codigo;
-            Thread HILOERROR = new Thread(() => ERROR.ERROR_TRAZA(ex.HelpLink, log.Logger.Name, ex.TargetSite.Name, string.Format("{0}, {1}", ex.StackTrace, ex.Message)));
+            Thread HILOERROR = new Thread(() => ERROR.ERROR_TRAZA(ex.HelpLink, log.Logger.Name, ex.TargetSite.Name, string.Format("{0}, {1}", string.IsNullOrEmpty(ex.StackTrace)?"":ex.StackTrace,string.IsNullOrEmpty(ex.Message)?"":ex.Message)));
             HILOERROR.Start();
             return ex.HelpLink = (string.IsNullOrEmpty(ex.HelpLink) ? _codigo : ex.HelpLink);
         }

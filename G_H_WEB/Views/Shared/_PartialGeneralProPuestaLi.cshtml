@@ -1,9 +1,12 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 @{string deshabilitar = "true";}
 <section id="infoGeneral">
-    <div class="panel-heading">
+    <div class="panel-heading row">
+        <div class="span-icon-arrow div-span-collapseInfoGeneralPropLic">
+            <span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>
+        </div>
         <a class="a-collapse" data-toggle="collapse" href="#collapseInfoGeneralPropLic">
-            <h2>Información General</h2>
+            <h2>Tipo de Contrato</h2>
         </a>
     </div>
     <div id="collapseInfoGeneralPropLic" class="panel-collapse collapse">
@@ -40,3 +43,24 @@
         top: 32px !important;
     }
 </style>
+<script>
+    var validateTipoContrato = true;
+    var validateFormTipoContrato = function () {
+        if ($('#COD_TIPO_CONTRATO').val() == "" &&
+            $('#JEFE_INMEDIATO').val() == "" &&
+            $('#COD_NIVEL_RIESGO_ARL').val() == "") {
+            validateTipoContrato = false;
+        } else {
+            validateTipoContrato = true;
+        }
+        console.log('validateTipoContrato ', validateTipoContrato);
+        return validateTipoContrato;
+    }
+
+    $("#collapseInfoGeneralPropLic").on("hide.bs.collapse", function () {
+        $(".div-span-collapseInfoGeneralPropLic").html('<span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>');
+    });
+    $("#collapseInfoGeneralPropLic").on("show.bs.collapse", function () {
+        $(".div-span-collapseInfoGeneralPropLic").html('<span class="span-collapse"><i class="fas fa-chevron-up arrow-collapse"></i></span>');
+    });
+</script>
