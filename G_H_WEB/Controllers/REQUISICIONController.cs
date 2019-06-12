@@ -229,5 +229,29 @@ namespace G_H_WEB.Controllers
 
             return Json(datosmodificacion, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult ConsultarUsuario()
+        {
+            List<CONSULTA_USUARIO_ENTIDAD> datosUsuario = null;
+            try
+            {
+                logCentralizado.INICIANDO_LOG("CTRREQ8", "ConsultarUsuario");
+
+                string COD_USUARIO = User.Identity.GetUserId();
+                datosUsuario = new LOGICA_REQUISICION().CONSULTA_USUARIOS(COD_USUARIO);
+
+                logCentralizado.FINALIZANDO_LOG("CTRREQ7", "ConsultarModificaciones");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = new ERROR_GENERAL_ViewModel()
+                {
+                    COD_ERROR = logCentralizado.CAPTURA_EXCEPCION("CTRREQ8", "ConsultarUsuario", ex),
+                    DETALLE = "error al consultar datos del usuario"
+                };
+            }
+
+            return Json(datosUsuario, JsonRequestBehavior.AllowGet);
+        }
     }
 }
