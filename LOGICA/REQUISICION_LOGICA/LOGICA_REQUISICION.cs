@@ -758,10 +758,14 @@ namespace LOGICA.REQUISICION_LOGICA
                             PUESTO puesto = listPuesto.First();
                             _modeloRequisicion = CARGAR_MODELO_DEL_API(_modeloRequisicion, puesto);
                         }
+                        else
+                        {
+                            throw new Exception(string.Format("No se encontro puesto con el COD_CARGO: {0}", _modeloRequisicion.COD_CARGO));
+                        }
                     }
                     else
                     {
-                        throw new Exception(string.Format("No se encontro puesto con el COD_CARGO: {0}", _modeloRequisicion.COD_CARGO));
+                        throw new Exception(string.Format("Error al procesar el API GET api/PUESTOS por el COD_CARGO: {0}", _modeloRequisicion.COD_CARGO));
                     }
                 }
                 logCentralizado.FINALIZANDO_LOG("LGREQ23", "BUSCAR_REQUISICIONES_BP");
