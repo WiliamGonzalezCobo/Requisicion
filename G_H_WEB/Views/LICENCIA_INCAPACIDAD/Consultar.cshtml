@@ -127,6 +127,7 @@
                                         @Html.Partial("_PartialInfoSalarialLi", Model)
                                         @Html.Partial("_PartialInfoSalarialLi2", Model)
                                         @Html.Partial("_PartialAutorizacion", Model)
+                                        @Html.Partial("_Rechazar", Model);
                                     }
                                     if (User.IsInRole(SettingsManager.PerfilUSC))
                                     {
@@ -137,6 +138,7 @@
                                         @Html.Partial("_PartialInfoSalarialLi", Model)
                                         @Html.Partial("_PartialInfoSalarialLi2", Model)
                                         @Html.Partial("_PartialAutorizacion", Model)
+                                        @Html.Partial("_Rechazar", Model);
                                     }
                                     if (ViewBag.PERMISOS_CONTROLLER != "")
                                     {
@@ -164,7 +166,7 @@
                                             }
                                             @if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
                                             {
-                                            <input name="submitButton" type="submit" value="Rechazar Requisición" class="btn-rechazar-requisicion text-capitalize col-md-3 btn-collpse-valid" />
+                                            <a id="rechazarReq" class="btn-rechazar-requisicion">Rechazar requisición</a>
                                             <input name="submitButton" type="submit" value="Modificar Requisición" class="BtnDevolver text-uppercase TextoBtnDevolver col-md-3 btn-collpse-valid" />
                                             <input name="submitButton" type="submit" value="Aprobar Requisición" class="btn-confirmar-retiro text-uppercase col-md-3 btn-collpse-valid" />
                                             }
@@ -172,8 +174,8 @@
 
                                             @if (ViewBag.PERMISOS_CONTROLLER != "")
                                             {
-                                            <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3" />
-                                            <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3" />
+                                            <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3 btn-collpse-valid" />
+                                            <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3 btn-collpse-valid"/>
                                             }
 
                                         </div>

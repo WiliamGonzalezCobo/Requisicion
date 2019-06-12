@@ -78,12 +78,16 @@ thead, tbody, th {
     border: none;
     font-family: "Source-Sans-Pro";
     padding: 0 !important;
-    text-decoration: underline;
+    text-decoration: underline !important;
     cursor: pointer;
     width: 21% !important;
     height: 20px !important;
-    color: #F15300;
+    color: #F15300 !important;
     margin-right: 2%;
     background: none;
     border: none;
+}
+
+.textarea {
+    resize: none;
 }

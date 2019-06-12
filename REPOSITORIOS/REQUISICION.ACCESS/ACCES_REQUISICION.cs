@@ -584,30 +584,51 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
 
         public List<TRAZA_BOTONES_VISIBLES> CONSULTAR_CAMPOS_TRAZAS_VISIBLES(int _codRequisicion)
         {
-            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            try
             {
-                List<CONSULTAR_CAMPOS_TRAZA_Result> _listaCam = db.CONSULTAR_CAMPOS_TRAZA(_codRequisicion).ToList();
-                List<TRAZA_BOTONES_VISIBLES> _LIST_CAMPOS = _listaCam.Select(x => new TRAZA_BOTONES_VISIBLES()
-                {   
-                    COD_REQUISICION = x.COD_REQUISICION.Value,
-                    CAMPOS = x.NOMBRE_CAMPO,
-                    TRAZA = x.TRAZA
-                }).ToList();
-                
-                return _LIST_CAMPOS;
-            }            
+                logCentralizado.INICIANDO_LOG("REPREQ13", "CONSULTAR_CAMPOS_TRAZAS_VISIBLES");
+                using (var db = new GESTION_HUMANA_HITSSEntities2())
+                {
+                    List<CONSULTAR_CAMPOS_TRAZA_Result> _listaCam = db.CONSULTAR_CAMPOS_TRAZA(_codRequisicion).ToList();
+                    List<TRAZA_BOTONES_VISIBLES> _LIST_CAMPOS = _listaCam.Select(x => new TRAZA_BOTONES_VISIBLES()
+                    {
+                        COD_REQUISICION = x.COD_REQUISICION.Value,
+                        CAMPOS = x.NOMBRE_CAMPO,
+                        TRAZA = x.TRAZA
+                    }).ToList();
+
+                    logCentralizado.FINALIZANDO_LOG("REPREQ13", "CONSULTAR_CAMPOS_TRAZAS_VISIBLES");
+                    return _LIST_CAMPOS;
+                }
+            }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ13", "CONSULTAR_CAMPOS_TRAZAS_VISIBLES", ex);
+                throw ex;
+            }
         }
 
         public void INSERTAR_CAMPOS_TRAZAS_VISIBLES(List<TRAZA_BOTONES_VISIBLES> _traza)
         {
-            using (var db = new GESTION_HUMANA_HITSSEntities2())
+            try
             {
-                foreach (var item in _traza)
+                logCentralizado.INICIANDO_LOG("REPREQ14", "INSERTAR_CAMPOS_TRAZAS_VISIBLES");
+                using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
-                    db.INSERTAR_TRAZAS(item.COD_REQUISICION, item.CAMPOS, item.TRAZA);
-                }                
+                    foreach (var item in _traza)
+                    {
+                        db.INSERTAR_TRAZAS(item.COD_REQUISICION, item.CAMPOS, item.TRAZA);
+                    }
+                    logCentralizado.FINALIZANDO_LOG("REPREQ14", "INSERTAR_CAMPOS_TRAZAS_VISIBLES");
+                }
+            }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ14", "INSERTAR_CAMPOS_TRAZAS_VISIBLES", ex);
+                throw ex;
             }
         }
+
 
     }
 }

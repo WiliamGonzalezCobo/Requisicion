@@ -1309,30 +1309,61 @@ namespace LOGICA.REQUISICION_LOGICA
 
         public List<TRAZA_BOTONES_VISIBLES> CONSULTAR_CAMPOS_TRAZAS_VISIBLES(int _codRequisicion)
         {
-            List<TRAZA_BOTONES_VISIBLES> _listaCampos = new ACCES_REQUISICION().CONSULTAR_CAMPOS_TRAZAS_VISIBLES(_codRequisicion);
-            return _listaCampos;
+            try
+            {
+                logCentralizado.INICIANDO_LOG("LGREQ37", "CONSULTA_NOTIFICACIONES");
+                List<TRAZA_BOTONES_VISIBLES> _listaCampos = new ACCES_REQUISICION().CONSULTAR_CAMPOS_TRAZAS_VISIBLES(_codRequisicion);
+                logCentralizado.FINALIZANDO_LOG("LGREQ37", "CONSULTAR_CAMPOS_TRAZAS_VISIBLES");
+                return _listaCampos;
+            }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("LGREQ37", "CONSULTAR_CAMPOS_TRAZAS_VISIBLES", ex);
+                throw ex;
+            }            
         }
+
         public void INSERTAR_CAMPOS_TRAZAS_VISIBLES(List<TRAZA_BOTONES_VISIBLES> _traza)
         {
-            new ACCES_REQUISICION().INSERTAR_CAMPOS_TRAZAS_VISIBLES(_traza);
+            try
+            {
+                logCentralizado.INICIANDO_LOG("LGREQ38", "INSERTAR_CAMPOS_TRAZAS_VISIBLES");
+                new ACCES_REQUISICION().INSERTAR_CAMPOS_TRAZAS_VISIBLES(_traza);
+                logCentralizado.FINALIZANDO_LOG("LGREQ38", "INSERTAR_CAMPOS_TRAZAS_VISIBLES");                
+            }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("LGREQ38", "INSERTAR_CAMPOS_TRAZAS_VISIBLES", ex);
+                throw ex;
+            }
         }
 
         public string LINK_CONTROLLER(int COD_TIPO_REQUISICION,int _idReq, string _link_controler)
         {
-            string DominioParaController = SettingsManager.DominioParaController;
-            string TIPO_REQUISICION = "";
-            if (SettingsManager.CodTipoReqIncapacidad == COD_TIPO_REQUISICION)
-                TIPO_REQUISICION = "LICENCIA_INCAPACIDAD/Consultar";
-            if (SettingsManager.CodTipoReqLicencia == COD_TIPO_REQUISICION)
-                TIPO_REQUISICION = "LICENCIA_INCAPACIDAD/Consultar";
-            if (SettingsManager.CodTipoReqPresupuestada == COD_TIPO_REQUISICION)
-                TIPO_REQUISICION = "REQUISICION_PRESUPUESTADA/Consultar";
-            if (SettingsManager.CodTipoReqNoPresupuestada == COD_TIPO_REQUISICION)
-                TIPO_REQUISICION = "REQUISICION_NOPRESUPUESTADA/Consultar";
+            try
+            {
+                logCentralizado.INICIANDO_LOG("LGREQ39", "LINK_CONTROLLER");
+                string DominioParaController = SettingsManager.DominioParaController;
+                string TIPO_REQUISICION = "";
+                if (SettingsManager.CodTipoReqIncapacidad == COD_TIPO_REQUISICION)
+                    TIPO_REQUISICION = "LICENCIA_INCAPACIDAD/Consultar";
+                if (SettingsManager.CodTipoReqLicencia == COD_TIPO_REQUISICION)
+                    TIPO_REQUISICION = "LICENCIA_INCAPACIDAD/Consultar";
+                if (SettingsManager.CodTipoReqPresupuestada == COD_TIPO_REQUISICION)
+                    TIPO_REQUISICION = "REQUISICION_PRESUPUESTADA/Consultar";
+                if (SettingsManager.CodTipoReqNoPresupuestada == COD_TIPO_REQUISICION)
+                    TIPO_REQUISICION = "REQUISICION_NOPRESUPUESTADA/Consultar";
 
-            DominioParaController = DominioParaController + TIPO_REQUISICION + "?" + "_idReq=" + _idReq.ToString() + "&_idTipo=" + COD_TIPO_REQUISICION.ToString()+ "&link_controler="+ _link_controler;
+                DominioParaController = DominioParaController + TIPO_REQUISICION + "?" + "_idReq=" + _idReq.ToString() + "&_idTipo=" + COD_TIPO_REQUISICION.ToString() + "&link_controler=" + _link_controler;
 
-            return DominioParaController;
+                logCentralizado.FINALIZANDO_LOG("LGREQ39", "LINK_CONTROLLER");
+                return DominioParaController;                
+            }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("LGREQ39", "LINK_CONTROLLER", ex);
+                throw ex;
+            }
         }
     }
 }

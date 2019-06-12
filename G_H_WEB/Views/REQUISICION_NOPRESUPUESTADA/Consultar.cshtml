@@ -82,6 +82,7 @@
                                     @Html.Partial("_PartialInfoGeneral", Model)
                                     @Html.Partial("_PartialInfoSalarial", Model)
                                     @Html.Partial("_PartialAutorizacion", Model)
+                                    @Html.Partial("_Rechazar", Model);
                                 }
                                 if (User.IsInRole(SettingsManager.PerfilUSC))
                                 {
@@ -89,6 +90,7 @@
                                     @Html.Partial("_PartialInfoGeneral", Model)
                                     @Html.Partial("_PartialInfoSalarial", Model)
                                     @Html.Partial("_PartialAutorizacion", Model)
+                                    @Html.Partial("_Rechazar", Model);
                                 }
                                 if (ViewBag.PERMISOS_CONTROLLER != "")
                                 {
@@ -112,18 +114,12 @@
                                         }
                                         @if (User.IsInRole(SettingsManager.PerfilBp))
                                         {
-                                            @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
+                                        @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
                                             <input name="submitButton" type="submit" value="Enviar Requisición" class="crear-requisicion crear-requisicion-texto btn-collpse-valid" />
                                         }
-                                        @if (User.IsInRole(SettingsManager.PerfilRRHH))
+                                        @if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
                                         {
-                                            <input name="submitButton" type="submit" value="RECHAZAR REQUISICIÓN" class="btn-rechazar-requisicion text-capitalize col-md-3 btn-collpse-valid" />
-                                            <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver text-uppercase TextoBtnDevolver col-md-3 btn-collpse-valid" />
-                                            <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3 btn-collpse-valid" />
-                                        }
-                                        @if (User.IsInRole(SettingsManager.PerfilUSC))
-                                        {
-                                            <input name="submitButton" type="submit" value="RECHAZAR REQUISICIÓN" class="btn-rechazar-requisicion text-capitalize col-md-3 btn-collpse-valid" />
+                                            <a id="rechazarReq" class="btn-rechazar-requisicion">Rechazar requisición</a>
                                             <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver text-uppercase TextoBtnDevolver col-md-3 btn-collpse-valid" />
                                             <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3 btn-collpse-valid" />
                                         }
@@ -369,7 +365,9 @@
         $('.datepicker').datepicker();
     });
 
-  function ConsultaTraza(CAMPO_REQUISICION) {
+     function ConsultaTraza(CAMPO_REQUISICION) {
+         debugger;
+         var campo_re = 0;
         $(".bodytraza").empty();
         $(".nombre_traza").text("");
         $("#ModalLabelTraza").text("TRAZA " + CAMPO_REQUISICION.replace(/_/g, " "))
@@ -384,7 +382,10 @@
                 data: { COD_REQUISICION: COD_REQUISICION, CAMPO_REQUISICION: CAMPO_REQUISICION},
                 success: function (respuesta) {
                     $.each(respuesta, function (key, value) {
-                        $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION +"</td > </tr > ");
+                        if (value[CAMPO_REQUISICION] != null && value[CAMPO_REQUISICION] != campo_re) {
+                            $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION + "</td > </tr > ");
+                        }
+                        campo_re = value[CAMPO_REQUISICION];
                     });
                     $('body').loading('stop');
                     $('.ModalTraza').modal("show");

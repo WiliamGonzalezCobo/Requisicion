@@ -4,10 +4,12 @@
 @using G_H_WEB.Models;
 @{
     ViewBag.Title = "Crear Requisición Presupuestada";
-    if (ViewBag.PERMISOS_CONTROLLER != ""){
+    if (ViewBag.PERMISOS_CONTROLLER != "")
+    {
         Layout = "~/Views/Shared/_LayoutController.cshtml";
     }
-    else{
+    else
+    {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
     RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
@@ -82,6 +84,7 @@
                                 @Html.Partial("_PartialInfoGeneral", Model)
                                 @Html.Partial("_PartialInfoSalarial", Model)
                                 @Html.Partial("_PartialAutorizacion", Model)
+                                @Html.Partial("_Rechazar", Model);
                             }
                             if (User.IsInRole(SettingsManager.PerfilUSC))
                             {
@@ -89,55 +92,51 @@
                                 @Html.Partial("_PartialInfoGeneral", Model)
                                 @Html.Partial("_PartialInfoSalarial", Model)
                                 @Html.Partial("_PartialAutorizacion", Model)
+                                @Html.Partial("_Rechazar", Model);
                             }
                             if (ViewBag.PERMISOS_CONTROLLER != "")
                             {
                                 @Html.Partial("_PartialInfoRequisicion", Model)
                                 @Html.Partial("_PartialAutorizacion", Model)
                             }
+
                             //Botones
                             <div class="form-group">
                                 <div class="col-md-12">
 
                                     @if (User.IsInRole(SettingsManager.PerfilJefe))
                                     {
-                                    @Html.ActionLink("Cancelar Requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
-                                    <input name="submitButton" id="submitButtonCrear" type="submit" value="CREAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto btn-collpse-valid" />
+                                        @Html.ActionLink("Cancelar Requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
+                                        <input name="submitButton" id="submitButtonCrear" type="submit" value="CREAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto btn-collpse-valid" />
                                     }
                                     @if (User.IsInRole(SettingsManager.PerfilController))
                                     {
-                                    <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver text-capitalize btn-collpse-valid" />
-                                    <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto btn-collpse-valid" />
+                                        <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver text-capitalize btn-collpse-valid" />
+                                        <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto btn-collpse-valid" />
 
                                     }
                                     @if (User.IsInRole(SettingsManager.PerfilBp))
                                     {
-                                    @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion text-capitalize" })
-                                    <input name="submitButton" type="submit" value="Enviar Requisición" class="crear-requisicion text-uppercase crear-requisicion-texto btn-collpse-valid" />
+                                        @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion text-capitalize" })
+                                        <input name="submitButton" type="submit" value="Enviar Requisición" class="crear-requisicion text-uppercase crear-requisicion-texto btn-collpse-valid" />
                                     }
-                                    @if (User.IsInRole(SettingsManager.PerfilRRHH))
+                                    @if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
                                     {
-                                    <input name="submitButton" type="submit" value="RECHAZAR REQUISICIÓN" class="btn-rechazar-requisicion text-capitalize btn-collpse-valid" />
-                                    <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver btn-collpse-valid" />
-                                    <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="aprobar-requisicion btn-confirmar-retiro btn-collpse-valid" />
-                                    }
-                                    @if (User.IsInRole(SettingsManager.PerfilUSC))
-                                    {
-                                    <input name="submitButton" type="submit" value="RECHAZAR REQUISICIÓN" class="btn-rechazar-requisicion text-capitalize col-md-3 btn-collpse-valid" />
-                                    <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver col-md-3 btn-collpse-valid" />
-                                    <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="btn-confirmar-retiro col-md-3 btn-collpse-valid" />
+                                        <a id="rechazarReq" class="btn-rechazar-requisicion">Rechazar requisición</a>
+                                        <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver btn-collpse-valid" />
+                                        <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="aprobar-requisicion btn-confirmar-retiro btn-collpse-valid" />
                                     }
                                     @if (ViewBag.PERMISOS_CONTROLLER != "")
                                     {
-                                    <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver btn-collpse-valid" />
-                                    <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto btn-collpse-valid" />
+                                        <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver btn-collpse-valid" />
+                                        <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto btn-collpse-valid" />
                                     }
                                 </div>
-                        </div>
+                            </div>
                         }
+                    </div>
                 </div>
             </div>
-        </div>
         }
     </div>
     <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
@@ -204,7 +203,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                 <div class="modal-body Content-Popup">
+                <div class="modal-body Content-Popup">
                     <br />
                     <h2 class="Texto-Popup-Creacion">Esta requisición ha sido ya ha sido procesada</h2>
                 </div>
@@ -244,6 +243,7 @@
         </div>
     </div>
 
+
 </div>
 <div>
     @if (!string.IsNullOrEmpty(error.COD_ERROR))
@@ -255,7 +255,7 @@
 
     $(document).ready(function () {
 
-     
+
 
         if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {
             if (@Model.COD_REQUISICION!= 0) {
@@ -299,14 +299,14 @@
 
             $('#ModalCreacionNoJefe').modal("show");
         }else  if ($("#COD_TIPO_NECESIDAD").val() == "" && $("#COD_CARGO").val() == "" && "@ViewBag.PERMISOS_CONTROLLER" != "") {
-              $('#ModalRequisicionProcesada').modal('show'); 
+              $('#ModalRequisicionProcesada').modal('show');
         }
 
         $(document).on('submit', 'form', function () {
             $('body').loading({
                 message: 'Cargando...'
             });
-        }) 
+        })
     });
 
     function VALIDACION_TRAZA() {
@@ -375,6 +375,8 @@
     });
 
      function ConsultaTraza(CAMPO_REQUISICION) {
+         debugger;
+         var campo_re = 0;
         $(".bodytraza").empty();
         $(".nombre_traza").text("");
         $("#ModalLabelTraza").text("TRAZA " + CAMPO_REQUISICION.replace(/_/g, " "))
@@ -389,7 +391,10 @@
                 data: { COD_REQUISICION: COD_REQUISICION, CAMPO_REQUISICION: CAMPO_REQUISICION},
                 success: function (respuesta) {
                     $.each(respuesta, function (key, value) {
-                        $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION +"</td > </tr > ");
+                        if (value[CAMPO_REQUISICION] != null && value[CAMPO_REQUISICION] != campo_re) {
+                            $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION + "</td > </tr > ");
+                        }
+                        campo_re = value[CAMPO_REQUISICION];
                     });
                     $('body').loading('stop');
                     $('.ModalTraza').modal("show");

@@ -23,8 +23,7 @@
                 @Html.LabelFor(model => model.NOMBRE_TIPO_SALARIO, "Tipo de Salario", htmlAttributes: new { @class = "control-label" })
                 @Html.DropDownListFor(model => model.COD_TIPO_SALARIO, Model.LIST_NOMBRE_TIPO_SALARIO, "Seleccione ", new { @class = "form-control TexboxIncicial" })
                 <span id="NOMBRE_TIPO_SALARIO_S" class="btn_traza" onclick="ConsultaTraza('NOMBRE_TIPO_SALARIO')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <i class="fa fa-check btn_centar"></i></span>
-                @Html.ValidationMessageFor(model => model.LIST_NOMBRE_TIPO_SALARIO, "", new { @class = "text-danger" })
-
+                @Html.ValidationMessageFor(model => model.COD_TIPO_SALARIO, "", new { @class = "text-danger" })
             </div>
         </div>
 
