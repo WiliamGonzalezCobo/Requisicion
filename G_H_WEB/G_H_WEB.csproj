@@ -672,7 +672,7 @@
     <Content Include="Views\SOLICITUD\CONSULTAR.cshtml" />
     <Content Include="Views\Home\SubirArchivo.cshtml" />
     <Content Include="Views\Home\Correo.cshtml" />
-    <Content Include="Views\REQUISICION\Index.cshtml" />
+    <Content Include="Views\REQUISICION\ConsultarRequisiciones.cshtml" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\templates\mailingOriginal.cshtml" />
