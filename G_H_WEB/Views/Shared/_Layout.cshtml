@@ -73,7 +73,7 @@
                 !/Invalid|NaN/.test(new Date(miDate[2], iMes.toString(), miDate[0]));
         }
         $('#ModalCreacionNoJefe, #modalValidaErrorRequisicion').click(function () {
-             window.location.href = '@Url.Action("Index", "REQUISICION")';
+             window.location.href = '@Url.Action("ConsultarRequisiciones", "REQUISICION")';
         });
 
 
@@ -85,7 +85,6 @@
             debugger;
             $('#modalValidaRechazo').modal({ show: true });
         });
-
     </script>
 
  

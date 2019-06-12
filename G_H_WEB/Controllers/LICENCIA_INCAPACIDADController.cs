@@ -50,7 +50,7 @@ namespace G_H_WEB.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "REQUISICION");
+                    return RedirectToAction("ConsultarRequisiciones", "REQUISICION");
                 }
                 if (_idReq != null)
                 {
@@ -113,7 +113,7 @@ namespace G_H_WEB.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "REQUISICION");
+                    return RedirectToAction("ConsultarRequisiciones", "REQUISICION");
                 }
                                
                 int _resultadoIdReguisicion = 0;

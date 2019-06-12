@@ -197,10 +197,11 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// </summary>
         [DisplayName("Ceco")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Solo permite números")]
-        public int COD_CECO { get; set; }
         [Required(ErrorMessage = "Centro de costo es requerido")]
+        public int COD_CECO { get; set; }
         [DisplayName("CeCo")]
         public List<SelectListItem> LIST_NOMBRE_CECO { get; set; }
+        [Required(ErrorMessage = "Centro de costo es requerido")]
         public string NOMBRE_CECO { get; set; }
 
         /// <summary>
