@@ -159,12 +159,9 @@
         });
 
         function ValidarModificacion() {
-            //$("#CNform").submit();
             var check = document.getElementById('ES_MODIFICACION').checked;
             if (check) {
-                //window.location.href = '@Url.Action("Modificacion", "REQUISICION")';
                 Modificacion();
-
             }
             else {
                 var tipoReq = '@ViewBag.idTipo';
@@ -209,7 +206,7 @@
 
         function SiCancelar() {
             $('#ModalCancel').modal('hide');
-            window.location.href = '@Url.Action("Index", "REQUISICION")';
+            window.location.href = '@Url.Action("ConsultarRequisiciones", "REQUISICION")';
         };
         function NoCancelar() {
             $('#ModalCancel').modal('hide');
@@ -226,7 +223,7 @@
                 contentType: "application/json; charset=utf-8",
                 data: model,
                 dataType: "json",
-                success: function () { window.location.href = '@Url.Action("Index", "REQUISICION")'; }
+                success: function () { window.location.href = '@Url.Action("ConsultarRequisiciones", "REQUISICION")'; }
             });
         };
 

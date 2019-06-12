@@ -276,7 +276,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     requicisionModel.COD_JORNADA_LABORAL = respuesta.COD_JORNADA_LABORAL ?? 0;
                     requicisionModel.NOMBRE_JORNADA_LABORAL = respuesta.NOMBRE_JORNADA_LABORAL;
                     requicisionModel.HORARIO_LABORAL_DESDE = respuesta.HORARIO_LABORAL_DESDE;
-                    requicisionModel.HORARIO_LABORAL_HASTA = respuesta.HORARIO_LABORAL_DESDE;
+                    requicisionModel.HORARIO_LABORAL_HASTA = respuesta.HORARIO_LABORAL_HASTA;
                     requicisionModel.COD_DIA_LABORAL_DESDE = respuesta.COD_DIA_LABORAL_DESDE ?? 0;
                     requicisionModel.COD_DIA_LABORAL_HASTA = respuesta.COD_DIA_LABORAL_HASTA ?? 0;
                     requicisionModel.POSICION = respuesta.POSICION;
