@@ -57,6 +57,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
 
 
                     }
+                    ValidaAutorizacion(_modelRequisicion);
                 }
 
                 if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqLicencia) || _tipoRequisicion.Equals(SettingsManager.CodTipoReqIncapacidad))
@@ -83,6 +84,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
 
 
                     }
+                    ValidaAutorizacion(_modelRequisicion);
                 }
 
 
@@ -109,20 +111,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
 
         #region ParcialesPresupuestadayNoPresupuestada
 
-        private void ValidaAutorizacion(REQUISICIONViewModel modelRequisicion)
-        {
-            try
-            {
-                logCentralizado.INICIANDO_LOG("MOD_VMR2", "ValidaAutorizacion");
-
-                logCentralizado.FINALIZANDO_LOG("MOD_VMR2", "ValidaAutorizacion");
-            }
-            catch (Exception ex)
-            {
-                logCentralizado.CAPTURA_EXCEPCION("MOD_VMR2", "ValidaAutorizacion", ex);
-                throw ex;
-            }
-        }
+        
 
         private void ValidaInfoRequisicion(REQUISICIONViewModel model)
         {
@@ -187,6 +176,25 @@ namespace MODELO_DATOS.MODELO_REQUISICION
 
         #endregion ParcialesPresupuestadayNoPresupuestada
 
+        #region ParcialesComunes
+        private void ValidaAutorizacion(REQUISICIONViewModel modelRequisicion)
+        {
+            try
+            {
+                logCentralizado.INICIANDO_LOG("MOD_VMR2", "ValidaAutorizacion");
+
+                validarString(modelRequisicion.OBSERVACION, "Observación", true);
+
+                logCentralizado.FINALIZANDO_LOG("MOD_VMR2", "ValidaAutorizacion");
+            }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("MOD_VMR2", "ValidaAutorizacion", ex);
+                throw ex;
+            }
+        }
+        #endregion ParcialesComunes
+
         #region validaciones
 
         private void validarEntero(object _obj, string _nombreCampo, bool requerido)
@@ -202,7 +210,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
                     }
                     if (!int.TryParse(_obj.ToString(), out int i))
                     {
-                        listaErrores.Add(new VALIDACION_ERRORES_ViewModel { Campo = _nombreCampo, Error = string.Format("El Campo {0} debe ser numerico.", _nombreCampo) });
+                        listaErrores.Add(new VALIDACION_ERRORES_ViewModel { Campo = _nombreCampo, Error = string.Format("El Campo {0} debe ser numérico.", _nombreCampo) });
                     }
                 }
                 else
