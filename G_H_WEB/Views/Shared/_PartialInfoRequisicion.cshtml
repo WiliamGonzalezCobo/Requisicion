@@ -71,23 +71,22 @@
                         <br />
                         @if (Model.NOMBRE_CECO == null && Model.COD_CECO == 0)
                         {
-                            @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco letrasFormulario", placeholder = "Nombre CECO", onkeyup = "buscarFiltro(this.value)" })
+                            @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco letrasFormulario", placeholder = "Nombre CECO", onkeyup = "buscarFiltro(this.value)", autocomplete = "off" })
                             @Html.HiddenFor(model => model.COD_CECO)
-                            @Html.ValidationMessageFor(model => model.NOMBRE_CECO, "", new { @class = "text-danger" })
                         }
                         else
                         {
-                            @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco letrasFormulario", placeholder = "Nombre CECO", onkeyup = "buscarFiltro(this.value)" })
+                            @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco letrasFormulario", placeholder = "Nombre CECO", onkeyup = "buscarFiltro(this.value)", autocomplete = "off" })
                             @Html.HiddenFor(model => model.COD_CECO)
-                            @Html.ValidationMessageFor(model => model.NOMBRE_CECO, "", new { @class = "text-danger" })
-                        }
+                        }      
                         <br>
-                        <ul class="list-group buscador_modificaciones_deplegable_esconder" id="myListCeco">
+                        <ul class="list-group buscador_modificaciones_deplegable_esconder" id="myListCeco" style="margin-bottom: 0px !important">
                             @foreach (SelectListItem item in _BUSCAR_NOMBRE_CECO)
                             {
                                 <li class="list-group-item item_lista_modificar letrasFormulario" onclick="AgarrarValorFiltroCeco('@item.Text','@item.Value')">@item.Text</li>
                             }
                         </ul>
+                        @Html.ValidationMessageFor(model => model.NOMBRE_CECO, "", new { id = "span-message" })
                     </div>
                     }
                     else
@@ -221,7 +220,7 @@
     function buscarFiltro(value) {
         //var value = $("#input_ceco").val().toLowerCase();
         $("#myListCeco li").filter(function () {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            $(this).toggle($(this).text().toLowerCase().indexOf(value.toLowerCase()) > -1)
         });
     }
 
@@ -249,6 +248,8 @@
     }
 
     function AgarrarValorFiltroCeco(texto, valor) {
+        $("#span-message").html("");
+        $("#span-message").removeClass("field-validation-error").addClass("field-validation-valid");
         $("#NOMBRE_CECO").val(texto);
         $("#COD_CECO").val(valor);
         $("#myListCeco").removeClass("buscador_modificaciones_deplegable_ceco").addClass("buscador_modificaciones_deplegable_esconder");
@@ -259,8 +260,8 @@
     });
 
     $(".buscadorC").focusin(function () {
+        $("#span-message").html("");
         $("#myListCeco").removeClass("buscador_modificaciones_deplegable_esconder").addClass("buscador_modificaciones_deplegable_ceco");
     });
 
-
-        </script>
+</script>
