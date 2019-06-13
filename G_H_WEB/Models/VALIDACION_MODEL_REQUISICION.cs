@@ -55,7 +55,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
 
 
                 }
-                logCentralizado.INICIANDO_LOG("MOD_VMR1", "ValidarModelo");
+                logCentralizado.FINALIZANDO_LOG("MOD_VMR1", "ValidarModelo");
             }
             catch (Exception ex)
             {
@@ -72,7 +72,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
             {
                 logCentralizado.INICIANDO_LOG("MOD_VMR2", "ValidaAutorizacion");
 
-                logCentralizado.INICIANDO_LOG("MOD_VMR2", "ValidaAutorizacion");
+                logCentralizado.FINALIZANDO_LOG("MOD_VMR2", "ValidaAutorizacion");
             }
             catch (Exception ex)
             {
@@ -101,7 +101,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
                 }
 
 
-                logCentralizado.INICIANDO_LOG("MOD_VMR3", "ValidaInfoRequisicion");
+                logCentralizado.FINALIZANDO_LOG("MOD_VMR3", "ValidaInfoRequisicion");
             }
             catch (Exception ex)
             {
@@ -118,7 +118,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
             {
                 logCentralizado.INICIANDO_LOG("MOD_VMR4", "ValidarInfoGeneral");
 
-                logCentralizado.INICIANDO_LOG("MOD_VMR4", "ValidarInfoGeneral");
+                logCentralizado.FINALIZANDO_LOG("MOD_VMR4", "ValidarInfoGeneral");
             }
             catch (Exception ex)
             {
@@ -133,7 +133,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
             {
                 logCentralizado.INICIANDO_LOG("MOD_VMR5", "ValidarInfoSalarial");
 
-                logCentralizado.INICIANDO_LOG("MOD_VMR5", "ValidarInfoSalarial");
+                logCentralizado.FINALIZANDO_LOG("MOD_VMR5", "ValidarInfoSalarial");
             }
             catch (Exception ex)
             {
@@ -162,7 +162,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
                 {
                     listaErrores.Add(new VALIDACION_ERRORES_ViewModel { Campo = _nombreCampo, Error = string.Format("El Campo {0} es nulo.", _nombreCampo) });
                 }
-                logCentralizado.INICIANDO_LOG("MOD_VMR6", "validarEntero");
+                logCentralizado.FINALIZANDO_LOG("MOD_VMR6", "validarEntero");
             }
             catch (Exception ex)
             {
@@ -188,7 +188,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
                 {
                     listaErrores.Add(new VALIDACION_ERRORES_ViewModel { Campo = _nombreCampo, Error = string.Format("El Campo {0} es nulo.", _nombreCampo) });
                 }
-                logCentralizado.INICIANDO_LOG("MOD_VMR7", "validarString");
+                logCentralizado.FINALIZANDO_LOG("MOD_VMR7", "validarString");
             }
             catch (Exception ex)
             {
