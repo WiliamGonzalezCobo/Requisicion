@@ -490,5 +490,13 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         [Required(ErrorMessage = "El motivo de rechazo es requerido")]
         [DisplayName("Motivo de rechazo")]
         public string MOTIVO_RECHAZO { get; set; }
+
+        public List<VALIDACION_ERRORES_ViewModel> LIST_VALIDACION_ERRORES { get; set; }
+    }
+    public class VALIDACION_ERRORES_ViewModel
+    {
+        public string Campo { get; set; }
+
+        public string Error { get; set; }
     }
 }
