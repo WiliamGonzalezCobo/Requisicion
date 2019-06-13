@@ -55,7 +55,7 @@
             { <div id="CNform">
                     <div class="retiros-detalle">
                         <div class="form-group col-md-12">
-                            @using (Html.BeginForm("Procesar", "REQUISICION_NOPRESUPUESTADA"))
+                            @using (Html.BeginForm("Procesar", "REQUISICION_NOPRESUPUESTADA", FormMethod.Post, new { autocomplete = "off" }))
                             {
 
                                 if (User.IsInRole(SettingsManager.PerfilJefe))
@@ -246,7 +246,14 @@
     <link href="~/css/gestion-humana-requisicion.css" rel="stylesheet" />
     <script type="text/javascript">
 
-    $(document).ready(function () {
+        $(document).ready(function () {
+            
+            $(".nav-incapacidad").removeClass('nav-active');
+            $(".nav-presupuestada").removeClass('nav-active');
+            $(".nav-no-presupuestada").addClass('nav-active');
+            $(".nav-licencia").removeClass('nav-active');
+            $(".nav-modificada").removeClass('nav-active');
+
         if ("@User.IsInRole(SettingsManager.PerfilJefe)" == "True") {
             if (@Model.COD_REQUISICION!= 0) {
                 $("#submitButtonCrear").text("Modificar Requisición");
@@ -308,6 +315,7 @@
                     var campo = "#" + jsonObj[i].CAMPOS + "_S";
                     if ($(campo).length) {
                         $(campo).removeAttr("style");
+                        $(campo).removeClass('span-modify-hidden');
                         var traza = jsonObj[i].TRAZA;
                     }
                 }

@@ -21,7 +21,10 @@
             {
                 <li class="nav-item" id="MenuRetiroLI"><a class="nav-link" id="MenuRetiroA" href="../../RETIRO/CONSULTAR">Retiros</a></li>
             }
-            @if (ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "REQUISICION")
+            @if (ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "REQUISICION" ||
+                ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "REQUISICION_NOPRESUPUESTADA" ||
+                ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "REQUISICION_PRESUPUESTADA" ||
+                ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "LICENCIA_INCAPACIDAD")
             {
                 <li class="nav-item nav-item-special">
                     <a class="nav-link-static" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -35,10 +38,10 @@
                                     <span id="notificationsBadgePrimary" class="nav-icon badge badge-secondary">
                                         <i id="" class="fas fa-dollar-sign" aria-hidden="true" style="color: white;"></i>
                                     </span>
-                                    <a class="nav-presupuestada nav-active">Presupuestada</a>
+                                    <a class="nav-presupuestada">Presupuestada</a>
                                 </div>
                                 <div class="col-md-2">
-                                    <span id="notificationsBadgePrimary" class="badge badge-secondary">1</span>
+                                    <span id="notificationsBadgePrimary" class="badge badge-secondary badge-presupuestada">0</span>
                                 </div>
                             </div>
                             <div class="row col-md-12">
@@ -46,10 +49,10 @@
                                     <span id="notificationsBadgePrimary" class="nav-icon badge badge-secondary">
                                         <i id="" class="fas fa-exclamation" aria-hidden="true" style="color: white;"></i>
                                     </span>
-                                    <a class="">No Presupuestada</a>
+                                    <a class="nav-no-presupuestada">No Presupuestada</a>
                                 </div>
                                 <div class="col-md-2">
-                                    <span id="notificationsBadgePrimary" class="badge badge-secondary">2</span>
+                                    <span id="notificationsBadgePrimary" class="badge badge-secondary badge-no-presupuestada">0</span>
                                 </div>
                             </div>
                             <div class="row col-md-12">
@@ -57,10 +60,10 @@
                                     <span id="notificationsBadgePrimary" class="nav-icon badge badge-secondary">
                                         <i id="" class="fas fa-hospital-alt" aria-hidden="true" style="color: white;"></i>
                                     </span>
-                                    <a class="">Incapacidad</a>
+                                    <a class="nav-incapacidad">Incapacidad</a>
                                 </div>
                                 <div class="col-md-2">
-                                    <span id="notificationsBadgePrimary" class="badge badge-secondary">3</span>
+                                    <span id="notificationsBadgePrimary" class="badge badge-secondary badge-incapacidad">0</span>
                                 </div>
                             </div>
                             <div class="row col-md-12">
@@ -68,10 +71,10 @@
                                     <span id="notificationsBadgePrimary" class="nav-icon badge badge-secondary">
                                         <i id="" class="fas fa-calendar-alt" aria-hidden="true" style="color: white;"></i>
                                     </span>
-                                    <a class="">Licencia</a>
+                                    <a class="nav-licencia">Licencia</a>
                                 </div>
                                 <div class="col-md-2">
-                                    <span id="notificationsBadgePrimary" class="badge badge-secondary">4</span>
+                                    <span id="notificationsBadgePrimary" class="badge badge-secondary badge-licencia">0</span>
                                 </div>
                             </div>
                             <div class="row col-md-12">
@@ -79,10 +82,10 @@
                                     <span id="notificationsBadgePrimary" class="nav-icon badge badge-secondary">
                                         <i id="" class="fas fa-pen" aria-hidden="true" style="color: white;"></i>
                                     </span>
-                                    <a class="">Modificaci&oacute;n</a>
+                                    <a class="nav-modificacion">Modificaci&oacute;n</a>
                                 </div>
                                 <div class="col-md-2">
-                                    <span id="notificationsBadgePrimary" class="badge badge-secondary">5</span>
+                                    <span id="notificationsBadgePrimary" class="badge badge-secondary badge-modificacion">0</span>
                                 </div>
                             </div>
                         </div>
