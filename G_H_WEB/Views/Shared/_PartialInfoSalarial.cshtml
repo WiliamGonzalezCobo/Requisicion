@@ -78,6 +78,7 @@
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.MEDIO_TRANSPORTE, htmlAttributes: new { @class = "letrasFormulario" })
                 @Html.EditorFor(model => model.MEDIO_TRANSPORTE, new { htmlAttributes = new { @class = "form-control deplegablesIniciales letrasFormulario" } })
+                <span id="MEDIO_TRANSPORTE_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('MEDIO_TRANSPORTE')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.MEDIO_TRANSPORTE)
             </div>
             <div class="col-md-12 col-sm-12">
