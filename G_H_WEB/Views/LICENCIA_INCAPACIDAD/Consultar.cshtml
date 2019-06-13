@@ -483,8 +483,6 @@
         $("#JEFE_INMEDIATO").val(API.NOMBRE_JEFE);
         $("#hdJEFE_INMEDIATO").val(API.NOMBRE_JEFE);
 
-        //$("#COD_CECO").val(API.COD_CENTRO_COSTO);
-
         $("#COD_SOCIEDAD").val(API.COD_SOCIEDAD);
         $("#hdCOD_SOCIEDAD").val(API.COD_SOCIEDAD);
 
@@ -505,12 +503,12 @@
 
 
         if (API.CARGO_CRITICO == "1") {
-            $('#CARGO_CRITICO')[0].checked = true;
+            $('.checkboxSI').prop('checked', true);
             $("#CARGO_CRITICO").val(true);
             $("#hdCARGO_CRITICO").val(true);
         }
         else {
-            $('#CARGO_CRITICO')[0].checked = false;
+            $('.checkboxNO').prop('checked', false);
             $("CARGO_CRITICO").val(false);
             $("hdCARGO_CRITICO").val(false);
         }
@@ -557,7 +555,7 @@
         $("#MEDIO_TRANSPORTE").val(API.MEDIOS_TRANSPORTE);
         $("#hdMEDIO_TRANSPORTE").val(API.MEDIOS_TRANSPORTE);
 
-        $("#SALARIO_TOTAL").val(API.SALARIO_TOTAL);
+        $(".S_TOTAL").text(API.SALARIO_TOTAL);
         $("#hdSALARIO_TOTAL").val(API.SALARIO_TOTAL);
 
         $("#BONO_ANUAL").val(API.BONO_ANUAL);
