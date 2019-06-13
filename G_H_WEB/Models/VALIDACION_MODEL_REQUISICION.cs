@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UTILS.Settings;
 
 namespace MODELO_DATOS.MODELO_REQUISICION
 {
@@ -28,33 +29,64 @@ namespace MODELO_DATOS.MODELO_REQUISICION
             listaErrores = new List<VALIDACION_ERRORES_ViewModel>();
         }
 
-        public List<VALIDACION_ERRORES_ViewModel> ValidarModelo(REQUISICIONViewModel modelRequisicion)
+        public List<VALIDACION_ERRORES_ViewModel> ValidarModelo(REQUISICIONViewModel _modelRequisicion,int _tipoRequisicion)
         {
             try
             {
                 logCentralizado.INICIANDO_LOG("MOD_VMR1", "ValidarModelo");
-                if (esJefe)
-                {
-                    ValidaInfoRequisicion(modelRequisicion);
+                if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqNoPresupuestada) || _tipoRequisicion.Equals(SettingsManager.CodTipoReqPresupuestada) || _tipoRequisicion.Equals(SettingsManager.CodTipoReqModificacion)) {
+                    if (esJefe)
+                    {
+                        ValidaInfoRequisicion(_modelRequisicion);
 
+                    }
+                    if (esController)
+                    {
+
+                    }
+                    if (esBp)
+                    {
+
+                    }
+                    if (esRRHH)
+                    {
+
+                    }
+                    if (esUsc)
+                    {
+
+
+                    }
                 }
-                if (esController)
+
+                if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqLicencia) || _tipoRequisicion.Equals(SettingsManager.CodTipoReqIncapacidad))
                 {
+                    if (esJefe)
+                    {
+                        ValidaInfoRequisicionLi(_modelRequisicion);
 
+                    }
+                    if (esController)
+                    {
+
+                    }
+                    if (esBp)
+                    {
+
+                    }
+                    if (esRRHH)
+                    {
+
+                    }
+                    if (esUsc)
+                    {
+
+
+                    }
                 }
-                if (esBp)
-                {
-
-                }
-                if (esRRHH)
-                {
-
-                }
-                if (esUsc)
-                {
 
 
-                }
+
                 logCentralizado.FINALIZANDO_LOG("MOD_VMR1", "ValidarModelo");
             }
             catch (Exception ex)
@@ -65,6 +97,17 @@ namespace MODELO_DATOS.MODELO_REQUISICION
 
             return listaErrores;
         }
+
+        #region ParcialesLicenciayIncapacidad
+
+        private void ValidaInfoRequisicionLi(REQUISICIONViewModel modelRequisicion)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion ParcialesLicenciayIncapacidad
+
+        #region ParcialesPresupuestadayNoPresupuestada
 
         private void ValidaAutorizacion(REQUISICIONViewModel modelRequisicion)
         {
@@ -142,6 +185,10 @@ namespace MODELO_DATOS.MODELO_REQUISICION
             }
         }
 
+        #endregion ParcialesPresupuestadayNoPresupuestada
+
+        #region validaciones
+
         private void validarEntero(object _obj, string _nombreCampo, bool requerido)
         {
             try
@@ -197,6 +244,8 @@ namespace MODELO_DATOS.MODELO_REQUISICION
             }
 
         }
+
+        #endregion validaciones
     }
 }
 

@@ -113,7 +113,7 @@ namespace G_H_WEB.Controllers
                 // FIN
 
                 //Valida si los datos del modelo son validos para almacenar en la base de datos
-                modelDatos.LIST_VALIDACION_ERRORES = valModelReq.ValidarModelo(modelDatos);
+                modelDatos.LIST_VALIDACION_ERRORES = valModelReq.ValidarModelo(modelDatos,modelDatos.COD_TIPO_REQUISICION);
                 if (modelDatos.LIST_VALIDACION_ERRORES.Count <= 0)
                 {
                     switch (submitButton)
