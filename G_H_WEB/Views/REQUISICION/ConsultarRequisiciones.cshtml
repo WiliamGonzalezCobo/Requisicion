@@ -330,11 +330,37 @@ else
                     if ($(campo).length) {
                         debugger;
                         $(campo).removeAttr("style");
+                        $(campo).removeClass('span-modify-hidden');
                         var traza = jsonObj[i].TRAZA;
                     }
                 }
             }
         }
+    }
+
+    var drawNotifications = function (requisitions) {
+
+        $.each(requisitions, function (key, value) {
+            switch (value.NOMBRE_REQUISICION.toLowerCase()) {
+                case "presupuestada":
+                    $(".badge-presupuestada").text(value.CANTIDAD);
+                    break;
+                case "no presupuestada":
+                    $(".badge-no-presupuestada").text(value.CANTIDAD);
+                    break;
+                case "licencia":
+                    $(".badge-licencia").text(value.CANTIDAD);
+                    break;
+                case "incapacidad":
+                    $(".badge-incapacidad").text(value.CANTIDAD);
+                    break;
+                case "modificacion":
+                    $(".badge-modificacion").text(value.CANTIDAD);
+                    break;
+                default:
+                    break;
+            }
+        });
     }
 
     function ConsultaModificaciones() {
@@ -348,6 +374,7 @@ else
                 type: 'POST',
                 data: null,
                 success: function (respuesta) {
+                    drawNotifications(respuesta);
                     $.each(respuesta, function (key, value) {
                         $("#notificationsBadgePrimary").text(value.TOTAL);
                         $("#AddNotificaciones").append('<a class="dropdown-item dropdown-notification" href="#">' +
@@ -364,5 +391,6 @@ else
                     $('body').loading('stop');
                 }
             });
-    }       
+    }
+
 </script>

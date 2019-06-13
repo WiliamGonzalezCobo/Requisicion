@@ -307,6 +307,23 @@
                 message: 'Procesando...'
             });
         })
+        var typeRequisition = "@{ nombre_requisicion.Contains("Incapacidad")}";
+        if (typeRequisition == "True")
+        {
+            $(".nav-incapacidad").addClass('nav-active');
+            $(".nav-presupuestada").removeClass('nav-active');
+            $(".nav-no-presupuestada").removeClass('nav-active');
+            $(".nav-licencia").removeClass('nav-active');
+            $(".nav-modificada").removeClass('nav-active');
+        }
+        else
+        {
+            $(".nav-incapacidad").removeClass('nav-active');
+            $(".nav-presupuestada").removeClass('nav-active');
+            $(".nav-no-presupuestada").removeClass('nav-active');
+            $(".nav-licencia").addClass('nav-active');
+            $(".nav-modificada").removeClass('nav-active');
+        }
 
         if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {
             if (@Model.COD_REQUISICION!= 0) {
