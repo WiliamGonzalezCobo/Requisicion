@@ -629,6 +629,34 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             }
         }
 
+        public List<CONSULTA_USUARIO_ENTIDAD> CONSULTAR_USUARIOS(string _codUsuario)
+        {
+            List<CONSULTA_USUARIO_ENTIDAD> _ENTIDAD_RETONO = null;
+            try
+            {
+                logCentralizado.INICIANDO_LOG("REPREQ15", "CONSULTAR_USUARIOS");
+                using (var db = new GESTION_HUMANA_HITSSEntities2())
+                {
+                    ObjectResult<CONSULTAR_USUARIO_Result> _USUARIOS = db.CONSULTAR_USUARIO(_codUsuario);
+                    _ENTIDAD_RETONO = _USUARIOS.Select(x => new CONSULTA_USUARIO_ENTIDAD()
+                    {
+                        NOMBRE = x.Nombre,
+                        ROL = x.Rol
+
+                    }).ToList();                   
+                }
+
+                logCentralizado.FINALIZANDO_LOG("REPREQ15", "CONSULTAR_USUARIOS");
+            }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("REPREQ15", "CONSULTAR_USUARIOS", ex);
+                throw ex;
+            }
+            return _ENTIDAD_RETONO;
+
+        }
+
 
     }
 }

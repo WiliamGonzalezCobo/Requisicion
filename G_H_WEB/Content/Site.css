@@ -128,7 +128,7 @@
     font-family: "Source-Sans-Pro";
     font-size: 17px;
     line-height: 20px;
-    margin-right: 40px;
+    margin-right: 20px;
     text-decoration: underline;
 }
 .cancelar-requisicion:hover {
@@ -249,7 +249,7 @@ background-color: #FFFFFF;
 
 .buscador_ceco {
     height: 48px;
-    width: 313px;
+    width: 361px;
     border: 1px solid #979797;
     background-color: #FFFFFF;
     padding-left: 10px;
@@ -257,7 +257,7 @@ background-color: #FFFFFF;
 
 .buscador_ceco_gene {
     height: 48px;
-    width: 452px;
+    width: 500px;
     border: 1px solid #979797;
     background-color: #FFFFFF;
     padding-left: 10px;
@@ -407,22 +407,6 @@ span.cecogen-btn {
     /*padding-bottom: 50px;*/
 }
 
-.BtnDevolver {
-    height: 48px;
-    width: 230px;
-    border: 1.5px solid #F15300;
-    background-color: #FFFFFF;
-    margin-right: 40px;
-    cursor:pointer;
-}
-.TextoBtnDevolver {
-    color: #F15300;
-    font-family: "Source-Sans-Pro";
-    font-size: 17px;
-    font-weight: bold;
-    line-height: 22px;
-    text-align: center;
-}
 .SubtitulosNivel2 {
     color: #000000;
     font-family: "Source-Sans-Pro";

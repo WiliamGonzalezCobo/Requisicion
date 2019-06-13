@@ -1400,5 +1400,25 @@ namespace LOGICA.REQUISICION_LOGICA
                 throw ex;
             }
         }
+        public List<CONSULTA_USUARIO_ENTIDAD> CONSULTA_USUARIOS(string _codUsuario)
+        {
+            List<CONSULTA_USUARIO_ENTIDAD> LISTA_USUARIO = null;
+            try
+            {
+                logCentralizado.INICIANDO_LOG("LGREQ40", "CONSULTA_USUARIOS");
+                LISTA_USUARIO = new ACCES_REQUISICION().CONSULTAR_USUARIOS(_codUsuario);
+               
+
+                logCentralizado.FINALIZANDO_LOG("LGREQ40", "CONSULTA_USUARIOS");
+            }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("LGREQ40", "CONSULTA_USUARIOS", ex);
+                throw ex;
+            }
+
+            return LISTA_USUARIO;
+        }
+
     }
 }

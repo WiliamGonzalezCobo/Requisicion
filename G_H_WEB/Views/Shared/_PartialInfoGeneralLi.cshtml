@@ -4,23 +4,47 @@
     string deshabilitar = "true";
     List<SelectListItem>
     _BUSCAR_NOMBRE_CECO = Model.LIST_NOMBRE_CECO;
-    }
-    <section id="infoGeneral">
-        <div class="panel-heading row">
-            <div class="span-icon-arrow div-span-collapseInfoGeneralIncap">
-                <span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>
-            </div>
-            <a class="a-collapse" data-toggle="collapse" href="#collapseInfoGeneralIncap">
-                <h2>Información Empleado</h2>
-            </a>
+}
+<section id="infoGeneral">
+    <div class="panel-heading row">
+        <div class="span-icon-arrow div-span-collapseInfoGeneralIncap">
+            <span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>
         </div>
+        @if (User.IsInRole(SettingsManager.PerfilJefe) || User.IsInRole(SettingsManager.PerfilController))
+        {
+        <a class="a-collapse">
+            <h2>Información General Empleado</h2>
+        </a>
+        }
+        else
+        {
+        <a class="a-collapse" data-toggle="collapse" href="#collapseInfoGeneralIncap">
+            <h2>Información General Empleado</h2>
+        </a>
+        }
+        <span class="span_infoGeneralLi" style="visibility:hidden"><i class="fas fa-exclamation-circle" style="color:darkorange"></i></span>
+    </div>
         <div id="collapseInfoGeneralIncap" class="panel-collapse collapse">
             <div class="row">
-                <div class="form-group col-md-12 col-xs-12">
-                    @Html.LabelFor(model => model.NOMBRE_CARGO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                    @Html.DropDownListFor(model => model.COD_CARGO, Model.LIST_NOMBRE_CARGO, "Seleccione", new { @class = "form-control combosGrandes letrasFormulario" })
-                    @Html.ValidationMessageFor(model => model.COD_CARGO, "", new { @class = "text-danger" })
-                </div>
+
+                @if (User.IsInRole(SettingsManager.PerfilJefe))
+                {
+                    <div class="form-group col-md-12 col-xs-12">
+                        @Html.LabelFor(model => model.NOMBRE_CARGO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+                        @Html.DropDownListFor(model => model.COD_CARGO, Model.LIST_NOMBRE_CARGO, "Seleccione", new { @class = "form-control combosGrandes letrasFormulario" })
+                        @Html.ValidationMessageFor(model => model.COD_CARGO, "", new { @class = "text-danger" })
+                    </div>
+
+                }
+                else
+                {
+
+                    <div class="form-group col-md-12 col-xs-12">
+                        @Html.LabelFor(model => model.NOMBRE_CARGO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+                        @Html.DropDownListFor(model => model.COD_CARGO, Model.LIST_NOMBRE_CARGO, "Seleccione", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                        @Html.ValidationMessageFor(model => model.COD_CARGO, "", new { @class = "text-danger" })
+                    </div>
+                }
                 <div class="form-group col-md-12 col-xs-12">
                     @Html.LabelFor(model => model.LIST_NOMBRE_GERENCIA, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
                     @Html.DropDownListFor(model => model.COD_GERENCIA, Model.LIST_NOMBRE_GERENCIA, "Seleccione ", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
@@ -36,28 +60,27 @@
                     <br />
                     @if (Model.NOMBRE_CECO == null && Model.COD_CECO == 0)
                     {
-                    <input class="buscador_ceco_gene letrasFormulario" id="input_ceco" name="input_ceco" type="text" placeholder="  Nombre CECO">
-                    @Html.ValidationMessageFor(model => model.COD_CECO, "", new { @class = "text-danger" })
-                    <input id="COD_CECO" name="COD_CECO" type="hidden">
+                        @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco_gene letrasFormulario", placeholder = "Nombre CECO", onkeyup = "buscarFiltro(this.value)" })
+                        @Html.HiddenFor(model => model.COD_CECO)
+                        @Html.ValidationMessageFor(model => model.NOMBRE_CECO, "", new { @class = "text-danger" })                        
                     }
                     else
                     {
-                    <input class="buscador_ceco_gene letrasFormulario" id="input_ceco" name="input_ceco" type="text" placeholder="  Nombre CECO" value="@Model.NOMBRE_CECO">
-                    @Html.ValidationMessageFor(model => model.COD_CECO, "", new { @class = "text-danger" })
-                    <input id="COD_CECO" name="COD_CECO" type="hidden" value="@Model.COD_CECO">
-                    }
-                    <span id="BuscadorCeco" class="cecogen-btn fas fa-search"></span>
+                        @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco_gene letrasFormulario", placeholder = "Nombre CECO", onkeyup = "buscarFiltro(this.value)" })
+                        @Html.HiddenFor(model => model.COD_CECO)
+                        @Html.ValidationMessageFor(model => model.NOMBRE_CECO, "", new { @class = "text-danger" })                        
+                    }           
                     <br>
                     <ul class="list-group buscador_modificaciones_deplegable_esconder" id="myListCeco" style="margin-bottom: 0px !important">
                         @foreach (SelectListItem item in _BUSCAR_NOMBRE_CECO)
                         {
-                        <li class="list-group-item item_lista_modificar letrasFormulario" onclick="AgarrarValorFiltroCeco('@item.Text','@item.Value')">@item.Text</li>
+                            <li class="list-group-item item_lista_modificar letrasFormulario" onclick="AgarrarValorFiltroCeco('@item.Text','@item.Value')">@item.Text</li>
                         }
                     </ul>
                 </div>
-                }
-                else
-                {
+            }
+            else
+            {
                 <div class="form-group col-md-12 col-sm-12">
                     @Html.LabelFor(model => model.COD_CECO, new { @class = "letrasFormulario" })
                     @Html.DropDownListFor(model => model.COD_CECO, new SelectList(Model.LIST_NOMBRE_CECO, "Value", "Text", Model.COD_CECO), "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
@@ -82,26 +105,65 @@
                 <div class="form-group col-md-12 col-xs-12 ">
                     @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA_ED, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
                     @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, Model.LIST_NOMBRE_CATEGORIA_ED, "Seleccione ", new { @class = "form-control col-md-11 combosGrandes letrasFormulario", disabled = deshabilitar })
-                    <span id="NOMBRE_CATEGORIA_ED_S" class="btn_traza" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                    <span id="NOMBRE_CATEGORIA_ED_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                     @Html.HiddenFor(model => model.COD_CATEGORIA_ED, new { @Id = "hdCOD_CATEGORIA_ED" })
                     @Html.ValidationMessageFor(model => model.COD_CATEGORIA_ED, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-12 col-xs-12 ">
-                    @*@Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.EditorFor(model => model.CARGO_CRITICO, new { @class = "form-control", disabled = deshabilitar })
-                    @Html.CheckBoxFor(model => model.CARGO_CRITICO, new { @disabled = deshabilitar })
-                    @Html.HiddenFor(model => model.CARGO_CRITICO, new { @Id = "hdCARGO_CRITICO" })
-                    @Html.ValidationMessageFor(model => model.CARGO_CRITICO, "", new { @class = "text-danger" })*@
 
-                    @Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.CARGO_CRITICO, new { @class = "form-control col-md-11 combosGrandes letrasFormulario" })
-                        @Html.ValidationMessageFor(model => model.CARGO_CRITICO, "", new { @class = "text-danger" })
+                @if (User.IsInRole(SettingsManager.PerfilJefe))
+                {
+                    <div class="form-group col-md-12 col-xs-12 ">
+
+                        @Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "letrasFormulario" })
+
+                        <spam class="CheckboxPadding">
+                            <input type="checkbox" class="checkboxSI" disabled="disabled" />
+                            <label class="letrasFormulario" for="radio1">Si</label>
+                        </spam>
+                        <spam class="CheckboxPadding">
+                            <input type="checkbox" class="checkboxNO" disabled="disabled" />
+                            <label class="letrasFormulario" for="radio2">No</label>
+                        </spam>
+
+
+
+
                     </div>
-                    @Html.HiddenFor(model => model.CARGO_CRITICO, new { @Id = "hdCARGO_CRITICO" })
-                </div>
+
+                }
+                else
+                {
+                    <div class="form-group col-md-12 col-xs-12">
+                        @Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "letrasFormulario" })
+                        @if (Model.CARGO_CRITICO == true)
+                        {
+                            <spam class="CheckboxPadding">
+                                <input type="checkbox" checked="checked" disabled="disabled" />
+                                <label class="letrasFormulario" for="radio1">Si</label>
+                            </spam>
+                            <spam class="CheckboxPadding">
+                                <input type="checkbox" disabled="disabled" />
+                                <label class="letrasFormulario" for="radio2">No</label>
+                            </spam>
+                        }
+                        else
+                        {
+                            <spam class="CheckboxPadding">
+                                <input type="checkbox" disabled="disabled" />
+                                <label class="letrasFormulario" for="radio1">Si</label>
+                            </spam>
+                            <spam class="CheckboxPadding">
+                                <input type="checkbox" checked="checked" disabled="disabled" />
+                                <label class="letrasFormulario" for="radio2">No</label>
+                            </spam>
+                        }
+                    </div>
+                }
+
+                @Html.HiddenFor(model => model.CARGO_CRITICO)
+
                 <div class="form-group col-md-12 col-xs-12 ">
                     @Html.LabelFor(model => model.POSICION, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
                     @Html.EditorFor(model => model.POSICION, new { htmlAttributes = new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar } })
@@ -111,7 +173,8 @@
             </div>
         </div>
     </section>
-    <script>
+<script>
+    var cantInfoGeneralLi = 1;
         var validateInfoIncap = true;
         var validateFormInfoGeneralIncap = function () {
             if ($('#COD_CECO').val() == "" &&
@@ -124,29 +187,41 @@
             return validateInfoIncap;
         }
 
-        $(document).ready(function () {
-            $("#BuscadorCeco").on("click", function () {
-                var value = $("#input_ceco").val().toLowerCase();
-                $("#myListCeco li").filter(function () {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
+        function buscarFiltro(value) {
+            //var value = $("#input_ceco").val().toLowerCase();
+            $("#myListCeco li").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
-        });
+        }
 
         function AgarrarValorFiltroCeco(texto, valor) {
-            $("#input_ceco").val(texto);
+            $("#NOMBRE_CECO").val(texto);
             $("#COD_CECO").val(valor);
             $("#myListCeco").removeClass("buscador_modificaciones_deplegable").addClass("buscador_modificaciones_deplegable_esconder");
         }
 
-        $(".buscadorC").focusin(function () {
-            $("#myListCeco").removeClass("buscador_modificaciones_deplegable_esconder").addClass("buscador_modificaciones_deplegable");
-        });
+    $(".buscadorC").focusin(function () {
+        $("#myListCeco").removeClass("buscador_modificaciones_deplegable_esconder").addClass("buscador_modificaciones_deplegable");
+    });
 
-        $("#collapseInfoGeneralIncap").on("hide.bs.collapse", function () {
-            $(".div-span-collapseInfoGeneralIncap").html('<span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>');
-        });
-        $("#collapseInfoGeneralIncap").on("show.bs.collapse", function () {
-            $(".div-span-collapseInfoGeneralIncap").html('<span class="span-collapse"><i class="fas fa-chevron-up arrow-collapse"></i></span>');
-        });
-    </script>
+    $("#collapseInfoGeneralIncap").on("hide.bs.collapse", function () {
+        $(".div-span-collapseInfoGeneralIncap").html('<span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>');
+    });
+    $("#collapseInfoGeneralIncap").on("show.bs.collapse", function () {
+        $(".div-span-collapseInfoGeneralIncap").html('<span class="span-collapse"><i class="fas fa-chevron-up arrow-collapse"></i></span>');
+    });
+
+    var perfilJefe = "@User.IsInRole(SettingsManager.PerfilJefe).ToString()";
+    var perfilController = "@User.IsInRole(SettingsManager.PerfilController).ToString()";
+    if (perfilJefe.toString() == "True" || perfilController.toString() == "True")
+    {
+        $("#collapseInfoGeneralIncap").addClass('show');
+    }
+
+    setTimeout(function () {
+        console.log('sali');
+        if (cantInfoGeneralLi < $('#collapseInfoGeneralIncap span.span-modify-hidden').length) {
+            $('.span_infoGeneralLi').css("visibility", "visible");
+        }
+    }, 650);
+</script>

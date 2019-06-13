@@ -752,5 +752,14 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<HISTORICOS>("TRAZA_BOTONES", mergeOption, cOD_REQUISICIONParameter, cAMPO_REQUISICIONParameter);
         }
+    
+        public virtual ObjectResult<CONSULTAR_USUARIO_Result> CONSULTAR_USUARIO(string cOD_USUARIO)
+        {
+            var cOD_USUARIOParameter = cOD_USUARIO != null ?
+                new ObjectParameter("COD_USUARIO", cOD_USUARIO) :
+                new ObjectParameter("COD_USUARIO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTAR_USUARIO_Result>("CONSULTAR_USUARIO", cOD_USUARIOParameter);
+        }
     }
 }
