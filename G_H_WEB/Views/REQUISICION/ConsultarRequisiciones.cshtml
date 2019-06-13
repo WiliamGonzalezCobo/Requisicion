@@ -236,7 +236,6 @@ else
 <script type="text/javascript">
 
     $(document).ready(function () {
-        ConsultaModificaciones();
         $(function () {
             $('.datepicker').datepicker({
                 format: 'dd/mm/yyyy',
@@ -336,61 +335,6 @@ else
                 }
             }
         }
-    }
-
-    var drawNotifications = function (requisitions) {
-
-        $.each(requisitions, function (key, value) {
-            switch (value.NOMBRE_REQUISICION.toLowerCase()) {
-                case "presupuestada":
-                    $(".badge-presupuestada").text(value.CANTIDAD);
-                    break;
-                case "no presupuestada":
-                    $(".badge-no-presupuestada").text(value.CANTIDAD);
-                    break;
-                case "licencia":
-                    $(".badge-licencia").text(value.CANTIDAD);
-                    break;
-                case "incapacidad":
-                    $(".badge-incapacidad").text(value.CANTIDAD);
-                    break;
-                case "modificacion":
-                    $(".badge-modificacion").text(value.CANTIDAD);
-                    break;
-                default:
-                    break;
-            }
-        });
-    }
-
-    function ConsultaModificaciones() {
-        $("#notificationsBadgePrimary").text("");
-        $("#AddNotificaciones").text("");
-            $('body').loading({
-                message: 'Cargando...'
-            });
-            $.ajax({
-                url: "@Url.Action("ConsultarModificaciones", "REQUISICION")",
-                type: 'POST',
-                data: null,
-                success: function (respuesta) {
-                    drawNotifications(respuesta);
-                    $.each(respuesta, function (key, value) {
-                        $("#notificationsBadgePrimary").text(value.TOTAL);
-                        $("#AddNotificaciones").append('<a class="dropdown-item dropdown-notification" href="#">' +
-                                                       '<div class="notification-read"><span class="badge badge-secondary">' + value.CANTIDAD +
-                                                       '</span></div><div class="notifications-body"><p class="notification-texte">Tienes ' + value.CANTIDAD +
-                                                       ' Requisiciones ' + value.NOMBRE_REQUISICION + ' para tramitar </p></div>' +
-                                                       ((key + 1).toString() === value.TOTAL ? '' : '<hr class="hr-requisition"/>') +
-                                                       '</a>')
-                    });
-                    $('body').loading('stop');
-                    $('.ModalTraza').modal("show");
-                },
-                error: function (er){
-                    $('body').loading('stop');
-                }
-            });
     }
 
 </script>
