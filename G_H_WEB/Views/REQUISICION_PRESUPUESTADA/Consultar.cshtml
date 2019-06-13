@@ -57,7 +57,7 @@
             <div id="CNform">
                 <div class="retiros-detalle">
                     <div class="form-group col-md-12">
-                        @using (Html.BeginForm("Procesar", "REQUISICION_PRESUPUESTADA"))
+                        @using (Html.BeginForm("Procesar", "REQUISICION_PRESUPUESTADA", FormMethod.Post, new { autocomplete = "off" }))
                         {
 
                             if (User.IsInRole(SettingsManager.PerfilJefe))

@@ -87,7 +87,7 @@
                     <div id="CNform">
                         <div class="retiros-detalle">
                             <div class="form-group col-md-12">
-                                @using (Html.BeginForm("Procesar", "LICENCIA_INCAPACIDAD"))
+                                @using (Html.BeginForm("Procesar", "LICENCIA_INCAPACIDAD", FormMethod.Post, new { autocomplete = "off" }))
                                 {
 
                                     if (User.IsInRole(SettingsManager.PerfilJefe))
