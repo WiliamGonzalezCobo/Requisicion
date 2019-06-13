@@ -114,23 +114,50 @@
 
                 @if (User.IsInRole(SettingsManager.PerfilJefe))
                 {
-                    <div class="form-group col-md-12 col-xs-12 ">
+                <div class="form-group col-md-12 col-xs-12 ">
 
-                        @Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "letrasFormulario" })
+                    @Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "letrasFormulario" })
 
+                    @if (Model.COD_ESTADO_REQUISICION == SettingsManager.EstadoDevueltaController)
+                    {
+                    if (Model.CARGO_CRITICO == true)
+                    {
                         <spam class="CheckboxPadding">
-                            <input type="checkbox" class="checkboxSI" disabled="disabled" />
+                            <input type="checkbox" checked="checked" disabled="disabled" />
                             <label class="letrasFormulario" for="radio1">Si</label>
                         </spam>
                         <spam class="CheckboxPadding">
-                            <input type="checkbox" class="checkboxNO" disabled="disabled" />
+                            <input type="checkbox" disabled="disabled" />
                             <label class="letrasFormulario" for="radio2">No</label>
                         </spam>
+                    }
+                    else if (Model.CARGO_CRITICO == false)
+                    {
+                        <spam class="CheckboxPadding">
+                            <input type="checkbox" disabled="disabled" />
+                            <label class="letrasFormulario" for="radio1">Si</label>
+                        </spam>
+                        <spam class="CheckboxPadding">
+                            <input type="checkbox" checked="checked" disabled="disabled" />
+                            <label class="letrasFormulario" for="radio2">No</label>
+                        </spam>
+                    }
+                    }
+                    else
+                    {
+                        <spam class="CheckboxPadding">
+                        <input type="checkbox" class="checkboxSI" disabled="disabled" />
+                        <label class="letrasFormulario" for="radio1">Si</label>
+                    </spam>
+                    <spam class="CheckboxPadding">
+                        <input type="checkbox" class="checkboxNO" disabled="disabled" />
+                        <label class="letrasFormulario" for="radio2">No</label>
+                    </spam>
 
 
+                    }
 
-
-                    </div>
+                </div>
 
                 }
                 else
