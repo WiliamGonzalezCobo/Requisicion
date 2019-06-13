@@ -297,376 +297,377 @@
             </div>
         </div>
     </div>
+</div>
 
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
-    $(document).ready(function () {
-        $(document).on('submit', 'form', function () {
-            $('body').loading({
-                message: 'Procesando...'
-            });
-        })
-        var typeRequisition = "@{ nombre_requisicion.Contains("Incapacidad")}";
-        if (typeRequisition == "True")
-        {
-            $(".nav-incapacidad").addClass('nav-active');
-            $(".nav-presupuestada").removeClass('nav-active');
-            $(".nav-no-presupuestada").removeClass('nav-active');
-            $(".nav-licencia").removeClass('nav-active');
-            $(".nav-modificada").removeClass('nav-active');
+$(document).ready(function () {
+    $(document).on('submit', 'form', function () {
+        $('body').loading({
+            message: 'Procesando...'
+        });
+    })
+    var typeRequisition = '@{ nombre_requisicion.Contains("Incapacidad"); }';
+    if (typeRequisition == "True")
+    {
+        $(".nav-incapacidad").addClass('nav-active');
+        $(".nav-presupuestada").removeClass('nav-active');
+        $(".nav-no-presupuestada").removeClass('nav-active');
+        $(".nav-licencia").removeClass('nav-active');
+        $(".nav-modificada").removeClass('nav-active');
+    }
+    else
+    {
+        $(".nav-incapacidad").removeClass('nav-active');
+        $(".nav-presupuestada").removeClass('nav-active');
+        $(".nav-no-presupuestada").removeClass('nav-active');
+        $(".nav-licencia").addClass('nav-active');
+        $(".nav-modificada").removeClass('nav-active');
+    }
+
+    if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {
+        if (@Model.COD_REQUISICION!= 0) {
+            $("#submitButtonCrear").text("Modificar Requisición");
         }
-        else
-        {
-            $(".nav-incapacidad").removeClass('nav-active');
-            $(".nav-presupuestada").removeClass('nav-active');
-            $(".nav-no-presupuestada").removeClass('nav-active');
-            $(".nav-licencia").addClass('nav-active');
-            $(".nav-modificada").removeClass('nav-active');
+    }
+    $("._metodoCrear").css("display", "none");
+    $(".__metodoAprobar").css("display", "none");
+    $(".__metodoModificar").css("display", "none");
+    $(".__metodoRechazar").css("display", "none");
+    $(".__metodoEnviar").css("display", "none");
+    VALIDACION_TRAZA();
+
+    var resultado = "@ViewBag.resultadoInsertExitosoOno";
+
+
+    if (resultado == "True") {
+        var _metodo = "@paraModel.METODO";
+        if (_metodo == "Crear") {
+            CREAR_REQUISICION();
+            $("._metodoDefecto").css("display", "none");
+
         }
-
-        if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {
-            if (@Model.COD_REQUISICION!= 0) {
-                $("#submitButtonCrear").text("Modificar Requisición");
-            }
+        else if (_metodo == "Aprobar") {
+            APROBAR_REQUISICION();
+            $("._metodoDefecto").css("display", "none");
         }
-        $("._metodoCrear").css("display", "none");
-        $(".__metodoAprobar").css("display", "none");
-        $(".__metodoModificar").css("display", "none");
-        $(".__metodoRechazar").css("display", "none");
-        $(".__metodoEnviar").css("display", "none");
-        VALIDACION_TRAZA();
-
-        var resultado = "@ViewBag.resultadoInsertExitosoOno";
-
-
-        if (resultado == "True") {
-            var _metodo = "@paraModel.METODO";
-            if (_metodo == "Crear") {
-                CREAR_REQUISICION();
-                $("._metodoDefecto").css("display", "none");
-
-            }
-            else if (_metodo == "Aprobar") {
-                APROBAR_REQUISICION();
-                $("._metodoDefecto").css("display", "none");
-            }
-            else if (_metodo == "Modificar") {
-                MODIFICAR_REQUISICION();
-                $("._metodoDefecto").css("display", "none");
-            }
-
-            else if (_metodo == "Rechazar") {
-                RECHAZAR_REQUISICION();
-                $("._metodoDefecto").css("display", "none");
-            }
-            else if (_metodo == "Enviar") {
-                ENVIAR_REQUISICION();
-                $("._metodoDefecto").css("display", "none");
-            }
-
-            $('#ModalCreacionNoJefe').modal("show");
-        } else if ($("#NOMBRE_TIPO_DOCUMENTO").val() == "" && $("#NUMERO_DOCUMENTO_EMPLEADO").val() == "" && $("#NOMBRE_EMPLEADO").val() == "" && "@ViewBag.PERMISOS_CONTROLLER" != "") {
-            $('#ModalRequisicionProcesada').modal('show');
+        else if (_metodo == "Modificar") {
+            MODIFICAR_REQUISICION();
+            $("._metodoDefecto").css("display", "none");
         }
 
+        else if (_metodo == "Rechazar") {
+            RECHAZAR_REQUISICION();
+            $("._metodoDefecto").css("display", "none");
+        }
+        else if (_metodo == "Enviar") {
+            ENVIAR_REQUISICION();
+            $("._metodoDefecto").css("display", "none");
+        }
 
-    });
+        $('#ModalCreacionNoJefe').modal("show");
+    } else if ($("#NOMBRE_TIPO_DOCUMENTO").val() == "" && $("#NUMERO_DOCUMENTO_EMPLEADO").val() == "" && $("#NOMBRE_EMPLEADO").val() == "" && "@ViewBag.PERMISOS_CONTROLLER" != "") {
+        $('#ModalRequisicionProcesada').modal('show');
+    }
 
-    function VALIDACION_TRAZA() {
-        var jsonObj = @Html.Raw(Json.Encode(ViewBag.traza));
-        if (jsonObj) {
-            for (i = 0; i < jsonObj.length; i++) {
-                if (jsonObj[i].TRAZA == "true") {
-                    var campo = "#" + jsonObj[i].CAMPOS + "_S";
-                    if ($(campo).length) {
-                        $(campo).removeAttr("style");
-                        $(campo).removeClass('span-modify-hidden');
-                        var traza = jsonObj[i].TRAZA;
-                    }
+
+});
+
+function VALIDACION_TRAZA() {
+    var jsonObj = @Html.Raw(Json.Encode(ViewBag.traza));
+    if (jsonObj) {
+        for (i = 0; i < jsonObj.length; i++) {
+            if (jsonObj[i].TRAZA == "true") {
+                var campo = "#" + jsonObj[i].CAMPOS + "_S";
+                if ($(campo).length) {
+                    $(campo).removeAttr("style");
+                    $(campo).removeClass('span-modify-hidden');
+                    var traza = jsonObj[i].TRAZA;
                 }
             }
         }
     }
+}
 
-    function CONSULTA_PUESTO_POR_CEDULA(DOCUMENTO_NUMERO) {
-            $('body').loading({
-                message: 'Cargando...'
-            });
-            $.ajax({
-                url: "@Url.Action("ConsultarCargo", "LICENCIA_INCAPACIDAD")",
-                type: 'GET',
-                data: { NUMERO_DOCUMENTO_EMPLEADO: DOCUMENTO_NUMERO },
-                success: function (respuesta) {
-                    mapeoObjCargoApi(respuesta)
-                    $('body').loading('stop');
-                },
-                error: function (er){
-                    $('body').loading('stop');
-                }
-            });
+function CONSULTA_PUESTO_POR_CEDULA(DOCUMENTO_NUMERO) {
+        $('body').loading({
+            message: 'Cargando...'
+        });
+        $.ajax({
+            url: "@Url.Action("ConsultarCargo", "LICENCIA_INCAPACIDAD")",
+            type: 'GET',
+            data: { NUMERO_DOCUMENTO_EMPLEADO: DOCUMENTO_NUMERO },
+            success: function (respuesta) {
+                mapeoObjCargoApi(respuesta)
+                $('body').loading('stop');
+            },
+            error: function (er){
+                $('body').loading('stop');
+            }
+        });
 
-    }
-    function CREAR_REQUISICION() {
-         var CargoText = "@paraModel.NOMBRE_COD_CARGO";
-            var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-            $("#mensaje1").text(CargoText);
-            $("#mensaje2").text(CargoCod);
-        $("._metodoCrear").css("display", "block");
-    }
-
-
-    function APROBAR_REQUISICION() {
+}
+function CREAR_REQUISICION() {
+        var CargoText = "@paraModel.NOMBRE_COD_CARGO";
         var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-        $(".__metodoAprobar").css("display", "block");
-        $("#mensaje_aprobar").text(CargoCod);
-
-    }
-    function MODIFICAR_REQUISICION() {
-          var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-        $(".__metodoModificar").css("display", "block");
-        $("#mensaje_modificar").text(CargoCod);
-    }
-
-      function RECHAZAR_REQUISICION() {
-          var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-          $(".__metodoRechazar").css("display", "block");
-          $("#mensaje_rechazar").text(CargoCod);
-    }
-
-          function ENVIAR_REQUISICION() {
-          var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-          $(".__metodoEnviar").css("display", "block");
-          $("#mensaje_Enviar").text(CargoCod);
-    }
+        $("#mensaje1").text(CargoText);
+        $("#mensaje2").text(CargoCod);
+    $("._metodoCrear").css("display", "block");
+}
 
 
-    $("#btnCancelarNoJefe").on("click", function () {
-        $('#ModalCancelNoJefe').modal('show');
-    });
+function APROBAR_REQUISICION() {
+    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+    $(".__metodoAprobar").css("display", "block");
+    $("#mensaje_aprobar").text(CargoCod);
 
-    function SiCancelarJefe() {
-            $('#ModalCancel').modal('hide');
-            window.location.href = '@Url.Action("ConsultarRequisiciones", "REQUISICION")';
-        };
-    function NoCancelarJefe() {
-            $('#ModalCancel').modal('hide');
+}
+function MODIFICAR_REQUISICION() {
+        var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+    $(".__metodoModificar").css("display", "block");
+    $("#mensaje_modificar").text(CargoCod);
+}
+
+    function RECHAZAR_REQUISICION() {
+        var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+        $(".__metodoRechazar").css("display", "block");
+        $("#mensaje_rechazar").text(CargoCod);
+}
+
+        function ENVIAR_REQUISICION() {
+        var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+        $(".__metodoEnviar").css("display", "block");
+        $("#mensaje_Enviar").text(CargoCod);
+}
+
+
+$("#btnCancelarNoJefe").on("click", function () {
+    $('#ModalCancelNoJefe').modal('show');
+});
+
+function SiCancelarJefe() {
+        $('#ModalCancel').modal('hide');
+        window.location.href = '@Url.Action("ConsultarRequisiciones", "REQUISICION")';
     };
+function NoCancelarJefe() {
+        $('#ModalCancel').modal('hide');
+};
 
-    $(function () {
-        $('.datepicker').datepicker({
-            format: 'dd/mm/yyyy',
-            autoclose: true
-        });
+$(function () {
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        autoclose: true
     });
+});
 
-    //Método consume el api segun el valor del cargo
-    //Método que extrae valores del fomulario
-    function getFormData($form) {
-        var unindexed_array = $form.serializeArray();
-        var indexed_array = {};
-        $.map(unindexed_array, function (n, i) {
-            indexed_array[n['name']] = n['value'];
-        });
-        return indexed_array;
-    }
-
-    function aprobarClick() {
-        var $form = $("#frmNoPresupuestada");
-        var model = JSON.stringify(getFormData($form), null, 2);
-        console.log('model', JSON.parse(model));
-         $.ajax({
-             type: "POST",
-             url: '@Url.Action("Aprobar_Click", "REQUISICION")',
-             contentType: "application/json; charset=utf-8",
-             data: model,
-             dataType: "json",
-             success: function () { window.location.href = '@Url.Action("ConsultarRequisiciones", "REQUISICION")'; }
-         });
-    };
-
-    function mapeoObjCargoApi(API) {
-        $("#COD_CARGO").val(API.COD_CARGO);
-        $("#hdCOD_CARGO").val(API.COD_CARGO);
-
-        $("#COD_CECO").val(API.COD_CENTRO_COSTO);
-        $("#hdCOD_CECO").val(API.COD_CENTRO_COSTO);
-
-        $("#COD_GERENCIA").val(API.COD_GERENCIA);
-        $("#hdCOD_GERENCIA").val(API.COD_GERENCIA);
-
-        $("#COD_TIPO_CONTRATO").val(API.COD_TIPO_CONTRATO);
-        $("#hdCOD_TIPO_CONTRATO").val(API.COD_TIPO_CONTRATO);
-
-        $("#JEFE_INMEDIATO").val(API.NOMBRE_JEFE);
-        $("#hdJEFE_INMEDIATO").val(API.NOMBRE_JEFE);
-
-        $("#COD_SOCIEDAD").val(API.COD_SOCIEDAD);
-        $("#hdCOD_SOCIEDAD").val(API.COD_SOCIEDAD);
-
-        $("#COD_EQUIPO_VENTAS").val(API.COD_EQUIPO_VENTA);
-        $("#hdCOD_EQUIPO_VENTAS").val(API.COD_EQUIPO_VENTA);
-
-        $("#COD_CIUDAD_TRABAJO").val(API.COD_DANE_CIUDAD);
-        $("#hdCOD_CIUDAD_TRABAJO").val(API.COD_DANE_CIUDAD);
-
-        $("#COD_UBICACION_FISICA").val(API.COD_UBICACION_FISICA);
-        $("#hdCOD_UBICACION_FISICA").val(API.COD_UBICACION_FISICA);
-
-        $("#COD_NIVEL_RIESGO_ARL").val(API.COD_NIVEL_RIESGO);
-        $("#hdCOD_NIVEL_RIESGO_ARL").val(API.COD_NIVEL_RIESGO);
-
-        $("#COD_CATEGORIA_ED").val(API.COD_CATEGORIA_EVALUACION_DESEMPENO);
-        $("#hdCOD_CATEGORIA_ED").val(API.COD_CATEGORIA_EVALUACION_DESEMPENO);
-
-
-        if (API.CARGO_CRITICO == "1") {
-            $('.checkboxSI').prop('checked', true);
-            $("#CARGO_CRITICO").val(true);
-            $("#hdCARGO_CRITICO").val(true);
-        }
-        else {
-            $('.checkboxNO').prop('checked', false);
-            $("CARGO_CRITICO").val(false);
-            $("hdCARGO_CRITICO").val(false);
-        }
-
-        $("#COD_JORNADA_LABORAL").val(API.COD_JORNADA_TRABAJO);
-        $("#hdCOD_JORNADA_LABORAL").val(API.COD_JORNADA_TRABAJO);
-
-        $("#COD_HORARIO_LABORAL_DESDE").val(API.COD_HORARIO_TRABAJO);
-        $("#hdCOD_HORARIO_LABORAL_DESDE").val(API.COD_HORARIO_TRABAJO);
-
-        $("#COD_HORARIO_LABORAL_HASTA").val(API.COD_HORARIO_TRABAJO);
-        $("#hdCOD_HORARIO_LABORAL_HASTA").val(API.COD_HORARIO_TRABAJO);
-
-        $("#COD_DIA_LABORAL_DESDE").val(API.COD_DIA_LABORAL);
-        $("#hdCOD_DIA_LABORAL_DESDE").val(API.COD_DIA_LABORAL);
-
-        $("#COD_DIA_LABORAL_HASTA").val(API.COD_DIA_LABORAL);
-        $("#hdCOD_DIA_LABORAL_HASTA").val(API.COD_DIA_LABORAL);
-
-        $("#SALARIO_FIJO").val(API.SALARIO_FIJO);
-        $("#hdSALARIO_FIJO").val(API.SALARIO_FIJO);
-
-        $("#PORCENTAJE_SALARIO_FIJO").val(API.PORCENTAJE_SALARIO_FIJO);
-        $("#hdPORCENTAJE_SALARIO_FIJO").val(API.PORCENTAJE_SALARIO_FIJO);
-
-        $("#SALARIO_VARIABLE").val(API.SALARIO_VARIABLE);
-        $("#hdSALARIO_VARIABLE").val(API.SALARIO_VARIABLE);
-
-        $("#PORCENTAJE_SALARIO_VARIABLE").val(API.PORCENTAJE_SALARIO_VARIABLE);
-        $("#hdPORCENTAJE_SALARIO_VARIABLE").val(API.PORCENTAJE_SALARIO_VARIABLE);
-
-        $("#SOBREREMUNERACION").val(API.SOBREREMUNERACION);
-        $("#hdSOBREREMUNERACION").val(API.SOBREREMUNERACION);
-
-        $("#PORCENTAJE_SOBREREMUNERACION").val(API.PORCENTAJE_SOBREREMUNERACION);
-        $("#hdSOBREREMUNERACION").val(API.SOBREREMUNERACION);
-
-        $("#EXTRA_FIJA").val(API.EXTRA_FIJA);
-        $("#hdEXTRA_FIJA").val(API.EXTRA_FIJA);
-
-        $("#RECARGO_NOCTURNO").val(API.RECARGO_NOCTURNO_FIJO);
-        $("#hdRECARGO_NOCTURNO").val(API.RECARGO_NOCTURNO_FIJO);
-
-        $("#MEDIO_TRANSPORTE").val(API.MEDIOS_TRANSPORTE);
-        $("#hdMEDIO_TRANSPORTE").val(API.MEDIOS_TRANSPORTE);
-
-        $(".S_TOTAL").text(API.SALARIO_TOTAL);
-        $("#hdSALARIO_TOTAL").val(API.SALARIO_TOTAL);
-
-        $("#BONO_ANUAL").val(API.BONO_ANUAL);
-        $("#hdBONO_ANUAL").val(API.BONO_ANUAL);
-
-        $("#NUMERO_SALARIOS").val(API.NUMERO_SALARIO);
-        $("#hdNUMERO_SALARIOS").val(API.NUMERO_SALARIO);
-
-        $("#MESES_GARANTIZADOS").val(API.MESES_GARANTIZADO);
-        $("#hdMESES_GARANTIZADOS").val(API.MESES_GARANTIZADO);
-
-        $("#COD_TIPO_SALARIO").val(API.COD_TIPO_SALARIO);
-        $("#hdCOD_TIPO_SALARIO").val(API.COD_TIPO_SALARIO);
-
-        $("#FACTOR_PRESTACIONAL").val(API.FP);
-        $("#hdFACTOR_PRESTACIONAL").val(API.FP);
-
-        $("#INGRESO_PROM_MENSUAL").val(API.PROMEDIO_MES);
-        $("#hdINGRESO_PROM_MENSUAL").val(API.PROMEDIO_MES);
-
-        $("#INGRESO_PROM_ANUAL").val(API.PROMEDIO_ANO);
-        $("#hdINGRESO_PROM_ANUAL").val(API.PROMEDIO_ANO);
-
-        $("#COD_MERCADO").val(API.COD_MERCADO);
-        $("#hdCOD_MERCADO").val(API.COD_MERCADO);
-
-        $("#COD_CATEGORIA").val(API.COD_CATEGORIA_SALARIALES);
-        $("#hdCOD_CATEGORIA").val(API.COD_CATEGORIA_SALARIALES);
-
-        $("#PUNTO_MEDIO_80").val(API.PUNTO_MEDIO_80_PORCIENTO);
-        $("#hdPUNTO_MEDIO_80").val(API.PUNTO_MEDIO_80_PORCIENTO);
-
-        $("#PUNTO_MEDIO_100").val(API.PUNTO_MEDIO_100_PORCIENTO);
-        $("#hdPUNTO_MEDIO_100").val(API.PUNTO_MEDIO_100_PORCIENTO);
-
-        $("#PUNTO_MEDIO_120").val(API.PUNTO_MEDIO_120_PORCIENTO);
-        $("#hdPUNTO_MEDIO_120").val(API.PUNTO_MEDIO_120_PORCIENTO);
-
-        $("#POSICION").val(API.POSICIONAMIENTO);
-        $("#hdPOSICION").val(API.POSICIONAMIENTO);
-    }
-
-    function ConsultaTraza(CAMPO_REQUISICION) {
-        debugger;        
-        var campo_re = 0;
-        $(".bodytraza").empty();
-        $(".nombre_traza").text("");
-        $("#ModalLabelTraza").text("TRAZA " + CAMPO_REQUISICION.replace(/_/g, " "))
-        $(".nombre_traza").text(CAMPO_REQUISICION.replace(/_/g," "));
-        var COD_REQUISICION = @Model.COD_REQUISICION;
-            $('body').loading({
-                message: 'Cargando...'
-            });
-            $.ajax({
-                url: "@Url.Action("ConsultarTraza", "REQUISICION")",
-                type: 'GET',
-                data: { COD_REQUISICION: COD_REQUISICION, CAMPO_REQUISICION: CAMPO_REQUISICION},
-                success: function (respuesta) {                    
-                    $.each(respuesta, function (key, value) {
-                        debugger;                        
-                        if (value[CAMPO_REQUISICION] != null && value[CAMPO_REQUISICION] != campo_re) {
-                            $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION + "</td > </tr > ");
-                        }        
-                        campo_re = value[CAMPO_REQUISICION];
-                    });
-                    $('body').loading('stop');
-                    $('.ModalTraza').modal("show");
-                },
-                error: function (er){
-                    $('body').loading('stop');
-                }
-            });
-    }
-
-    $('.btn-collpse-valid').on('click', function () {
-        //console.log('di click !!', validate);
-        if (!validateFormAutorizacion()) {
-            $('#collapseAutorizacion').collapse('show');
-        }
-        if (!validateFormInfoGeneralIncap()) {
-            $('#collapseInfoGeneralIncap').collapse('show');
-        }
-        if (!validateFormTipoContrato()) {
-            $('#collapseInfoGeneralPropLic').collapse('show');
-        }
-        if (!validateFormInfoSalarialLic()) {
-            $('#collapseInfoSalarialIncap').collapse('show');
-        }
-        if (!validateFormInfoSalarialIncap2()) {
-            $('#collapseInfoSalarialIncap2').collapse('show');
-        }
+//Método consume el api segun el valor del cargo
+//Método que extrae valores del fomulario
+function getFormData($form) {
+    var unindexed_array = $form.serializeArray();
+    var indexed_array = {};
+    $.map(unindexed_array, function (n, i) {
+        indexed_array[n['name']] = n['value'];
     });
+    return indexed_array;
+}
 
-    </script>
+function aprobarClick() {
+    var $form = $("#frmNoPresupuestada");
+    var model = JSON.stringify(getFormData($form), null, 2);
+    console.log('model', JSON.parse(model));
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Aprobar_Click", "REQUISICION")',
+            contentType: "application/json; charset=utf-8",
+            data: model,
+            dataType: "json",
+            success: function () { window.location.href = '@Url.Action("ConsultarRequisiciones", "REQUISICION")'; }
+        });
+};
+
+function mapeoObjCargoApi(API) {
+    $("#COD_CARGO").val(API.COD_CARGO);
+    $("#hdCOD_CARGO").val(API.COD_CARGO);
+
+    $("#COD_CECO").val(API.COD_CENTRO_COSTO);
+    $("#hdCOD_CECO").val(API.COD_CENTRO_COSTO);
+
+    $("#COD_GERENCIA").val(API.COD_GERENCIA);
+    $("#hdCOD_GERENCIA").val(API.COD_GERENCIA);
+
+    $("#COD_TIPO_CONTRATO").val(API.COD_TIPO_CONTRATO);
+    $("#hdCOD_TIPO_CONTRATO").val(API.COD_TIPO_CONTRATO);
+
+    $("#JEFE_INMEDIATO").val(API.NOMBRE_JEFE);
+    $("#hdJEFE_INMEDIATO").val(API.NOMBRE_JEFE);
+
+    $("#COD_SOCIEDAD").val(API.COD_SOCIEDAD);
+    $("#hdCOD_SOCIEDAD").val(API.COD_SOCIEDAD);
+
+    $("#COD_EQUIPO_VENTAS").val(API.COD_EQUIPO_VENTA);
+    $("#hdCOD_EQUIPO_VENTAS").val(API.COD_EQUIPO_VENTA);
+
+    $("#COD_CIUDAD_TRABAJO").val(API.COD_DANE_CIUDAD);
+    $("#hdCOD_CIUDAD_TRABAJO").val(API.COD_DANE_CIUDAD);
+
+    $("#COD_UBICACION_FISICA").val(API.COD_UBICACION_FISICA);
+    $("#hdCOD_UBICACION_FISICA").val(API.COD_UBICACION_FISICA);
+
+    $("#COD_NIVEL_RIESGO_ARL").val(API.COD_NIVEL_RIESGO);
+    $("#hdCOD_NIVEL_RIESGO_ARL").val(API.COD_NIVEL_RIESGO);
+
+    $("#COD_CATEGORIA_ED").val(API.COD_CATEGORIA_EVALUACION_DESEMPENO);
+    $("#hdCOD_CATEGORIA_ED").val(API.COD_CATEGORIA_EVALUACION_DESEMPENO);
+
+
+    if (API.CARGO_CRITICO == "1") {
+        $('.checkboxSI').prop('checked', true);
+        $("#CARGO_CRITICO").val(true);
+        $("#hdCARGO_CRITICO").val(true);
+    }
+    else {
+        $('.checkboxNO').prop('checked', false);
+        $("CARGO_CRITICO").val(false);
+        $("hdCARGO_CRITICO").val(false);
+    }
+
+    $("#COD_JORNADA_LABORAL").val(API.COD_JORNADA_TRABAJO);
+    $("#hdCOD_JORNADA_LABORAL").val(API.COD_JORNADA_TRABAJO);
+
+    $("#COD_HORARIO_LABORAL_DESDE").val(API.COD_HORARIO_TRABAJO);
+    $("#hdCOD_HORARIO_LABORAL_DESDE").val(API.COD_HORARIO_TRABAJO);
+
+    $("#COD_HORARIO_LABORAL_HASTA").val(API.COD_HORARIO_TRABAJO);
+    $("#hdCOD_HORARIO_LABORAL_HASTA").val(API.COD_HORARIO_TRABAJO);
+
+    $("#COD_DIA_LABORAL_DESDE").val(API.COD_DIA_LABORAL);
+    $("#hdCOD_DIA_LABORAL_DESDE").val(API.COD_DIA_LABORAL);
+
+    $("#COD_DIA_LABORAL_HASTA").val(API.COD_DIA_LABORAL);
+    $("#hdCOD_DIA_LABORAL_HASTA").val(API.COD_DIA_LABORAL);
+
+    $("#SALARIO_FIJO").val(API.SALARIO_FIJO);
+    $("#hdSALARIO_FIJO").val(API.SALARIO_FIJO);
+
+    $("#PORCENTAJE_SALARIO_FIJO").val(API.PORCENTAJE_SALARIO_FIJO);
+    $("#hdPORCENTAJE_SALARIO_FIJO").val(API.PORCENTAJE_SALARIO_FIJO);
+
+    $("#SALARIO_VARIABLE").val(API.SALARIO_VARIABLE);
+    $("#hdSALARIO_VARIABLE").val(API.SALARIO_VARIABLE);
+
+    $("#PORCENTAJE_SALARIO_VARIABLE").val(API.PORCENTAJE_SALARIO_VARIABLE);
+    $("#hdPORCENTAJE_SALARIO_VARIABLE").val(API.PORCENTAJE_SALARIO_VARIABLE);
+
+    $("#SOBREREMUNERACION").val(API.SOBREREMUNERACION);
+    $("#hdSOBREREMUNERACION").val(API.SOBREREMUNERACION);
+
+    $("#PORCENTAJE_SOBREREMUNERACION").val(API.PORCENTAJE_SOBREREMUNERACION);
+    $("#hdSOBREREMUNERACION").val(API.SOBREREMUNERACION);
+
+    $("#EXTRA_FIJA").val(API.EXTRA_FIJA);
+    $("#hdEXTRA_FIJA").val(API.EXTRA_FIJA);
+
+    $("#RECARGO_NOCTURNO").val(API.RECARGO_NOCTURNO_FIJO);
+    $("#hdRECARGO_NOCTURNO").val(API.RECARGO_NOCTURNO_FIJO);
+
+    $("#MEDIO_TRANSPORTE").val(API.MEDIOS_TRANSPORTE);
+    $("#hdMEDIO_TRANSPORTE").val(API.MEDIOS_TRANSPORTE);
+
+    $(".S_TOTAL").text(API.SALARIO_TOTAL);
+    $("#hdSALARIO_TOTAL").val(API.SALARIO_TOTAL);
+
+    $("#BONO_ANUAL").val(API.BONO_ANUAL);
+    $("#hdBONO_ANUAL").val(API.BONO_ANUAL);
+
+    $("#NUMERO_SALARIOS").val(API.NUMERO_SALARIO);
+    $("#hdNUMERO_SALARIOS").val(API.NUMERO_SALARIO);
+
+    $("#MESES_GARANTIZADOS").val(API.MESES_GARANTIZADO);
+    $("#hdMESES_GARANTIZADOS").val(API.MESES_GARANTIZADO);
+
+    $("#COD_TIPO_SALARIO").val(API.COD_TIPO_SALARIO);
+    $("#hdCOD_TIPO_SALARIO").val(API.COD_TIPO_SALARIO);
+
+    $("#FACTOR_PRESTACIONAL").val(API.FP);
+    $("#hdFACTOR_PRESTACIONAL").val(API.FP);
+
+    $("#INGRESO_PROM_MENSUAL").val(API.PROMEDIO_MES);
+    $("#hdINGRESO_PROM_MENSUAL").val(API.PROMEDIO_MES);
+
+    $("#INGRESO_PROM_ANUAL").val(API.PROMEDIO_ANO);
+    $("#hdINGRESO_PROM_ANUAL").val(API.PROMEDIO_ANO);
+
+    $("#COD_MERCADO").val(API.COD_MERCADO);
+    $("#hdCOD_MERCADO").val(API.COD_MERCADO);
+
+    $("#COD_CATEGORIA").val(API.COD_CATEGORIA_SALARIALES);
+    $("#hdCOD_CATEGORIA").val(API.COD_CATEGORIA_SALARIALES);
+
+    $("#PUNTO_MEDIO_80").val(API.PUNTO_MEDIO_80_PORCIENTO);
+    $("#hdPUNTO_MEDIO_80").val(API.PUNTO_MEDIO_80_PORCIENTO);
+
+    $("#PUNTO_MEDIO_100").val(API.PUNTO_MEDIO_100_PORCIENTO);
+    $("#hdPUNTO_MEDIO_100").val(API.PUNTO_MEDIO_100_PORCIENTO);
+
+    $("#PUNTO_MEDIO_120").val(API.PUNTO_MEDIO_120_PORCIENTO);
+    $("#hdPUNTO_MEDIO_120").val(API.PUNTO_MEDIO_120_PORCIENTO);
+
+    $("#POSICION").val(API.POSICIONAMIENTO);
+    $("#hdPOSICION").val(API.POSICIONAMIENTO);
+}
+
+function ConsultaTraza(CAMPO_REQUISICION) {
+    debugger;        
+    var campo_re = 0;
+    $(".bodytraza").empty();
+    $(".nombre_traza").text("");
+    $("#ModalLabelTraza").text("TRAZA " + CAMPO_REQUISICION.replace(/_/g, " "));
+    $(".nombre_traza").text(CAMPO_REQUISICION.replace(/_/g," "));
+    var COD_REQUISICION = @Model.COD_REQUISICION;
+        $('body').loading({
+            message: 'Cargando...'
+        });
+        $.ajax({
+            url: "@Url.Action("ConsultarTraza", "REQUISICION")",
+            type: 'GET',
+            data: { COD_REQUISICION: COD_REQUISICION, CAMPO_REQUISICION: CAMPO_REQUISICION},
+            success: function (respuesta) {                    
+                $.each(respuesta, function (key, value) {
+                    debugger;                        
+                    if (value[CAMPO_REQUISICION] != null && value[CAMPO_REQUISICION] != campo_re) {
+                        $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION + "</td > </tr > ");
+                    }        
+                    campo_re = value[CAMPO_REQUISICION];
+                });
+                $('body').loading('stop');
+                $('.ModalTraza').modal("show");
+            },
+            error: function (er){
+                $('body').loading('stop');
+            }
+        });
+}
+
+$('.btn-collpse-valid').on('click', function () {
+    //console.log('di click !!', validate);
+    if (!validateFormAutorizacion()) {
+        $('#collapseAutorizacion').collapse('show');
+    }
+    if (!validateFormInfoGeneralIncap()) {
+        $('#collapseInfoGeneralIncap').collapse('show');
+    }
+    if (!validateFormTipoContrato()) {
+        $('#collapseInfoGeneralPropLic').collapse('show');
+    }
+    if (!validateFormInfoSalarialLic()) {
+        $('#collapseInfoSalarialIncap').collapse('show');
+    }
+    if (!validateFormInfoSalarialIncap2()) {
+        $('#collapseInfoSalarialIncap2').collapse('show');
+    }
+});
+
+</script>
 
 
