@@ -209,7 +209,7 @@
         });
 
 
-        $("#BuscadorUsuario").on("click", function () {
+        $("#buscador_modificaciones").keyup(function () {
             var value = $("#buscador_modificaciones").val().toLowerCase();
             $("#myList li").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
