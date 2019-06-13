@@ -91,3 +91,36 @@ thead, tbody, th {
 .textarea {
     resize: none;
 }
+
+.div-select-requisicion:hover {
+    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.87);
+}
+
+.span-modify-hidden {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.BtnDevolver {
+    height: 48px;
+    width: 230px;
+    border: 1.5px solid #F15300;
+    background-color: #FFFFFF;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+    .BtnDevolver:hover {
+        color: #F15300 !important;
+        text-decoration: none !important
+    }
+
+.TextoBtnDevolver {
+    color: #F15300 !important;
+    font-family: "Source-Sans-Pro";
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 22px;
+    text-align: center;
+}

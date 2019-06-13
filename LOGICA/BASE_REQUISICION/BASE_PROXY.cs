@@ -36,7 +36,7 @@ namespace LOGICA.LOGICA_REQUISICION
         /// <param name="parameters">diccionario de parametros</param>
         /// <returns>T</returns>
         /// <Author>Jairo Sanabria</Author>
-        public T Get<T>(out HttpStatusCode statusCode, Dictionary<string, string> parameters = null)
+        public T Get<T>(out HttpStatusCode statusCode, Dictionary<string, string> parameters)
         {
             using (var httpClient = new HttpClient())
             {
@@ -59,12 +59,26 @@ namespace LOGICA.LOGICA_REQUISICION
                 var response = httpClient.GetAsync(endpoint).Result;
                 statusCode = response.StatusCode;
                 if (statusCode == HttpStatusCode.OK)
-                    return JsonConvert.DeserializeObject<T>(response.Content.ReadAsStringAsync().Result.Replace(".0",""));
+                    return JsonConvert.DeserializeObject<T>(response.Content.ReadAsStringAsync().Result);
                 else
                     return default(T);
             }
         }
 
+        public T Get<T>(out HttpStatusCode statusCode)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var endpoint = _endpoint;
+                httpClient.SetBasicAuthentication(_User, _Pass);
+                var response = httpClient.GetAsync(endpoint).Result;
+                statusCode = response.StatusCode;
+                if (statusCode == HttpStatusCode.OK)
+                    return JsonConvert.DeserializeObject<T>(response.Content.ReadAsStringAsync().Result.Replace(".0",""));
+                else
+                    return default(T);
+            }
+        }
 
         public T Get<T>(int id, out HttpStatusCode statusCode)
         {

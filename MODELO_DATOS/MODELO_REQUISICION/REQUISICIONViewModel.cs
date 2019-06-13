@@ -334,6 +334,9 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// salario fijo
         /// </summary>
+        /// 
+
+        
         [DisplayName("Salario fijo")]
         [Required(ErrorMessage = "Salario fijo requerido")]
         public decimal SALARIO_FIJO { get; set; }
@@ -341,73 +344,108 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// porcentaje salario fijo
         /// </summary>
+        /// 
+
+        
         [DisplayName("Porcentaje")]
         public decimal PORCENTAJE_SALARIO_FIJO { get; set; }
 
         /// <summary>
         /// valor decimal salario variable
         /// </summary>
+        /// 
+
+        
         [DisplayName("Salario variable")]
+        [Required(ErrorMessage = "Salario variable requerido")]
         public decimal SALARIO_VARIABLE { get; set; }
 
         /// <summary>
         /// valor decimal procentaje salario variable
         /// </summary>
+        /// 
+        
         [DisplayName("Porcentaje")]
         public decimal PORCENTAJE_SALARIO_VARIABLE { get; set; }
 
         /// <summary>
         /// valor decimal sobreremuneracion
         /// </summary>
+        /// 
+        
         [DisplayName("Sobre remuneración")]
+        [Required(ErrorMessage = "Sobre remuneración requerido")]
         public decimal SOBREREMUNERACION { get; set; }
 
         /// <summary>
         /// valor decimal porcentaje sobreremuneracion
         /// </summary>
+        /// 
+
+        
         [DisplayName("Porcentaje")]
         public decimal PORCENTAJE_SOBREREMUNERACION { get; set; }
 
         /// <summary>
         /// valor decimal extra fija
         /// </summary>
+        /// 
+        
         [DisplayName("Extra Fija")]
+        [Required(ErrorMessage = "Extra Fija requerido")]
         public decimal EXTRA_FIJA { get; set; }
 
         /// <summary>
         /// valor decimal recargo nocturno
         /// </summary>
+        /// 
+
+        
         [DisplayName("Recargo Nocturno")]
+        [Required(ErrorMessage = "Recargo Nocturno requerido")]
         public decimal RECARGO_NOCTURNO { get; set; }
 
         /// <summary>
         /// medio de trasporte valor decimal
         /// </summary>
+        /// 
+        
         [DisplayName("Medio de transporte")]
+        [Required(ErrorMessage = "Medio de transporte requerido")]
         public decimal MEDIO_TRANSPORTE { get; set; }
 
         /// <summary>
         /// salario total
         /// </summary>
+        /// 
+
+
+
+        //[DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = true)] formatea los numeros
         [DisplayName("Salario Total")]
         public decimal SALARIO_TOTAL { get; set; }
 
         /// <summary>
         /// valor decimal bono anual 
         /// </summary>
+        /// 
+        
         [DisplayName("Bono anual")]
+        [Required(ErrorMessage = "Bono anual requerido")]
         public decimal BONO_ANUAL { get; set; }
 
         /// <summary>
         /// numero de salarios
         /// </summary>
         [DisplayName("Número Salarios")]
+        [Required(ErrorMessage = "Número Salarios requerido")]
         public int NUMERO_SALARIOS { get; set; }
 
         /// <summary>
         /// meses garantizados
         /// </summary>
         [DisplayName("Meses Garantizados")]
+        [Required(ErrorMessage = "Meses Garantizados requerido")]
         public int MESES_GARANTIZADOS { get; set; }
 
         /// <summary>
@@ -423,17 +461,24 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// valor decimal factor prestacional
         /// </summary>
         [DisplayName("Factor Prestacional")]
+        [Required(ErrorMessage = "Factor Prestacional requerido")]
         public decimal FACTOR_PRESTACIONAL { get; set; }
 
         /// <summary>
         /// ingreso promedio mensual 
         /// </summary>
+        /// 
+
+        
         [DisplayName("Ingreso Promedio Mensual")]
-        public decimal INGRESO_PROM_MENSUAL { get; set; }
+        public decimal INGRESO_PROM_MENSUAL{ get; set; }
 
         /// <summary>
         /// ingreso promedio anual
         /// </summary>
+        /// 
+
+        
         [DisplayName("Ingreso Promedio Anual")]
         public decimal INGRESO_PROM_ANUAL { get; set; }
 
@@ -490,5 +535,13 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         [Required(ErrorMessage = "El motivo de rechazo es requerido")]
         [DisplayName("Motivo de rechazo")]
         public string MOTIVO_RECHAZO { get; set; }
+
+        public List<VALIDACION_ERRORES_ViewModel> LIST_VALIDACION_ERRORES { get; set; }
+    }
+    public class VALIDACION_ERRORES_ViewModel
+    {
+        public string Campo { get; set; }
+
+        public string Error { get; set; }
     }
 }

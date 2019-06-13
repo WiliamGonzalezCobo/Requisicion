@@ -15,9 +15,18 @@
         <div class="span-icon-arrow div-span-collapseInfoGeneralLic">
             <span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>
         </div>
-        <a class="a-collapse" data-toggle="collapse" href="#collapseInfoGeneralLic">
-            <h2>Información Empleado</h2>
-        </a>
+        @if (User.IsInRole(SettingsManager.PerfilJefe) || User.IsInRole(SettingsManager.PerfilController))
+        {
+            <a class="a-collapse">
+                <h2>Información Empleado</h2>
+            </a>
+        }
+        else
+        {
+            <a class="a-collapse" data-toggle="collapse" href="#collapseInfoGeneralLic">
+                <h2>Información Empleado</h2>
+            </a>
+        }
     </div>
     <div id="collapseInfoGeneralLic" class="panel-collapse collapse">
 
@@ -61,30 +70,62 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="form-group col-md-6 col-sm-12">
-                @Html.LabelFor(model => model.FECHA_INICIO, new { @class = "letrasFormulario" })
-                <div class="input-group date datepicker-retiro">
-                    @Html.EditorFor(model => model.FECHA_INICIO, new { htmlAttributes = new { @class = "form-control datepicker letrasFormulario", placeholder = "Desde", @Value = Model.FECHA_INICIO.Year.Equals(1) ? DateTime.Now.ToShortDateString() : Model.FECHA_INICIO.ToShortDateString() } })
-                    <span class="input-group-addon">
-                        <span class="fas fa-calendar-alt" style="pointer-events:none">
+        @if (User.IsInRole(SettingsManager.PerfilJefe))
+        {
+            <div class="row">
+                <div class="form-group col-md-6 col-sm-12">
+                    @Html.LabelFor(model => model.FECHA_INICIO, new { @class = "letrasFormulario" })
+                    <div class="input-group date datepicker-retiro">
+                        @Html.EditorFor(model => model.FECHA_INICIO, new { htmlAttributes = new { @class = "form-control datepicker letrasFormulario", placeholder = "Desde", @Value = Model.FECHA_INICIO.Year.Equals(1) ? DateTime.Now.ToShortDateString() : Model.FECHA_INICIO.ToShortDateString() } })
+                        <span class="input-group-addon">
+                            <span class="fas fa-calendar-alt" style="pointer-events:none">
+                            </span>
                         </span>
-                    </span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.FECHA_INICIO)
                 </div>
-                @Html.ValidationMessageFor(model => model.FECHA_INICIO)
-            </div>
-            <div class="form-group col-md-6 col-sm-12">
-                @Html.LabelFor(model => model.FECHA_FIN, new { @class = "letrasFormulario" })
-                <div class="input-group date datepicker-retiro">
-                    @Html.EditorFor(model => model.FECHA_FIN, new { htmlAttributes = new { @class = "form-control datepicker letrasFormulario", placeholder = "Hasta", @Value = Model.FECHA_FIN.Year.Equals(1) ? DateTime.Now.ToShortDateString() : Model.FECHA_FIN.ToShortDateString() } })
-                    <span class="input-group-addon">
-                        <span class="fas fa-calendar-alt" style="pointer-events:none">
+                <div class="form-group col-md-6 col-sm-12">
+                    @Html.LabelFor(model => model.FECHA_FIN, new { @class = "letrasFormulario" })
+                    <div class="input-group date datepicker-retiro">
+                        @Html.EditorFor(model => model.FECHA_FIN, new { htmlAttributes = new { @class = "form-control datepicker letrasFormulario", placeholder = "Hasta", @Value = Model.FECHA_FIN.Year.Equals(1) ? DateTime.Now.ToShortDateString() : Model.FECHA_FIN.ToShortDateString() } })
+                        <span class="input-group-addon">
+                            <span class="fas fa-calendar-alt" style="pointer-events:none">
+                            </span>
                         </span>
-                    </span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.FECHA_FIN)
                 </div>
-                @Html.ValidationMessageFor(model => model.FECHA_FIN)
             </div>
-        </div>
+        }
+        else
+        {
+
+            <div class="row">
+                <div class="form-group col-md-6 col-sm-12">
+                    @Html.LabelFor(model => model.FECHA_INICIO, new { @class = "letrasFormulario" })
+                    <div class="input-group date datepicker-retiro">
+                        @Html.EditorFor(model => model.FECHA_INICIO, new { htmlAttributes = new { @class = "form-control datepicker letrasFormulario", placeholder = "Desde", @Value = Model.FECHA_INICIO.Year.Equals(1) ? DateTime.Now.ToShortDateString() : Model.FECHA_INICIO.ToShortDateString(), disabled = deshabilitar } })
+                        <span class="input-group-addon">
+                            <span class="fas fa-calendar-alt" style="pointer-events:none">
+                            </span>
+                        </span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.FECHA_INICIO)
+                </div>
+                <div class="form-group col-md-6 col-sm-12">
+                    @Html.LabelFor(model => model.FECHA_FIN, new { @class = "letrasFormulario" })
+                    <div class="input-group date datepicker-retiro">
+                        @Html.EditorFor(model => model.FECHA_FIN, new { htmlAttributes = new { @class = "form-control datepicker letrasFormulario", placeholder = "Hasta", @Value = Model.FECHA_FIN.Year.Equals(1) ? DateTime.Now.ToShortDateString() : Model.FECHA_FIN.ToShortDateString(), disabled = deshabilitar } })
+                        <span class="input-group-addon">
+                            <span class="fas fa-calendar-alt" style="pointer-events:none">
+                            </span>
+                        </span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.FECHA_FIN)
+                </div>
+            </div>
+
+        }
     </div>
 </section>
 <style>
@@ -121,4 +162,11 @@
     $("#collapseInfoGeneralLic").on("show.bs.collapse", function () {
         $(".div-span-collapseInfoGeneralLic").html('<span class="span-collapse"><i class="fas fa-chevron-up arrow-collapse"></i></span>');
     });
+    
+    var perfilJefe = "@User.IsInRole(SettingsManager.PerfilJefe).ToString()";
+    var perfilController = "@User.IsInRole(SettingsManager.PerfilController).ToString()";
+    if (perfilJefe.toString() == "True" || perfilController.toString() == "True")
+    {
+        $("#collapseInfoGeneralLic").addClass('show');
+    }
 </script>
