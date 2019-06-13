@@ -75,39 +75,38 @@
                     @Html.ValidationMessageFor(model => model.ORDEN)
                 </div>
 
-                <div class="form-group col-md-6 col-sm-12 buscadorC">
-                    @Html.LabelFor(model => model.COD_CECO, new { @class = "letrasFormulario" })
-                    <br />
-                    @if (Model.NOMBRE_CECO == null && Model.COD_CECO == 0)
-                    {
-                        <input class="buscador_ceco letrasFormulario" id="input_ceco" name="input_ceco" type="text" placeholder="  Nombre CECO">
-                        @Html.ValidationMessageFor(model => model.COD_CECO, "", new { @class = "text-danger" })
-                        <input id="COD_CECO" name="COD_CECO" type="hidden">
+                    <div class="form-group col-md-6 col-sm-12 buscadorC">
+                        @Html.LabelFor(model => model.COD_CECO, new { @class = "letrasFormulario" })
+                        <br />
+                        @if (Model.NOMBRE_CECO == null && Model.COD_CECO == 0)
+                        {
+                            @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco letrasFormulario", placeholder = "Nombre CECO", onkeyup = "buscarFiltro(this.value)" })
+                            @Html.HiddenFor(model => model.COD_CECO)
+                            @Html.ValidationMessageFor(model => model.NOMBRE_CECO, "", new { @class = "text-danger" })
+                        }
+                        else
+                        {
+                            @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco letrasFormulario", placeholder = "Nombre CECO", onkeyup = "buscarFiltro(this.value)" })
+                            @Html.HiddenFor(model => model.COD_CECO)
+                            @Html.ValidationMessageFor(model => model.NOMBRE_CECO, "", new { @class = "text-danger" })
+                        }
+                        <br>
+                        <ul class="list-group buscador_modificaciones_deplegable_esconder" id="myListCeco">
+                            @foreach (SelectListItem item in _BUSCAR_NOMBRE_CECO)
+                            {
+                                <li class="list-group-item item_lista_modificar letrasFormulario" onclick="AgarrarValorFiltroCeco('@item.Text','@item.Value')">@item.Text</li>
+                            }
+                        </ul>
+                    </div>
                     }
                     else
                     {
-                        <input class="buscador_ceco letrasFormulario" id="input_ceco" name="input_ceco" type="text" placeholder="  Nombre CECO" value="@Model.NOMBRE_CECO">
-                        @Html.ValidationMessageFor(model => model.COD_CECO, "", new { @class = "text-danger" })
-                        <input id="COD_CECO" name="COD_CECO" type="hidden" value="@Model.COD_CECO">
-                    }
-                    <span id="BuscadorCeco" class="ceco-btn fas fa-search"></span>
-                    <br>
-                    <ul class="list-group buscador_modificaciones_deplegable_esconder" id="myListCeco">
-                        @foreach (SelectListItem item in _BUSCAR_NOMBRE_CECO)
-                        {
-                            <li class="list-group-item item_lista_modificar letrasFormulario" onclick="AgarrarValorFiltroCeco('@item.Text','@item.Value')">@item.Text</li>
-                        }
-                    </ul>
-                </div>
-            }
-            else
-            {
-                <div class="form-group col-md-6 col-sm-12">
-                    @Html.LabelFor(model => model.ORDEN, new { @class = "letrasFormulario" })
-                    @Html.TextBoxFor(model => model.ORDEN, new { @class = "form-control TexboxIncicial", disabled = deshabilitar })
-                    @Html.HiddenFor(model => model.ORDEN)
-                    @Html.ValidationMessageFor(model => model.ORDEN)
-                </div>
+                    <div class="form-group col-md-6 col-sm-12">
+                        @Html.LabelFor(model => model.ORDEN, new { @class = "letrasFormulario" })
+                        @Html.TextBoxFor(model => model.ORDEN, new { @class = "form-control TexboxIncicial", disabled = deshabilitar })
+                        @Html.HiddenFor(model => model.ORDEN)
+                        @Html.ValidationMessageFor(model => model.ORDEN)
+                    </div>
 
                 <div class="form-group col-md-6 col-sm-12">
                     @Html.LabelFor(model => model.COD_CECO, new { @class = "letrasFormulario" })
@@ -138,14 +137,13 @@
                             <li class="list-group-item item_lista_modificar letrasFormulario" onclick="AgarrarValorFiltro('@item.Text','@item.Value')">@item.Text<br /> @item.Value</li>
                         }
 
-                    </ul>
-
-                    <div class="row">
-                        <div class="form-group col-md-6 col-sm-6">
-                            @Html.LabelFor(model => model.NOMBRE_EMPLEADO, new { @class = "letrasFormulario" })
-                            @Html.TextBoxFor(model => model.NOMBRE_EMPLEADO, new { @class = "form-control TexboxIncicial letrasFormulario" })
-                            @Html.ValidationMessageFor(model => model.NOMBRE_EMPLEADO)
-                        </div>
+                        </ul>
+                        <div class="row">
+                            <div class="form-group col-md-6 col-sm-6">
+                                @Html.LabelFor(model => model.NOMBRE_EMPLEADO, new { @class = "letrasFormulario" })
+                                @Html.TextBoxFor(model => model.NOMBRE_EMPLEADO, new { @class = "form-control TexboxIncicial letrasFormulario" })
+                                @Html.ValidationMessageFor(model => model.NOMBRE_EMPLEADO)
+                            </div>
 
                         <div class="form-group col-md-6 col-sm-6">
                             @Html.LabelFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, new { @class = "letrasFormulario" })
@@ -226,13 +224,6 @@
             $(".div-span-collapse2").html('<span class="span-collapse"><i class="fas fa-chevron-up arrow-collapse"></i></span>');
         });
 
-        $("#BuscadorCeco").on("click", function () {
-            var value = $("#input_ceco").val().toLowerCase();
-            $("#myListCeco li").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-
         var perfilJefe = "@User.IsInRole(SettingsManager.PerfilJefe).ToString()";
         var perfilController = "@User.IsInRole(SettingsManager.PerfilController).ToString()";
         if (perfilJefe.toString() == "True" || perfilController.toString() == "True")
@@ -240,6 +231,13 @@
             $("#collapse2").addClass('show');
         }
     });
+
+    function buscarFiltro(value) {
+        //var value = $("#input_ceco").val().toLowerCase();
+        $("#myListCeco li").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    }
 
     var validateForm = function () {
         if ($('#COD_TIPO_NECESIDAD').val() == "" && $('#COD_CARGO').val() == "" && $('#ORDEN').val() == "") {
@@ -265,7 +263,7 @@
     }
 
     function AgarrarValorFiltroCeco(texto, valor) {
-        $("#input_ceco").val(texto);
+        $("#NOMBRE_CECO").val(texto);
         $("#COD_CECO").val(valor);
         $("#myListCeco").removeClass("buscador_modificaciones_deplegable_ceco").addClass("buscador_modificaciones_deplegable_esconder");
     }

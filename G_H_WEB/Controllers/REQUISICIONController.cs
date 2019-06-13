@@ -20,12 +20,12 @@ namespace G_H_WEB.Controllers
     {
         private LOG_CENTRALIZADO logCentralizado = new LOG_CENTRALIZADO(LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType));
 
-        public ActionResult Index()
+        public ActionResult ConsultarRequisiciones()
         {
             List<REQUISICIONViewModel> listaRequisicionesModel = null;
             try
             {
-                logCentralizado.INICIANDO_LOG("CTRREQ1", "Index");
+                logCentralizado.INICIANDO_LOG("CTRREQ1", "ConsultarRequisiciones");
                 // seccion filtro principal y consulta principal inicio
                 FILTROREQUISICION _filtro = new FILTROREQUISICION();
                 _filtro.idUsuario = User.Identity.GetUserId();
@@ -41,13 +41,13 @@ namespace G_H_WEB.Controllers
                 ViewBag.valorSeleccionado = _filtro.cod_estado_requisicion == null ? "" : _filtro.cod_estado_requisicion.ToString();
                 // seccion ViewBag fin
 
-                logCentralizado.FINALIZANDO_LOG("CTRREQ1", "Index");
+                logCentralizado.FINALIZANDO_LOG("CTRREQ1", "ConsultarRequisiciones");
             }
             catch (Exception ex)
             {
                 ViewBag.Error = new ERROR_GENERAL_ViewModel()
                 {
-                    COD_ERROR = logCentralizado.CAPTURA_EXCEPCION("CTRREQ1", "Index", ex),
+                    COD_ERROR = logCentralizado.CAPTURA_EXCEPCION("CTRREQ1", "ConsultarRequisiciones", ex),
                     DETALLE = "Error al consultar las requisiciones"
                 };
             }
@@ -99,12 +99,12 @@ namespace G_H_WEB.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: REQUISICION/Create
-        public ActionResult Create(int? idTipo)
+        // GET: REQUISICION/Crear
+        public ActionResult Crear(int? idTipo)
         {
             try
             {
-                logCentralizado.INICIANDO_LOG("CTRREQ4", "Create");
+                logCentralizado.INICIANDO_LOG("CTRREQ4", "Crear");
                 ViewBag.idTipo = idTipo;
                 //Session["requisicion"] = idTipo;
                 if (idTipo == SettingsManager.CodTipoReqPresupuestada)
@@ -124,14 +124,14 @@ namespace G_H_WEB.Controllers
                     return RedirectToAction("Consultar", "LICENCIA_INCAPACIDAD", new { _idTipo = idTipo });
                 }
 
-                logCentralizado.FINALIZANDO_LOG("CTRREQ4", "Create");
+                logCentralizado.FINALIZANDO_LOG("CTRREQ4", "Crear");
 
             }
             catch (Exception ex)
             {
                 ViewBag.Error = new ERROR_GENERAL_ViewModel()
                 {
-                    COD_ERROR = logCentralizado.CAPTURA_EXCEPCION("CTRREQ4", "Create", ex),
+                    COD_ERROR = logCentralizado.CAPTURA_EXCEPCION("CTRREQ4", "Crear", ex),
                     DETALLE = "error al crear una requisicion"
                 };
             }
@@ -228,6 +228,30 @@ namespace G_H_WEB.Controllers
             }
 
             return Json(datosmodificacion, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ConsultarUsuario()
+        {
+            List<CONSULTA_USUARIO_ENTIDAD> datosUsuario = null;
+            try
+            {
+                logCentralizado.INICIANDO_LOG("CTRREQ8", "ConsultarUsuario");
+
+                string COD_USUARIO = User.Identity.GetUserId();
+                datosUsuario = new LOGICA_REQUISICION().CONSULTA_USUARIOS(COD_USUARIO);
+
+                logCentralizado.FINALIZANDO_LOG("CTRREQ7", "ConsultarModificaciones");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = new ERROR_GENERAL_ViewModel()
+                {
+                    COD_ERROR = logCentralizado.CAPTURA_EXCEPCION("CTRREQ8", "ConsultarUsuario", ex),
+                    DETALLE = "error al consultar datos del usuario"
+                };
+            }
+
+            return Json(datosUsuario, JsonRequestBehavior.AllowGet);
         }
     }
 }

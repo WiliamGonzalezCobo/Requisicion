@@ -98,6 +98,7 @@
 
 .dropdown-toggle::after {
     color: white !important;
+    display: none !important;
 }
 
 .dropdown-toggle:focus {

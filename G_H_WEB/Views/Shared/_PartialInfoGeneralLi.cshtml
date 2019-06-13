@@ -12,51 +12,64 @@
         </div>
         @if (User.IsInRole(SettingsManager.PerfilJefe) || User.IsInRole(SettingsManager.PerfilController))
         {
-            <a class="a-collapse">
-                <h2>Información General Empleado</h2>
-            </a>
+        <a class="a-collapse">
+            <h2>Información General Empleado</h2>
+        </a>
         }
         else
         {
-            <a class="a-collapse" data-toggle="collapse" href="#collapseInfoGeneralIncap">
-                <h2>Información General Empleado</h2>
-            </a>
+        <a class="a-collapse" data-toggle="collapse" href="#collapseInfoGeneralIncap">
+            <h2>Información General Empleado</h2>
+        </a>
         }
         <span class="span_infoGeneralLi" style="visibility:hidden"><i class="fas fa-exclamation-circle" style="color:darkorange"></i></span>
     </div>
-    <div id="collapseInfoGeneralIncap" class="panel-collapse collapse">
-        <div class="row">
-            <div class="form-group col-md-12 col-xs-12">
-                @Html.LabelFor(model => model.NOMBRE_CARGO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_CARGO, Model.LIST_NOMBRE_CARGO, "Seleccione", new { @class = "form-control combosGrandes letrasFormulario" })
-                @Html.ValidationMessageFor(model => model.COD_CARGO, "", new { @class = "text-danger" })
+        <div id="collapseInfoGeneralIncap" class="panel-collapse collapse">
+            <div class="row">
+
+                @if (User.IsInRole(SettingsManager.PerfilJefe))
+                {
+                    <div class="form-group col-md-12 col-xs-12">
+                        @Html.LabelFor(model => model.NOMBRE_CARGO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+                        @Html.DropDownListFor(model => model.COD_CARGO, Model.LIST_NOMBRE_CARGO, "Seleccione", new { @class = "form-control combosGrandes letrasFormulario" })
+                        @Html.ValidationMessageFor(model => model.COD_CARGO, "", new { @class = "text-danger" })
+                    </div>
+
+                }
+                else
+                {
+
+                    <div class="form-group col-md-12 col-xs-12">
+                        @Html.LabelFor(model => model.NOMBRE_CARGO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+                        @Html.DropDownListFor(model => model.COD_CARGO, Model.LIST_NOMBRE_CARGO, "Seleccione", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                        @Html.ValidationMessageFor(model => model.COD_CARGO, "", new { @class = "text-danger" })
+                    </div>
+                }
+                <div class="form-group col-md-12 col-xs-12">
+                    @Html.LabelFor(model => model.LIST_NOMBRE_GERENCIA, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+                    @Html.DropDownListFor(model => model.COD_GERENCIA, Model.LIST_NOMBRE_GERENCIA, "Seleccione ", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                    @Html.HiddenFor(model => model.COD_GERENCIA, new { @Id = "hdCOD_GERENCIA" })
+                    @Html.ValidationMessageFor(model => model.LIST_NOMBRE_GERENCIA, "", new { @class = "text-danger" })
+                </div>
             </div>
-            <div class="form-group col-md-12 col-xs-12">
-                @Html.LabelFor(model => model.LIST_NOMBRE_GERENCIA, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_GERENCIA, Model.LIST_NOMBRE_GERENCIA, "Seleccione ", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
-                @Html.HiddenFor(model => model.COD_GERENCIA, new { @Id = "hdCOD_GERENCIA" })
-                @Html.ValidationMessageFor(model => model.LIST_NOMBRE_GERENCIA, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="row">
-            @if (User.IsInRole(SettingsManager.PerfilJefe))
-            {
+            <div class="row">
+                @if (User.IsInRole(SettingsManager.PerfilJefe))
+                {
                 <div class="form-group col-md-12 col-xs-12 buscadorC">
                     @Html.LabelFor(model => model.COD_CECO, new { @class = "control-label col-md-12 letrasFormulario" })
                     <br />
                     @if (Model.NOMBRE_CECO == null && Model.COD_CECO == 0)
                     {
-                        <input class="buscador_ceco_gene letrasFormulario" id="input_ceco" name="input_ceco" type="text" placeholder="  Nombre CECO">
-                        @Html.ValidationMessageFor(model => model.COD_CECO, "", new { @class = "text-danger" })
-                        <input id="COD_CECO" name="COD_CECO" type="hidden">
+                        @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco_gene letrasFormulario", placeholder = "Nombre CECO", onkeyup = "buscarFiltro(this.value)" })
+                        @Html.HiddenFor(model => model.COD_CECO)
+                        @Html.ValidationMessageFor(model => model.NOMBRE_CECO, "", new { @class = "text-danger" })                        
                     }
                     else
                     {
-                        <input class="buscador_ceco_gene letrasFormulario" id="input_ceco" name="input_ceco" type="text" placeholder="  Nombre CECO" value="@Model.NOMBRE_CECO">
-                        @Html.ValidationMessageFor(model => model.COD_CECO, "", new { @class = "text-danger" })
-                        <input id="COD_CECO" name="COD_CECO" type="hidden" value="@Model.COD_CECO">
-                    }
-                    <span id="BuscadorCeco" class="cecogen-btn fas fa-search"></span>
+                        @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco_gene letrasFormulario", placeholder = "Nombre CECO", onkeyup = "buscarFiltro(this.value)" })
+                        @Html.HiddenFor(model => model.COD_CECO)
+                        @Html.ValidationMessageFor(model => model.NOMBRE_CECO, "", new { @class = "text-danger" })                        
+                    }           
                     <br>
                     <ul class="list-group buscador_modificaciones_deplegable_esconder" id="myListCeco" style="margin-bottom: 0px !important">
                         @foreach (SelectListItem item in _BUSCAR_NOMBRE_CECO)
@@ -74,81 +87,116 @@
                     @Html.HiddenFor(model => model.COD_CECO)
                     @Html.ValidationMessageFor(model => model.COD_CECO)
                 </div>
-            }
-            <div class="form-group col-md-12 col-xs-12 ">
-                @Html.LabelFor(model => model.LIST_NOMBRE_SOCIEDAD, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_SOCIEDAD, Model.LIST_NOMBRE_SOCIEDAD, "Selecione ", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
-                @Html.HiddenFor(model => model.COD_SOCIEDAD, new { @Id = "hdCOD_SOCIEDAD" })
-                @Html.ValidationMessageFor(model => model.COD_SOCIEDAD, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-12 col-xs-12 ">
-                @Html.LabelFor(model => model.LIST_NOMBRE_EQIPO_VENTAS, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_EQUIPO_VENTAS, Model.LIST_NOMBRE_EQIPO_VENTAS, "Seleccione ", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
-                @Html.HiddenFor(model => model.COD_EQUIPO_VENTAS, new { @Id = "hdCOD_EQUIPO_VENTAS" })
-                @Html.ValidationMessageFor(model => model.COD_EQUIPO_VENTAS, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-md-12 col-xs-12 ">
-                @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA_ED, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, Model.LIST_NOMBRE_CATEGORIA_ED, "Seleccione ", new { @class = "form-control col-md-11 combosGrandes letrasFormulario", disabled = deshabilitar })
-                <span id="NOMBRE_CATEGORIA_ED_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-                @Html.HiddenFor(model => model.COD_CATEGORIA_ED, new { @Id = "hdCOD_CATEGORIA_ED" })
-                @Html.ValidationMessageFor(model => model.COD_CATEGORIA_ED, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-12 col-xs-12 ">
-                @*@Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.EditorFor(model => model.CARGO_CRITICO, new { @class = "form-control", disabled = deshabilitar })
-                    @Html.CheckBoxFor(model => model.CARGO_CRITICO, new { @disabled = deshabilitar })
-                    @Html.HiddenFor(model => model.CARGO_CRITICO, new { @Id = "hdCARGO_CRITICO" })
-                    @Html.ValidationMessageFor(model => model.CARGO_CRITICO, "", new { @class = "text-danger" })*@
-
-                @Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.CARGO_CRITICO, new { @class = "form-control col-md-11 combosGrandes letrasFormulario" })
-                    @Html.ValidationMessageFor(model => model.CARGO_CRITICO, "", new { @class = "text-danger" })
+                }
+                <div class="form-group col-md-12 col-xs-12 ">
+                    @Html.LabelFor(model => model.LIST_NOMBRE_SOCIEDAD, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+                    @Html.DropDownListFor(model => model.COD_SOCIEDAD, Model.LIST_NOMBRE_SOCIEDAD, "Selecione ", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                    @Html.HiddenFor(model => model.COD_SOCIEDAD, new { @Id = "hdCOD_SOCIEDAD" })
+                    @Html.ValidationMessageFor(model => model.COD_SOCIEDAD, "", new { @class = "text-danger" })
                 </div>
-                @Html.HiddenFor(model => model.CARGO_CRITICO, new { @Id = "hdCARGO_CRITICO" })
             </div>
-            <div class="form-group col-md-12 col-xs-12 ">
-                @Html.LabelFor(model => model.POSICION, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                @Html.EditorFor(model => model.POSICION, new { htmlAttributes = new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar } })
-                @Html.HiddenFor(model => model.POSICION, new { @Id = "hdPOSICION" })
-                @Html.ValidationMessageFor(model => model.POSICION, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="form-group col-md-12 col-xs-12 ">
+                    @Html.LabelFor(model => model.LIST_NOMBRE_EQIPO_VENTAS, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+                    @Html.DropDownListFor(model => model.COD_EQUIPO_VENTAS, Model.LIST_NOMBRE_EQIPO_VENTAS, "Seleccione ", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                    @Html.HiddenFor(model => model.COD_EQUIPO_VENTAS, new { @Id = "hdCOD_EQUIPO_VENTAS" })
+                    @Html.ValidationMessageFor(model => model.COD_EQUIPO_VENTAS, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-12 col-xs-12 ">
+                    @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA_ED, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+                    @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, Model.LIST_NOMBRE_CATEGORIA_ED, "Seleccione ", new { @class = "form-control col-md-11 combosGrandes letrasFormulario", disabled = deshabilitar })
+                    <span id="NOMBRE_CATEGORIA_ED_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                    @Html.HiddenFor(model => model.COD_CATEGORIA_ED, new { @Id = "hdCOD_CATEGORIA_ED" })
+                    @Html.ValidationMessageFor(model => model.COD_CATEGORIA_ED, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+
+                @if (User.IsInRole(SettingsManager.PerfilJefe))
+                {
+                <div class="form-group col-md-12 col-xs-12 ">
+
+                    @Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "letrasFormulario" })
+                  
+                        <spam class="CheckboxPadding">
+                            <input type="checkbox" class="checkboxSI"  />
+                            <label class="letrasFormulario" for="radio1">Si</label>
+                        </spam>
+                        <spam class="CheckboxPadding">
+                            <input type="checkbox"  class="checkboxNO"  />
+                            <label class="letrasFormulario" for="radio2">No</label>
+                        </spam>
+                
+                   
+
+                   @Html.HiddenFor(model => model.CARGO_CRITICO, new { @Id = "hdCARGO_CRITICO" })
+                </div>
+
+                }
+                else
+                {
+                <div class="form-group col-md-12 col-xs-12">
+                    @Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "letrasFormulario" })
+                    @if (Model.CARGO_CRITICO == true)
+                    {
+                        <spam class="CheckboxPadding">
+                            <input type="checkbox" checked="checked" disabled="disabled" />
+                            <label class="letrasFormulario" for="radio1">Si</label>
+                        </spam>
+                        <spam class="CheckboxPadding">
+                            <input type="checkbox" disabled="disabled" />
+                            <label class="letrasFormulario" for="radio2">No</label>
+                        </spam>
+                    }
+                    else
+                    {
+                        <spam class="CheckboxPadding">
+                            <input type="checkbox" disabled="disabled" />
+                            <label class="letrasFormulario" for="radio1">Si</label>
+                        </spam>
+                        <spam class="CheckboxPadding">
+                            <input type="checkbox" checked="checked" disabled="disabled" />
+                            <label class="letrasFormulario" for="radio2">No</label>
+                        </spam>
+                    }
+                </div>
+                }
+
+                <div class="form-group col-md-12 col-xs-12 ">
+                    @Html.LabelFor(model => model.POSICION, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+                    @Html.EditorFor(model => model.POSICION, new { htmlAttributes = new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar } })
+                    @Html.HiddenFor(model => model.POSICION, new { @Id = "hdPOSICION" })
+                    @Html.ValidationMessageFor(model => model.POSICION, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 <script>
     var cantInfoGeneralLi = 1;
-    var validateInfoIncap = true;
-    var validateFormInfoGeneralIncap = function () {
-        if ($('#COD_CECO').val() == "" &&
-            $('#POSICION').val() == "") {
-            validateInfoIncap = false;
-        } else {
-            validateInfoIncap = true;
+        var validateInfoIncap = true;
+        var validateFormInfoGeneralIncap = function () {
+            if ($('#COD_CECO').val() == "" &&
+                $('#POSICION').val() == "") {
+                validateInfoIncap = false;
+            } else {
+                validateInfoIncap = true;
+            }
+            console.log('validateInfoIncap ', validateInfoIncap);
+            return validateInfoIncap;
         }
-        console.log('validateInfoIncap ', validateInfoIncap);
-        return validateInfoIncap;
-    }
 
-    $(document).ready(function () {
-        $("#BuscadorCeco").on("click", function () {
-            var value = $("#input_ceco").val().toLowerCase();
+        function buscarFiltro(value) {
+            //var value = $("#input_ceco").val().toLowerCase();
             $("#myListCeco li").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
-        });
-    });
+        }
 
-    function AgarrarValorFiltroCeco(texto, valor) {
-        $("#input_ceco").val(texto);
-        $("#COD_CECO").val(valor);
-        $("#myListCeco").removeClass("buscador_modificaciones_deplegable").addClass("buscador_modificaciones_deplegable_esconder");
-    }
+        function AgarrarValorFiltroCeco(texto, valor) {
+            $("#NOMBRE_CECO").val(texto);
+            $("#COD_CECO").val(valor);
+            $("#myListCeco").removeClass("buscador_modificaciones_deplegable").addClass("buscador_modificaciones_deplegable_esconder");
+        }
 
     $(".buscadorC").focusin(function () {
         $("#myListCeco").removeClass("buscador_modificaciones_deplegable_esconder").addClass("buscador_modificaciones_deplegable");
