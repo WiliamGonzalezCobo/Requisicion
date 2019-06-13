@@ -111,6 +111,7 @@
                     <label class="letrasFormulario" for="radio2">No</label>
                 </spam>
                 }
+                @Html.HiddenFor(model => model.CARGO_CRITICO)
 
             </div>
         </div>
@@ -122,60 +123,60 @@
                 <div class="col-md-12 row">
                     @foreach (var jornada in Model.LIST_NOMBRE_JORNADA_LABORAL)
                     {
-                    if (jornada.Text == "TIEMPO PARCIAL")
-                    {
-                    <div class="col-md-3 col-lg-3 col-xl-3">
-                        <a class="alineas">
-                            <div class="col-12 rectangle_Jornada">
-                                <div class="col-12 RB">
-                                    @Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) <br />
-                                </div>
-                                <div class="col-12 Img">
-                                    <img src="../../assets/img/TiempoParcial.svg" class="img-responsive maxImagen" />
-                                    <div class="text">Tiempo parcial</div>
-                                </div>
+                        if (jornada.Text == "TIEMPO PARCIAL")
+                        {
+                            <div class="col-md-3 col-lg-3 col-xl-3">
+                                <a class="alineas">
+                                    <div class="col-12 rectangle_Jornada">
+                                        <div class="col-12 RB">
+                                            @Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) <br />
+                                        </div>
+                                        <div class="col-12 Img">
+                                            <img src="../../assets/img/TiempoParcial.svg" class="img-responsive maxImagen" />
+                                            <div class="text">Tiempo parcial</div>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                    }
-                    if (jornada.Text == "MEDIO TIEMPO")
-                    {
-                    <div class="col-md-3 col-lg-3 col-xl-3">
-                        <a class="alineas">
-                            <div class="col-12 rectangle_Jornada">
-                                <div class="col-12 RB">
-                                    @Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) <br />
-                                </div>
-                                <div class="col-12 Img">
-                                    <img src="../../assets/img/TiempoMedio.png" class="img-responsive maxImagen" />
-                                    <div class="text">Medio tiempo</div>
-                                </div>
+                        }
+                        if (jornada.Text == "MEDIO TIEMPO")
+                        {
+                            <div class="col-md-3 col-lg-3 col-xl-3">
+                                <a class="alineas">
+                                    <div class="col-12 rectangle_Jornada">
+                                        <div class="col-12 RB">
+                                            @Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) <br />
+                                        </div>
+                                        <div class="col-12 Img">
+                                            <img src="../../assets/img/TiempoMedio.png" class="img-responsive maxImagen" />
+                                            <div class="text">Medio tiempo</div>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                    }
-                    if (jornada.Text == "TIEMPO COMPLETO")
-                    {
-                    <div class="col-md-3 col-lg-3 col-xl-3">
-                        <a class="alineas">
-                            <div class="col-12 rectangle_Jornada">
-                                <div class="col-12 RB">
-                                    @Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) <br />
-                                </div>
-                                <div class="col-12 Img">
-                                    <img src="../../assets/img/TiempoCompleto.png" class="img-responsive maxImagen" />
-                                    <div class="text">Tiempo completo</div>
-                                </div>
+                        }
+                        if (jornada.Text == "TIEMPO COMPLETO")
+                        {
+                            <div class="col-md-3 col-lg-3 col-xl-3">
+                                <a class="alineas">
+                                    <div class="col-12 rectangle_Jornada">
+                                        <div class="col-12 RB">
+                                            @Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) <br />
+                                        </div>
+                                        <div class="col-12 Img">
+                                            <img src="../../assets/img/TiempoCompleto.png" class="img-responsive maxImagen" />
+                                            <div class="text">Tiempo completo</div>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                    }
+                        }
+                        @Html.HiddenFor(model => model.COD_JORNADA_LABORAL)
 
 
 
-
-                    @*@Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) @jornada.Text
-                    @Html.HiddenFor(m => m.COD_JORNADA_LABORAL)*@
+                        @*@Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) @jornada.Text
+            @Html.HiddenFor(m => m.COD_JORNADA_LABORAL)*@
                     }
                 </div>
                 @Html.ValidationMessageFor(model => model.COD_JORNADA_LABORAL)

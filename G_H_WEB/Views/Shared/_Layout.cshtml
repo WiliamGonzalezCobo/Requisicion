@@ -73,7 +73,7 @@
                 !/Invalid|NaN/.test(new Date(miDate[2], iMes.toString(), miDate[0]));
         }
         $('#ModalCreacionNoJefe, #modalValidaErrorRequisicion').click(function () {
-             window.location.href = '@Url.Action("Index", "REQUISICION")';
+             window.location.href = '@Url.Action("ConsultarRequisiciones", "REQUISICION")';
         });
 
 
@@ -85,6 +85,29 @@
             debugger;
             $('#modalValidaRechazo').modal({ show: true });
         });
+
+        $(document).ready(function () {
+            ConsultarUsuario();
+        });
+
+        function ConsultarUsuario()
+        {
+            $.ajax({
+                url: "@Url.Action("ConsultarUsuario", "REQUISICION")",
+                type: 'POST',
+                data: null,
+                success: function (respuesta) {
+                    $.each(respuesta, function (key, value) {
+                        $("#nombre").html(value.NOMBRE)
+                        $("#rol").html(value.ROL)
+                    });                   
+                },
+                error: function (er) {
+                    $("#nombre").html('')
+                    $("#rol").html('')
+                }
+            });
+        }
 
     </script>
 

@@ -73,6 +73,7 @@
     <Compile Include="MODELOS_SEGURIDAD\IdentityModels.cs" />
     <Compile Include="MODELO_REQUISICION\COMENTARIOViewModel.cs" />
     <Compile Include="MODELO_REQUISICION\CONSULTA_NOTIFICACIONES_ENTIDAD.cs" />
+    <Compile Include="MODELO_REQUISICION\CONSULTA_USUARIO_ENTIDAD.cs" />
     <Compile Include="MODELO_REQUISICION\DIAS_LABORALESViewModel.cs" />
     <Compile Include="MODELO_REQUISICION\ESTADOViewModel.cs" />
     <Compile Include="MODELO_REQUISICION\FILTROREQUISICION.cs" />

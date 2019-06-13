@@ -738,12 +738,35 @@ namespace LOGICA.REQUISICION_LOGICA
                 if (_modeloRequisicion.ES_MODIFICACION)
                 {
                     PUESTO puestoEmpleado = new PROXY().CONSULTAR_PUESTOS_X_CEDULA_API(_modeloRequisicion.NUMERO_DOCUMENTO_EMPLEADO);
-                    _modeloRequisicion = CARGAR_MODELO_DEL_API(_modeloRequisicion, puestoEmpleado);
+                    if (puestoEmpleado != null)
+                    {
+                        _modeloRequisicion = CARGAR_MODELO_DEL_API(_modeloRequisicion, puestoEmpleado);
+                    }
+                    else
+                    {
+                        throw new Exception(string.Format("No se encontro puesto con el NUMERO_DOCUMENTO_EMPLEADO: {0}", _modeloRequisicion.NUMERO_DOCUMENTO_EMPLEADO));
+                    }
+
                 }
                 else if (_modeloRequisicion.COD_CARGO != 0)
                 {
-                    PUESTO puesto = new PROXY().CONSULTAR_PUESTO_X_COD_CARGO_API(_modeloRequisicion.COD_CARGO.ToString()).First();
-                    _modeloRequisicion = CARGAR_MODELO_DEL_API(_modeloRequisicion, puesto);
+                    List<PUESTO> listPuesto = new PROXY().CONSULTAR_PUESTO_X_COD_CARGO_API(_modeloRequisicion.COD_CARGO.ToString());
+                    if (listPuesto != null)
+                    {
+                        if (listPuesto.Count > 0)
+                        {
+                            PUESTO puesto = listPuesto.First();
+                            _modeloRequisicion = CARGAR_MODELO_DEL_API(_modeloRequisicion, puesto);
+                        }
+                        else
+                        {
+                            throw new Exception(string.Format("No se encontro puesto con el COD_CARGO: {0}", _modeloRequisicion.COD_CARGO));
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception(string.Format("Error al procesar el API GET api/PUESTOS por el COD_CARGO: {0}", _modeloRequisicion.COD_CARGO));
+                    }
                 }
                 logCentralizado.FINALIZANDO_LOG("LGREQ23", "BUSCAR_REQUISICIONES_BP");
             }
@@ -799,68 +822,80 @@ namespace LOGICA.REQUISICION_LOGICA
             return puesto;
         }
 
-        public REQUISICIONViewModel BUSCAR_REQUISICIONES(int _idRequsicion, string link_controller){
+        public REQUISICIONViewModel BUSCAR_REQUISICIONES(int _idRequsicion, string link_controller)
+        {
             REQUISICIONViewModel objReqModel = null;
             try
             {
                 logCentralizado.INICIANDO_LOG("LGREQ26", "BUSCAR_REQUISICIONES");
                 List<DOCUMENTO> listaDocumentos = new PROXY().CONSULTAR_TIPO_DOCUMENTO_API();
                 objReqModel = new ACCES_REQUISICION().CONSULTAR_REQUISICION_X_ID(_idRequsicion);
-                if (!string.IsNullOrWhiteSpace(link_controller)){
-                    if (objReqModel.COD_CORREO_CONTROLLER != link_controller) {
+                if (!string.IsNullOrWhiteSpace(link_controller))
+                {
+                    if (objReqModel.COD_CORREO_CONTROLLER != link_controller)
+                    {
                         objReqModel = new REQUISICIONViewModel();
                     }
                 }
 
-                if (SettingsManager.CodTipoReqLicencia == objReqModel.COD_TIPO_REQUISICION || SettingsManager.CodTipoReqIncapacidad == objReqModel.COD_TIPO_REQUISICION){
+                if (SettingsManager.CodTipoReqLicencia == objReqModel.COD_TIPO_REQUISICION || SettingsManager.CodTipoReqIncapacidad == objReqModel.COD_TIPO_REQUISICION)
+                {
                     objReqModel.NOMBRE_TIPO_DOCUMENTO = listaDocumentos.Where(x => x.coD_TIPO_DOCUMENTO == objReqModel.COD_TIPO_DOCUMENTO).FirstOrDefault().coD_TIPO_DOCUMENTO_ALTERNO_SAP;
                 }
                 logCentralizado.FINALIZANDO_LOG("LGREQ26", "BUSCAR_REQUISICIONES");
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 logCentralizado.CAPTURA_EXCEPCION("LGREQ26", "BUSCAR_REQUISICIONES", ex);
                 throw ex;
             }
             return objReqModel;
         }
 
-        public int INSERTAR_REQUISICION(REQUISICIONViewModel _modeloRequisicion, String USER_ID) {
+        public int INSERTAR_REQUISICION(REQUISICIONViewModel _modeloRequisicion, String USER_ID)
+        {
             try
             {
                 logCentralizado.INICIANDO_LOG("LGREQ27", "INSERTAR_REQUISICION");
                 Guid objGuid = Guid.NewGuid();
-            _modeloRequisicion.COD_CORREO_CONTROLLER = objGuid.ToString();
+                _modeloRequisicion.COD_CORREO_CONTROLLER = objGuid.ToString();
 
-            if (_modeloRequisicion.COD_REQUISICION != 0){
-                if (new ACCES_REQUISICION().ACTUALIZAR_REQUISICION(_modeloRequisicion)) {
-                    string _LINK_CONTREOLLER = LINK_CONTROLLER(_modeloRequisicion.COD_TIPO_REQUISICION, _modeloRequisicion.COD_REQUISICION, objGuid.ToString());
-                    Boolean resutado_correo = new NOTIFICACION().NOFICICACION_REQUISICIONES(_modeloRequisicion, _LINK_CONTREOLLER, USER_ID);
-                    return _modeloRequisicion.COD_REQUISICION;
-                } else {
-                    return 0;
+                if (_modeloRequisicion.COD_REQUISICION != 0)
+                {
+                    if (new ACCES_REQUISICION().ACTUALIZAR_REQUISICION(_modeloRequisicion))
+                    {
+                        string _LINK_CONTREOLLER = LINK_CONTROLLER(_modeloRequisicion.COD_TIPO_REQUISICION, _modeloRequisicion.COD_REQUISICION, objGuid.ToString());
+                        Boolean resutado_correo = new NOTIFICACION().NOFICICACION_REQUISICIONES(_modeloRequisicion, _LINK_CONTREOLLER, USER_ID);
+                        return _modeloRequisicion.COD_REQUISICION;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
                 }
-            }
-            else {
-               
-                int CODIGO_REQUISICION= new ACCES_REQUISICION().INSERTAR_REQUISICION(_modeloRequisicion);
-                if (CODIGO_REQUISICION != 0) {
-                    string _LINK_CONTREOLLER = LINK_CONTROLLER(_modeloRequisicion.COD_TIPO_REQUISICION, CODIGO_REQUISICION, objGuid.ToString());
-                    _modeloRequisicion.COD_REQUISICION = CODIGO_REQUISICION;
-                    Boolean resutado_correo =new NOTIFICACION().NOFICICACION_REQUISICIONES(_modeloRequisicion, _LINK_CONTREOLLER, USER_ID);
-                   _modeloRequisicion.COD_REQUISICION = 0;
-                }
+                else
+                {
+
+                    int CODIGO_REQUISICION = new ACCES_REQUISICION().INSERTAR_REQUISICION(_modeloRequisicion);
+                    if (CODIGO_REQUISICION != 0)
+                    {
+                        string _LINK_CONTREOLLER = LINK_CONTROLLER(_modeloRequisicion.COD_TIPO_REQUISICION, CODIGO_REQUISICION, objGuid.ToString());
+                        _modeloRequisicion.COD_REQUISICION = CODIGO_REQUISICION;
+                        Boolean resutado_correo = new NOTIFICACION().NOFICICACION_REQUISICIONES(_modeloRequisicion, _LINK_CONTREOLLER, USER_ID);
+                        _modeloRequisicion.COD_REQUISICION = 0;
+                    }
                     logCentralizado.FINALIZANDO_LOG("LGREQ27", "INSERTAR_REQUISICION");
                     return CODIGO_REQUISICION;
+                }
+
             }
-           
-        }
             catch (Exception ex)
             {
                 logCentralizado.CAPTURA_EXCEPCION("LGREQ27", "INSERTAR_REQUISICION", ex);
                 throw ex;
             }
 
-}
+        }
 
         public bool ACTUALIZAR_REQUISICION(REQUISICIONViewModel _modeloRequisicion)
         {
@@ -1218,7 +1253,7 @@ namespace LOGICA.REQUISICION_LOGICA
             }
             catch (Exception ex)
             {
-                logCentralizado.CAPTURA_EXCEPCION("LGREQ33", "CONSULTAR_EMPLEADOS",ex);
+                logCentralizado.CAPTURA_EXCEPCION("LGREQ33", "CONSULTAR_EMPLEADOS", ex);
                 throw ex;
             }
 
@@ -1243,7 +1278,7 @@ namespace LOGICA.REQUISICION_LOGICA
             }
             catch (Exception ex)
             {
-                logCentralizado.CAPTURA_EXCEPCION("LGREQ34", "CONSULTAR_EMPLEADOS_LICENCIA_INCAPACIDADES",ex);
+                logCentralizado.CAPTURA_EXCEPCION("LGREQ34", "CONSULTAR_EMPLEADOS_LICENCIA_INCAPACIDADES", ex);
                 throw ex;
             }
             return listEmpleados;
@@ -1279,7 +1314,7 @@ namespace LOGICA.REQUISICION_LOGICA
                 logCentralizado.CAPTURA_EXCEPCION("LGREQ35", "CONSULTAR_TRAZA_CAMPOS", ex);
                 throw ex;
             }
-            
+
             return OBJETO_TRAZA;
         }
 
@@ -1303,7 +1338,7 @@ namespace LOGICA.REQUISICION_LOGICA
                 logCentralizado.CAPTURA_EXCEPCION("LGREQ36", "CONSULTA_NOTIFICACIONES", ex);
                 throw ex;
             }
-            
+
             return LISTA_NOTIFICACIONES;
         }
 
@@ -1320,7 +1355,7 @@ namespace LOGICA.REQUISICION_LOGICA
             {
                 logCentralizado.CAPTURA_EXCEPCION("LGREQ37", "CONSULTAR_CAMPOS_TRAZAS_VISIBLES", ex);
                 throw ex;
-            }            
+            }
         }
 
         public void INSERTAR_CAMPOS_TRAZAS_VISIBLES(List<TRAZA_BOTONES_VISIBLES> _traza)
@@ -1329,7 +1364,7 @@ namespace LOGICA.REQUISICION_LOGICA
             {
                 logCentralizado.INICIANDO_LOG("LGREQ38", "INSERTAR_CAMPOS_TRAZAS_VISIBLES");
                 new ACCES_REQUISICION().INSERTAR_CAMPOS_TRAZAS_VISIBLES(_traza);
-                logCentralizado.FINALIZANDO_LOG("LGREQ38", "INSERTAR_CAMPOS_TRAZAS_VISIBLES");                
+                logCentralizado.FINALIZANDO_LOG("LGREQ38", "INSERTAR_CAMPOS_TRAZAS_VISIBLES");
             }
             catch (Exception ex)
             {
@@ -1338,7 +1373,7 @@ namespace LOGICA.REQUISICION_LOGICA
             }
         }
 
-        public string LINK_CONTROLLER(int COD_TIPO_REQUISICION,int _idReq, string _link_controler)
+        public string LINK_CONTROLLER(int COD_TIPO_REQUISICION, int _idReq, string _link_controler)
         {
             try
             {
@@ -1357,7 +1392,7 @@ namespace LOGICA.REQUISICION_LOGICA
                 DominioParaController = DominioParaController + TIPO_REQUISICION + "?" + "_idReq=" + _idReq.ToString() + "&_idTipo=" + COD_TIPO_REQUISICION.ToString() + "&link_controler=" + _link_controler;
 
                 logCentralizado.FINALIZANDO_LOG("LGREQ39", "LINK_CONTROLLER");
-                return DominioParaController;                
+                return DominioParaController;
             }
             catch (Exception ex)
             {
@@ -1365,5 +1400,25 @@ namespace LOGICA.REQUISICION_LOGICA
                 throw ex;
             }
         }
+        public List<CONSULTA_USUARIO_ENTIDAD> CONSULTA_USUARIOS(string _codUsuario)
+        {
+            List<CONSULTA_USUARIO_ENTIDAD> LISTA_USUARIO = null;
+            try
+            {
+                logCentralizado.INICIANDO_LOG("LGREQ40", "CONSULTA_USUARIOS");
+                LISTA_USUARIO = new ACCES_REQUISICION().CONSULTAR_USUARIOS(_codUsuario);
+               
+
+                logCentralizado.FINALIZANDO_LOG("LGREQ40", "CONSULTA_USUARIOS");
+            }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("LGREQ40", "CONSULTA_USUARIOS", ex);
+                throw ex;
+            }
+
+            return LISTA_USUARIO;
+        }
+
     }
 }

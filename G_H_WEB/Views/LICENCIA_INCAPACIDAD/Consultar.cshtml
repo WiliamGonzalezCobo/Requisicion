@@ -150,7 +150,7 @@
                                     //Botones
                                     <div class="form-group">
                                         <div class="col-md-12">
-                                            @Html.ActionLink("Cancelar requisición", "Index", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
+                                            @Html.ActionLink("Cancelar requisición", "ConsultarRequisiciones", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
                                             @if (User.IsInRole(SettingsManager.PerfilJefe))
                                             {
                                             <input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="btn-confirmar-retiro text-uppercase col-md-3 btn-collpse-valid" />
@@ -305,7 +305,7 @@
 
         $(document).on('submit', 'form', function () {
             $('body').loading({
-                message: 'Cargando...'
+                message: 'Procesando...'
             });
         })
 
@@ -430,7 +430,7 @@
 
     function SiCancelarJefe() {
             $('#ModalCancel').modal('hide');
-            window.location.href = '@Url.Action("Index", "REQUISICION")';
+            window.location.href = '@Url.Action("ConsultarRequisiciones", "REQUISICION")';
         };
     function NoCancelarJefe() {
             $('#ModalCancel').modal('hide');
@@ -463,7 +463,7 @@
              contentType: "application/json; charset=utf-8",
              data: model,
              dataType: "json",
-             success: function () { window.location.href = '@Url.Action("Index", "REQUISICION")'; }
+             success: function () { window.location.href = '@Url.Action("ConsultarRequisiciones", "REQUISICION")'; }
          });
     };
 
