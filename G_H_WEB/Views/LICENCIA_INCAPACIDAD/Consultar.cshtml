@@ -166,7 +166,7 @@
                                             }
                                             @if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
                                             {
-                                            <a id="rechazarReq" class="btn-rechazar-requisicion">Rechazar requisición</a>
+                                            <a id="rechazarReq" class="BtnDevolver text-uppercase TextoBtnDevolver" style="padding:12px">Rechazar requisición</a>
                                             <input name="submitButton" type="submit" value="Modificar Requisición" class="BtnDevolver text-uppercase TextoBtnDevolver col-md-3 btn-collpse-valid" />
                                             <input name="submitButton" type="submit" value="Aprobar Requisición" class="btn-confirmar-retiro text-uppercase col-md-3 btn-collpse-valid" />
                                             }
@@ -302,7 +302,6 @@
     <script type="text/javascript">
 
     $(document).ready(function () {
-
         $(document).on('submit', 'form', function () {
             $('body').loading({
                 message: 'Cargando...'
@@ -365,6 +364,7 @@
                     var campo = "#" + jsonObj[i].CAMPOS + "_S";
                     if ($(campo).length) {
                         $(campo).removeAttr("style");
+                        $(campo).removeClass('span-modify-hidden');
                         var traza = jsonObj[i].TRAZA;
                     }
                 }
@@ -438,7 +438,8 @@
 
     $(function () {
         $('.datepicker').datepicker({
-            format: 'dd/mm/yyyy'
+            format: 'dd/mm/yyyy',
+            autoclose: true
         });
     });
 

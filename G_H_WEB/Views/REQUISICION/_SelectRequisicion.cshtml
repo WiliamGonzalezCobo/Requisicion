@@ -1,7 +1,7 @@
 ﻿@using UTILS.Settings
 <div class="col-md-3 col-lg-3 col-xl-3">
     <a class="alineas" href='@Url.Action("Create","REQUISICION",new { @idTipo = SettingsManager.CodTipoReqPresupuestada})'>
-        <div class="col-12 rectangle_Pop_UP">
+        <div class="col-12 rectangle_Pop_UP div-select-requisicion">
             <img src="../../assets/img/imgPresupuestada.png" class="img-responsive maxImagen" />
             <div class="presupuestada">Presupuestada</div>
         </div>       
@@ -10,7 +10,7 @@
 <div class="col-md-3 col-lg-3 col-xl-3">
 
     <a class="alineas" href='@Url.Action("Create","REQUISICION",new { @idTipo = SettingsManager.CodTipoReqNoPresupuestada})'>
-        <div class="col-12 rectangle_Pop_UP">
+        <div class="col-12 rectangle_Pop_UP div-select-requisicion">
             <img src="../../assets/img/imgNoPresupuestada.png" class="img-responsive maxImagen" />
             <div class="no-presupuestada">No presupuestada</div>
         </div>
@@ -18,7 +18,7 @@
 </div>
 <div class="col-md-3 col-lg-3 col-xl-3">
     <a class="alineas" href='@Url.Action("Create","REQUISICION",new { @idTipo = SettingsManager.CodTipoReqIncapacidad})'>
-        <div class="col-12 rectangle_Pop_UP">
+        <div class="col-12 rectangle_Pop_UP div-select-requisicion">
             <img src="../../assets/img/imgIncapacidad.png" class="img-responsive maxImagen" />
             <div class="incapacidad">Incapacidad</div>
         </div>
@@ -26,13 +26,13 @@
 </div>
 <div class="col-md-3 col-lg-3 col-xl-3">
     <a class="alineas" href='@Url.Action("Create","REQUISICION",new { @idTipo = SettingsManager.CodTipoReqLicencia})'>
-        <div class="col-12 rectangle_Pop_UP">
+        <div class="col-12 rectangle_Pop_UP div-select-requisicion">
             <img src="../../assets/img/imgLicencia.png" class="img-responsive maxImagen" />
             <div class="licencia">Licencia</div>
         </div>
     </a>
 </div>
-
+<link href="~/css/gestion-humana-requisicion.css" rel="stylesheet" />
 
 
 

@@ -8,6 +8,7 @@
         <a class="a-collapse" data-toggle="collapse" href="#collapseInfoGeneralPropLic">
             <h2>Tipo de Contrato</h2>
         </a>
+        <span class="span_infoGeneralProPuestaLi" style="visibility:hidden"><i class="fas fa-exclamation-circle" style="color:darkorange"></i></span>
     </div>
     <div id="collapseInfoGeneralPropLic" class="panel-collapse collapse">
         <div class="row">
@@ -29,7 +30,7 @@
             <div class="form-group col-md-12 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NIVEL_RIESGO_ARL, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, Model.LIST_NIVEL_RIESGO_ARL, "-- Seleccione --", new { @class = "form-control TexboxIncicial letrasFormulario" })
-                <span class="btn_traza trazaCentrar" onclick="ConsultaTraza('NOMBRE_ARL')">  <i class="fa fa-check btn_centar"></i></span>
+                <span class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('NOMBRE_ARL')">  <i class="fa fa-check btn_centar"></i></span>
                 @*@Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL)*@
                 @Html.ValidationMessageFor(model => model.COD_NIVEL_RIESGO_ARL)
             </div>
@@ -44,6 +45,7 @@
     }
 </style>
 <script>
+    var cantInfoGeneralPropLic = 1;
     var validateTipoContrato = true;
     var validateFormTipoContrato = function () {
         if ($('#COD_TIPO_CONTRATO').val() == "" &&
@@ -63,4 +65,10 @@
     $("#collapseInfoGeneralPropLic").on("show.bs.collapse", function () {
         $(".div-span-collapseInfoGeneralPropLic").html('<span class="span-collapse"><i class="fas fa-chevron-up arrow-collapse"></i></span>');
     });
+
+    setTimeout(function () {
+        if (cantInfoGeneralPropLic < $('#collapseInfoGeneralPropLic span.span-modify-hidden').length) {
+            $('.span_infoGeneralProPuestaLi').css("visibility", "visible");
+        }
+    }, 600);
 </script>
