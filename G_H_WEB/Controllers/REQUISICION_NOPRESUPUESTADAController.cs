@@ -20,7 +20,7 @@ namespace G_H_WEB.Controllers
     {
         private LOG_CENTRALIZADO logCentralizado = new LOG_CENTRALIZADO(LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType));
         // GET: REQUISICION_NOPRESUPUESTADA
-        public ActionResult Consultar(int? _idReq, int? _idTipo, string link_controler="", string COD_ASPNETUSER_CONTROLLER = "")
+        public ActionResult Consultar(int? _idReq, int? _idTipo, string link_controler = "", string COD_ASPNETUSER_CONTROLLER = "")
         {
             if (COD_ASPNETUSER_CONTROLLER != "") { Session["COD_ASPNETUSER_CONTROLLER"] = COD_ASPNETUSER_CONTROLLER; }
             if (TempData["ErrorPost"] != null)
@@ -31,7 +31,7 @@ namespace G_H_WEB.Controllers
             try
             {
                 logCentralizado.INICIANDO_LOG("CTR_REQ_NO_PRE1", "Consultar");
-                
+
                 if (_idReq.HasValue)
                 {
                     model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value, link_controler) ?? new REQUISICIONViewModel();
@@ -63,6 +63,10 @@ namespace G_H_WEB.Controllers
                 ViewBag.Busca_USUARIOS = new LOGICA_REQUISICION().CONSULTAR_EMPLEADOS();
                 ViewBag.PERMISOS_CONTROLLER = link_controler;
                 logCentralizado.FINALIZANDO_LOG("CTR_REQ_NO_PRE1", "Consultar");
+                if (TempData["listadoErroresModelo"] != null)
+                {
+                    model.LIST_VALIDACION_ERRORES = (List<VALIDACION_ERRORES_ViewModel>)TempData["listadoErroresModelo"];
+                }
 
             }
             catch (Exception ex)
@@ -77,8 +81,18 @@ namespace G_H_WEB.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Procesar(REQUISICIONViewModel modelDatos, string submitButton, int? _idTipo) {
-            try {
+        public ActionResult Procesar(REQUISICIONViewModel modelDatos, string submitButton, int? _idTipo)
+        {
+            try
+            {
+                VALIDACION_MODEL_REQUISICION valModelReq = new VALIDACION_MODEL_REQUISICION(
+                    User.IsInRole(SettingsManager.PerfilJefe),
+                    User.IsInRole(SettingsManager.PerfilController),
+                    User.IsInRole(SettingsManager.PerfilBp),
+                    User.IsInRole(SettingsManager.PerfilRRHH),
+                    User.IsInRole(SettingsManager.PerfilUSC)
+                    );
+
                 logCentralizado.INICIANDO_LOG("CTR_REQ_NO_PRE2", "Procesar");
                 string _User = "";
                 int _resultadoIdReguisicion = 0;
@@ -95,50 +109,60 @@ namespace G_H_WEB.Controllers
                 RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
                 // FIN
 
-                switch (submitButton)
+
+                //Valida si los datos del modelo son validos para almacenar en la base de datos
+                modelDatos.LIST_VALIDACION_ERRORES = valModelReq.ValidarModelo(modelDatos, modelDatos.COD_TIPO_REQUISICION, submitButton);
+                if (modelDatos.LIST_VALIDACION_ERRORES.Count <= 0)
                 {
-                    case "CREAR REQUISICIÓN":
-                        _resultadoIdReguisicion = new LOGICA_REQUISICION().INSERTAR_REQUISICION(modelDatos,User.Identity.GetUserId());
-                        if (modelDatos.COD_REQUISICION == 0)
-                            npc.METODO = "Crear";
-                        else
-                            npc.METODO = "Modificar";
-                        
-                        break;
-                    case "APROBAR REQUISICIÓN":
-                        if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
-                        {
+                    switch (submitButton)
+                    {
+                        case "CREAR REQUISICIÓN":
+                            _resultadoIdReguisicion = new LOGICA_REQUISICION().INSERTAR_REQUISICION(modelDatos, User.Identity.GetUserId());
+                            if (modelDatos.COD_REQUISICION == 0)
+                                npc.METODO = "Crear";
+                            else
+                                npc.METODO = "Modificar";
+
+                            break;
+                        case "APROBAR REQUISICIÓN":
+                            if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
+                            {
+                                Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZAR_REQUISICION(modelDatos));
+                                _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
+                            }
+                            else
+                            {
+                                _User = User.Identity.GetUserId() ?? Session["COD_ASPNETUSER_CONTROLLER"].ToString();
+                                _resultadoIdReguisicion = new LOGICA_REQUISICION().APROBAR_REQUISICION_LOGICA(modelDatos.COD_REQUISICION, _User, modelDatos.OBSERVACION);
+                            }
+
+                            npc.METODO = "Aprobar";
+                            break;
+                        case "ENVIAR RESPUESTA":
+                            modelDatos.OBSERVACION = string.Format("Observacion: {0}. Modito Rechazo: {1}", modelDatos.OBSERVACION, modelDatos.MOTIVO_RECHAZO);
+                            _resultadoIdReguisicion = new LOGICA_REQUISICION().REQUISICION_RECHAZAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.Name);
+
+                            npc.METODO = "Rechazar";
+                            break;
+                        case "Enviar Requisición":
+                            Cambios_campos(modelDatos, modelDatos.COD_REQUISICION);
                             Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZAR_REQUISICION(modelDatos));
                             _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
-                        }
-                        else {
-                            _User = User.Identity.GetUserId() ?? Session["COD_ASPNETUSER_CONTROLLER"].ToString();
-                            _resultadoIdReguisicion = new LOGICA_REQUISICION().APROBAR_REQUISICION_LOGICA(modelDatos.COD_REQUISICION, _User, modelDatos.OBSERVACION);
-                        }
-                        
-                        npc.METODO = "Aprobar";
-                        break;
-                    case "ENVIAR RESPUESTA":
-                        modelDatos.OBSERVACION = string.Format("Observacion: {0}. Modito Rechazo: {1}", modelDatos.OBSERVACION, modelDatos.MOTIVO_RECHAZO);
-                        _resultadoIdReguisicion = new LOGICA_REQUISICION().REQUISICION_RECHAZAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.Name);
-                       
-                        npc.METODO = "Rechazar";                        
-                        break;
-                    case "Enviar Requisición":
-                        Cambios_campos(modelDatos, modelDatos.COD_REQUISICION);
-                        Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZAR_REQUISICION(modelDatos));
-                        _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
-                       
-                        npc.METODO = "Enviar";
-                        break;
-                    case "DEVOLVER REQUISICIÓN":
-                        _User = User.Identity.GetUserId() ?? Session["COD_ASPNETUSER_CONTROLLER"].ToString();
-                        _resultadoIdReguisicion = Convert.ToInt32(new LOGICA_REQUISICION().REQUISICION_MODIFICAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, _User));
-                        
-                        npc.METODO = "Modificar";
-                        break;
-                }
 
+                            npc.METODO = "Enviar";
+                            break;
+                        case "DEVOLVER REQUISICIÓN":
+                            _User = User.Identity.GetUserId() ?? Session["COD_ASPNETUSER_CONTROLLER"].ToString();
+                            _resultadoIdReguisicion = Convert.ToInt32(new LOGICA_REQUISICION().REQUISICION_MODIFICAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, _User));
+
+                            npc.METODO = "Modificar";
+                            break;
+                    }
+                }
+                else
+                {
+                    TempData["listadoErroresModelo"] = modelDatos.LIST_VALIDACION_ERRORES;
+                }
 
                 //INICIO Esta logica es para el POP UP----------
                 npc.COD_REQUISICION_CREADA = _resultadoIdReguisicion;
@@ -147,7 +171,8 @@ namespace G_H_WEB.Controllers
                 TempData["resultado"] = npc;
                 //FIN Esta logica es para el POP UP----------
 
-                if (Session["COD_ASPNETUSER_CONTROLLER"] != null){
+                if (Session["COD_ASPNETUSER_CONTROLLER"] != null)
+                {
                     Session.Remove("COD_ASPNETUSER_CONTROLLER");
                     return RedirectToAction("Consultar", "REQUISICION_PRESUPUESTADA", new { link_controler = "mostrar resultado" });
                 }

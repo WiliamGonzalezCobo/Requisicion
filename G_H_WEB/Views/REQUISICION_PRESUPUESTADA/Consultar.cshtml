@@ -3,17 +3,19 @@
 @using UTILS.Settings;
 @using G_H_WEB.Models;
 @{
-    ViewBag.Title = "Crear Requisición Presupuestada";
-    if (ViewBag.PERMISOS_CONTROLLER != "")
-    {
-        Layout = "~/Views/Shared/_LayoutController.cshtml";
-    }
-    else
-    {
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
-    RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
-    ERROR_GENERAL_ViewModel error = @ViewBag.Error ?? new ERROR_GENERAL_ViewModel();
+                /**/
+
+                ViewBag.Title = "Crear Requisición Presupuestada";
+                if (ViewBag.PERMISOS_CONTROLLER != "")
+                {
+                    Layout = "~/Views/Shared/_LayoutController.cshtml";
+                }
+                else
+                {
+                    Layout = "~/Views/Shared/_Layout.cshtml";
+                }
+                RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
+                ERROR_GENERAL_ViewModel error = @ViewBag.Error ?? new ERROR_GENERAL_ViewModel();
 }
 <link href="~/css/gestion-humana-requisicion.css" rel="stylesheet" />
 <div class="col">

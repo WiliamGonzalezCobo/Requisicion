@@ -114,7 +114,7 @@
                                         }
                                         @if (User.IsInRole(SettingsManager.PerfilBp))
                                         {
-                                        @Html.ActionLink("Cancelar requisición", "ConsultarRequisiciones", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
+                                            @Html.ActionLink("Cancelar requisición", "ConsultarRequisiciones", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
                                             <input name="submitButton" type="submit" value="Enviar Requisición" class="crear-requisicion crear-requisicion-texto btn-collpse-valid" />
                                         }
                                         @if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
@@ -160,6 +160,38 @@
                         <h2 class="__metodoModificar Texto-Popup-Creacion">Se modificó la requisición con ID <span class="Texto-Popup-Creacion-Negrilla" id="mensaje_modificar"></span></h2>
                         <h2 class="__metodoRechazar Texto-Popup-Creacion">Se Rechazó la requisición con ID <span class="Texto-Popup-Creacion-Negrilla" id="mensaje_rechazar"></span></h2>
                         <h2 class="_metodoDefecto Texto-Popup-Creacion">Por favor contacte al <span class="Texto-Popup-Creacion-Negrilla" id="mensaje_rechazar">administrador</span> del sistema</h2>
+                        @if (Model.LIST_VALIDACION_ERRORES != null)
+                        {
+                            if (Model.LIST_VALIDACION_ERRORES.Count > 0)
+                            {
+
+                                <div class="col-md-12 col-sm-12 _metodoDefecto Texto-Popup-Creacion">
+                                    @Html.Label("Se presentaron los siguientes errores en el formulario: ", new { @class = "letrasFormulario" })
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr class="letrasFormulario">
+                                                    <th>Campo</th>
+                                                    <th>Error</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                @foreach (var errorModel in Model.LIST_VALIDACION_ERRORES)
+                                                {
+                                                    <tr>
+                                                        <td>@errorModel.Campo</td>
+                                                        <td>@errorModel.Error</td>
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            }
+                        }
+
                         <h2 class="__metodoEnviar Texto-Popup-Creacion">Se Envío la requisición con ID <span class="Texto-Popup-Creacion-Negrilla" id="mensaje_Enviar"></span></h2>
                     </div>
                 </div>
