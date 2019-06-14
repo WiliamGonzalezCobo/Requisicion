@@ -3,17 +3,19 @@
 @using UTILS.Settings;
 @using G_H_WEB.Models;
 @{
-    ViewBag.Title = "Crear Requisición Presupuestada";
-    if (ViewBag.PERMISOS_CONTROLLER != "")
-    {
-        Layout = "~/Views/Shared/_LayoutController.cshtml";
-    }
-    else
-    {
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
-    RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
-    ERROR_GENERAL_ViewModel error = @ViewBag.Error ?? new ERROR_GENERAL_ViewModel();
+                /**/
+
+                ViewBag.Title = "Crear Requisición Presupuestada";
+                if (ViewBag.PERMISOS_CONTROLLER != "")
+                {
+                    Layout = "~/Views/Shared/_LayoutController.cshtml";
+                }
+                else
+                {
+                    Layout = "~/Views/Shared/_Layout.cshtml";
+                }
+                RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
+                ERROR_GENERAL_ViewModel error = @ViewBag.Error ?? new ERROR_GENERAL_ViewModel();
 }
 <link href="~/css/gestion-humana-requisicion.css" rel="stylesheet" />
 <div class="col">
@@ -57,7 +59,7 @@
             <div id="CNform">
                 <div class="retiros-detalle">
                     <div class="form-group col-md-12">
-                        @using (Html.BeginForm("Procesar", "REQUISICION_PRESUPUESTADA"))
+                        @using (Html.BeginForm("Procesar", "REQUISICION_PRESUPUESTADA", FormMethod.Post, new { autocomplete = "off" }))
                         {
 
                             if (User.IsInRole(SettingsManager.PerfilJefe))
@@ -287,7 +289,11 @@
 
     $(document).ready(function () {
 
-
+        $(".nav-incapacidad").removeClass('nav-active');
+        $(".nav-presupuestada").addClass('nav-active');
+        $(".nav-no-presupuestada").removeClass('nav-active');
+        $(".nav-licencia").removeClass('nav-active');
+        $(".nav-modificada").removeClass('nav-active');
 
         if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {
             if (@Model.COD_REQUISICION!= 0) {
@@ -349,6 +355,7 @@
                     var campo = "#" + jsonObj[i].CAMPOS + "_S";
                     if ($(campo).length) {
                         $(campo).removeAttr("style");
+                        $(campo).removeClass('span-modify-hidden');
                         var traza = jsonObj[i].TRAZA;
                     }
                 }

@@ -27,7 +27,7 @@ namespace G_H_WEB.Controllers
             {
                 ViewBag.Error = (ERROR_GENERAL_ViewModel)TempData["ErrorPost"];
             }
-            
+
 
 
 
@@ -113,7 +113,7 @@ namespace G_H_WEB.Controllers
                 // FIN
 
                 //Valida si los datos del modelo son validos para almacenar en la base de datos
-                modelDatos.LIST_VALIDACION_ERRORES = valModelReq.ValidarModelo(modelDatos,modelDatos.COD_TIPO_REQUISICION);
+                modelDatos.LIST_VALIDACION_ERRORES = valModelReq.ValidarModelo(modelDatos, modelDatos.COD_TIPO_REQUISICION, submitButton);
                 if (modelDatos.LIST_VALIDACION_ERRORES.Count <= 0)
                 {
                     switch (submitButton)
@@ -162,7 +162,8 @@ namespace G_H_WEB.Controllers
                             break;
                     }
                 }
-                else {
+                else
+                {
                     TempData["listadoErroresModelo"] = modelDatos.LIST_VALIDACION_ERRORES;
                 }
 
@@ -171,7 +172,7 @@ namespace G_H_WEB.Controllers
                 npc.COD_CARGO = modelDatos.COD_CARGO;
                 npc.RESULTADO = !_resultadoIdReguisicion.Equals(0);
                 TempData["resultado"] = npc;
-                
+
 
                 //FIN Esta logica es para el POP UP----------
                 logCentralizado.FINALIZANDO_LOG("CTR_REQ_PRE2", "Procesar");
