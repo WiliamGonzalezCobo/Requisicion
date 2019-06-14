@@ -353,13 +353,13 @@
     function VALIDACION_TRAZA() {
         var jsonObj = @Html.Raw(Json.Encode(ViewBag.traza));
         if (jsonObj) {
-            $('.div-alert-modify').css('display', 'block');
             for (i = 0; i < jsonObj.length; i++) {
                 if (jsonObj[i].TRAZA == "true") {
                     var campo = "#" + jsonObj[i].CAMPOS + "_S";
                     if ($(campo).length) {
                         $(campo).removeAttr("style");
                         $(campo).removeClass('span-modify-hidden');
+                        $('.div-alert-modify').css('display', 'block');
                         var traza = jsonObj[i].TRAZA;
                     }
                 }
