@@ -54,7 +54,8 @@
                 @Html.LabelFor(model => model.PORCENTAJE_SOBREREMUNERACION, htmlAttributes: new { @class = "letrasFormulario" })
                 @Html.EditorFor(model => model.PORCENTAJE_SOBREREMUNERACION, new { htmlAttributes = new { @class = "form-control P_SOBREREMUNERACION col-md-11 deplegablesIniciales letrasFormulario", disabled = deshabilitar } })
                 <span id="PORCENTAJE_SOBREREMUNERACION_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('PORCENTAJE_SOBREREMUNERACION')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-                @Html.ValidationMessageFor(model => model.PORCENTAJE_SOBREREMUNERACION)
+                @Html.ValidationMessageFor(model => model.PORCENTAJE_SOBREREMUNERACION)      
+                @Html.HiddenFor(model => model.PORCENTAJE_SOBREREMUNERACION,new { @class="P_SOBREREMUNERACION"})
             </div>
         </div>
 
@@ -76,7 +77,7 @@
         <div class="row">
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.MEDIO_TRANSPORTE, htmlAttributes: new { @class = "letrasFormulario" })
-                @Html.EditorFor(model => model.MEDIO_TRANSPORTE, new { htmlAttributes = new { @class = "form-control deplegablesIniciales letrasFormulario" } })
+                @Html.EditorFor(model => model.MEDIO_TRANSPORTE, new { htmlAttributes = new { @class = "form-control deplegablesIniciales letrasFormulario" } })             
                 @Html.ValidationMessageFor(model => model.MEDIO_TRANSPORTE)
             </div>
             <div class="col-md-12 col-sm-12">

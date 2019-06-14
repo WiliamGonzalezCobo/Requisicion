@@ -104,6 +104,35 @@ namespace MODELO_DATOS.MODELO_REQUISICION
 
         private void ValidaInfoRequisicionLi(REQUISICIONViewModel modelRequisicion)
         {
+            validarEntero(modelRequisicion.COD_TIPO_DOCUMENTO, "TIPO DE DOCUMENTO", true);
+            validarEntero(modelRequisicion.NUMERO_DOCUMENTO_EMPLEADO, "NÚMERO DE DOCUMENTO", true);
+            validarString(modelRequisicion.NOMBRE_EMPLEADO, "NOMBRE EMPLEADO", true);
+            validarFecha(modelRequisicion.FECHA_INICIO, "FECHA INICIO", true);
+            validarFecha(modelRequisicion.FECHA_FIN, "FECHA FIN", true);
+
+            throw new NotImplementedException();
+        }
+
+        private void ValidaInfoGeneralLi(REQUISICIONViewModel modelRequisicion)
+        {
+            validarEntero(modelRequisicion.COD_CARGO, "CÓDIGO DEL CARGO", true);
+            validarString(modelRequisicion.NOMBRE_CARGO, "NOMBRE CARGO", true);
+            validarEntero(modelRequisicion.COD_CECO, "CÓDIGO DEL CECO", true);
+            validarString(modelRequisicion.NOMBRE_CECO, "NOMBRE CECO", true);
+
+            throw new NotImplementedException();
+        }
+
+        private void ValidaInfoSalarialLi(REQUISICIONViewModel modelRequisicion)
+        {
+            validarDecimal(modelRequisicion.SALARIO_FIJO, "SALARIO FIJO", true);
+            validarDecimal(modelRequisicion.SALARIO_VARIABLE, "SALARIO VARIABLE", true);
+            validarDecimal(modelRequisicion.SOBREREMUNERACION, "SOBRE REMUNERACION", true);
+            validarDecimal(modelRequisicion.EXTRA_FIJA, "EXTRA FIJA", true);
+            validarDecimal(modelRequisicion.RECARGO_NOCTURNO, "RECARGO NOCTURNO", true);
+            validarDecimal(modelRequisicion.MEDIO_TRANSPORTE, "MEDIO TRANSPORTE", true);
+            validarDecimal(modelRequisicion.NUMERO_SALARIOS, "NUMERO SALARIOS", true);
+
             throw new NotImplementedException();
         }
 
@@ -111,7 +140,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
 
         #region ParcialesPresupuestadayNoPresupuestada
 
-        
+
 
         private void ValidaInfoRequisicion(REQUISICIONViewModel model)
         {
@@ -253,6 +282,62 @@ namespace MODELO_DATOS.MODELO_REQUISICION
 
         }
 
+        private void validarDecimal(object _obj, string _nombreCampo, bool requerido)
+        {
+            try
+            {
+                logCentralizado.INICIANDO_LOG("MOD_VMR8", "validarDecimal");
+                if (_obj != null)
+                {
+                    if (_obj.Equals(0) && requerido)
+                    {
+                        listaErrores.Add(new VALIDACION_ERRORES_ViewModel { Campo = _nombreCampo, Error = string.Format("El Campo {0} es requerido.", _nombreCampo) });
+                    }
+                    if (!decimal.TryParse(_obj.ToString(), out decimal i))
+                    {
+                        listaErrores.Add(new VALIDACION_ERRORES_ViewModel { Campo = _nombreCampo, Error = string.Format("El Campo {0} debe ser decimal.", _nombreCampo) });
+                    }
+                }
+                else
+                {
+                    listaErrores.Add(new VALIDACION_ERRORES_ViewModel { Campo = _nombreCampo, Error = string.Format("El Campo {0} es nulo.", _nombreCampo) });
+                }
+                logCentralizado.FINALIZANDO_LOG("MOD_VMR8", "validarDecimal");
+            }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("MOD_VMR8", "validarDecimal", ex);
+                throw ex;
+            }
+
+        }
+
+
+        private void validarFecha(object _obj, string _nombreCampo, bool _requerido)
+        {
+            try
+            {
+                logCentralizado.INICIANDO_LOG("MOD_VMR9", "validarFecha");
+                if (_obj != null)
+                {
+                    if (string.IsNullOrEmpty(_obj.ToString()) && _requerido)
+                    {
+                        listaErrores.Add(new VALIDACION_ERRORES_ViewModel { Campo = _nombreCampo, Error = string.Format("El Campo {0} es requerido.", _nombreCampo) });
+                    }
+                }
+                else
+                {
+                    listaErrores.Add(new VALIDACION_ERRORES_ViewModel { Campo = _nombreCampo, Error = string.Format("El Campo {0} es nulo.", _nombreCampo) });
+                }
+                logCentralizado.FINALIZANDO_LOG("MOD_VMR9", "validarFecha");
+            }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("MOD_VMR9", "validarFecha", ex);
+                throw ex;
+            }
+
+        }
         #endregion validaciones
     }
 }
