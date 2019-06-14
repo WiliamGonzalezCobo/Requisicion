@@ -20,7 +20,6 @@ namespace G_H_WEB.Controllers
     {
         private LOG_CENTRALIZADO logCentralizado = new LOG_CENTRALIZADO(LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType));
 
-        // GET: REQUISICION_PRESUPUESTADA
         public ActionResult Consultar(int? _idReq, int? _idTipo, string link_controler = "", string COD_ASPNETUSER_CONTROLLER = "")
         {
             if (TempData["ErrorPost"] != null)
@@ -101,7 +100,7 @@ namespace G_H_WEB.Controllers
                 modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqPresupuestada;
 
                 modelDatos.USUARIO_CREACION = User.Identity.Name;
-                modelDatos.USUARIO_MODIFICACION = User.Identity.Name;//      martinezluir esto es para test toca hacer la logica
+                modelDatos.USUARIO_MODIFICACION = User.Identity.Name;
                 REQUISICIONViewModel listas = new REQUISICIONViewModel();
                 // llena los combos
                 modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES(modelDatos);
@@ -145,7 +144,6 @@ namespace G_H_WEB.Controllers
                             modelDatos.OBSERVACION = string.Format("Observacion: {0}. Modito Rechazo: {1}", modelDatos.OBSERVACION, modelDatos.MOTIVO_RECHAZO);
                             _resultadoIdReguisicion = new LOGICA_REQUISICION().REQUISICION_RECHAZAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.Name);
                             npc.METODO = "Rechazar";
-                            //Cambios_campos(modelDatos, _resultadoIdReguisicion);
                             break;
                         case "Enviar Requisición":
                             Cambios_campos(modelDatos, modelDatos.COD_REQUISICION);
@@ -208,7 +206,6 @@ namespace G_H_WEB.Controllers
                 datosCargo = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_cod_requisicion, "") ?? new REQUISICIONViewModel();
                 datosCargo = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES_BP(datosCargo) ?? new REQUISICIONViewModel();
 
-                //PUESTO datosCargo = new LOGICA_REQUISICION().BUSCAR_PUESTO_X_CARGO_API(aGuardar.NUMERO_DOCUMENTO_EMPLEADO);
                 if (datosCargo.NOMBRE_CATEGORIA_ED != aGuardar.NOMBRE_CATEGORIA_ED)
                 {
                     traza = new TRAZA_BOTONES_VISIBLES();
@@ -318,7 +315,6 @@ namespace G_H_WEB.Controllers
                     _cambio = true;
                     trazas.Add(traza);
                 }
-                /*aqui*/
                 if (datosCargo.NUMERO_SALARIOS != aGuardar.NUMERO_SALARIOS)
                 {
                     traza = new TRAZA_BOTONES_VISIBLES();

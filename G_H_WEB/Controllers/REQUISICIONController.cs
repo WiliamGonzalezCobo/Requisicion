@@ -99,14 +99,12 @@ namespace G_H_WEB.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: REQUISICION/Crear
         public ActionResult Crear(int? idTipo)
         {
             try
             {
                 logCentralizado.INICIANDO_LOG("CTRREQ4", "Crear");
                 ViewBag.idTipo = idTipo;
-                //Session["requisicion"] = idTipo;
                 if (idTipo == SettingsManager.CodTipoReqPresupuestada)
                 {
                     return RedirectToAction("Consultar", "REQUISICION_PRESUPUESTADA", new { _idTipo = idTipo });

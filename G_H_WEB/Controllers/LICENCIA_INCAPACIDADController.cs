@@ -20,7 +20,6 @@ namespace G_H_WEB.Controllers
     public class LICENCIA_INCAPACIDADController : Controller
     {
         private LOG_CENTRALIZADO logCentralizado = new LOG_CENTRALIZADO(LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType));
-        // GET: REQUISICION_NOPRESUPUESTADA
         public ActionResult Consultar(int? _idReq, int? _idTipo, string link_controler = "", string COD_ASPNETUSER_CONTROLLER = "")
         {
              if (COD_ASPNETUSER_CONTROLLER != "") { Session["COD_ASPNETUSER_CONTROLLER"] = COD_ASPNETUSER_CONTROLLER; }
@@ -130,7 +129,7 @@ namespace G_H_WEB.Controllers
                 int _resultadoIdReguisicion = 0;
                 
                 modelDatos.USUARIO_CREACION = User.Identity.Name;
-                modelDatos.USUARIO_MODIFICACION = User.Identity.Name;//      martinezluir esto es para test toca hacer la logica
+                modelDatos.USUARIO_MODIFICACION = User.Identity.Name;
                 // llena los combos
                 modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES(modelDatos);
                 // saca los valores de los combos
@@ -165,25 +164,22 @@ namespace G_H_WEB.Controllers
                             _User = User.Identity.GetUserId() ?? Session["COD_ASPNETUSER_CONTROLLER"].ToString();
                             _resultadoIdReguisicion = new LOGICA_REQUISICION().APROBAR_REQUISICION_LOGICA(modelDatos.COD_REQUISICION, _User, modelDatos.OBSERVACION);
                         }
-                        //Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         npc.METODO = "Aprobar";
                         break;
                     case "ENVIAR RESPUESTA":
                         modelDatos.OBSERVACION = string.Format("Observacion: {0}. Modito Rechazo: {1}", modelDatos.OBSERVACION, modelDatos.MOTIVO_RECHAZO);
                         _resultadoIdReguisicion = new LOGICA_REQUISICION().REQUISICION_RECHAZAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.Name);
-                        //Cambios_campos(modelDatos, _resultadoIdReguisicion);
+                       
                         npc.METODO = "Rechazar";
                         break;
                     case "Enviar Requisición":
                         Convert.ToInt32(new LOGICA_REQUISICION().ACTUALIZAR_REQUISICION(modelDatos));
                         _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
-                        //Cambios_campos(modelDatos, _resultadoIdReguisicion);
                         npc.METODO = "Enviar";
                         break;
                     case "Modificar Requisición":
                         _User = User.Identity.GetUserId() ?? Session["COD_ASPNETUSER_CONTROLLER"].ToString();
                         _resultadoIdReguisicion = Convert.ToInt32(new LOGICA_REQUISICION().REQUISICION_MODIFICAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, _User));
-                       // Cambios_campos(modelDatos, _resultadoIdReguisicion);
                      
                         npc.METODO = "Modificar";
                         break;
@@ -368,7 +364,6 @@ namespace G_H_WEB.Controllers
                     _cambio = true;
                     trazas.Add(traza);
                 }
-                /*aqui*/
                 if (datosCargo.NUMERO_SALARIO != Convert.ToInt32(aGuardar.NUMERO_SALARIOS))
                 {
                     traza = new TRAZA_BOTONES_VISIBLES();
