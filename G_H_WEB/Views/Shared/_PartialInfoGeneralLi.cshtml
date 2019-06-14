@@ -249,7 +249,7 @@
 
     setTimeout(function () {
         console.log('sali');
-        if (cantInfoGeneralLi < $('#collapseInfoGeneralIncap span.span-modify-hidden').length) {
+        if ($('#collapseInfoGeneralIncap span.span-modify-hidden').length < cantInfoGeneralLi) {
             $('.span_infoGeneralLi').css("visibility", "visible");
         }
     }, 650);

@@ -259,7 +259,7 @@
     });
     
     setTimeout(function () {
-        if (cantInfoSalarialIncap2 < $('#collapseInfoSalarialIncap2 span.span-modify-hidden').length) {
+        if ($('#collapseInfoSalarialIncap2 span.span-modify-hidden').length < cantInfoSalarialIncap2) {
             $('.span_infoSalarialLi2').css("visibility", "visible");
         }
     }, 500);

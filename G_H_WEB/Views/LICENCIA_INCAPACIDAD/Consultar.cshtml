@@ -84,6 +84,10 @@
                 }
                 else
                 {
+
+                    <div class="div-alert-modify alert alert-warning" role="alert" style="display:none">
+                        La requisición ha sido modificada por otro usuario
+                    </div>
                     <div id="CNform">
                         <div class="retiros-detalle">
                             <div class="form-group col-md-12">
@@ -153,29 +157,29 @@
                                             @Html.ActionLink("Cancelar requisición", "ConsultarRequisiciones", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
                                             @if (User.IsInRole(SettingsManager.PerfilJefe))
                                             {
-                                            <input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="btn-confirmar-retiro text-uppercase col-md-3 btn-collpse-valid" />
+                                                <input name="submitButton" id="submitButtonCrear" type="submit" value="Crear Requisición" class="btn-confirmar-retiro text-uppercase col-md-3 btn-collpse-valid" />
                                             }
                                             @if (User.IsInRole(SettingsManager.PerfilController))
                                             {
-                                            <input name="submitButton" type="submit" value="Modificar Requisición" class="BtnDevolver text-uppercase TextoBtnDevolver col-md-3 btn-collpse-valid" />
-                                            <input name="submitButton" type="submit" value="Aprobar Requisición" class="btn-confirmar-retiro text-uppercase col-md-3 btn-collpse-valid" />
+                                                <input name="submitButton" type="submit" value="Modificar Requisición" class="BtnDevolver text-uppercase TextoBtnDevolver col-md-3 btn-collpse-valid" />
+                                                <input name="submitButton" type="submit" value="Aprobar Requisición" class="btn-confirmar-retiro text-uppercase col-md-3 btn-collpse-valid" />
                                             }
                                             @if (User.IsInRole(SettingsManager.PerfilBp))
                                             {
-                                            <input name="submitButton" type="submit" value="Enviar Requisición" class="crear-requisicion crear-requisicion-texto btn-collpse-valid" />
+                                                <input name="submitButton" type="submit" value="Enviar Requisición" class="crear-requisicion crear-requisicion-texto btn-collpse-valid" />
                                             }
                                             @if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
                                             {
-                                            <a id="rechazarReq" class="BtnDevolver text-uppercase TextoBtnDevolver" style="padding:12px">Rechazar requisición</a>
-                                            <input name="submitButton" type="submit" value="Modificar Requisición" class="BtnDevolver text-uppercase TextoBtnDevolver col-md-3 btn-collpse-valid" />
-                                            <input name="submitButton" type="submit" value="Aprobar Requisición" class="btn-confirmar-retiro text-uppercase col-md-3 btn-collpse-valid" />
+                                                <a id="rechazarReq" class="BtnDevolver text-uppercase TextoBtnDevolver" style="padding:12px">Rechazar requisición</a>
+                                                <input name="submitButton" type="submit" value="Modificar Requisición" class="BtnDevolver text-uppercase TextoBtnDevolver col-md-3 btn-collpse-valid" />
+                                                <input name="submitButton" type="submit" value="Aprobar Requisición" class="btn-confirmar-retiro text-uppercase col-md-3 btn-collpse-valid" />
                                             }
 
 
                                             @if (ViewBag.PERMISOS_CONTROLLER != "")
                                             {
-                                            <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3 btn-collpse-valid" />
-                                            <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3 btn-collpse-valid"/>
+                                                <input name="submitButton" type="submit" value="Aprobar" class="btn-confirmar-retiro col-md-3 btn-collpse-valid" />
+                                                <input name="submitButton" type="submit" value="Modificar" class="btn-confirmar-retiro col-md-3 btn-collpse-valid" />
                                             }
 
                                         </div>
@@ -377,6 +381,7 @@ $(document).ready(function () {
 function VALIDACION_TRAZA() {
     var jsonObj = @Html.Raw(Json.Encode(ViewBag.traza));
     if (jsonObj) {
+        $('.div-alert-modify').css('display', 'block');
         for (i = 0; i < jsonObj.length; i++) {
             if (jsonObj[i].TRAZA == "true") {
                 var campo = "#" + jsonObj[i].CAMPOS + "_S";

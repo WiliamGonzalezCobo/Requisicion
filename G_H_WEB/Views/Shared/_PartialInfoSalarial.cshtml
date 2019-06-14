@@ -271,7 +271,7 @@
     });
 
     setTimeout(function () {
-        if (cantInfoSalarial < $('#collapseInfoSalarialPresu span.span-modify-hidden').length) {
+        if ($('#collapseInfoSalarialPresu span.span-modify-hidden').length < cantInfoSalarial) {
             $('.span_infoSalarial').css("visibility", "visible");
         }
     }, 550);

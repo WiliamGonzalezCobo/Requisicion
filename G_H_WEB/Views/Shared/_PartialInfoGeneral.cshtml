@@ -247,7 +247,7 @@
     });
 
     setTimeout(function () {
-        if (cantInfoGeneral < $('#collapseInfoGeneralPresu span.span-modify-hidden').length) {
+        if ($('#collapseInfoGeneralPresu span.span-modify-hidden').length < cantInfoGeneral) {
             $('.span_infoGeneral').css("visibility", "visible");
         }
     }, 650);

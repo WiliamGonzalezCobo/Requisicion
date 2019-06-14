@@ -54,6 +54,9 @@
         }
         else
         {
+            <div class="div-alert-modify alert alert-warning" role="alert" style="display:none">
+                La requisición ha sido modificada por otro usuario
+            </div>            
             <div id="CNform">
                 <div class="retiros-detalle">
                     <div class="form-group col-md-12">
@@ -348,6 +351,7 @@
     function VALIDACION_TRAZA() {
         var jsonObj = @Html.Raw(Json.Encode(ViewBag.traza));
         if (jsonObj) {
+            $('.div-alert-modify').css('display', 'block');
             for (i = 0; i < jsonObj.length; i++) {
                 if (jsonObj[i].TRAZA == "true") {
                     var campo = "#" + jsonObj[i].CAMPOS + "_S";
@@ -412,7 +416,6 @@
     });
 
      function ConsultaTraza(CAMPO_REQUISICION) {
-         debugger;
          var campo_re = 0;
         $(".bodytraza").empty();
         $(".nombre_traza").text("");
