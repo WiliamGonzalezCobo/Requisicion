@@ -76,6 +76,10 @@ namespace G_H_WEB.Controllers
                 //FIN POP UP
                 ViewBag.Busca_USUARIOS = new LOGICA_REQUISICION().CONSULTAR_EMPLEADOS_LICENCIA_INCAPACIDADES();
                 ViewBag.PERMISOS_CONTROLLER = link_controler;
+                if (TempData["listadoErroresModelo"] != null)
+                {
+                    model.LIST_VALIDACION_ERRORES = (List<VALIDACION_ERRORES_ViewModel>)TempData["listadoErroresModelo"];
+                }
                 logCentralizado.FINALIZANDO_LOG("CTR_REQ_LIC_INC1", "Consultar");
 
             }
@@ -94,6 +98,13 @@ namespace G_H_WEB.Controllers
         {
             try
             {
+                VALIDACION_MODEL_REQUISICION valModelReq = new VALIDACION_MODEL_REQUISICION(
+                    User.IsInRole(SettingsManager.PerfilJefe),
+                    User.IsInRole(SettingsManager.PerfilController),
+                    User.IsInRole(SettingsManager.PerfilBp),
+                    User.IsInRole(SettingsManager.PerfilRRHH),
+                    User.IsInRole(SettingsManager.PerfilUSC)
+                    );
                 logCentralizado.INICIANDO_LOG("CTR_REQ_LIC_INC2", "Procesar");
                 string _User = "";
                 if (TempData["_idTipo"] != null)
@@ -129,7 +140,11 @@ namespace G_H_WEB.Controllers
                 RESPUESTA_POP_UP npc = new RESPUESTA_POP_UP();
                 // FIN
 
-                switch (submitButton)
+                //Valida si los datos del modelo son validos para almacenar en la base de datos
+                modelDatos.LIST_VALIDACION_ERRORES = valModelReq.ValidarModelo(modelDatos, modelDatos.COD_TIPO_REQUISICION, submitButton);
+                if (modelDatos.LIST_VALIDACION_ERRORES.Count <= 0)
+                {
+                    switch (submitButton)
                 {
                     case "Crear Requisición":
                         _resultadoIdReguisicion = new LOGICA_REQUISICION().INSERTAR_REQUISICION(modelDatos, User.Identity.GetUserId());
@@ -173,7 +188,11 @@ namespace G_H_WEB.Controllers
                         npc.METODO = "Modificar";
                         break;
                 }
-
+                }
+                else
+                {
+                    TempData["listadoErroresModelo"] = modelDatos.LIST_VALIDACION_ERRORES;
+                }
 
                 //INICIO Esta logica es para el POP UP----------
                 npc.COD_REQUISICION_CREADA = _resultadoIdReguisicion;
