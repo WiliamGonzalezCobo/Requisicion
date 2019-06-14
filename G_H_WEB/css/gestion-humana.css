@@ -1373,11 +1373,6 @@ body .requisicion .form-control{
     font-size: 16px
 }
 
-.container {
-    padding-right: 0px !important;
-    padding-left: 0px !important;
-}
-
 .card {
     border: none;
     border-radius: initial;

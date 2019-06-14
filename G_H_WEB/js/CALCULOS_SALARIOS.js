@@ -56,9 +56,11 @@
         var calculo_mensual = (FACTOR_PRESTACIONAL * valor_total / 12).toString().replace(".", ",");
         debugger;
         $(".E_INGRESO_PROM_MENSUAL").text(intlRound(calculo_mensual));
+        $(".E_INGRESO_PROM_MENSUAL").val(intlRound(calculo_mensual));
 
         var calculo_pro_anual = (FACTOR_PRESTACIONAL * valor_total).toString().replace(".", ",");
         $(".E_INGRESO_PROM_ANUAL").text(intlRound(calculo_pro_anual));
+        $(".E_INGRESO_PROM_ANUAL").val(intlRound(calculo_pro_anual));
 });
 
 

@@ -1,103 +1,109 @@
-﻿
-    <div class="col-md-3 menuEmpleados">
-        <h3 class="titulo-menuEmpleados text-center">Gestión<strong>Humana</strong></h3>
-        <ul class="nav flex-column">
+﻿@using UTILS.Settings
+<div class="col-md-3 menuEmpleados">
+    <h3 class="titulo-menuEmpleados text-center">Gestión<strong>Humana</strong></h3>
+    <ul class="nav flex-column">
 
-            @if (ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "SOLICITUD")
-            {
-                <li class="nav-item"><a class="nav-link-static" href="../../SOLICITUD/CONSULTAR">Mis solicitudes</a></li>
-            }
-            else
-            {
-                <li class="nav-item"><a class="nav-link" href="../../SOLICITUD/CONSULTAR">Mis solicitudes</a></li>
-            }
+        @if (ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "SOLICITUD")
+        {
+            <li class="nav-item"><a class="nav-link-static" href="../../SOLICITUD/CONSULTAR">Mis solicitudes</a></li>
+        }
+        else
+        {
+            <li class="nav-item"><a class="nav-link" href="../../SOLICITUD/CONSULTAR">Mis solicitudes</a></li>
+        }
 
-            @if (ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "RETIRO")
+        @if (ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "RETIRO")
 
-            {
-                <li class="nav-item" id="MenuRetiroLI"><a class="nav-link-static" id="MenuRetiroA" href="../../RETIRO/CONSULTAR">Retiros</a></li>
-            }
-            else
-            {
-                <li class="nav-item" id="MenuRetiroLI"><a class="nav-link" id="MenuRetiroA" href="../../RETIRO/CONSULTAR">Retiros</a></li>
-            }
-            @if (ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "REQUISICION")
-            {
-                <li class="nav-item nav-item-special">
-                    <a class="nav-link-static" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        Requisici&oacute;n
-                        <a class="nav-link-static" href="../../REQUISICION/ConsultarRequisiciones" style="display:none"></a>
-                    </a>
-                    <div class="collapse" id="collapseExample">
-                        <div class="row card card-body">
-                            <div class="row col-md-12">
-                                <div class="col-md-10">
-                                    <span id="notificationsBadgePrimary" class="nav-icon badge badge-secondary">
-                                        <i id="" class="fas fa-dollar-sign" aria-hidden="true" style="color: white;"></i>
-                                    </span>
-                                    <a class="nav-presupuestada nav-active">Presupuestada</a>
-                                </div>
-                                <div class="col-md-2">
-                                    <span id="notificationsBadgePrimary" class="badge badge-secondary">1</span>
-                                </div>
-                            </div>
-                            <div class="row col-md-12">
-                                <div class="col-md-10">
-                                    <span id="notificationsBadgePrimary" class="nav-icon badge badge-secondary">
-                                        <i id="" class="fas fa-exclamation" aria-hidden="true" style="color: white;"></i>
-                                    </span>
-                                    <a class="">No Presupuestada</a>
-                                </div>
-                                <div class="col-md-2">
-                                    <span id="notificationsBadgePrimary" class="badge badge-secondary">2</span>
-                                </div>
-                            </div>
-                            <div class="row col-md-12">
-                                <div class="col-md-10">
-                                    <span id="notificationsBadgePrimary" class="nav-icon badge badge-secondary">
-                                        <i id="" class="fas fa-hospital-alt" aria-hidden="true" style="color: white;"></i>
-                                    </span>
-                                    <a class="">Incapacidad</a>
-                                </div>
-                                <div class="col-md-2">
-                                    <span id="notificationsBadgePrimary" class="badge badge-secondary">3</span>
-                                </div>
-                            </div>
-                            <div class="row col-md-12">
-                                <div class="col-md-10">
-                                    <span id="notificationsBadgePrimary" class="nav-icon badge badge-secondary">
-                                        <i id="" class="fas fa-calendar-alt" aria-hidden="true" style="color: white;"></i>
-                                    </span>
-                                    <a class="">Licencia</a>
-                                </div>
-                                <div class="col-md-2">
-                                    <span id="notificationsBadgePrimary" class="badge badge-secondary">4</span>
-                                </div>
-                            </div>
-                            <div class="row col-md-12">
-                                <div class="col-md-10">
-                                    <span id="notificationsBadgePrimary" class="nav-icon badge badge-secondary">
-                                        <i id="" class="fas fa-pen" aria-hidden="true" style="color: white;"></i>
-                                    </span>
-                                    <a class="">Modificaci&oacute;n</a>
-                                </div>
-                                <div class="col-md-2">
-                                    <span id="notificationsBadgePrimary" class="badge badge-secondary">5</span>
-                                </div>
-                            </div>
+        {
+            <li class="nav-item" id="MenuRetiroLI"><a class="nav-link-static" id="MenuRetiroA" href="../../RETIRO/CONSULTAR">Retiros</a></li>
+        }
+        else
+        {
+            <li class="nav-item" id="MenuRetiroLI"><a class="nav-link" id="MenuRetiroA" href="../../RETIRO/CONSULTAR">Retiros</a></li>
+        }
+        @if (
+            (ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "REQUISICION" ||
+              ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "REQUISICION_NOPRESUPUESTADA" ||
+              ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "REQUISICION_PRESUPUESTADA" ||
+              ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "LICENCIA_INCAPACIDAD") &&
+             (User.IsInRole(SettingsManager.PerfilUSC) || User.IsInRole(SettingsManager.PerfilRRHH))
+            )
+        {
+        <li class="nav-item nav-item-special">
+            <a class="nav-link-static" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Requisici&oacute;n
+                <a class="nav-link-static" href="../../REQUISICION/ConsultarRequisiciones" style="display:none"></a>
+            </a>
+            <div class="collapse" id="collapseExample">
+                <div class="row card card-body">
+                    <div class="row col-md-12">
+                        <div class="col-md-10">
+                            <span id="notificationsBadgePrimary" class="nav-icon badge badge-secondary">
+                                <i id="" class="fas fa-dollar-sign" aria-hidden="true" style="color: white;"></i>
+                            </span>
+                            <a class="nav-presupuestada">Presupuestada</a>
+                        </div>
+                        <div class="col-md-2">
+                            <span id="notificationsBadgePrimary" class="badge badge-secondary badge-presupuestada">0</span>
                         </div>
                     </div>
-                </li>
-            }
-            else
+                    <div class="row col-md-12">
+                        <div class="col-md-10">
+                            <span id="notificationsBadgePrimary" class="nav-icon badge badge-secondary">
+                                <i id="" class="fas fa-exclamation" aria-hidden="true" style="color: white;"></i>
+                            </span>
+                            <a class="nav-no-presupuestada">No Presupuestada</a>
+                        </div>
+                        <div class="col-md-2">
+                            <span id="notificationsBadgePrimary" class="badge badge-secondary badge-no-presupuestada">0</span>
+                        </div>
+                    </div>
+                    <div class="row col-md-12">
+                        <div class="col-md-10">
+                            <span id="notificationsBadgePrimary" class="nav-icon badge badge-secondary">
+                                <i id="" class="fas fa-hospital-alt" aria-hidden="true" style="color: white;"></i>
+                            </span>
+                            <a class="nav-incapacidad">Incapacidad</a>
+                        </div>
+                        <div class="col-md-2">
+                            <span id="notificationsBadgePrimary" class="badge badge-secondary badge-incapacidad">0</span>
+                        </div>
+                    </div>
+                    <div class="row col-md-12">
+                        <div class="col-md-10">
+                            <span id="notificationsBadgePrimary" class="nav-icon badge badge-secondary">
+                                <i id="" class="fas fa-calendar-alt" aria-hidden="true" style="color: white;"></i>
+                            </span>
+                            <a class="nav-licencia">Licencia</a>
+                        </div>
+                        <div class="col-md-2">
+                            <span id="notificationsBadgePrimary" class="badge badge-secondary badge-licencia">0</span>
+                        </div>
+                    </div>
+                    <div class="row col-md-12">
+                        <div class="col-md-10">
+                            <span id="notificationsBadgePrimary" class="nav-icon badge badge-secondary">
+                                <i id="" class="fas fa-pen" aria-hidden="true" style="color: white;"></i>
+                            </span>
+                            <a class="nav-modificacion">Modificaci&oacute;n</a>
+                        </div>
+                        <div class="col-md-2">
+                            <span id="notificationsBadgePrimary" class="badge badge-secondary badge-modificacion">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        }
+        else
 
-            {
-                <li class="nav-item"><a class="nav-link" href="../../REQUISICION/ConsultarRequisiciones">Requisicion</a></li>
-            }
-            <li class="nav-item"><a class="nav-link" href="../../CUENTA/SALIR">Salir</a></li>
-        </ul>
-    </div>  
-<script >
+        {
+        <li class="nav-item"><a class="nav-link" href="../../REQUISICION/ConsultarRequisiciones">Requisicion</a></li>
+        }
+        <li class="nav-item"><a class="nav-link" href="../../CUENTA/SALIR">Salir</a></li>
+    </ul>
+</div>
+<script>
     var open = 1;
     $('.nav-link-static').on("click", function () {
         console.log('entre');
