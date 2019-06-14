@@ -101,6 +101,11 @@ namespace UTILS.Settings
         public static string DominioParaController {
             get { return GetSettings("DominioParaController"); }
         }
+
+        public static string TextoBtnRechazar
+        {
+            get { return GetSettings("TextoBtnRechazar"); }
+        }
         #endregion
 
         #region Private Methods

@@ -401,7 +401,7 @@ namespace LOGICA.REQUISICION_LOGICA
                 listaItems = new PROXY().CONSULTAR_CIUDADES_TRABAJO_API().Select(x => new SelectListItem()
                 {
                     Text = x.NOMBRE,
-                    Value = x.COD_CIUDAD.ToString()
+                    Value = x.COD_DANE.ToString()
                 }).ToList();
 
                 logCentralizado.FINALIZANDO_LOG("LGREQ14", "CONSULTAR_CIUDADES_TRABAJO");
