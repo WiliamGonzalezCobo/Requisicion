@@ -43,6 +43,7 @@
                         @Html.LabelFor(model => model.NOMBRE_CARGO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
                         @Html.DropDownListFor(model => model.COD_CARGO, Model.LIST_NOMBRE_CARGO, "Seleccione", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
                         @Html.ValidationMessageFor(model => model.COD_CARGO, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.COD_CARGO)
                     </div>
                 }
                 <div class="form-group col-md-12 col-xs-12">

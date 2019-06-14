@@ -19,7 +19,6 @@ namespace G_H_WEB.Controllers
     public class REQUISICION_NOPRESUPUESTADAController : Controller
     {
         private LOG_CENTRALIZADO logCentralizado = new LOG_CENTRALIZADO(LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType));
-        // GET: REQUISICION_NOPRESUPUESTADA
         public ActionResult Consultar(int? _idReq, int? _idTipo, string link_controler = "", string COD_ASPNETUSER_CONTROLLER = "")
         {
             if (COD_ASPNETUSER_CONTROLLER != "") { Session["COD_ASPNETUSER_CONTROLLER"] = COD_ASPNETUSER_CONTROLLER; }
@@ -98,7 +97,7 @@ namespace G_H_WEB.Controllers
                 int _resultadoIdReguisicion = 0;
                 modelDatos.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqNoPresupuestada;
                 modelDatos.USUARIO_CREACION = User.Identity.Name;
-                modelDatos.USUARIO_MODIFICACION = User.Identity.Name;//      martinezluir esto es para test toca hacer la logica
+                modelDatos.USUARIO_MODIFICACION = User.Identity.Name;
                 REQUISICIONViewModel listas = new REQUISICIONViewModel();
                 // llena los combos
                 modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES(modelDatos);
@@ -203,7 +202,6 @@ namespace G_H_WEB.Controllers
                 datosCargo = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_cod_requisicion, "") ?? new REQUISICIONViewModel();
                 datosCargo = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES_BP(datosCargo) ?? new REQUISICIONViewModel();
 
-                //PUESTO datosCargo = new LOGICA_REQUISICION().BUSCAR_PUESTO_X_CARGO_API(aGuardar.NUMERO_DOCUMENTO_EMPLEADO);
                 if (datosCargo.NOMBRE_CATEGORIA_ED != aGuardar.NOMBRE_CATEGORIA_ED)
                 {
                     traza = new TRAZA_BOTONES_VISIBLES();
@@ -313,7 +311,6 @@ namespace G_H_WEB.Controllers
                     _cambio = true;
                     trazas.Add(traza);
                 }
-                /*aqui*/
                 if (datosCargo.NUMERO_SALARIOS != aGuardar.NUMERO_SALARIOS)
                 {
                     traza = new TRAZA_BOTONES_VISIBLES();

@@ -320,7 +320,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
                 logCentralizado.INICIANDO_LOG("MOD_VMR8", "validarDecimal");
                 if (_obj != null)
                 {
-                    if (_obj.Equals(0) && requerido)
+                    if (_obj.Equals(0M) && requerido)
                     {
                         listaErrores.Add(new VALIDACION_ERRORES_ViewModel { Campo = _nombreCampo, Error = string.Format("El Campo {0} es requerido.", _nombreCampo) });
                     }
@@ -416,12 +416,12 @@ namespace MODELO_DATOS.MODELO_REQUISICION
             {
                 logCentralizado.INICIANDO_LOG("MOD_VMR12", "ValidaInfoSalarialLi");
                 validarDecimal(modelRequisicion.SALARIO_FIJO, "SALARIO FIJO", true);
-                validarDecimal(modelRequisicion.SALARIO_VARIABLE, "SALARIO VARIABLE", true);
-                validarDecimal(modelRequisicion.SOBREREMUNERACION, "SOBRE REMUNERACION", true);
-                validarDecimal(modelRequisicion.EXTRA_FIJA, "EXTRA FIJA", true);
-                validarDecimal(modelRequisicion.RECARGO_NOCTURNO, "RECARGO NOCTURNO", true);
-                validarDecimal(modelRequisicion.MEDIO_TRANSPORTE, "MEDIO TRANSPORTE", true);
-                validarDecimal(modelRequisicion.NUMERO_SALARIOS, "NUMERO SALARIOS", true);
+                validarDecimal(modelRequisicion.SALARIO_VARIABLE, "SALARIO VARIABLE", false);
+                validarDecimal(modelRequisicion.SOBREREMUNERACION, "SOBRE REMUNERACION", false);
+                validarDecimal(modelRequisicion.EXTRA_FIJA, "EXTRA FIJA", false);
+                validarDecimal(modelRequisicion.RECARGO_NOCTURNO, "RECARGO NOCTURNO", false);
+                validarDecimal(modelRequisicion.MEDIO_TRANSPORTE, "MEDIO TRANSPORTE", false);
+                validarEntero(modelRequisicion.NUMERO_SALARIOS, "NUMERO SALARIOS", false);
                 logCentralizado.FINALIZANDO_LOG("MOD_VMR12", "ValidaInfoSalarialLi");
             }
             catch (Exception ex)

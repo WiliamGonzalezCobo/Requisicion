@@ -30,7 +30,7 @@
             <div class="form-group col-md-12 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NIVEL_RIESGO_ARL, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, Model.LIST_NIVEL_RIESGO_ARL, "-- Seleccione --", new { @class = "form-control TexboxIncicial letrasFormulario" })
-                <span id="NOMBRE_ARL_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('NOMBRE_ARL')" style="visibility:hidden">  <i class="fa fa-check btn_centar"></i></span>
+                <span id="NOMBRE_ARL_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('NOMBRE_ARL')" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @*@Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL)*@
                 @Html.ValidationMessageFor(model => model.COD_NIVEL_RIESGO_ARL)
             </div>
