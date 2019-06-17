@@ -124,3 +124,9 @@ thead, tbody, th {
     line-height: 22px;
     text-align: center;
 }
+
+.span-alert-modify {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
