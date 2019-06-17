@@ -61,12 +61,12 @@
                     <br />
                     @if (Model.NOMBRE_CECO == null && Model.COD_CECO == 0)
                     {
-                        @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco_gene letrasFormulario", placeholder = "Nombre CECO", onkeyup = "buscarFiltro(this.value)", autocomplete = "off" })
+                        @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco_gene form-control letrasFormulario", placeholder = "Nombre CECO", onkeyup = "buscarFiltro(this.value)", autocomplete = "off" , disabled = deshabilitar })
                         @Html.HiddenFor(model => model.COD_CECO)
                     }
                     else
                     {
-                        @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco_gene letrasFormulario", placeholder = "Nombre CECO", onkeyup = "buscarFiltro(this.value)", autocomplete = "off" })
+                        @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco_gene form-control letrasFormulario", placeholder = "Nombre CECO", onkeyup = "buscarFiltro(this.value)", autocomplete = "off" , disabled = deshabilitar })
                         @Html.HiddenFor(model => model.COD_CECO)
                     }
                     <br>
