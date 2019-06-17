@@ -1407,7 +1407,7 @@ namespace LOGICA.REQUISICION_LOGICA
             {
                 logCentralizado.INICIANDO_LOG("LGREQ40", "CONSULTA_USUARIOS");
                 LISTA_USUARIO = new ACCES_REQUISICION().CONSULTAR_USUARIOS(_codUsuario);
-               
+
 
                 logCentralizado.FINALIZANDO_LOG("LGREQ40", "CONSULTA_USUARIOS");
             }

@@ -6,9 +6,11 @@
             <span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>
         </div>
         <a class="a-collapse" data-toggle="collapse" href="#collapseInfoSalarialIncap2">
-            <h2>Información Salarial Propuesta</h2>
+            <h2>Información Salarial Propuesta Adicional</h2>
         </a>
-        <span class="span_infoSalarialLi2" style="visibility:hidden"><i class="fas fa-exclamation-circle" style="color:darkorange"></i></span>
+        <span class="span_infoSalarialLi2  span-alert-modify" style="visibility:hidden" data-toggle="tooltip" title="Modificada">
+            <i class="fas fa-exclamation-circle" style="color:darkorange"></i>
+        </span>
     </div>
     <div id="collapseInfoSalarialIncap2" class="panel-collapse collapse">
 
@@ -16,14 +18,14 @@
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.MESES_GARANTIZADOS, htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.MESES_GARANTIZADOS, new { htmlAttributes = new { @class = "form-control TexboxIncicial" } })
-                <span id="MESES_GARANTIZADOS_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('MESES_GARANTIZADOS')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <i class="fa fa-check btn_centar"></i></span>
+                <span id="MESES_GARANTIZADOS_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('MESES_GARANTIZADOS')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.MESES_GARANTIZADOS, "", new { @class = "text-danger" })
 
             </div>
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.NOMBRE_TIPO_SALARIO, "Tipo de Salario", htmlAttributes: new { @class = "control-label" })
                 @Html.DropDownListFor(model => model.COD_TIPO_SALARIO, Model.LIST_NOMBRE_TIPO_SALARIO, "Seleccione ", new { @class = "form-control TexboxIncicial" })
-                <span id="NOMBRE_TIPO_SALARIO_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('NOMBRE_TIPO_SALARIO')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <i class="fa fa-check btn_centar"></i></span>
+                <span id="NOMBRE_TIPO_SALARIO_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('NOMBRE_TIPO_SALARIO')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.COD_TIPO_SALARIO, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -32,7 +34,7 @@
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.FACTOR_PRESTACIONAL, htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.FACTOR_PRESTACIONAL, new { htmlAttributes = new { @class = "form-control TexboxIncicial E_FACTOR_PRESTACIONAL", disabled = deshabilitar } })
-                <span id="FACTOR_PRESTACIONAL_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('FACTOR_PRESTACIONAL')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <i class="fa fa-check btn_centar"></i></span>
+                <span id="FACTOR_PRESTACIONAL_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('FACTOR_PRESTACIONAL')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.HiddenFor(model => model.FACTOR_PRESTACIONAL, new { @id = "hdFACTOR_PRESTACIONAL" })
                 @Html.ValidationMessageFor(model => model.FACTOR_PRESTACIONAL, "", new { @class = "text-danger" })
 
@@ -40,7 +42,7 @@
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.INGRESO_PROM_MENSUAL, htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.INGRESO_PROM_MENSUAL, new { htmlAttributes = new { @class = "form-control TexboxIncicial E_INGRESO_PROM_MENSUAL", disabled = deshabilitar } })
-                <span id="INGRESO_PROM_MENSUAL_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('INGRESO_PROM_MENSUAL')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <i class="fa fa-check btn_centar"></i></span>
+                <span id="INGRESO_PROM_MENSUAL_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('INGRESO_PROM_MENSUAL')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.HiddenFor(model => model.INGRESO_PROM_MENSUAL, new { @class = "E_INGRESO_PROM_MENSUAL", id = "hdINGRESO_PROM_MENSUAL" })
                 @Html.ValidationMessageFor(model => model.INGRESO_PROM_MENSUAL, "", new { @class = "text-danger" })
 
@@ -51,7 +53,7 @@
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.INGRESO_PROM_ANUAL, htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.INGRESO_PROM_ANUAL, new { htmlAttributes = new { @class = "form-control TexboxIncicial E_INGRESO_PROM_ANUAL", disabled = deshabilitar } })
-                <span id=" INGRESO_PROM_ANUAL_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('INGRESO_PROM_ANUAL')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <i class="fa fa-check btn_centar"></i></span>
+                <span id="INGRESO_PROM_ANUAL_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('INGRESO_PROM_ANUAL')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.HiddenFor(model => model.INGRESO_PROM_ANUAL, new { @class = "E_INGRESO_PROM_ANUAL", id = "hdINGRESO_PROM_ANUAL" })
                 @Html.ValidationMessageFor(model => model.INGRESO_PROM_ANUAL, "", new { @class = "text-danger" })
 
@@ -59,7 +61,7 @@
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.MERCADO, htmlAttributes: new { @class = "control-label" })
                 @Html.DropDownListFor(model => model.COD_MERCADO, Model.LIST_MERCADO, "-- Seleccione --", new { @class = "form-control TexboxIncicial col-md-11" })
-                <span id="MERCADO_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('MERCADO')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <i class="fa fa-check btn_centar"></i></span>
+                <span id="MERCADO_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('MERCADO')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.COD_MERCADO, "", new { @class = "text-danger" })
 
             </div>
@@ -68,7 +70,7 @@
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA, "Categoría", htmlAttributes: new { @class = "control-label" })
                 @Html.DropDownListFor(model => model.COD_CATEGORIA, Model.LIST_NOMBRE_CATEGORIA, "Seleccione ", new { @class = "form-control TexboxIncicial col-md-11" })
-                <span id="CATRGORIA_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('CATRGORIA')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <i class="fa fa-check btn_centar"></i></span>
+                <span id="CATRGORIA_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('CATRGORIA')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.COD_CATEGORIA, "", new { @class = "text-danger" })
 
             </div>
@@ -110,7 +112,7 @@
                 <div class="salarioTotalEstilos">
                     @Html.LabelFor(model => model.POSICIONAMIENTO, htmlAttributes: new { @class = "control-label col-md-6" })
                     <span class="valorSalarioTotal col-md-6">@Model.POSICIONAMIENTO</span>
-                    <span id="POSICIONAMIENTO_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('POSICIONAMIENTO')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <i class="fa fa-check btn_centar"></i></span>
+                    <span id="POSICIONAMIENTO_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('POSICIONAMIENTO')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                     @Html.HiddenFor(model => model.POSICIONAMIENTO, new { id = "hdPOSICIONAMIENTO" })
                     @Html.ValidationMessageFor(model => model.POSICIONAMIENTO)
                 </div>

@@ -151,7 +151,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                    _modelRequisicion.FECHA_FIN.Year.Equals(1) ? DateTime.Now : _modelRequisicion.FECHA_FIN,
                    _modelRequisicion.ES_MODIFICACION,
                    _modelRequisicion.OBSERVACION,
-                   1, //_MODEL.COD_ESTADO_REQUISICION, toca ver
+                   1, //_MODEL.COD_ESTADO_REQUISICION
                    _modelRequisicion.USUARIO_MODIFICACION, //llenar con USER.
                    _modelRequisicion.COD_GERENCIA,
                    _modelRequisicion.NOMBRE_GERENCIA,
@@ -387,7 +387,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                         _modelRequisicion.MESES_GARANTIZADOS,
                         _modelRequisicion.COD_TIPO_SALARIO,
                         _modelRequisicion.NOMBRE_TIPO_SALARIO,
-                        _modelRequisicion.FACTOR_PRESTACIONAL.ToString(),  // EN BASE DE DATOS ES VARCHAR
+                        _modelRequisicion.FACTOR_PRESTACIONAL.ToString(),  
                         _modelRequisicion.INGRESO_PROM_MENSUAL,
                         _modelRequisicion.INGRESO_PROM_ANUAL,
                         _modelRequisicion.COD_MERCADO,
@@ -396,7 +396,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                        _modelRequisicion.PUNTO_MEDIO_80,
                        _modelRequisicion.PUNTO_MEDIO_100,
                        _modelRequisicion.PUNTO_MEDIO_120,
-                       Convert.ToString(_modelRequisicion.POSICIONAMIENTO.ToString()), // EN BASE DE DATOS ES VARCHAR
+                       Convert.ToString(_modelRequisicion.POSICIONAMIENTO.ToString()),
                        _modelRequisicion.USUARIO_CREACION ?? "",
                        _modelRequisicion.COD_ESTADO_REQUISICION,
                        _modelRequisicion.ES_MODIFICACION,
