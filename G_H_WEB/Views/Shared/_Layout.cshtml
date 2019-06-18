@@ -165,6 +165,22 @@
         }
         ConsultaModificaciones();
 
+        function validarCampoNumber(name, value) {
+            if (value == '') {
+                $("input[name=" + name + "]").val("0,00");
+            }
+        }
+
+        function validarCampoNumberInput(name, value) {
+            if (value == '') {
+                $("input[name=" + name + "]").val("0");
+            }
+        }
+
+        function soloNumeros(e) {
+            var key = window.Event ? e.which : e.keyCode
+            return (key >= 48 && key <= 57 || key == 44)
+        }
     </script>
 
  
