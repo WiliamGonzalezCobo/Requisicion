@@ -549,6 +549,7 @@
     <Content Include="js\CALCULOS_SALARIOS.js" />
     <Content Include="js\cors\jquery.postmessage-transport.js" />
     <Content Include="js\cors\jquery.xdr-transport.js" />
+    <Content Include="js\imask.js" />
     <Content Include="js\jquery.fileupload-angular.js" />
     <Content Include="js\jquery.fileupload-audio.js" />
     <Content Include="js\jquery.fileupload-image.js" />
@@ -702,7 +703,6 @@
     <Content Include="Views\Shared\_PieDePagina.cshtml" />
     <Content Include="Views\RETIRO\ERROR_ARCHIVO.cshtml" />
     <Content Include="Views\REQUISICION_PRESUPUESTADA\Consultar.cshtml" />
-    <Content Include="Views\REQUISICION\Create.cshtml" />
     <Content Include="Views\LICENCIA_INCAPACIDAD\Consultar.cshtml" />
     <Content Include="Views\REQUISICION_NOPRESUPUESTADA\Consultar.cshtml" />
     <Content Include="Views\REQUISICION\_SelectRequisicion.cshtml" />

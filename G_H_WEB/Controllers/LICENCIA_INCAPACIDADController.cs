@@ -435,15 +435,15 @@ namespace G_H_WEB.Controllers
                     trazas.Add(traza);
                 }
 
-                if (datosCargo.MESES_GARANTIZADO != Convert.ToInt32(aGuardar.MESES_GARANTIZADOS))
-                {
-                    traza = new TRAZA_BOTONES_VISIBLES();
-                    traza.COD_REQUISICION = _cod_requisicion;
-                    traza.CAMPOS = "MESES_GARANTIZADOS";
-                    traza.TRAZA = "true";
-                    _cambio = true;
-                    trazas.Add(traza);
-                }
+                //if (datosCargo.MESES_GARANTIZADO != Convert.ToInt32(aGuardar.MESES_GARANTIZADOS))
+                //{
+                //    traza = new TRAZA_BOTONES_VISIBLES();
+                //    traza.COD_REQUISICION = _cod_requisicion;
+                //    traza.CAMPOS = "MESES_GARANTIZADOS";
+                //    traza.TRAZA = "true";
+                //    _cambio = true;
+                //    trazas.Add(traza);
+                //}
 
                 if (datosCargo.FP != Convert.ToDecimal(aGuardar.FACTOR_PRESTACIONAL))
                 {
@@ -455,57 +455,57 @@ namespace G_H_WEB.Controllers
                     trazas.Add(traza);
                 }
 
-                if (datosCargo.COD_TIPO_SALARIO != Convert.ToDecimal(aGuardar.COD_TIPO_SALARIO))
-                {
-                    traza = new TRAZA_BOTONES_VISIBLES();
-                    traza.COD_REQUISICION = _cod_requisicion;
-                    traza.CAMPOS = "COD_TIPO_SALARIO";
-                    traza.TRAZA = "true";
-                    _cambio = true;
-                    trazas.Add(traza);
-                }
+                //if (datosCargo.COD_TIPO_SALARIO != Convert.ToDecimal(aGuardar.COD_TIPO_SALARIO))
+                //{
+                //    traza = new TRAZA_BOTONES_VISIBLES();
+                //    traza.COD_REQUISICION = _cod_requisicion;
+                //    traza.CAMPOS = "COD_TIPO_SALARIO";
+                //    traza.TRAZA = "true";
+                //    _cambio = true;
+                //    trazas.Add(traza);
+                //}
 
 
 
-                if (datosCargo.NOMBRE_TIPO_SALARIO != aGuardar.NOMBRE_TIPO_SALARIO)
-                {
-                    traza = new TRAZA_BOTONES_VISIBLES();
-                    traza.COD_REQUISICION = _cod_requisicion;
-                    traza.CAMPOS = "NOMBRE_TIPO_SALARIO";
-                    traza.TRAZA = "true";
-                    _cambio = true;
-                    trazas.Add(traza);
-                }
+                //if (datosCargo.NOMBRE_TIPO_SALARIO != aGuardar.NOMBRE_TIPO_SALARIO)
+                //{
+                //    traza = new TRAZA_BOTONES_VISIBLES();
+                //    traza.COD_REQUISICION = _cod_requisicion;
+                //    traza.CAMPOS = "NOMBRE_TIPO_SALARIO";
+                //    traza.TRAZA = "true";
+                //    _cambio = true;
+                //    trazas.Add(traza);
+                //}
 
-                if (datosCargo.PROMEDIO_MES != Convert.ToDecimal(aGuardar.INGRESO_PROM_MENSUAL))
-                {
-                    traza = new TRAZA_BOTONES_VISIBLES();
-                    traza.COD_REQUISICION = _cod_requisicion;
-                    traza.CAMPOS = "INGRESO_PROM_MENSUAL";
-                    traza.TRAZA = "true";
-                    _cambio = true;
-                    trazas.Add(traza);
-                }
+                //if (datosCargo.PROMEDIO_MES != Convert.ToDecimal(aGuardar.INGRESO_PROM_MENSUAL))
+                //{
+                //    traza = new TRAZA_BOTONES_VISIBLES();
+                //    traza.COD_REQUISICION = _cod_requisicion;
+                //    traza.CAMPOS = "INGRESO_PROM_MENSUAL";
+                //    traza.TRAZA = "true";
+                //    _cambio = true;
+                //    trazas.Add(traza);
+                //}
 
-                if (datosCargo.PROMEDIO_ANO != Convert.ToDecimal(aGuardar.INGRESO_PROM_ANUAL))
-                {
-                    traza = new TRAZA_BOTONES_VISIBLES();
-                    traza.COD_REQUISICION = _cod_requisicion;
-                    traza.CAMPOS = "INGRESO_PROM_ANUAL";
-                    traza.TRAZA = "true";
-                    _cambio = true;
-                    trazas.Add(traza);
-                }
+                //if (datosCargo.PROMEDIO_ANO != Convert.ToDecimal(aGuardar.INGRESO_PROM_ANUAL))
+                //{
+                //    traza = new TRAZA_BOTONES_VISIBLES();
+                //    traza.COD_REQUISICION = _cod_requisicion;
+                //    traza.CAMPOS = "INGRESO_PROM_ANUAL";
+                //    traza.TRAZA = "true";
+                //    _cambio = true;
+                //    trazas.Add(traza);
+                //}
 
-                if (datosCargo.NOMBRE_MERCADO != aGuardar.MERCADO)
-                {
-                    traza = new TRAZA_BOTONES_VISIBLES();
-                    traza.COD_REQUISICION = _cod_requisicion;
-                    traza.CAMPOS = "MERCADO";
-                    traza.TRAZA = "true";
-                    _cambio = true;
-                    trazas.Add(traza);
-                }
+                //if (datosCargo.NOMBRE_MERCADO != aGuardar.MERCADO)
+                //{
+                //    traza = new TRAZA_BOTONES_VISIBLES();
+                //    traza.COD_REQUISICION = _cod_requisicion;
+                //    traza.CAMPOS = "MERCADO";
+                //    traza.TRAZA = "true";
+                //    _cambio = true;
+                //    trazas.Add(traza);
+                //}
 
                 if (datosCargo.NOMBRE_CATEGORIA_SALARIO != aGuardar.NOMBRE_CATEGORIA)
                 {

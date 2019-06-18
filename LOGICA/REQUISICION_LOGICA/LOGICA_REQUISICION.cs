@@ -840,7 +840,7 @@ namespace LOGICA.REQUISICION_LOGICA
 
                 if (SettingsManager.CodTipoReqLicencia == objReqModel.COD_TIPO_REQUISICION || SettingsManager.CodTipoReqIncapacidad == objReqModel.COD_TIPO_REQUISICION)
                 {
-                    objReqModel.NOMBRE_TIPO_DOCUMENTO = listaDocumentos.Where(x => x.coD_TIPO_DOCUMENTO == objReqModel.COD_TIPO_DOCUMENTO).FirstOrDefault().coD_TIPO_DOCUMENTO_ALTERNO_SAP;
+                    objReqModel.NOMBRE_TIPO_DOCUMENTO = listaDocumentos.Where(x => x.coD_TIPO_DOCUMENTO == objReqModel.COD_TIPO_DOCUMENTO).FirstOrDefault().NOMBRE;
                 }
                 logCentralizado.FINALIZANDO_LOG("LGREQ26", "BUSCAR_REQUISICIONES");
             }
@@ -1272,7 +1272,7 @@ namespace LOGICA.REQUISICION_LOGICA
                     COD_TIPO_DOCUMENTO = Convert.ToInt32(x.COD_TIPO_DOCUMENTO),
                     DOCUMENTO_NUMERO = x.DOCUMENTO_NUMERO,
                     NOMBRES = x.NOMBRES,
-                    TIPO_DOCUMENTO = listaDocumentos.Where(y => y.coD_TIPO_DOCUMENTO == x.COD_TIPO_DOCUMENTO).First().coD_TIPO_DOCUMENTO_ALTERNO_SAP
+                    TIPO_DOCUMENTO = listaDocumentos.Where(y => y.coD_TIPO_DOCUMENTO == x.COD_TIPO_DOCUMENTO).First().NOMBRE
                 }).ToList();
                 logCentralizado.FINALIZANDO_LOG("LGREQ34", "CONSULTAR_EMPLEADOS_LICENCIA_INCAPACIDADES");
             }
