@@ -167,16 +167,16 @@
 
         function validarCampoNumber(name, value) {
             if (value == '') {
-                $("#span-message").html("");
-                $("#span-message").removeClass("field-validation-error").addClass("field-validation-valid");
+                $("span[for=" + name + "]").html("");
+                $("input[name=" + name + "]").removeClass("input-validation-error").addClass("input-validation-valid");
                 $("input[name=" + name + "]").val("0,00");
             }
         }
 
         function validarCampoNumberInput(name, value) {
             if (value == '') {
-                $("#span-message").html("");
-                $("#span-message").removeClass("field-validation-error").addClass("field-validation-valid");
+                $("span[for=" + name + "]").html("");
+                $("input[name=" + name + "]").removeClass("input-validation-error").addClass("input-validation-valid");
                 $("input[name=" + name + "]").val("0");
             }
         }
