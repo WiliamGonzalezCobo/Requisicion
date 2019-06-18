@@ -138,7 +138,7 @@ namespace G_H_WEB.Controllers
                             npc.METODO = "Aprobar";
                             break;
                         case "ENVIAR RESPUESTA":
-                            modelDatos.OBSERVACION = string.Format("Observacion: {0}. Modito Rechazo: {1}", modelDatos.OBSERVACION, modelDatos.MOTIVO_RECHAZO);
+                            modelDatos.OBSERVACION = string.Format("Motivo Rechazo: {0}", modelDatos.OBSERVACION);
                             _resultadoIdReguisicion = new LOGICA_REQUISICION().REQUISICION_RECHAZAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.Name);
 
                             npc.METODO = "Rechazar";
