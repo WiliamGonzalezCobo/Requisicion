@@ -177,7 +177,7 @@ namespace G_H_WEB.Controllers
                         _resultadoIdReguisicion = modelDatos.COD_REQUISICION;
                         npc.METODO = "Enviar";
                         break;
-                    case "Modificar Requisición":
+                    case "Devolver Requisición":
                         _User = User.Identity.GetUserId() ?? Session["COD_ASPNETUSER_CONTROLLER"].ToString();
                         _resultadoIdReguisicion = Convert.ToInt32(new LOGICA_REQUISICION().REQUISICION_MODIFICAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, _User));
                      

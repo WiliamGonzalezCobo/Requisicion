@@ -1,6 +1,5 @@
 ﻿
    $(".E_SALARIO_FIJO").focusout(function () {
-        debugger;
         var VALOR_SALARIO_FIJO = parseFloat($(".E_SALARIO_FIJO").val().replace(",", "."));
         var SALARIO_TOTAL = parseFloat($(".S_TOTAL_UNICO").text().replace(",", "."));
         var calculo = ((VALOR_SALARIO_FIJO * 100) / SALARIO_TOTAL).toString().replace(".", ",");
@@ -23,7 +22,6 @@
     });
 
     $(".CALCULO_TOTAL").focusout(function () {
-        debugger;
         var VALOR_SALARIO_FIJO = parseFloat($(".E_SALARIO_FIJO").val().replace(",", "."));
         var VALOR_SALARIO_VARIABLE = parseFloat($(".S_VARIABLE").val().replace(",", "."));
         var VALOR_SOBREREMUNERACION = parseFloat($(".E_SOBREREMUNERACION").val().replace(",", "."));
@@ -54,7 +52,6 @@
         var FACTOR_PRESTACIONAL = $(".E_FACTOR_PRESTACIONAL").val().replace(",", ".");
         var valor_total = $(".S_TOTAL_UNICO").text().replace(",", ".");
         var calculo_mensual = (FACTOR_PRESTACIONAL * valor_total / 12).toString().replace(".", ",");
-        debugger;
         $(".E_INGRESO_PROM_MENSUAL").text(intlRound(calculo_mensual));
         $(".E_INGRESO_PROM_MENSUAL").val(intlRound(calculo_mensual));
 

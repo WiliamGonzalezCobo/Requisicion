@@ -245,18 +245,9 @@
 
     var validateInfoSalarialPresu = true;
     var validateFormInfoSalarialPresu = function () {
-        if ($('#SALARIO_FIJO').val() == "" &&
-            $('#SALARIO_VARIABLE').val() == "" || !isNaN($('#SALARIO_VARIABLE').val()) ||
-            $('#SOBREREMUNERACION').val() == "" ||
-            $('#PORCENTAJE_SOBREREMUNERACION').val() == "" || !isNaN($('#PORCENTAJE_SOBREREMUNERACION').val()) ||
-            $('#EXTRA_FIJA').val() == "" ||
-            $('#RECARGO_NOCTURNO').val() == "" ||
-            $('#MEDIO_TRANSPORTE').val() == "" ||
-            $('#NUMERO_SALARIOS').val() == "" ||
-            $('#MESES_GARANTIZADOS').val() == "" ||
-            $('#COD_TIPO_SALARIO').val() == "" &&
-            $('#COD_MERCADO').val() == "" &&
-            $('#COD_CATEGORIA').val() == "") {
+        if (!$('#COD_TIPO_SALARIO').valid() ||
+            !$('#COD_MERCADO').valid() ||
+            !$('#COD_CATEGORIA').valid()) {
             validateInfoSalarialPresu = false;
         } else {
             validateInfoSalarialPresu = true;
