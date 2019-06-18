@@ -29,12 +29,13 @@ namespace MODELO_DATOS.MODELO_REQUISICION
             listaErrores = new List<VALIDACION_ERRORES_ViewModel>();
         }
 
-        public List<VALIDACION_ERRORES_ViewModel> ValidarModelo(REQUISICIONViewModel _modelRequisicion,int _tipoRequisicion,string _accionSubmit)
+        public List<VALIDACION_ERRORES_ViewModel> ValidarModelo(REQUISICIONViewModel _modelRequisicion, int _tipoRequisicion, string _accionSubmit)
         {
             try
             {
                 logCentralizado.INICIANDO_LOG("MOD_VMR1", "ValidarModelo");
-                if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqNoPresupuestada) || _tipoRequisicion.Equals(SettingsManager.CodTipoReqPresupuestada) || _tipoRequisicion.Equals(SettingsManager.CodTipoReqModificacion)) {
+                if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqNoPresupuestada) || _tipoRequisicion.Equals(SettingsManager.CodTipoReqPresupuestada) || _tipoRequisicion.Equals(SettingsManager.CodTipoReqModificacion))
+                {
                     if (esJefe || esController)
                     {
                         ValidaInfoRequisicion(_modelRequisicion);
@@ -53,11 +54,12 @@ namespace MODELO_DATOS.MODELO_REQUISICION
                         //ValidarInfoGeneral(_modelRequisicion); //Todos los campos son deshabilitados y vienen de la api
                         ValidarInfoSalarial(_modelRequisicion);
                         ValidaAutorizacion(_modelRequisicion);
-                        
+
 
                     }
                     //si el evento es de rechazar requisicion valida el campo
-                    if (_accionSubmit.Equals("ENVIAR RESPUESTA")) {
+                    if (_accionSubmit.Equals("ENVIAR RESPUESTA"))
+                    {
                         ValidaRechazar(_modelRequisicion);
                     }
 
@@ -71,24 +73,32 @@ namespace MODELO_DATOS.MODELO_REQUISICION
                     if (esJefe)
                     {
                         ValidaInfoRequisicionLi(_modelRequisicion);
-
-                    }
-                    if (esController)
-                    {
+                        ValidaInfoGeneralLi(_modelRequisicion);
+                        ValidaInfoSalarialLi(_modelRequisicion);
 
                     }
                     if (esBp)
                     {
-
+                        ValidaGeneralProPuestaLi(_modelRequisicion);
+                        ValidaInfoSalarialLi(_modelRequisicion);
+                        ValidaInfoSalarialLi2(_modelRequisicion);
                     }
                     if (esRRHH)
                     {
-
+                        ValidaGeneralProPuestaLi(_modelRequisicion);
+                        ValidaInfoSalarialLi(_modelRequisicion);
+                        ValidaInfoSalarialLi2(_modelRequisicion);
                     }
                     if (esUsc)
                     {
-
-
+                        ValidaGeneralProPuestaLi(_modelRequisicion);
+                        ValidaInfoSalarialLi(_modelRequisicion);
+                        ValidaInfoSalarialLi2(_modelRequisicion);
+                    }
+                    //si el evento es de rechazar requisicion valida el campo
+                    if (_accionSubmit.Equals("ENVIAR RESPUESTA"))
+                    {
+                        ValidaRechazar(_modelRequisicion);
                     }
                     ValidaAutorizacion(_modelRequisicion);
                 }
@@ -105,46 +115,6 @@ namespace MODELO_DATOS.MODELO_REQUISICION
 
             return listaErrores;
         }
-
-        
-
-        #region ParcialesLicenciayIncapacidad
-
-        private void ValidaInfoRequisicionLi(REQUISICIONViewModel modelRequisicion)
-        {
-            validarEntero(modelRequisicion.COD_TIPO_DOCUMENTO, "TIPO DE DOCUMENTO", true);
-            validarEntero(modelRequisicion.NUMERO_DOCUMENTO_EMPLEADO, "NÚMERO DE DOCUMENTO", true);
-            validarString(modelRequisicion.NOMBRE_EMPLEADO, "NOMBRE EMPLEADO", true);
-            validarFecha(modelRequisicion.FECHA_INICIO, "FECHA INICIO", true);
-            validarFecha(modelRequisicion.FECHA_FIN, "FECHA FIN", true);
-
-            throw new NotImplementedException();
-        }
-
-        private void ValidaInfoGeneralLi(REQUISICIONViewModel modelRequisicion)
-        {
-            validarEntero(modelRequisicion.COD_CARGO, "CÓDIGO DEL CARGO", true);
-            validarString(modelRequisicion.NOMBRE_CARGO, "NOMBRE CARGO", true);
-            validarEntero(modelRequisicion.COD_CECO, "CÓDIGO DEL CECO", true);
-            validarString(modelRequisicion.NOMBRE_CECO, "NOMBRE CECO", true);
-
-            throw new NotImplementedException();
-        }
-
-        private void ValidaInfoSalarialLi(REQUISICIONViewModel modelRequisicion)
-        {
-            validarDecimal(modelRequisicion.SALARIO_FIJO, "SALARIO FIJO", true);
-            validarDecimal(modelRequisicion.SALARIO_VARIABLE, "SALARIO VARIABLE", true);
-            validarDecimal(modelRequisicion.SOBREREMUNERACION, "SOBRE REMUNERACION", true);
-            validarDecimal(modelRequisicion.EXTRA_FIJA, "EXTRA FIJA", true);
-            validarDecimal(modelRequisicion.RECARGO_NOCTURNO, "RECARGO NOCTURNO", true);
-            validarDecimal(modelRequisicion.MEDIO_TRANSPORTE, "MEDIO TRANSPORTE", true);
-            validarDecimal(modelRequisicion.NUMERO_SALARIOS, "NUMERO SALARIOS", true);
-
-            throw new NotImplementedException();
-        }
-
-        #endregion ParcialesLicenciayIncapacidad
 
         #region ParcialesPresupuestadayNoPresupuestada
 
@@ -350,7 +320,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
                 logCentralizado.INICIANDO_LOG("MOD_VMR8", "validarDecimal");
                 if (_obj != null)
                 {
-                    if (_obj.Equals(0) && requerido)
+                    if (_obj.Equals(0M) && requerido)
                     {
                         listaErrores.Add(new VALIDACION_ERRORES_ViewModel { Campo = _nombreCampo, Error = string.Format("El Campo {0} es requerido.", _nombreCampo) });
                     }
@@ -400,6 +370,107 @@ namespace MODELO_DATOS.MODELO_REQUISICION
 
         }
         #endregion validaciones
+
+        #region ParcialesLicenciayIncapacidad
+
+        private void ValidaInfoRequisicionLi(REQUISICIONViewModel modelRequisicion)
+        {
+            try
+            {
+                logCentralizado.INICIANDO_LOG("MOD_VMR10", "ValidaInfoRequisicionLi");
+                validarEntero(modelRequisicion.COD_TIPO_DOCUMENTO, "TIPO DE DOCUMENTO", true);
+                validarEntero(modelRequisicion.NUMERO_DOCUMENTO_EMPLEADO, "NÚMERO DE DOCUMENTO", true);
+                validarString(modelRequisicion.NOMBRE_EMPLEADO, "NOMBRE EMPLEADO", true);
+                validarFecha(modelRequisicion.FECHA_INICIO, "FECHA INICIO", true);
+                validarFecha(modelRequisicion.FECHA_FIN, "FECHA FIN", true);
+                logCentralizado.FINALIZANDO_LOG("MOD_VMR10", "ValidaInfoRequisicionLi");
+            }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("MOD_VMR10", "ValidaInfoRequisicionLi", ex);
+                throw ex;
+            }
+        }
+
+        private void ValidaInfoGeneralLi(REQUISICIONViewModel modelRequisicion)
+        {
+            try
+            {
+                logCentralizado.INICIANDO_LOG("MOD_VMR11", "ValidaInfoGeneralLi");
+                validarEntero(modelRequisicion.COD_CARGO, "CÓDIGO DEL CARGO", true);
+                validarString(modelRequisicion.NOMBRE_CARGO, "NOMBRE CARGO", true);
+                validarEntero(modelRequisicion.COD_CECO, "CÓDIGO DEL CECO", true);
+                validarString(modelRequisicion.NOMBRE_CECO, "NOMBRE CECO", true);
+                logCentralizado.FINALIZANDO_LOG("MOD_VMR11", "ValidaInfoGeneralLi");
+            }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("MOD_VMR11", "ValidaInfoGeneralLi", ex);
+                throw ex;
+            }
+        }
+
+        private void ValidaInfoSalarialLi(REQUISICIONViewModel modelRequisicion)
+        {
+            try
+            {
+                logCentralizado.INICIANDO_LOG("MOD_VMR12", "ValidaInfoSalarialLi");
+                validarDecimal(modelRequisicion.SALARIO_FIJO, "SALARIO FIJO", true);
+                validarDecimal(modelRequisicion.SALARIO_VARIABLE, "SALARIO VARIABLE", false);
+                validarDecimal(modelRequisicion.SOBREREMUNERACION, "SOBRE REMUNERACION", false);
+                validarDecimal(modelRequisicion.EXTRA_FIJA, "EXTRA FIJA", false);
+                validarDecimal(modelRequisicion.RECARGO_NOCTURNO, "RECARGO NOCTURNO", false);
+                validarDecimal(modelRequisicion.MEDIO_TRANSPORTE, "MEDIO TRANSPORTE", false);
+                validarEntero(modelRequisicion.NUMERO_SALARIOS, "NUMERO SALARIOS", false);
+                logCentralizado.FINALIZANDO_LOG("MOD_VMR12", "ValidaInfoSalarialLi");
+            }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("MOD_VMR12", "ValidaInfoSalarialLi", ex);
+                throw ex;
+            }
+        }
+
+        private void ValidaInfoSalarialLi2(REQUISICIONViewModel modelRequisicion)
+        {
+            try
+            {
+                logCentralizado.INICIANDO_LOG("MOD_VMR13", "ValidaInfoSalarialLi2");
+                validarString(modelRequisicion.MESES_GARANTIZADOS, "MESES GARANTIZADOS", true);
+                validarEntero(modelRequisicion.COD_TIPO_SALARIO, "CÓDIGO TIPO SALARIO", true);
+                validarString(modelRequisicion.NOMBRE_TIPO_SALARIO, "NOMBRE TIPO SALARIO", true);
+                validarEntero(modelRequisicion.COD_MERCADO, "CÓDIGO DE MERCADO", true);
+                validarString(modelRequisicion.MERCADO, "MERCADO", true);
+                validarString(modelRequisicion.COD_CATEGORIA, "CÓDIGO CATEGORIA", true);
+                validarString(modelRequisicion.NOMBRE_CATEGORIA, "NOMBRE CATEGORIA", true);
+                logCentralizado.FINALIZANDO_LOG("MOD_VMR13", "ValidaInfoSalarialLi2");
+            }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("MOD_VMR13", "ValidaInfoSalarialLi2", ex);
+                throw ex;
+            }
+        }
+        private void ValidaGeneralProPuestaLi(REQUISICIONViewModel modelRequisicion)
+        {
+            try
+            {
+                logCentralizado.INICIANDO_LOG("MOD_VMR14", "ValidaGeneralProPuestaLi");
+                validarEntero(modelRequisicion.COD_TIPO_CONTRATO, "CÓDIGO TIPO CONTRATO", true);
+                validarString(modelRequisicion.NOMBRE_TIPO_CONTRATO, "NOMBRE DEL TIPO DE CONTRATO", true);
+                validarString(modelRequisicion.JEFE_INMEDIATO, "JEFE INMEDIATO", true);
+                validarEntero(modelRequisicion.COD_NIVEL_RIESGO_ARL, "CÓDIGO DEL NIVEL DE RIESGO", true);
+                validarString(modelRequisicion.NIVEL_RIESGO_ARL, "NIVEL DE RIESGO", true);
+                logCentralizado.FINALIZANDO_LOG("MOD_VMR14", "ValidaGeneralProPuestaLi");
+            }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("MOD_VMR14", "ValidaGeneralProPuestaLi", ex);
+                throw ex;
+            }
+        }
+
+        #endregion ParcialesLicenciayIncapacidad
     }
 }
 

@@ -195,7 +195,12 @@
 </style>
 <script>
     $(document).ready(function () {
-        $(".buscadorR").css("display", "none");
+        if ("@Model.ES_MODIFICACION" === "True") {
+            $(".buscadorR").css("display", "block");
+        } else {
+            $(".buscadorR").css("display", "none");
+        }
+        
         $("#ES_MODIFICACION").click(function () {
             debugger;
             if ($("#ES_MODIFICACION").is(':checked')) {
