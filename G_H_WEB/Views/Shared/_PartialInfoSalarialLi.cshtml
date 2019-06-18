@@ -144,7 +144,7 @@ else
         <div class="row">
             <div class="form-group col-md-6 col-xs-12">
                 @Html.LabelFor(model => model.SALARIO_FIJO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                @Html.EditorFor(model => model.SALARIO_FIJO, new { htmlAttributes = new { @class = "form-control E_SALARIO_FIJO CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario", onkeyup = "validarCampoNumber(this.name, this.value)", onkeypress = "return soloNumeros(event)" } })
+                @Html.EditorFor(model => model.SALARIO_FIJO, new { htmlAttributes = new { @class = "form-control E_SALARIO_FIJO CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario", onBlur = "validarCampoNumber(this.name, this.value)", onkeypress = "return soloNumeros(event)" } })
                 <span id="SALARIO_FIJO_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('SALARIO_FIJO')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.SALARIO_FIJO, "", new { @class = "text-danger" })
             </div>
@@ -159,7 +159,7 @@ else
         <div class="row">
             <div class="form-group col-md-6 col-xs-12">
                 @Html.LabelFor(model => model.SALARIO_VARIABLE, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                @Html.EditorFor(model => model.SALARIO_VARIABLE, new { htmlAttributes = new { @class = "form-control S_VARIABLE CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario", onkeyup = "validarCampoNumber(this.name, this.value)", onkeypress = "return soloNumeros(event)" } })
+                @Html.EditorFor(model => model.SALARIO_VARIABLE, new { htmlAttributes = new { @class = "form-control S_VARIABLE CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario", onBlur = "validarCampoNumber(this.name, this.value)", onkeypress = "return soloNumeros(event)" } })
                 <span id="SALARIO_VARIABLE_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('SALARIO_VARIABLE')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.SALARIO_VARIABLE, "", new { @class = "text-danger" })
             </div>
@@ -174,13 +174,13 @@ else
         <div class="row">
             <div class="form-group col-md-6 col-xs-12">
                 @Html.LabelFor(model => model.SOBREREMUNERACION, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                @Html.EditorFor(model => model.SOBREREMUNERACION, new { htmlAttributes = new { @class = "form-control E_SOBREREMUNERACION CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario", onkeyup = "validarCampoNumber(this.name, this.value)", onkeypress = "return soloNumeros(event)" } })
+                @Html.EditorFor(model => model.SOBREREMUNERACION, new { htmlAttributes = new { @class = "form-control E_SOBREREMUNERACION CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario", onBlur = "validarCampoNumber(this.name, this.value)", onkeypress = "return soloNumeros(event)" } })
                 <span id="SOBREREMUNERACION_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('SOBREREMUNERACION')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.SOBREREMUNERACION, "", new { @class = "text-danger" })
             </div>
             <div class="form-group col-md-6 col-xs-12">
                 @Html.LabelFor(model => model.EXTRA_FIJA, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                @Html.EditorFor(model => model.EXTRA_FIJA, new { htmlAttributes = new { @class = "form-control E_EXTRA_FIJA CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario", onkeyup = "validarCampoNumber(this.name, this.value)", onkeypress = "return soloNumeros(event)" } })
+                @Html.EditorFor(model => model.EXTRA_FIJA, new { htmlAttributes = new { @class = "form-control E_EXTRA_FIJA CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario", onBlur = "validarCampoNumber(this.name, this.value)", onkeypress = "return soloNumeros(event)" } })
                 <span id="EXTRA_FIJA_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('EXTRA_FIJA')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.EXTRA_FIJA, "", new { @class = "text-danger" })
             </div>
@@ -188,22 +188,22 @@ else
         <div class="row">
             <div class="form-group col-md-6 col-xs-12">
                 @Html.LabelFor(model => model.RECARGO_NOCTURNO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                @Html.EditorFor(model => model.RECARGO_NOCTURNO, new { htmlAttributes = new { @class = "form-control  E_RECARGO_NOCTURNO CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario", onkeyup = "validarCampoNumber(this.name, this.value)", onkeypress = "return soloNumeros(event)" } })
+                @Html.EditorFor(model => model.RECARGO_NOCTURNO, new { htmlAttributes = new { @class = "form-control  E_RECARGO_NOCTURNO CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario", onBlur = "validarCampoNumber(this.name, this.value)", onkeypress = "return soloNumeros(event)" } })
                 <span id="RECARGO_NOCTURNO_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('RECARGO_NOCTURNO')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.RECARGO_NOCTURNO, "", new { @class = "text-danger" })
             </div>
             <div class="form-group col-md-6 col-xs-12">
                 @Html.LabelFor(model => model.MEDIO_TRANSPORTE, htmlAttributes: new { @class = "control-label col-md-12" })
-                @Html.EditorFor(model => model.MEDIO_TRANSPORTE, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario col-md-11", onkeyup = "validarCampoNumber(this.name, this.value)", onkeypress = "return soloNumeros(event)" } })
+                @Html.EditorFor(model => model.MEDIO_TRANSPORTE, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario col-md-11", onBlur = "validarCampoNumber(this.name, this.value)", onkeypress = "return soloNumeros(event)" } })
                 <span id="MEDIO_TRANSPORTE_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('MEDIO_TRANSPORTE')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.MEDIO_TRANSPORTE, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="salarioTotalEstilos" style="width: 809px;">
-                    @Html.LabelFor(model => model.SALARIO_TOTAL, htmlAttributes: new { @class = "letrasSalarioTotal col-md-6", @style = "text-align:left;" })
-                    <span class="S_TOTAL S_TOTAL_UNICO valorSalarioTotal col-md-6">@Model.SALARIO_TOTAL</span>
+                <div class="salarioTotalEstilos" style="width: 95%;">
+                    @Html.LabelFor(model => model.SALARIO_TOTAL, htmlAttributes: new { @class = "letrasSalarioTotal col-md-7", @style = "text-align:left;" })
+                    <span class="S_TOTAL S_TOTAL_UNICO valorSalarioTotal col-md-5" >@Model.SALARIO_TOTAL</span>
                     <span id="SALARIO_TOTAL_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('SALARIO_TOTAL')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                     @Html.ValidationMessageFor(model => model.SALARIO_TOTAL, "", new { @class = "text-danger" })
                     @Html.HiddenFor(model => model.SALARIO_TOTAL, new { @class = "S_TOTAL", id = "hdSALARIO_TOTAL" })
@@ -223,7 +223,7 @@ else
             </div>
             <div class="form-group col-md-6 col-xs-12">
                 @Html.LabelFor(model => model.NUMERO_SALARIOS, htmlAttributes: new { @class = "control-label col-md-12" })
-                @Html.EditorFor(model => model.NUMERO_SALARIOS, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario col-md-11", onkeyup = "validarCampoNumberInput(this.name, this.value)" } })
+                @Html.EditorFor(model => model.NUMERO_SALARIOS, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario col-md-11", onBlur = "validarCampoNumberInput(this.name, this.value)" } })
                 <span id="NUMERO_SALARIOS_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('NUMERO_SALARIOS')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.NUMERO_SALARIOS, "", new { @class = "text-danger" })
             </div>
