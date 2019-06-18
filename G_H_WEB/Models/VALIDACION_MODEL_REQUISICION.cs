@@ -79,9 +79,9 @@ namespace MODELO_DATOS.MODELO_REQUISICION
                     }
                     if (esBp)
                     {
-                        ValidaGeneralProPuestaLi(_modelRequisicion);
+                        //ValidaGeneralProPuestaLi(_modelRequisicion);
                         ValidaInfoSalarialLi(_modelRequisicion);
-                        ValidaInfoSalarialLi2(_modelRequisicion);
+                        //ValidaInfoSalarialLi2(_modelRequisicion);
                     }
                     if (esRRHH)
                     {

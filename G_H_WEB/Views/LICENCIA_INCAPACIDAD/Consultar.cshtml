@@ -161,7 +161,7 @@
                                             }
                                             @if (User.IsInRole(SettingsManager.PerfilController))
                                             {
-                                                <input name="submitButton" type="submit" value="Modificar Requisición" class="BtnDevolver text-uppercase TextoBtnDevolver col-md-3 btn-collpse-valid" style="padding: 0px;"/>
+                                                <input name="submitButton" type="submit" value="Devolver Requisición" class="BtnDevolver text-uppercase TextoBtnDevolver col-md-3 btn-collpse-valid" style="padding: 0px;"/>
                                                 <input name="submitButton" type="submit" value="Aprobar Requisición" class="btn-confirmar-retiro text-uppercase col-md-3 btn-collpse-valid" />
                                             }
                                             @if (User.IsInRole(SettingsManager.PerfilBp))
@@ -171,7 +171,7 @@
                                             @if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
                                             {
                                                 <a id="rechazarReq" class="BtnDevolver text-uppercase TextoBtnDevolver" style="padding:12px">Rechazar requisición</a>
-                                                <input name="submitButton" type="submit" value="Modificar Requisición" class="BtnDevolver text-uppercase TextoBtnDevolver col-md-3 btn-collpse-valid" style="padding: 0px;"/>
+                                                <input name="submitButton" type="submit" value="Devolver Requisición" class="BtnDevolver text-uppercase TextoBtnDevolver col-md-3 btn-collpse-valid" style="padding: 0px;"/>
                                                 <input name="submitButton" type="submit" value="Aprobar Requisición" class="btn-confirmar-retiro text-uppercase col-md-3 btn-collpse-valid" />
                                             }
 
@@ -445,10 +445,11 @@ function CONSULTA_PUESTO_POR_CEDULA(DOCUMENTO_NUMERO) {
 
 }
 function CREAR_REQUISICION() {
-        var CargoText = "@paraModel.NOMBRE_COD_CARGO";
-        var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-        $("#mensaje1").text(CargoText);
-        $("#mensaje2").text(CargoCod);
+    var CargoText = "@paraModel.NOMBRE_COD_CARGO";
+    var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+
+    $("#mensaje1").text(transformAccent(CargoText));
+    $("#mensaje2").text(CargoCod);
     $("._metodoCrear").css("display", "block");
 }
 
@@ -528,6 +529,14 @@ function mapeoObjCargoApi(API) {
 
     $("#COD_CECO").val(API.COD_CENTRO_COSTO);
     $("#hdCOD_CECO").val(API.COD_CENTRO_COSTO);
+
+    $("#NOMBRE_CECO").val(API.NOMBRE_CENTRO_COSTO);
+    $("#hdJEFE_INMEDIATO").val(API.NOMBRE_JEFE);
+    $("#hdCOD_TIPO_SALARIO").val(API.COD_TIPO_SALARIO);
+    $("#hdNOMBRE_TIPO_SALARIO").val(API.NOMBRE_TIPO_SALARIO);
+    $("#hdCOD_NIVEL_RIESGO_ARL").val(API.COD_NIVEL_RIESGO);
+    $("#hdNIVEL_RIESGO_ARL").val(API.NIVEL_RIESGO);
+
 
     $("#COD_GERENCIA").val(API.COD_GERENCIA);
     $("#hdCOD_GERENCIA").val(API.COD_GERENCIA);
