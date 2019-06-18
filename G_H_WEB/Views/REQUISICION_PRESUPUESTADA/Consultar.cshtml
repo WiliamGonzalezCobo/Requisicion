@@ -108,11 +108,10 @@
                             //Botones
                             <div class="form-group">
                                 <div class="col-md-12">
-
+                                    @Html.ActionLink("Cancelar requisición", "ConsultarRequisiciones", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion text-capitalize" })
                                     @if (User.IsInRole(SettingsManager.PerfilJefe))
                                     {
-                                        @Html.ActionLink("Cancelar Requisición", "ConsultarRequisiciones", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion" })
-                                        <input name="submitButton" id="submitButtonCrear" type="submit" value="CREAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto btn-collpse-valid" />
+                                        <input name="submitButton" id="submitButtonCrear" type="submit" value="CREAR REQUISICIÓN" class="crear-requisicion col-md-3 crear-requisicion-texto btn-collpse-valid" />
                                     }
                                     @if (User.IsInRole(SettingsManager.PerfilController))
                                     {
@@ -122,12 +121,11 @@
                                     }
                                     @if (User.IsInRole(SettingsManager.PerfilBp))
                                     {
-                                        @Html.ActionLink("Cancelar requisición", "ConsultarRequisiciones", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion text-capitalize" })
                                         <input name="submitButton" type="submit" value="Enviar Requisición" class="crear-requisicion text-uppercase crear-requisicion-texto btn-collpse-valid" />
                                     }
                                     @if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
                                     {
-                                        <a id="rechazarReq" class="btn-rechazar-requisicion">Rechazar requisición</a>
+                                        <a id="rechazarReq" class="BtnDevolver text-uppercase TextoBtnDevolver" style="padding:12px">Rechazar requisición</a>
                                         <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver btn-collpse-valid" />
                                         <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="aprobar-requisicion btn-confirmar-retiro btn-collpse-valid" />
                                     }
@@ -368,10 +366,11 @@
     }
 
     function CREAR_REQUISICION() {
-         var CargoText = "@paraModel.NOMBRE_COD_CARGO";
-            var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
-            $("#mensaje1").text(CargoText);
-            $("#mensaje2").text(CargoCod);
+        var CargoText = "@paraModel.NOMBRE_COD_CARGO";
+        var CargoCod = "@paraModel.COD_REQUISICION_CREADA";
+
+        $("#mensaje1").text(transformAccent(CargoText));
+        $("#mensaje2").text(CargoCod);
         $("._metodoCrear").css("display", "block");
     }
 

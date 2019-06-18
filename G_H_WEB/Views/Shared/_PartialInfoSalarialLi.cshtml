@@ -174,7 +174,7 @@ else
         <div class="row">
             <div class="form-group col-md-6 col-xs-12">
                 @Html.LabelFor(model => model.SOBREREMUNERACION, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                @Html.EditorFor(model => model.SOBREREMUNERACION, new { htmlAttributes = new { @class = "form-control E_SOBREREMUNERACION CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario", onBlur = "validarCampoNumber(this.name, this.value)", onkeypress = "return soloNumeros(event)" } })
+                @Html.EditorFor(model => model.SOBREREMUNERACION, new { htmlAttributes = new { @class = "form-control E_SOBREREMUNERACION CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario", disabled = deshabilitar } })
                 <span id="SOBREREMUNERACION_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('SOBREREMUNERACION')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.SOBREREMUNERACION, "", new { @class = "text-danger" })
             </div>

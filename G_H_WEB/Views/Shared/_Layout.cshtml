@@ -1,6 +1,6 @@
 ﻿<html lang="es-co">
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv=”Content-Type” content=”text/html; charset=UTF-8″ />
     <title>Gestión Humana</title>
     <!--Otras metas-->
     <meta name="author" content="Casa Editorial El Tiempo">
@@ -164,6 +164,31 @@
         $('body').loading('stop');
         }
         ConsultaModificaciones();
+
+        $(document).ready(function () {
+            $(window).keydown(function (event) {
+                if (event.keyCode == 13) {
+                    console.log('atrape el enter >____<');
+                    event.preventDefault();
+                    return false;
+                }
+            });
+        });
+
+        var transformAccent = function (test) {
+            var arr = test.split(' ');
+            var stringFinal = '';
+            $.each(arr, function (key, value) {
+                var beg = value.indexOf('&#');
+                var end = value.indexOf(';');
+                if (beg > 0 && end > 0) {
+                    var num = parseInt(value.slice(beg + 2, end + 1));
+                    value = value.replace(value.slice(beg, (end + 1)), String.fromCharCode(num));
+                }
+                stringFinal = stringFinal + ' ' + value;
+            });
+            return stringFinal;
+        }
 
         function validarCampoNumber(name, value) {
             if (value == '') {
