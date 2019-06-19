@@ -289,7 +289,7 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-
+        
         $(".nav-incapacidad").removeClass('nav-active');
         $(".nav-presupuestada").addClass('nav-active');
         $(".nav-no-presupuestada").removeClass('nav-active');
@@ -334,11 +334,24 @@
             else if (_metodo == "Enviar") {
                 ENVIAR_REQUISICION();
                 $("._metodoDefecto").css("display", "none");
-            }
+            }            
+
+            window.history.pushState(null, "", window.location.href);
+            window.onpopstate = function ()
+            {
+                window.history.pushState(null, "", window.location.href);
+            };
 
             $('#ModalCreacionNoJefe').modal("show");
-        }else  if ($("#COD_TIPO_NECESIDAD").val() == "" && $("#COD_CARGO").val() == "" && "@ViewBag.PERMISOS_CONTROLLER" != "") {
-              $('#ModalRequisicionProcesada').modal('show');
+        } else if ($("#COD_TIPO_NECESIDAD").val() == "" && $("#COD_CARGO").val() == "" && "@ViewBag.PERMISOS_CONTROLLER" != "") {
+
+            window.history.pushState(null, "", window.location.href);
+            window.onpopstate = function ()
+            {
+                window.history.pushState(null, "", window.location.href);
+            };
+
+            $('#ModalRequisicionProcesada').modal('show');
         }
 
         $(document).on('submit', 'form', function () {
@@ -352,7 +365,7 @@
             if (key) {
                 window.location.href = "../REQUISICION/ConsultarRequisiciones";
             }
-        });
+        });        
 
     });
 

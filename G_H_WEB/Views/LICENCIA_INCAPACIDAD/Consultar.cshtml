@@ -409,8 +409,19 @@ $(document).ready(function () {
             $("._metodoDefecto").css("display", "none");
         }
 
+        window.history.pushState(null, "", window.location.href);
+        window.onpopstate = function () {
+            window.history.pushState(null, "", window.location.href);
+        };
+
         $('#ModalCreacionNoJefe').modal("show");
-    } else if ($("#NOMBRE_TIPO_DOCUMENTO").val() == "" && $("#NUMERO_DOCUMENTO_EMPLEADO").val() == "" && $("#NOMBRE_EMPLEADO").val() == "" && "@ViewBag.PERMISOS_CONTROLLER" != "") {
+    }
+    else if ($("#NOMBRE_TIPO_DOCUMENTO").val() == "" && $("#NUMERO_DOCUMENTO_EMPLEADO").val() == "" && $("#NOMBRE_EMPLEADO").val() == "" && "@ViewBag.PERMISOS_CONTROLLER" != "") {
+        window.history.pushState(null, "", window.location.href);
+        window.onpopstate = function () {
+            window.history.pushState(null, "", window.location.href);
+        };
+
         $('#ModalRequisicionProcesada').modal('show');
     }
 
