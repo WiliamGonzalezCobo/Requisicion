@@ -152,6 +152,7 @@
         </Function>
         <Function Name="CONSULTAR_ESTADOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICIONES" />
         <Function Name="CONSULTAR_REQUISICIONXID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICIONES">
+          <Parameter Name="COD_USUARIO" Type="varchar" Mode="In" />
           <Parameter Name="IDREQUISICION" Type="int" Mode="In" />
         </Function>
         <Function Name="CONSULTAR_TIPOS_NECESIDAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICIONES" />
@@ -352,7 +353,8 @@
           </FunctionImport>
           <FunctionImport Name="CONSULTAR_ESTADOS" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_ESTADOS_Result)" />
           <FunctionImport Name="CONSULTAR_REQUISICIONXID" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONXID_Result)">
-          <Parameter Name="IDREQUISICION" Mode="In" Type="Int32" />
+          <Parameter Name="COD_USUARIO" Mode="In" Type="String" />
+            <Parameter Name="IDREQUISICION" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CONSULTAR_TIPOS_NECESIDAD" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_TIPOS_NECESIDAD_Result)" />
           <FunctionImport Name="CONSULTAR_TIPOS_REQUISICION" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_TIPOS_REQUISICION_Result)" />

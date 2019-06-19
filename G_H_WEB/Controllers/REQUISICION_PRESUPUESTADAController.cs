@@ -37,9 +37,10 @@ namespace G_H_WEB.Controllers
                 logCentralizado.INICIANDO_LOG("CTR_REQ_PRE1", "Consultar");
                 if (_idReq.HasValue)
                 {
-                    model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value, link_controler) ?? new REQUISICIONViewModel();
-                    if (User.IsInRole(SettingsManager.PerfilBp) && (!model.COD_ESTADO_REQUISICION.Equals(SettingsManager.EstadoDevueltaRRHH) && !model.COD_ESTADO_REQUISICION.Equals(SettingsManager.EstadoDevueltaUSC)))
-                    {
+                    string _USER = User.Identity.GetUserId() ?? Session["COD_ASPNETUSER_CONTROLLER"].ToString();
+                    model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value, link_controler, _USER);
+                    if (model == null) { return RedirectToAction("ConsultarRequisiciones", "REQUISICION"); }
+                    if (User.IsInRole(SettingsManager.PerfilBp) && (!model.COD_ESTADO_REQUISICION.Equals(SettingsManager.EstadoDevueltaRRHH) && !model.COD_ESTADO_REQUISICION.Equals(SettingsManager.EstadoDevueltaUSC))) {
                         model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES_BP(model) ?? new REQUISICIONViewModel();
                     }
                 }
@@ -203,7 +204,8 @@ namespace G_H_WEB.Controllers
                 TRAZA_BOTONES_VISIBLES traza = new TRAZA_BOTONES_VISIBLES();
                 List<TRAZA_BOTONES_VISIBLES> trazas = new List<TRAZA_BOTONES_VISIBLES>();
                 REQUISICIONViewModel datosCargo = new REQUISICIONViewModel();
-                datosCargo = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_cod_requisicion, "") ?? new REQUISICIONViewModel();
+                string _USER = User.Identity.GetUserId() ?? Session["COD_ASPNETUSER_CONTROLLER"].ToString();
+                datosCargo = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_cod_requisicion, "", _USER) ?? new REQUISICIONViewModel();
                 datosCargo = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES_BP(datosCargo) ?? new REQUISICIONViewModel();
 
                 if (datosCargo.NOMBRE_CATEGORIA_ED != aGuardar.NOMBRE_CATEGORIA_ED)
