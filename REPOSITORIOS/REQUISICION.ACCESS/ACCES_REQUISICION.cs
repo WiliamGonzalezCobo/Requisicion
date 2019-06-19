@@ -226,16 +226,21 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             }
         }
 
-        public REQUISICIONViewModel CONSULTAR_REQUISICION_X_ID(int _idRequisicion)
+        public REQUISICIONViewModel CONSULTAR_REQUISICION_X_ID(int _idRequisicion, string id_usuario)
         {
-            REQUISICIONViewModel requicisionModel = new REQUISICIONViewModel();
+            REQUISICIONViewModel requicisionModel = null;
             try
             {
                 logCentralizado.INICIANDO_LOG("REPREQ6", "CONSULTAR_REQUISICION_X_ID");
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
-                    CONSULTAR_REQUISICIONXID_Result respuesta = db.CONSULTAR_REQUISICIONXID(_idRequisicion).First();
-                    requicisionModel.COD_REQUISICION = respuesta.COD_REQUISICION;
+                    CONSULTAR_REQUISICIONXID_Result respuesta=null;
+                    List<CONSULTAR_REQUISICIONXID_Result> Resultado = db.CONSULTAR_REQUISICIONXID(id_usuario,_idRequisicion).ToList();
+                    if (Resultado.ToList().Count>0) {
+                        respuesta = Resultado.First();
+                        requicisionModel =  new REQUISICIONViewModel();
+
+                        requicisionModel.COD_REQUISICION = respuesta.COD_REQUISICION;
                     requicisionModel.COD_TIPO_NECESIDAD = respuesta.COD_TIPO_NECESIDAD ?? 0;
                     requicisionModel.COD_CARGO = respuesta.COD_CARGO ?? 0;
                     requicisionModel.NOMBRE_CARGO = respuesta.NOMBRE_CARGO;
@@ -317,6 +322,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                     requicisionModel.DIA_LABORAL_HASTA = respuesta.DIA_LABORAL_HASTA;
                     requicisionModel.COD_CORREO_CONTROLLER = respuesta.COD_CORREO_CONTROLLER;
 
+                   }
                 }
                 logCentralizado.FINALIZANDO_LOG("REPREQ6", "CONSULTAR_REQUISICION_X_ID");
             }

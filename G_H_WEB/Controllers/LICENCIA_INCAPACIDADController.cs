@@ -59,7 +59,9 @@ namespace G_H_WEB.Controllers
 
                 if (_idReq.HasValue)
                 {
-                    model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value, link_controler) ?? new REQUISICIONViewModel();
+                    string _USER = User.Identity.GetUserId() ?? Session["COD_ASPNETUSER_CONTROLLER"].ToString();
+                    model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value, link_controler, _USER);
+                    if (model == null) { return RedirectToAction("ConsultarRequisiciones", "REQUISICION"); }
                 }
                 model.COD_TIPO_REQUISICION = SettingsManager.CodTipoReqLicencia;
                 model = new LOGICA_REQUISICION().LLENAR_CONTROLES(model);
@@ -167,8 +169,8 @@ namespace G_H_WEB.Controllers
                         npc.METODO = "Aprobar";
                         break;
                     case "ENVIAR RESPUESTA":
-                        modelDatos.OBSERVACION = string.Format("Observacion: {0}. Modito Rechazo: {1}", modelDatos.OBSERVACION, modelDatos.MOTIVO_RECHAZO);
-                        _resultadoIdReguisicion = new LOGICA_REQUISICION().REQUISICION_RECHAZAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.Name);
+                            modelDatos.OBSERVACION = string.Format("Motivo Rechazo: {0}", modelDatos.OBSERVACION);
+                            _resultadoIdReguisicion = new LOGICA_REQUISICION().REQUISICION_RECHAZAR_LOGICA(modelDatos.COD_REQUISICION, modelDatos.OBSERVACION, User.Identity.Name);
                        
                         npc.METODO = "Rechazar";
                         break;
