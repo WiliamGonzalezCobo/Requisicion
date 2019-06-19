@@ -72,9 +72,9 @@
     var cantInfoGeneralPropLic = 1;
     var validateTipoContrato = true;
     var validateFormTipoContrato = function () {
-        if ($('#COD_TIPO_CONTRATO').val() == "" &&
-            $('#JEFE_INMEDIATO').val() == "" &&
-            $('#COD_NIVEL_RIESGO_ARL').val() == "") {
+        if (!$('#COD_TIPO_CONTRATO').valid() ||
+            !$('#JEFE_INMEDIATO').valid() ||
+            !$('#COD_NIVEL_RIESGO_ARL').valid()) {
             validateTipoContrato = false;
         } else {
             validateTipoContrato = true;

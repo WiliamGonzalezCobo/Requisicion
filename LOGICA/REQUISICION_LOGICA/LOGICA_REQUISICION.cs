@@ -822,25 +822,25 @@ namespace LOGICA.REQUISICION_LOGICA
             return puesto;
         }
 
-        public REQUISICIONViewModel BUSCAR_REQUISICIONES(int _idRequsicion, string link_controller)
+        public REQUISICIONViewModel BUSCAR_REQUISICIONES(int _idRequsicion, string link_controller, string id_usuario)
         {
             REQUISICIONViewModel objReqModel = null;
             try
             {
                 logCentralizado.INICIANDO_LOG("LGREQ26", "BUSCAR_REQUISICIONES");
                 List<DOCUMENTO> listaDocumentos = new PROXY().CONSULTAR_TIPO_DOCUMENTO_API();
-                objReqModel = new ACCES_REQUISICION().CONSULTAR_REQUISICION_X_ID(_idRequsicion);
-                if (!string.IsNullOrWhiteSpace(link_controller))
-                {
-                    if (objReqModel.COD_CORREO_CONTROLLER != link_controller)
-                    {
-                        objReqModel = new REQUISICIONViewModel();
+                objReqModel = new ACCES_REQUISICION().CONSULTAR_REQUISICION_X_ID(_idRequsicion, id_usuario);
+                if (objReqModel != null) { 
+                if (!string.IsNullOrWhiteSpace(link_controller)) {
+                        if (objReqModel.COD_CORREO_CONTROLLER != link_controller) {
+                            objReqModel = new REQUISICIONViewModel();
+                        }
                     }
-                }
 
-                if (SettingsManager.CodTipoReqLicencia == objReqModel.COD_TIPO_REQUISICION || SettingsManager.CodTipoReqIncapacidad == objReqModel.COD_TIPO_REQUISICION)
-                {
-                    objReqModel.NOMBRE_TIPO_DOCUMENTO = listaDocumentos.Where(x => x.coD_TIPO_DOCUMENTO == objReqModel.COD_TIPO_DOCUMENTO).FirstOrDefault().NOMBRE;
+                    if (SettingsManager.CodTipoReqLicencia == objReqModel.COD_TIPO_REQUISICION || SettingsManager.CodTipoReqIncapacidad == objReqModel.COD_TIPO_REQUISICION) {
+                        objReqModel.NOMBRE_TIPO_DOCUMENTO = listaDocumentos.Where(x => x.coD_TIPO_DOCUMENTO == objReqModel.COD_TIPO_DOCUMENTO).FirstOrDefault().NOMBRE;
+                    }
+
                 }
                 logCentralizado.FINALIZANDO_LOG("LGREQ26", "BUSCAR_REQUISICIONES");
             }
