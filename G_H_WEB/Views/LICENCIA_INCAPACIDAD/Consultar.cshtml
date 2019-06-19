@@ -343,6 +343,14 @@ $(document).ready(function () {
             message: 'Procesando...'
         });
     })
+
+    $("#ModalCreacionNoJefe").keydown(function () {
+        var key = event.which
+        if (key) {
+            window.location.href = "../REQUISICION/ConsultarRequisiciones";
+        }
+    });
+
     var typeRequisition = '@{ nombre_requisicion.Contains("Incapacidad"); }';
     if (typeRequisition == "True")
     {

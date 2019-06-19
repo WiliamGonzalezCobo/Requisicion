@@ -346,6 +346,14 @@
                 message: 'Procesando...'
             });
         })
+
+        $("#ModalCreacionNoJefe").keydown(function () {
+            var key = event.which
+            if (key) {
+                window.location.href = "../REQUISICION/ConsultarRequisiciones";
+            }
+        });
+
     });
 
     function VALIDACION_TRAZA() {
