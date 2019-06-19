@@ -63,6 +63,7 @@
                 @Html.EditorFor(model => model.SOBREREMUNERACION, new { htmlAttributes = new { @class = "form-control E_SOBREREMUNERACION CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario", disabled = deshabilitar } })
                 <span id="SOBREREMUNERACION_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('SOBREREMUNERACION')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.SOBREREMUNERACION, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.SOBREREMUNERACION, new { @class = "P_VARIABLE", id = "hdSOBREREMUNERACION" })                
             </div>
             <div class="form-group col-md-6 col-xs-12">
                 @Html.LabelFor(model => model.EXTRA_FIJA, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
@@ -177,6 +178,7 @@ else
                 @Html.EditorFor(model => model.SOBREREMUNERACION, new { htmlAttributes = new { @class = "form-control E_SOBREREMUNERACION CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario", disabled = deshabilitar } })
                 <span id="SOBREREMUNERACION_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('SOBREREMUNERACION')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.SOBREREMUNERACION, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.SOBREREMUNERACION, new { id = "hdSOBREREMUNERACION" })
             </div>
             <div class="form-group col-md-6 col-xs-12">
                 @Html.LabelFor(model => model.EXTRA_FIJA, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
@@ -235,7 +237,7 @@ else
 <script>
     var cantSpanInfoSalarialLi = 11;
     $(".E_SALARIO_FIJO").focusout(function () {
-        debugger;
+        validar(this.value, this.name);
         var VALOR_SALARIO_FIJO = parseFloat($(".E_SALARIO_FIJO").val().replace(",", "."));
         var SALARIO_TOTAL = parseFloat($(".S_TOTAL_UNICO").text().replace(",", "."));
         var calculo = ((VALOR_SALARIO_FIJO * 100) / SALARIO_TOTAL).toString().replace(".", ",");
@@ -243,6 +245,7 @@ else
     });
 
     $(".S_VARIABLE").focusout(function () {
+        validar(this.value, this.name);
         var VALOR_SALARIO_VARIABLE = parseFloat($(".S_VARIABLE").val().replace(",", "."));
         var SALARIO_TOTAL = parseFloat($(".S_TOTAL_UNICO").text().replace(",", "."));
         var calculo = ((VALOR_SALARIO_VARIABLE * 100) / SALARIO_TOTAL).toString().replace(".", ",");
@@ -251,6 +254,7 @@ else
     });
 
     $(".E_SOBREREMUNERACION").focusout(function () {
+        validar(this.value, this.name);
         var VALOR_SOBREREMUNERACION = parseFloat($(".E_SOBREREMUNERACION").val().replace(",", "."));
         var SALARIO_TOTAL = parseFloat($(".S_TOTAL_UNICO").text().replace(",", "."));
         var calculo = ((VALOR_SOBREREMUNERACION * 100) / SALARIO_TOTAL).toString().replace(".", ",");
@@ -258,7 +262,7 @@ else
     });
 
     $(".CALCULO_TOTAL").focusout(function () {
-        debugger;
+        validar(this.value, this.name);
         var VALOR_SALARIO_FIJO = parseFloat($(".E_SALARIO_FIJO").val().replace(",", "."));
         var VALOR_SALARIO_VARIABLE = parseFloat($(".S_VARIABLE").val().replace(",", "."));
         var VALOR_SOBREREMUNERACION = parseFloat($(".E_SOBREREMUNERACION").val().replace(",", "."));
@@ -334,7 +338,7 @@ else
     };
 
     $(".E_SALARIO_FIJO").focusout(function () {
-        debugger;
+        validar(this.value, this.name);
         var VALOR_SALARIO_FIJO = parseFloat($(".E_SALARIO_FIJO").val().replace(",", "."));
         var SALARIO_TOTAL = parseFloat($(".S_TOTAL_UNICO").text().replace(",", "."));
         var calculo = ((VALOR_SALARIO_FIJO * 100) / SALARIO_TOTAL).toString().replace(".", ",");
@@ -342,6 +346,7 @@ else
     });
 
     $(".S_VARIABLE").focusout(function () {
+        validar(this.value, this.name);
         var VALOR_SALARIO_VARIABLE = parseFloat($(".S_VARIABLE").val().replace(",", "."));
         var SALARIO_TOTAL = parseFloat($(".S_TOTAL_UNICO").text().replace(",", "."));
         var calculo = ((VALOR_SALARIO_VARIABLE * 100) / SALARIO_TOTAL).toString().replace(".", ",");
@@ -350,6 +355,7 @@ else
     });
 
     $(".E_SOBREREMUNERACION").focusout(function () {
+        validar(this.value, this.name);
         var VALOR_SOBREREMUNERACION = parseFloat($(".E_SOBREREMUNERACION").val().replace(",", "."));
         var SALARIO_TOTAL = parseFloat($(".S_TOTAL_UNICO").text().replace(",", "."));
         var calculo = ((VALOR_SOBREREMUNERACION * 100) / SALARIO_TOTAL).toString().replace(".", ",");
@@ -357,7 +363,7 @@ else
     });
 
     $(".CALCULO_TOTAL").focusout(function () {
-        debugger;
+        validar(this.value, this.name);
         var VALOR_SALARIO_FIJO = parseFloat($(".E_SALARIO_FIJO").val().replace(",", "."));
         var VALOR_SALARIO_VARIABLE = parseFloat($(".S_VARIABLE").val().replace(",", "."));
         var VALOR_SOBREREMUNERACION = parseFloat($(".E_SOBREREMUNERACION").val().replace(",", "."));

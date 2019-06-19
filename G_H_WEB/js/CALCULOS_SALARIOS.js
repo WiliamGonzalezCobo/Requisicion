@@ -1,5 +1,6 @@
 ﻿
-   $(".E_SALARIO_FIJO").focusout(function () {
+    $(".E_SALARIO_FIJO").focusout(function () {       
+        validar(this.value, this.name);
         var VALOR_SALARIO_FIJO = parseFloat($(".E_SALARIO_FIJO").val().replace(",", "."));
         var SALARIO_TOTAL = parseFloat($(".S_TOTAL_UNICO").text().replace(",", "."));
         var calculo = ((VALOR_SALARIO_FIJO * 100) / SALARIO_TOTAL).toString().replace(".", ",");
@@ -7,6 +8,7 @@
     });
 
     $(".S_VARIABLE").focusout(function () {
+        validar(this.value, this.name);
         var VALOR_SALARIO_VARIABLE = parseFloat($(".S_VARIABLE").val().replace(",", "."));
         var SALARIO_TOTAL = parseFloat($(".S_TOTAL_UNICO").text().replace(",", "."));
         var calculo = ((VALOR_SALARIO_VARIABLE * 100) / SALARIO_TOTAL).toString().replace(".", ",");
@@ -15,13 +17,15 @@
     });
 
     $(".E_SOBREREMUNERACION").focusout(function () {
+        validar(this.value, this.name);
         var VALOR_SOBREREMUNERACION = parseFloat($(".E_SOBREREMUNERACION").val().replace(",", "."));
         var SALARIO_TOTAL = parseFloat($(".S_TOTAL_UNICO").text().replace(",", "."));
         var calculo = ((VALOR_SOBREREMUNERACION * 100) / SALARIO_TOTAL).toString().replace(".", ",");
         $(".P_SOBREREMUNERACION").val(intlRound(calculo));
     });
 
-    $(".CALCULO_TOTAL").focusout(function () {
+    $(".CALCULO_TOTAL").focusout(function () {     
+        validar(this.value, this.name);
         var VALOR_SALARIO_FIJO = parseFloat($(".E_SALARIO_FIJO").val().replace(",", "."));
         var VALOR_SALARIO_VARIABLE = parseFloat($(".S_VARIABLE").val().replace(",", "."));
         var VALOR_SOBREREMUNERACION = parseFloat($(".E_SOBREREMUNERACION").val().replace(",", "."));

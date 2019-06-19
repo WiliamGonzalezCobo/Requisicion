@@ -194,7 +194,7 @@
             if (value == '') {
                 $("span[for=" + name + "]").html("");
                 $("input[name=" + name + "]").removeClass("input-validation-error").addClass("input-validation-valid");
-                $("input[name=" + name + "]").val("0,00");
+                $("input[name=" + name + "]").val("0");
             }
         }
 
@@ -209,6 +209,14 @@
         function soloNumeros(e) {
             var key = window.Event ? e.which : e.keyCode
             return (key >= 48 && key <= 57 || key == 44)
+        }
+
+        function validar(value, name)
+        {
+            if (value == '')
+            {                
+                $("input[name=" + name + "]").val("0");
+            }
         }
     </script>
 
