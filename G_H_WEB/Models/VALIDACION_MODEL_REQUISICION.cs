@@ -85,15 +85,15 @@ namespace MODELO_DATOS.MODELO_REQUISICION
                     }
                     if (esRRHH)
                     {
-                        ValidaGeneralProPuestaLi(_modelRequisicion);
+                        //ValidaGeneralProPuestaLi(_modelRequisicion);
                         ValidaInfoSalarialLi(_modelRequisicion);
-                        ValidaInfoSalarialLi2(_modelRequisicion);
+                        //ValidaInfoSalarialLi2(_modelRequisicion);
                     }
                     if (esUsc)
                     {
-                        ValidaGeneralProPuestaLi(_modelRequisicion);
+                        //ValidaGeneralProPuestaLi(_modelRequisicion);
                         ValidaInfoSalarialLi(_modelRequisicion);
-                        ValidaInfoSalarialLi2(_modelRequisicion);
+                        //ValidaInfoSalarialLi2(_modelRequisicion);
                     }
                     //si el evento es de rechazar requisicion valida el campo
                     if (_accionSubmit.Equals("ENVIAR RESPUESTA"))
