@@ -18,10 +18,19 @@
                     </div>
                     <div class="modal-footer">
                         <a class="btn-rechazar-requisicion" data-dismiss="modal">Cancelar</a>
-                        <input name="submitButton" type="submit" value="ENVIAR RESPUESTA" class="aprobar-requisicion btn-confirmar-retiro btn-collpse-valid" />
+                        <input name="submitButton" id="btnRechazarRequisicion" type="submit" value="ENVIAR RESPUESTA" class="aprobar-requisicion btn-confirmar-retiro btn-collpse-valid" />
                     </div>
                 </div>
             </div>
         </div>
     }
 }
+
+<script type="text/javascript">
+    $("#btnRechazarRequisicion").on("click", function () {
+        debugger;
+        $("#OBSERVACION").val($("#MOTIVO_RECHAZO").val());
+        $("form").submit();
+    });
+   
+</script>

@@ -400,13 +400,17 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTAR_ESTADOS_Result>("CONSULTAR_ESTADOS");
         }
     
-        public virtual ObjectResult<CONSULTAR_REQUISICIONXID_Result> CONSULTAR_REQUISICIONXID(Nullable<int> iDREQUISICION)
+        public virtual ObjectResult<CONSULTAR_REQUISICIONXID_Result> CONSULTAR_REQUISICIONXID(string cOD_USUARIO, Nullable<int> iDREQUISICION)
         {
+            var cOD_USUARIOParameter = cOD_USUARIO != null ?
+                new ObjectParameter("COD_USUARIO", cOD_USUARIO) :
+                new ObjectParameter("COD_USUARIO", typeof(string));
+    
             var iDREQUISICIONParameter = iDREQUISICION.HasValue ?
                 new ObjectParameter("IDREQUISICION", iDREQUISICION) :
                 new ObjectParameter("IDREQUISICION", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTAR_REQUISICIONXID_Result>("CONSULTAR_REQUISICIONXID", iDREQUISICIONParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTAR_REQUISICIONXID_Result>("CONSULTAR_REQUISICIONXID", cOD_USUARIOParameter, iDREQUISICIONParameter);
         }
     
         public virtual ObjectResult<CONSULTAR_TIPOS_NECESIDAD_Result> CONSULTAR_TIPOS_NECESIDAD()
