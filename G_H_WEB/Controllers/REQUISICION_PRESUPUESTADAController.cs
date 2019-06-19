@@ -325,15 +325,15 @@ namespace G_H_WEB.Controllers
                     trazas.Add(traza);
                 }
 
-                if (datosCargo.COD_NIVEL_RIESGO_ARL != aGuardar.COD_NIVEL_RIESGO_ARL)
-                {
-                    traza = new TRAZA_BOTONES_VISIBLES();
-                    traza.COD_REQUISICION = _cod_requisicion;
-                    traza.CAMPOS = "COD_NIVEL_RIESGO";
-                    traza.TRAZA = "true";
-                    _cambio = true;
-                    trazas.Add(traza);
-                }
+                //if (datosCargo.COD_NIVEL_RIESGO_ARL != aGuardar.COD_NIVEL_RIESGO_ARL)
+                //{
+                //    traza = new TRAZA_BOTONES_VISIBLES();
+                //    traza.COD_REQUISICION = _cod_requisicion;
+                //    traza.CAMPOS = "COD_NIVEL_RIESGO";
+                //    traza.TRAZA = "true";
+                //    _cambio = true;
+                //    trazas.Add(traza);
+                //}
 
                 if (datosCargo.HORARIO_LABORAL_DESDE != aGuardar.HORARIO_LABORAL_DESDE)
                 {
@@ -418,7 +418,7 @@ namespace G_H_WEB.Controllers
 
 
 
-                if (datosCargo.NOMBRE_TIPO_SALARIO != aGuardar.NOMBRE_TIPO_SALARIO)
+                if (datosCargo.NOMBRE_TIPO_SALARIO != aGuardar.NOMBRE_TIPO_SALARIO && datosCargo.NOMBRE_TIPO_SALARIO != null)
                 {
                     traza = new TRAZA_BOTONES_VISIBLES();
                     traza.COD_REQUISICION = _cod_requisicion;
@@ -468,15 +468,15 @@ namespace G_H_WEB.Controllers
                     trazas.Add(traza);
                 }
 
-                if (datosCargo.NIVEL_RIESGO_ARL != aGuardar.NIVEL_RIESGO_ARL)
-                {
-                    traza = new TRAZA_BOTONES_VISIBLES();
-                    traza.COD_REQUISICION = _cod_requisicion;
-                    traza.CAMPOS = "NOMBRE_ARL";
-                    traza.TRAZA = "true";
-                    _cambio = true;
-                    trazas.Add(traza);
-                }
+                //if (datosCargo.NIVEL_RIESGO_ARL != aGuardar.NIVEL_RIESGO_ARL)
+                //{
+                //    traza = new TRAZA_BOTONES_VISIBLES();
+                //    traza.COD_REQUISICION = _cod_requisicion;
+                //    traza.CAMPOS = "NOMBRE_ARL";
+                //    traza.TRAZA = "true";
+                //    _cambio = true;
+                //    trazas.Add(traza);
+                //}
 
                 if (_cambio == true)
                 {
