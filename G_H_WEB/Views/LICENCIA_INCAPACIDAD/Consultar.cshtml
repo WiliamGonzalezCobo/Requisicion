@@ -616,7 +616,7 @@ function mapeoObjCargoApi(API) {
     $("#hdSOBREREMUNERACION").val(API.SOBREREMUNERACION);
 
     $("#PORCENTAJE_SOBREREMUNERACION").val(API.PORCENTAJE_SOBREREMUNERACION);
-    $("#hdSOBREREMUNERACION").val(API.SOBREREMUNERACION);
+    //$("#hdSOBREREMUNERACION").val(API.SOBREREMUNERACION);
 
     $("#EXTRA_FIJA").val(API.EXTRA_FIJA);
     $("#hdEXTRA_FIJA").val(API.EXTRA_FIJA);
@@ -670,9 +670,9 @@ function mapeoObjCargoApi(API) {
     $("#hdPOSICION").val(API.POSICIONAMIENTO);
 }
 
-function ConsultaTraza(CAMPO_REQUISICION) {
-    debugger;
+function ConsultaTraza(CAMPO_REQUISICION) {    
     var campo_re = 0;
+    var cont = 0;
     $(".bodytraza").empty();
     $(".nombre_traza").text("");
     $("#ModalLabelTraza").text("TRAZA " + CAMPO_REQUISICION.replace(/_/g, " "));
@@ -687,9 +687,29 @@ function ConsultaTraza(CAMPO_REQUISICION) {
             data: { COD_REQUISICION: COD_REQUISICION, CAMPO_REQUISICION: CAMPO_REQUISICION},
             success: function (respuesta) {
                 $.each(respuesta, function (key, value) {
+                    cont++;
+                });
+                $.each(respuesta, function (key, value) {
                     debugger;
-                    if (value[CAMPO_REQUISICION] != null && value[CAMPO_REQUISICION] != campo_re) {
+                    if (cont === 1) {
                         $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION + "</td > </tr > ");
+                    }
+                    else {
+                        if (cont === 2) {
+                            if (value[CAMPO_REQUISICION] != null && value[CAMPO_REQUISICION] != campo_re && value.NOMBRE_ESTADOS_REQUISICION != "Registrada") {
+                                $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION + "</td > </tr > ");
+                            }
+                            else {
+                                if (value[CAMPO_REQUISICION] != null && value[CAMPO_REQUISICION] != campo_re) {
+                                    $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION + "</td > </tr > ");
+                                }
+                            }
+                        }
+                        else {
+                            if (value[CAMPO_REQUISICION] != null && value[CAMPO_REQUISICION] != campo_re) {
+                                $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION + "</td > </tr > ");
+                            }
+                        }
                     }
                     campo_re = value[CAMPO_REQUISICION];
                 });
