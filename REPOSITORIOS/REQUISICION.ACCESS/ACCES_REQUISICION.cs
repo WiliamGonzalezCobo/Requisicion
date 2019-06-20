@@ -234,95 +234,96 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                 logCentralizado.INICIANDO_LOG("REPREQ6", "CONSULTAR_REQUISICION_X_ID");
                 using (var db = new GESTION_HUMANA_HITSSEntities2())
                 {
-                    CONSULTAR_REQUISICIONXID_Result respuesta=null;
-                    List<CONSULTAR_REQUISICIONXID_Result> Resultado = db.CONSULTAR_REQUISICIONXID(id_usuario,_idRequisicion).ToList();
-                    if (Resultado.ToList().Count>0) {
+                    CONSULTAR_REQUISICIONXID_Result respuesta = null;
+                    List<CONSULTAR_REQUISICIONXID_Result> Resultado = db.CONSULTAR_REQUISICIONXID(id_usuario, _idRequisicion).ToList();
+                    if (Resultado.ToList().Count > 0)
+                    {
                         respuesta = Resultado.First();
-                        requicisionModel =  new REQUISICIONViewModel();
+                        requicisionModel = new REQUISICIONViewModel();
 
                         requicisionModel.COD_REQUISICION = respuesta.COD_REQUISICION;
-                    requicisionModel.COD_TIPO_NECESIDAD = respuesta.COD_TIPO_NECESIDAD ?? 0;
-                    requicisionModel.COD_CARGO = respuesta.COD_CARGO ?? 0;
-                    requicisionModel.NOMBRE_CARGO = respuesta.NOMBRE_CARGO;
-                    requicisionModel.ORDEN = respuesta.ORDEN;
-                    requicisionModel.COD_CECO = Convert.ToInt32(respuesta.COD_CECO);
-                    requicisionModel.NOMBRE_CECO = respuesta.NOMBRE_CECO;
-                    requicisionModel.COD_TIPO_REQUISICION = respuesta.COD_TIPO_REQUISICION ?? 0;
-                    requicisionModel.ES_MODIFICACION = respuesta.ES_MODIFICACION ?? false;
-                    requicisionModel.OBSERVACION = "";
-                    requicisionModel.OBSERVACIONES = respuesta.OBSERVACION ?? "";
-                    requicisionModel.COD_ESTADO_REQUISICION = respuesta.COD_ESTADO_REQUISICION ?? 0;
-                    requicisionModel.USUARIO_CREACION = respuesta.USUARIO_CREACION;
-                    requicisionModel.FECHA_CREACION = respuesta.FECHA_CREACION.ToString() ?? DateTime.Now.ToShortDateString();
-                    requicisionModel.USUARIO_MODIFICACION = respuesta.USUARIO_MODIFICACION;
-                    requicisionModel.FECHA_MODIFICACION = respuesta.FECHA_MODIFICACION ?? DateTime.Now;
-                    requicisionModel.COD_GERENCIA = respuesta.COD_GERENCIA ?? 0;
-                    requicisionModel.NOMBRE_GERENCIA = respuesta.NOMBRE_GERENCIA;
-                    requicisionModel.COD_TIPO_CONTRATO = respuesta.COD_TIPO_CONTRATO ?? 0;
-                    requicisionModel.NOMBRE_TIPO_CONTRATO = respuesta.NOMBRE_TIPO_CONTRATO;
-                    requicisionModel.COD_TIPO_DOCUMENTO = respuesta.COD_TIPO_DOCUMENTO ?? 0;
-                    requicisionModel.NUMERO_DOCUMENTO_EMPLEADO = respuesta.NUMERO_DOCUMENTO_EMPLEADO;
-                    requicisionModel.NOMBRE_EMPLEADO = respuesta.NOMBRE_EMPLEADO;
-                    requicisionModel.JEFE_INMEDIATO = respuesta.JEFE_INMEDIATO;
-                    requicisionModel.COD_SOCIEDAD = respuesta.COD_SOCIEDAD ?? 0;
-                    requicisionModel.NOMBRE_SOCIEDAD = respuesta.NOMBRE_SOCIEDAD;
-                    requicisionModel.COD_EQUIPO_VENTAS = respuesta.COD_EQUIPO_VENTAS ?? 0;
-                    requicisionModel.NOMBRE_EQIPO_VENTAS = respuesta.NOMBRE_EQUIPO_VENTAS;
-                    requicisionModel.COD_CIUDAD_TRABAJO = respuesta.COD_CIUDAD_TRABAJO ?? 0;
-                    requicisionModel.NOMBRE_CIUDAD_TRABAJO = respuesta.NOMBRE_CIUDAD_TRABAJO;
-                    requicisionModel.COD_DANE_CIUDAD_TRABAJO = respuesta.COD_DANE_CIUDAD_TRABAJO ?? 0;
-                    requicisionModel.COD_UBICACION_FISICA = respuesta.COD_UBICACION_FISICA ?? 0;
-                    requicisionModel.NOMBRE_UBICACION_FISICA = respuesta.NOMBRE_UBICACION_FISICA;
-                    requicisionModel.COD_NIVEL_RIESGO_ARL = respuesta.COD_NIVEL_RIESGO_ARL ?? 0;
-                    requicisionModel.NIVEL_RIESGO_ARL = respuesta.NIVEL_RIESGO_ARL;
-                    requicisionModel.COD_CATEGORIA_ED = respuesta.COD_CATEGORIA_ED ?? 0;
-                    requicisionModel.NOMBRE_CATEGORIA_ED = respuesta.NOMBRE_CATEGORIA_ED;
-                    requicisionModel.CARGO_CRITICO = respuesta.CARGO_CRITICO ?? false;
-                    requicisionModel.COD_JORNADA_LABORAL = respuesta.COD_JORNADA_LABORAL ?? 0;
-                    requicisionModel.NOMBRE_JORNADA_LABORAL = respuesta.NOMBRE_JORNADA_LABORAL;
-                    requicisionModel.HORARIO_LABORAL_DESDE = respuesta.HORARIO_LABORAL_DESDE;
-                    requicisionModel.HORARIO_LABORAL_HASTA = respuesta.HORARIO_LABORAL_HASTA;
-                    requicisionModel.COD_DIA_LABORAL_DESDE = respuesta.COD_DIA_LABORAL_DESDE ?? 0;
-                    requicisionModel.COD_DIA_LABORAL_HASTA = respuesta.COD_DIA_LABORAL_HASTA ?? 0;
-                    requicisionModel.POSICION = respuesta.POSICION;
-                    requicisionModel.EMPRESA_TEMPORAL = respuesta.EMPRESA_TEMPORAL;
-                    requicisionModel.SALARIO_FIJO = respuesta.SALARIO_FIJO ?? 0;
-                    requicisionModel.PORCENTAJE_SALARIO_FIJO = respuesta.PORCENTAJE_SALARIO_FIJO ?? 0;
-                    requicisionModel.SALARIO_VARIABLE = respuesta.SALARIO_VARIABLE ?? 0;
-                    requicisionModel.PORCENTAJE_SALARIO_VARIABLE = respuesta.PORCENTAJE_SALARIO_VARIABLE ?? 0;
-                    requicisionModel.SOBREREMUNERACION = respuesta.SOBREREMUNERACION ?? 0;
-                    requicisionModel.PORCENTAJE_SOBREREMUNERACION = respuesta.PORCENTAJE_SOBREREMUNERACION ?? 0;
-                    requicisionModel.EXTRA_FIJA = respuesta.EXTRA_FIJA ?? 0;
-                    requicisionModel.RECARGO_NOCTURNO = respuesta.RECARGO_NOCTURNO ?? 0;
-                    requicisionModel.MEDIO_TRANSPORTE = respuesta.MEDIO_TRANSPORTE ?? 0;
-                    requicisionModel.SALARIO_TOTAL = respuesta.SALARIO_TOTAL ?? 0;
-                    requicisionModel.BONO_ANUAL = respuesta.BONO_ANUAL ?? 0;
-                    requicisionModel.NUMERO_SALARIOS = respuesta.NUMERO_SALARIOS ?? 0;
-                    requicisionModel.MESES_GARANTIZADOS = respuesta.MESES_GARANTIZADOS ?? 0;
-                    requicisionModel.COD_TIPO_SALARIO = respuesta.COD_TIPO_SALARIO ?? 0;
-                    requicisionModel.NOMBRE_TIPO_SALARIO = respuesta.NOMBRE_TIPO_SALARIO;
-                    requicisionModel.FACTOR_PRESTACIONAL = respuesta.FACTOR_PRESTACIONAL ?? 0;
-                    requicisionModel.INGRESO_PROM_MENSUAL = respuesta.INGRESO_PROM_MENSUAL ?? 0;
-                    requicisionModel.INGRESO_PROM_ANUAL = respuesta.INGRESO_PROM_ANUAL ?? 0;
-                    requicisionModel.MERCADO = respuesta.MERCADO;
-                    requicisionModel.COD_CATEGORIA = respuesta.COD_CATEGORIA ?? 0;
-                    requicisionModel.NOMBRE_CATEGORIA = respuesta.NOMBRE_CATEGORIA;
-                    requicisionModel.PUNTO_MEDIO_80 = respuesta.PUNTO_MEDIO_80 ?? 0;
-                    requicisionModel.PUNTO_MEDIO_100 = respuesta.PUNTO_MEDIO_100 ?? 0;
-                    requicisionModel.PUNTO_MEDIO_120 = respuesta.PUNTO_MEDIO_120 ?? 0;
-                    requicisionModel.POSICIONAMIENTO = respuesta.POSICIONAMIENTO ?? 0;
-                    requicisionModel.EMAIL_USUARIO_CREACION = respuesta.EMAIL_USUARIO_CREACION;
-                    requicisionModel.LOGIN_EMPLEADO = respuesta.LOGIN_EMPLEADO;
-                    requicisionModel.COD_HORARIO_LABORAL_DESDE = respuesta.COD_HORARIO_LABORAL_DESDE ?? 0;
-                    requicisionModel.COD_HORARIO_LABORAL_HASTA = respuesta.COD_HORARIO_LABORAL_HASTA ?? 0;
-                    requicisionModel.COD_MERCADO = respuesta.COD_MERCADO ?? 0;
-                    requicisionModel.FECHA_INICIO = respuesta.FECHA_INICIO ?? DateTime.Now;
-                    requicisionModel.FECHA_FIN = respuesta.FECHA_FIN ?? DateTime.Now;
-                    requicisionModel.DIA_LABORAL_DESDE = respuesta.DIA_LABORAL_DESDE;
-                    requicisionModel.DIA_LABORAL_HASTA = respuesta.DIA_LABORAL_HASTA;
-                    requicisionModel.COD_CORREO_CONTROLLER = respuesta.COD_CORREO_CONTROLLER;
+                        requicisionModel.COD_TIPO_NECESIDAD = respuesta.COD_TIPO_NECESIDAD ?? 0;
+                        requicisionModel.COD_CARGO = respuesta.COD_CARGO ?? 0;
+                        requicisionModel.NOMBRE_CARGO = respuesta.NOMBRE_CARGO;
+                        requicisionModel.ORDEN = respuesta.ORDEN;
+                        requicisionModel.COD_CECO = Convert.ToInt32(respuesta.COD_CECO);
+                        requicisionModel.NOMBRE_CECO = respuesta.NOMBRE_CECO;
+                        requicisionModel.COD_TIPO_REQUISICION = respuesta.COD_TIPO_REQUISICION ?? 0;
+                        requicisionModel.ES_MODIFICACION = respuesta.ES_MODIFICACION ?? false;
+                        requicisionModel.OBSERVACION = "";
+                        requicisionModel.OBSERVACIONES = respuesta.OBSERVACION ?? "";
+                        requicisionModel.COD_ESTADO_REQUISICION = respuesta.COD_ESTADO_REQUISICION ?? 0;
+                        requicisionModel.USUARIO_CREACION = respuesta.USUARIO_CREACION;
+                        requicisionModel.FECHA_CREACION = respuesta.FECHA_CREACION.ToString() ?? DateTime.Now.ToShortDateString();
+                        requicisionModel.USUARIO_MODIFICACION = respuesta.USUARIO_MODIFICACION;
+                        requicisionModel.FECHA_MODIFICACION = respuesta.FECHA_MODIFICACION ?? DateTime.Now;
+                        requicisionModel.COD_GERENCIA = respuesta.COD_GERENCIA ?? 0;
+                        requicisionModel.NOMBRE_GERENCIA = respuesta.NOMBRE_GERENCIA;
+                        requicisionModel.COD_TIPO_CONTRATO = respuesta.COD_TIPO_CONTRATO ?? 0;
+                        requicisionModel.NOMBRE_TIPO_CONTRATO = respuesta.NOMBRE_TIPO_CONTRATO;
+                        requicisionModel.COD_TIPO_DOCUMENTO = respuesta.COD_TIPO_DOCUMENTO ?? 0;
+                        requicisionModel.NUMERO_DOCUMENTO_EMPLEADO = respuesta.NUMERO_DOCUMENTO_EMPLEADO;
+                        requicisionModel.NOMBRE_EMPLEADO = respuesta.NOMBRE_EMPLEADO;
+                        requicisionModel.JEFE_INMEDIATO = respuesta.JEFE_INMEDIATO;
+                        requicisionModel.COD_SOCIEDAD = respuesta.COD_SOCIEDAD ?? 0;
+                        requicisionModel.NOMBRE_SOCIEDAD = respuesta.NOMBRE_SOCIEDAD;
+                        requicisionModel.COD_EQUIPO_VENTAS = respuesta.COD_EQUIPO_VENTAS ?? 0;
+                        requicisionModel.NOMBRE_EQIPO_VENTAS = respuesta.NOMBRE_EQUIPO_VENTAS;
+                        requicisionModel.COD_CIUDAD_TRABAJO = respuesta.COD_CIUDAD_TRABAJO ?? 0;
+                        requicisionModel.NOMBRE_CIUDAD_TRABAJO = respuesta.NOMBRE_CIUDAD_TRABAJO;
+                        requicisionModel.COD_DANE_CIUDAD_TRABAJO = respuesta.COD_DANE_CIUDAD_TRABAJO ?? 0;
+                        requicisionModel.COD_UBICACION_FISICA = respuesta.COD_UBICACION_FISICA ?? 0;
+                        requicisionModel.NOMBRE_UBICACION_FISICA = respuesta.NOMBRE_UBICACION_FISICA;
+                        requicisionModel.COD_NIVEL_RIESGO_ARL = respuesta.COD_NIVEL_RIESGO_ARL ?? 0;
+                        requicisionModel.NIVEL_RIESGO_ARL = respuesta.NIVEL_RIESGO_ARL;
+                        requicisionModel.COD_CATEGORIA_ED = respuesta.COD_CATEGORIA_ED ?? 0;
+                        requicisionModel.NOMBRE_CATEGORIA_ED = respuesta.NOMBRE_CATEGORIA_ED;
+                        requicisionModel.CARGO_CRITICO = respuesta.CARGO_CRITICO ?? false;
+                        requicisionModel.COD_JORNADA_LABORAL = respuesta.COD_JORNADA_LABORAL ?? 0;
+                        requicisionModel.NOMBRE_JORNADA_LABORAL = respuesta.NOMBRE_JORNADA_LABORAL;
+                        requicisionModel.HORARIO_LABORAL_DESDE = respuesta.HORARIO_LABORAL_DESDE;
+                        requicisionModel.HORARIO_LABORAL_HASTA = respuesta.HORARIO_LABORAL_HASTA;
+                        requicisionModel.COD_DIA_LABORAL_DESDE = respuesta.COD_DIA_LABORAL_DESDE ?? 0;
+                        requicisionModel.COD_DIA_LABORAL_HASTA = respuesta.COD_DIA_LABORAL_HASTA ?? 0;
+                        requicisionModel.POSICION = respuesta.POSICION;
+                        requicisionModel.EMPRESA_TEMPORAL = respuesta.EMPRESA_TEMPORAL;
+                        requicisionModel.SALARIO_FIJO = respuesta.SALARIO_FIJO ?? 0;
+                        requicisionModel.PORCENTAJE_SALARIO_FIJO = respuesta.PORCENTAJE_SALARIO_FIJO ?? 0;
+                        requicisionModel.SALARIO_VARIABLE = respuesta.SALARIO_VARIABLE ?? 0;
+                        requicisionModel.PORCENTAJE_SALARIO_VARIABLE = respuesta.PORCENTAJE_SALARIO_VARIABLE ?? 0;
+                        requicisionModel.SOBREREMUNERACION = respuesta.SOBREREMUNERACION ?? 0;
+                        requicisionModel.PORCENTAJE_SOBREREMUNERACION = respuesta.PORCENTAJE_SOBREREMUNERACION ?? 0;
+                        requicisionModel.EXTRA_FIJA = respuesta.EXTRA_FIJA ?? 0;
+                        requicisionModel.RECARGO_NOCTURNO = respuesta.RECARGO_NOCTURNO ?? 0;
+                        requicisionModel.MEDIO_TRANSPORTE = respuesta.MEDIO_TRANSPORTE ?? 0;
+                        requicisionModel.SALARIO_TOTAL = respuesta.SALARIO_TOTAL ?? 0;
+                        requicisionModel.BONO_ANUAL = respuesta.BONO_ANUAL ?? 0;
+                        requicisionModel.NUMERO_SALARIOS = respuesta.NUMERO_SALARIOS ?? 0;
+                        requicisionModel.MESES_GARANTIZADOS = respuesta.MESES_GARANTIZADOS ?? 0;
+                        requicisionModel.COD_TIPO_SALARIO = respuesta.COD_TIPO_SALARIO ?? 0;
+                        requicisionModel.NOMBRE_TIPO_SALARIO = respuesta.NOMBRE_TIPO_SALARIO;
+                        requicisionModel.FACTOR_PRESTACIONAL = respuesta.FACTOR_PRESTACIONAL ?? 0;
+                        requicisionModel.INGRESO_PROM_MENSUAL = respuesta.INGRESO_PROM_MENSUAL ?? 0;
+                        requicisionModel.INGRESO_PROM_ANUAL = respuesta.INGRESO_PROM_ANUAL ?? 0;
+                        requicisionModel.MERCADO = respuesta.MERCADO;
+                        requicisionModel.COD_CATEGORIA = respuesta.COD_CATEGORIA ?? 0;
+                        requicisionModel.NOMBRE_CATEGORIA = respuesta.NOMBRE_CATEGORIA;
+                        requicisionModel.PUNTO_MEDIO_80 = respuesta.PUNTO_MEDIO_80 ?? 0;
+                        requicisionModel.PUNTO_MEDIO_100 = respuesta.PUNTO_MEDIO_100 ?? 0;
+                        requicisionModel.PUNTO_MEDIO_120 = respuesta.PUNTO_MEDIO_120 ?? 0;
+                        requicisionModel.POSICIONAMIENTO = respuesta.POSICIONAMIENTO ?? 0;
+                        requicisionModel.EMAIL_USUARIO_CREACION = respuesta.EMAIL_USUARIO_CREACION;
+                        requicisionModel.LOGIN_EMPLEADO = respuesta.LOGIN_EMPLEADO;
+                        requicisionModel.COD_HORARIO_LABORAL_DESDE = respuesta.COD_HORARIO_LABORAL_DESDE ?? 0;
+                        requicisionModel.COD_HORARIO_LABORAL_HASTA = respuesta.COD_HORARIO_LABORAL_HASTA ?? 0;
+                        requicisionModel.COD_MERCADO = respuesta.COD_MERCADO ?? 0;
+                        requicisionModel.FECHA_INICIO = respuesta.FECHA_INICIO ?? DateTime.Now;
+                        requicisionModel.FECHA_FIN = respuesta.FECHA_FIN ?? DateTime.Now;
+                        requicisionModel.DIA_LABORAL_DESDE = respuesta.DIA_LABORAL_DESDE;
+                        requicisionModel.DIA_LABORAL_HASTA = respuesta.DIA_LABORAL_HASTA;
+                        requicisionModel.COD_CORREO_CONTROLLER = respuesta.COD_CORREO_CONTROLLER;
 
-                   }
+                    }
                 }
                 logCentralizado.FINALIZANDO_LOG("REPREQ6", "CONSULTAR_REQUISICION_X_ID");
             }
@@ -395,7 +396,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                         _modelRequisicion.MESES_GARANTIZADOS,
                         _modelRequisicion.COD_TIPO_SALARIO,
                         _modelRequisicion.NOMBRE_TIPO_SALARIO,
-                        _modelRequisicion.FACTOR_PRESTACIONAL.ToString(),  
+                        _modelRequisicion.FACTOR_PRESTACIONAL.ToString(),
                         _modelRequisicion.INGRESO_PROM_MENSUAL,
                         _modelRequisicion.INGRESO_PROM_ANUAL,
                         _modelRequisicion.COD_MERCADO,
@@ -408,7 +409,9 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                        _modelRequisicion.USUARIO_CREACION ?? "",
                        _modelRequisicion.COD_ESTADO_REQUISICION,
                        _modelRequisicion.ES_MODIFICACION,
-                       _modelRequisicion.COD_CORREO_CONTROLLER
+                       _modelRequisicion.COD_CORREO_CONTROLLER,
+                       _modelRequisicion.COD_TIPO_CONTRATO,
+                       _modelRequisicion.NOMBRE_TIPO_CONTRATO
                    ).FirstOrDefault().Value;
                 }
                 logCentralizado.FINALIZANDO_LOG("REPREQ7", "INSERTAR_REQUISICION");
@@ -651,7 +654,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                         NOMBRE = x.Nombre,
                         ROL = x.Rol
 
-                    }).ToList();                   
+                    }).ToList();
                 }
 
                 logCentralizado.FINALIZANDO_LOG("REPREQ15", "CONSULTAR_USUARIOS");

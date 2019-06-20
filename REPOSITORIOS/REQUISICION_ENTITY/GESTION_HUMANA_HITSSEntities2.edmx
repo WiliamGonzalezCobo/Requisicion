@@ -226,6 +226,8 @@
           <Parameter Name="COD_ESTADO" Type="int" Mode="In" />
           <Parameter Name="ES_MODIFICACION" Type="bit" Mode="In" />
           <Parameter Name="COD_CORREO_CONTROLLER" Type="varchar" Mode="In" />
+          <Parameter Name="COD_TIPO_CONTRATO" Type="int" Mode="In" />
+          <Parameter Name="NOMBRE_TIPO_CONTRATO" Type="varchar" Mode="In" />
         </Function>
         <Function Name="INSERTAR_TRAZAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="REQUISICIONES">
           <Parameter Name="COD_REQUISICION" Type="int" Mode="In" />
@@ -353,11 +355,33 @@
           </FunctionImport>
           <FunctionImport Name="CONSULTAR_ESTADOS" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_ESTADOS_Result)" />
           <FunctionImport Name="CONSULTAR_REQUISICIONXID" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_REQUISICIONXID_Result)">
-          <Parameter Name="COD_USUARIO" Mode="In" Type="String" />
+            <Parameter Name="COD_USUARIO" Mode="In" Type="String" />
             <Parameter Name="IDREQUISICION" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CONSULTAR_TIPOS_NECESIDAD" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_TIPOS_NECESIDAD_Result)" />
           <FunctionImport Name="CONSULTAR_TIPOS_REQUISICION" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_TIPOS_REQUISICION_Result)" />
+          <FunctionImport Name="INSERTAR_TRAZAS">
+            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
+            <Parameter Name="NOMBRE_CAMPO" Mode="In" Type="String" />
+            <Parameter Name="TRAZA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="MODIFICACIONES" ReturnType="Collection(Int32)">
+            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
+            <Parameter Name="OBSERVACIONES" Mode="In" Type="String" />
+            <Parameter Name="COD_USUARIO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RECHAZAR_REQUISICION" ReturnType="Collection(Int32)">
+            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
+            <Parameter Name="USUARIO" Mode="In" Type="String" />
+            <Parameter Name="OBSERVACIONES" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="TRAZA_BOTONES" EntitySet="HISTORICOS" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.HISTORICOS)">
+            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
+            <Parameter Name="CAMPO_REQUISICION" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CONSULTAR_USUARIO" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_USUARIO_Result)">
+          <Parameter Name="COD_USUARIO" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="INSERTAR_REQUISICION" ReturnType="Collection(Int32)">
             <Parameter Name="COD_TIPO_NECESIDAD" Mode="In" Type="Int32" />
             <Parameter Name="COD_TIPO_REQUISICION" Mode="In" Type="Int32" />
@@ -424,28 +448,8 @@
             <Parameter Name="COD_ESTADO" Mode="In" Type="Int32" />
             <Parameter Name="ES_MODIFICACION" Mode="In" Type="Boolean" />
             <Parameter Name="COD_CORREO_CONTROLLER" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="INSERTAR_TRAZAS">
-            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
-            <Parameter Name="NOMBRE_CAMPO" Mode="In" Type="String" />
-            <Parameter Name="TRAZA" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="MODIFICACIONES" ReturnType="Collection(Int32)">
-            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
-            <Parameter Name="OBSERVACIONES" Mode="In" Type="String" />
-            <Parameter Name="COD_USUARIO" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="RECHAZAR_REQUISICION" ReturnType="Collection(Int32)">
-            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
-            <Parameter Name="USUARIO" Mode="In" Type="String" />
-            <Parameter Name="OBSERVACIONES" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="TRAZA_BOTONES" EntitySet="HISTORICOS" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.HISTORICOS)">
-            <Parameter Name="COD_REQUISICION" Mode="In" Type="Int32" />
-            <Parameter Name="CAMPO_REQUISICION" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="CONSULTAR_USUARIO" ReturnType="Collection(GESTION_HUMANA_HITSSModel2.CONSULTAR_USUARIO_Result)">
-          <Parameter Name="COD_USUARIO" Mode="In" Type="String" />
+            <Parameter Name="COD_TIPO_CONTRATO" Mode="In" Type="Int32" />
+            <Parameter Name="NOMBRE_TIPO_CONTRATO" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="HISTORICOS">
@@ -850,7 +854,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="INSERTAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.INSERTAR_REQUISICION" />
           <FunctionImportMapping FunctionImportName="INSERTAR_TRAZAS" FunctionName="GESTION_HUMANA_HITSSModel2.Store.INSERTAR_TRAZAS" />
           <FunctionImportMapping FunctionImportName="MODIFICACIONES" FunctionName="GESTION_HUMANA_HITSSModel2.Store.MODIFICACIONES" />
           <FunctionImportMapping FunctionImportName="RECHAZAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.RECHAZAR_REQUISICION" />
@@ -864,6 +867,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="INSERTAR_REQUISICION" FunctionName="GESTION_HUMANA_HITSSModel2.Store.INSERTAR_REQUISICION" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

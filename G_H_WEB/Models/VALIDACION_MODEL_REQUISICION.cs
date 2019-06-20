@@ -79,7 +79,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
                     }
                     if (esBp)
                     {
-                        //ValidaGeneralProPuestaLi(_modelRequisicion); //Todos Los Campos se deshabilitaron
+                        //ValidaGeneralProPuestaLi(_modelRequisicion); //Todos Los Campos se deshabilitaron 
                         ValidaInfoSalarialLi(_modelRequisicion);
                         //ValidaInfoSalarialLi2(_modelRequisicion);//Todos Los Campos se deshabilitaron
                     }
@@ -451,6 +451,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
                 throw ex;
             }
         }
+
         private void ValidaGeneralProPuestaLi(REQUISICIONViewModel modelRequisicion)
         {
             try
