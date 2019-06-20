@@ -26,6 +26,7 @@ namespace LOGICA
         private LOGICA.RETIRO RETIRO_LOGICA = new RETIRO();
         private EMPLEADO EMPLEADO_METODO = new EMPLEADO();
 
+
         public bool NOTIFICAR(decimal _COD_RETIRO)
         {
             try
@@ -39,9 +40,6 @@ namespace LOGICA
 
 
                 decimal _COD_CORREO = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["CodigoCorreoRemitente"]);
-                //martinezluir agregado
-                decimal _CodigoCorreoPlantillaRetiro = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["CodigoCorreoPlantillaRetiro"]);
-                
                 //  decimal _COD_CORREO = 1;
 
                 MODELO_DATOS.RETIROS RETIRO_DATOS = RETIRO_LOGICA.CONSULTAR(Convert.ToInt32(_COD_RETIRO));
@@ -70,9 +68,7 @@ namespace LOGICA
                 /*FIN  DESENCRIPTAR*/
 
                 // decimal _COD_CORREO1 = 1;
-                // martinezluir se modifico la consulta de destinatarios para que no agregue los destinatarios para requisiciones
-                // las que tienen el COD_ASPNETUSER en null son para requisiciones
-                List<MODELO_DATOS.CORREOS_DESTINOS> DESTINO_LISTA_DATOS = CORREO.CONSULTAR_DESTINO(_COD_CORREO).ToList().Where(x=> !string.IsNullOrEmpty(x.COD_ASPNETUSER_JEFE)).ToList();
+                List<MODELO_DATOS.CORREOS_DESTINOS> DESTINO_LISTA_DATOS = CORREO.CONSULTAR_DESTINO(_COD_CORREO).ToList();
                 List<CORREOS_DESTINOS_MODELO> DESTINO_LISTA = new List<CORREOS_DESTINOS_MODELO>();
 
                 foreach (MODELO_DATOS.CORREOS_DESTINOS TIPO in DESTINO_LISTA_DATOS)
@@ -87,11 +83,11 @@ namespace LOGICA
                         );
                 }
 
-                //martinesluir se agrego condicion para solo traer la plantilla de retiro
-                List<PLANTILLAS_CORREOS> PLANTILLA_LISTA_DATOS = CORREO.CONSULTAR_PLANTILLA(_COD_CORREO).ToList().Where(x=> x.COD_PLANTILLA== _CodigoCorreoPlantillaRetiro).ToList();
+
+                List<MODELO_DATOS.PLANTILLAS_CORREOS> PLANTILLA_LISTA_DATOS = CORREO.CONSULTAR_PLANTILLA(_COD_CORREO).ToList();
                 List<PLANTILLAS_CORREOS_MODELO> PLANTILLA_LISTA = new List<PLANTILLAS_CORREOS_MODELO>();
 
-                foreach (PLANTILLAS_CORREOS TIPO in PLANTILLA_LISTA_DATOS)
+                foreach (MODELO_DATOS.PLANTILLAS_CORREOS TIPO in PLANTILLA_LISTA_DATOS)
                 {
                     PLANTILLA_LISTA.Add(
                             new PLANTILLAS_CORREOS_MODELO
@@ -120,8 +116,8 @@ namespace LOGICA
                     ESTADO = DATOS_CORREO.ESTADO,
                     SOCIEDAD = EMPLEADO.AsQueryable().FirstOrDefault().SOCIEDAD,
                     CENTRO_COSTO = EMPLEADO.AsQueryable().FirstOrDefault().CENTRO_COSTO,
-					NOMBRE_JEFE = EMPLEADO.AsQueryable().FirstOrDefault().NOMBRE_JEFE
-				};
+                    NOMBRE_JEFE = EMPLEADO.AsQueryable().FirstOrDefault().NOMBRE_JEFE
+                };
 
 
                 CORREO.ENVIO_CORREO(CORREO_LOGICA);
@@ -140,6 +136,7 @@ namespace LOGICA
             }
         }
 
+
         public Boolean NOFICICACION_REQUISICIONES(REQUISICIONViewModel _REQUSICION, String _LINK_TRAMITAR, string ID_USUARIO) {
             try
             {
@@ -149,8 +146,10 @@ namespace LOGICA
                 HILO.Start();
 
                 Boolean RESUTADO = false;
-                int _COD_CORREO = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["CodigoCorreoRemitente"]);
-                int _CodigoCorreoPlantilla = Convert.ToInt32(SettingsManager.CodigoCorreoPlantilla);
+                //Cambiar la key
+                int _COD_CORREO = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["CodigoCorreoRemitenteRequisiciones"]);
+                //eliminar key
+                //int _CodigoCorreoPlantilla = Convert.ToInt32(SettingsManager.CodigoCorreoPlantilla);
 
                 MODELO_DATOS.CORREOS DATOS_CORREO = CORREO.CONSULTAR(_COD_CORREO);
 
@@ -160,7 +159,6 @@ namespace LOGICA
                 byte[] SALT = Convert.FromBase64String(DATOS_CORREO.SALTO);
                 string CONTRASENA_CORREO = CORREO.QUITAR_SALTO(TEXTO_SALTO, SALT.Length);
                 /*FIN  DESENCRIPTAR*/
-
                 List<CORREOS_DESTINOS> DESTINO_LISTA_DATOS = CORREO.CONSULTAR_DESTINO(_COD_CORREO).ToList().Where(x => x.COD_ASPNETUSER_JEFE == ID_USUARIO).ToList();
                 List<CORREOS_DESTINOS_MODELO> DESTINO_LISTA = new List<CORREOS_DESTINOS_MODELO>();
 
@@ -177,8 +175,8 @@ namespace LOGICA
                             }
                         );
                 }
-
-                List<PLANTILLAS_CORREOS> PLANTILLA_LISTA_DATOS = CORREO.CONSULTAR_PLANTILLA(_COD_CORREO).ToList().Where(x => x.COD_PLANTILLA == _CodigoCorreoPlantilla).ToList();
+                //eliminar filtro
+                List<PLANTILLAS_CORREOS> PLANTILLA_LISTA_DATOS = CORREO.CONSULTAR_PLANTILLA(_COD_CORREO).ToList();
                 List<PLANTILLAS_CORREOS_MODELO> PLANTILLA_LISTA = new List<PLANTILLAS_CORREOS_MODELO>();
 
                 foreach (PLANTILLAS_CORREOS TIPO in PLANTILLA_LISTA_DATOS)

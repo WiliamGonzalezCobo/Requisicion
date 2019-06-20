@@ -189,7 +189,6 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// NOMBRE JEFE INMEDIATO
         /// </summary>
         [DisplayName("Jefe Inmediato"), StringLength(100)]
-        [Required(ErrorMessage = "El Jefe Inmediato es requerido")]
         public string JEFE_INMEDIATO { get; set; }
 
         /// <summary>
