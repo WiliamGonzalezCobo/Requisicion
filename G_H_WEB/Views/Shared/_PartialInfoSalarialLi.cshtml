@@ -7,21 +7,21 @@
 
 <section id="infoSalarial">
     <div class="panel-heading row">
-        <div class="span-icon-arrow div-span-collapseInfoSalarialIncap">
-            <span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>
-        </div>
         @if (User.IsInRole(SettingsManager.PerfilJefe) || User.IsInRole(SettingsManager.PerfilController))
         {
-        <a class="a-collapse">
-            <h2>Información Salarial Propuesta</h2>
-        </a>
+            <div class="span-icon-arrow div-span-collapseInfoSalarialIncap">
+                <span class="span-collapse"><i class="fas fa-chevron-up arrow-collapse"></i></span>
+            </div>
         }
         else
         {
+            <div class="span-icon-arrow div-span-collapseInfoSalarialIncap">
+                <span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>
+            </div>
+        }
         <a class="a-collapse" data-toggle="collapse" href="#collapseInfoSalarialIncap">
             <h2>Información Salarial Propuesta</h2>
         </a>
-        }
         <span class="span_infoSalarialLi span-alert-modify" style="visibility:hidden" data-toggle="tooltip" title="Modificada">
             <img src="../../assets/img/return-alert-modify.svg" class="img-responsive maxImagen" />
         </span>
@@ -138,23 +138,23 @@ else
 {
 <section id="infoSalarial">
     <div class="panel-heading row">
-        <div class="span-icon-arrow div-span-collapseInfoSalarialIncap">
-            <span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>
-        </div>
         @if (User.IsInRole(SettingsManager.PerfilJefe) || User.IsInRole(SettingsManager.PerfilController))
         {
-        <a class="a-collapse">
-            <h2>Información Salarial Propuesta</h2>
-        </a>
+            <div class="span-icon-arrow div-span-collapseInfoSalarialIncap">
+                <span class="span-collapse"><i class="fas fa-chevron-up arrow-collapse"></i></span>
+            </div>
         }
         else
         {
+            <div class="span-icon-arrow div-span-collapseInfoSalarialIncap">
+                <span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>
+            </div>
+        }
         <a class="a-collapse" data-toggle="collapse" href="#collapseInfoSalarialIncap">
             <h2>Información Salarial Propuesta</h2>
         </a>
-        }
         <span class="span_infoSalarialLi span-alert-modify" style="visibility:hidden" data-toggle="tooltip" title="Modificada">
-            <i class="fas fa-exclamation-circle" style="color:darkorange"></i>
+            <img src="../../assets/img/return-alert-modify.svg" class="img-responsive maxImagen" />
         </span>
     </div>
     <div id="collapseInfoSalarialIncap" class="panel-collapse collapse">
