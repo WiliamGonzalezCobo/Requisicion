@@ -146,11 +146,7 @@ namespace LOGICA
                 HILO.Start();
 
                 Boolean RESUTADO = false;
-                //Cambiar la key
                 int _COD_CORREO = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["CodigoCorreoRemitenteRequisiciones"]);
-                //eliminar key
-                //int _CodigoCorreoPlantilla = Convert.ToInt32(SettingsManager.CodigoCorreoPlantilla);
-
                 MODELO_DATOS.CORREOS DATOS_CORREO = CORREO.CONSULTAR(_COD_CORREO);
 
                 /*DESENCRIPTAR*/
@@ -169,13 +165,11 @@ namespace LOGICA
                             {
                                 CORREO = TIPO.CORREO,
                                 ESTADO = TIPO.ESTADO,
-                                //martinezluir agregado
                                 COD_COREEO_DESTINO = TIPO.COD_CORREO_DESTINO,
                                 COD_ASPNETUSER_CONTROLLER=TIPO.COD_ASPNETUSER_CONTROLLER
                             }
                         );
                 }
-                //eliminar filtro
                 List<PLANTILLAS_CORREOS> PLANTILLA_LISTA_DATOS = CORREO.CONSULTAR_PLANTILLA(_COD_CORREO).ToList();
                 List<PLANTILLAS_CORREOS_MODELO> PLANTILLA_LISTA = new List<PLANTILLAS_CORREOS_MODELO>();
 

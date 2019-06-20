@@ -453,8 +453,10 @@ function ConsultaTraza(CAMPO_REQUISICION) {
                 $.each(respuesta, function (key, value) {
                     debugger;
                     if (cont === 1) {
+                        if (value[CAMPO_REQUISICION] != null && value[CAMPO_REQUISICION] != 0) { 
                         $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION + "</td > </tr > ");
-                    }
+                        }
+                     }
                     else {
                         if (cont === 2) {
                             if (value[CAMPO_REQUISICION] != null && value[CAMPO_REQUISICION] != campo_re && value.NOMBRE_ESTADOS_REQUISICION != "Registrada") {
