@@ -9,7 +9,7 @@
             <h2>Información Salarial Propuesta Adicional</h2>
         </a>
         <span class="span_infoSalarialLi2  span-alert-modify" style="visibility:hidden" data-toggle="tooltip" title="Modificada">
-            <i class="fas fa-exclamation-circle" style="color:darkorange"></i>
+            <img src="../../assets/img/return-alert-modify.svg" class="img-responsive maxImagen" />
         </span>
     </div>
     <div id="collapseInfoSalarialIncap2" class="panel-collapse collapse">
@@ -26,24 +26,14 @@
 
             </div>
             <div class="form-group col-md-6 col-sm-12">
-                @if (Model.COD_TIPO_SALARIO == null && Model.COD_TIPO_SALARIO == 0)
-                {
                     @Html.LabelFor(model => model.NOMBRE_TIPO_SALARIO, "Tipo de Salario", htmlAttributes: new { @class = "control-label" })
                     <div class="col-md-11" style="padding-left:0px">
                         @Html.DropDownListFor(model => model.COD_TIPO_SALARIO, Model.LIST_NOMBRE_TIPO_SALARIO, "Seleccione ", new { @class = "form-control TexboxIncicial no-width", disabled = deshabilitar })
                         <span id="NOMBRE_TIPO_SALARIO_S" class="btn_traza btn-traza-modify span-modify-hidden" onclick="ConsultaTraza('NOMBRE_TIPO_SALARIO')" data-toggle="tooltip" data-placement="top" style="visibility:hidden;right:-31px">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                         @Html.ValidationMessageFor(model => model.COD_TIPO_SALARIO, "", new { @class = "text-danger" })
                     </div>
-                }
-                else
-                {
-                    @Html.LabelFor(model => model.NOMBRE_TIPO_SALARIO, "Tipo de Salario", htmlAttributes: new { @class = "control-label" })
-                    <div class="col-md-11" style="padding-left:0px">
-                        @Html.DropDownListFor(model => model.COD_TIPO_SALARIO, Model.LIST_NOMBRE_TIPO_SALARIO, new { @class = "form-control TexboxIncicial no-width", disabled = deshabilitar })
-                        <span id="NOMBRE_TIPO_SALARIO_S" class="btn_traza btn-traza-modify span-modify-hidden" onclick="ConsultaTraza('NOMBRE_TIPO_SALARIO')" data-toggle="tooltip" data-placement="top" style="visibility:hidden;right:-31px">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-                        @Html.ValidationMessageFor(model => model.COD_TIPO_SALARIO, "", new { @class = "text-danger" })
-                    </div>
-                }
+
+
                 @Html.HiddenFor(model => model.COD_TIPO_SALARIO, new { id= "hdCOD_TIPO_SALARIO" })
                 @Html.HiddenFor(model => model.NOMBRE_TIPO_SALARIO, new { id = "hdNOMBRE_TIPO_SALARIO" })
             </div>
@@ -83,45 +73,23 @@
         </div>
         <div class="row">
             <div class="form-group col-md-6 col-sm-12">
-                @if (Model.COD_MERCADO == null && Model.COD_MERCADO == 0)
-                {
                     @Html.LabelFor(model => model.MERCADO, htmlAttributes: new { @class = "control-label" })
                     <div class="col-md-12" style="padding-left:0px">
                         @Html.DropDownListFor(model => model.COD_MERCADO, Model.LIST_MERCADO, "-- Seleccione --", new { @class = "form-control TexboxIncicial col-md-11 no-width", disabled = deshabilitar })
                         <span id="MERCADO_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('MERCADO')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                         @Html.ValidationMessageFor(model => model.COD_MERCADO, "", new { @class = "text-danger" })
                     </div>
-                }
-                else
-                {
-                    @Html.LabelFor(model => model.MERCADO, htmlAttributes: new { @class = "control-label" })
-                    <div class="col-md-12" style="padding-left:0px">
-                        @Html.DropDownListFor(model => model.COD_MERCADO, Model.LIST_MERCADO, new { @class = "form-control TexboxIncicial col-md-11 no-width", disabled = deshabilitar })
-                        <span id="MERCADO_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('MERCADO')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-                        @Html.ValidationMessageFor(model => model.COD_MERCADO, "", new { @class = "text-danger" })
-                    </div>
-                }
+
                 @Html.HiddenFor(model => model.COD_MERCADO,new { id= "hdCOD_MERCADO" })
             </div>
             <div class="form-group col-md-6 col-sm-12">
-                @if (Model.COD_CATEGORIA == null && Model.COD_CATEGORIA == 0)
-                {
                     @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA, "Categoría", htmlAttributes: new { @class = "control-label" })
                     <div class="col-md-12" style="padding-left:0px">
                         @Html.DropDownListFor(model => model.COD_CATEGORIA, Model.LIST_NOMBRE_CATEGORIA, "Seleccione ", new { @class = "form-control TexboxIncicial col-md-11 no-width", disabled = deshabilitar })
                         <span id="CATRGORIA_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('CATRGORIA')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                         @Html.ValidationMessageFor(model => model.COD_CATEGORIA, "", new { @class = "text-danger" })
                     </div>
-                }
-                else
-                {
-                    @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA, "Categoría", htmlAttributes: new { @class = "control-label" })
-                    <div class="col-md-12" style="padding-left:0px">
-                        @Html.DropDownListFor(model => model.COD_CATEGORIA, Model.LIST_NOMBRE_CATEGORIA, new { @class = "form-control TexboxIncicial col-md-11 no-width", disabled = deshabilitar })
-                        <span id="CATRGORIA_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('CATRGORIA')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-                        @Html.ValidationMessageFor(model => model.COD_CATEGORIA, "", new { @class = "text-danger" })
-                    </div>
-                }
+
                 @Html.HiddenFor(model => model.COD_CATEGORIA, new { id = "hdCOD_CATEGORIA" })
 
             </div>
