@@ -21,7 +21,7 @@
                     @Html.EditorFor(model => model.MESES_GARANTIZADOS, new { htmlAttributes = new { @class = "form-control TexboxIncicial no-width", disabled = deshabilitar, onBlur = "validarCampoNumberInput(this.name, this.value)" } })
                     <span id="MESES_GARANTIZADOS_S" class="btn_traza btn-traza-modify span-modify-hidden" onclick="ConsultaTraza('MESES_GARANTIZADOS')" data-toggle="tooltip" data-placement="top" style="visibility:hidden;right:-31px">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                     @Html.ValidationMessageFor(model => model.MESES_GARANTIZADOS, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.MESES_GARANTIZADOS)
+                    @Html.HiddenFor(model => model.MESES_GARANTIZADOS,new { id = "hdMESES_GARANTIZADOS" })
                 </div>
 
             </div>
@@ -44,8 +44,8 @@
                         @Html.ValidationMessageFor(model => model.COD_TIPO_SALARIO, "", new { @class = "text-danger" })
                     </div>
                 }
-                @Html.HiddenFor(model => model.COD_TIPO_SALARIO)
-                @Html.HiddenFor(model => model.NOMBRE_TIPO_SALARIO)
+                @Html.HiddenFor(model => model.COD_TIPO_SALARIO, new { id= "hdCOD_TIPO_SALARIO" })
+                @Html.HiddenFor(model => model.NOMBRE_TIPO_SALARIO, new { id = "hdNOMBRE_TIPO_SALARIO" })
             </div>
         </div>
 
@@ -101,7 +101,7 @@
                         @Html.ValidationMessageFor(model => model.COD_MERCADO, "", new { @class = "text-danger" })
                     </div>
                 }
-                @Html.HiddenFor(model => model.COD_MERCADO)
+                @Html.HiddenFor(model => model.COD_MERCADO,new { id= "hdCOD_MERCADO" })
             </div>
             <div class="form-group col-md-6 col-sm-12">
                 @if (Model.COD_CATEGORIA == null && Model.COD_CATEGORIA == 0)
@@ -122,7 +122,7 @@
                         @Html.ValidationMessageFor(model => model.COD_CATEGORIA, "", new { @class = "text-danger" })
                     </div>
                 }
-                @Html.HiddenFor(model => model.COD_CATEGORIA)
+                @Html.HiddenFor(model => model.COD_CATEGORIA, new { id = "hdCOD_CATEGORIA" })
 
             </div>
         </div>
@@ -134,7 +134,7 @@
                         <div class="salarioTotalEstilos">
                             @Html.LabelFor(model => model.PUNTO_MEDIO_80, htmlAttributes: new { @class = "letrasSalarioTotal col-md-6", @style = "text-align:left;" })
                             <span class="valorSalarioTotal col-md-6">@Model.PUNTO_MEDIO_80</span>
-                            @Html.HiddenFor(model => model.PUNTO_MEDIO_80)
+                            @Html.HiddenFor(model => model.PUNTO_MEDIO_80, new { id = "hdPUNTO_MEDIO_80" })
                             @Html.ValidationMessageFor(model => model.PUNTO_MEDIO_80)
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                         <div class="salarioTotalEstilos">
                             @Html.LabelFor(model => model.PUNTO_MEDIO_100, htmlAttributes: new { @class = "letrasSalarioTotal col-md-6", @style = "text-align:left;" })
                             <span class="valorSalarioTotal col-md-6">@Model.PUNTO_MEDIO_100</span>
-                            @Html.HiddenFor(model => model.PUNTO_MEDIO_100)
+                            @Html.HiddenFor(model => model.PUNTO_MEDIO_100, new { id = "hdPUNTO_MEDIO_100" })
                             @Html.ValidationMessageFor(model => model.PUNTO_MEDIO_100)
                         </div>
                     </div>
@@ -150,7 +150,7 @@
                         <div class="salarioTotalEstilos">
                             @Html.LabelFor(model => model.PUNTO_MEDIO_120, htmlAttributes: new { @class = "letrasSalarioTotal col-md-6", @style = "text-align:left;" })
                             <span class="valorSalarioTotal col-md-6">@Model.PUNTO_MEDIO_120</span>
-                            @Html.HiddenFor(model => model.PUNTO_MEDIO_120)
+                            @Html.HiddenFor(model => model.PUNTO_MEDIO_120, new { id = "hdPUNTO_MEDIO_120" })
                             @Html.ValidationMessageFor(model => model.PUNTO_MEDIO_120)
                         </div>
                     </div>

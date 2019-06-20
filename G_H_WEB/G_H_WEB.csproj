@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>false</Use64BitIISExpress>
+    <Use64BitIISExpress>true</Use64BitIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -720,6 +720,7 @@
     <Content Include="Views\Shared\_Error.cshtml" />
     <Content Include="Views\Shared\_LayoutController.cshtml" />
     <Content Include="Views\Shared\_Rechazar.cshtml" />
+    <Content Include="Views\Shared\_Partial_Campos_Hidden_Li_Inc_Creacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

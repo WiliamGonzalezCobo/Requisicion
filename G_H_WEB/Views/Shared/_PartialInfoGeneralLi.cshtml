@@ -12,42 +12,29 @@
         </div>
         @if (User.IsInRole(SettingsManager.PerfilJefe) || User.IsInRole(SettingsManager.PerfilController))
         {
-        <a class="a-collapse">
-            <h2>Información General Empleado</h2>
-        </a>
+            <a class="a-collapse">
+                <h2>Información General Empleado</h2>
+            </a>
         }
         else
         {
-        <a class="a-collapse" data-toggle="collapse" href="#collapseInfoGeneralIncap">
-            <h2>Información General Empleado</h2>
-        </a>
+            <a class="a-collapse" data-toggle="collapse" href="#collapseInfoGeneralIncap">
+                <h2>Información General Empleado</h2>
+            </a>
         }
         <span class="span_infoGeneralLi span-alert-modify" style="visibility:hidden" data-toggle="tooltip" title="Modificada">
             <i class="fas fa-exclamation-circle" style="color:darkorange"></i>
         </span>
     </div>
-        <div id="collapseInfoGeneralIncap" class="panel-collapse collapse">
-            <div class="row">
-
-                @if (User.IsInRole(SettingsManager.PerfilJefe))
-                {
-                    <div class="form-group col-md-12 col-xs-12">
-                        @Html.LabelFor(model => model.NOMBRE_CARGO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                        @Html.DropDownListFor(model => model.COD_CARGO, Model.LIST_NOMBRE_CARGO, "Seleccione", new { @class = "form-control combosGrandes letrasFormulario" })
-                        @Html.ValidationMessageFor(model => model.COD_CARGO, "", new { @class = "text-danger" })
-                    </div>
-
-                }
-                else
-                {
+    <div id="collapseInfoGeneralIncap" class="panel-collapse collapse">
+        <div class="row">
 
                     <div class="form-group col-md-12 col-xs-12">
                         @Html.LabelFor(model => model.NOMBRE_CARGO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
                         @Html.DropDownListFor(model => model.COD_CARGO, Model.LIST_NOMBRE_CARGO, "Seleccione", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
                         @Html.ValidationMessageFor(model => model.COD_CARGO, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.COD_CARGO)                        
+                        @Html.HiddenFor(model => model.COD_CARGO,new { @id= "hdCOD_CARGO" })                        
                     </div>
-                }
                 <div class="form-group col-md-12 col-xs-12">
                     @Html.LabelFor(model => model.LIST_NOMBRE_GERENCIA, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
                     @Html.DropDownListFor(model => model.COD_GERENCIA, Model.LIST_NOMBRE_GERENCIA, "Seleccione ", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
@@ -63,12 +50,12 @@
                     <br />
                     @if (Model.NOMBRE_CECO == null && Model.COD_CECO == 0)
                     {
-                        @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco_gene form-control letrasFormulario", placeholder = "Nombre CECO", onkeyup = "buscarFiltro(this.value)", autocomplete = "off" , disabled = deshabilitar })
+                        @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco_gene form-control letrasFormulario", placeholder = "Nombre CECO", onkeyup = "buscarFiltro(this.value)", autocomplete = "off", disabled = deshabilitar })
                         @Html.HiddenFor(model => model.COD_CECO)
                     }
                     else
                     {
-                        @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco_gene form-control letrasFormulario", placeholder = "Nombre CECO", onkeyup = "buscarFiltro(this.value)", autocomplete = "off" , disabled = deshabilitar })
+                        @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco_gene form-control letrasFormulario", placeholder = "Nombre CECO", onkeyup = "buscarFiltro(this.value)", autocomplete = "off", disabled = deshabilitar })
                         @Html.HiddenFor(model => model.COD_CECO)
                     }
                     <br>
@@ -112,105 +99,98 @@
                         @Html.HiddenFor(model => model.COD_CATEGORIA_ED, new { @Id = "hdCOD_CATEGORIA_ED" })
                         @Html.ValidationMessageFor(model => model.COD_CATEGORIA_ED, "", new { @class = "text-danger" })
                     </div>
-                    
-                    
-                    @Html.HiddenFor(model => model.JEFE_INMEDIATO, new { @Id = "hdJEFE_INMEDIATO" })
-                    @Html.HiddenFor(model => model.COD_TIPO_SALARIO, new { @Id = "hdCOD_TIPO_SALARIO" })
-                    @Html.HiddenFor(model => model.NOMBRE_TIPO_SALARIO, new { @Id = "hdNOMBRE_TIPO_SALARIO" })
-                    @Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL, new { @Id = "hdCOD_NIVEL_RIESGO_ARL" })
-                    @Html.HiddenFor(model => model.NIVEL_RIESGO_ARL, new { @Id = "hdNIVEL_RIESGO_ARL" })
                 </div>
             </div>
             <div class="row">
 
-                @if (User.IsInRole(SettingsManager.PerfilJefe))
-                {
+            @if (User.IsInRole(SettingsManager.PerfilJefe))
+            {
                 <div class="form-group col-md-12 col-xs-12 ">
 
                     @Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "letrasFormulario" })
 
                     @if (Model.COD_ESTADO_REQUISICION == SettingsManager.EstadoDevueltaController)
                     {
-                    if (Model.CARGO_CRITICO == true)
-                    {
-                        <spam class="CheckboxPadding">
-                            <input type="checkbox" checked="checked" disabled="disabled" />
-                            <label class="letrasFormulario" for="radio1">Si</label>
-                        </spam>
-                        <spam class="CheckboxPadding">
-                            <input type="checkbox" disabled="disabled" />
-                            <label class="letrasFormulario" for="radio2">No</label>
-                        </spam>
-                    }
-                    else if (Model.CARGO_CRITICO == false)
-                    {
-                        <spam class="CheckboxPadding">
-                            <input type="checkbox" disabled="disabled" />
-                            <label class="letrasFormulario" for="radio1">Si</label>
-                        </spam>
-                        <spam class="CheckboxPadding">
-                            <input type="checkbox" checked="checked" disabled="disabled" />
-                            <label class="letrasFormulario" for="radio2">No</label>
-                        </spam>
-                    }
+                        if (Model.CARGO_CRITICO == true)
+                        {
+                            <spam class="CheckboxPadding">
+                                <input type="checkbox" checked="checked" disabled="disabled" />
+                                <label class="letrasFormulario" for="radio1">Si</label>
+                            </spam>
+                            <spam class="CheckboxPadding">
+                                <input type="checkbox" disabled="disabled" />
+                                <label class="letrasFormulario" for="radio2">No</label>
+                            </spam>
+                        }
+                        else if (Model.CARGO_CRITICO == false)
+                        {
+                            <spam class="CheckboxPadding">
+                                <input type="checkbox" disabled="disabled" />
+                                <label class="letrasFormulario" for="radio1">Si</label>
+                            </spam>
+                            <spam class="CheckboxPadding">
+                                <input type="checkbox" checked="checked" disabled="disabled" />
+                                <label class="letrasFormulario" for="radio2">No</label>
+                            </spam>
+                        }
                     }
                     else
                     {
                         <spam class="CheckboxPadding">
-                        <input type="checkbox" class="checkboxSI" disabled="disabled" />
-                        <label class="letrasFormulario" for="radio1">Si</label>
-                    </spam>
-                    <spam class="CheckboxPadding">
-                        <input type="checkbox" class="checkboxNO" disabled="disabled" />
-                        <label class="letrasFormulario" for="radio2">No</label>
-                    </spam>
+                            <input type="checkbox" class="checkboxSI" disabled="disabled" />
+                            <label class="letrasFormulario" for="radio1">Si</label>
+                        </spam>
+                        <spam class="CheckboxPadding">
+                            <input type="checkbox" class="checkboxNO" disabled="disabled" />
+                            <label class="letrasFormulario" for="radio2">No</label>
+                        </spam>
 
 
                     }
 
                 </div>
 
-                }
-                else
-                {
-                    <div class="form-group col-md-12 col-xs-12">
-                        @Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "letrasFormulario" })
-                        @if (Model.CARGO_CRITICO == true)
-                        {
-                            <spam class="CheckboxPadding">
-                                <input type="checkbox" checked="checked" disabled="disabled" />
-                                <label class="letrasFormulario" for="radio1">Si</label>
-                            </spam>
-                            <spam class="CheckboxPadding">
-                                <input type="checkbox" disabled="disabled" />
-                                <label class="letrasFormulario" for="radio2">No</label>
-                            </spam>
-                        }
-                        else
-                        {
-                            <spam class="CheckboxPadding">
-                                <input type="checkbox" disabled="disabled" />
-                                <label class="letrasFormulario" for="radio1">Si</label>
-                            </spam>
-                            <spam class="CheckboxPadding">
-                                <input type="checkbox" checked="checked" disabled="disabled" />
-                                <label class="letrasFormulario" for="radio2">No</label>
-                            </spam>
-                        }
-                    </div>
-                }
-
-                @Html.HiddenFor(model => model.CARGO_CRITICO)
-
-                <div class="form-group col-md-12 col-xs-12 ">
-                    @Html.LabelFor(model => model.POSICION, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                    @Html.EditorFor(model => model.POSICION, new { htmlAttributes = new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar } })
-                    @Html.HiddenFor(model => model.POSICION, new { @Id = "hdPOSICION" })
-                    @Html.ValidationMessageFor(model => model.POSICION, "", new { @class = "text-danger" })
+            }
+            else
+            {
+                <div class="form-group col-md-12 col-xs-12">
+                    @Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "letrasFormulario" })
+                    @if (Model.CARGO_CRITICO == true)
+                    {
+                        <spam class="CheckboxPadding">
+                            <input type="checkbox" checked="checked" disabled="disabled" />
+                            <label class="letrasFormulario" for="radio1">Si</label>
+                        </spam>
+                        <spam class="CheckboxPadding">
+                            <input type="checkbox" disabled="disabled" />
+                            <label class="letrasFormulario" for="radio2">No</label>
+                        </spam>
+                    }
+                    else
+                    {
+                        <spam class="CheckboxPadding">
+                            <input type="checkbox" disabled="disabled" />
+                            <label class="letrasFormulario" for="radio1">Si</label>
+                        </spam>
+                        <spam class="CheckboxPadding">
+                            <input type="checkbox" checked="checked" disabled="disabled" />
+                            <label class="letrasFormulario" for="radio2">No</label>
+                        </spam>
+                    }
                 </div>
+            }
+
+            @Html.HiddenFor(model => model.CARGO_CRITICO, new { id = "hdCARGO_CRITICO" })
+
+            <div class="form-group col-md-12 col-xs-12 ">
+                @Html.LabelFor(model => model.POSICION, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+                @Html.EditorFor(model => model.POSICION, new { htmlAttributes = new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar } })
+                @Html.HiddenFor(model => model.POSICION, new { @Id = "hdPOSICION" })
+                @Html.ValidationMessageFor(model => model.POSICION, "", new { @class = "text-danger" })
             </div>
         </div>
-    </section>
+    </div>
+</section>
 <script>
     var cantInfoGeneralLi = 1;
         var validateInfoIncap = true;

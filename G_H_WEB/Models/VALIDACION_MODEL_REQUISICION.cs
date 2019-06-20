@@ -79,21 +79,21 @@ namespace MODELO_DATOS.MODELO_REQUISICION
                     }
                     if (esBp)
                     {
-                        //ValidaGeneralProPuestaLi(_modelRequisicion);
+                        //ValidaGeneralProPuestaLi(_modelRequisicion); //Todos Los Campos se deshabilitaron
                         ValidaInfoSalarialLi(_modelRequisicion);
-                        //ValidaInfoSalarialLi2(_modelRequisicion);
+                        //ValidaInfoSalarialLi2(_modelRequisicion);//Todos Los Campos se deshabilitaron
                     }
                     if (esRRHH)
                     {
-                        ValidaGeneralProPuestaLi(_modelRequisicion);
+                        //ValidaGeneralProPuestaLi(_modelRequisicion);//Todos Los Campos se deshabilitaron
                         ValidaInfoSalarialLi(_modelRequisicion);
-                        ValidaInfoSalarialLi2(_modelRequisicion);
+                        //ValidaInfoSalarialLi2(_modelRequisicion);//Todos Los Campos se deshabilitaron
                     }
                     if (esUsc)
                     {
-                        ValidaGeneralProPuestaLi(_modelRequisicion);
+                        //ValidaGeneralProPuestaLi(_modelRequisicion);//Todos Los Campos se deshabilitaron
                         ValidaInfoSalarialLi(_modelRequisicion);
-                        ValidaInfoSalarialLi2(_modelRequisicion);
+                        //ValidaInfoSalarialLi2(_modelRequisicion);//Todos Los Campos se deshabilitaron
                     }
                     //si el evento es de rechazar requisicion valida el campo
                     if (_accionSubmit.Equals("ENVIAR RESPUESTA"))
