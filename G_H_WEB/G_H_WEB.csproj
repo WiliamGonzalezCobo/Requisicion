@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>true</Use64BitIISExpress>
+    <Use64BitIISExpress>false</Use64BitIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -307,6 +307,7 @@
     <Content Include="assets\img\Modificado.png" />
     <Content Include="assets\img\NoPresupuestada.png" />
     <Content Include="assets\img\presupuestada.png" />
+    <Content Include="assets\img\return-alert-modify.svg" />
     <Content Include="assets\img\signo_incapacidad.png" />
     <Content Include="assets\img\signo_licencia.png" />
     <Content Include="assets\img\signo_nopresupuestada.png" />

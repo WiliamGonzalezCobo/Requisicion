@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="16px" viewBox="0 0 19 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.1 (78136) - https://sketchapp.com -->
+    <title>FE1DC993-2378-4A1A-84AD-E57FF83ECDA1</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="Guia-de-estilos" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="guia-de-estilos---Íconos" transform="translate(-972.000000, -833.000000)" fill="#F5A623" fill-rule="nonzero">
+            <g id="retorn-alert-copy-2" transform="translate(972.000000, 833.000000)">
+                <path d="M10.8571429,0 C6.33333333,0 2.71428571,3.55555556 2.71428571,8 L0,8 L3.61904762,11.5555556 L7.23809524,8 L4.52380952,8 C4.52380952,4.53333333 7.32857143,1.77777778 10.8571429,1.77777778 C14.3857143,1.77777778 17.1904762,4.53333333 17.1904762,8 C17.1904762,11.4666667 14.3857143,14.2222222 10.8571429,14.2222222 C9.5,14.2222222 8.23333333,13.7777778 7.14761905,13.0666667 L5.88095238,14.3111111 C7.23809524,15.3777778 8.95714286,16 10.8571429,16 C15.3809524,16 19,12.4444444 19,8 C19,3.55555556 15.3809524,0 10.8571429,0 Z" id="Shape"></path>
+                <polygon id="Rectangle-path" points="10 10 12 10 12 12 10 12"></polygon>
+                <polygon id="Rectangle-path" points="10 4 12 4 12 8 10 8"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

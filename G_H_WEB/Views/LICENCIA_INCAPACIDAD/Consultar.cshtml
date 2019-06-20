@@ -352,7 +352,7 @@ $(document).ready(function () {
         }
     });
 
-    var typeRequisition = '@{ nombre_requisicion.Contains("Incapacidad"); }';
+    var typeRequisition = '@nombre_requisicion.Contains("Incapacidad")';
     if (typeRequisition == "True")
     {
         $(".nav-incapacidad").addClass('nav-active');
@@ -685,7 +685,7 @@ function mapeoObjCargoApi(API) {
     $("#hdPOSICIONAMIENTO").val(API.POSICIONAMIENTO);
 }
 
-function ConsultaTraza(CAMPO_REQUISICION) {    
+function ConsultaTraza(CAMPO_REQUISICION) {
     var campo_re = 0;
     var cont = 0;
     $(".bodytraza").empty();
