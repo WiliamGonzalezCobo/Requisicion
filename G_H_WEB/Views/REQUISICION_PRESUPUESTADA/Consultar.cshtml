@@ -344,7 +344,7 @@
 
             $('#ModalCreacionNoJefe').modal("show");
         } else if ($("#COD_TIPO_NECESIDAD").val() == "" && $("#COD_CARGO").val() == "" && "@ViewBag.PERMISOS_CONTROLLER" != "") {
-
+            debugger;
             window.history.pushState(null, "", window.location.href);
             window.onpopstate = function ()
             {
