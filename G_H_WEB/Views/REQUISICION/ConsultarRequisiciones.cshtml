@@ -167,17 +167,23 @@ else
                                     </td>
 
                                     <td class="td-acciones">
-
-                                        @if (item.ES_MODIFICACION)
-                                        {
-                                            <label>Modificacion</label>
-
+                                        @{
+                                            if (item.ES_MODIFICACION)
+                                            {
+                                                if (item.NOMBRE_TIPO_REQUISICION.Equals(SettingsManager.TextoPresupuestada))
+                                                {
+                                                    <label>@SettingsManager.TextoPresupuestadaModificacion</label>
+                                                }
+                                                if (item.NOMBRE_TIPO_REQUISICION.Equals(SettingsManager.TextoNoPresupuestada))
+                                                {
+                                                    <label>@SettingsManager.TextoNoPresupuestadaModificacion</label>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                @Html.DisplayFor(modelItem => item.NOMBRE_TIPO_REQUISICION)
+                                            }
                                         }
-                                        else
-                                        {
-                                            @Html.DisplayFor(modelItem => item.NOMBRE_TIPO_REQUISICION)
-                                        }
-
                                     </td>
                                     <td>@Html.DisplayFor(modelItem => item.FECHA_CREACION)</td>
                                     <td><font color="@item.COLORES_ESTADOS">@Html.DisplayFor(modelItem => item.NOMBRE_ESTADO_REQUISICION)</font></td>

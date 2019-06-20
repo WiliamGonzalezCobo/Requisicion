@@ -12,21 +12,21 @@
     @Html.HiddenFor(model => model.COD_ESTADO_REQUISICION)
 
     <div class="panel-heading row">
-        <div class="span-icon-arrow div-span-collapseInfoGeneralLic">
-            <span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>
-        </div>
         @if (User.IsInRole(SettingsManager.PerfilJefe) || User.IsInRole(SettingsManager.PerfilController))
         {
-            <a class="a-collapse">
-                <h2>Información Empleado</h2>
-            </a>
+            <div class="span-icon-arrow div-span-collapseInfoGeneralLic">
+                <span class="span-collapse"><i class="fas fa-chevron-up arrow-collapse"></i></span>
+            </div>
         }
         else
         {
-            <a class="a-collapse" data-toggle="collapse" href="#collapseInfoGeneralLic">
-                <h2>Información Empleado</h2>
-            </a>
+            <div class="span-icon-arrow div-span-collapseInfoGeneralLic">
+                <span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>
+            </div>
         }
+        <a class="a-collapse" data-toggle="collapse" href="#collapseInfoGeneralLic">
+            <h2>Información Empleado</h2>
+        </a>
     </div>
     <div id="collapseInfoGeneralLic" class="panel-collapse collapse">
 

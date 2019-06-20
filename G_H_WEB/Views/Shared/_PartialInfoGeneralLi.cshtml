@@ -7,21 +7,21 @@
 }
 <section id="infoGeneral">
     <div class="panel-heading row">
-        <div class="span-icon-arrow div-span-collapseInfoGeneralIncap">
-            <span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>
-        </div>
         @if (User.IsInRole(SettingsManager.PerfilJefe) || User.IsInRole(SettingsManager.PerfilController))
         {
-            <a class="a-collapse">
-                <h2>Información General Empleado</h2>
-            </a>
+            <div class="span-icon-arrow div-span-collapseInfoGeneralIncap">
+                <span class="span-collapse"><i class="fas fa-chevron-up arrow-collapse"></i></span>
+            </div>
         }
         else
         {
-            <a class="a-collapse" data-toggle="collapse" href="#collapseInfoGeneralIncap">
-                <h2>Información General Empleado</h2>
-            </a>
+            <div class="span-icon-arrow div-span-collapseInfoGeneralIncap">
+                <span class="span-collapse"><i class="fas fa-chevron-down arrow-collapse"></i></span>
+            </div>
         }
+        <a class="a-collapse" data-toggle="collapse" href="#collapseInfoGeneralIncap">
+            <h2>Información General Empleado</h2>
+        </a>
         <span class="span_infoGeneralLi span-alert-modify" style="visibility:hidden" data-toggle="tooltip" title="Modificada">
             <img src="../../assets/img/return-alert-modify.svg" class="img-responsive maxImagen" />
         </span>

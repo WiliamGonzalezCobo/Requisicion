@@ -112,8 +112,9 @@ thead, tbody, th {
 }
 
     .BtnDevolver:hover {
-        color: #F15300 !important;
-        text-decoration: none !important
+        color: #FFF !important;
+        text-decoration: none !important;
+        background-color: #F15300;
     }
 
 .TextoBtnDevolver {

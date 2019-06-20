@@ -1178,7 +1178,7 @@ body.retiros {
         body.retiros .retiros-detalle .btn-confirmar-retiro {
             width: 200px;
             height: 48px;
-            background: #F58448;
+            background: #F15300;
             border: none;
             font-size: 17px;
             font-size: 1.0625rem;
@@ -1190,7 +1190,7 @@ body.retiros {
         }
 
             body.retiros .retiros-detalle .btn-confirmar-retiro:hover {
-                background: #F15300;
+                background: #FF6E40;
             }
 
 #BotonCargar {

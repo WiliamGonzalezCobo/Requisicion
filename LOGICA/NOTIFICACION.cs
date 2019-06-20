@@ -186,15 +186,23 @@ namespace LOGICA
                 }
                 string TIPO_REQUISICION = "";
                 if (SettingsManager.CodTipoReqIncapacidad == _REQUSICION.COD_TIPO_REQUISICION)
-                    TIPO_REQUISICION = "Incapacidad";
+                    TIPO_REQUISICION = SettingsManager.TextoIncapacidad;
                 if (SettingsManager.CodTipoReqLicencia == _REQUSICION.COD_TIPO_REQUISICION)
-                    TIPO_REQUISICION = "Licencia";
+                    TIPO_REQUISICION = SettingsManager.TextoLicencia;
                 if (SettingsManager.CodTipoReqPresupuestada == _REQUSICION.COD_TIPO_REQUISICION)
-                    TIPO_REQUISICION = "Presupuestada";
+                    TIPO_REQUISICION = SettingsManager.TextoPresupuestada;
                 if (SettingsManager.CodTipoReqNoPresupuestada == _REQUSICION.COD_TIPO_REQUISICION)
-                    TIPO_REQUISICION = "No presupuestada";
-                if (_REQUSICION.ES_MODIFICACION)
-                    TIPO_REQUISICION = "Modificación";
+                    TIPO_REQUISICION = SettingsManager.TextoNoPresupuestada;
+                if (_REQUSICION.ES_MODIFICACION) {
+                    if (SettingsManager.CodTipoReqPresupuestada == _REQUSICION.COD_TIPO_REQUISICION)
+                    {
+                        TIPO_REQUISICION = SettingsManager.TextoPresupuestadaModificacion;
+                    }
+                    if (SettingsManager.CodTipoReqNoPresupuestada == _REQUSICION.COD_TIPO_REQUISICION)
+                    {
+                        TIPO_REQUISICION = SettingsManager.TextoNoPresupuestadaModificacion;
+                    }
+                }
 
 
                 CORREO_CONFIGURACION_REQUISICION CORREO_LOGICA = new CORREO_CONFIGURACION_REQUISICION
@@ -205,7 +213,7 @@ namespace LOGICA
                     DESTINOS = DESTINO_LISTA,
                     PLANTILLAS = PLANTILLA_LISTA,
                     PUERTO = DATOS_CORREO.PUERTO,
-                    ASUNTO = "Notificación requisicion creada",
+                    ASUNTO = DATOS_CORREO.ASUNTO,
                     USA_SSL = DATOS_CORREO.USA_SSL,
                     ES_HTML = DATOS_CORREO.ES_HTML,
                     ESTADO = DATOS_CORREO.ESTADO,

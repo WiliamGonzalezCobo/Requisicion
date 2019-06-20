@@ -1,4 +1,5 @@
-﻿<html lang="es-co">
+﻿@using UTILS.Settings;
+<html lang="es-co">
 <head>
     <meta http-equiv=”Content-Type” content=”text/html; charset=UTF-8″ />
     <title>Gestión Humana</title>
@@ -52,7 +53,7 @@
             }
         }
     </div>
-    
+
     @{ Html.RenderPartial("_PieDePagina", RenderSection("topright", false)); }
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
@@ -100,7 +101,7 @@
                     $.each(respuesta, function (key, value) {
                         $("#nombre").html(value.NOMBRE)
                         $("#rol").html(value.ROL)
-                    });                   
+                    });
                 },
                 error: function (er) {
                     $("#nombre").html('')
@@ -110,7 +111,7 @@
         }
 
     var drawNotifications = function (requisitions) {
-
+        debugger;
         $.each(requisitions, function (key, value) {
             switch (value.NOMBRE_REQUISICION.toLowerCase()) {
                 case "presupuestada":
@@ -125,7 +126,10 @@
                 case "incapacidad":
                     $(".badge-incapacidad").text(value.CANTIDAD);
                     break;
-                case "modificacion":
+                case "@SettingsManager.TextoNoPresupuestadaModificacion":
+                    $(".badge-modificacion").text(value.CANTIDAD);
+                    break;
+                case "@SettingsManager.TextoPresupuestadaModificacion":
                     $(".badge-modificacion").text(value.CANTIDAD);
                     break;
                 default:
@@ -214,13 +218,13 @@
         function validar(value, name)
         {
             if (value == '')
-            {                
+            {
                 $("input[name=" + name + "]").val("0");
             }
         }
     </script>
 
- 
+
 </body>
 </html>
 
