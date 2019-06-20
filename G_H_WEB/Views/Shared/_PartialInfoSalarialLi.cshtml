@@ -63,6 +63,7 @@
                 @Html.EditorFor(model => model.SOBREREMUNERACION, new { htmlAttributes = new { @class = "form-control E_SOBREREMUNERACION CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario", disabled = deshabilitar } })
                 <span id="SOBREREMUNERACION_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('SOBREREMUNERACION')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.SOBREREMUNERACION, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.SOBREREMUNERACION, new { @class = "P_VARIABLE", id = "hdSOBREREMUNERACION" })                
             </div>
             <div class="form-group col-md-6 col-xs-12">
                 @Html.LabelFor(model => model.EXTRA_FIJA, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
@@ -177,6 +178,7 @@ else
                 @Html.EditorFor(model => model.SOBREREMUNERACION, new { htmlAttributes = new { @class = "form-control E_SOBREREMUNERACION CALCULO_TOTAL col-md-11 TexboxIncicial letrasFormulario", disabled = deshabilitar } })
                 <span id="SOBREREMUNERACION_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('SOBREREMUNERACION')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                 @Html.ValidationMessageFor(model => model.SOBREREMUNERACION, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.SOBREREMUNERACION, new { id = "hdSOBREREMUNERACION" })
             </div>
             <div class="form-group col-md-6 col-xs-12">
                 @Html.LabelFor(model => model.EXTRA_FIJA, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })

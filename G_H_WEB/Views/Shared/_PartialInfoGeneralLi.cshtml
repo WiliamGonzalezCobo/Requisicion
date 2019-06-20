@@ -29,35 +29,22 @@
     <div id="collapseInfoGeneralIncap" class="panel-collapse collapse">
         <div class="row">
 
-            @if (User.IsInRole(SettingsManager.PerfilJefe))
-            {
+                    <div class="form-group col-md-12 col-xs-12">
+                        @Html.LabelFor(model => model.NOMBRE_CARGO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+                        @Html.DropDownListFor(model => model.COD_CARGO, Model.LIST_NOMBRE_CARGO, "Seleccione", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                        @Html.ValidationMessageFor(model => model.COD_CARGO, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.COD_CARGO,new { @id= "hdCOD_CARGO" })                        
+                    </div>
                 <div class="form-group col-md-12 col-xs-12">
-                    @Html.LabelFor(model => model.NOMBRE_CARGO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                    @Html.DropDownListFor(model => model.COD_CARGO, Model.LIST_NOMBRE_CARGO, "Seleccione", new { @class = "form-control combosGrandes letrasFormulario" })
-                    @Html.ValidationMessageFor(model => model.COD_CARGO, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.LIST_NOMBRE_GERENCIA, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
+                    @Html.DropDownListFor(model => model.COD_GERENCIA, Model.LIST_NOMBRE_GERENCIA, "Seleccione ", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                    @Html.HiddenFor(model => model.COD_GERENCIA, new { @Id = "hdCOD_GERENCIA" })
+                    @Html.ValidationMessageFor(model => model.LIST_NOMBRE_GERENCIA, "", new { @class = "text-danger" })
                 </div>
-
-            }
-            else
-            {
-
-                <div class="form-group col-md-12 col-xs-12">
-                    @Html.LabelFor(model => model.NOMBRE_CARGO, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                    @Html.DropDownListFor(model => model.COD_CARGO, Model.LIST_NOMBRE_CARGO, "Seleccione", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
-                    @Html.ValidationMessageFor(model => model.COD_CARGO, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.COD_CARGO)
-                </div>
-            }
-            <div class="form-group col-md-12 col-xs-12">
-                @Html.LabelFor(model => model.LIST_NOMBRE_GERENCIA, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_GERENCIA, Model.LIST_NOMBRE_GERENCIA, "Seleccione ", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
-                @Html.HiddenFor(model => model.COD_GERENCIA, new { @Id = "hdCOD_GERENCIA" })
-                @Html.ValidationMessageFor(model => model.LIST_NOMBRE_GERENCIA, "", new { @class = "text-danger" })
             </div>
-        </div>
-        <div class="row">
-            @if (User.IsInRole(SettingsManager.PerfilJefe))
-            {
+            <div class="row">
+                @if (User.IsInRole(SettingsManager.PerfilJefe))
+                {
                 <div class="form-group col-md-12 col-xs-12 buscadorC">
                     @Html.LabelFor(model => model.COD_CECO, new { @class = "control-label col-md-12 letrasFormulario" })
                     <br />
