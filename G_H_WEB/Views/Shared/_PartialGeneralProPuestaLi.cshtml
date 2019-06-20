@@ -19,14 +19,14 @@
                 {
                     @Html.LabelFor(model => model.LIST_NOMBRE_TIPO_CONTRATO, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.DropDownListFor(model => model.COD_TIPO_CONTRATO, Model.LIST_NOMBRE_TIPO_CONTRATO, "-- Seleccione --", new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar })
-                    @*@Html.HiddenFor(model => model.COD_TIPO_CONTRATO)*@
+                    @Html.HiddenFor(model => model.COD_TIPO_CONTRATO, new { id = "hdCOD_TIPO_CONTRATO" })
                     @Html.ValidationMessageFor(model => model.COD_TIPO_CONTRATO)
                 }
                 else
                 {
                     @Html.LabelFor(model => model.LIST_NOMBRE_TIPO_CONTRATO, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.DropDownListFor(model => model.COD_TIPO_CONTRATO, Model.LIST_NOMBRE_TIPO_CONTRATO, new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar })
-                    @*@Html.HiddenFor(model => model.COD_TIPO_CONTRATO)*@
+                    @Html.HiddenFor(model => model.COD_TIPO_CONTRATO, new { id = "hdCOD_TIPO_CONTRATO" })
                     @Html.ValidationMessageFor(model => model.COD_TIPO_CONTRATO)
                 }
 
@@ -34,7 +34,7 @@
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.JEFE_INMEDIATO, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.TextBoxFor(model => model.JEFE_INMEDIATO, new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar })
-                @*@Html.HiddenFor(model => model.JEFE_INMEDIATO)*@
+                @Html.HiddenFor(model => model.JEFE_INMEDIATO,new { id = "hdJEFE_INMEDIATO" })
                 @Html.ValidationMessageFor(model => model.JEFE_INMEDIATO)
             </div>
         </div>
@@ -46,7 +46,7 @@
                     @Html.LabelFor(model => model.LIST_NIVEL_RIESGO_ARL, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, Model.LIST_NIVEL_RIESGO_ARL, "-- Seleccione --", new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar })
                     <span id="NOMBRE_ARL_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('NOMBRE_ARL')" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-                    @*@Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL)*@
+                    @Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL, new { id = "hdCOD_NIVEL_RIESGO_ARL" })
                     @Html.ValidationMessageFor(model => model.COD_NIVEL_RIESGO_ARL)
                 }
                 else
@@ -54,7 +54,7 @@
                     @Html.LabelFor(model => model.LIST_NIVEL_RIESGO_ARL, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, Model.LIST_NIVEL_RIESGO_ARL, new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar })
                     <span id="NOMBRE_ARL_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('NOMBRE_ARL')" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-                    @*@Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL)*@
+                    @Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL, new { id = "hdCOD_NIVEL_RIESGO_ARL" }) 
                     @Html.ValidationMessageFor(model => model.COD_NIVEL_RIESGO_ARL)
                 }
             </div>

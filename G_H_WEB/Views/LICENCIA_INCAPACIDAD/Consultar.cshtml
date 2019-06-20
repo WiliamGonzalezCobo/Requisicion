@@ -101,6 +101,7 @@
                                         @Html.Partial("_PartialInfoGeneralLi", Model)
                                         @Html.Partial("_PartialInfoSalarialLi", Model)
                                         @Html.Partial("_PartialAutorizacion", Model)
+                                        @Html.Partial("_Partial_Campos_Hidden_Li_Inc_Creacion", Model)
 
 
                                     }
@@ -660,6 +661,9 @@ function mapeoObjCargoApi(API) {
 
     $("#POSICION").val(API.POSICIONAMIENTO);
     $("#hdPOSICION").val(API.POSICIONAMIENTO);
+
+    $("#POSICIONAMIENTO").val(API.POSICIONAMIENTO);
+    $("#hdPOSICIONAMIENTO").val(API.POSICIONAMIENTO);
 }
 
 function ConsultaTraza(CAMPO_REQUISICION) {

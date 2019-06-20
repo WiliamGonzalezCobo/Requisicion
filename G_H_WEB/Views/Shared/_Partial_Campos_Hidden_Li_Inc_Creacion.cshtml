@@ -1,0 +1,21 @@
+﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
+<section>
+    @*campos hidden de la seccion Tipo de Contrato*@
+    @Html.HiddenFor(model => model.COD_TIPO_CONTRATO, new { @Id = "hdCOD_TIPO_CONTRATO" })
+    @Html.HiddenFor(model => model.JEFE_INMEDIATO, new { @Id = "hdJEFE_INMEDIATO" })
+    @Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL, new { @Id = "hdCOD_NIVEL_RIESGO_ARL" })
+
+    @*campos hidden de la seccion _partialinfosalarialLi2*@
+    @Html.HiddenFor(model => model.MESES_GARANTIZADOS, new { id = "hdMESES_GARANTIZADOS" })
+    @Html.HiddenFor(model => model.COD_TIPO_SALARIO, new { id = "hdCOD_TIPO_SALARIO" })
+    @Html.HiddenFor(model => model.NOMBRE_TIPO_SALARIO, new { id = "hdNOMBRE_TIPO_SALARIO" })
+    @Html.HiddenFor(model => model.FACTOR_PRESTACIONAL, new { id = "hdFACTOR_PRESTACIONAL" })
+    @Html.HiddenFor(model => model.INGRESO_PROM_MENSUAL, new { id = "hdINGRESO_PROM_MENSUAL" })
+    @Html.HiddenFor(model => model.INGRESO_PROM_ANUAL, new { id = "hdINGRESO_PROM_ANUAL" })
+    @Html.HiddenFor(model => model.COD_MERCADO, new { id = "hdCOD_MERCADO" })
+    @Html.HiddenFor(model => model.COD_CATEGORIA, new { id = "hdCOD_CATEGORIA" }) @*no viene en el api*@
+    @Html.HiddenFor(model => model.PUNTO_MEDIO_80, new { id = "hdPUNTO_MEDIO_80" })
+    @Html.HiddenFor(model => model.PUNTO_MEDIO_100, new { id = "hdPUNTO_MEDIO_100" })
+    @Html.HiddenFor(model => model.PUNTO_MEDIO_120, new { id = "hdPUNTO_MEDIO_120" })
+    @Html.HiddenFor(model => model.POSICIONAMIENTO, new { id = "hdPOSICIONAMIENTO" })
+</section>
