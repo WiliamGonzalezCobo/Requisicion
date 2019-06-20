@@ -106,6 +106,37 @@ namespace UTILS.Settings
         {
             get { return GetSettings("TextoBtnRechazar"); }
         }
+
+        public static string TextoNoPresupuestadaModificacion
+        {
+            get { return GetSettings("TextoNoPresupuestadaModificacion"); }
+        }
+
+        public static string TextoPresupuestadaModificacion
+        {
+            get { return GetSettings("TextoPresupuestadaModificacion"); }
+        }
+
+        public static string TextoPresupuestada
+        {
+            get { return GetSettings("TextoPresupuestada"); }
+        }
+
+        public static string TextoNoPresupuestada
+        {
+            get { return GetSettings("TextoNoPresupuestada"); }
+        }
+
+        public static string TextoIncapacidad
+        {
+            get { return GetSettings("TextoIncapacidad"); }
+        }
+
+        public static string TextoLicencia
+        {
+            get { return GetSettings("TextoLicencia"); }
+        }
+
         #endregion
 
         #region Private Methods

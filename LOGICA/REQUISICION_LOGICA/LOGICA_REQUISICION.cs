@@ -830,14 +830,18 @@ namespace LOGICA.REQUISICION_LOGICA
                 logCentralizado.INICIANDO_LOG("LGREQ26", "BUSCAR_REQUISICIONES");
                 List<DOCUMENTO> listaDocumentos = new PROXY().CONSULTAR_TIPO_DOCUMENTO_API();
                 objReqModel = new ACCES_REQUISICION().CONSULTAR_REQUISICION_X_ID(_idRequsicion, id_usuario);
-                if (objReqModel != null) { 
-                if (!string.IsNullOrWhiteSpace(link_controller)) {
-                        if (objReqModel.COD_CORREO_CONTROLLER != link_controller) {
+                if (objReqModel != null)
+                {
+                    if (!string.IsNullOrWhiteSpace(link_controller))
+                    {
+                        if (objReqModel.COD_CORREO_CONTROLLER != link_controller)
+                        {
                             objReqModel = new REQUISICIONViewModel();
                         }
                     }
 
-                    if (SettingsManager.CodTipoReqLicencia == objReqModel.COD_TIPO_REQUISICION || SettingsManager.CodTipoReqIncapacidad == objReqModel.COD_TIPO_REQUISICION) {
+                    if (SettingsManager.CodTipoReqLicencia == objReqModel.COD_TIPO_REQUISICION || SettingsManager.CodTipoReqIncapacidad == objReqModel.COD_TIPO_REQUISICION)
+                    {
                         objReqModel.NOMBRE_TIPO_DOCUMENTO = listaDocumentos.Where(x => x.coD_TIPO_DOCUMENTO == objReqModel.COD_TIPO_DOCUMENTO).FirstOrDefault().NOMBRE;
                     }
 
@@ -1328,7 +1332,17 @@ namespace LOGICA.REQUISICION_LOGICA
                 foreach (CONSULTA_NOTIFICACIONES_ENTIDAD ITEM in LISTA_NOTIFICACIONES)
                 {
                     if (ITEM.ES_MODIFICACION)
-                        ITEM.NOMBRE_REQUISICION = "Modificacion";
+                    {
+                        if (ITEM.NOMBRE_REQUISICION.Equals(SettingsManager.TextoPresupuestada))
+                        {
+                            ITEM.NOMBRE_REQUISICION = SettingsManager.TextoPresupuestadaModificacion;
+                        }
+                        if (ITEM.NOMBRE_REQUISICION.Equals(SettingsManager.TextoNoPresupuestada))
+                        {
+                            ITEM.NOMBRE_REQUISICION = SettingsManager.TextoNoPresupuestadaModificacion;
+                        }
+                    }
+
                 }
 
                 logCentralizado.FINALIZANDO_LOG("LGREQ36", "CONSULTA_NOTIFICACIONES");
