@@ -44,18 +44,22 @@
                 @if (Model.COD_NIVEL_RIESGO_ARL == null && Model.COD_NIVEL_RIESGO_ARL == 0)
                 {
                     @Html.LabelFor(model => model.LIST_NIVEL_RIESGO_ARL, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, Model.LIST_NIVEL_RIESGO_ARL, "-- Seleccione --", new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar })
-                    <span id="NOMBRE_ARL_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('NOMBRE_ARL')" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-                    @*@Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL)*@
-                    @Html.ValidationMessageFor(model => model.COD_NIVEL_RIESGO_ARL)
+                    <div class="col-md-3" style="padding-left:0px">
+                        @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, Model.LIST_NIVEL_RIESGO_ARL, "-- Seleccione --", new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar })
+                        <span id="NOMBRE_ARL_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('NOMBRE_ARL')" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                        @*@Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL)*@
+                        @Html.ValidationMessageFor(model => model.COD_NIVEL_RIESGO_ARL)
+                    </div>
                 }
                 else
                 {
                     @Html.LabelFor(model => model.LIST_NIVEL_RIESGO_ARL, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, Model.LIST_NIVEL_RIESGO_ARL, new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar })
-                    <span id="NOMBRE_ARL_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('NOMBRE_ARL')" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-                    @*@Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL)*@
-                    @Html.ValidationMessageFor(model => model.COD_NIVEL_RIESGO_ARL)
+                    <div class="col-md-3" style="padding-left:0px">
+                        @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, Model.LIST_NIVEL_RIESGO_ARL, new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar })
+                        <span id="NOMBRE_ARL_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('NOMBRE_ARL')" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                        @*@Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL)*@
+                        @Html.ValidationMessageFor(model => model.COD_NIVEL_RIESGO_ARL)
+                    </div>
                 }
             </div>
         </div>

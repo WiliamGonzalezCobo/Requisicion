@@ -106,10 +106,12 @@
                 </div>
                 <div class="form-group col-md-12 col-xs-12 ">
                     @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA_ED, htmlAttributes: new { @class = "control-label col-md-12 letrasFormulario" })
-                    @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, Model.LIST_NOMBRE_CATEGORIA_ED, "Seleccione ", new { @class = "form-control col-md-11 combosGrandes letrasFormulario", disabled = deshabilitar })
-                    <span id="NOMBRE_CATEGORIA_ED_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
-                    @Html.HiddenFor(model => model.COD_CATEGORIA_ED, new { @Id = "hdCOD_CATEGORIA_ED" })
-                    @Html.ValidationMessageFor(model => model.COD_CATEGORIA_ED, "", new { @class = "text-danger" })
+                    <div class="col-md-3" style="padding-left:0px">
+                        @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, Model.LIST_NOMBRE_CATEGORIA_ED, "Seleccione ", new { @class = "form-control col-md-11 combosGrandes letrasFormulario no-width", disabled = deshabilitar })
+                        <span id="NOMBRE_CATEGORIA_ED_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                        @Html.HiddenFor(model => model.COD_CATEGORIA_ED, new { @Id = "hdCOD_CATEGORIA_ED" })
+                        @Html.ValidationMessageFor(model => model.COD_CATEGORIA_ED, "", new { @class = "text-danger" })
+                    </div>
                     
                     
                     @Html.HiddenFor(model => model.JEFE_INMEDIATO, new { @Id = "hdJEFE_INMEDIATO" })
