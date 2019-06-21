@@ -549,7 +549,8 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                         DIA_LABORAL_DESDE = x.DIA_LABORAL_DESDE,
                         DIA_LABORAL_HASTA = x.DIA_LABORAL_HASTA,
                         NOMBRE_JORNADA_LABORAL = x.NOMBRE_JORNADA_LABORAL,
-                        NOMBRE_TIPO_SALARIO = x.NOMBRE_TIPO_SALARIO
+                        NOMBRE_TIPO_SALARIO = x.NOMBRE_TIPO_SALARIO,
+                        CATRGORIA = x.CATRGORIA
                     }).ToList();
                 }
                 logCentralizado.FINALIZANDO_LOG("REPREQ11", "CONSULTAR_TRAZA_CAMPOS");

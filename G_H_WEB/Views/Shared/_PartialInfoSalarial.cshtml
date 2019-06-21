@@ -210,7 +210,7 @@
                 @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA, new { @class = "letrasFormulario" })
                 <div class="col-md-12" style="padding-left:0px">
                     @Html.DropDownListFor(model => model.COD_CATEGORIA, Model.LIST_NOMBRE_CATEGORIA, "-- Seleccione --", new { @class = "form-control col-md-11 deplegablesIniciales letrasFormulario TexboxIncicial no-width" })
-                    <span id="CATEGORIA_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('CATRGORIA')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
+                    <span id="CATRGORIA_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('CATRGORIA')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                     @Html.ValidationMessageFor(model => model.COD_CATEGORIA)
                 </div>
             </div>
