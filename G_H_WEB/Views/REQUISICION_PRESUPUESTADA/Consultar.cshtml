@@ -3,19 +3,19 @@
 @using UTILS.Settings;
 @using G_H_WEB.Models;
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Crear Requisición Presupuestada";
-                if (ViewBag.PERMISOS_CONTROLLER != "")
-                {
-                    Layout = "~/Views/Shared/_LayoutController.cshtml";
-                }
-                else
-                {
-                    Layout = "~/Views/Shared/_Layout.cshtml";
-                }
-                RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
-                ERROR_GENERAL_ViewModel error = @ViewBag.Error ?? new ERROR_GENERAL_ViewModel();
+    ViewBag.Title = "Crear Requisición Presupuestada";
+    if (ViewBag.PERMISOS_CONTROLLER != "")
+    {
+        Layout = "~/Views/Shared/_LayoutController.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
+    ERROR_GENERAL_ViewModel error = @ViewBag.Error ?? new ERROR_GENERAL_ViewModel();
 }
 <link href="~/css/gestion-humana-requisicion.css" rel="stylesheet" />
 <div class="col">
@@ -58,7 +58,7 @@
         {
             <div class="div-alert-modify alert alert-warning" role="alert" style="display:none">
                 La requisición ha sido modificada por otro usuario
-            </div>            
+            </div>
             <div id="CNform">
                 <div class="retiros-detalle">
                     <div class="form-group col-md-12">
@@ -286,15 +286,23 @@
         @Html.Partial("_Error", error);
     }
 </div>
+
 <script type="text/javascript">
 
     $(document).ready(function () {
-        
+
         $(".nav-incapacidad").removeClass('nav-active');
-        $(".nav-presupuestada").addClass('nav-active');
+
+        if ("@Model.ES_MODIFICACION" == "True") {
+            $(".nav-presupuestada").removeClass('nav-active');
+            $(".nav-modificacion-presupuestada").addClass('nav-active');
+        } else {
+            $(".nav-presupuestada").addClass('nav-active');
+            $(".nav-modificacion-presupuestada").removeClass('nav-active');
+        }
+        $(".nav-modificacion-no-presupuestada").removeClass('nav-active');
         $(".nav-no-presupuestada").removeClass('nav-active');
         $(".nav-licencia").removeClass('nav-active');
-        $(".nav-modificada").removeClass('nav-active');
 
         if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {
             if (@Model.COD_REQUISICION!= 0) {
@@ -334,7 +342,7 @@
             else if (_metodo == "Enviar") {
                 ENVIAR_REQUISICION();
                 $("._metodoDefecto").css("display", "none");
-            }            
+            }
 
             window.history.pushState(null, "", window.location.href);
             window.onpopstate = function ()
@@ -364,7 +372,7 @@
             if (key) {
                 window.location.href = "../REQUISICION/ConsultarRequisiciones";
             }
-        });        
+        });
 
     });
 
@@ -435,7 +443,7 @@
     $(function () {
         $('.datepicker').datepicker();
     });
-function ConsultaTraza(CAMPO_REQUISICION) {    
+function ConsultaTraza(CAMPO_REQUISICION) {
     var campo_re = 0;
     var cont = 0;
     $(".bodytraza").empty();
@@ -457,7 +465,7 @@ function ConsultaTraza(CAMPO_REQUISICION) {
                 });
                 $.each(respuesta, function (key, value) {
                     if (cont === 1) {
-                        if (value[CAMPO_REQUISICION] != null && value[CAMPO_REQUISICION] != 0) { 
+                        if (value[CAMPO_REQUISICION] != null && value[CAMPO_REQUISICION] != 0) {
                         $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION + "</td > </tr > ");
 
                         }
@@ -471,7 +479,7 @@ function ConsultaTraza(CAMPO_REQUISICION) {
                                 if(value[CAMPO_REQUISICION] != null && value[CAMPO_REQUISICION] != campo_re) {
                                 $(".bodytraza").append("<tr><td>" + value.COD_REQUISICION + "</td > <td>" + value[CAMPO_REQUISICION] + "</td > <td>" + value.USUARIO_REGISTRO + "</td > <td>" + value.FECHA_REGISTRO + "</td ><td>" + value.NOMBRE_ESTADOS_REQUISICION + "</td > </tr > ");
                             }
-                        } 
+                        }
                         }
                         else {
                             if (value[CAMPO_REQUISICION] != null && value[CAMPO_REQUISICION] != campo_re) {

@@ -353,13 +353,15 @@ $(document).ready(function () {
     });
 
     var typeRequisition = '@nombre_requisicion.Contains("Incapacidad")';
+    debugger;
     if (typeRequisition == "True")
     {
         $(".nav-incapacidad").addClass('nav-active');
         $(".nav-presupuestada").removeClass('nav-active');
         $(".nav-no-presupuestada").removeClass('nav-active');
         $(".nav-licencia").removeClass('nav-active');
-        $(".nav-modificada").removeClass('nav-active');
+        $(".nav-modificacion-presupuestada").removeClass('nav-active');
+        $(".nav-modificacion-no-presupuestada").removeClass('nav-active');
     }
     else
     {
@@ -367,7 +369,8 @@ $(document).ready(function () {
         $(".nav-presupuestada").removeClass('nav-active');
         $(".nav-no-presupuestada").removeClass('nav-active');
         $(".nav-licencia").addClass('nav-active');
-        $(".nav-modificada").removeClass('nav-active');
+        $(".nav-modificacion-no-presupuestada").removeClass('nav-active');
+        $(".nav-modificacion-presupuestada").removeClass('nav-active');
     }
 
     if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {
