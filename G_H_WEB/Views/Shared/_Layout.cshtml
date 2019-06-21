@@ -114,23 +114,23 @@
         debugger;
         $.each(requisitions, function (key, value) {
             switch (value.NOMBRE_REQUISICION.toLowerCase()) {
-                case "presupuestada":
+                case "@SettingsManager.TextoPresupuestada.ToLower()":
                     $(".badge-presupuestada").text(value.CANTIDAD);
                     break;
-                case "no presupuestada":
+                case "@SettingsManager.TextoNoPresupuestada.ToLower()":
                     $(".badge-no-presupuestada").text(value.CANTIDAD);
                     break;
-                case "licencia":
+                case "@SettingsManager.TextoLicencia.ToLower()":
                     $(".badge-licencia").text(value.CANTIDAD);
                     break;
-                case "incapacidad":
+                case "@SettingsManager.TextoIncapacidad.ToLower()":
                     $(".badge-incapacidad").text(value.CANTIDAD);
                     break;
-                case "@SettingsManager.TextoNoPresupuestadaModificacion":
+                case "@SettingsManager.TextoNoPresupuestadaModificacion.ToLower()":
                     $(".badge-modificacion").text(value.CANTIDAD);
                     break;
-                case "@SettingsManager.TextoPresupuestadaModificacion":
-                    $(".badge-modificacion").text(value.CANTIDAD);
+                case "@SettingsManager.TextoPresupuestadaModificacion.ToLower()":
+                    $(".badge-modificacion-presupuestada").text(value.CANTIDAD);
                     break;
                 default:
                     break;
