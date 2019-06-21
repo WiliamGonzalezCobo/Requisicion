@@ -135,3 +135,12 @@ thead, tbody, th {
 .no-width {
     width: inherit !important
 }
+
+.crear-requisicion {
+    background: #F15300;
+}
+
+    .crear-requisicion:hover {
+        background: #FF6E40;
+        color: #fff
+    }

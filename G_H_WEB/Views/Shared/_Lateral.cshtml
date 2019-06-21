@@ -106,6 +106,13 @@
             </div>
         </li>
         }
+        else if(ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "REQUISICION" ||
+              ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "REQUISICION_NOPRESUPUESTADA" ||
+              ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "REQUISICION_PRESUPUESTADA" ||
+              ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "LICENCIA_INCAPACIDAD")
+        {
+        <li class="nav-item"><a class="nav-link-static" href="../../REQUISICION/ConsultarRequisiciones">Requisicion</a></li>
+        }
         else
 
         {
@@ -115,15 +122,15 @@
     </ul>
 </div>
 <script>
-    var open = 1;
-    $('.nav-link-static').on("click", function () {
-        console.log('entre');
-        if (open === 1) {
-            $('.nav-item-special').css("height", 207);
-            open = 2;
-        } else {
-            $('.nav-item-special').css("height", "initial");
-            open = 1;
-        }
-    })
+    //var open = 1;
+    //$('.nav-link-static').on("click", function () {
+    //    console.log('entre');
+    //    if (open === 1) {
+    //        $('.nav-item-special').css("height", 207);
+    //        open = 2;
+    //    } else {
+    //        $('.nav-item-special').css("height", "initial");
+    //        open = 1;
+    //    }
+    //})
 </script>
