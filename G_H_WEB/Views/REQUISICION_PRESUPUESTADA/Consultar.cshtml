@@ -5,7 +5,14 @@
 @{
     /**/
 
-    ViewBag.Title = "Crear Requisición Presupuestada";
+    if (ViewBag.ReqModificada)
+    {
+        ViewBag.Title = "Modificar Requisición Presupuestada";
+    }
+    else
+    {
+        ViewBag.Title = "Crear Requisición Presupuestada";
+    }
     if (ViewBag.PERMISOS_CONTROLLER != "")
     {
         Layout = "~/Views/Shared/_LayoutController.cshtml";

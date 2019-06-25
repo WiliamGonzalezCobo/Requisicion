@@ -96,14 +96,14 @@
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.MEDIO_TRANSPORTE, htmlAttributes: new { @class = "letrasFormulario" })
                 <div class="col-md-12" style="padding-left:0px">
-                    @Html.EditorFor(model => model.MEDIO_TRANSPORTE, new { htmlAttributes = new { @class = "form-control deplegablesIniciales letrasFormulario no-width", onBlur = "validarCampoNumber(this.name, this.value)", onkeypress = "return soloNumeros(event)" } })
+                    @Html.EditorFor(model => model.MEDIO_TRANSPORTE, new { htmlAttributes = new { @class = "form-control col-md-11 deplegablesIniciales letrasFormulario no-width", onBlur = "validarCampoNumber(this.name, this.value)", onkeypress = "return soloNumeros(event)" } })
                     <span id="MEDIO_TRANSPORTE_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('MEDIO_TRANSPORTE')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                     @Html.ValidationMessageFor(model => model.MEDIO_TRANSPORTE)
                 </div>
             </div>
             <div class="col-md-12 col-sm-12">
                 <div class="salarioTotalEstilos">
-                    @Html.LabelFor(model => model.SALARIO_TOTAL, htmlAttributes: new { @class = "letrasSalarioTotal col-md-6 no-width", @style = "text-align:left;" })
+                    @Html.LabelFor(model => model.SALARIO_TOTAL, htmlAttributes: new { @class = "letrasSalarioTotal col-md-6", @style = "text-align:left;" })
                     <span class="S_TOTAL S_TOTAL_UNICO valorSalarioTotal col-md-6">@Model.SALARIO_TOTAL</span>
                     <span id="SALARIO_TOTAL_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('SALARIO_TOTAL')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                     @Html.HiddenFor(model => model.SALARIO_TOTAL, new { @class = "S_TOTAL" })
@@ -152,7 +152,7 @@
             </div>
         </div>
 
-        <div class="row FactorPrestacional">
+        <div class="row">
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.FACTOR_PRESTACIONAL, htmlAttributes: new { @class = "letrasFormulario" })
                 <div class="col-md-12" style="padding-left:0px">
