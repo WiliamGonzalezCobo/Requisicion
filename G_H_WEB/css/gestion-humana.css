@@ -194,7 +194,6 @@
 .menuEmpleados {
     background: #fff;
     padding: 20px;
-    height: 500px;
 }
 
     .menuEmpleados .titulo-menuEmpleados {
@@ -1391,4 +1390,5 @@ span#notificationsBadgePrimary.badge.badge-secondary {
     padding: 0.25em 1em;
     border-radius: 1.25rem;
 }
+
 

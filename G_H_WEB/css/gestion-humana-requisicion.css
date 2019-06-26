@@ -144,3 +144,11 @@ thead, tbody, th {
         background: #FF6E40;
         color: #fff
     }
+
+.nav-modificacion-no-presupuestada {
+    font-size: 13px;
+}
+
+.nav-modificacion-presupuestada {
+    font-size: 13px;
+}

@@ -53,8 +53,11 @@ namespace G_H_WEB.Controllers
                 }
                 if (_idReq != null)
                 {
-                    List<TRAZA_BOTONES_VISIBLES> _listaCampos = _listaCampos = new LOGICA_REQUISICION().CONSULTAR_CAMPOS_TRAZAS_VISIBLES(_idReq.Value);                   
-                    ViewBag.traza = _listaCampos;
+                    if (!User.IsInRole(SettingsManager.PerfilJefe) && !User.IsInRole(SettingsManager.PerfilController))
+                    {
+                        List<TRAZA_BOTONES_VISIBLES> _listaCampos = _listaCampos = new LOGICA_REQUISICION().CONSULTAR_CAMPOS_TRAZAS_VISIBLES(_idReq.Value);
+                        ViewBag.traza = _listaCampos;
+                    }
                 }
 
                 if (_idReq.HasValue)

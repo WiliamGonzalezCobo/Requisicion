@@ -222,7 +222,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
             catch (Exception ex)
             {
                 logCentralizado.CAPTURA_EXCEPCION("REPREQ5", "ACTUALIZAR_REQUISICION", ex);
-                return false;
+                throw ex;
             }
         }
 
