@@ -7,6 +7,10 @@
     {
         ViewBag.Title = "Crear " + ViewBag.RequisicionNombre;
         TempData["_idTipo"] = ViewBag._idTipo;
+        if (ViewBag.ReqModificada)
+        {
+            ViewBag.Title = "Modificar " + ViewBag.RequisicionNombre;
+        }
     }
     else
     {

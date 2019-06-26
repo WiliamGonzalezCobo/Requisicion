@@ -66,9 +66,18 @@ namespace G_H_WEB.Controllers
                     model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value, link_controler, _USER);
                     if (model == null)
                     {
+                        ViewBag.ReqModificada = false;
                         Session.Remove("COD_ASPNETUSER_CONTROLLER");
                         return RedirectToAction("ConsultarRequisiciones", "REQUISICION");
                     }
+                    else
+                    {
+                        ViewBag.ReqModificada = true;
+                    }
+                }
+                else
+                {
+                    ViewBag.ReqModificada = false;
                 }
 
                 LOGICA_REQUISICION logicaReq = new LOGICA_REQUISICION(

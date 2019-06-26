@@ -39,19 +39,32 @@ namespace G_H_WEB.Controllers
                     model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value, link_controler, _USER);
                     if (model == null)
                     {
+                        ViewBag.ReqModificada = false;
                         Session.Remove("COD_ASPNETUSER_CONTROLLER");
                         return RedirectToAction("ConsultarRequisiciones", "REQUISICION");
                     }
-                    if (User.IsInRole(SettingsManager.PerfilBp) && (!model.COD_ESTADO_REQUISICION.Equals(SettingsManager.EstadoDevueltaRRHH) && !model.COD_ESTADO_REQUISICION.Equals(SettingsManager.EstadoDevueltaUSC)))
+                    else
                     {
+                        ViewBag.ReqModificada = true;
+                    }
+                    if (User.IsInRole(SettingsManager.PerfilBp) && (!model.COD_ESTADO_REQUISICION.Equals(SettingsManager.EstadoDevueltaRRHH) && !model.COD_ESTADO_REQUISICION.Equals(SettingsManager.EstadoDevueltaUSC))) {
                         model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES_BP(model) ?? new REQUISICIONViewModel();
                     }
+                }
+                else
+                {
+                    ViewBag.ReqModificada = false;
                 }
 
                 if (_idReq != null)
                 {
                     List<TRAZA_BOTONES_VISIBLES> _listaCampos = new LOGICA_REQUISICION().CONSULTAR_CAMPOS_TRAZAS_VISIBLES(_idReq.Value);
                     ViewBag.traza = _listaCampos;
+                    ViewBag.ReqModificada = true;
+                }
+                else
+                {
+                    ViewBag.ReqModificada = false;
                 }
 
                 LOGICA_REQUISICION logicaReq = new LOGICA_REQUISICION(
