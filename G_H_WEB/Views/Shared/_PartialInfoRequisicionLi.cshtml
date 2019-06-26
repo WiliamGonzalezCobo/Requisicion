@@ -34,7 +34,7 @@
 
             @if (User.IsInRole(SettingsManager.PerfilJefe))
             {
-                <input class="buscador_modificaciones letrasFormulario" id="buscador_modificaciones" type="text" placeholder="  N° de documento o nombre del empleado">
+                <input class="buscador_modificaciones letrasFormulario" id="buscador_modificaciones" type="text" placeholder="Escriba el N° de documento o nombre del empleado">
                 <br>
                 <ul class="list-group buscador_modificaciones_deplegable_esconder" id="myList">
                     @foreach (EMPLEADOS item in _BUSCAR_USUARIOS)
@@ -48,21 +48,21 @@
 
                 <div class="form-group col-md-6 col-sm-6">
                     @Html.LabelFor(model => model.NOMBRE_TIPO_DOCUMENTO, new { @class = "letrasFormulario" })
-                    @Html.TextBoxFor(model => model.NOMBRE_TIPO_DOCUMENTO, new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar })
+                    @Html.TextBoxFor(model => model.NOMBRE_TIPO_DOCUMENTO, new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar, placeholder = "Escriba tipo de documento" })
                     @Html.HiddenFor(model => model.COD_TIPO_DOCUMENTO, new { @id = "hdCOD_TIPO_DOCUMENTO" })
                     @Html.ValidationMessageFor(model => model.NOMBRE_TIPO_DOCUMENTO)
                 </div>
 
                 <div class="form-group col-md-6 col-sm-6">
                     @Html.LabelFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, new { @class = "letrasFormulario" })
-                    @Html.TextBoxFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar })
+                    @Html.TextBoxFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar, placeholder = "Escriba número de documento" })
                     @Html.HiddenFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, new { @id = "hdNUMERO_DOCUMENTO_EMPLEADO" })
                     @Html.ValidationMessageFor(model => model.NUMERO_DOCUMENTO_EMPLEADO)
                 </div>
 
                 <div class="form-group col-md-6 col-sm-6">
                     @Html.LabelFor(model => model.NOMBRE_EMPLEADO, new { @class = "letrasFormulario" })
-                    @Html.TextBoxFor(model => model.NOMBRE_EMPLEADO, new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar })
+                    @Html.TextBoxFor(model => model.NOMBRE_EMPLEADO, new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar, placeholder = "Escriba nombre del empleado" })
                     @Html.HiddenFor(model => model.NOMBRE_EMPLEADO, new { @id = "hdNOMBRE_EMPLEADO" })
                     @Html.ValidationMessageFor(model => model.NOMBRE_EMPLEADO)
                 </div>
@@ -163,7 +163,7 @@
     $("#collapseInfoGeneralLic").on("show.bs.collapse", function () {
         $(".div-span-collapseInfoGeneralLic").html('<span class="span-collapse"><i class="fas fa-chevron-up arrow-collapse"></i></span>');
     });
-    
+
     var perfilJefe = "@User.IsInRole(SettingsManager.PerfilJefe).ToString()";
     var perfilController = "@User.IsInRole(SettingsManager.PerfilController).ToString()";
     if (perfilJefe.toString() == "True" || perfilController.toString() == "True")
