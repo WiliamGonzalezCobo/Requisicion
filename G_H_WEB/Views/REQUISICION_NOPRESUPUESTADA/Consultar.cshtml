@@ -3,7 +3,14 @@
 @using UTILS.Settings;
 @using G_H_WEB.Models;
 @{
-    ViewBag.Title = "Crear Requisición No Presupuestada";
+    if (ViewBag.ReqModificada)
+    {
+        ViewBag.Title = "Modificar Requisición No Presupuestada";
+    }
+    else
+    {
+        ViewBag.Title = "Crear Requisición No Presupuestada";
+    }
     if (ViewBag.PERMISOS_CONTROLLER != "")
     {
         Layout = "~/Views/Shared/_LayoutController.cshtml";

@@ -30,14 +30,20 @@ namespace G_H_WEB.Controllers
             try
             {
                 logCentralizado.INICIANDO_LOG("CTR_REQ_NO_PRE1", "Consultar");
-
+                
                 if (_idReq.HasValue)
                 {
                     string _USER = User.Identity.GetUserId() ?? Session["COD_ASPNETUSER_CONTROLLER"].ToString();
                     model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value, link_controler, _USER);
-                    if (model == null) {
+                    if (model == null)
+                    {
+                        ViewBag.ReqModificada = false;
                         Session.Remove("COD_ASPNETUSER_CONTROLLER");
                         return RedirectToAction("ConsultarRequisiciones", "REQUISICION");
+                    }
+                    else
+                    {
+                        ViewBag.ReqModificada = true;
                     }
                     if (User.IsInRole(SettingsManager.PerfilBp) && (!model.COD_ESTADO_REQUISICION.Equals(SettingsManager.EstadoDevueltaRRHH) && !model.COD_ESTADO_REQUISICION.Equals(SettingsManager.EstadoDevueltaUSC)))
                     {
@@ -51,10 +57,22 @@ namespace G_H_WEB.Controllers
                     {
                         List<TRAZA_BOTONES_VISIBLES> _listaCampos = new LOGICA_REQUISICION().CONSULTAR_CAMPOS_TRAZAS_VISIBLES(_idReq.Value);
                         ViewBag.traza = _listaCampos;
+                        ViewBag.ReqModificada = true;
                     }
                 }
+                else
+                {
+                    ViewBag.ReqModificada = false;
+                }
 
-                model = new LOGICA_REQUISICION().LLENAR_CONTROLES(model);
+                LOGICA_REQUISICION logicaReq = new LOGICA_REQUISICION(
+                    User.IsInRole(SettingsManager.PerfilJefe),
+                    User.IsInRole(SettingsManager.PerfilController),
+                    User.IsInRole(SettingsManager.PerfilBp),
+                    User.IsInRole(SettingsManager.PerfilRRHH),
+                    User.IsInRole(SettingsManager.PerfilUSC)
+                    );
+                model = logicaReq.LLENAR_CONTROLES(model,SettingsManager.CodTipoReqNoPresupuestada);
 
                 // Esto es para el POP UP
                 List<SelectListItem> listacargos = model.LIST_NOMBRE_CARGO;
@@ -99,7 +117,7 @@ namespace G_H_WEB.Controllers
                     User.IsInRole(SettingsManager.PerfilRRHH),
                     User.IsInRole(SettingsManager.PerfilUSC)
                     );
-
+                
                 logCentralizado.INICIANDO_LOG("CTR_REQ_NO_PRE2", "Procesar");
                 string _User = "";
                 int _resultadoIdReguisicion = 0;
@@ -108,7 +126,14 @@ namespace G_H_WEB.Controllers
                 modelDatos.USUARIO_MODIFICACION = User.Identity.Name;
                 REQUISICIONViewModel listas = new REQUISICIONViewModel();
                 // llena los combos
-                modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES(modelDatos);
+                LOGICA_REQUISICION logicaReq = new LOGICA_REQUISICION(
+                    User.IsInRole(SettingsManager.PerfilJefe),
+                    User.IsInRole(SettingsManager.PerfilController),
+                    User.IsInRole(SettingsManager.PerfilBp),
+                    User.IsInRole(SettingsManager.PerfilRRHH),
+                    User.IsInRole(SettingsManager.PerfilUSC)
+                    );
+                modelDatos = logicaReq.LLENAR_CONTROLES(modelDatos,modelDatos.COD_TIPO_REQUISICION);
                 // saca los valores de los combos
                 modelDatos = new LOGICA_REQUISICION().CONSULTAR_VALORES_LISTAS_POR_CODIGO(modelDatos);
 
@@ -467,7 +492,7 @@ namespace G_H_WEB.Controllers
                 {
                     traza = new TRAZA_BOTONES_VISIBLES();
                     traza.COD_REQUISICION = _cod_requisicion;
-                    traza.CAMPOS = "NOMBRE_CATEGORIA";
+                    traza.CAMPOS = "CATRGORIA";
                     traza.TRAZA = "true";
                     _cambio = true;
                     trazas.Add(traza);

@@ -183,7 +183,7 @@ namespace G_H_WEB.Controllers
             {
                 logCentralizado.INICIANDO_LOG("CTRREQ6", "ConsultarTraza");
                 REQUISICIONViewModel modelDatos = new REQUISICIONViewModel();
-                modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES(modelDatos);
+                modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES_TRAZA(modelDatos);
                 List<SelectListItem> LISTA_ARL = modelDatos.LIST_NIVEL_RIESGO_ARL;
                 List<SelectListItem> LISTA_ESTADOS = modelDatos.LIST_NOMBRE_ESTADO_REQUISICION;
                 List<SelectListItem> LISTA_CATEGORIA = modelDatos.LIST_NOMBRE_CATEGORIA;

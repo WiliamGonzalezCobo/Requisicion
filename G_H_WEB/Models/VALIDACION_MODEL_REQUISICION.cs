@@ -34,28 +34,17 @@ namespace MODELO_DATOS.MODELO_REQUISICION
             try
             {
                 logCentralizado.INICIANDO_LOG("MOD_VMR1", "ValidarModelo");
-                if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqNoPresupuestada) || _tipoRequisicion.Equals(SettingsManager.CodTipoReqPresupuestada) || _tipoRequisicion.Equals(SettingsManager.CodTipoReqModificacion))
+                if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqNoPresupuestada) || _tipoRequisicion.Equals(SettingsManager.CodTipoReqPresupuestada))
                 {
                     if (esJefe || esController)
                     {
                         ValidaInfoRequisicion(_modelRequisicion);
-                        ValidaAutorizacion(_modelRequisicion);
                     }
-                    if (esBp)
+                    
+                    if (esBp || esRRHH || esUsc)
                     {
                         ValidaInfoRequisicion(_modelRequisicion);
-                        //ValidarInfoGeneral(_modelRequisicion); //Todos los campos son deshabilitados y vienen de la api
                         ValidarInfoSalarial(_modelRequisicion);
-                        ValidaAutorizacion(_modelRequisicion);
-                    }
-                    if (esRRHH || esUsc)
-                    {
-                        ValidaInfoRequisicion(_modelRequisicion);
-                        //ValidarInfoGeneral(_modelRequisicion); //Todos los campos son deshabilitados y vienen de la api
-                        ValidarInfoSalarial(_modelRequisicion);
-                        ValidaAutorizacion(_modelRequisicion);
-
-
                     }
                     //si el evento es de rechazar requisicion valida el campo
                     if (_accionSubmit.Equals("ENVIAR RESPUESTA"))
@@ -64,8 +53,6 @@ namespace MODELO_DATOS.MODELO_REQUISICION
                     }
 
                     ValidaAutorizacion(_modelRequisicion);
-
-
                 }
 
                 if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqLicencia) || _tipoRequisicion.Equals(SettingsManager.CodTipoReqIncapacidad))
@@ -75,26 +62,13 @@ namespace MODELO_DATOS.MODELO_REQUISICION
                         ValidaInfoRequisicionLi(_modelRequisicion);
                         ValidaInfoGeneralLi(_modelRequisicion);
                         ValidaInfoSalarialLi(_modelRequisicion);
+                    }
 
-                    }
-                    if (esBp)
+                    if (esBp || esRRHH || esUsc)
                     {
-                        //ValidaGeneralProPuestaLi(_modelRequisicion); //Todos Los Campos se deshabilitaron 
                         ValidaInfoSalarialLi(_modelRequisicion);
-                        //ValidaInfoSalarialLi2(_modelRequisicion);//Todos Los Campos se deshabilitaron
                     }
-                    if (esRRHH)
-                    {
-                        //ValidaGeneralProPuestaLi(_modelRequisicion);//Todos Los Campos se deshabilitaron
-                        ValidaInfoSalarialLi(_modelRequisicion);
-                        //ValidaInfoSalarialLi2(_modelRequisicion);//Todos Los Campos se deshabilitaron
-                    }
-                    if (esUsc)
-                    {
-                        //ValidaGeneralProPuestaLi(_modelRequisicion);//Todos Los Campos se deshabilitaron
-                        ValidaInfoSalarialLi(_modelRequisicion);
-                        //ValidaInfoSalarialLi2(_modelRequisicion);//Todos Los Campos se deshabilitaron
-                    }
+                    
                     //si el evento es de rechazar requisicion valida el campo
                     if (_accionSubmit.Equals("ENVIAR RESPUESTA"))
                     {
@@ -102,8 +76,6 @@ namespace MODELO_DATOS.MODELO_REQUISICION
                     }
                     ValidaAutorizacion(_modelRequisicion);
                 }
-
-
 
                 logCentralizado.FINALIZANDO_LOG("MOD_VMR1", "ValidarModelo");
             }

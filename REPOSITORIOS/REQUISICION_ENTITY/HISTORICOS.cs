@@ -58,5 +58,6 @@ namespace REPOSITORIOS.REQUISICION_ENTITY
         public Nullable<int> COD_DIA_LABORAL_DESDE { get; set; }
         public string NOMBRE_CATEGORIA_ED { get; set; }
         public Nullable<int> COD_TIPO_SALARIO { get; set; }
+        public string CATRGORIA { get; set; }
     }
 }
