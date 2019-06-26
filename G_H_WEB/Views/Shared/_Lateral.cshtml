@@ -1,6 +1,10 @@
 ﻿@using UTILS.Settings
 <div class="col-md-3 menuEmpleados">
-    <h3 class="titulo-menuEmpleados text-center">Gestión<strong>Humana</strong></h3>
+    <div class="row col-md-12" style="padding-right:0px">
+        <hr class="col-md-1" style="padding-left:0px;padding-right:0px;background-color:#D8D8D8;"/>
+        <h3 class="titulo-menuEmpleados">Gestión<strong>Humana</strong></h3>
+        <hr class="col-md-1" style="padding-left:0px;padding-right:0px;background-color:#D8D8D8;"/>
+    </div>
     <ul class="nav flex-column">
 
         @if (ViewContext.RouteData.Values["controller"].ToString().ToUpper() == "SOLICITUD")

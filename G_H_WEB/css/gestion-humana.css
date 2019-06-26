@@ -194,6 +194,8 @@
 .menuEmpleados {
     background: #fff;
     padding: 20px;
+    height: 100%;
+    padding-bottom: 16%;
 }
 
     .menuEmpleados .titulo-menuEmpleados {
@@ -1387,8 +1389,13 @@ body .requisicion .form-control{
 }
 
 span#notificationsBadgePrimary.badge.badge-secondary {
-    padding: 0.25em 1em;
+    top: -24px !important;
     border-radius: 1.25rem;
+    left: -9px;
+    padding: 4px;
+    color: #FF6E40;
+    background-color: #FF6E40;
+    font-size: 0px;
 }
 
 
