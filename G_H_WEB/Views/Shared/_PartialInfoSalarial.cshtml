@@ -145,7 +145,7 @@
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NOMBRE_TIPO_SALARIO, new { @class = "letrasFormulario" })
                 <div class="col-md-12" style="padding-left:0px">
-                    @Html.DropDownListFor(model => model.COD_TIPO_SALARIO, Model.LIST_NOMBRE_TIPO_SALARIO, "-- Seleccione --", new { @class = "form-control col-md-11 deplegablesIniciales letrasFormulario no-width" })
+                    @Html.DropDownListFor(model => model.COD_TIPO_SALARIO, Model.LIST_NOMBRE_TIPO_SALARIO, "Seleccione tipo de salario", new { @class = "form-control col-md-11 deplegablesIniciales letrasFormulario no-width" })
                     <span id="NOMBRE_TIPO_SALARIO_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('NOMBRE_TIPO_SALARIO')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                     @Html.ValidationMessageFor(model => model.COD_TIPO_SALARIO)
                 </div>
@@ -201,7 +201,7 @@
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.MERCADO, new { @class = "letrasFormulario" })
                 <div class="col-md-12" style="padding-left:0px">
-                    @Html.DropDownListFor(model => model.COD_MERCADO, Model.LIST_MERCADO, "-- Seleccione --", new { @class = "form-control col-md-11 deplegablesIniciales letrasFormulario TexboxIncicial no-width" })
+                    @Html.DropDownListFor(model => model.COD_MERCADO, Model.LIST_MERCADO, "Seleccione el mercado", new { @class = "form-control col-md-11 deplegablesIniciales letrasFormulario TexboxIncicial no-width" })
                     <span id="MERCADO_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('MERCADO')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                     @Html.ValidationMessageFor(model => model.COD_MERCADO)
                 </div>
@@ -209,7 +209,7 @@
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA, new { @class = "letrasFormulario" })
                 <div class="col-md-12" style="padding-left:0px">
-                    @Html.DropDownListFor(model => model.COD_CATEGORIA, Model.LIST_NOMBRE_CATEGORIA, "-- Seleccione --", new { @class = "form-control col-md-11 deplegablesIniciales letrasFormulario TexboxIncicial no-width" })
+                    @Html.DropDownListFor(model => model.COD_CATEGORIA, Model.LIST_NOMBRE_CATEGORIA, "Seleccione una categoría", new { @class = "form-control col-md-11 deplegablesIniciales letrasFormulario TexboxIncicial no-width" })
                     <span id="CATRGORIA_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('CATRGORIA')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                     @Html.ValidationMessageFor(model => model.COD_CATEGORIA)
                 </div>

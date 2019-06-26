@@ -16,42 +16,42 @@
         <div class="row">
             <div class="form-group col-md-12 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NOMBRE_GERENCIA, new { @class = "letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_GERENCIA, Model.LIST_NOMBRE_GERENCIA, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                @Html.DropDownListFor(model => model.COD_GERENCIA, Model.LIST_NOMBRE_GERENCIA, "Seleccione gerencia", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
                 @Html.HiddenFor(model => model.COD_GERENCIA)
                 @Html.ValidationMessageFor(model => model.COD_GERENCIA)
             </div>
             <div class="form-group col-md-12 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NOMBRE_TIPO_CONTRATO, new { @class = "letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_TIPO_CONTRATO, Model.LIST_NOMBRE_TIPO_CONTRATO, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                @Html.DropDownListFor(model => model.COD_TIPO_CONTRATO, Model.LIST_NOMBRE_TIPO_CONTRATO, "Seleccione tipo contrato", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
                 @Html.HiddenFor(model => model.COD_TIPO_CONTRATO)
                 @Html.ValidationMessageFor(model => model.COD_TIPO_CONTRATO)
             </div>
         </div>
 
-    <div class="row">
-        <div class="form-group col-md-12 col-sm-12">
-            @Html.LabelFor(model => model.JEFE_INMEDIATO, new { @class = "letrasFormulario" })
-            @Html.TextBoxFor(model => model.JEFE_INMEDIATO, new { @class = "form-control combosGrandes", disabled = deshabilitar })
-            @Html.HiddenFor(model => model.JEFE_INMEDIATO)
-            @Html.ValidationMessageFor(model => model.JEFE_INMEDIATO)
+        <div class="row">
+            <div class="form-group col-md-12 col-sm-12">
+                @Html.LabelFor(model => model.JEFE_INMEDIATO, new { @class = "letrasFormulario" })
+                @Html.TextBoxFor(model => model.JEFE_INMEDIATO, new { @class = "form-control combosGrandes", disabled = deshabilitar, placeholder = "Escriba el nombre del jefe inmediato" })
+                @Html.HiddenFor(model => model.JEFE_INMEDIATO)
+                @Html.ValidationMessageFor(model => model.JEFE_INMEDIATO)
+            </div>
+            <div class="form-group col-md-12 col-sm-12">
+                @Html.LabelFor(model => model.LIST_NOMBRE_CECO, new { @class = "letrasFormulario" })
+                @Html.DropDownListFor(model => model.COD_CECO, new SelectList(Model.LIST_NOMBRE_CECO, "Value", "Text", Model.COD_CECO), "Seleccione centro de costos", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                @Html.ValidationMessageFor(model => model.COD_CECO)
+            </div>
         </div>
-        <div class="form-group col-md-12 col-sm-12">        
-            @Html.LabelFor(model => model.LIST_NOMBRE_CECO, new { @class = "letrasFormulario" })
-            @Html.DropDownListFor(model => model.COD_CECO, new SelectList(Model.LIST_NOMBRE_CECO, "Value", "Text", Model.COD_CECO), "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
-            @Html.ValidationMessageFor(model => model.COD_CECO)
-        </div>
-    </div>
 
         <div class="row">
             <div class="form-group col-md-12 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NOMBRE_SOCIEDAD, new { @class = "letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_SOCIEDAD, Model.LIST_NOMBRE_SOCIEDAD, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                @Html.DropDownListFor(model => model.COD_SOCIEDAD, Model.LIST_NOMBRE_SOCIEDAD, "Seleccione sociedad", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
                 @Html.HiddenFor(model => model.COD_SOCIEDAD)
                 @Html.ValidationMessageFor(model => model.COD_SOCIEDAD)
             </div>
             <div class="form-group col-md-12 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NOMBRE_EQIPO_VENTAS, new { @class = "letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_EQUIPO_VENTAS, Model.LIST_NOMBRE_EQIPO_VENTAS, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                @Html.DropDownListFor(model => model.COD_EQUIPO_VENTAS, Model.LIST_NOMBRE_EQIPO_VENTAS, "Seleccione equipo de ventas", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
                 @Html.HiddenFor(model => model.COD_EQUIPO_VENTAS)
                 @Html.ValidationMessageFor(model => model.COD_EQUIPO_VENTAS)
             </div>
@@ -60,13 +60,13 @@
         <div class="row">
             <div class="form-group col-md-12 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NOMBRE_CIUDAD_TRABAJO, new { @class = "letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_CIUDAD_TRABAJO, Model.LIST_NOMBRE_CIUDAD_TRABAJO, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                @Html.DropDownListFor(model => model.COD_CIUDAD_TRABAJO, Model.LIST_NOMBRE_CIUDAD_TRABAJO, "Seleccione ciudad de trabajo", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
                 @Html.HiddenFor(model => model.COD_CIUDAD_TRABAJO)
                 @Html.ValidationMessageFor(model => model.COD_CIUDAD_TRABAJO)
             </div>
             <div class="form-group col-md-12 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NOMBRE_UBICACION_FISICA, new { @class = "letrasFormulario" })
-                @Html.DropDownListFor(model => model.COD_UBICACION_FISICA, Model.LIST_NOMBRE_UBICACION_FISICA, "-- Seleccione --", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
+                @Html.DropDownListFor(model => model.COD_UBICACION_FISICA, Model.LIST_NOMBRE_UBICACION_FISICA, "Seleccione ubicación física", new { @class = "form-control combosGrandes letrasFormulario", disabled = deshabilitar })
                 @Html.HiddenFor(model => model.COD_UBICACION_FISICA)
                 @Html.ValidationMessageFor(model => model.COD_UBICACION_FISICA)
             </div>
@@ -76,7 +76,7 @@
             <div class="form-group col-md-12 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NIVEL_RIESGO_ARL, new { @class = "letrasFormulario" })
                 <div class="col-md-3" style="padding-left:0px">
-                    @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, Model.LIST_NIVEL_RIESGO_ARL, "-- Seleccione --", new { @class = "form-control col-md-11 comboArl letrasFormulario no-width", disabled = deshabilitar })
+                    @Html.DropDownListFor(model => model.COD_NIVEL_RIESGO_ARL, Model.LIST_NIVEL_RIESGO_ARL, "Seleccione nvl de riesgo", new { @class = "form-control col-md-11 comboArl letrasFormulario no-width", disabled = deshabilitar })
                     <span id="NOMBRE_ARL_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('NOMBRE_ARL')" data-toggle="tooltip" data-placement="top" title="Ver detalles" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                     @Html.HiddenFor(model => model.COD_NIVEL_RIESGO_ARL)
                     @Html.ValidationMessageFor(model => model.COD_NIVEL_RIESGO_ARL)
@@ -85,7 +85,7 @@
             <div class="form-group col-md-12 col-sm-12">
                 @Html.LabelFor(model => model.LIST_NOMBRE_CATEGORIA_ED, new { @class = "letrasFormulario" })
                 <div class="col-md-8" style="padding-left:0px">
-                    @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, Model.LIST_NOMBRE_CATEGORIA_ED, "-- Seleccione --", new { @class = "form-control col-md-11 combosGrandes letrasFormulario no-width", disabled = deshabilitar })
+                    @Html.DropDownListFor(model => model.COD_CATEGORIA_ED, Model.LIST_NOMBRE_CATEGORIA_ED, "Seleccione categoría", new { @class = "form-control col-md-11 combosGrandes letrasFormulario no-width", disabled = deshabilitar })
                     <span id="NOMBRE_CATEGORIA_ED_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('NOMBRE_CATEGORIA_ED')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                     @Html.HiddenFor(model => model.COD_CATEGORIA_ED)
                     @Html.ValidationMessageFor(model => model.COD_CATEGORIA_ED)
@@ -98,25 +98,25 @@
                 @Html.LabelFor(model => model.CARGO_CRITICO, htmlAttributes: new { @class = "letrasFormulario" })
                 @if (Model.CARGO_CRITICO == true)
                 {
-                <spam class="CheckboxPadding">
-                    <input type="checkbox" checked="checked" disabled="disabled" />
-                    <label class="letrasFormulario" for="radio1">Si</label>
-                </spam>
-                <spam class="CheckboxPadding">
-                    <input type="checkbox" disabled="disabled" />
-                    <label class="letrasFormulario" for="radio2">No</label>
-                </spam>
+                    <spam class="CheckboxPadding">
+                        <input type="checkbox" checked="checked" disabled="disabled" />
+                        <label class="letrasFormulario" for="radio1">Si</label>
+                    </spam>
+                    <spam class="CheckboxPadding">
+                        <input type="checkbox" disabled="disabled" />
+                        <label class="letrasFormulario" for="radio2">No</label>
+                    </spam>
                 }
                 else
                 {
-                <spam class="CheckboxPadding">
-                    <input type="checkbox" disabled="disabled" />
-                    <label class="letrasFormulario" for="radio1">Si</label>
-                </spam>
-                <spam class="CheckboxPadding">
-                    <input type="checkbox" checked="checked" disabled="disabled" />
-                    <label class="letrasFormulario" for="radio2">No</label>
-                </spam>
+                    <spam class="CheckboxPadding">
+                        <input type="checkbox" disabled="disabled" />
+                        <label class="letrasFormulario" for="radio1">Si</label>
+                    </spam>
+                    <spam class="CheckboxPadding">
+                        <input type="checkbox" checked="checked" disabled="disabled" />
+                        <label class="letrasFormulario" for="radio2">No</label>
+                    </spam>
                 }
                 @Html.HiddenFor(model => model.CARGO_CRITICO)
 
@@ -183,7 +183,7 @@
 
 
                         @*@Html.RadioButtonFor(m => m.COD_JORNADA_LABORAL, jornada.Value, new { disabled = deshabilitar }) @jornada.Text
-            @Html.HiddenFor(m => m.COD_JORNADA_LABORAL)*@
+                            @Html.HiddenFor(m => m.COD_JORNADA_LABORAL)*@
                     }
                 </div>
                 @Html.ValidationMessageFor(model => model.COD_JORNADA_LABORAL)
@@ -241,7 +241,7 @@
 </section>
 <script>
     var cantInfoGeneral = 6;
-    
+
     var validateInfoGeneralPresu = true;
     var validateFormInfoGeneralPresu = function () {
         if ($('#COD_CECO').val() == "") {
