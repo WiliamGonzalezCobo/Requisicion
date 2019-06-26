@@ -17,38 +17,155 @@ namespace LOGICA.REQUISICION_LOGICA
 {
     public class LOGICA_REQUISICION
     {
+        private readonly bool esJefe;
+        private readonly bool esController;
+        private readonly bool esBp;
+        private readonly bool esRRHH;
+        private readonly bool esUsc;
         private LOG_CENTRALIZADO logCentralizado = new LOG_CENTRALIZADO(LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType));
-
         private List<SelectListItem> listaItems = null;
 
-        public REQUISICIONViewModel LLENAR_CONTROLES(REQUISICIONViewModel _modelReturn)
+        public LOGICA_REQUISICION()
+        {
+        }
+
+        public LOGICA_REQUISICION(bool _esJefe, bool _esController, bool _esBp, bool _esRRHH, bool _esUsc)
+        {
+            esJefe = _esJefe;
+            esController = _esController;
+            esBp = _esBp;
+            esRRHH = _esRRHH;
+            esUsc = _esUsc;
+        }
+
+        
+
+        public REQUISICIONViewModel LLENAR_CONTROLES(REQUISICIONViewModel _modelReturn, int _tipoRequisicion)
         {
             try
             {
                 logCentralizado.INICIANDO_LOG("LGREQ1", "LLENAR_CONTROLES");
-                _modelReturn.LIST_NOMBRE_TIPO_NECESIDAD = CONSULTAR_TIPOS_NECESIDAD();
-                _modelReturn.LIST_NOMBRE_ESTADO_REQUISICION = CONSULTAR_ESTADOS();
-                _modelReturn.LIST_NOMBRE_CECO = CONSULTAR_CECOS();
-                _modelReturn.LIST_NOMBRE_EQIPO_VENTAS = CONSULTAR_EQUIPOS_VENTAS();
-                _modelReturn.LIST_NIVEL_RIESGO_ARL = CONSULTAR_RIESGOS_ARL();
-                _modelReturn.LIST_NOMBRE_CATEGORIA_ED = CONSULTAR_CATEGORIAS_ED();
-                _modelReturn.LIST_NOMBRE_SOCIEDAD = CONSULTAR_SOCIEDADES();
-                _modelReturn.LIST_NOMBRE_TIPO_CONTRATO = CONSULTAR_CONTRATOS();
-                _modelReturn.LIST_NOMBRE_GERENCIA = CONSULTAR_GERENCIAS();
-                _modelReturn.LIST_NOMBRE_UBICACION_FISICA = CONSULTAR_UBICACIONES_FISICAS();
-                _modelReturn.LIST_NOMBRE_JORNADA_LABORAL = CONSULTAR_JORNADAS_LABORALES();
-                _modelReturn.LIST_NOMBRE_CIUDAD_TRABAJO = CONSULTAR_CIUDADES_TRABAJO();
-                _modelReturn.LIST_NOMBRE_CATEGORIA = CONSULTAR_CATEGORIAS();
-                _modelReturn.LIST_NOMBRE_TIPO_SALARIO = CONSULTAR_TIPOS_SALARIOS();
-                _modelReturn.LIST_NOMBRE_CARGO = CONSULTAR_CARGOS();
-                _modelReturn.LIST_NOMBRE_TIPO_REQUISICION = CONSULTAR_TIPOS_REQUISICION();
-                _modelReturn.LIST_DIA_LABORAL_DESDE = CONSULTAR_DIAS_LABORALES();
-                _modelReturn.LIST_DIA_LABORAL_HASTA = CONSULTAR_DIAS_LABORALES();
-                _modelReturn.LIST_HORARIO_LABORAL_DESDE = CONSULTAR_HORARIO_LABORAL();
-                _modelReturn.LIST_HORARIO_LABORAL_HASTA = CONSULTAR_HORARIO_LABORAL();
-                _modelReturn.LIST_NOMBRE_JORNADA_LABORAL = CONSULTAR_JORNADAS_LABORALES();
-                _modelReturn.LIST_MERCADO = CONSULTAR_MERCADO();
-                _modelReturn.LIST_TIPO_DOCUMENTO = CONSULTAR_TIPO_DOCUMENTO();
+
+                if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqNoPresupuestada) || _tipoRequisicion.Equals(SettingsManager.CodTipoReqPresupuestada))
+                {
+                    if (esJefe || esController)
+                    {
+                        //Campos _PartialInfoRequisicion
+                        _modelReturn.LIST_NOMBRE_TIPO_NECESIDAD = CONSULTAR_TIPOS_NECESIDAD();
+                        _modelReturn.LIST_NOMBRE_CARGO = CONSULTAR_CARGOS();
+                        _modelReturn.LIST_NOMBRE_CECO = CONSULTAR_CECOS();
+                    }
+
+                    if (esBp || esRRHH || esUsc)
+                    {
+                        //Campos _PartialInfoRequisicion
+                        _modelReturn.LIST_NOMBRE_TIPO_NECESIDAD = CONSULTAR_TIPOS_NECESIDAD();
+                        _modelReturn.LIST_NOMBRE_CARGO = CONSULTAR_CARGOS();
+                        _modelReturn.LIST_NOMBRE_CECO = CONSULTAR_CECOS();
+
+                        //Campos _PartialInfoGeneral
+                        _modelReturn.LIST_NOMBRE_GERENCIA = CONSULTAR_GERENCIAS();
+                        _modelReturn.LIST_NOMBRE_TIPO_CONTRATO = CONSULTAR_CONTRATOS();
+                        _modelReturn.LIST_NOMBRE_SOCIEDAD = CONSULTAR_SOCIEDADES();
+                        _modelReturn.LIST_NOMBRE_EQIPO_VENTAS = CONSULTAR_EQUIPOS_VENTAS();
+                        _modelReturn.LIST_NOMBRE_CIUDAD_TRABAJO = CONSULTAR_CIUDADES_TRABAJO();
+                        _modelReturn.LIST_NOMBRE_UBICACION_FISICA = CONSULTAR_UBICACIONES_FISICAS();
+                        _modelReturn.LIST_NIVEL_RIESGO_ARL = CONSULTAR_RIESGOS_ARL();
+                        _modelReturn.LIST_NOMBRE_CATEGORIA_ED = CONSULTAR_CATEGORIAS_ED();
+                        _modelReturn.LIST_NOMBRE_JORNADA_LABORAL = CONSULTAR_JORNADAS_LABORALES();
+                        _modelReturn.LIST_HORARIO_LABORAL_DESDE = CONSULTAR_HORARIO_LABORAL();
+                        _modelReturn.LIST_HORARIO_LABORAL_HASTA = _modelReturn.LIST_HORARIO_LABORAL_DESDE;
+                        _modelReturn.LIST_DIA_LABORAL_DESDE = CONSULTAR_DIAS_LABORALES();
+                        _modelReturn.LIST_DIA_LABORAL_HASTA = _modelReturn.LIST_DIA_LABORAL_DESDE;
+
+                        //Campos _PartialInfoSalarial
+                        _modelReturn.LIST_NOMBRE_TIPO_SALARIO = CONSULTAR_TIPOS_SALARIOS();
+                        _modelReturn.LIST_MERCADO = CONSULTAR_MERCADO();
+                        _modelReturn.LIST_NOMBRE_CATEGORIA = CONSULTAR_CATEGORIAS();
+
+                    }
+                }
+
+                if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqLicencia) || _tipoRequisicion.Equals(SettingsManager.CodTipoReqIncapacidad))
+                {
+                    if (esJefe)
+                    {
+                        // campos _PartialInfoGeneralLi
+                        _modelReturn.LIST_TIPO_DOCUMENTO = CONSULTAR_TIPO_DOCUMENTO();
+                        _modelReturn.LIST_NOMBRE_CARGO = CONSULTAR_CARGOS();
+                        _modelReturn.LIST_NOMBRE_GERENCIA = CONSULTAR_GERENCIAS();
+                        _modelReturn.LIST_NOMBRE_CECO = CONSULTAR_CECOS();
+                        _modelReturn.LIST_NOMBRE_SOCIEDAD = CONSULTAR_SOCIEDADES();
+                        _modelReturn.LIST_NOMBRE_EQIPO_VENTAS = CONSULTAR_EQUIPOS_VENTAS();
+                        _modelReturn.LIST_NOMBRE_CATEGORIA_ED = CONSULTAR_CATEGORIAS_ED();
+
+                        // campos _Partial_Campos_Hidden_Li_Inc_Creacion
+                        _modelReturn.LIST_NOMBRE_TIPO_CONTRATO = CONSULTAR_CONTRATOS();
+                        _modelReturn.LIST_NIVEL_RIESGO_ARL = CONSULTAR_RIESGOS_ARL();
+                        _modelReturn.LIST_NOMBRE_TIPO_SALARIO = CONSULTAR_TIPOS_SALARIOS();
+                        _modelReturn.LIST_MERCADO = CONSULTAR_MERCADO();
+                        _modelReturn.LIST_NOMBRE_CATEGORIA = CONSULTAR_CATEGORIAS();
+                    }
+
+                    if (esController)
+                    {
+                        // campos _PartialInfoGeneralLi
+                        _modelReturn.LIST_TIPO_DOCUMENTO = CONSULTAR_TIPO_DOCUMENTO();
+                        _modelReturn.LIST_NOMBRE_CARGO = CONSULTAR_CARGOS();
+                        _modelReturn.LIST_NOMBRE_GERENCIA = CONSULTAR_GERENCIAS();
+                        _modelReturn.LIST_NOMBRE_CECO = CONSULTAR_CECOS();
+                        _modelReturn.LIST_NOMBRE_SOCIEDAD = CONSULTAR_SOCIEDADES();
+                        _modelReturn.LIST_NOMBRE_EQIPO_VENTAS = CONSULTAR_EQUIPOS_VENTAS();
+                        _modelReturn.LIST_NOMBRE_CATEGORIA_ED = CONSULTAR_CATEGORIAS_ED();
+                    }
+
+
+                    if (esBp || esRRHH || esUsc)
+                    {
+                        // campos _PartialInfoGeneralLi
+                        _modelReturn.LIST_TIPO_DOCUMENTO = CONSULTAR_TIPO_DOCUMENTO();
+                        _modelReturn.LIST_NOMBRE_CARGO = CONSULTAR_CARGOS();
+                        _modelReturn.LIST_NOMBRE_GERENCIA = CONSULTAR_GERENCIAS();
+                        _modelReturn.LIST_NOMBRE_CECO = CONSULTAR_CECOS();
+                        _modelReturn.LIST_NOMBRE_SOCIEDAD = CONSULTAR_SOCIEDADES();
+                        _modelReturn.LIST_NOMBRE_EQIPO_VENTAS = CONSULTAR_EQUIPOS_VENTAS();
+                        _modelReturn.LIST_NOMBRE_CATEGORIA_ED = CONSULTAR_CATEGORIAS_ED();
+
+                        // campos _PartialGeneralProPuestaLi
+                        _modelReturn.LIST_NOMBRE_TIPO_CONTRATO = CONSULTAR_CONTRATOS();
+                        _modelReturn.LIST_NIVEL_RIESGO_ARL = CONSULTAR_RIESGOS_ARL();
+
+                        // campos _PartialInfoSalarialLi2
+                        _modelReturn.LIST_NOMBRE_TIPO_SALARIO = CONSULTAR_TIPOS_SALARIOS();
+                        _modelReturn.LIST_MERCADO = CONSULTAR_MERCADO();
+                        _modelReturn.LIST_NOMBRE_CATEGORIA = CONSULTAR_CATEGORIAS();
+
+                    }
+                }
+
+                //_modelReturn.LIST_NOMBRE_TIPO_NECESIDAD = CONSULTAR_TIPOS_NECESIDAD();
+                //_modelReturn.LIST_NOMBRE_ESTADO_REQUISICION = CONSULTAR_ESTADOS();
+                //_modelReturn.LIST_NOMBRE_CECO = CONSULTAR_CECOS();
+                //_modelReturn.LIST_NOMBRE_EQIPO_VENTAS = CONSULTAR_EQUIPOS_VENTAS();
+                //_modelReturn.LIST_NIVEL_RIESGO_ARL = CONSULTAR_RIESGOS_ARL();
+                //_modelReturn.LIST_NOMBRE_CATEGORIA_ED = CONSULTAR_CATEGORIAS_ED();
+                //_modelReturn.LIST_NOMBRE_SOCIEDAD = CONSULTAR_SOCIEDADES();
+                //_modelReturn.LIST_NOMBRE_TIPO_CONTRATO = CONSULTAR_CONTRATOS();
+                //_modelReturn.LIST_NOMBRE_GERENCIA = CONSULTAR_GERENCIAS();
+                //_modelReturn.LIST_NOMBRE_UBICACION_FISICA = CONSULTAR_UBICACIONES_FISICAS();
+                //_modelReturn.LIST_NOMBRE_JORNADA_LABORAL = CONSULTAR_JORNADAS_LABORALES();
+                //_modelReturn.LIST_NOMBRE_CIUDAD_TRABAJO = CONSULTAR_CIUDADES_TRABAJO();
+                //_modelReturn.LIST_NOMBRE_CATEGORIA = CONSULTAR_CATEGORIAS();
+                //_modelReturn.LIST_NOMBRE_TIPO_SALARIO = CONSULTAR_TIPOS_SALARIOS();
+                //_modelReturn.LIST_NOMBRE_CARGO = CONSULTAR_CARGOS();
+                //_modelReturn.LIST_NOMBRE_TIPO_REQUISICION = CONSULTAR_TIPOS_REQUISICION();
+                //_modelReturn.LIST_DIA_LABORAL_DESDE = CONSULTAR_DIAS_LABORALES();
+                //_modelReturn.LIST_DIA_LABORAL_HASTA = CONSULTAR_DIAS_LABORALES();
+                //_modelReturn.LIST_HORARIO_LABORAL_DESDE = CONSULTAR_HORARIO_LABORAL();
+                //_modelReturn.LIST_HORARIO_LABORAL_HASTA = CONSULTAR_HORARIO_LABORAL();
+                //_modelReturn.LIST_NOMBRE_JORNADA_LABORAL = CONSULTAR_JORNADAS_LABORALES();
+                //_modelReturn.LIST_MERCADO = CONSULTAR_MERCADO();
+                //_modelReturn.LIST_TIPO_DOCUMENTO = CONSULTAR_TIPO_DOCUMENTO();
 
                 logCentralizado.FINALIZANDO_LOG("LGREQ1", "LLENAR_CONTROLES");
             }
@@ -1414,6 +1531,7 @@ namespace LOGICA.REQUISICION_LOGICA
                 throw ex;
             }
         }
+
         public List<CONSULTA_USUARIO_ENTIDAD> CONSULTA_USUARIOS(string _codUsuario)
         {
             List<CONSULTA_USUARIO_ENTIDAD> LISTA_USUARIO = null;
@@ -1432,6 +1550,27 @@ namespace LOGICA.REQUISICION_LOGICA
             }
 
             return LISTA_USUARIO;
+        }
+
+        public REQUISICIONViewModel LLENAR_CONTROLES_TRAZA(REQUISICIONViewModel _modelReturn)
+        {
+            try
+            {
+                logCentralizado.INICIANDO_LOG("LGREQ41", "LLENAR_CONTROLES_TRAZA");
+
+                _modelReturn.LIST_NOMBRE_ESTADO_REQUISICION = CONSULTAR_ESTADOS();
+                _modelReturn.LIST_NIVEL_RIESGO_ARL = CONSULTAR_RIESGOS_ARL();
+                _modelReturn.LIST_NOMBRE_CATEGORIA = CONSULTAR_CATEGORIAS();
+
+                logCentralizado.FINALIZANDO_LOG("LGREQ41", "LLENAR_CONTROLES_TRAZA");
+            }
+            catch (Exception ex)
+            {
+                logCentralizado.CAPTURA_EXCEPCION("LGREQ41", "LLENAR_CONTROLES_TRAZA", ex);
+                throw ex;
+            }
+
+            return _modelReturn;
         }
 
     }

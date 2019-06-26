@@ -19,7 +19,6 @@ namespace G_H_WEB.Controllers
     public class REQUISICION_PRESUPUESTADAController : Controller
     {
         private LOG_CENTRALIZADO logCentralizado = new LOG_CENTRALIZADO(LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType));
-
         public ActionResult Consultar(int? _idReq, int? _idTipo, string link_controler = "", string COD_ASPNETUSER_CONTROLLER = "")
         {
             if (TempData["ErrorPost"] != null)
@@ -27,23 +26,24 @@ namespace G_H_WEB.Controllers
                 ViewBag.Error = (ERROR_GENERAL_ViewModel)TempData["ErrorPost"];
             }
 
-
-
-
             if (COD_ASPNETUSER_CONTROLLER != "") { Session["COD_ASPNETUSER_CONTROLLER"] = COD_ASPNETUSER_CONTROLLER; }
             REQUISICIONViewModel model = new REQUISICIONViewModel();
             try
             {
                 logCentralizado.INICIANDO_LOG("CTR_REQ_PRE1", "Consultar");
+                
+
                 if (_idReq.HasValue)
                 {
                     string _USER = User.Identity.GetUserId() ?? Session["COD_ASPNETUSER_CONTROLLER"].ToString();
                     model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES(_idReq.Value, link_controler, _USER);
-                    if (model == null) {
+                    if (model == null)
+                    {
                         Session.Remove("COD_ASPNETUSER_CONTROLLER");
                         return RedirectToAction("ConsultarRequisiciones", "REQUISICION");
                     }
-                    if (User.IsInRole(SettingsManager.PerfilBp) && (!model.COD_ESTADO_REQUISICION.Equals(SettingsManager.EstadoDevueltaRRHH) && !model.COD_ESTADO_REQUISICION.Equals(SettingsManager.EstadoDevueltaUSC))) {
+                    if (User.IsInRole(SettingsManager.PerfilBp) && (!model.COD_ESTADO_REQUISICION.Equals(SettingsManager.EstadoDevueltaRRHH) && !model.COD_ESTADO_REQUISICION.Equals(SettingsManager.EstadoDevueltaUSC)))
+                    {
                         model = new LOGICA_REQUISICION().BUSCAR_REQUISICIONES_BP(model) ?? new REQUISICIONViewModel();
                     }
                 }
@@ -54,7 +54,14 @@ namespace G_H_WEB.Controllers
                     ViewBag.traza = _listaCampos;
                 }
 
-                model = new LOGICA_REQUISICION().LLENAR_CONTROLES(model);
+                LOGICA_REQUISICION logicaReq = new LOGICA_REQUISICION(
+                    User.IsInRole(SettingsManager.PerfilJefe),
+                    User.IsInRole(SettingsManager.PerfilController),
+                    User.IsInRole(SettingsManager.PerfilBp),
+                    User.IsInRole(SettingsManager.PerfilRRHH),
+                    User.IsInRole(SettingsManager.PerfilUSC)
+                    );
+                model = logicaReq.LLENAR_CONTROLES(model, SettingsManager.CodTipoReqPresupuestada);
 
                 // Esto es para el POP UP
                 List<SelectListItem> listacargos = model.LIST_NOMBRE_CARGO;
@@ -107,7 +114,14 @@ namespace G_H_WEB.Controllers
                 modelDatos.USUARIO_MODIFICACION = User.Identity.Name;
                 REQUISICIONViewModel listas = new REQUISICIONViewModel();
                 // llena los combos
-                modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES(modelDatos);
+                LOGICA_REQUISICION logicaReq = new LOGICA_REQUISICION(
+                    User.IsInRole(SettingsManager.PerfilJefe),
+                    User.IsInRole(SettingsManager.PerfilController),
+                    User.IsInRole(SettingsManager.PerfilBp),
+                    User.IsInRole(SettingsManager.PerfilRRHH),
+                    User.IsInRole(SettingsManager.PerfilUSC)
+                    );
+                modelDatos = logicaReq.LLENAR_CONTROLES(modelDatos, SettingsManager.CodTipoReqPresupuestada);
                 // saca los valores de los combos
                 modelDatos = new LOGICA_REQUISICION().CONSULTAR_VALORES_LISTAS_POR_CODIGO(modelDatos);
 

@@ -34,7 +34,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
             try
             {
                 logCentralizado.INICIANDO_LOG("MOD_VMR1", "ValidarModelo");
-                if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqNoPresupuestada) || _tipoRequisicion.Equals(SettingsManager.CodTipoReqPresupuestada) || _tipoRequisicion.Equals(SettingsManager.CodTipoReqModificacion))
+                if (_tipoRequisicion.Equals(SettingsManager.CodTipoReqNoPresupuestada) || _tipoRequisicion.Equals(SettingsManager.CodTipoReqPresupuestada))
                 {
                     if (esJefe || esController)
                     {

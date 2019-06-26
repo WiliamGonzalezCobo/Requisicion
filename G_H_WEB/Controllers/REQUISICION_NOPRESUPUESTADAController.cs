@@ -30,7 +30,7 @@ namespace G_H_WEB.Controllers
             try
             {
                 logCentralizado.INICIANDO_LOG("CTR_REQ_NO_PRE1", "Consultar");
-
+                
                 if (_idReq.HasValue)
                 {
                     string _USER = User.Identity.GetUserId() ?? Session["COD_ASPNETUSER_CONTROLLER"].ToString();
@@ -51,7 +51,14 @@ namespace G_H_WEB.Controllers
                     ViewBag.traza = _listaCampos;
                 }
 
-                model = new LOGICA_REQUISICION().LLENAR_CONTROLES(model);
+                LOGICA_REQUISICION logicaReq = new LOGICA_REQUISICION(
+                    User.IsInRole(SettingsManager.PerfilJefe),
+                    User.IsInRole(SettingsManager.PerfilController),
+                    User.IsInRole(SettingsManager.PerfilBp),
+                    User.IsInRole(SettingsManager.PerfilRRHH),
+                    User.IsInRole(SettingsManager.PerfilUSC)
+                    );
+                model = logicaReq.LLENAR_CONTROLES(model,SettingsManager.CodTipoReqNoPresupuestada);
 
                 // Esto es para el POP UP
                 List<SelectListItem> listacargos = model.LIST_NOMBRE_CARGO;
@@ -96,7 +103,7 @@ namespace G_H_WEB.Controllers
                     User.IsInRole(SettingsManager.PerfilRRHH),
                     User.IsInRole(SettingsManager.PerfilUSC)
                     );
-
+                
                 logCentralizado.INICIANDO_LOG("CTR_REQ_NO_PRE2", "Procesar");
                 string _User = "";
                 int _resultadoIdReguisicion = 0;
@@ -105,7 +112,14 @@ namespace G_H_WEB.Controllers
                 modelDatos.USUARIO_MODIFICACION = User.Identity.Name;
                 REQUISICIONViewModel listas = new REQUISICIONViewModel();
                 // llena los combos
-                modelDatos = new LOGICA_REQUISICION().LLENAR_CONTROLES(modelDatos);
+                LOGICA_REQUISICION logicaReq = new LOGICA_REQUISICION(
+                    User.IsInRole(SettingsManager.PerfilJefe),
+                    User.IsInRole(SettingsManager.PerfilController),
+                    User.IsInRole(SettingsManager.PerfilBp),
+                    User.IsInRole(SettingsManager.PerfilRRHH),
+                    User.IsInRole(SettingsManager.PerfilUSC)
+                    );
+                modelDatos = logicaReq.LLENAR_CONTROLES(modelDatos,modelDatos.COD_TIPO_REQUISICION);
                 // saca los valores de los combos
                 modelDatos = new LOGICA_REQUISICION().CONSULTAR_VALORES_LISTAS_POR_CODIGO(modelDatos);
 
