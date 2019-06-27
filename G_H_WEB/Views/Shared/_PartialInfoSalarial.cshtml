@@ -1,5 +1,6 @@
 ﻿@model MODELO_DATOS.MODELO_REQUISICION.REQUISICIONViewModel
 @{string deshabilitar = "true";}
+<script src="~/js/imask.js"></script>
 <section id="infoSalarial">
     <div class="panel-heading row">
         <div class="span-icon-arrow div-span-collapseInfoSalarialPresu">
@@ -169,7 +170,7 @@
                             @Html.LabelFor(model => model.INGRESO_PROM_MENSUAL, htmlAttributes: new { @class = "letrasSalarioTotal" })
                         </div>
                         <div class="col-md-6">
-                            <span class="E_INGRESO_PROM_MENSUAL valorSalarioTotal">@Math.Round(Model.INGRESO_PROM_MENSUAL,2)</span>
+                            <span class="E_INGRESO_PROM_MENSUAL valorSalarioTotal">@Math.Round(Model.INGRESO_PROM_MENSUAL, 2)</span>
                             <span id="INGRESO_PROM_MENSUAL_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('INGRESO_PROM_MENSUAL')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                             @Html.HiddenFor(model => model.INGRESO_PROM_MENSUAL, new { @class = "E_INGRESO_PROM_MENSUAL" })
                             @Html.ValidationMessageFor(model => model.INGRESO_PROM_MENSUAL)
@@ -187,7 +188,7 @@
                             @Html.LabelFor(model => model.INGRESO_PROM_ANUAL, htmlAttributes: new { @class = "letrasSalarioTotal" })
                         </div>
                         <div class="col-md-6">
-                            <span class="E_INGRESO_PROM_ANUAL valorSalarioTotal">@Math.Round(Model.INGRESO_PROM_ANUAL,2)</span>
+                            <span class="E_INGRESO_PROM_ANUAL valorSalarioTotal">@Math.Round(Model.INGRESO_PROM_ANUAL, 2)</span>
                             <span id="INGRESO_PROM_ANUAL_S" class="btn_traza trazaCentrar span-modify-hidden" onclick="ConsultaTraza('INGRESO_PROM_ANUAL')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                             @Html.HiddenFor(model => model.INGRESO_PROM_ANUAL, new { @class = "E_INGRESO_PROM_ANUAL" })
                             @Html.ValidationMessageFor(model => model.INGRESO_PROM_ANUAL)
@@ -266,12 +267,7 @@
 </section>
 
 <script src="~/js/CALCULOS_SALARIOS.js"></script>
-@*<style>
-    .trazaCentrar {
-        position:absolute !important;
-        top:32px !important;
-    }
-</style>*@
+
 <script>
     var cantInfoSalarial = 19;
 
@@ -300,4 +296,24 @@
             $('.span_infoSalarial').css("visibility", "visible");
         }
     }, 550);
+
+
+    var currencyMask = IMask(
+        document.getElementById('SALARIO_FIJO'),
+        {
+            mask: '$num',
+            blocks: {
+                num: {
+                    mask: Number,
+                    thousandsSeparator: '.',
+                    min:0
+                }
+            }
+        });
+
+    $("form").submit(function () {
+        debugger;
+        $("#SALARIO_FIJO").val($("#SALARIO_FIJO").val().replace("$", "").replace("$", ""));
+        return true;
+    })
 </script>
