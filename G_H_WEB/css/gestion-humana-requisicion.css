@@ -2,10 +2,9 @@
 select {
     background: url(../assets/img/iconfinder_arrow-down.png) no-repeat;
     -webkit-appearance: none;
-    background-position-x: 244px;
-    background-position-x: 97%;
-    background-position-y: 10px;
-    background-size: 24px;
+    background-position-x: 96%;
+    background-position-y: 17px;
+    background-size: 20px;
 }
 
 label {

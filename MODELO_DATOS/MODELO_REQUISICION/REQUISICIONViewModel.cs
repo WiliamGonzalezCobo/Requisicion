@@ -63,15 +63,15 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// <summary>
         /// Numero de identificacion del empleado
         /// </summary>
-        [DisplayName("Documento de empleado:")]
+        [DisplayName("Número documento:")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Debe ingresar un número de documento")]
-        [Required(ErrorMessage = "Número del documento es requerido")]
+        [Required(ErrorMessage = "Número documento es requerido")]
         public string NUMERO_DOCUMENTO_EMPLEADO { get; set; }
 
         /// <summary>
         /// nombre completo del empleado
         /// </summary>
-        [DisplayName("Nombre de empleado:")]
+        [DisplayName("Nombre:")]
         [DataType(DataType.Text, ErrorMessage = "El nombre del empleado debe ser solo texto")]
         [Required(ErrorMessage = "Nombre del empleado es requerido")]
         public string NOMBRE_EMPLEADO { get; set; }
@@ -470,7 +470,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// 
 
         
-        [DisplayName("Ingreso promedio mensual:")]
+        [DisplayName("Ingreso promedio mensual propuesto:")]
         public decimal INGRESO_PROM_MENSUAL{ get; set; }
 
         /// <summary>
@@ -479,7 +479,7 @@ namespace MODELO_DATOS.MODELO_REQUISICION
         /// 
 
         
-        [DisplayName("Ingreso promedio anual:")]
+        [DisplayName("Ingreso promedio anual propuesto:")]
         public decimal INGRESO_PROM_ANUAL { get; set; }
 
         /// <summary>
