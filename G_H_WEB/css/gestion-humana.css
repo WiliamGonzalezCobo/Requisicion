@@ -1388,7 +1388,7 @@ body .requisicion .form-control{
     border-radius: 1.25rem !important;
 }
 
-span#notificationsBadgePrimary.badge.badge-secondary {
+.badge-bell {
     top: -24px !important;
     border-radius: 1.25rem;
     left: -9px;
@@ -1398,4 +1398,9 @@ span#notificationsBadgePrimary.badge.badge-secondary {
     font-size: 0px;
 }
 
-
+.badge-noti {
+    color: #1B1B1B;
+    background-color: #D3D8DA;
+    border-radius: 15px;
+    width: 28px;
+}

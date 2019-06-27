@@ -25,129 +25,135 @@
     ERROR_GENERAL_ViewModel error = @ViewBag.Error ?? new ERROR_GENERAL_ViewModel();
 }
 <link href="~/css/gestion-humana-requisicion.css" rel="stylesheet" />
-<div class="col">
-    <div class="TituloRequisiciones">@ViewBag.Title</div>
+<div class="col tb_separador">
 
 
     <div id="SeccionRequisicionParciales" class="col">
-
-        <div class="row" style="margin: 20px;">
-            <div class="col-md-3 col-lg-3 col-xl-3">
-                <div class="col-12 rectangle_Pop_UP ImagenActiva">
+        <div class="LabelTituloRequisiciones">@ViewBag.Title</div>
+        <div class="row">
+            <div class="col-md-rectangle_Pop">
+                <div class="col-12 rectangle_Pop_UPS ImagenActiva">
                     <img src="../../assets/img/imgPresupuestada.png" class="img-responsive maxImagen" />
-                    <div class="presupuestada">Presupuestada</div>
+                    <div class="items azul-oscuro">Presupuestada</div>
                 </div>
             </div>
-            <div class="col-md-3 col-lg-3 col-xl-3">
-                <div class="col-12 rectangle_Pop_UP">
+            <div class="col-md-rectangle_Pop">
+                <div class="col-12 rectangle_Pop_UPS">
                     <img src="../../assets/img/imgNoPresupuestada.png" class="img-responsive maxImagen" />
-                    <div class="no-presupuestada">No presupuestada</div>
+                    <div class="items rosa">No presupuestada</div>
                 </div>
             </div>
-            <div class="col-md-3 col-lg-3 col-xl-3">
-                <div class="col-12 rectangle_Pop_UP">
+            <div class="col-md-rectangle_Pop">
+                <div class="col-12 rectangle_Pop_UPS">
                     <img src="../../assets/img/imgIncapacidad.png" class="img-responsive maxImagen" />
-                    <div class="incapacidad">Incapacidad</div>
+                    <div class="items amarillo">Incapacidad</div>
                 </div>
             </div>
-            <div class="col-md-3 col-lg-3 col-xl-3">
-                <div class="col-12 rectangle_Pop_UP">
+            <div class="col-md-rectangle_Pop">
+                <div class="col-12 rectangle_Pop_UPS">
                     <img src="../../assets/img/imgLicencia.png" class="img-responsive maxImagen" />
-                    <div class="licencia">Licencia</div>
+                    <div class="items azul-claro">Licencia</div>
                 </div>
             </div>
         </div>
-        @if (ViewBag.Error != null)
-        {
-            @Html.Partial("_Error", (ERROR_GENERAL_ViewModel)ViewBag.Error);
-        }
-        else
-        {
-            <div class="div-alert-modify alert alert-warning" role="alert" style="display:none">
-                La requisición ha sido modificada por otro usuario
-            </div>
-            <div id="CNform">
-                <div class="retiros-detalle">
-                    <div class="form-group col-md-12">
-                        @using (Html.BeginForm("Procesar", "REQUISICION_PRESUPUESTADA", FormMethod.Post, new { autocomplete = "off" }))
-                        {
 
-                            if (User.IsInRole(SettingsManager.PerfilJefe))
-                            {
-                                @Html.Partial("_PartialInfoRequisicion", Model)
-                                @Html.Partial("_PartialAutorizacion", Model)
-                            }
-                            if (User.IsInRole(SettingsManager.PerfilController))
-                            {
-                                @Html.Partial("_PartialInfoRequisicion", Model)
-                                @Html.Partial("_PartialAutorizacion", Model)
-                            }
-                            if (User.IsInRole(SettingsManager.PerfilBp))
-                            {
-                                @Html.Partial("_PartialInfoRequisicion", Model)
-                                @Html.Partial("_PartialInfoGeneral", Model)
-                                @Html.Partial("_PartialInfoSalarial", Model)
-                                @Html.Partial("_PartialAutorizacion", Model)
-
-                            }
-                            if (User.IsInRole(SettingsManager.PerfilRRHH))
-                            {
-                                @Html.Partial("_PartialInfoRequisicion", Model)
-                                @Html.Partial("_PartialInfoGeneral", Model)
-                                @Html.Partial("_PartialInfoSalarial", Model)
-                                @Html.Partial("_PartialAutorizacion", Model)
-                                @Html.Partial("_Rechazar", Model);
-                            }
-                            if (User.IsInRole(SettingsManager.PerfilUSC))
-                            {
-                                @Html.Partial("_PartialInfoRequisicion", Model)
-                                @Html.Partial("_PartialInfoGeneral", Model)
-                                @Html.Partial("_PartialInfoSalarial", Model)
-                                @Html.Partial("_PartialAutorizacion", Model)
-                                @Html.Partial("_Rechazar", Model);
-                            }
-                            if (ViewBag.PERMISOS_CONTROLLER != "")
-                            {
-                                @Html.Partial("_PartialInfoRequisicion", Model)
-                                @Html.Partial("_PartialAutorizacion", Model)
-                            }
-
-                            //Botones
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    @Html.ActionLink("Cancelar requisición", "ConsultarRequisiciones", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "cancelar-requisicion text-capitalize" })
-                                    @if (User.IsInRole(SettingsManager.PerfilJefe))
-                                    {
-                                        <input name="submitButton" id="submitButtonCrear" type="submit" value="CREAR REQUISICIÓN" class="crear-requisicion col-md-3 crear-requisicion-texto btn-collpse-valid" />
-                                    }
-                                    @if (User.IsInRole(SettingsManager.PerfilController))
-                                    {
-                                        <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver text-capitalize btn-collpse-valid" />
-                                        <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto btn-collpse-valid" />
-
-                                    }
-                                    @if (User.IsInRole(SettingsManager.PerfilBp))
-                                    {
-                                        <input name="submitButton" type="submit" value="Enviar Requisición" class="crear-requisicion text-uppercase crear-requisicion-texto btn-collpse-valid" />
-                                    }
-                                    @if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
-                                    {
-                                        <a id="rechazarReq" class="BtnDevolver text-uppercase TextoBtnDevolver" style="padding:12px">Rechazar requisición</a>
-                                        <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver btn-collpse-valid" />
-                                        <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="aprobar-requisicion btn-confirmar-retiro btn-collpse-valid" />
-                                    }
-                                    @if (ViewBag.PERMISOS_CONTROLLER != "")
-                                    {
-                                        <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver btn-collpse-valid" />
-                                        <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto btn-collpse-valid" />
-                                    }
-                                </div>
-                            </div>
-                        }
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-xl-12">
+                @if (ViewBag.Error != null)
+                {
+                    @Html.Partial("_Error", (ERROR_GENERAL_ViewModel)ViewBag.Error);
+                }
+                else
+                {
+                    <div class="div-alert-modify alert alert-warning" role="alert" style="display:none">
+                        La requisición ha sido modificada por otro usuario
                     </div>
-                </div>
+                    <div id="CNform">
+                        <div class="retiros-detalle">
+                            <div class="form-group col-md-12">
+                                @using (Html.BeginForm("Procesar", "REQUISICION_PRESUPUESTADA", FormMethod.Post, new { autocomplete = "off" }))
+                                {
+
+                                    if (User.IsInRole(SettingsManager.PerfilJefe))
+                                    {
+                                        @Html.Partial("_PartialInfoRequisicion", Model)
+                                        @Html.Partial("_PartialAutorizacion", Model)
+                                    }
+                                    if (User.IsInRole(SettingsManager.PerfilController))
+                                    {
+                                        @Html.Partial("_PartialInfoRequisicion", Model)
+                                        @Html.Partial("_PartialAutorizacion", Model)
+                                    }
+                                    if (User.IsInRole(SettingsManager.PerfilBp))
+                                    {
+                                        @Html.Partial("_PartialInfoRequisicion", Model)
+                                        @Html.Partial("_PartialInfoGeneral", Model)
+                                        @Html.Partial("_PartialInfoSalarial", Model)
+                                        @Html.Partial("_PartialAutorizacion", Model)
+
+                                    }
+                                    if (User.IsInRole(SettingsManager.PerfilRRHH))
+                                    {
+                                        @Html.Partial("_PartialInfoRequisicion", Model)
+                                        @Html.Partial("_PartialInfoGeneral", Model)
+                                        @Html.Partial("_PartialInfoSalarial", Model)
+                                        @Html.Partial("_PartialAutorizacion", Model)
+                                        @Html.Partial("_Rechazar", Model);
+                                    }
+                                    if (User.IsInRole(SettingsManager.PerfilUSC))
+                                    {
+                                        @Html.Partial("_PartialInfoRequisicion", Model)
+                                        @Html.Partial("_PartialInfoGeneral", Model)
+                                        @Html.Partial("_PartialInfoSalarial", Model)
+                                        @Html.Partial("_PartialAutorizacion", Model)
+                                        @Html.Partial("_Rechazar", Model);
+                                    }
+                                    if (ViewBag.PERMISOS_CONTROLLER != "")
+                                    {
+                                        @Html.Partial("_PartialInfoRequisicion", Model)
+                                        @Html.Partial("_PartialAutorizacion", Model)
+                                    }
+
+                                    //Botones
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            @Html.ActionLink("Cancelar requisición", "ConsultarRequisiciones", "REQUISICION", routeValues: null, htmlAttributes: new { @class = "btnCancelar cancelar-requisicion text-capitalize" })
+
+
+                                            @if (User.IsInRole(SettingsManager.PerfilJefe))
+                                            {
+                                                <input name="submitButton" id="submitButtonCrear" type="submit" value="CREAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto btn-collpse-valid" />
+                                            }
+                                            @if (User.IsInRole(SettingsManager.PerfilController))
+                                            {
+                                                <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver text-capitalize btn-collpse-valid" />
+                                                <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto btn-collpse-valid" />
+
+                                            }
+                                            @if (User.IsInRole(SettingsManager.PerfilBp))
+                                            {
+                                                <input name="submitButton" type="submit" value="Enviar Requisición" class="crear-requisicion text-uppercase crear-requisicion-texto btn-collpse-valid" />
+                                            }
+                                            @if (User.IsInRole(SettingsManager.PerfilRRHH) || User.IsInRole(SettingsManager.PerfilUSC))
+                                            {
+                                                <a id="rechazarReq" class="BtnDevolver text-uppercase TextoBtnDevolver" style="padding:12px">Rechazar requisición</a>
+                                                <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver btn-collpse-valid" />
+                                                <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="aprobar-requisicion btn-confirmar-retiro btn-collpse-valid" />
+                                            }
+                                            @if (ViewBag.PERMISOS_CONTROLLER != "")
+                                            {
+                                                <input name="submitButton" type="submit" value="DEVOLVER REQUISICIÓN" class="BtnDevolver TextoBtnDevolver btn-collpse-valid" />
+                                                <input name="submitButton" type="submit" value="APROBAR REQUISICIÓN" class="crear-requisicion crear-requisicion-texto btn-collpse-valid" />
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
-        }
+        </div>
     </div>
     <div class="modal fade" id="ModalCreacionNoJefe" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -465,7 +471,7 @@ function ConsultaTraza(CAMPO_REQUISICION) {
             url: "@Url.Action("ConsultarTraza", "REQUISICION")",
             type: 'GET',
             data: { COD_REQUISICION: COD_REQUISICION, CAMPO_REQUISICION: CAMPO_REQUISICION},
-            success: function (respuesta) {              
+            success: function (respuesta) {
 
                 $.each(respuesta, function (key, value) {
                     cont++;
