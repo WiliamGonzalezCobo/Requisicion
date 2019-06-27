@@ -69,8 +69,11 @@ thead, tbody, th {
 }
 
 .arrow-collapse {
-    font-size: 22px;
+    height: 7.76px;
+    width: 12.6px;
     color: #f15300;
+    position: relative;
+    top: 7px;
 }
 
 .btn-rechazar-requisicion {
@@ -165,4 +168,10 @@ a.nav-link-static {
 
 .notification-read .badge-secondary {
     width: 32px;
+}
+
+a.a-collapse h2 {
+    font-size: 18px !important;
+    font-family: "Source Sans Pro";
+    font-weight: bold;
 }
