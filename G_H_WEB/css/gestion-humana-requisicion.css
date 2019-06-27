@@ -42,11 +42,11 @@ thead, tbody, th {
     margin-top: 12px;
     margin-bottom: initial;
     border: 0;
-    border-top: 1px dashed #F15300;
+    border-top: 1px dashed #D3D8DA;
 }
 
 .btn .badge {
-    top: -10px !important;
+    top: -10px;
 }
 
 #btnGroupDrop1.dropdown-toggle::after {
@@ -69,8 +69,11 @@ thead, tbody, th {
 }
 
 .arrow-collapse {
-    font-size: 22px;
+    height: 7.76px;
+    width: 12.6px;
     color: #f15300;
+    position: relative;
+    top: 7px;
 }
 
 .btn-rechazar-requisicion {
@@ -157,12 +160,16 @@ a.nav-link-static {
     text-decoration: none !important
 }
 
-.badge-secondary {
-    color: #1B1B1B;
-    background-color: #D3D8DA;
-    border-radius: 15px;
+.notification-read .badge-bell {
+    width: 32px;
 }
 
-.notification-read .badge-secondary {
-    width: 32px;
+a.a-collapse h2 {
+    font-size: 18px !important;
+    font-family: "Source Sans Pro";
+    font-weight: bold;
+}
+
+.item_lista_modificar {
+    color: #080015
 }
