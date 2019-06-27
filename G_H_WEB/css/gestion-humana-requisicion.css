@@ -172,3 +172,11 @@ a.a-collapse h2 {
 .item_lista_modificar {
     color: #080015
 }
+
+.form-control {
+    border-radius: 0px !important;
+}
+
+textarea {
+    resize: none !important
+}
