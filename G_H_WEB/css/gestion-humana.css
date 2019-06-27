@@ -569,7 +569,7 @@ input[type=text] + label {
     .modal .modal-header .modal-title {
         font-size: 30px;
         font-size: 1.875rem;
-        font-family: "oswald-bold", sans-serif;
+        font-family: "Oswald", sans-serif;
         line-height: 30px;
         color: #080015;
         text-align: center;
