@@ -290,15 +290,18 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            debugger;
+
+        $(".nav-icon").css("background-color", "#bdbdbd");
         $(".nav-incapacidad").removeClass('nav-active');
         $(".nav-presupuestada").removeClass('nav-active');
         if ("@Model.ES_MODIFICACION" == "True") {
             $(".nav-no-presupuestada").removeClass('nav-active');
             $(".nav-modificacion-no-presupuestada").addClass('nav-active');
+            $(".nav-icon-modificacion").css("background-color", "#36a1be");
         } else {
             $(".nav-no-presupuestada").addClass('nav-active');
             $(".nav-modificacion-no-presupuestada").removeClass('nav-active');
+            $(".nav-icon-no-presupuestada").css("background-color", "#d14469");
         }
         $(".nav-modificacion-presupuestada").removeClass('nav-active');
         $(".nav-licencia").removeClass('nav-active');

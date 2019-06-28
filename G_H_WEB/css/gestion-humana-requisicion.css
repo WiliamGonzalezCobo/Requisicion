@@ -159,10 +159,6 @@ a.nav-link-static {
     text-decoration: none !important
 }
 
-.notification-read .badge-bell {
-    width: 32px;
-}
-
 a.a-collapse h2 {
     font-size: 18px !important;
     font-family: "Source Sans Pro";
@@ -353,4 +349,9 @@ table.dataTable thead th {
     height: 48px;
     margin-bottom: 30px;
     display: inline-flex;
+}
+
+.collapse .card-body {
+    padding-left: 0px;
+    padding-right: 0px
 }
