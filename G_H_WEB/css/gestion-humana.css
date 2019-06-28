@@ -1389,10 +1389,11 @@ body .requisicion .form-control{
 .nav-icon {
     padding: 4px !important;
     border-radius: 1.25rem !important;
+    background-color: #bdbdbd;
 }
 
-span#notificationsBadgePrimary.badge.badge-secondary {
-    top: -24px !important;
+.badge-bell {
+    top: -15px !important;
     border-radius: 1.25rem;
     left: -6px;
     padding: 3px;
@@ -1401,9 +1402,26 @@ span#notificationsBadgePrimary.badge.badge-secondary {
     font-size: 0px;
 }
 
+.notification-read .badge-bell {
+    width: 32px;
+}
+
 .badge-noti {
     color: #1B1B1B;
     background-color: #D3D8DA;
     border-radius: 15px;
     width: 28px;
+}
+
+.badge-presupuestada,
+.badge-no-presupuestada,
+.badge-incapacidad,
+.badge-licencia,
+.badge-modificacion,
+.badge-modificacion-presupuestada {
+    background-color: #bdbdbd;
+    padding: 4.5px;
+    width: 25px;
+    border-radius: 19px;
+    color: #000;
 }

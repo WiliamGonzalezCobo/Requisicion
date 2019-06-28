@@ -304,14 +304,17 @@
 
     $(document).ready(function () {
 
+        $(".nav-icon").css("background-color", "#bdbdbd");
         $(".nav-incapacidad").removeClass('nav-active');
 
         if ("@Model.ES_MODIFICACION" == "True") {
             $(".nav-presupuestada").removeClass('nav-active');
             $(".nav-modificacion-presupuestada").addClass('nav-active');
+            $(".nav-icon-modificacion-prep").css("background-color", "#36a1be");
         } else {
             $(".nav-presupuestada").addClass('nav-active');
             $(".nav-modificacion-presupuestada").removeClass('nav-active');
+            $(".nav-icon-presupuestada").css("background-color", "#4f6785");
         }
         $(".nav-modificacion-no-presupuestada").removeClass('nav-active');
         $(".nav-no-presupuestada").removeClass('nav-active');
