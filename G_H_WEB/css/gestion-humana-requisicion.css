@@ -186,9 +186,6 @@ textarea {
     padding: 42px;
     padding-top: 0;
     margin: 0;
-    -ms-transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
 }
 
 .LabelTituloRequisiciones {
@@ -245,9 +242,6 @@ textarea {
         position: absolute;
         margin: 0;
         left: 3px;
-        -ms-transform: rotate(0deg);
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
         font-weight: 600;
         font-style: normal;
         font-size: 9px;
@@ -276,5 +270,16 @@ textarea {
     position: relative;
     float: left;
     top: 12px;
+}
+
+.control_mediano {
+    max-width: 361px;
+    width: 100% !important;
+}
+
+
+.control_grande{
+    max-width:750px;
+    width:100%!important;
 }
 /****FIN CAMBIOS*/
