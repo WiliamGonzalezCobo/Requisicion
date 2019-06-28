@@ -1,5 +1,7 @@
 ﻿/*@charset "UTF-8";*/
 /* OSWALD */
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,600|Oswald:500,400,200,300,700|Ubuntu:500,700');
+
 @font-face {
     font-family: 'oswald-extralight';
     src: url("/assets/fonts/Oswald-ExtraLight.eot");
@@ -230,7 +232,7 @@
         height: 66px;
         margin: 0;
         padding: 20px 0 0;
-        border-bottom: 1px solid #080015;
+        border-bottom: 1px solid #F1F1F1;
         display: block;
     }
 
@@ -567,7 +569,7 @@ input[type=text] + label {
     .modal .modal-header .modal-title {
         font-size: 30px;
         font-size: 1.875rem;
-        font-family: "oswald-bold", sans-serif;
+        font-family: "Oswald", sans-serif;
         line-height: 30px;
         color: #080015;
         text-align: center;
@@ -1388,11 +1390,11 @@ body .requisicion .form-control{
     border-radius: 1.25rem !important;
 }
 
-.badge-bell {
+span#notificationsBadgePrimary.badge.badge-secondary {
     top: -24px !important;
     border-radius: 1.25rem;
-    left: -9px;
-    padding: 4px;
+    left: -6px;
+    padding: 3px;
     color: #FF6E40;
     background-color: #FF6E40;
     font-size: 0px;

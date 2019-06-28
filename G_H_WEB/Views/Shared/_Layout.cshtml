@@ -64,7 +64,7 @@
         }
 
         $.validator.methods.number = function (value, element) {
-            return this.optional(element) || /^[0-9]+(\,[0-9]+)?$/.test(value);
+            return this.optional(element) || /(^[$]|(\.|[0-9]+)+(\.|[0-9]+)|[0])?$/.test(value);
         }
 
         $.validator.methods.date = function (value, element) {
@@ -153,7 +153,7 @@
                         $("#AddNotificaciones").append('<a class="dropdown-item dropdown-notification" href="#">' +
                                                        '<div class="notification-read"><span class="badge badge-secondary badge-noti">' + value.CANTIDAD +
                                                        '</span></div><div class="notifications-body"><p class="notification-texte">Tienes ' + value.CANTIDAD +
-                                                       ' Requisiciones ' + value.NOMBRE_REQUISICION + ' para tramitar >> </p></div>' +
+                                                       ' Requisiciones ' + value.NOMBRE_REQUISICION + ' para tramitar &#187; </p></div>' +
                                                        ((key + 1).toString() === value.TOTAL ? '' : '<hr class="hr-requisition"/>') +
                                                        '</a>')
                     });
@@ -193,7 +193,7 @@
         }
 
         function validarCampoNumber(name, value) {
-            if (value == '') {
+            if (value == '' || value == '$') {
                 $("span[for=" + name + "]").html("");
                 $("input[name=" + name + "]").removeClass("input-validation-error").addClass("input-validation-valid");
                 $("input[name=" + name + "]").val("0");
@@ -201,7 +201,7 @@
         }
 
         function validarCampoNumberInput(name, value) {
-            if (value == '') {
+            if (value == '' || value == '$') {
                 $("span[for=" + name + "]").html("");
                 $("input[name=" + name + "]").removeClass("input-validation-error").addClass("input-validation-valid");
                 $("input[name=" + name + "]").val("0");
@@ -215,7 +215,7 @@
 
         function validar(value, name)
         {
-            if (value == '')
+            if (value == '' || value == '$')
             {
                 $("input[name=" + name + "]").val("0");
             }
