@@ -1390,8 +1390,8 @@ body .requisicion .form-control{
     border-radius: 1.25rem !important;
 }
 
-.badge-bell {
-    top: -13px !important;
+span#notificationsBadgePrimary.badge.badge-secondary {
+    top: -24px !important;
     border-radius: 1.25rem;
     left: -6px;
     padding: 3px;

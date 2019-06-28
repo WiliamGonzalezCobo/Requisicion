@@ -34,13 +34,13 @@
             {
                 <div class="form-group col-md-6 col-sm-12">
                     @Html.LabelFor(model => model.LIST_NOMBRE_TIPO_NECESIDAD, new { @class = "letrasFormulario" })
-                    @Html.DropDownListFor(model => model.COD_TIPO_NECESIDAD, new SelectList(Model.LIST_NOMBRE_TIPO_NECESIDAD, "Value", "Text", Model.COD_TIPO_NECESIDAD), "Seleccione tipo necesidad", new { @class = "form-control deplegablesIniciales letrasFormulario" })
+                    @Html.DropDownListFor(model => model.COD_TIPO_NECESIDAD, new SelectList(Model.LIST_NOMBRE_TIPO_NECESIDAD, "Value", "Text", Model.COD_TIPO_NECESIDAD), "Seleccione tipo necesidad", new { @class = "form-control deplegablesIniciales letrasFormulario control_mediano" })
                     @Html.ValidationMessageFor(model => model.COD_TIPO_NECESIDAD)
                 </div>
 
                 <div class="form-group col-md-6 col-sm-12">
                     @Html.LabelFor(model => model.LIST_NOMBRE_CARGO, new { @class = "letrasFormulario" })
-                    @Html.DropDownListFor(model => model.COD_CARGO, new SelectList(Model.LIST_NOMBRE_CARGO, "Value", "Text", Model.COD_CARGO), "Seleccione el cargo", new { @class = "form-control deplegablesIniciales letrasFormulario" })
+                    @Html.DropDownListFor(model => model.COD_CARGO, new SelectList(Model.LIST_NOMBRE_CARGO, "Value", "Text", Model.COD_CARGO), "Seleccione el cargo", new { @class = "form-control deplegablesIniciales letrasFormulario control_mediano" })
                     @Html.ValidationMessageFor(model => model.COD_CARGO)
                 </div>
 
@@ -49,14 +49,14 @@
             {
                 <div class="form-group col-md-6 col-sm-12">
                     @Html.LabelFor(model => model.LIST_NOMBRE_TIPO_NECESIDAD, new { @class = "letrasFormulario" })
-                    @Html.DropDownListFor(model => model.COD_TIPO_NECESIDAD, new SelectList(Model.LIST_NOMBRE_TIPO_NECESIDAD, "Value", "Text", Model.COD_TIPO_NECESIDAD), "Seleccione tipo necesidad", new { @class = "form-control deplegablesIniciales letrasFormulario", disabled = deshabilitar })
+                    @Html.DropDownListFor(model => model.COD_TIPO_NECESIDAD, new SelectList(Model.LIST_NOMBRE_TIPO_NECESIDAD, "Value", "Text", Model.COD_TIPO_NECESIDAD), "Seleccione tipo necesidad", new { @class = "form-control deplegablesIniciales letrasFormulario control_mediano", disabled = deshabilitar })
                     @Html.HiddenFor(model => model.COD_TIPO_NECESIDAD)
                     @Html.ValidationMessageFor(model => model.COD_TIPO_NECESIDAD)
                 </div>
 
                 <div class="form-group col-md-6 col-sm-12">
                     @Html.LabelFor(model => model.LIST_NOMBRE_CARGO, new { @class = "letrasFormulario" })
-                    @Html.DropDownListFor(model => model.COD_CARGO, new SelectList(Model.LIST_NOMBRE_CARGO, "Value", "Text", Model.COD_CARGO), "Seleccione el cargo", new { @class = "form-control deplegablesIniciales letrasFormulario", disabled = deshabilitar })
+                    @Html.DropDownListFor(model => model.COD_CARGO, new SelectList(Model.LIST_NOMBRE_CARGO, "Value", "Text", Model.COD_CARGO), "Seleccione el cargo", new { @class = "form-control deplegablesIniciales letrasFormulario control_mediano", disabled = deshabilitar })
                     @Html.HiddenFor(model => model.COD_CARGO)
                     @Html.ValidationMessageFor(model => model.COD_CARGO)
                 </div>
@@ -71,21 +71,21 @@
             {
                 <div class="form-group col-md-6 col-sm-12">
                     @Html.LabelFor(model => model.ORDEN, new { @class = "letrasFormulario" })
-                    @Html.TextBoxFor(model => model.ORDEN, new { @class = "form-control TexboxIncicial", @placeholder = "Escriba el orden" })
+                    @Html.TextBoxFor(model => model.ORDEN, new { @class = "form-control TexboxIncicial control_mediano", @placeholder = "Escriba el orden" })
                     @Html.ValidationMessageFor(model => model.ORDEN)
                 </div>
 
                 <div class="form-group col-md-6 col-sm-12 buscadorC">
                     @Html.LabelFor(model => model.COD_CECO, new { @class = "letrasFormulario" })
-                    <br />
+                    @*<br />*@
                     @if (Model.NOMBRE_CECO == null && Model.COD_CECO == 0)
                     {
-                        @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco letrasFormulario", placeholder = "Escriba el centro de costo", onkeyup = "buscarFiltro(this.value)", autocomplete = "off" })
+                        @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco letrasFormulario control_mediano", placeholder = "Escriba el centro de costo", onkeyup = "buscarFiltro(this.value)", autocomplete = "off" })
                         @Html.HiddenFor(model => model.COD_CECO)
                     }
                     else
                     {
-                        @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco letrasFormulario", placeholder = "Escriba el centro de costo", onkeyup = "buscarFiltro(this.value)", autocomplete = "off" })
+                        @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco letrasFormulario control_mediano", placeholder = "Escriba el centro de costo", onkeyup = "buscarFiltro(this.value)", autocomplete = "off" })
                         @Html.HiddenFor(model => model.COD_CECO)
                     }
                     <br>
@@ -102,14 +102,14 @@
             {
                 <div class="form-group col-md-6 col-sm-12">
                     @Html.LabelFor(model => model.ORDEN, new { @class = "letrasFormulario" })
-                    @Html.TextBoxFor(model => model.ORDEN, new { @class = "form-control TexboxIncicial", disabled = deshabilitar, @placeholder = "Escriba el orden" })
+                    @Html.TextBoxFor(model => model.ORDEN, new { @class = "form-control TexboxIncicial control_mediano", disabled = deshabilitar, @placeholder = "Escriba el orden" })
                     @Html.HiddenFor(model => model.ORDEN)
                     @Html.ValidationMessageFor(model => model.ORDEN)
                 </div>
 
                 <div class="form-group col-md-6 col-sm-12">
                     @Html.LabelFor(model => model.COD_CECO, new { @class = "letrasFormulario" })
-                    @Html.DropDownListFor(model => model.COD_CECO, new SelectList(Model.LIST_NOMBRE_CECO, "Value", "Text", Model.COD_CECO), "Seleccione centro de costo", new { @class = "form-control deplegablesIniciales letrasFormulario", disabled = deshabilitar })
+                    @Html.DropDownListFor(model => model.COD_CECO, new SelectList(Model.LIST_NOMBRE_CECO, "Value", "Text", Model.COD_CECO), "Seleccione centro de costo", new { @class = "form-control deplegablesIniciales letrasFormulario control_mediano", disabled = deshabilitar })
                     @Html.HiddenFor(model => model.COD_CECO)
                     @Html.ValidationMessageFor(model => model.COD_CECO)
                 </div>
@@ -127,7 +127,7 @@
                     <span></span>
                 </div>
                 <div class="form-group col-md-12 col-sm-12 buscadorR">
-                    <input class="buscador_modificaciones letrasFormulario" id="buscador_modificaciones" type="text" placeholder="Escriba el N° de documento o nombre del empleado">
+                    <input class="buscador_modificaciones letrasFormulario control_grande" id="buscador_modificaciones" type="text" placeholder="Escriba el N° de documento o nombre del empleado">
                     <br>
                     <ul class="list-group buscador_modificaciones_deplegable_esconder" id="myList">
                         @foreach (SelectListItem item in _BUSCAR_USUARIOS)
@@ -139,14 +139,14 @@
                     <div class="row">
                         <div class="form-group col-md-6 col-sm-6">
                             @Html.LabelFor(model => model.NOMBRE_EMPLEADO, new { @class = "letrasFormulario" })
-                            @Html.TextBoxFor(model => model.NOMBRE_EMPLEADO, new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar })
+                            @Html.TextBoxFor(model => model.NOMBRE_EMPLEADO, new { @class = "form-control TexboxIncicial letrasFormulario control_mediano", disabled = deshabilitar })
                             @Html.ValidationMessageFor(model => model.NOMBRE_EMPLEADO)
                             @Html.HiddenFor(model => model.NOMBRE_EMPLEADO, new { @class = "HD_NOMBRE_EMPLEADO" })
                         </div>
 
                         <div class="form-group col-md-6 col-sm-6">
                             @Html.LabelFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, new { @class = "letrasFormulario" })
-                            @Html.TextBoxFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar })
+                            @Html.TextBoxFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, new { @class = "form-control TexboxIncicial letrasFormulario control_mediano", disabled = deshabilitar })
                             @Html.ValidationMessageFor(model => model.NUMERO_DOCUMENTO_EMPLEADO)
                             @Html.HiddenFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, new { @class = "HD_NUMERO_DOCUMENTO_EMPLEADO" })
                         </div>
@@ -170,13 +170,13 @@
                         <div class="row">
                             <div class="form-group col-md-6 col-sm-12">
                                 @Html.LabelFor(model => model.NOMBRE_EMPLEADO, new { @class = "letrasFormulario" })
-                                @Html.TextBoxFor(model => model.NOMBRE_EMPLEADO, new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar })
+                                @Html.TextBoxFor(model => model.NOMBRE_EMPLEADO, new { @class = "form-control TexboxIncicial letrasFormulario control_mediano", disabled = deshabilitar })
                                 @Html.ValidationMessageFor(model => model.NOMBRE_EMPLEADO)
                             </div>
 
                             <div class="form-group col-md-6 col-sm-12">
                                 @Html.LabelFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, new { @class = "letrasFormulario" })
-                                @Html.TextBoxFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar })
+                                @Html.TextBoxFor(model => model.NUMERO_DOCUMENTO_EMPLEADO, new { @class = "form-control TexboxIncicial letrasFormulario control_mediano", disabled = deshabilitar })
                                 @Html.ValidationMessageFor(model => model.NUMERO_DOCUMENTO_EMPLEADO)
                             </div>
 
