@@ -1413,6 +1413,13 @@ body .requisicion .form-control{
     width: 28px;
 }
 
+.tb_separador_retiros {
+    padding: 42px;
+    padding-top: 0;
+    margin: 0;
+    max-width: 894px;
+}
+
 .badge-presupuestada,
 .badge-no-presupuestada,
 .badge-incapacidad,
