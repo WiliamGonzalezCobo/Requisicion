@@ -344,14 +344,26 @@ table.dataTable thead th {
         font-size: 11px;
     }
 
-.datepicker-requisicion {
+.collapse .card-body {
+    padding-left: 0px;
+    padding-right: 0px
+}
+
+.datepicker-requisicionli {
     width: 360px;
     height: 48px;
     margin-bottom: 30px;
     display: inline-flex;
 }
 
-.collapse .card-body {
-    padding-left: 0px;
-    padding-right: 0px
-}
+    .datepicker-requisicionli .fas.fa-calendar-alt {
+        position: absolute;
+        right: 10px;
+        top: 16px;
+        color: #666666;
+    }
+
+    .datepicker-requisicionli .form-control {
+        height: 48px;
+        border-radius: 0;
+    }
