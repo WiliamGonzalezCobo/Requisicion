@@ -1407,3 +1407,10 @@ span#notificationsBadgePrimary.badge.badge-secondary {
     border-radius: 15px;
     width: 28px;
 }
+
+.tb_separador_retiros {
+    padding: 42px;
+    padding-top: 0;
+    margin: 0;
+    max-width: 750px;
+}
