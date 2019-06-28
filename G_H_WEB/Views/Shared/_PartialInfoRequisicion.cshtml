@@ -77,15 +77,14 @@
 
                 <div class="form-group col-md-6 col-sm-12 buscadorC">
                     @Html.LabelFor(model => model.COD_CECO, new { @class = "letrasFormulario" })
-                    <br />
                     @if (Model.NOMBRE_CECO == null && Model.COD_CECO == 0)
                     {
-                        @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco letrasFormulario control_mediano", placeholder = "Escriba el centro de costo", onkeyup = "buscarFiltro(this.value)", autocomplete = "off" })
+                        @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco letrasFormulario TexboxIncicial control_mediano form-control", placeholder = "Escriba el centro de costo", onkeyup = "buscarFiltro(this.value)", autocomplete = "off" })
                         @Html.HiddenFor(model => model.COD_CECO)
                     }
                     else
                     {
-                        @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco letrasFormulario control_mediano", placeholder = "Escriba el centro de costo", onkeyup = "buscarFiltro(this.value)", autocomplete = "off" })
+                        @Html.TextBoxFor(model => model.NOMBRE_CECO, new { @class = "buscador_ceco letrasFormulario control_mediano form-control TexboxIncicial", placeholder = "Escriba el centro de costo", onkeyup = "buscarFiltro(this.value)", autocomplete = "off" })
                         @Html.HiddenFor(model => model.COD_CECO)
                     }
                     <br>
