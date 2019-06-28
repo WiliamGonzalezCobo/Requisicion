@@ -347,3 +347,10 @@ table.dataTable thead th {
         color: #000;
         font-size: 11px;
     }
+
+.datepicker-requisicion {
+    width: 360px;
+    height: 48px;
+    margin-bottom: 30px;
+    display: inline-flex;
+}
