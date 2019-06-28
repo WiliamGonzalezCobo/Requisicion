@@ -536,6 +536,7 @@ namespace REPOSITORIOS.REQUISICION.ACCESS
                         MESES_GARANTIZADOS = x.MESES_GARANTIZADOS,
                         COD_TIPO_SALARIO = x.COD_TIPO_SALARIO,
                         FACTOR_PRESTACIONAL = x.FACTOR_PRESTACIONAL,
+                        INGRESO_PROM_ANUAL = x.INGRESO_PROM_ANUAL,
                         INGRESO_PROM_MENSUAL = x.INGRESO_PROM_MENSUAL,
                         MERCADO = x.MERCADO,
                         COD_CATEGORIA = x.COD_CATEGORIA,

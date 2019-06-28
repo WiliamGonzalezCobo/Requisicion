@@ -13,7 +13,7 @@
         <div class="row">
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.SALARIO_FIJO, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.SALARIO_FIJO, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar } })
+                @Html.EditorFor(model => model.SALARIO_FIJO, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario", @id= "SALARIO_FIJO_LECTURA", disabled = deshabilitar } })
             </div>
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.PORCENTAJE_SALARIO_FIJO, htmlAttributes: new { @class = "control-label" })
@@ -24,7 +24,7 @@
         <div class="row">
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.SALARIO_VARIABLE, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.SALARIO_VARIABLE, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar } })
+                @Html.EditorFor(model => model.SALARIO_VARIABLE, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario", @id = "SALARIO_VARIABLE_LECTURA", disabled = deshabilitar } })
             </div>
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.PORCENTAJE_SALARIO_VARIABLE, htmlAttributes: new { @class = "control-label" })
@@ -35,40 +35,40 @@
         <div class="row">
             <div class="form-group col-md-12 col-sm-12">
                 @Html.LabelFor(model => model.SOBREREMUNERACION, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.SOBREREMUNERACION, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar } })
+                @Html.EditorFor(model => model.SOBREREMUNERACION, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario", @id = "SOBREREMUNERACION_LECTURA", disabled = deshabilitar } })
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.EXTRA_FIJA, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.EXTRA_FIJA, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar } })
+                @Html.EditorFor(model => model.EXTRA_FIJA, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario", @id = "EXTRA_FIJA_LECTURA", disabled = deshabilitar } })
             </div>
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.RECARGO_NOCTURNO, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.RECARGO_NOCTURNO, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar } })
+                @Html.EditorFor(model => model.RECARGO_NOCTURNO, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario", @id = "RECARGO_NOCTURNO_LECTURA", disabled = deshabilitar } })
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.MEDIO_TRANSPORTE, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.MEDIO_TRANSPORTE, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar } })
+                @Html.EditorFor(model => model.MEDIO_TRANSPORTE, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario", @id = "MEDIO_TRANSPORTE_LECTURA", disabled = deshabilitar } })
             </div>
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.SALARIO_TOTAL, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.SALARIO_TOTAL, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar } })
+                @Html.EditorFor(model => model.SALARIO_TOTAL, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario", @id = "SALARIO_TOTAL_LECTURA", disabled = deshabilitar } })
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.BONO_ANUAL, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.BONO_ANUAL, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar } })
+                @Html.EditorFor(model => model.BONO_ANUAL, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario", @id = "BONO_ANUAL_LECTURA", disabled = deshabilitar } })
             </div>
             <div class="form-group col-md-6 col-sm-12">
                 @Html.LabelFor(model => model.NUMERO_SALARIOS, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.NUMERO_SALARIOS, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario", disabled = deshabilitar } })
+                @Html.EditorFor(model => model.NUMERO_SALARIOS, new { htmlAttributes = new { @class = "form-control TexboxIncicial letrasFormulario", @id = "NUMERO_SALARIOS_LECTURA", disabled = deshabilitar } })
             </div>
         </div>
     </div>

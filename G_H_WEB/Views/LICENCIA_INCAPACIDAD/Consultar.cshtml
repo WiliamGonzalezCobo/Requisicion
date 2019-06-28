@@ -28,6 +28,7 @@
     RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
 }
 <link href="~/css/gestion-humana-requisicion.css" rel="stylesheet" />
+
 <div class="col-md-9">
     <h4>@ViewBag.Title</h4>
 
@@ -646,7 +647,7 @@ function mapeoObjCargoApi(API) {
     $("#MEDIO_TRANSPORTE").val(API.MEDIOS_TRANSPORTE);
     $("#hdMEDIO_TRANSPORTE").val(API.MEDIOS_TRANSPORTE);
 
-    $(".S_TOTAL").text(API.SALARIO_TOTAL);
+    $(".S_TOTAL").val(API.SALARIO_TOTAL);
     $("#hdSALARIO_TOTAL").val(API.SALARIO_TOTAL);
 
     $("#BONO_ANUAL").val(API.BONO_ANUAL);
@@ -690,6 +691,23 @@ function mapeoObjCargoApi(API) {
 
     $("#POSICIONAMIENTO").val(API.POSICIONAMIENTO);
     $("#hdPOSICIONAMIENTO").val(API.POSICIONAMIENTO);
+
+    var listaEnmascarar = document.getElementsByClassName('Mascara');
+    for (var i = 0; i < listaEnmascarar.length; i++) {
+
+        var currencyMask = IMask(
+            listaEnmascarar[i],
+            {
+                mask: '$num',
+                blocks: {
+                    num: {
+                        mask: Number,
+                        thousandsSeparator: '.',
+                        min: 0
+                    }
+                }
+            });
+    }
 }
 
 function ConsultaTraza(CAMPO_REQUISICION) {
@@ -781,7 +799,33 @@ $('.btn-collpse-valid').on('click', function () {
     if (!validateFormInfoSalarialIncap2()) {
         $('#collapseInfoSalarialIncap2').collapse('show');
     }
-});
+    });
+
+    $("form").submit(function () {
+        debugger;
+        $("#SALARIO_FIJO").val(RetornoVariableSubmit("SALARIO_FIJO", false));
+        $("#SALARIO_VARIABLE").val(RetornoVariableSubmit("SALARIO_VARIABLE", false));
+        $("#SOBREREMUNERACION").val(RetornoVariableSubmit("SOBREREMUNERACION", false));
+        $("#EXTRA_FIJA").val(RetornoVariableSubmit("EXTRA_FIJA", false));
+        $("#RECARGO_NOCTURNO").val(RetornoVariableSubmit("RECARGO_NOCTURNO", false));
+        $("#MEDIO_TRANSPORTE").val(RetornoVariableSubmit("MEDIO_TRANSPORTE", false));
+        $(".E_BONO_ANUAL").val(RetornoVariableSubmit("E_BONO_ANUAL", true));
+        $(".E_INGRESO_PROM_MENSUAL").val(RetornoVariableSubmit("E_INGRESO_PROM_MENSUAL", true));
+        $(".E_INGRESO_PROM_ANUAL").val(RetornoVariableSubmit("E_INGRESO_PROM_ANUAL", true));
+        return true;
+    });
+
+    function RetornoVariableSubmit(entrada, Es_Clase) {
+        var variable = 0;
+        if (Es_Clase) {
+            variable = $("." + entrada).val();
+        } else {
+            variable = $("#" + entrada).val();
+
+        }
+        var VariableRetorno = variable.replace("$", "").replace(/\./g, '');
+        return VariableRetorno;
+    }
 
 </script>
 

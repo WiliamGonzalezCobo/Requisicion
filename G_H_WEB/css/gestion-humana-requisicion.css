@@ -173,3 +173,10 @@ a.a-collapse h2 {
 .item_lista_modificar {
     color: #080015
 }
+.volverLabel {
+    border: none;
+    background-color: #eaeaea !important;
+    position: relative;
+    top: 5px;
+    min-width: 300px;
+}

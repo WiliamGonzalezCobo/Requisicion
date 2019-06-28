@@ -55,7 +55,8 @@
             <div class="form-group col-md-12 col-sm-12">
                 <div class="salarioTotalEstilos">
                     @Html.LabelFor(model => model.INGRESO_PROM_MENSUAL, htmlAttributes: new { @class = "letrasSalarioTotal col-md-6", @style = "text-align:left;" })
-                    <span class="valorSalarioTotal col-md-6">@Model.INGRESO_PROM_MENSUAL</span>
+                    @*<span class="valorSalarioTotal col-md-6">@Model.INGRESO_PROM_MENSUAL</span>*@
+                    @Html.EditorFor(model => model.INGRESO_PROM_MENSUAL, new { htmlAttributes = new { @class = "E_INGRESO_PROM_MENSUAL Mascara valorSalarioTotal volverLabel col-md-6", disabled = deshabilitar } })
                     <span id="INGRESO_PROM_MENSUAL_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('INGRESO_PROM_MENSUAL')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                     @Html.HiddenFor(model => model.INGRESO_PROM_MENSUAL, new { @class = "E_INGRESO_PROM_MENSUAL", id = "hdINGRESO_PROM_MENSUAL" })
                     @Html.ValidationMessageFor(model => model.INGRESO_PROM_MENSUAL, "", new { @class = "text-danger" })
@@ -64,7 +65,8 @@
             <div class="form-group col-md-12 col-sm-12">
                 <div class="salarioTotalEstilos">
                     @Html.LabelFor(model => model.INGRESO_PROM_ANUAL, htmlAttributes: new { @class = "letrasSalarioTotal col-md-6", @style = "text-align:left;" })
-                    <span class="valorSalarioTotal col-md-6">@Model.INGRESO_PROM_ANUAL</span>
+                    @*<span class="valorSalarioTotal col-md-6">@Model.INGRESO_PROM_ANUAL</span>*@
+                    @Html.EditorFor(model => model.INGRESO_PROM_ANUAL, new { htmlAttributes = new { @class = "E_INGRESO_PROM_ANUAL valorSalarioTotal Mascara volverLabel", disabled = deshabilitar } })
                     <span id="INGRESO_PROM_ANUAL_S" class="btn_traza span-modify-hidden" onclick="ConsultaTraza('INGRESO_PROM_ANUAL')" data-toggle="tooltip" data-placement="top" style="visibility:hidden">  <img src="../assets/img/Modificado.png" class="imgModificar"></span>
                     @Html.HiddenFor(model => model.INGRESO_PROM_ANUAL, new { @class = "E_INGRESO_PROM_ANUAL", id = "hdINGRESO_PROM_ANUAL" })
                     @Html.ValidationMessageFor(model => model.INGRESO_PROM_ANUAL, "", new { @class = "text-danger" })
@@ -125,7 +127,7 @@
                 </div>
             </div>
         </div>
-        <hr class="separadorPuntosMedio"/>
+        <hr class="separadorPuntosMedio" />
         <div class="row">
             <div class="form-group col-md-12 col-sm-12">
                 <div class="salarioTotalEstilos">
@@ -144,7 +146,6 @@
         right: -31px
     }
 </style>
-
 <script>
     var cantInfoSalarialIncap2 = 8;
 
@@ -180,112 +181,73 @@
             return new Intl.NumberFormat(usarComa, opciones).format(numero);
         }
 
-        var VALOR_SALARIO_FIJO = parseFloat($(".E_SALARIO_FIJO").val().replace(",", "."));
-        var VALOR_SALARIO_VARIABLE = parseFloat($(".S_VARIABLE").val().replace(",", "."));
-        var VALOR_SOBREREMUNERACION = parseFloat($(".E_SOBREREMUNERACION").val().replace(",", "."));
-        var VALOR_EXTRA_FIJA = parseFloat($(".E_EXTRA_FIJA").val().replace(",", "."));
-        var VALOR_RECARGO_NOCTURNO = parseFloat($(".E_RECARGO_NOCTURNO").val().replace(",", "."));
-        var calculo = (VALOR_SALARIO_FIJO + VALOR_SALARIO_VARIABLE + VALOR_SOBREREMUNERACION + VALOR_EXTRA_FIJA + VALOR_RECARGO_NOCTURNO).toString().replace(".", ",");;
+        setTimeout(function () {
+            if ($('#collapseInfoSalarialIncap2 span.span-modify-hidden').length < cantInfoSalarialIncap2) {
+                $('.span_infoSalarialLi2').css("visibility", "visible");
+            }
+        }, 500);
+
+        recalcularSalarios();
+    });
+
+
+    function recalcularSalarios() {
+
+        var VALOR_SALARIO_FIJO = RetornoVariable("E_SALARIO_FIJO", false);
+        var SALARIO_TOTAL = RetornoVariable("S_TOTAL_UNICO", false);
+        var calculo = resultadoCalculos(((VALOR_SALARIO_FIJO * 100) / SALARIO_TOTAL));
+        $(".P_SALARIO_FIJO").val(intlRound(calculo));
+
+        var VALOR_SALARIO_VARIABLE = RetornoVariable("S_VARIABLE", false);
+        var SALARIO_TOTAL = RetornoVariable("S_TOTAL_UNICO", false);
+        var calculo = resultadoCalculos(((VALOR_SALARIO_VARIABLE * 100) / SALARIO_TOTAL));
+        $(".P_VARIABLE").val(intlRound(calculo));
+
+        var VALOR_SOBREREMUNERACION = RetornoVariable("E_SOBREREMUNERACION", false);
+        var SALARIO_TOTAL = RetornoVariable("S_TOTAL_UNICO", false);
+        var calculo = resultadoCalculos(((VALOR_SOBREREMUNERACION * 100) / SALARIO_TOTAL));
+        $(".P_SOBREREMUNERACION").val(intlRound(calculo));
+
+
+        var VALOR_SALARIO_FIJO = RetornoVariable("E_SALARIO_FIJO", false);
+        var VALOR_SALARIO_VARIABLE = RetornoVariable("S_VARIABLE", false);
+        var VALOR_SOBREREMUNERACION = RetornoVariable("E_SOBREREMUNERACION", false);
+        var VALOR_EXTRA_FIJA = RetornoVariable("E_EXTRA_FIJA", false);
+        var VALOR_RECARGO_NOCTURNO = RetornoVariable("E_RECARGO_NOCTURNO", false);
+        var calculo = resultadoCalculos((VALOR_SALARIO_FIJO + VALOR_SALARIO_VARIABLE + VALOR_SOBREREMUNERACION + VALOR_EXTRA_FIJA + VALOR_RECARGO_NOCTURNO));
         $(".S_TOTAL").text(intlRound(calculo));
         $(".S_TOTAL").val(intlRound(calculo));
         // SALARIO FIJO
-        var VALOR_SALARIO_FIJO = parseFloat($(".E_SALARIO_FIJO").val().replace(",", "."));
-        var SALARIO_TOTAL = parseFloat($(".S_TOTAL_UNICO").text().replace(",", "."));
-        var calculo = ((VALOR_SALARIO_FIJO * 100) / SALARIO_TOTAL).toString().replace(".", ",");
+        var VALOR_SALARIO_FIJO = RetornoVariable("E_SALARIO_FIJO", false);
+        var SALARIO_TOTAL = RetornoVariable("S_TOTAL_UNICO", false);
+        var calculo = resultadoCalculos(((VALOR_SALARIO_FIJO * 100) / SALARIO_TOTAL));
         $(".P_SALARIO_FIJO").val(intlRound(calculo));
 
 
         // SALARIO VARIABLE
-        var VALOR_SALARIO_VARIABLE = parseFloat($(".S_VARIABLE").val().replace(",", "."));
-        var SALARIO_TOTAL = parseFloat($(".S_TOTAL_UNICO").text().replace(",", "."));
-        var calculo = ((VALOR_SALARIO_VARIABLE * 100) / SALARIO_TOTAL).toString().replace(".", ",");
+        var VALOR_SALARIO_VARIABLE = RetornoVariable("S_VARIABLE", false);
+        var SALARIO_TOTAL = RetornoVariable("S_TOTAL_UNICO", false);
+        var calculo = resultadoCalculos(((VALOR_SALARIO_VARIABLE * 100) / SALARIO_TOTAL));
         $(".P_VARIABLE").val(intlRound(calculo));
 
         // SOBREREMUNERACION
-        var VALOR_SOBREREMUNERACION = parseFloat($(".E_SOBREREMUNERACION").val().replace(",", "."));
-        var SALARIO_TOTAL = parseFloat($(".S_TOTAL_UNICO").text().replace(",", "."));
-        var calculo = ((VALOR_SOBREREMUNERACION * 100) / SALARIO_TOTAL).toString().replace(".", ",");
+        var VALOR_SOBREREMUNERACION = RetornoVariable("E_SOBREREMUNERACION", false);
+        var SALARIO_TOTAL = RetornoVariable("S_TOTAL_UNICO", false);
+        var calculo = resultadoCalculos(((VALOR_SOBREREMUNERACION * 100) / SALARIO_TOTAL));
         $(".P_SOBREREMUNERACION").val(intlRound(calculo));
 
-        var FACTOR_PRESTACIONAL = $(".E_FACTOR_PRESTACIONAL").val().replace(",", ".");
-        var valor_total = $(".S_TOTAL_UNICO").text().replace(",", ".");
-        var calculo_mensual = (FACTOR_PRESTACIONAL * valor_total / 12).toString().replace(".", ",");
-        debugger;
-        $(".E_INGRESO_PROM_MENSUAL").val(intlRound(calculo_mensual));
+        var FACTOR_PRESTACIONAL = RetornoVariable("E_FACTOR_PRESTACIONAL", false);
+        var valor_total = RetornoVariable("S_TOTAL_UNICO", false);
+        var calculo_mensual = resultadoCalculos((FACTOR_PRESTACIONAL * valor_total / 12));
 
 
-        var calculo_pro_anual = (FACTOR_PRESTACIONAL * valor_total).toString().replace(".", ",");
-        $(".E_INGRESO_PROM_ANUAL").val(intlRound(calculo_pro_anual));
-    });
+        if ($(".E_INGRESO_PROM_MENSUAL")[0] || $(".E_INGRESO_PROM_ANUAL")[0]) {
+            $(".E_INGRESO_PROM_MENSUAL").val(intlRound(calculo_mensual));
 
-
-    $(".E_SALARIO_FIJO").focusout(function () {
-        validar(this.value, this.name);
-        var VALOR_SALARIO_FIJO = parseFloat($(".E_SALARIO_FIJO").val().replace(",", "."));
-        var SALARIO_TOTAL = parseFloat($(".S_TOTAL_UNICO").text().replace(",", "."));
-        var calculo = ((VALOR_SALARIO_FIJO * 100) / SALARIO_TOTAL).toString().replace(".", ",");
-        $(".P_SALARIO_FIJO").val(intlRound(calculo));
-    });
-
-    $(".S_VARIABLE").focusout(function () {
-        validar(this.value, this.name);
-        var VALOR_SALARIO_VARIABLE = parseFloat($(".S_VARIABLE").val().replace(",", "."));
-        var SALARIO_TOTAL = parseFloat($(".S_TOTAL_UNICO").text().replace(",", "."));
-        var calculo = ((VALOR_SALARIO_VARIABLE * 100) / SALARIO_TOTAL).toString().replace(".", ",");
-        $(".P_VARIABLE").val(intlRound(calculo));
-
-    });
-
-    $(".E_SOBREREMUNERACION").focusout(function () {
-        validar(this.value, this.name);
-        var VALOR_SOBREREMUNERACION = parseFloat($(".E_SOBREREMUNERACION").val().replace(",", "."));
-        var SALARIO_TOTAL = parseFloat($(".S_TOTAL_UNICO").text().replace(",", "."));
-        var calculo = ((VALOR_SOBREREMUNERACION * 100) / SALARIO_TOTAL).toString().replace(".", ",");
-        $(".P_SOBREREMUNERACION").val(intlRound(calculo));
-    });
-
-    $(".CALCULO_TOTAL").focusout(function () {
-        validar(this.value, this.name);
-        var VALOR_SALARIO_FIJO = parseFloat($(".E_SALARIO_FIJO").val().replace(",", "."));
-        var VALOR_SALARIO_VARIABLE = parseFloat($(".S_VARIABLE").val().replace(",", "."));
-        var VALOR_SOBREREMUNERACION = parseFloat($(".E_SOBREREMUNERACION").val().replace(",", "."));
-        var VALOR_EXTRA_FIJA = parseFloat($(".E_EXTRA_FIJA").val().replace(",", "."));
-        var VALOR_RECARGO_NOCTURNO = parseFloat($(".E_RECARGO_NOCTURNO").val().replace(",", "."));
-        var calculo = (VALOR_SALARIO_FIJO + VALOR_SALARIO_VARIABLE + VALOR_SOBREREMUNERACION + VALOR_EXTRA_FIJA + VALOR_RECARGO_NOCTURNO).toString().replace(".", ",");;
-        $(".S_TOTAL").text(intlRound(calculo));
-        $(".S_TOTAL").val(intlRound(calculo));
-        // SALARIO FIJO
-        var VALOR_SALARIO_FIJO = parseFloat($(".E_SALARIO_FIJO").val().replace(",", "."));
-        var SALARIO_TOTAL = parseFloat($(".S_TOTAL_UNICO").text().replace(",", "."));
-        var calculo = ((VALOR_SALARIO_FIJO * 100) / SALARIO_TOTAL).toString().replace(".", ",");
-        $(".P_SALARIO_FIJO").val(intlRound(calculo));
-
-
-        // SALARIO VARIABLE
-        var VALOR_SALARIO_VARIABLE = parseFloat($(".S_VARIABLE").val().replace(",", "."));
-        var SALARIO_TOTAL = parseFloat($(".S_TOTAL_UNICO").text().replace(",", "."));
-        var calculo = ((VALOR_SALARIO_VARIABLE * 100) / SALARIO_TOTAL).toString().replace(".", ",");
-        $(".P_VARIABLE").val(intlRound(calculo));
-
-        // SOBREREMUNERACION
-        var VALOR_SOBREREMUNERACION = parseFloat($(".E_SOBREREMUNERACION").val().replace(",", "."));
-        var SALARIO_TOTAL = parseFloat($(".S_TOTAL_UNICO").text().replace(",", "."));
-        var calculo = ((VALOR_SOBREREMUNERACION * 100) / SALARIO_TOTAL).toString().replace(".", ",");
-        $(".P_SOBREREMUNERACION").val(intlRound(calculo));
-
-        var FACTOR_PRESTACIONAL = $(".E_FACTOR_PRESTACIONAL").val().replace(",", ".");
-        var valor_total = $(".S_TOTAL_UNICO").text().replace(",", ".");
-        var calculo_mensual = (FACTOR_PRESTACIONAL * valor_total / 12).toString().replace(".", ",");
-        debugger;
-        $(".E_INGRESO_PROM_MENSUAL").val(intlRound(calculo_mensual));
-
-        var calculo_pro_anual = (FACTOR_PRESTACIONAL * valor_total).toString().replace(".", ",");
-        $(".E_INGRESO_PROM_ANUAL").val(intlRound(calculo_pro_anual));
-    });
-
-    setTimeout(function () {
-        if ($('#collapseInfoSalarialIncap2 span.span-modify-hidden').length < cantInfoSalarialIncap2) {
-            $('.span_infoSalarialLi2').css("visibility", "visible");
+            var calculo_pro_anual = resultadoCalculos((FACTOR_PRESTACIONAL * valor_total));
+            $(".E_INGRESO_PROM_ANUAL").val(intlRound(calculo_pro_anual));
+            enmascarar();
         }
-    }, 500);
+
+    }
 </script>
