@@ -9,7 +9,7 @@
         TempData["_idTipo"] = ViewBag._idTipo;
         if (ViewBag.ReqModificada)
         {
-            ViewBag.Title = "Modificar " + ViewBag.RequisicionNombre;
+            ViewBag.Title = "Editar " + ViewBag.RequisicionNombre;
         }
     }
     else
@@ -28,54 +28,53 @@
     RESPUESTA_POP_UP paraModel = @ViewBag.resultadoPopUpNoJefe ?? new RESPUESTA_POP_UP();
 }
 <link href="~/css/gestion-humana-requisicion.css" rel="stylesheet" />
-
-<div class="col-md-9">
+<div class="col-md-9 tb_separador">
     <h4>@ViewBag.Title</h4>
 
     <div id="loading">
         <div id="SeccionRequisicionParciales" class="col">
 
-            <div class="row" style="margin: 20px;">
-                <div class="col-md-3 col-lg-3 col-xl-3">
-                    <div class="col-12 rectangle_Pop_UP">
+            <div class="row">
+                <div class="col-md-rectangle_Pop">
+                    <div class="col-12 rectangle_Pop_UPS">
                         <img src="../../assets/img/imgPresupuestada.png" class="img-responsive maxImagen" />
-                        <div class="presupuestada">Presupuestada</div>
+                        <div class="items azul-oscuro">Presupuestada</div>
                     </div>
                 </div>
-                <div class="col-md-3 col-lg-3 col-xl-3">
-                    <div class="col-12 rectangle_Pop_UP">
+                <div class="col-md-rectangle_Pop">
+                    <div class="col-12 rectangle_Pop_UPS">
                         <img src="../../assets/img/imgNoPresupuestada.png" class="img-responsive maxImagen" />
-                        <div class="no-presupuestada">No presupuestada</div>
+                        <div class="items rosa">No presupuestada</div>
                     </div>
                 </div>
 
                 @if (nombre_requisicion.Contains("Incapacidad"))
                 {
-                    <div class="col-md-3 col-lg-3 col-xl-3">
-                        <div class="col-12 rectangle_Pop_UP ImagenActiva">
+                    <div class="col-md-rectangle_Pop">
+                        <div class="col-12 rectangle_Pop_UPS ImagenActiva">
                             <img src="../../assets/img/imgIncapacidad.png" class="img-responsive maxImagen" />
-                            <div class="incapacidad">Incapacidad</div>
+                            <div class="items amarillo">Incapacidad</div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-lg-3 col-xl-3">
-                        <div class="col-12 rectangle_Pop_UP">
+                    <div class="col-md-rectangle_Pop">
+                        <div class="col-12 rectangle_Pop_UPS">
                             <img src="../../assets/img/imgLicencia.png" class="img-responsive maxImagen" />
-                            <div class="licencia">Licencia</div>
+                            <div class="items azul-claro">Licencia</div>
                         </div>
                     </div>
                 }
                 else
                 {
-                    <div class="col-md-3 col-lg-3 col-xl-3">
-                        <div class="col-12 rectangle_Pop_UP">
+                    <div class="col-md-rectangle_Pop">
+                        <div class="col-12 rectangle_Pop_UPS">
                             <img src="../../assets/img/imgIncapacidad.png" class="img-responsive maxImagen" />
-                            <div class="incapacidad">Incapacidad</div>
+                            <div class="items amarillo">Incapacidad</div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-lg-3 col-xl-3">
-                        <div class="col-12 rectangle_Pop_UP ImagenActiva">
+                    <div class="col-md-rectangle_Pop">
+                        <div class="col-12 rectangle_Pop_UPS ImagenActiva">
                             <img src="../../assets/img/imgLicencia.png" class="img-responsive maxImagen" />
-                            <div class="licencia">Licencia</div>
+                            <div class="items azul-claro">Licencia</div>
                         </div>
                     </div>
                 }
@@ -358,24 +357,27 @@ $(document).ready(function () {
     });
 
     var typeRequisition = '@nombre_requisicion.Contains("Incapacidad")';
-    debugger;
     if (typeRequisition == "True")
     {
+        $(".nav-icon").css("background-color", "#bdbdbd");
         $(".nav-incapacidad").addClass('nav-active');
         $(".nav-presupuestada").removeClass('nav-active');
         $(".nav-no-presupuestada").removeClass('nav-active');
         $(".nav-licencia").removeClass('nav-active');
         $(".nav-modificacion-presupuestada").removeClass('nav-active');
         $(".nav-modificacion-no-presupuestada").removeClass('nav-active');
+        $(".nav-icon-incapacidad").css("background-color", "#E6A708");
     }
     else
     {
+        $(".nav-icon").css("background-color", "#bdbdbd");
         $(".nav-incapacidad").removeClass('nav-active');
         $(".nav-presupuestada").removeClass('nav-active');
         $(".nav-no-presupuestada").removeClass('nav-active');
         $(".nav-licencia").addClass('nav-active');
         $(".nav-modificacion-no-presupuestada").removeClass('nav-active');
         $(".nav-modificacion-presupuestada").removeClass('nav-active');
+        $(".nav-icon-licencia").css("background-color","#36a1be");
     }
 
     if ("@User.IsInRole(SettingsManager.PerfilJefe)"== "True") {

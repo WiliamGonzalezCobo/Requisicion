@@ -1,7 +1,7 @@
 ﻿.dropdown-menu {
     position: absolute;
     top: 100%;
-    left: 52%;
+    left: 56.5%;
     z-index: 1000;
     display: none;
     float: left;
@@ -16,6 +16,7 @@
     background-clip: padding-box;
     border: 1px solid rgba(0,0,0,.15);
     border-radius: .25rem;
+    padding-top: 0px;
 }
 
 .dropdown-menu-rol {
@@ -68,17 +69,17 @@
 .notification-texte {
     text-align: left;
     margin: 0;
+    font-size: 12.0px;
 }
 
 .notification-read {
     margin: 0;
-    height: 48px;
+    height: 27px;
     vertical-align: top;
     line-height: 48px;
     padding-right: 15px;
     color: black;
     float: right;
-    padding-top: 5px;
 }
 
 .notification-date {

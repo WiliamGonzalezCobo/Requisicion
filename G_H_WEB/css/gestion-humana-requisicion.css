@@ -2,10 +2,9 @@
 select {
     background: url(../assets/img/iconfinder_arrow-down.png) no-repeat;
     -webkit-appearance: none;
-    background-position-x: 244px;
-    background-position-x: 97%;
-    background-position-y: 10px;
-    background-size: 24px;
+    background-position-x: 96%;
+    background-position-y: 17px;
+    background-size: 20px;
 }
 
 label {
@@ -160,10 +159,6 @@ a.nav-link-static {
     text-decoration: none !important
 }
 
-.notification-read .badge-bell {
-    width: 32px;
-}
-
 a.a-collapse h2 {
     font-size: 18px !important;
     font-family: "Source Sans Pro";
@@ -173,6 +168,205 @@ a.a-collapse h2 {
 .item_lista_modificar {
     color: #080015
 }
+
+.form-control {
+    border-radius: 0px !important;
+}
+
+textarea {
+    resize: none !important
+}
+/****INICIO CAMBIOS JULIAN ROMERO SALAZAR*/
+
+.tb_separador {
+    padding: 42px;
+    padding-top: 0;
+    margin: 0;
+    max-width: 894px;
+}
+
+.LabelTituloRequisiciones {
+    margin: 18px;
+    background-color: rgba(255,255,255,0.0);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    font-weight: 700;
+    font-style: normal;
+    font-size: 26.0px;
+    color: rgba(27, 33, 41, 1.0);
+    text-align: left;
+    letter-spacing: 0.0px;
+    line-height: 33.0px;
+}
+
+.col-md-rectangle_Pop {
+    margin-left: 34px;
+    margin-bottom: 34px;
+}
+
+.rectangle_Pop_UPS {
+    top: 0px;
+    height: 98px;
+    box-sizing: border-box;
+    width: 98px;
+    margin: 0;
+    left: 0px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(221, 221, 221, 1.0);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+
+    .rectangle_Pop_UPS img {
+        top: 17px;
+        height: 39px;
+        width: 40px;
+        position: absolute;
+        margin: 0;
+        left: 29px;
+        -ms-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    .rectangle_Pop_UPS .items {
+        top: 70px;
+        height: auto;
+        width: 93px;
+        position: absolute;
+        margin: 0;
+        left: 3px;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 9px;
+        text-align: center;
+        line-height: 14px;
+    }
+
+.azul-oscuro {
+    color: #4F6785;
+}
+
+.rosa {
+    color: #D14469;
+}
+
+.amarillo {
+    color: #E6A708;
+}
+
+.azul-claro {
+    color: #36A1BE;
+}
+
+.btnCancelar {
+    min-width: 202px;
+    position: relative;
+    float: left;
+    top: 12px;
+}
+
+.control_mediano {
+    max-width: 361px;
+    width: 100% !important;
+}
+
+
+.control_grande{
+    max-width:750px;
+    width:100%!important;
+}
+/****FIN CAMBIOS*/
+
+.panel-heading {
+    margin: 0px;
+}
+
+.tb_separador h4 {
+    margin-left: 30px;
+}
+
+
+/*Estilos modificados para el cambio de icono de ordenamiento de la tabla*/
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc_disabled:before {
+    right: 0 !important;
+    content: "" !important;
+}
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:after {
+    right: 0 !important;
+    content: "\25be" !important;
+}
+
+table.dataTable thead th {
+    position: relative;
+    background-image: none !important;
+}
+
+    table.dataTable thead th.sorting:after,
+    table.dataTable thead th.sorting_asc:after,
+    table.dataTable thead th.sorting_desc:after {
+        position: absolute !important;
+        top: 12px !important;
+        right: 8px !important;
+        display: block !important;
+        font-family: FontAwesome !important;
+        opacity: 1;
+    }
+
+    table.dataTable thead th.sorting:after {
+        content: "\25bc" !important;
+        color: #ddd !important;
+        font-size: 0.8em !important;
+        padding-top: 0.12em !important;
+    }
+
+    table.dataTable thead th.sorting_asc:after {
+        content: "\25b2" !important;
+        color: #000;
+        font-size: 11px;
+    }
+
+    table.dataTable thead th.sorting_desc:after {
+        content: "\25bc" !important;
+        color: #000;
+        font-size: 11px;
+    }
+
+.collapse .card-body {
+    padding-left: 0px;
+    padding-right: 0px
+}
+
+.datepicker-requisicionli {
+    width: 360px;
+    height: 48px;
+    margin-bottom: 30px;
+    display: inline-flex;
+}
+
+    .datepicker-requisicionli .fas.fa-calendar-alt {
+        position: absolute;
+        right: 10px;
+        top: 16px;
+        color: #666666;
+    }
+
+    .datepicker-requisicionli .form-control {
+        height: 48px;
+        border-radius: 0;
+    }
 .volverLabel {
     border: none;
     background-color: #eaeaea !important;
